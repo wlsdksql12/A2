@@ -13,4 +13,5 @@ public class Ceo {
 	private String password;		// 사업자 비밀번호
 	private String create_date;		// 사업자 정보 생성일
 	private String update_date;		// 사업자 정보 수정일
+	
 }
