@@ -28,9 +28,5 @@ public class CustomerController {
 	public String shopsingle() {
 		return "shop-single";
 	}
-	
-	@GetMapping("/index1")
-	public String index1() {
-		return "index1";
-	}
+
 }
