@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
- hello
- test1
- test2
- test3
+ hi1
 </body>
 </html>
