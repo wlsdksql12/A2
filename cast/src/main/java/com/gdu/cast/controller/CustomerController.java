@@ -20,9 +20,9 @@ public class CustomerController {
 	public String shop() {
 		return "shop";
 	}
-	@GetMapping("/contract")
-	public String contract() {
-		return "contract";
+	@GetMapping("/contact")
+	public String contact() {
+		return "contact";
 	}
 	@GetMapping("/shopsingle")
 	public String shopsingle() {
