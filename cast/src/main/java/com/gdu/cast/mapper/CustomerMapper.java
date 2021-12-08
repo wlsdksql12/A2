@@ -1,4 +1,4 @@
-package com.gdu.mapper;
+package com.gdu.cast.mapper;
 
 public interface CustomerMapper {
 

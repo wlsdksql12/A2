@@ -1,4 +1,4 @@
-package com.gdu.vo;
+package com.gdu.cast.vo;
 
 import lombok.Data;
 

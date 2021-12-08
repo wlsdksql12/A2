@@ -1,4 +1,4 @@
-package com.gdu.service;
+package com.gdu.cast.service;
 
 public class CustomerService {
 

@@ -1,4 +1,4 @@
-package com.gdu.vo;
+package com.gdu.cast.vo;
 
 public class Customer {
 	
