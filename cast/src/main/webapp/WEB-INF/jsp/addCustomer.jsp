@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form type='post' action="">
+	<form type='post' action="/addCustomer">
 	<div>ID</div>
 	<input type="text" name="customerId">
 	<div>Pw</div>

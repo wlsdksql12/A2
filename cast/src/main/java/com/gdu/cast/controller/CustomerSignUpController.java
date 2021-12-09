@@ -12,10 +12,4 @@ public class CustomerSignUpController {
 		return "signUp";
 	}
 	
-	@PostMapping("/addCustomer")
-	public String postCustomerSignUp() {
-		return "addCustomer";
-		
-	}
-	
 }
