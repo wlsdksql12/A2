@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<form method="post" action="/customerLogin">
 	<div>ID</div>
-	<input type="text" name="">
+	<input type="text" name="customerId">
 	<div>PW</div>
-	<input type="text" name="">
+	<input type="text" name="customerPw">
+	<button type="submit">login</button>
+	</form>
 </body>
 </html>

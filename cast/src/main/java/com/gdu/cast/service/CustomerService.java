@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerService {
 	@Autowired CustomerMapper customerMapper;
 	
-	public void addCustomer(Customer customer) {
+	public void getaddCustomer(Customer customer) {
 		String customerId = customer.getCustomerId();
 		String customerName = customer.getCustomerName();
 		String customerJumin = customer.getCustomerJumin();
@@ -34,4 +34,14 @@ public class CustomerService {
 		log.debug(customer.toString());
 
 	}
+	
+	 //고객 로그인
+	   public Customer getselectCustomer(Customer customer) {
+	      String customerId = customer.getCustomerId();
+	      String customerPw = customer.getCustomerPw();
+	      customer.setCustomerId(customerId);
+	      customer.setCustomerPw(customerPw);
+	      return customerMapper.selectCustomer(customer);
+	   }
+
 }

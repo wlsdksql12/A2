@@ -11,7 +11,7 @@
 	<div>ID</div>
 	<input type="text" name="customerId">
 	<div>Pw</div>
-	<input type="text" name="customerPw">
+	<input type="password" name="customerPw">
 	<div>Name</div>
 	<input type="text" name="customerName">
 	<div>Jumin</div>

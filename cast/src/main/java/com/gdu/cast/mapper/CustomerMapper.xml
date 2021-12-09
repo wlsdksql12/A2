@@ -18,11 +18,20 @@
 		#{customerName},
 		#{customerJumin},
 		#{customerEmail},
-		#{customerPw},
+		password(#{customerPw}),
 		#{customerPhoneNum},
 		#{Active},
 		now(),
 		now()	
 	)
 	</insert>
+	
+	<select id="selectCustomer" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
+		SELECT
+			customer_id CustomerId
+		FROM customer
+		WHERE customer_id = #{customerId}
+		AND customer_pw = password(#{customerPw})
+	</select>
+	
 </mapper>
