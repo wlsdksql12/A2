@@ -28,44 +28,38 @@
 			<tr style="text-align:center" class="table-primary">
 				<th width="40">번호</th>
 				<th width="380">제목</th>
-				<th width="110">닉네임</th>
+				<th width="110">작성자</th>
 				<th width="90">작성날짜</th>
 			</tr>
-			<c:forEach items="${boardList}" var="board">
+			<c:forEach items="${noticeList}" var="notice">
 				<tr style="text-align:center" height="70px">
-					<td>${board.boardNo}</td>
-					<td>
-						<a href="/boardList?currentPage=1&boardCategory=${board.boardCategory}">${board.boardCategory}</a>
-					</td>
-					<td>
-						<a href="/boardOne?boardNo=${board.boardNo}">${board.boardTitle}</a>
-					</td>
-					<td>${board.boardUser}</td>
-					<td>${board.boardDate}</td>
+					<td>${notice.noticeNo}</td>
+					<td><a href="/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
+					<td>관리자</td>
+					<td>${notice.createDate}</td>
 				</tr>
 			</c:forEach>
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/boardList?currentPage=${startPage-1}&boardCategory=${boardCategory}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="/noticeList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/boardList?currentPage=${i}&boardCategory=${boardCategory}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/boardList?currentPage=${i}&boardCategory=${boardCategory}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/boardList?currentPage=${lastPage+1}&boardCategory=${boardCategory}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="/noticeList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
-		<form method="get" id="/boardList">
+		<form method="get" id="/noticeList">
 			<input name="searchTitle">
-			<input hidden="hidden" name="boardCategory" value="${boardCategory}">
 			<button>검색</button>
 		</form>	
 	</div>

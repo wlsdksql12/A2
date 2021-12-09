@@ -33,9 +33,9 @@
       </li>
        <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="addNotice">
+        <a class="nav-link" href="noticeList">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>addNotice</span></a>
+          <span>공지사항</span></a>
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
