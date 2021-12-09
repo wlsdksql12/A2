@@ -62,7 +62,7 @@
 			qna_id qnaId,
 			qna_title qnaTitle,
 			qna_content qnaContent,
-			qna_category qnaCateogry,
+			qna_category qnaCategory,
 			create_date createDate,
 			update_date updateDate
 		FROM qna

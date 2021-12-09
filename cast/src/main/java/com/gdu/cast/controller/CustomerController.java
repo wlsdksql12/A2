@@ -32,10 +32,10 @@ public class CustomerController {
 		return "customer/customerIndex";
 	}
 	@GetMapping("/qnaListOne")
-	public String qnaOne(Model model, int qnaId) {
+	public String qnaOne(Model model, int qnaId, String customerId) {
 		log.debug(qnaId + "<-0------------------QnaId");
 		Qna qna = customerService.getSelectQnaOne(qnaId);
-		
+		model.addAttribute("customerId", customerId);
 		model.addAttribute("qnaId",qna.getQnaId());
 		model.addAttribute("qnaTitle",qna.getQnaTitle());
 		model.addAttribute("qnaContent",qna.getQnaContent());

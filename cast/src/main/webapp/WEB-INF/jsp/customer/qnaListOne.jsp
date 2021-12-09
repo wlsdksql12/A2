@@ -38,7 +38,7 @@
                <td>${qnaCategory}</td>
                <td>${qnaTitle}</td>
                <td>${qnaContent}</td>
-               <td></td>
+               <td>${customerId}</td>
                <td>${createDate}</td>
             </tr>
       </table>

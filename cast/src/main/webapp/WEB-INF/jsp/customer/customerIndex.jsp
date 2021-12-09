@@ -495,7 +495,7 @@
                                             <div class="d-inline-block align-middle">
                                                 <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-4.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
                                                 <div class="d-inline-block">
-                                                    <h6><a href ="/qnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
+                                                    <h6><a href ="/qnaListOne?qnaId=${qna.qnaId}&customerId=${loginCustomerId}">${qna.qnaTitle}</a></h6>
                                                 </div>
                                             </div>
                                         </td>
