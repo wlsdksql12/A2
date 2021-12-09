@@ -9,15 +9,20 @@
 		ceo_email,
 		ceo_license,
 		ceo_phonenum,
-		ceo_jumin
+		ceo_jumin,
+		create_date,
+		update_date
 	) VALUES (
 		#{ceoName},
 		#{ceoId},
 		#{ceoPw},
 		#{ceoEmail},
 		#{ceoLicense},
-		#{ceoPhonenum}
-		#{ceoJumin}
+		#{ceoPhonenum},
+		#{ceoJumin},
+		now(),
+		now()
+		
 	)
 	</insert>
 </mapper>

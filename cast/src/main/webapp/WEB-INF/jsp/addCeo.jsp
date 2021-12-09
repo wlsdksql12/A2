@@ -7,13 +7,13 @@
         <title>사업자 회원가입</title>
     </head>
     <body>
-        <form method="get" action="">
+        <form method="post" action="/addCeo">
             <div class="jumbotron bg-white" align="center">
                 <h3>Join the CAST</h3>
                 <hr>
                 <table style="text-align: center;">
                     <tr>
-                        <td style="font-weight: bold;">이름</td>
+                        <td style="font-weight: bold;">이름</td>
                         <td>
                             <input type="text" class="form-control" placeholder="Name" name="ceoName">
                         </td>
