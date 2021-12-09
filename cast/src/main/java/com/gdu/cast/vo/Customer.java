@@ -75,7 +75,7 @@ public class Customer {
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", customerJumin="
 				+ customerJumin + ", customerEmail=" + customerEmail + ", customerPw=" + customerPw
-				+ ", custmoerPhoneNum=" + custmoerPhoneNum + ", Active=" + Active + ", createDate=" + createDate
+				+ ", customerPhoneNum=" + customerPhoneNum + ", Active=" + Active + ", createDate=" + createDate
 				+ ", updateDate=" + updateDate + "]";
 	}
 	
