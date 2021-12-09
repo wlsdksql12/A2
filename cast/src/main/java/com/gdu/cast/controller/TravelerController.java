@@ -21,7 +21,7 @@ public class TravelerController {
 	// 여행작가 템플릿
 	@GetMapping("/travelerIndex")
 	public String travelerIndex() {
-		return "/traveler/travelerIndex";
+		return "traveler/travelerIndex";
 	}
 	// 여행작가 로그인
 	@GetMapping("/travelerLogin")
@@ -41,7 +41,7 @@ public class TravelerController {
 		}
 		session.setAttribute("loginTraveler", loginTraveler);
 		log.debug((String) session.getAttribute("loginTravelerId"));
-		return "redirect:/index";
+		return "redirect:/travelerIndex";
 	}
 	
 	// 여행작가 로그아웃
@@ -61,6 +61,6 @@ public class TravelerController {
 	public String addBoard(Traveler traveler) {
 		travelerService.addTraveler(traveler);
 		log.debug("★★★★Hyun★★★★"+traveler.toString());
-		return "redirect:/index";
+		return "redirect:/travelerIndex";
 	}
 }
