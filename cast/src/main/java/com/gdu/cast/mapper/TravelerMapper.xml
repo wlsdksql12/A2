@@ -27,8 +27,5 @@
 			NOW(),
 			NOW()
 		)
-		<selectKey resultType="String" order="AFTER" keyProperty="travelerId">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 	</insert>
 </mapper>
