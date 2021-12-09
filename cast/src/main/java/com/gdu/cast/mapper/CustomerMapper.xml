@@ -8,10 +8,10 @@
 		customer_jumin,
 		customer_email,
 		customer_pw,
-		custmoer_phonenum,
+		customer_phonenum,
 		Active,
-		createDate,
-		updateDate
+		create_Date,
+		update_Date
 		
 	) VALUES(
 		#{customerId},
@@ -19,7 +19,7 @@
 		#{customerJumin},
 		#{customerEmail},
 		#{customerPw},
-		#{custmoerPhoneNum},
+		#{customerPhoneNum},
 		#{Active},
 		now(),
 		now()	

@@ -6,5 +6,5 @@ import com.gdu.cast.vo.Customer;
 
 @Mapper
 public interface CustomerMapper {
-	Customer insertCustomer(Customer customer);
+	void insertCustomer(Customer customer);
 }

@@ -5,12 +5,13 @@ import lombok.Data;
 @Data
 public class Traveler {
 	public String travelerId;
+	public String travelerPw;
 	public String travelerName;
 	public String travelerJumin;
+	public String travelerPhoneNum;
 	public String travelerEmail;
-	public String travelerPassword;
 	public String travelerLicense;
-	public String travelerphonenum;
+	public String travelerCareer;
 	public String createDate;
 	public String updateDate;
 }
