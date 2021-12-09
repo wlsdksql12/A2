@@ -1,3 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gdu.mapper.CustomerMapper"></mapper>
+<mapper namespace="com.gdu.mapper.CustomerMapper">
+		<insert id="insertCustomer" parameterType="com.gdu.cast.vo.Customer">
+	INSERT INTO erd(
+		customer_id,
+		customer_name,
+		customer_jumin,
+		customer_email,
+		customer_pw,
+		custmoer_phonenum,
+		Active,
+		createDate,
+		updateDate
+		
+	) VALUES(
+		#{customerId},
+		#{customerName},
+		#{customerJumin},
+		#{customerEmail},
+		#{customerPw},
+		#{custmoerPhoneNum},
+		#{Active},
+		now(),
+		now()	
+	)
+	</insert>
+</mapper>

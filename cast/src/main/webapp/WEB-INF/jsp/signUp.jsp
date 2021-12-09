@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="">고객 회원가입</a>
+	<a href="${pageContext.request.contextPath}/addCustomer">고객 회원가입</a>
 	<a href="">여행작가 회원가입</a>
 	<a href="">사업자 회원가입</a>
 </body>

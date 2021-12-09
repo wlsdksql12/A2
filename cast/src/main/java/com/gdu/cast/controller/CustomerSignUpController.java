@@ -12,9 +12,9 @@ public class CustomerSignUpController {
 		return "signUp";
 	}
 	
-	@PostMapping("/customersingup")
+	@PostMapping("/addCustomer")
 	public String postCustomerSignUp() {
-		return null;
+		return "addCustomer";
 		
 	}
 	

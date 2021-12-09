@@ -10,6 +10,4 @@ public class LoginContrlloer {
 	public String loginSelect() {
 		return "loginSelect";
 	}
-	
-	
 }

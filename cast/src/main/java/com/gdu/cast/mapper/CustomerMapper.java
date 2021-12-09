@@ -1,5 +1,7 @@
 package com.gdu.cast.mapper;
 
-public interface CustomerMapper {
+import com.gdu.cast.vo.Customer;
 
+public interface CustomerMapper {
+	Customer insertCustomer(Customer customer);
 }
