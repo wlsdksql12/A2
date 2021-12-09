@@ -12,11 +12,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Transactional
 public class CustomerService {
 	@Autowired CustomerMapper customerMapper;
 	
-	public Customer addCustomer(Customer customer) {
+	public void addCustomer(Customer customer) {
 		String customerId = customer.getCustomerId();
 		String customerName = customer.getCustomerName();
 		String customerJumin = customer.getCustomerJumin();
@@ -35,8 +34,6 @@ public class CustomerService {
 	    
 		customerMapper.insertCustomer(customer);
 		log.debug(customer.toString());
-		return customer;
-		
-		
+
 	}
 }

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form type='post' action="/addCustomer">
+	<form method='post' action="/addCustomer">
 	<div>ID</div>
 	<input type="text" name="customerId">
 	<div>Pw</div>
@@ -18,7 +18,7 @@
 	<input type="text" name="customerJumin">
 	<div>E-mail</div>
 	<input type="text" name="customerEmail">
-	<div>ID(-도 함게 써주세요)</div>
+	<div>Phone-Number(-도 함게 써주세요)</div>
 	<input type="text" name="customerPhoneNum">
 	<input type="hidden" name="active" value="1">
 	<button type="submit">회원가입</button>
