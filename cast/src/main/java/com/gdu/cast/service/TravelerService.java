@@ -1,5 +1,9 @@
 package com.gdu.cast.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +20,43 @@ public class TravelerService {
 		@Autowired
 		TravelerMapper travelerMapper;
 		
+	// 여행작가 숙소 추천 리스트
+	public Map<String, Object> getselectRoomSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
+		
+		// 1) 매개변수 가공
+		Map<String, Object> paramMap = new HashMap<>();
+		int beginRow = 0;
+		int displayPage = 10;
+		int startPage = 0;
+		int lastPage = 0;
+		
+		beginRow = (currentPage - 1) * ROW_PER_PAGE;
+		paramMap.put("searchTitle", searchTitle);
+		paramMap.put("beginRow", beginRow); 
+		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		
+		// 여행작가 숙소 추천 리스트
+		List<Traveler> roomSelectList = travelerMapper.selectRoomSelectList(paramMap);
+		
+		// 2) 리턴값 가공
+		Map<String, Object> returnMap = new HashMap<>();
+		int totalCount = travelerMapper.selectRoomSelectTotalCount(searchTitle);
+		lastPage = startPage + displayPage - 1;
+		int totalPage = totalCount / ROW_PER_PAGE;
+		if(totalCount % ROW_PER_PAGE != 0) {
+			totalPage += 1;
+		}
+		if(lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		returnMap.put("roomSelectList", roomSelectList);
+		returnMap.put("startPage", startPage);
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("totalPage", totalPage);
+		
+		return returnMap;
+	}
+	
 	// 여행작가 로그인
 	public Traveler getSelectTraveler(Traveler traveler) {
 		log.debug("★★★★Hyun★★★★"+traveler.toString());

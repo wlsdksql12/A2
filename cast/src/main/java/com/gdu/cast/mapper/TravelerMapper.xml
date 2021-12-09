@@ -1,8 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
-	<!-- 여행작가 숙소 추천 -->
 	
+	<!-- 페이징 -->
+	<select id="selectRoomSelectTotalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
+		FROM room_select
+		<where>
+			<if test='searchTitle != null or searchTitle == ""'>
+				room_select_title LIKE '%${searchTitle}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 여행작가 숙소 추천 리스트 -->
+	<select id="selectRoomSelectList" parameterType="Map" resultType="com.gdu.cast.vo.Traveler">
+		SELECT 
+		room_select_id roomSelectId,
+		traveler_id travelerId,
+		hotel_id hotelId,
+		room_select_title roomSelectTitle,
+		room_select_content roomSelectContent,
+		create_date createDate
+		update_date updateDate
+		FROM room_select
+		<where>
+			<if test='searchTitle != null or searchTitle == ""'>
+				room_select_title LIKE '%${searchTitle}%'
+			</if>
+		</where>
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
 	
 	<!-- 여행작가 로그인 -->
 	<select id="selectTraveler" parameterType="com.gdu.cast.vo.Traveler" resultType="com.gdu.cast.vo.Traveler">

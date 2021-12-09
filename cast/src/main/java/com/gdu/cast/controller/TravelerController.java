@@ -1,11 +1,15 @@
 package com.gdu.cast.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.TravelerService;
 import com.gdu.cast.vo.Traveler;
@@ -18,7 +22,29 @@ public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
 	
-	// 여행작가 템플릿
+	// 여행작가 숙소 추천 리스트
+	@GetMapping("/roomSelectList")
+	public String noticeList(Model model,
+			@RequestParam(defaultValue = "1") int currentPage,
+			@RequestParam(required = false) String searchTitle) {
+			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
+		final int ROW_PER_PAGE = 10;
+		Map<String, Object> map = travelerService.getselectRoomSelectList(searchTitle, currentPage, ROW_PER_PAGE);
+		model.addAttribute("roomSelectList", map.get("roomSelectList"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("searchTitle", searchTitle);
+		return "roomSelectList";
+	}
+	
+	// 테이블 템플릿
+	@GetMapping("/table")
+	public String table() {
+		return "traveler/table";
+	}
+	// 여행작가 페이지 템플릿
 	@GetMapping("/travelerIndex")
 	public String travelerIndex() {
 		return "traveler/travelerIndex";
