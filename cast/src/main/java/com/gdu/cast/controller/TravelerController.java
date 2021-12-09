@@ -18,6 +18,11 @@ public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
 	
+	// 여행작가 템플릿
+	@GetMapping("/travelerIndex")
+	public String travelerIndex() {
+		return "/traveler/travelerIndex";
+	}
 	// 여행작가 로그인
 	@GetMapping("/travelerLogin")
 	public String login() {
