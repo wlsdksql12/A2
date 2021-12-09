@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.ExperienceMapper">
+	<insert id="insertExp" parameterType="com.gdu.cast.vo.Experience">
+		INSERT experience (
+			ceo_id,
+			address_id,
+			experience_name,
+			experience_content,
+			experience_price,
+			experience_startdate,
+			experience_enddate,
+			experience_person,
+			experience_detailed_address,
+			create_date,
+			update_date
+		) VALUES (
+			#{ceoId},
+			#{addressId},
+			#{experienceName},
+			#{experienceContent},
+			#{experiencePrice},
+			#{experienceStartdate},
+			#{experienceEnddate},
+			#{experiencePerson},
+			#{experienceDetailedAddress},
+			now(),
+			now()
+		)
+	</insert>
+</mapper>

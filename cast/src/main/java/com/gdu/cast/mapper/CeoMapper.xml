@@ -25,6 +25,7 @@
 		
 	)
 	</insert>
+	
 	<select id="loginCeo" parameterType="com.gdu.cast.vo.Ceo" resultType="com.gdu.cast.vo.Ceo">
 		SELECT
 			ceo_id ceoId
@@ -33,3 +34,20 @@
 		AND ceo_pw = #{ceoPw}
 	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

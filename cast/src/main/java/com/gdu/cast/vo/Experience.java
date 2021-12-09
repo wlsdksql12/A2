@@ -8,6 +8,7 @@ public class Experience {
 	private int experienceId;
 	private String ceoId;
 	private int addressId;
+	private String experienceName;
 	private String experienceContent;
 	private int experiencePrice;
 	private String experienceStartdate;

@@ -8,6 +8,7 @@ public class Hotel {
 	private int hotelId;
 	private String ceoId;
 	private int addressId;
+	private String hotelName;
 	private String hotelContent;
 	private int countRoom;
 	private String hotelDetailedAddress;

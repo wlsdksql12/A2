@@ -24,7 +24,7 @@
 	<div class="card">
 		<div class="card-body">
 			<p class="text-muted font-weight-light">
-				<a href="/insertExp" class="btn btn-success" style="height: 200px;">체험 등록</a>
+				<a href="/insertExp?ceoId=${loginCeoId}" class="btn btn-success" style="height: 200px;">체험 등록</a>
 				<a href="/insertHotel" class="btn btn-warning" style="height: 200px;">숙소 등록</a>
 			</p>
 		</div>
