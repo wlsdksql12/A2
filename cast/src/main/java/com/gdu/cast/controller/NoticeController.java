@@ -52,5 +52,19 @@ public class NoticeController {
 		return "noticeList";
 	}
 	
+	@GetMapping("/noticeOne")
+	public String noticeOne(Model model, int noticeNo) {
+		System.out.println(noticeNo);
+		Notice notice = noticeService.NoticeOne(noticeNo);
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + notice + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		model.addAttribute("noticeNo", notice.getNoticeNo());
+		model.addAttribute("adminId", notice.getAdminId());
+		model.addAttribute("noticeTitle", notice.getNoticeTitle());
+		model.addAttribute("noticeContent", notice.getNoticeContent());
+		model.addAttribute("createDate", notice.getCreateDate());
+		model.addAttribute("updateDate", notice.getUpdateDate());
+		return"noticeOne";
+	}
+	
 	
 }

@@ -10,6 +10,7 @@ import com.gdu.cast.vo.Notice;
 
 @Mapper
 public interface NoticeMapper {
+	// 공지사항 추가
 	void insertNotice(Notice notice);
 	
 	// 공지사항 리스트 글갯수
@@ -17,4 +18,7 @@ public interface NoticeMapper {
 	
 	// 공지사항 리스트 출력
 	List<Notice> selectNoticeList(Map<String, Object> map);
+	
+	// 공지사항 상세보기
+	Notice selectNoticeOne(int noticeNo);
 }

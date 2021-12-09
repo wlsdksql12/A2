@@ -65,4 +65,10 @@ public class NoticeService {
 		
 		return returnMap;
 	}
+	
+	public Notice NoticeOne(int noticeNo) {
+		Notice notice =  noticeMapper.selectNoticeOne(noticeNo);
+		return notice;
+	}
+		
 }
