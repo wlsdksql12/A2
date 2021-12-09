@@ -4,16 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.gdu.cast.mapper.CeoMapper;
+import com.gdu.cast.service.CeoService;
 import com.gdu.cast.vo.Ceo;
-import com.gdu.cast.vo.Customer;
 
-@RestController
 @Controller
 public class addCeoController {
-@Autowired CeoMapper ceoMapper;
+@Autowired CeoService ceoService;
 
 	@GetMapping("/addCeo")
 	public String getaddCustomer(Ceo ceo) {
@@ -23,7 +20,7 @@ public class addCeoController {
 	
 	@PostMapping("/addCeo")
 	public String PostaddCustomer(Ceo ceo) {
-		ceoService.addCustomer(ceo);
-		return "loginSelect";
+		ceoService.addCeo(ceo);
+		return "redirect:/loginSelect";
 	}
 }
