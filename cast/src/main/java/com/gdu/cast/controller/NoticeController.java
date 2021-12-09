@@ -8,5 +8,6 @@ public class NoticeController {
 	@GetMapping("/addNotice")
 	public String addNotice() {
 		return "/admin/addNotice";
+	
 	}
 }
