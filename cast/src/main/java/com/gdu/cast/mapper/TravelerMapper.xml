@@ -9,7 +9,7 @@
 			traveler_pw travelerPw
 		FROM traveler
 		Where traveler_id=#{travelerId}
-		AND traveler_pw=#{travelerPw}
+		AND traveler_pw=password(#{travelerPw})
 	</select>
 
 	<!-- 여행작가 회원가입 -->
