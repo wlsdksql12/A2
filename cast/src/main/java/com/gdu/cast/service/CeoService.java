@@ -15,4 +15,8 @@ public class CeoService {
 	public void addCeo(Ceo ceo) {
 		ceoMapper.insertCeo(ceo);
 	}
+	
+	public Ceo loginCeo(Ceo ceo) {
+		return ceoMapper.loginCeo(ceo);
+	}
 }
