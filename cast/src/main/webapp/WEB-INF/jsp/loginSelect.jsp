@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="">관리자 로그인</a>
+	<a href="${pageContext.request.contextPath}/adminLogin">관리자 로그인</a>
 	<a href="">여행작가 로그인</a>
 	<a href="${pageContext.request.contextPath}/customerLogin">고객 로그인</a>
 	<a href="">사업자 로그인</a>
