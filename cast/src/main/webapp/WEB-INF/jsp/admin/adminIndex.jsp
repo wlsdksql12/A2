@@ -31,6 +31,12 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+       <hr class="sidebar-divider my-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="addNotice">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>addNotice</span></a>
+      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Features
