@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -96,10 +96,12 @@ https://templatemo.com/tm-559-zay-shop
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                   
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/customerIndex?customerId=${loginCustomerId}&currentPage=1">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
+
                 </div>
             </div>
 

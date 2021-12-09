@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,13 +20,10 @@
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/dist/assets/images/favicon.ico" type="image/x-icon">
-
+    <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/favicon.ico" type="image/x-icon">
     <!-- vendor css -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/dist/assets/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/css/style.css">
     
-    
-
 </head>
 <body class="">
 	<!-- [ Pre-loader ] start -->
@@ -447,7 +447,7 @@
             <div class="col-xl-6 col-md-12">
                 <div class="card table-card">
                     <div class="card-header">
-                        <h5>Projects</h5>
+                        <h5>QNA</h5>
                         <div class="card-header-right">
                             <div class="btn-group card-option">
                                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -474,14 +474,16 @@
                                                     <span class="custom-control-label"></span>
                                                 </label>
                                             </div>
-                                            Assigned
+                                            제목
                                         </th>
-                                        <th>Name</th>
-                                        <th>Due Date</th>
-                                        <th class="text-right">Priority</th>
+                                        <th>작성자</th>
+                                        <th>작성 날짜</th>
+                                        <th class="text-right">비밀글</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                 <c:forEach items="${qnaList}" var="qna">
+                                	
                                     <tr>
                                         <td>
                                             <div class="chk-option">
@@ -493,77 +495,26 @@
                                             <div class="d-inline-block align-middle">
                                                 <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-4.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
                                                 <div class="d-inline-block">
-                                                    <h6>John Deo</h6>
-                                                    <p class="text-muted m-b-0">Graphics Designer</p>
+                                                    <h6><a href ="/qnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>Able Pro</td>
-                                        <td>Jun, 26</td>
+                                        <td>${qna.customerId}</td>
+                                        <td>${qna.createDate}</td>
                                         <td class="text-right"><label class="badge badge-light-danger">Low</label></td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="chk-option">
-                                                <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
-                                                    <input type="checkbox" class="custom-control-input">
-                                                    <span class="custom-control-label"></span>
-                                                </label>
-                                            </div>
-                                            <div class="d-inline-block align-middle">
-                                                <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-2.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>Jenifer Vintage</h6>
-                                                    <p class="text-muted m-b-0">Web Designer</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>Mashable</td>
-                                        <td>March, 31</td>
-                                        <td class="text-right"><label class="badge badge-light-primary">high</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="chk-option">
-                                                <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
-                                                    <input type="checkbox" class="custom-control-input">
-                                                    <span class="custom-control-label"></span>
-                                                </label>
-                                            </div>
-                                            <div class="d-inline-block align-middle">
-                                                <img src="${pageContext.request.contextPath}/resources/assets/dist/assets/images/user/avatar-3.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>William Jem</h6>
-                                                    <p class="text-muted m-b-0">Developer</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>Flatable</td>
-                                        <td>Aug, 02</td>
-                                        <td class="text-right"><label class="badge badge-light-success">medium</label></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="chk-option">
-                                                <label class="check-task custom-control custom-checkbox d-flex justify-content-center done-task">
-                                                    <input type="checkbox" class="custom-control-input">
-                                                    <span class="custom-control-label"></span>
-                                                </label>
-                                            </div>
-                                            <div class="d-inline-block align-middle">
-                                                <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-2.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6>David Jones</h6>
-                                                    <p class="text-muted m-b-0">Developer</p>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>Guruable</td>
-                                        <td>Sep, 22</td>
-                                        <td class="text-right"><label class="badge badge-light-primary">high</label></td>
-                                    </tr>
+                                   
+                                    </c:forEach>
                                 </tbody>
                             </table>
+                            <div class="table container mt-3">
+							<c:if test="${currentPage > 1}">
+								<a href="/customerIndex?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
+							</c:if>
+							<c:if test="${currentPage < lastPage}">
+								<a href="/customerIndex?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
+							</c:if>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -597,7 +548,7 @@
                                     <a href="#!">
                                         <h6>+ 1652 Followers</h6>
                                     </a>
-                                    <p class="text-muted m-b-0">You’re getting more and more followers, keep it up!</p>
+                                    <p class="text-muted m-b-0">Youâre getting more and more followers, keep it up!</p>
                                 </div>
                             </div>
                             <div class="row p-b-30">
@@ -740,7 +691,7 @@
                                     <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-4.jpg" alt="user image" class="img-radius profile-img cust-img m-b-15">
                                 </div>
                                 <div class="col">
-                                    <h6 class="m-b-15">Allina D’croze <span class="float-right f-13 text-muted"> a week ago</span></h6>
+                                    <h6 class="m-b-15">Allina Dâcroze <span class="float-right f-13 text-muted"> a week ago</span></h6>
                                     <a href="#!"><i class="feather icon-star-on f-18 text-c-yellow"></i></a>
                                     <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
                                     <a href="#!"><i class="feather icon-star f-18 text-muted"></i></a>
@@ -753,7 +704,7 @@
                                     <a href="#!"><i class="feather icon-heart-on text-c-red m-r-15"></i></a>
                                     <a href="#!"><i class="feather icon-edit text-muted"></i></a>
                                     <blockquote class="blockquote m-t-15 m-b-0">
-                                        <h6>Allina D’croze</h6>
+                                        <h6>Allina Dâcroze</h6>
                                         <p class="m-b-0 text-muted">Lorem Ipsum is simply dummy text of the industry.</p>
                                     </blockquote>
                                 </div>

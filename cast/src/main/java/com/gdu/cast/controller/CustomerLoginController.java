@@ -36,11 +36,12 @@ public class CustomerLoginController {
 		return "redirect:/loginSelect";
 	}
 	
+	//로그
 	@GetMapping("/customerLogin")
 	public String getcustomerLogin() {
-		return "customerLogin";
+		return "customer/customerLogin";
 	}
-	
+	//로그인
 	@PostMapping("/customerLogin")
 	public String postCustomerLogin(HttpSession session, Customer customer) {
 		log.debug(customer.getCustomerId());
@@ -48,12 +49,11 @@ public class CustomerLoginController {
 		Customer loginCustomer = customerService.getselectCustomer(customer);
 		log.debug(loginCustomer + "<-- loginCustomer");
 		if(loginCustomer == null) {
-			return "redirect:/CustomerLogin";
+			return "redirect:/customer/CustomerLogin";
 		}
 		session.setAttribute("loginCustomerId", loginCustomer.getCustomerId());
 		System.out.println(session.getAttribute("loginCustomerid"));
-		return "redirect:/index";
-		
+		return "redirect:/index?customerId="+loginCustomer.getCustomerId();
 	}
 	
 }
