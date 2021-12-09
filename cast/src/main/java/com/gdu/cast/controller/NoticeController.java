@@ -36,19 +36,23 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/noticeList")
-	public String noticeList(Model model,
+	public String noticeList(Model model, HttpSession session,
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
 			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
 		System.out.println(searchTitle);
 		final int ROW_PER_PAGE = 10;
 		Map<String, Object> map = noticeService.getNoticeList(currentPage, ROW_PER_PAGE, searchTitle);
+		
+		
 		model.addAttribute("noticeList", map.get("noticeList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchTitle", searchTitle);
+		model.addAttribute("loginAdminId", session.getAttribute("loginAdminId"));
+		System.out.println(session.getAttribute("loginAdminId") + " 공지사항리스트 세션값");
 		return "noticeList";
 	}
 	
