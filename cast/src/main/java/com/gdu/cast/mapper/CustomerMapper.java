@@ -27,6 +27,6 @@ public interface CustomerMapper {
 	// 내정보 보기
 	Customer selectInfo(String customerId);
 	// 내정보 수정
-	String updateInfo(String customerId);
+	int updateInfo(Customer customer);
 	
 }

@@ -107,8 +107,8 @@ public class CustomerService {
 	   }
 	   
 	   //내정보 수정
-	   public String getupdateInfo(String customerId) {
-		   return customerMapper.updateInfo(customerId);
+	   public int getupdateInfo(Customer customer) {
+		   return customerMapper.updateInfo(customer);
 	   }
 
 }

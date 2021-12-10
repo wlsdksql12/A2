@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.service.CustomerService;
 import com.gdu.cast.vo.Customer;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class CustomerInfoController {
 	@Autowired CustomerService customerService;
@@ -31,15 +34,17 @@ public class CustomerInfoController {
 	}
 	
 	@GetMapping("/updateInfo")
-	public String getupdateInfo(String customerId) {
-		return "updateInfo?customerId="+customerId;
+	public String getupdateInfo(Model model, String customerId) {
+		model.addAttribute("customerId", customerId);
+		return "customer/updateInfo";
 	}
 	
 	
 	@PostMapping("/updateInfo")
 	public String postupdateInfo(Customer customer) {
-		customerService.getupdateInfo(customer.getCustomerId());
-		return "myInfo?customerId="+customer.getCustomerId();
+		customerService.getupdateInfo(customer);
+		log.debug(customerService.getupdateInfo(customer)+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		return "customer/myInfo?customerId="+customer.getCustomerId();
 		
 	}
 }
