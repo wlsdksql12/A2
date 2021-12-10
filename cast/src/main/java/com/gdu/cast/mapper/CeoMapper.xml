@@ -15,7 +15,7 @@
 	) VALUES (
 		#{ceoName},
 		#{ceoId},
-		#{ceoPw},
+		password(#{ceoPw}),
 		#{ceoEmail},
 		#{ceoLicense},
 		#{ceoPhonenum},
@@ -31,7 +31,7 @@
 			ceo_id ceoId
 		FROM ceo
 		WHERE ceo_id = #{ceoId}
-		AND ceo_pw = #{ceoPw}
+		AND ceo_pw = password(#{ceoPw})
 	</select>
 </mapper>
 

@@ -4,17 +4,85 @@
 <head>
 <meta charset="UTF-8">
 <title>주소 입력 페이지</title>
+ <!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>RoyalUI Admin</title>
+	<!-- plugins:css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/vendors/ti-icons/css/themify-icons.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/vendors/base/vendor.bundle.base.css">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<!-- End plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/css/style.css">
+	<!-- endinject -->
+	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
-	<form method="post" action="/insertAddress">
-	<input type="text" id="sample4_postcode" placeholder="우편번호" name="postcode" readonly>
-	<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-	<input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddress" readonly>
-	<input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddress" readonly>
-	<span id="guide" style="color:#999;display:none"></span>
-	<input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddress">
-	<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="extraAddress" readonly>
-	
+	<form method="post" action="/insertAddress" class="form-sample">
+	<div class="col-12 grid-margin">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">주소입력</h4>
+                    <p class="card-description">
+                      Address
+                    </p>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label" >우편번호</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="sample4_postcode" name="postcode" readonly/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label">도로명주소</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control"  id="sample4_roadAddress" name="roadAddress" readonly />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label" >지번주소</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="sample4_jibunAddress" name="jibunAddress" readonly/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <span id="guide" style="color:#999;display:none"></span>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label" >상세주소</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="sample4_detailAddress" name="detailAddress"/>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group row">
+                          <label class="col-sm-3 col-form-label" >참고항목</label>
+                          <div class="col-sm-9">
+                            <input type="text" class="form-control" id="sample4_extraAddress" name="extraAddress" readonly/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 	    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
