@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceMapper">
 	<insert id="insertExp" parameterType="com.gdu.cast.vo.Experience">
-		INSERT experience (
+		INSERT INTO
+			experience (
 			ceo_id,
 			address_id,
 			experience_name,
@@ -11,7 +12,6 @@
 			experience_startdate,
 			experience_enddate,
 			experience_person,
-			experience_detailed_address,
 			create_date,
 			update_date
 		) VALUES (
@@ -23,9 +23,27 @@
 			#{experienceStartdate},
 			#{experienceEnddate},
 			#{experiencePerson},
-			#{experienceDetailedAddress},
 			now(),
 			now()
 		)
+	</insert>
+	<insert id="insertAddress" parameterType="com.gdu.cast.vo.Address">
+		INSERT INTO
+			address (
+				postcode,
+				road_address,
+				jibun_address,
+				detail_address,
+				extra_address
+			) VALUES (
+				#{postcode},
+				#{roadAddress},
+				#{jibunAddress},
+				#{detailAddress},
+				#{extraAddress}
+			)
+			<selectKey resultType="integer" keyProperty="addressId" order="AFTER">
+				SELECT LAST_INSERT_ID()
+			</selectKey>
 	</insert>
 </mapper>
