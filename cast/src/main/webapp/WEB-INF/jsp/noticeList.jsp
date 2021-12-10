@@ -28,7 +28,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="adminIndex">
+        <a class="nav-link" href="/admin/adminIndex">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -322,13 +322,13 @@
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
             </ol>
           </div>
-		<div class="container" style="text-align:center">
-			<c:if test="${loginAdminId != null}">
-				<a href="/addNotice" id="insertBtn" class="btn btn-outline-success">작성</a>
-			</c:if>
+		<div class="container" style="text-align:center">	
 	<div class="card">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
+        <c:if test="${loginAdminId != null}">
+				<a href="/admin/addNotice" id="insertBtn" class="btn btn-outline-primary" style="margin-right: 60px">작성</a>
+			</c:if>
       </div>
       <div class="table-responsive">
 		<table class="table align-items-center table-flush">

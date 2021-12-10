@@ -27,13 +27,13 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="adminIndex">
+        <a class="nav-link" href="/admin/adminIndex">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
        <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="noticeList">
+        <a class="nav-link" href="/noticeList">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>공지사항</span></a>
       </li>

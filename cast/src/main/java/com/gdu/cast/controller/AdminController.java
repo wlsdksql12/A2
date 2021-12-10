@@ -16,7 +16,7 @@ public class AdminController {
 	AdminService adminService;
 	
 	// 관리자 메인페이지
-	@GetMapping("/adminIndex")
+	@GetMapping("/admin/adminIndex")
 	public String adminIndex() {
 		return "admin/adminIndex";
 	}
@@ -40,6 +40,6 @@ public class AdminController {
 		}
 		session.setAttribute("loginAdminId", loginAdmin.getAdminId());
 		System.out.println(session.getAttribute("loginAdminId"));
-		return "redirect:/adminIndex";
+		return "redirect:/admin/adminIndex";
 	}
 }

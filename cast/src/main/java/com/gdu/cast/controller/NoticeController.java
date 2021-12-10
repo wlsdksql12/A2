@@ -2,6 +2,7 @@ package com.gdu.cast.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +21,19 @@ public class NoticeController {
 	@Autowired
 	NoticeService noticeService;
 	
-	@GetMapping("/addNotice")
+	@GetMapping("/admin/addNotice")
 	public String addNotice() {
 		
 		return "/admin/addNotice";
 	}
 	
-	@PostMapping("/addNotice")
+	@PostMapping("/admin/addNotice")
 	public String addNotice(HttpSession session, Notice notice) {
 		String adminId = (String) session.getAttribute("loginAdminId");
 		notice.setAdminId(adminId);
 		System.out.println(notice);
 		noticeService.addNotice(notice);
-		return"redirect:/adminIndex";
+		return"redirect:/noticeList";
 	}
 	
 	@GetMapping("/noticeList")
@@ -43,8 +44,8 @@ public class NoticeController {
 		System.out.println(searchTitle);
 		final int ROW_PER_PAGE = 10;
 		Map<String, Object> map = noticeService.getNoticeList(currentPage, ROW_PER_PAGE, searchTitle);
-		
-		
+		System.out.println(session);
+		System.out.println(session.getAttribute("loginAdminId"));
 		model.addAttribute("noticeList", map.get("noticeList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
