@@ -38,7 +38,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="index.html"
+                href="roomSelectList"
               >
                 <svg
                   class="w-5 h-5"
@@ -319,7 +319,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="index.html"
+                href="travelerIndex"
               >
                 <svg
                   class="w-5 h-5"
@@ -877,7 +877,7 @@
                           ${roomSelect.roomSelectId}
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        <a href="/RoomSerlectOne?roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
+                        <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
                       </td>
                       <td class="px-4 py-3 text-sm">
                         ${roomSelect.createDate}

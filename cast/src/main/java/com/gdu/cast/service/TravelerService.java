@@ -21,6 +21,17 @@ public class TravelerService {
 		@Autowired
 		TravelerMapper travelerMapper;
 		
+	// 여행작가 숙소 추천 추가
+	public void addRoomSelect(RoomSelect roomSelect) {
+		travelerMapper.insertRoomSelect(roomSelect);
+	}
+	
+	// 여행작가 숙소 추천 상세보기
+	public RoomSelect getroomSelectOne(int RoomSelectId) {
+		RoomSelect roomSelect = travelerMapper.selectRoomSelectOne(RoomSelectId);
+		return roomSelect;
+	}
+		
 	// 여행작가 숙소 추천 리스트
 	public Map<String, Object> getselectRoomSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
 		
@@ -35,6 +46,7 @@ public class TravelerService {
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("searchTitle", searchTitle);
+		log.debug(searchTitle);
 		
 		// 여행작가 숙소 추천 리스트
 		List<RoomSelect> roomSelectList = travelerMapper.selectRoomSelectList(paramMap);

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.TravelerService;
+import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.Traveler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,9 +25,24 @@ public class TravelerController {
 	
 	private final int ROW_PER_PAGE = 10;
 	
+	// 여행작가 숙소 추천 추가
+	@GetMapping("/addRoomSelect")
+	public String addRoomSelect() {
+		return "traveler/addRoomSelect";
+	}
+	
+	// 여행 작가 숙소 추천 상세보기
+	@GetMapping("/roomSelectOne")
+	public String roomSelectOne(Model model, int roomSelectId) {
+		System.out.println(roomSelectId + "roomSelectId");
+		RoomSelect roomSelect = travelerService.getroomSelectOne(roomSelectId);
+		model.addAttribute("roomSelect", roomSelect);
+		return "traveler/roomSelectOne";
+	}
+	
 	// 여행작가 숙소 추천 리스트
 	@GetMapping("/roomSelectList")
-	public String noticeList(Model model,
+	public String roomSelectList(Model model,
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
 			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null

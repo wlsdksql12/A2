@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
+
+	<!-- 여행작가 숙소 추천 추가 -->
+	<insert id="insertRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
+		INSERT INTO room_select(
+			traveler_id,
+			hotel_id,
+			room_select_title,
+			room_select_content,
+			create_date,
+			update_date
+		) VALUES (
+			#{travelerId},
+			#{hotelId},
+			#{roomSelectTitle},
+			#{roomSelectContent},			
+			NOW(),
+			NOW()
+		)
+		<selectKey resultType="int" order="BEFORE" keyProperty="roomSelectId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<!-- 여행작가 숙소 추천 상세보기 -->
+	<select id="selectRoomSelectOne" parameterType="int" resultType="com.gdu.cast.vo.RoomSelect">
+		SELECT 
+			room_select_id roomSelectId,
+			traveler_id travelerId,
+			room_select_title roomSelectTitle,
+			room_select_content roomSelectContent,
+			create_date createDate,
+			update_date updateDate
+		FROM room_select
+		WHERE room_select_id = #{roomSelectId}
+	</select>
 	
 	<!-- 페이징 -->
 	<select id="selectRoomSelectTotalCount" parameterType="String" resultType="int">
@@ -16,12 +51,10 @@
 	<!-- 여행작가 숙소 추천 리스트 -->
 	<select id="selectRoomSelectList" parameterType="Map" resultType="com.gdu.cast.vo.RoomSelect">
 		SELECT 
-		room_select_id roomSelectId,
-		traveler_id travelerId,
-		hotel_id hotelId,
-		room_select_title roomSelectTitle,
-		room_select_content roomSelectContent,
-		create_date createDate
+			room_select_id roomSelectId,
+			room_select_title roomSelectTitle,
+			room_select_content roomSelectContent,
+			create_date createDate
 		FROM room_select
 		<where>
 			<if test='searchTitle != null or searchTitle == ""'>
