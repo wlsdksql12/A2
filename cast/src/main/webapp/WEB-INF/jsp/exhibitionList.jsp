@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,15 +34,9 @@
       </li>
        <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="/noticeList">
+        <a class="nav-link" href="noticeList">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>공지사항</span></a>
-      </li>
-       <hr class="sidebar-divider my-0">	
-      <li class="nav-item active">
-        <a class="nav-link" href="/exhibitionList">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>전시소개</span></a>
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
@@ -321,229 +316,69 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800"></h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
             </ol>
           </div>
-
-          <div class="row mb-3">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                        <span>Since last month</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-primary"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Sales</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                        <span>Since last years</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-shopping-cart fa-2x text-success"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- New User Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
-                      <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">366</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-users fa-2x text-info"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">Pending Requests</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                        <span>Since yesterday</span>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-warning"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
-              <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
-                  <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                      aria-haspopup="true" aria-expanded="false">
-                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                      aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <div class="chart-area">
-                    <canvas id="myAreaChart"></canvas>
-                  </div>
-                </div>
-              </div>
-            </div>
-              </div>
-            </div>
-            <!-- Invoice Example -->
-            <div class="col-xl-8 col-lg-7 mb-4">
-              <div class="card">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
-                  <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
-                      class="fas fa-chevron-right"></i></a>
-                </div>
-                <div class="table-responsive">
-                  <table class="table align-items-center table-flush">
-                    <thead class="thead-light">
-                      <tr>
-                        <th>Order ID</th>
-                        <th>Customer</th>
-                        <th>Item</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><a href="#">RA0449</a></td>
-                        <td>Udin Wayang</td>
-                        <td>Nasi Padang</td>
-                        <td><span class="badge badge-success">Delivered</span></td>
-                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td><a href="#">RA5324</a></td>
-                        <td>Jaenab Bajigur</td>
-                        <td>Gundam 90' Edition</td>
-                        <td><span class="badge badge-warning">Shipping</span></td>
-                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td><a href="#">RA8568</a></td>
-                        <td>Rivat Mahesa</td>
-                        <td>Oblong T-Shirt</td>
-                        <td><span class="badge badge-danger">Pending</span></td>
-                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td><a href="#">RA1453</a></td>
-                        <td>Indri Junanda</td>
-                        <td>Hat Rounded</td>
-                        <td><span class="badge badge-info">Processing</span></td>
-                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                      </tr>
-                      <tr>
-                        <td><a href="#">RA1998</a></td>
-                        <td>Udin Cilok</td>
-                        <td>Baby Powder</td>
-                        <td><span class="badge badge-success">Delivered</span></td>
-                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="card-footer"></div>
-              </div>
-            </div>
-            <!-- Message From Customer-->
-            <div class="col-xl-4 col-lg-5 ">
-              <div class="card">
-                <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
-                </div>
-                <div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Hi there! I am wondering if you can help me with a
-                        problem I've been having.</div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok Â· 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a href="#">
-                      <div class="text-truncate message-title">But I must explain to you how all this mistaken idea
-                      </div>
-                      <div class="small text-gray-500 message-time">Nana Haminah Â· 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau Â· 25m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">At vero eos et accusamus et iusto odio dignissimos
-                        ducimus qui blanditiis
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang Â· 54m</div>
-                    </a>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="#">View More <i
-                        class="fas fa-chevron-right"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+		<div class="container" style="text-align:center">	
+	<div class="card">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">전시소개</h6>
+        <c:if test="${loginAdminId != null}">
+				<a href="/admin/addExhibition" id="insertBtn" class="btn btn-outline-primary" style="margin-right: 60px">작성</a>
+			</c:if>
+      </div>
+      <!-- 내일 할 일 -->
+      <div class="table-responsive">
+		<table class="table align-items-center table-flush">
+		  <thead class="thead-light">
+			<tr style="text-align:center" class="table-primary">
+				<th width="10%">번호</th>
+				<th width="60%">제목</th>
+				<th width="10%">작성자</th>
+				<th width="20%">작성날짜</th>
+			</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${noticeList}" var="notice">
+					<tr style="text-align:center" height="70px">
+						<td>${notice.noticeNo}</td>
+						<td><a href="/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
+						<td>관리자</td>
+						<td>${notice.createDate}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<div>
+			<c:if test="${startPage > 1}">
+				<a href="/noticeList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+			</c:if>
+			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
+				<c:choose>
+					<c:when test="${i == currentPage}">
+						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${lastPage != totalPage}">
+				<a href="/noticeList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+			</c:if>
+		</div>
+		<br>
+		<form method="get" id="/noticeList">
+			<input name="searchTitle" value="${searchTitle}">
+			<button>검색</button>
+		</form>	
+		</div>
+		<br>
+	</div>
+</div>
           <!--Row-->
 
           <div class="row">
