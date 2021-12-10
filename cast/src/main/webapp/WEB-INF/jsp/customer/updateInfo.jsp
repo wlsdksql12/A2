@@ -11,7 +11,10 @@
 	<form method="post" action="/updateInfo">
 		<h1>내정보 수정</h1>
 		<table border="1">
-
+			<tr>
+				<td>ID</td>
+				<td><input type="text" name="customerId" value="${customerId}" readonly="readonly"></td>
+			</tr>
 			<tr>
 				<td>Name</td>
 				<td><input type="text" name="customerName"></td>

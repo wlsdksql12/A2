@@ -44,7 +44,7 @@ public class CustomerInfoController {
 	public String postupdateInfo(Customer customer) {
 		customerService.getupdateInfo(customer);
 		log.debug(customerService.getupdateInfo(customer)+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		return "customer/myInfo?customerId="+customer.getCustomerId();
+		return "redirect:/myinfo?customerId="+customer.getCustomerId();
 		
 	}
 }
