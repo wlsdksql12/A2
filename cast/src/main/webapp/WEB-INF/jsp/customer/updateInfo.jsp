@@ -8,20 +8,28 @@
 </head>
 <body>
 
-	<input type="hidden" name="customerId" value="${customerId}">
-	<table border="1">
-	<tr>
-		<td>Name</td>
-		<td><input type="text" name="customerName"></td>
-	</tr>
-	<tr>
-		<td>Jumin</td>
-		<td><input type="text" name="customerJumin"></td>
-	</tr>
-	<tr>
-		<td>PhoneNum</td>
-		<td><input type="text" name="customerPhoneNum"></td>
-	</tr>
-	</table>
+	<form method="post" action="/updateInfo">
+		<h1>내정보 수정</h1>
+		<table border="1">
+
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="customerName"></td>
+			</tr>
+			<tr>
+				<td>Jumin</td>
+				<td><input type="text" name="customerJumin"></td>
+			</tr>
+			<tr>
+				<td>customerEmail</td>
+				<td><input type="text" name="customerEmail"></td>
+			</tr>
+			<tr>
+				<td>PhoneNum</td>
+				<td><input type="text" name="customerPhoneNum"></td>
+			</tr>
+		</table>
+		<button type="submit">수정</button>
+	</form>
 </body>
 </html>
