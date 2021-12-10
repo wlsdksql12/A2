@@ -11,7 +11,7 @@
 	<h3>체험 등록</h3>
 	<form method="post" action="/insertExp">
 	<input type="text" value="${loginCeoId}" readonly>
-	<input type="text" value="${addressId}" readonly>
+	<input type="text" value="${addressId}" name="addressId" readonly>
 	<br> 체험 이름
 	<br>
 	<input type="text" name="experienceName">
@@ -24,7 +24,7 @@
 	<input type="date" name="experienceStartdate"> ~
 	<input type="date" name="experienceEnddate">
 	<br> 최대 인원
-	<input type="number"> 명
+	<input type="number" name="experiencePerson"> 명
 	<br><br>
 	<button type="submit">주소 입력 페이지</button>
 	</form>

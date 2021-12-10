@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -20,7 +21,9 @@ public class ExperienceController {
 	ExperienceService experienceService;
 	
 	@GetMapping("/insertExp")
-	public String insertExp() {
+	public String insertExp(Model model, int addressId) {
+		
+		model.addAttribute("addressId" , addressId);
 		
 		return "/ceo/insertExp";
 	}
