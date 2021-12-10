@@ -22,13 +22,14 @@ public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
 	
+	private final int ROW_PER_PAGE = 10;
+	
 	// 여행작가 숙소 추천 리스트
 	@GetMapping("/roomSelectList")
 	public String noticeList(Model model,
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
 			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
-		final int ROW_PER_PAGE = 10;
 		Map<String, Object> map = travelerService.getselectRoomSelectList(searchTitle, currentPage, ROW_PER_PAGE);
 		model.addAttribute("roomSelectList", map.get("roomSelectList"));
 		model.addAttribute("startPage", map.get("startPage"));
@@ -36,14 +37,9 @@ public class TravelerController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchTitle", searchTitle);
-		return "roomSelectList";
+		return "traveler/roomSelectList";
 	}
 	
-	// 테이블 템플릿
-	@GetMapping("/table")
-	public String table() {
-		return "traveler/table";
-	}
 	// 여행작가 페이지 템플릿
 	@GetMapping("/travelerIndex")
 	public String travelerIndex() {

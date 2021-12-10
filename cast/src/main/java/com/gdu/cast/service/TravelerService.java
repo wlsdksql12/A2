@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.TravelerMapper;
+import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.Traveler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -31,15 +32,16 @@ public class TravelerService {
 		int lastPage = 0;
 		
 		beginRow = (currentPage - 1) * ROW_PER_PAGE;
-		paramMap.put("searchTitle", searchTitle);
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		paramMap.put("searchTitle", searchTitle);
 		
 		// 여행작가 숙소 추천 리스트
-		List<Traveler> roomSelectList = travelerMapper.selectRoomSelectList(paramMap);
+		List<RoomSelect> roomSelectList = travelerMapper.selectRoomSelectList(paramMap);
 		
 		// 2) 리턴값 가공
 		Map<String, Object> returnMap = new HashMap<>();
+		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
 		int totalCount = travelerMapper.selectRoomSelectTotalCount(searchTitle);
 		lastPage = startPage + displayPage - 1;
 		int totalPage = totalCount / ROW_PER_PAGE;
