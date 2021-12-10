@@ -10,12 +10,17 @@ import com.gdu.cast.vo.Traveler;
 
 @Mapper
 public interface TravelerMapper {
+	// 숙소 추천 추가
+		void insertRoomSelect(RoomSelect roomSelect);
+	
+	// 숙소 추천 삭제
+	int deleteRoomSelect(RoomSelect roomSelect);
+		
+	// 숙소 추천 수정
+	int updateRoomSelect(RoomSelect roomSelect);
 	
 	// 숙소 추천 상세보기
 	RoomSelect selectRoomSelectOne(int RoomSelectId);
-	
-	// 숙소 추천 추가
-	void insertRoomSelect(RoomSelect roomSelect);
 	
 	// 숙소 추천 리스트
 	List<RoomSelect> selectRoomSelectList(Map<String, Object> map);

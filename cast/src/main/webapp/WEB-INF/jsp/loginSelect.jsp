@@ -8,10 +8,9 @@
 </head>
 <body>
 	<a href="${pageContext.request.contextPath}/adminLogin">관리자 로그인</a>
-	<a href="${pageContext.request.contextPath}/TravelerLogin">여행작가 로그인</a>
+	<a href="${pageContext.request.contextPath}/travelerLogin">여행작가 로그인</a>
 	<a href="${pageContext.request.contextPath}/customerLogin">고객 로그인</a>
 	<a href="${pageContext.request.contextPath}/ceoLogin">사업자 로그인</a>
-	
 	<a href="${pageContext.request.contextPath}/customersingup">회원가입</a>
 </body>
 </html>

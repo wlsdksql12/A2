@@ -24,6 +24,25 @@
 		</selectKey>
 	</insert>
 	
+	<!-- 여행작가 숙소 추천 삭제 -->
+	<delete id="deleteRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
+		DELETE FROM room_select
+		WHERE room_select_id = #{roomSelectId}
+		AND travler_id = #{travelerId}
+	</delete>
+	
+	<!-- 여행작가 숙소 추천 수정 -->
+	<update id="updateRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
+		UPDATE room_select
+		SET 
+			room_select_title = #{roomSelectTitle}, 
+			room_select_content = #{roomSelectContent},
+			update_date = NOW()
+		WHERE 
+			room_select_id = #{roomSelectId}
+	</update>
+
+	
 	<!-- 여행작가 숙소 추천 상세보기 -->
 	<select id="selectRoomSelectOne" parameterType="int" resultType="com.gdu.cast.vo.RoomSelect">
 		SELECT 
@@ -53,6 +72,7 @@
 		SELECT 
 			room_select_id roomSelectId,
 			room_select_title roomSelectTitle,
+			traveler_id travelerId,
 			room_select_content roomSelectContent,
 			create_date createDate
 		FROM room_select

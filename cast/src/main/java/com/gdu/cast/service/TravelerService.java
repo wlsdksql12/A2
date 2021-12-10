@@ -26,6 +26,18 @@ public class TravelerService {
 		travelerMapper.insertRoomSelect(roomSelect);
 	}
 	
+	// 여행작가 숙소 추천 삭제
+	public void removeRoomSelect(RoomSelect roomSelect) {
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		travelerMapper.deleteRoomSelect(roomSelect);
+	}
+	
+	// 여행작가 숙소 추천 수정
+	public void modifyRoomSelect(RoomSelect roomSelect) {
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		travelerMapper.updateRoomSelect(roomSelect);
+	}
+
 	// 여행작가 숙소 추천 상세보기
 	public RoomSelect getroomSelectOne(int RoomSelectId) {
 		RoomSelect roomSelect = travelerMapper.selectRoomSelectOne(RoomSelectId);
