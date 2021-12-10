@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.service.CustomerService;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Qna;
@@ -31,6 +33,7 @@ public class CustomerController {
 		model.addAttribute("currentPage", currentPage);
 		return "customer/customerIndex";
 	}
+	//qna상세보기
 	@GetMapping("/qnaListOne")
 	public String qnaOne(Model model, int qnaId, String customerId) {
 		log.debug(qnaId + "<-0------------------QnaId");
@@ -41,9 +44,44 @@ public class CustomerController {
 		model.addAttribute("qnaContent",qna.getQnaContent());
 		model.addAttribute("qnaCategory", qna.getQnaCategory());
 		model.addAttribute("createDate", qna.getCreateDate());
+		model.addAttribute("updateDate",qna.getUpdateDate());
 		return "customer/qnaListOne";
 		
 	}
+	//qna수정
+	@GetMapping("/updateQna")
+	public String updateQna(Model model,int qnaId, String customerId) {
+		model.addAttribute("qnaId", qnaId);
+		model.addAttribute("customerId", customerId);
+		return "customer/updateQna";
+	}
+	//qna수정
+	@PostMapping("/updateQna")
+	public String updateQna(Qna qna) {
+		System.out.println(qna+"!@#qna!@#");
+		log.debug(qna.toString());
+		customerService.getupdateQnaOne(qna);
+
+		/*
+		Qna qna = new Qna();
+		qna.setQnaId(qnaId);
+		qna.setQnaTitle(qnaTitle);
+		qna.setQnaCategory(qnaCategory);
+		qna.setQnaContent(qnaContent);
+		*/
+		
+		return "redirect:/qnaListOne?qnaId="+qna.getQnaId()+"&customerId="+qna.getCustomerId();
+		
+	}
 	
+	//qna 삭제
+	@GetMapping("deleteQna")
+	public String deleteQna(Qna qna) {
+		
+		customerService.deleteQnaOne(qna);
+		log.debug(qna + "<-- qnad@@@@@@@@@@@@@@@@@@");
+		return "redirect:/customerIndex?customerId="+qna.getCustomerId()+"&currentPage=1";
+		
+	}
 	
 }

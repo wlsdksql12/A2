@@ -74,7 +74,6 @@ public class CustomerService {
 			returnMap.put("qnaList", qnaList);
 			returnMap.put("lastPage", lastPage);
 			return returnMap;
-		   
 	   }
 	   
 	   //qnaOne
@@ -82,6 +81,23 @@ public class CustomerService {
  
 		return customerMapper.selectQnaOne(qnaId);
 		   
+	   }
+	   
+	   //Qna상세보기 -> 수정
+	   public int getupdateQnaOne(Qna qna) {
+		   System.out.println(qna+"!@#!@#qna!Q@#!@#");
+		   /*
+		   qna.setQnaId(qna.getQnaId());
+		   qna.setQnaCategory(qna.getQnaCategory());
+		   qna.setQnaContent(qna.getQnaCategory());
+		   qna.setQnaTitle(qna.getQnaTitle());
+		   */
+		return customerMapper.updateQna(qna);
+		   
+	   }
+	   public int deleteQnaOne(Qna qna) {
+		   
+		   return customerMapper.deleteQnaOne(qna);
 	   }
 
 }

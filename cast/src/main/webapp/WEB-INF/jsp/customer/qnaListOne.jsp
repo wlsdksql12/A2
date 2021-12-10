@@ -23,7 +23,8 @@
 <body>
    <div class="container" style="text-align:center">
       <h1>qna상세보기</h1>
-      <a href="/addQna" id="insertBtn" class="btn btn-outline-success">작성</a>
+      <a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
+      <a href="/deleteQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
       <table border="1">
          <tr style="text-align:center" class="table-primary">
             <th width="40">번호</th>
@@ -32,6 +33,7 @@
             <th width="380">내용</th>
             <th width="110">작성자</th>
             <th width="90">작성날짜</th>
+            <th width="90">수정날짜</th>
          </tr>
             <tr style="text-align:center" height="70px">
                <td>${qnaId}</td>
@@ -40,8 +42,10 @@
                <td>${qnaContent}</td>
                <td>${customerId}</td>
                <td>${createDate}</td>
+               <td>${updateDate}</td>
             </tr>
       </table>
+      <a href="/customerIndex?customerId=${customerId}&currentPage=1">이전</a>
 
    </div>
 </body>

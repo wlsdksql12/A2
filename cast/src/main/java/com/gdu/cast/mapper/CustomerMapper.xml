@@ -39,6 +39,7 @@
 		SELECT
 			qna_id qnaId,
 			qna_title qnaTitle,
+			customer_id customerId,
 			qna_content qnaContent,
 			qna_category qnaCateogry,
 			create_date createDate,
@@ -69,5 +70,16 @@
 		WHERE qna_id = #{qnaId}			
 			
 	</select>
+	
+	<update id="updateQna" parameterType="com.gdu.cast.vo.Qna" >
+		UPDATE qna SET qna_title = #{qnaTitle}, qna_category = #{qnaCategory}, qna_content = #{qnaContent}, update_date = now()
+		WHERE qna_id = #{qnaId} AND customer_id = #{customerId}
+	</update>
+	
+	<delete id="deleteQnaOne" parameterType="int">
+		DELETE
+		FROM qna
+		WHERE qna_id = #{qnaId}
+	</delete>
 	
 </mapper>
