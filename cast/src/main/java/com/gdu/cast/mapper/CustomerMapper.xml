@@ -82,4 +82,23 @@
 		WHERE qna_id = #{qnaId}
 	</delete>
 	
+	<select id="selectInfo" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
+		SELECT
+			customer_id customerId,
+			customer_name customerName,
+			customer_jumin customerJumin,
+			customer_email customerEmail,
+			customer_phonenum customerPhoneNum
+		FROM Customer
+		WHERE customer_id = #{customerId}
+	</select> 
+	
+	<update id="updateInfo" parameterType="com.gdu.cast.vo.Customer" >
+		UPDATE customer SET customer_id = #{customerId}, customer_name = #{customerName}, 
+					   customer_jumin = #{customerJumin}, customer_email = #{customerEmail},
+					   customer_phonenum = #{customerPhoneNum}
+		WHERE customer_id = #{customerId}
+	</update>
+	
+	
 </mapper>

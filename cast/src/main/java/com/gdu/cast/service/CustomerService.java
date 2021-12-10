@@ -95,9 +95,20 @@ public class CustomerService {
 		return customerMapper.updateQna(qna);
 		   
 	   }
+	   // qna 삭제
 	   public int deleteQnaOne(Qna qna) {
 		   
 		   return customerMapper.deleteQnaOne(qna);
+	   }
+	   
+	   //내정보
+	   public Customer getselectInfo(String customerId) {
+		   return customerMapper.selectInfo(customerId);
+	   }
+	   
+	   //내정보 수정
+	   public String getupdateInfo(String customerId) {
+		   return customerMapper.updateInfo(customerId);
 	   }
 
 }

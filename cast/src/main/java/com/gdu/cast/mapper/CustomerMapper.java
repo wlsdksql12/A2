@@ -22,6 +22,11 @@ public interface CustomerMapper {
 	Qna selectQnaOne(int qnaId);
 	//상세보기한 qna 수정
 	int updateQna(Qna qna);
-	
+	// qna 삭제
 	int deleteQnaOne(Qna qna);
+	// 내정보 보기
+	Customer selectInfo(String customerId);
+	// 내정보 수정
+	String updateInfo(String customerId);
+	
 }

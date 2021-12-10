@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-public class CustomerController {
+public class CustomerQnaController {
 	@Autowired CustomerService customerService;
 	
 	private final int ROW_PER_PAGE = 5;
