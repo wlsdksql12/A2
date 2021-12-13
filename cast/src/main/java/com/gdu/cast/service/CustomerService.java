@@ -26,7 +26,7 @@ public class CustomerService {
 		String customerId = customer.getCustomerId();
 		String customerName = customer.getCustomerName();
 		String customerJumin = customer.getCustomerJumin();
-		String customerEmail = customer.getCustomerJumin();
+		String customerEmail = customer.getCustomerEmail();
 		String customerPw = customer.getCustomerPw();
 		String customerPhoneNum = customer.getCustomerPhoneNum();
 		String customerActive = customer.getActive();
