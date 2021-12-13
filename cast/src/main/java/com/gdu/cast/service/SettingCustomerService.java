@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gdu.cast.mapper.SettingCustomerMapper;
+import com.gdu.cast.vo.Customer;
 
 @Service
 public class SettingCustomerService {
@@ -16,5 +17,16 @@ public class SettingCustomerService {
 	      
 	   }
 	
+	   // 회원탈퇴 (delete_id 테이블에 입력)
+	   public void getInsertDeleteId(String customerId) {
+		   
+		settingCustomerMapper.insertDeleteId(customerId);
+		   
+	   }
+	   
+	   // 회원탈퇴 (customer테이블 삭제)
+	   public void getDeleteCustomer(String customerId, String customerPw) {
+		   settingCustomerMapper.deleteCustomer(customerId, customerPw);
+	   }
 	   
 }

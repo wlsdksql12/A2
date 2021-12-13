@@ -5,4 +5,15 @@
       UPDATE Customer SET customer_pw = password(#{newCustomerPw}), update_date = now()
       WHERE Customer_id = #{customerId} AND customer_pw = password(#{customerPw})
    </update>
+   
+   <insert id="insertDeleteId" parameterType="com.gdu.cast.vo.Delete_Id">
+   		INSERT INTO Delete_Id (id, create_date, update_date)
+   		VALUES(#{customerId}, now(),now())
+   	</insert>
+   	
+   	<delete id="deleteCustomer" parameterType="com.gdu.cast.vo.Customer">
+		DELETE 
+		FROM customer
+		WHERE customer_id = #{customerId} AND customer_pw = password(#{customerPw})
+	</delete>
 </mapper>

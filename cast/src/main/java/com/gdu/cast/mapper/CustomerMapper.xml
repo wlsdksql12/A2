@@ -34,6 +34,7 @@
 		AND customer_pw = password(#{customerPw})
 	</select>
 	
+	
 	<!-- qnalist -->
 	<select id="selectQnaList" parameterType="Map" resultType="com.gdu.cast.vo.Qna">
 		SELECT
@@ -48,6 +49,7 @@
 		where customer_id = #{customerId}
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	
 	
 	</select>
 	<!--  qnaList 페이징 -->
@@ -70,18 +72,19 @@
 		WHERE qna_id = #{qnaId}			
 			
 	</select>
-	
+	<!-- qna 수정 -->
 	<update id="updateQna" parameterType="com.gdu.cast.vo.Qna" >
 		UPDATE qna SET qna_title = #{qnaTitle}, qna_category = #{qnaCategory}, qna_content = #{qnaContent}, update_date = now()
 		WHERE qna_id = #{qnaId} AND customer_id = #{customerId}
 	</update>
-	
+	<!-- qna 삭제 -->
 	<delete id="deleteQnaOne" parameterType="int">
 		DELETE
 		FROM qna
 		WHERE qna_id = #{qnaId}
 	</delete>
 	
+	<!-- 내정보 보기 -->
 	<select id="selectInfo" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
 		SELECT
 			customer_id customerId,
@@ -93,6 +96,7 @@
 		WHERE customer_id = #{customerId}
 	</select> 
 	
+	<!--  내정보 수정 -->
 	<update id="updateInfo" parameterType="com.gdu.cast.vo.Customer" >
 		UPDATE customer SET customer_name = #{customerName}, 
 					   customer_jumin = #{customerJumin}, customer_email = #{customerEmail},
