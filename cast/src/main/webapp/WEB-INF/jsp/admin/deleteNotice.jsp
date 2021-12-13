@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -333,34 +334,22 @@
             </ol>
           </div>
 		<div class="container" style="text-align:center">
-			<c:if test="${loginAdminId != null}">
-				<a href="/addNotice" id="insertBtn" class="btn btn-outline-success">작성</a>
-			</c:if>
 	<div class="card">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
+        <h6 class="m-0 font-weight-bold text-primary">공지사항 삭제</h6>
       </div>
       <div class="table-responsive">
-		<table class="table align-items-center table-flush">
-			<tr>
-				<td width="20%">공지사항 번호</td>
-				<td width="60%">제목</td>
-				<td width="20%">글작성 시간</td>
-			</tr>
-			<tbody>
+      		<h6 class="m-3 font-weight-bold text-danger">공지사항을 삭제하시겠습니까?</h6>
+		 <form method="post" action="/admin/deleteNotice">
+		 <input type="hidden" name="noticeNo" value="${noticeNo}" readonly="readonly">
+			<table class="table align-items-center table-flush">
 				<tr>
-				<td>${noticeNo}</td>
-				<td>${noticeTitle}</td>
-				<td>${createDate}</td>
-			</tr>
-			</tbody>
-			<tr>
-				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${noticeContent}</textarea></td>
-			</tr>
-		</table>
-			<div><a href="${pageContext.request.contextPath}/updateNotice?noticeNo=${noticeNo}">수정하기</a>
-			<a href="${pageContext.request.contextPath}/deleteNotice?noticeNo=${noticeNo}">삭제하기</a></div>
-			
+					<td width="10%" style="text-align: right">아이디</td>
+					<td width="80%"><input type="text" name="adminId" style="width:685px; text-align: center"></td>
+				</tr>
+			</table>
+			<button type="submit" class="btn btn-outline-success">삭제하기</button>
+		</form>
 		<br>
 	</div>
 </div>

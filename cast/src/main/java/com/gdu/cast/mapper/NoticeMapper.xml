@@ -41,10 +41,22 @@
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
+	
 	<select id="selectNoticeOne" parameterType="int" resultType="com.gdu.cast.vo.Notice">
 		SELECT notice_no noticeNo, admin_id adminId, notice_title noticeTitle, notice_content noticeContent, 
 				create_date createDate, update_date updateDate
 		FROM notice
 		WHERE notice_no = #{noticeNo}
 	</select>
+	
+	<update id="updateNotice" parameterType="com.gdu.cast.vo.Notice">
+		UPDATE notice SET
+			notice_title = #{noticeTitle}, notice_content = #{noticeContent}, update_date = now()
+		WHERE notice_no = #{noticeNo}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="com.gdu.cast.vo.Notice">
+		DELETE FROM notice
+		WHERE notice_no = #{noticeNo} AND admin_id = #{adminId}
+	</delete>
 </mapper>

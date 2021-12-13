@@ -70,5 +70,13 @@ public class NoticeService {
 		Notice notice =  noticeMapper.selectNoticeOne(noticeNo);
 		return notice;
 	}
+	
+	public void updateNotice(Notice notiece) {
+		noticeMapper.updateNotice(notiece);
+	}
+	
+	public void deleteNotice(Notice notice) {
+		noticeMapper.deleteNotice(notice);
+	}
 		
 }

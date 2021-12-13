@@ -71,5 +71,34 @@ public class NoticeController {
 		return"noticeOne";
 	}
 	
+	@GetMapping("/updateNotice")
+	public String updateNotice(int noticeNo, Model model) {
+		System.out.println(noticeNo + "<-------noticeNo");
+		model.addAttribute("noticeNo", noticeNo);
+		return "/admin/updateNotice";
+	}
 	
+	@PostMapping("/admin/updateNotice")
+	public String updateNotice(Notice notice) {
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + notice + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		noticeService.updateNotice(notice);
+		return "redirect:/noticeOne?noticeNo="+notice.getNoticeNo();
+		
+	}
+	
+	@GetMapping("/deleteNotice")
+	public String delectNotice(int noticeNo, Model model) {
+		System.out.println(noticeNo + "<-------noticeNo");
+		model.addAttribute("noticeNo", noticeNo);
+		return "/admin/deleteNotice";
+	}
+	
+	@PostMapping("/admin/deleteNotice")
+	public String deletetNotice(Notice notice) {
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ넘어옴ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + notice + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		noticeService.deleteNotice(notice);
+		return "redirect:/noticeList";
+		
+	}
 }

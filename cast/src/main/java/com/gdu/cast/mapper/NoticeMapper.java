@@ -21,4 +21,10 @@ public interface NoticeMapper {
 	
 	// 공지사항 상세보기
 	Notice selectNoticeOne(int noticeNo);
+	
+	// 공지사항 수정
+	void updateNotice(Notice notice);
+	
+	// 공지사항 삭제
+	void deleteNotice(Notice notice);
 }
