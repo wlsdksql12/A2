@@ -44,6 +44,25 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>전시소개</span></a>
       </li>
+      <hr class="sidebar-divider my-0">	
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Bootstrap UI</span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Bootstrap UI</h6>
+            <a class="collapse-item" href="adminAlerts">Alerts</a>
+            <a class="collapse-item" href="adminButtons">Buttons</a>
+            <a class="collapse-item" href="adminDropdowns">Dropdowns</a>
+            <a class="collapse-item" href="adminModals">Modals</a>
+            <a class="collapse-item" href="adminPopovers">Popovers</a>
+            <a class="collapse-item" href="adminProgress-bar">Progress Bars</a>
+          </div>
+        </div>
+      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Features

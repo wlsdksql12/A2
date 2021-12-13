@@ -65,10 +65,45 @@ public class ExhibitionController {
 	@GetMapping("/exhibitionOne")
 	public String noticeOne(Model model, int exhibitionNo) {
 		// 전시소개 글 번호 디버깅
-		System.out.println(exhibitionNo);
+		System.out.println(exhibitionNo + "<-------exhibitionNo");
 		Exhibition exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
 		System.out.println(exhibition + " ExhibitionController");
 		model.addAttribute("exhibition", exhibition);
 		return"exhibitionOne";
+	}
+	
+	// 전시소개 수정 페이지 이동
+	@GetMapping("/admin/updateExhibition")
+	public String updateNotice(Model model, int exhibitionNo) {
+		System.out.println(exhibitionNo + "<-------exhibitionNo");
+		// 수정할때 보여줄 전시소개 상세 내용 불러오기
+		Exhibition exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
+		model.addAttribute("exhibition", exhibition);
+		return "/admin/updateExhibition";
+	}
+	
+	// 전시소개 수정 후 DB적용
+	@PostMapping("/admin/updateExhibition")
+	public String updateNotice(Exhibition exhibition) {
+		System.out.println(exhibition + "<-------exhibitionNo");
+		exhibitionService.updateNotice(exhibition);
+		return "redirect:/exhibitionOne?exhibitionNo="+exhibition.getExhibitionNo();	
+	}
+	
+	// 전시소개 삭제 전 확인 페이지 이동
+	@GetMapping("/admin/deleteExhibition")
+	public String delectExhibition(Model model, int exhibitionNo) {
+		System.out.println(exhibitionNo + "<-------exhibitionNo");
+		model.addAttribute("exhibitionNo", exhibitionNo);
+		return "/admin/deleteExhibition";
+	}
+	
+	// 전시소개 삭제 후 DB적용
+	@PostMapping("/admin/deleteExhibition")
+	public String deletetNotice(Exhibition exhibition) {
+		System.out.println(exhibition + "<-------exhibitionNo");
+		exhibitionService.deleteExhibition(exhibition);
+		return "redirect:/exhibitionList";
+		
 	}
 }

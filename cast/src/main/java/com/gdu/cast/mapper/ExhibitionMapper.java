@@ -19,5 +19,11 @@ public interface ExhibitionMapper {
 	List<Exhibition> selectExhibitionList(Map<String, Object> map);
 	
 	// 전시소개 상세보기
-	Exhibition selectExhibitionOne(int exhibitionNo);	
+	Exhibition selectExhibitionOne(int exhibitionNo);
+	
+	// 전시소개 수정
+	void updateExhibition(Exhibition exhibition);
+	
+	// 전시소개 삭제
+	void deleteExhibition(Exhibition exhibition);
 }

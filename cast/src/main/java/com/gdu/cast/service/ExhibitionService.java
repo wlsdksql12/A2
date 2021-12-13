@@ -69,4 +69,14 @@ public class ExhibitionService {
 		Exhibition exhibition =  exhibitionMapper.selectExhibitionOne(exhibitionNo);
 		return exhibition;
 	}
+	
+	// 전시소개 수정
+	public void updateNotice(Exhibition exhibition) {
+		exhibitionMapper.updateExhibition(exhibition);
+	}
+	
+	// 전시소개 삭제
+	public void deleteExhibition(Exhibition exhibition) {
+		exhibitionMapper.deleteExhibition(exhibition);
+	}
 }

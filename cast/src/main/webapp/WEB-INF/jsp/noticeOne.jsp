@@ -38,7 +38,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="adminIndex">
+        <a class="nav-link" href="/admin/adminIndex">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -62,17 +62,14 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Bootstrap UI</span>
+          <span>가입자 리스트</span>
         </a>
         <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Bootstrap UI</h6>
-            <a class="collapse-item" href="adminAlerts">Alerts</a>
-            <a class="collapse-item" href="adminButtons">Buttons</a>
-            <a class="collapse-item" href="adminDropdowns">Dropdowns</a>
-            <a class="collapse-item" href="adminModals">Modals</a>
-            <a class="collapse-item" href="adminPopovers">Popovers</a>
-            <a class="collapse-item" href="adminProgress-bar">Progress Bars</a>
+            <a class="collapse-item" href="/admin/customerList">고객리스트</a>
+            <a class="collapse-item" href="adminButtons">사업자리스트</a>
+            <a class="collapse-item" href="adminDropdowns">여행작가리스트</a>
           </div>
         </div>
       </li>
@@ -339,6 +336,10 @@
             </ol>
           </div>
 		<div class="container" style="text-align:center">
+<<<<<<< HEAD
+=======
+			
+>>>>>>> branch 'main' of https://github.com/tjdekf112/A2.git
 	<div class="card">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
@@ -361,9 +362,18 @@
 				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${noticeContent}</textarea></td>
 			</tr>
 		</table>
+<<<<<<< HEAD
 			<div><a href="${pageContext.request.contextPath}/updateNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">수정하기</a>
 			<a href="${pageContext.request.contextPath}/deleteNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">삭제하기</a></div>
 			
+=======
+		<c:if test="${loginAdminId != null}">
+			<div>
+				<a href="${pageContext.request.contextPath}/admin/updateNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">수정</a>
+				<a href="${pageContext.request.contextPath}/admin/deleteNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">삭제</a>
+			</div>
+		</c:if>		
+>>>>>>> branch 'main' of https://github.com/tjdekf112/A2.git
 		<br>
 	</div>
 </div>
