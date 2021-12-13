@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gdu.cast.service.CustomerService;
-import com.gdu.cast.vo.Admin;
 import com.gdu.cast.vo.Customer;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +35,7 @@ public class CustomerLoginController {
 		return "redirect:/loginSelect";
 	}
 	
-	//로그
+	//로그인
 	@GetMapping("/customerLogin")
 	public String getcustomerLogin() {
 		return "customer/customerLogin";
@@ -48,12 +47,17 @@ public class CustomerLoginController {
 		log.debug(customer.getCustomerPw());
 		Customer loginCustomer = customerService.getselectCustomer(customer);
 		log.debug(loginCustomer + "<-- loginCustomer");
+		// 로그인 정보가 다르면 다시 로그인 창으로 소환!
 		if(loginCustomer == null) {
-			return "redirect:/customer/CustomerLogin";
+			return "/customer/customerLogin";
 		}
 		session.setAttribute("loginCustomerId", loginCustomer.getCustomerId());
 		System.out.println(session.getAttribute("loginCustomerid"));
-		return "redirect:/index?customerId="+loginCustomer.getCustomerId();
+			return "redirect:/index?customerId="+loginCustomer.getCustomerId();
+
+	
+		
+		
 	}
 
 	

@@ -41,7 +41,7 @@ public class TravelerController {
 			// login 실패!
 			return "redirect:/travelerLogin";
 		}
-		session.setAttribute("loginTraveler", loginTraveler);
+		session.setAttribute("loginTravelerId", loginTraveler.getTravelerId());
 		log.debug((String) session.getAttribute("loginTravelerId"));
 		return "redirect:/travelerIndex";
 	}
