@@ -49,25 +49,25 @@
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="email">이름</label>
-							<input type="email" class="form-control" name="customerName" id="customerName" placeholder="" required>
+							<label for="name">이름</label>
+							<input type="text" class="form-control" name="customerName" id="customerName" placeholder="" required>
 							<div class="invalid-feedback"> 이름을 입력해주세요.
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="address">주민번호</label>
+							<label for="jumin">주민번호</label>
 							<input type="text" class="form-control" name="customerJumin" id="customerJumin" placeholder="******-*******" required>
 							<div class="invalid-feedback"> 주민번호를 입력해주세요. 
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="address">이메일</label>
+							<label for="email">이메일</label>
 							<input type="text" class="form-control" name="customerEmail" id="customerEmail" placeholder="you@example.com" required>
 							<div class="invalid-feedback"> 이메일을 입력해주세요. 
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="address">전화번호</label>
+							<label for="phoneNumber">전화번호</label>
 							<input type="text" class="form-control" name="customerPhoneNum" id="customerPhoneNum" placeholder="01*-****-****" required>
 							<div class="invalid-feedback"> 전화번호를 입력해주세요. 
 							</div>
