@@ -41,4 +41,17 @@
 		FROM exhibition
 		WHERE exhibition_no = #{exhibitionNo}
 	</select>
+	
+	<!-- 전시소개 수정 -->
+	<update id="updateExhibition" parameterType="com.gdu.cast.vo.Exhibition">
+		UPDATE exhibition SET
+			exhibition_title = #{exhibitionTitle}, exhibition_content = #{exhibitionContent}, update_date = now()
+		WHERE exhibition_no = #{exhibitionNo}
+	</update>
+	
+	<!-- 전시소개 삭제 -->
+	<delete id="deleteExhibition" parameterType="com.gdu.cast.vo.Exhibition">
+		DELETE FROM exhibition
+		WHERE exhibition_no = #{exhibitionNo} AND admin_id = #{adminId}
+	</delete>
 </mapper>

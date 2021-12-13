@@ -71,7 +71,7 @@ public class NoticeController {
 		return"noticeOne";
 	}
 	
-	@GetMapping("/updateNotice")
+	@GetMapping("/admin/updateNotice")
 	public String updateNotice(int noticeNo, Model model) {
 		System.out.println(noticeNo + "<-------noticeNo");
 		model.addAttribute("noticeNo", noticeNo);
@@ -86,7 +86,7 @@ public class NoticeController {
 		
 	}
 	
-	@GetMapping("/deleteNotice")
+	@GetMapping("/admin/deleteNotice")
 	public String delectNotice(int noticeNo, Model model) {
 		System.out.println(noticeNo + "<-------noticeNo");
 		model.addAttribute("noticeNo", noticeNo);

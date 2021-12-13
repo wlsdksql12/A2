@@ -43,6 +43,22 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>전시소개</span></a>
       </li>
+      <hr class="sidebar-divider my-0">	
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>가입자 리스트</span>
+        </a>
+        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Bootstrap UI</h6>
+            <a class="collapse-item" href="/admin/customerList">고객리스트</a>
+            <a class="collapse-item" href="adminButtons">사업자리스트</a>
+            <a class="collapse-item" href="adminDropdowns">여행작가리스트</a>
+          </div>
+        </div>
+      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Features
