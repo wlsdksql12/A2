@@ -53,6 +53,7 @@
 </div>
 <script type="text/javascript">
 	$(function(){
+		// 로그인 유효성 검사
 		$('#loginBtn').click(function(){
 			if($('#customerId').val() == ""){
 				alert("아이디를 입력하세요.");
@@ -66,6 +67,13 @@
 			}
 			else {
 				$('#loginCusForm').submit();
+			}
+		});
+		// 로그인 엔터키 이벤트
+		$('#loginCusForm').keypress(function(event){
+			if(event.which == 13) {
+				$('#loginBtn').click();
+				return false;
 			}
 		});
 	});
