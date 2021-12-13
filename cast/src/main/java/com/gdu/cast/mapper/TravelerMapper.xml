@@ -28,7 +28,7 @@
 	<delete id="deleteRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
 		DELETE FROM room_select
 		WHERE room_select_id = #{roomSelectId}
-		AND travler_id = #{travelerId}
+		AND traveler_id = #{travelerId}
 	</delete>
 	
 	<!-- 여행작가 숙소 추천 수정 -->
@@ -48,6 +48,7 @@
 		SELECT 
 			room_select_id roomSelectId,
 			traveler_id travelerId,
+			hotel_id hotelId,
 			room_select_title roomSelectTitle,
 			room_select_content roomSelectContent,
 			create_date createDate,

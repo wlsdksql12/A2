@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerInfoController {
 	@Autowired CustomerService customerService;
 	
-	
+	// 내정보 보기
 	@GetMapping("/myinfo")
 	public String getMyInfo(Model model, HttpSession session) {
 		
@@ -33,18 +33,26 @@ public class CustomerInfoController {
 		
 	}
 	
+	//내정보 수정
 	@GetMapping("/updateInfo")
 	public String getupdateInfo(Model model, String customerId) {
 		model.addAttribute("customerId", customerId);
 		return "customer/updateInfo";
 	}
 	
-	
+	// 내정보 수정
 	@PostMapping("/updateInfo")
 	public String postupdateInfo(Customer customer) {
 		customerService.getupdateInfo(customer);
 		log.debug(customerService.getupdateInfo(customer)+"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		return "redirect:/myinfo?customerId="+customer.getCustomerId();
 		
+	}
+	
+	// 로그아웃
+	@GetMapping("/logOut")
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:/loginSelect";
 	}
 }

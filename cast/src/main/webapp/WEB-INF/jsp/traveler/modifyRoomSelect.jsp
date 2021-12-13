@@ -8,8 +8,8 @@
 </head>
 <body>
 	<form method="post" action="/modifyRoomSelect">
-		<input type="hidden" name="qnaId" value="${roomSelectId}" readonly="readonly">
-		<input type="hidden" name="travelerId" value="${travelerId}" readonly="readonly">
+		<input type="hidden" name="roomSelectId" value="${roomSelect.roomSelectId}" readonly="readonly">
+		<input type="hidden" name="travelerId" value="${roomSelect.travelerId}" readonly="readonly">
 		<div>
 			제목 : 
 			<input style="text-align:center" type="text" name="roomSelectTitle" value="${roomSelect.roomSelectTitle}">

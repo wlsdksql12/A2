@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.CustomerMapper">
+	<insert id="insertCustomer" parameterType="com.gdu.cast.vo.Customer">
+	INSERT INTO customer(
+		customer_id,
+		customer_name,
+		customer_jumin,
+		customer_email,
+		customer_pw,
+		customer_phonenum,
+		Active,
+		create_Date,
+		update_Date
+		
+	) VALUES(
+		#{customerId},
+		#{customerName},
+		#{customerJumin},
+		#{customerEmail},
+		password(#{customerPw}),
+		#{customerPhoneNum},
+		#{Active},
+		now(),
+		now()	
+	)
+	</insert>
+	<!-- 로그인(세션) -->
+	<select id="selectCustomer" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
+		SELECT
+			customer_id customerId
+		FROM customer
+		WHERE customer_id = #{customerId}
+		AND customer_pw = password(#{customerPw})
+	</select>
+	
+	<!-- qnalist -->
+	<select id="selectQnaList" parameterType="Map" resultType="com.gdu.cast.vo.Qna">
+		SELECT
+			qna_id qnaId,
+			qna_title qnaTitle,
+			customer_id customerId,
+			qna_content qnaContent,
+			qna_category qnaCateogry,
+			create_date createDate,
+			update_date updateDate
+		FROM Qna
+		where customer_id = #{customerId}
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	
+	</select>
+	<!--  qnaList 페이징 -->
+	<select id="selectQnaTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM qna
+	WHERE customer_Id = #{customerId}
+	
+	</select>
+	<!-- qnaOne -->
+	<select id="selectQnaOne" parameterType="com.gdu.cast.vo.Qna" resultType="com.gdu.cast.vo.Qna">
+		SELECT
+			qna_id qnaId,
+			qna_title qnaTitle,
+			qna_content qnaContent,
+			qna_category qnaCategory,
+			create_date createDate,
+			update_date updateDate
+		FROM qna
+		WHERE qna_id = #{qnaId}			
+			
+	</select>
+	
+	<update id="updateQna" parameterType="com.gdu.cast.vo.Qna" >
+		UPDATE qna SET qna_title = #{qnaTitle}, qna_category = #{qnaCategory}, qna_content = #{qnaContent}, update_date = now()
+		WHERE qna_id = #{qnaId} AND customer_id = #{customerId}
+	</update>
+	
+	<delete id="deleteQnaOne" parameterType="int">
+		DELETE
+		FROM qna
+		WHERE qna_id = #{qnaId}
+	</delete>
+	
+	<select id="selectInfo" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
+		SELECT
+			customer_id customerId,
+			customer_name customerName,
+			customer_jumin customerJumin,
+			customer_email customerEmail,
+			customer_phonenum customerPhoneNum
+		FROM Customer
+		WHERE customer_id = #{customerId}
+	</select> 
+	
+	<update id="updateInfo" parameterType="com.gdu.cast.vo.Customer" >
+		UPDATE customer SET customer_name = #{customerName}, 
+					   customer_jumin = #{customerJumin}, customer_email = #{customerEmail},
+					   customer_phonenum = #{customerPhoneNum}
+		WHERE customer_id = #{customerId}
+	</update>
+	
+	
+</mapper>

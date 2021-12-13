@@ -48,8 +48,8 @@
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
 							<li class="list-group-item"><a href="/myinfo?customerId=${loginCustomerId}"><i class="feather icon-user m-r-5"></i>내 정보</a></li>
-							<li class="list-group-item"><a href="#!"><i class="feather icon-settings m-r-5"></i>Settings</a></li>
-							<li class="list-group-item"><a href="auth-normal-sign-in.html"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+							<li class="list-group-item"><a href="/setting?customerId=${loginCustomerId}"><i class="feather icon-settings m-r-5"></i>Settings</a></li>
+							<li class="list-group-item"><a href="/logOut"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
 						</ul>
 					</div>
 				</div>
