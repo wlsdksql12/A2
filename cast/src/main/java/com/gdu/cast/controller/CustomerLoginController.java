@@ -55,5 +55,6 @@ public class CustomerLoginController {
 		System.out.println(session.getAttribute("loginCustomerid"));
 		return "redirect:/index?customerId="+loginCustomer.getCustomerId();
 	}
+
 	
 }

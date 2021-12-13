@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.CeoMapper">
+	<insert id="insertCeo" parameterType="com.gdu.cast.vo.Ceo">
+	INSERT ceo(
+		ceo_name,
+		ceo_id,
+		ceo_pw,
+		ceo_email,
+		ceo_license,
+		ceo_phonenum,
+		ceo_jumin,
+		create_date,
+		update_date
+	) VALUES (
+		#{ceoName},
+		#{ceoId},
+		password(#{ceoPw}),
+		#{ceoEmail},
+		#{ceoLicense},
+		#{ceoPhonenum},
+		#{ceoJumin},
+		now(),
+		now()
+		
+	)
+	</insert>
+	
+	<select id="loginCeo" parameterType="com.gdu.cast.vo.Ceo" resultType="com.gdu.cast.vo.Ceo">
+		SELECT
+			ceo_id ceoId
+		FROM ceo
+		WHERE ceo_id = #{ceoId}
+		AND ceo_pw = password(#{ceoPw})
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
