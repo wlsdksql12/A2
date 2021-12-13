@@ -14,7 +14,6 @@
 			<tr>
 				<th>번호</th>
 				<th>아이디</th>
-				<th>호텔번호</th>
 				<th>제목</th>
 				<th>내용</th>
 				<th>생성날짜</th>
@@ -23,7 +22,6 @@
 			<tr>
 				<td>${roomSelect.roomSelectId}</td>
 				<td>${roomSelect.travelerId}</td>
-				<td>${roomSelect.hotelId}</td>
 				<td>${roomSelect.roomSelectTitle}</td>
 				<td>${roomSelect.roomSelectContent}</td>
 				<td>${roomSelect.createDate}</td>

@@ -38,11 +38,11 @@ public class SettingCustomerController {
 
 	   }
 	   
-	   //회원탈퇴 페이지
-	   @GetMapping("deleteCustomer")
-	   public String getDeleteCustomer(String customerId) {
-		   
-		return "redirect:/loginSelect";
-		   
+	   //회원 탈퇴 페이지
+	   @PostMapping("/deleteCustomer")
+	   public String getDeleteCustomer(Customer customer) {
+		   settingCustomerService.getInsertDeleteId(customer.getCustomerId());
+		   settingCustomerService.getDeleteCustomer(customer.getCustomerId(), customer.getCustomerPw());
+		   return "redirect:/loginSelect";
 	   }
 }

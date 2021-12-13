@@ -96,12 +96,45 @@ https://templatemo.com/tm-559-zay-shop
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                   
+                    <c:choose>
+                   <c:when test="${loginCustomerId != null}">
                     <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/customerIndex?customerId=${loginCustomerId}&currentPage=1">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
-
+					</c:when>
+					
+				   	<c:when test="${loginCeoId != null}">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/ceoIndex?ceoId=${loginCeoId}">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:when>
+					
+                   <c:when test="${loginTravelerId != null}">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/travelerIndex">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:when>
+				
+	                   <c:when test="${loginAdminId != null}">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/admin/adminIndex">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:when>
+					
+					<c:otherwise>
+					 <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/loginSelect">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:otherwise>
+					
+					
+					</c:choose>
+					
                 </div>
             </div>
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceMapper">
+	<!-- 체험 추가 -->
 	<insert id="insertExp" parameterType="com.gdu.cast.vo.Experience">
 		INSERT INTO
 			experience (
@@ -27,7 +28,9 @@
 			now()
 		)
 	</insert>
-	<insert id="insertAddress" parameterType="com.gdu.cast.vo.Address">
+	
+	<!-- 주소 추가 -->
+	<insert id="insertExpAddress" parameterType="com.gdu.cast.vo.Address">
 		INSERT INTO
 			address (
 				postcode,
@@ -46,4 +49,19 @@
 				SELECT LAST_INSERT_ID()
 			</selectKey>
 	</insert>
+	
+	<!-- 체험 리스트 -->
+	<select id="selectExperienceList" parameterType="Map" resultType="com.gdu.cast.vo.Experience">
+		SELECT 
+			experience_id experienceId,
+			ceo_id ceoId,
+			experience_name experienceName,
+			create_date createDate
+		FROM experience
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<!-- 체험 상세보기 -->
+	
 </mapper>

@@ -26,6 +26,16 @@
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
 					<form method="post" action="/customerLogin" id="loginCusForm">
+						<div>
+						<select name="login">
+				 			<option value=""></option>
+				 			<option value="adminLogin">관리자</option>
+				 			<option value="travelerLogin">여행작가</option>
+				 			<option value="customerLogin">일반회원</option>
+				 			<option value="ceoLogin">사업자</option>
+			 			</select>
+						</div>
+
 	                    <div class="form-group">
 	                      <input type="text" class="form-control" id="customerId" name="customerId"  placeholder="아이디를 입력해주세요">
 	                    </div>
@@ -37,9 +47,6 @@
 	                    </div>
 					</form>
                     <hr>
-					<div class="text-center">
-                    	<a href="${pageContext.request.contextPath}/addCustomer" class="font-weight-bold small">회원가입</a>
-                  	</div>
                 </div>
                 <footer class="my-3 text-center text-small">
 				<p class="mb-1">&copy; 2021 CAST</p>
