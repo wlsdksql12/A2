@@ -215,11 +215,11 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">고객 리스트</h1>
+            <h1 class="h3 mb-0 text-gray-800">사업자 리스트</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
               <li class="breadcrumb-item">Tables</li>
-              <li class="breadcrumb-item active" aria-current="page">고객 리스트</li>
+              <li class="breadcrumb-item active" aria-current="page">사업자 리스트</li>
             </ol>
           </div>
           <!-- Row -->
@@ -228,7 +228,7 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">고객 리스트</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">사업자 리스트</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
@@ -238,21 +238,21 @@
 						<th width="10%">이름</th>
 						<th width="15%">E-mail</th>
 						<th width="15%">전화번호</th>
-						<th width="15%">활성상태</th>
+						<th width="15%">사업자격증</th>
 						<th width="15%">생성날짜</th>
 						<th width="15%">최근접속날짜</th>
 					</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${customerList}" var="customer">
+						<c:forEach items="${ceoList}" var="ceo">
 							<tr style="text-align:center" height="70px">
-								<td>${customer.customerId}</td>
-								<td>${customer.customerName}</td>
-								<td>${customer.customerEmail}</td>
-								<td>${customer.customerPhoneNum}</td>
-								<td>${customer.active}</td>
-								<td>${fn:substring(customer.createDate,0,10)}</td>
-								<td>${fn:substring(customer.updateDate,0,10)}</td>
+								<td>${ceo.ceoId}</td>
+								<td>${ceo.ceoName}</td>
+								<td>${ceo.ceoEmail}</td>
+								<td>${ceo.ceoPhoneNum}</td>
+								<td>${ceo.ceoLicense}</td>
+								<td>${fn:substring(ceo.createDate,0,10)}</td>
+								<td>${fn:substring(ceo.updateDate,0,10)}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -260,20 +260,20 @@
                 </div>
                 <div>
 					<c:if test="${startPage > 1}">
-						<a href="/admin/customerList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+						<a href="/admin/ceoList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/admin/customerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+								<a href="/admin/ceoList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/admin/customerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+								<a href="/admin/ceoList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${lastPage != totalPage}">
-						<a href="/admin/customerList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+						<a href="/admin/ceoList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 					</c:if>
 				</div>
               </div>
@@ -329,10 +329,6 @@
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/js/ruang-admin.min.js"></script>
-  <!-- Page level plugins 삭제해도 문제 없을듯?-->
-  <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
 </body>
 
 </html>

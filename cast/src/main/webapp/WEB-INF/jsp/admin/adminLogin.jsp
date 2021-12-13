@@ -57,18 +57,27 @@
       </div>
     </div>
 </div>
-<script>
-	// 로그인버튼을 클릭했을 때
-	$('#adminLoginBtn').click(function(){	
-		if($('#adminId').val() == '') { // id가 공백이면
-			alert('ID를 입력하세요');
-			return;
-		} 
-		if($('#adminPw').val() == '') { // pw가 공백이면
-			alert('PW를 입력하세요');
-			return;
-		}
-		$('#adminLoginForm').submit(); // 로그인
+<script type="text/javascript">
+	$(function(){
+		// 로그인버튼을 클릭했을 때
+		$('#adminLoginBtn').click(function(){	
+			if($('#adminId').val() == '') { // id가 공백이면
+				alert('ID를 입력하세요');
+				return;
+			} 
+			if($('#adminPw').val() == '') { // pw가 공백이면
+				alert('PW를 입력하세요');
+				return;
+			}
+			$('#adminLoginForm').submit(); // 로그인
+		});
+		// 로그인 엔터키 이벤트
+		$('#adminLoginForm').keypress(function(event){
+			if(event.which == 13) {
+				$('#adminLoginBtn').click();
+				return false;
+			}
+		});	
 	});
 </script>
   <!-- Login Content -->
