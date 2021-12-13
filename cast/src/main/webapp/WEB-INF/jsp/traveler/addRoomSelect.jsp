@@ -7,6 +7,5 @@
 <title>[여행작가] 숙소 추천 추가</title>
 </head>
 <body>
-	
 </body>
 </html>
