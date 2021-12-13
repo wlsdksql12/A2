@@ -35,14 +35,14 @@
       </li>
       <hr class="sidebar-divider my-0">	
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-          aria-expanded="true" aria-controls="collapseBootstrap">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMemberList"
+          aria-expanded="true" aria-controls="collapseMemberList">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>가입자 리스트</span>
         </a>
-        <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+        <div id="collapseMemberList" class="collapse" aria-labelledby="headingMemberList" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Bootstrap UI</h6>
+            <h6 class="collapse-header">MemberList</h6>
             <a class="collapse-item" href="/admin/customerList">고객리스트</a>
             <a class="collapse-item" href="/admin/ceoList">사업자리스트</a>
             <a class="collapse-item" href="/admin/travelerList">여행작가리스트</a>

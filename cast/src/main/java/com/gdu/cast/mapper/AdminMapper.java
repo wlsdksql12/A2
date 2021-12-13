@@ -1,8 +1,12 @@
 package com.gdu.cast.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Admin;
+import com.gdu.cast.vo.Qna;
 
 @Mapper
 public interface AdminMapper {
@@ -14,5 +18,10 @@ public interface AdminMapper {
 	int selectNewTraveler();
 	
 	int selectNewCeo();
+	
+	//Qna리스트
+	List<Qna> selectQnaList(Map<String, Object> map);
+	//페이징
+	int selectQnaTotalCount();
 }
 

@@ -10,6 +10,7 @@ public class Qna {
 	private String qnaTitle;
 	private String qnaContent;
 	private String qnaCategory;
+	private String qnaSecret;
 	private String createDate;
 	private String updateDate;
 	
