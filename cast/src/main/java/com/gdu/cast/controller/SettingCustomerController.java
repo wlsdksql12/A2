@@ -38,7 +38,7 @@ public class SettingCustomerController {
 
 	   }
 	   
-	   //회원탈퇴 페이지
+	   //회원 탈퇴 페이지
 	   @PostMapping("/deleteCustomer")
 	   public String getDeleteCustomer(Customer customer) {
 		   settingCustomerService.getInsertDeleteId(customer.getCustomerId());
