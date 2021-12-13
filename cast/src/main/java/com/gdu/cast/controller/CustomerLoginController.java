@@ -35,30 +35,7 @@ public class CustomerLoginController {
 		return "redirect:/loginSelect";
 	}
 	
-	//로그인
-	@GetMapping("/customerLogin")
-	public String getcustomerLogin() {
-		return "customer/customerLogin";
-	}
-	//로그인
-	@PostMapping("/customerLogin")
-	public String postCustomerLogin(HttpSession session, Customer customer) {
-		log.debug(customer.getCustomerId());
-		log.debug(customer.getCustomerPw());
-		Customer loginCustomer = customerService.getselectCustomer(customer);
-		log.debug(loginCustomer + "<-- loginCustomer");
-		// 로그인 정보가 다르면 다시 로그인 창으로 소환!
-		if(loginCustomer == null) {
-			return "/customer/customerLogin";
-		}
-		session.setAttribute("loginCustomerId", loginCustomer.getCustomerId());
-		System.out.println(session.getAttribute("loginCustomerid"));
-			return "redirect:/index?customerId="+loginCustomer.getCustomerId();
 
-	
-		
-		
-	}
 
 	
 }
