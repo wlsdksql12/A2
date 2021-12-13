@@ -8,4 +8,22 @@
 		WHERE admin_id = #{adminId}
 		AND admin_pw = password(#{adminPw})
 	</select>
+	
+	<select id="selectNewCustomer" parameterType="com.gdu.cast.vo.Customer" resultType="int">
+		SELECT COUNT(*)
+		FROM customer 
+		WHERE SUBSTR(create_date, 1, 10) = SUBSTR(now(), 1, 10)
+	</select>
+	
+	<select id="selectNewTraveler" parameterType="com.gdu.cast.vo.Traveler" resultType="int">
+		SELECT COUNT(*)
+		FROM traveler 
+		WHERE SUBSTR(create_date, 1, 10) = SUBSTR(now(), 1, 10)
+	</select>
+	
+	<select id="selectNewCeo" parameterType="com.gdu.cast.vo.Ceo" resultType="int">
+		SELECT COUNT(*)
+		FROM ceo
+		WHERE SUBSTR(create_date, 1, 10) = SUBSTR(now(), 1, 10)
+	</select>
 </mapper>

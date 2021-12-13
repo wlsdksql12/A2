@@ -339,9 +339,6 @@
             </ol>
           </div>
 		<div class="container" style="text-align:center">
-			<c:if test="${loginAdminId != null}">
-				<a href="/addNotice" id="insertBtn" class="btn btn-outline-success">작성</a>
-			</c:if>
 	<div class="card">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
@@ -364,8 +361,8 @@
 				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${noticeContent}</textarea></td>
 			</tr>
 		</table>
-			<div><a href="${pageContext.request.contextPath}/updateNotice?noticeNo=${noticeNo}">수정하기</a>
-			<a href="${pageContext.request.contextPath}/deleteNotice?noticeNo=${noticeNo}">삭제하기</a></div>
+			<div><a href="${pageContext.request.contextPath}/updateNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">수정하기</a>
+			<a href="${pageContext.request.contextPath}/deleteNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">삭제하기</a></div>
 			
 		<br>
 	</div>

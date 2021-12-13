@@ -17,4 +17,16 @@ public class AdminService {
 	public Admin getSelectAdmin(Admin admin) {
 		return adminMapper.selectAdmin(admin);
 	}
+	
+	public int selectNewCustomer() {
+		return adminMapper.selectNewCustomer();
+	}
+	
+	public int selectNewTraveler() {
+		return adminMapper.selectNewTraveler();
+	}
+	
+	public int selectNewCeo() {
+		return adminMapper.selectNewCeo();
+	}
 }

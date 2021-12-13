@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -17,7 +18,18 @@ public class AdminController {
 	
 	// 관리자 메인페이지
 	@GetMapping("/admin/adminIndex")
-	public String adminIndex() {
+	public String adminIndex(Model model) {
+		
+		int newCustomer = adminService.selectNewCustomer();
+		int newTraveler = adminService.selectNewTraveler();
+		int newCeo = adminService.selectNewCeo();
+		
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		model.addAttribute("newCustomer", newCustomer);
+		model.addAttribute("newTraveler", newTraveler);
+		model.addAttribute("newCeo", newCeo);
 		return "admin/adminIndex";
 	}
 	
@@ -42,4 +54,5 @@ public class AdminController {
 		System.out.println(session.getAttribute("loginAdminId"));
 		return "redirect:/admin/adminIndex";
 	}
+	
 }
