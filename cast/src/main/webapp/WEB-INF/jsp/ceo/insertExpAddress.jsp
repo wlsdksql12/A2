@@ -20,7 +20,7 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
-	<form method="post" action="/insertAddress" class="form-sample">
+	<form method="post" action="/insertExpAddress" class="form-sample">
 		<div class="col-12 grid-margin jumbotron bg-white">
 			<div class="card">
 				<div class="card-body">

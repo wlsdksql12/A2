@@ -11,7 +11,6 @@ public class Hotel {
 	private String hotelName;
 	private String hotelContent;
 	private int countRoom;
-	private String hotelDetailedAddress;
 	private String createDate;
 	private String updateDate;
 }
