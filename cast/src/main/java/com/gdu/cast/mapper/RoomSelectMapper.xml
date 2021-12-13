@@ -71,9 +71,8 @@
 	<select id="selectRoomSelectList" parameterType="Map" resultType="com.gdu.cast.vo.RoomSelect">
 		SELECT 
 			room_select_id roomSelectId,
-			room_select_title roomSelectTitle,
 			traveler_id travelerId,
-			room_select_content roomSelectContent,
+			room_select_title roomSelectTitle,
 			create_date createDate
 		FROM room_select
 		<where>

@@ -45,7 +45,7 @@ public class RoomSelectService {
 	}
 		
 	// 여행작가 숙소 추천 리스트
-	public Map<String, Object> getselectRoomSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
+	public Map<String, Object> getSelectRoomSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공
 		Map<String, Object> paramMap = new HashMap<>();

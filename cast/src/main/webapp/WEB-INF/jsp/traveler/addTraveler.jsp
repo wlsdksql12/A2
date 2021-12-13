@@ -69,8 +69,8 @@
 						</div>
 						<div class="mb-3">
 							<label for="email">이메일</label>
-							<input type="text" class="form-control" name="travelerEmail" id="travelerEmail" placeholder="000-00-0000" required>
-							<div class="invalid-feedback"> 사업자 등록번호를 입력해주세요. 
+							<input type="text" class="form-control" name="travelerEmail" id="travelerEmail" placeholder="you@example.com" required>
+							<div class="invalid-feedback"> 이메일을 입력해주세요. 
 							</div>
 						</div>
 						<div class="mb-3">
@@ -81,8 +81,8 @@
 						</div>
 						<div class="mb-3">
 							<label for="career">경력</label>
-							<input type="text" class="form-control" name="travelerCareer" id="travelerCareer" placeholder="000-00-0000" required>
-							<div class="invalid-feedback"> 사업자 등록번호를 입력해주세요. 
+							<input type="text" class="form-control" name="travelerCareer" id="travelerCareer" placeholder="" required>
+							<div class="invalid-feedback"> 경력을 입력해주세요. 
 							</div>
 						</div>
 						<button class="btn btn-primary btn-lg btn-block" type="submit" id="registerBtn">가입 완료</button>

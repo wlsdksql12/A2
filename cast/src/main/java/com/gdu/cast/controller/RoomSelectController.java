@@ -76,7 +76,7 @@ public class RoomSelectController {
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
 			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
-		Map<String, Object> map = roomSelectService.getselectRoomSelectList(searchTitle, currentPage, ROW_PER_PAGE);
+		Map<String, Object> map = roomSelectService.getSelectRoomSelectList(searchTitle, currentPage, ROW_PER_PAGE);
 		model.addAttribute("roomSelectList", map.get("roomSelectList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
