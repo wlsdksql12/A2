@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.ExperienceSelect">
+
+	<!-- 여행작가 체험 추천 리스트 -->
+	<select id="selectExperienceList" parameterType="Map" resultType="com.gdu.cast.vo.ExperienceSelect">
+		SELECT 
+			experience_select_id experienceSelectId,
+			traveler_id travelerId,
+			experience_id experienceId,
+			create_date createDate
+		FROM experience_select
+		<where>
+			<if test='searchTitle != null or searchTitle == ""'>
+				room_select_title LIKE '%${searchTitle}%'
+			</if>
+		</where>
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+</mapper>

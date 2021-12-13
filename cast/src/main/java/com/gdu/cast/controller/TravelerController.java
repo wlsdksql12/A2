@@ -43,7 +43,7 @@ public class TravelerController {
 		}
 		session.setAttribute("loginTravelerId", loginTraveler.getTravelerId());
 		log.debug((String) session.getAttribute("loginTravelerId"));
-		return "redirect:/travelerIndex";
+		return "redirect:/index";
 	}
 	
 	// 여행작가 로그아웃
@@ -63,6 +63,6 @@ public class TravelerController {
 	public String addBoard(Traveler traveler) {
 		travelerService.addTraveler(traveler);
 		log.debug("★★★★Hyun★★★★"+traveler.toString());
-		return "redirect:/travelerIndex";
+		return "redirect:/index";
 	}
 }
