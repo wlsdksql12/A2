@@ -32,11 +32,17 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-       <hr class="sidebar-divider my-0">
+      <hr class="sidebar-divider my-0">
       <li class="nav-item active">
         <a class="nav-link" href="noticeList">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>공지사항</span></a>
+      </li>
+      <hr class="sidebar-divider my-0">	
+      <li class="nav-item active">
+        <a class="nav-link" href="/exhibitionList">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>전시소개</span></a>
       </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
@@ -342,36 +348,36 @@
 			</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${noticeList}" var="notice">
+				<c:forEach items="${exhibitionList}" var="exhibition">
 					<tr style="text-align:center" height="70px">
-						<td>${notice.noticeNo}</td>
-						<td><a href="/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
+						<td>${exhibition.exhibitionNo}</td>
+						<td><a href="/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
 						<td>관리자</td>
-						<td>${notice.createDate}</td>
+						<td>${exhibition.createDate}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/noticeList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="/exhibitionList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/noticeList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="/exhibitionList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
 		<br>
-		<form method="get" id="/noticeList">
+		<form method="get" id="/exhibitionList">
 			<input name="searchTitle" value="${searchTitle}">
 			<button>검색</button>
 		</form>	
