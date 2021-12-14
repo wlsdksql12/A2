@@ -276,6 +276,11 @@
 						<a href="/admin/ceoList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 					</c:if>
 				</div>
+				<br>
+				<form method="get" id="/admin/ceoList">
+					<input name="searchTitle" value="${searchTitle}">
+					<button>검색</button>
+				</form>
               </div>
             </div>
           </div>

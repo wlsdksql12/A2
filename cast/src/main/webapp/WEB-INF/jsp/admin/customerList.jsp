@@ -21,7 +21,7 @@
 
 <body id="page-top">
   <div id="wrapper">
-    
+    <!-- adminSidebar include -->
     <%@ include file="adminSidebar.jsp"%>
     
     <div id="content-wrapper" class="d-flex flex-column">
@@ -276,6 +276,11 @@
 						<a href="/admin/customerList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 					</c:if>
 				</div>
+				<br>
+				<form method="get" id="/admin/customerList">
+					<input name="searchTitle" value="${searchTitle}">
+					<button>검색</button>
+				</form>
               </div>
             </div>
           </div>
