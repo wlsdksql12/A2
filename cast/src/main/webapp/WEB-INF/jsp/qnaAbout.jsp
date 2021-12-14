@@ -87,7 +87,49 @@
           <a class="h3 text-dark text-decoration-none" href="/mainQna?currentPage=1">Qna</a>
       </li>
     </ul>
-   
+         <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            제목
+                                        </th>
+                                        <th>작성자</th>
+                                        <th>작성 날짜</th>
+                                        <th class="text-right">비밀글</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                 <c:forEach items="${qnaList}"  var="qna">
+                                	
+                                    <tr>
+                                        <td>
+                                            <div class="d-inline-block align-middle">
+                                                <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-4.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
+                                                <div class="d-inline-block">
+                                                    <h6><a href ="/qnaListOne?qnaId=${qna.qnaId}&customerId=${loginCustomerId}">${qna.qnaTitle}</a></h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>${qna.customerId}</td>
+                                        <td>${qna.createDate}</td>
+                                        <td class="text-right"><label class="badge badge-light-danger">${qna.qnaSecret}</label></td>
+                                    </tr>
+                                   
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                            <div class="table container mt-3">
+							<c:if test="${currentPage > 1}">
+								<a href="/customerIndex?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
+							</c:if>
+							<c:if test="${currentPage < lastPage}">
+								<a href="/customerIndex?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
+							</c:if>
+							</div>
+        
+        
+        
+        
     </section>
     <!-- End Section -->
 	<section class="container py-5">
