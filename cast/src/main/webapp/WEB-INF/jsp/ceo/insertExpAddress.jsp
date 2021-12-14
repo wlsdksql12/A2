@@ -63,7 +63,7 @@
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">상세주소</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="detailAddress" name="detailAddress" />
+									<input type="text" class="form-control" id="detailAddress" name="detailAddress" required/>
 								</div>
 							</div>
 						</div>
@@ -169,6 +169,13 @@
 	
 				                        // 해당 주소에 대한 좌표를 받아서
 				                        var coords = new daum.maps.LatLng(result.y, result.x);
+				                        
+				                        var message = '<input type="hidden" value="'+ result.y +'" name="lat">';
+				                        message += '<input type="hidden" value="'+ result.x +'" name="lng">';
+				                        
+				                        var resultDiv = document.getElementById('latLng');
+				                        resultDiv.innerHTML = message;
+				                        
 				                        // 지도를 보여준다.
 				                        mapContainer.style.display = "block";
 				                        map.relayout();

@@ -37,13 +37,17 @@
 				road_address,
 				jibun_address,
 				detail_address,
-				extra_address
+				extra_address,
+				lat,
+				lng
 			) VALUES (
 				#{postcode},
 				#{roadAddress},
 				#{jibunAddress},
 				#{detailAddress},
-				#{extraAddress}
+				#{extraAddress},
+				#{lat},
+				#{lng}
 			)
 			<selectKey resultType="integer" keyProperty="addressId" order="AFTER">
 				SELECT LAST_INSERT_ID()

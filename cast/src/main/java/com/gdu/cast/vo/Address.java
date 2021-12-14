@@ -11,4 +11,6 @@ public class Address {
 	private String jibunAddress;
 	private String detailAddress;
 	private String extraAddress;
+	private String lat;
+	private String lng;
 }
