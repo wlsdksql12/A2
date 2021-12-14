@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gdu.cast.mapper.CustomerMapper;
+import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.CustomerService;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Qna;
+import com.gdu.cast.vo.QnaComment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class CustomerQnaController {
 	@Autowired CustomerService customerService;
+	@Autowired AdminQnaService adminQnaService;
 	
 	private final int ROW_PER_PAGE = 5;
 	private final int row_per_page = 10;
@@ -48,9 +51,10 @@ public class CustomerQnaController {
 	}
 	//qna상세보기
 	@GetMapping("/qnaListOne")
-	public String qnaOne(Model model, int qnaId, String customerId) {
+	public String qnaOne(Model model, int qnaId, String customerId, QnaComment qnaComment) {
 		log.debug(qnaId + "<-0------------------QnaId");
 		Qna qna = customerService.getSelectQnaOne(qnaId);
+		qnaComment = adminQnaService.selectQnaComment(qnaId);
 		model.addAttribute("customerId", customerId);
 		model.addAttribute("qnaId",qna.getQnaId());
 		model.addAttribute("qnaTitle",qna.getQnaTitle());
@@ -58,6 +62,9 @@ public class CustomerQnaController {
 		model.addAttribute("qnaCategory", qna.getQnaCategory());
 		model.addAttribute("createDate", qna.getCreateDate());
 		model.addAttribute("updateDate",qna.getUpdateDate());
+		if(qnaComment != null) {
+			model.addAttribute("qnaCommentContent", qnaComment.getQnaCommentContent());
+		}
 		return "customer/qnaListOne";
 		
 	}

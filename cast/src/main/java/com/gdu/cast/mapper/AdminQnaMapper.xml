@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.AdminQnaMapper">
+	<select id="selectQnaList" parameterType="Map" resultType="com.gdu.cast.vo.Qna">
+		SELECT
+			qna_id qnaId, qna_title qnaTitle, customer_id customerId, qna_content qnaContent,
+			qna_category qnaCategory, qna_secret qnaSecret, create_date createDate, update_date updateDate
+		FROM Qna
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+		
+	
+	<select id="selectQnaTotalCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM qna
+	</select>
+	
+	<insert id="insertQnaComment" parameterType="com.gdu.cast.vo.QnaComment">
+		INSERT qna_comment(admin_id, qna_id, qna_comment_content, create_date, update_date) 
+		VALUES (#{adminId}, #{qnaId}, #{qnaCommentContent}, now(), now())
+	</insert>
+	
+	<select id="selectQnaComment" parameterType="com.gdu.cast.vo.QnaComment" resultType="com.gdu.cast.vo.QnaComment">
+		SELECT
+			qna_id qnaId, admin_id adminId, qna_comment_content qnaCommentContent,
+			create_date createDate, update_date updateDate
+		FROM qna_comment
+		WHERE qna_id =#{qnaId}
+	</select>
+</mapper>

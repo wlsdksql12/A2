@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 // qna 답변
 public class QnaComment {
-	private int qnaCommentId;
+	private int qnaId;
 	private String adminId;
 	private String qnaCommentContent;
 	private String createDate;

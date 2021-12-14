@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,16 +10,26 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="${pageContext.request.contextPath}/resources/admin_template/img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - 고객 리스트</title>
+  <title>RuangAdmin - Dashboard</title>
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="${pageContext.request.contextPath}/resources/admin_template/css/ruang-admin.min.css" rel="stylesheet">
-  <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
+<style>
+	.content {
+ 	 	border: none;
+ 	 	resize: none;
+ 	 
+	}
+	.content:focus {
+  		outline: none;
+	}
+</style>
 <body id="page-top">
   <div id="wrapper">
-    <!-- adminSidebar include -->
+  
+	<!-- adminSidebar include -->
     <%@ include file="adminSidebar.jsp"%>
     
     <div id="content-wrapper" class="d-flex flex-column">
@@ -112,24 +120,24 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/man.png" style="max-width: 60px" alt="">
+                    <img class="rounded-circle" src="${pageContext.request.contextPath}/resources/admin_template/img/man.png" style="max-width: 60px" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
                     <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been
                       having.</div>
-                    <div class="small text-gray-500">Udin Cilok · 58m</div>
+                    <div class="small text-gray-500">Udin Cilok Â· 58m</div>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/girl.png" style="max-width: 60px" alt="">
+                    <img class="rounded-circle" src="${pageContext.request.contextPath}/resources/admin_template/img/girl.png" style="max-width: 60px" alt="">
                     <div class="status-indicator bg-default"></div>
                   </div>
                   <div>
                     <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people
                       say this to all dogs, even if they aren't good...</div>
-                    <div class="small text-gray-500">Jaenab · 2w</div>
+                    <div class="small text-gray-500">Jaenab Â· 2w</div>
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
@@ -212,58 +220,47 @@
           </ul>
         </nav>
         <!-- Topbar -->
+
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">고객 리스트</h1>
+            <h1 class="h3 mb-0 text-gray-800"></h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item">Tables</li>
-              <li class="breadcrumb-item active" aria-current="page">고객 리스트</li>
+              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
             </ol>
           </div>
-          <!-- Row -->
-          <div class="row" style="text-align:center">
-            <!-- DataTable with Hover -->
-            <div class="col-lg-12">
-              <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">고객 리스트</h6>
-                </div>
-                <div class="table-responsive p-3">
-                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-                    <thead class="thead-light">
-					<tr style="text-align:center" class="table-primary">
-						<th width="15%">제목</th>
-						<th width="10%">작성자</th>
-						<th width="15%">작성 날짜</th>
-						<th width="15%">비밀글</th>
+		<div class="container" style="text-align:center">
+	<div class="card">
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Qna 답변 작성</h6>
+      </div>
+      <div class="table-responsive">
+		 <form method="post" action="/admin/qnaComment">
+		 <input type="hidden" name="qnaId" value="${qnaId}" readonly="readonly">
+		 <input type="hidden" name="customerId" value="${customerId}" readonly="readonly">
+			<table class="table align-items-center table-flush">
+				<tbody>
+					<tr>
+						<td style="text-align: right">내용</td>
+						<td><textarea name="qnaCommentContent" rows="10" cols="80"></textarea></td>
 					</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${qnaList}" var="qna">
-							<tr style="text-align:center" height="70px">
-								<td><a href ="/qnaListOne?qnaId=${qna.qnaId}&customerId=${qna.customerId}">${qna.qnaTitle}</a></td>
-								<td>${qna.customerId}</td>
-								<td>${qna.createDate}</td>
-								<td>${qna.qnaSecret}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-                  </table>
-                </div>
-                <div>
-					<c:if test="${currentPage > 1}">
-						<a href="/admin/qnaList?&currentPage=${currentPage-1}" class="btn btn-outline-light text-dark">이전</a>
-					</c:if>
-					<c:if test="${currentPage < lastPage}">
-						<a href="/admin/qnaList?&currentPage=${currentPage+1}" class="btn btn-outline-light text-dark">다음</a>
-					</c:if>
-				</div>
-              </div>
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-outline-success">작성하기</button>
+		</form>
+		<br>
+	</div>
+</div>
+          <!--Row-->
+
+          <div class="row">
+            <div class="col-lg-12 text-center">
+              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
+                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
             </div>
           </div>
-          <!--Row-->
+
           <!-- Modal Logout -->
           <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
             aria-hidden="true">
@@ -289,7 +286,6 @@
         </div>
         <!---Container Fluid-->
       </div>
-
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -299,11 +295,19 @@
             </span>
           </div>
         </div>
+
+        <div class="container my-auto py-2">
+          <div class="copyright text-center my-auto">
+            <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - distributed by
+              <b><a href="https://themewagon.com/" target="_blank">themewagon</a></b>
+            </span>
+          </div>
+        </div>
       </footer>
       <!-- Footer -->
     </div>
   </div>
-
+</div>
   <!-- Scroll to top -->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
@@ -313,10 +317,8 @@
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/js/ruang-admin.min.js"></script>
-  <!-- Page level plugins 삭제해도 문제 없을듯?-->
-  <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
+  <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/chart.js/Chart.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/admin_template/js/demo/chart-area-demo.js"></script>  
 </body>
 
 </html>

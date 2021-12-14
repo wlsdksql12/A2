@@ -12,33 +12,18 @@
 	<select id="selectNewCustomer" parameterType="com.gdu.cast.vo.Customer" resultType="int">
 		SELECT COUNT(*)
 		FROM customer 
-		WHERE SUBSTR(create_date, 0, 10) = SUBSTR(now(), 0, 10)
+		WHERE SUBSTR(create_date, 1, 10) = SUBSTR(now(), 1, 10)
 	</select>
 	
 	<select id="selectNewTraveler" parameterType="com.gdu.cast.vo.Traveler" resultType="int">
 		SELECT COUNT(*)
 		FROM traveler 
-		WHERE SUBSTR(create_date, 0, 10) = SUBSTR(now(), 0, 10)
+		WHERE SUBSTR(create_date, 1, 10) = SUBSTR(now(), 1, 10)
 	</select>
 	
 	<select id="selectNewCeo" parameterType="com.gdu.cast.vo.Ceo" resultType="int">
 		SELECT COUNT(*)
 		FROM ceo
-		WHERE SUBSTR(create_date, 0, 10) = SUBSTR(now(), 0, 10)
-	</select>
-	
-	<select id="selectQnaList" parameterType="Map" resultType="com.gdu.cast.vo.Qna">
-		SELECT
-			qna_id qnaId, qna_title qnaTitle, customer_id customerId, qna_content qnaContent,
-			qna_category qnaCategory, qna_secret qnaSecret, create_date createDate, update_date updateDate
-		FROM qna
-		ORDER BY create_date DESC
-		LIMIT #{beginRow}, #{ROW_PER_PAGE}
-	</select>
-		
-	
-	<select id="selectQnaTotalCount" resultType="int">
-	SELECT COUNT(*) 
-	FROM qna
+		WHERE SUBSTR(create_date, 1, 10) = SUBSTR(now(), 1, 10)
 	</select>
 </mapper>
