@@ -40,4 +40,11 @@ public class LoginCeoController {
 		
 		return "redirect:/ceoIndex";
 	}
+	
+	// 로그아웃
+	@GetMapping("/ceoLogout")
+	public String logOut(HttpSession session) {
+		session.invalidate();
+		return "redirect:/loginSelect";
+	}
 }

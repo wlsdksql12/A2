@@ -24,8 +24,13 @@
 	<div class="card">
 		<div class="card-body">
 			<p class="text-muted font-weight-light">
-				<a href="/insertExpAddress?ceoId=${loginCeoId}" class="btn btn-success" style="height: 200px;">체험 등록</a>
-				<a href="/insertHotel" class="btn btn-warning" style="height: 200px;">숙소 등록</a>
+				<a href="/insertExpAddress?ceoId=${loginCeoId}" class="btn btn-inverse-info" style="height: 500px; width: 500px">
+					<i class="ti-map-alt" style="font-size:100px;"><br><br>체험</i>
+				</a>
+				&emsp;&emsp;&emsp;&emsp;&emsp;
+				<a href="/insertHotel" class="btn btn-inverse-info" style="height: 500px; width: 500px">
+					<i class="ti-home" style="font-size:100px"><br><br>호텔</i>
+				</a>
 			</p>
 		</div>
 	</div>

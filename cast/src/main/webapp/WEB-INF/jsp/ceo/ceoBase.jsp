@@ -164,11 +164,11 @@
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
-                Settings
+                 내 정보
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/ceoLogout">
                 <i class="ti-power-off text-primary"></i>
-                Logout
+                로그아웃
               </a>
             </div>
           </li>
