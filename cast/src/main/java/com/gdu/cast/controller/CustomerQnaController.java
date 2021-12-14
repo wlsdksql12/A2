@@ -21,8 +21,21 @@ public class CustomerQnaController {
 	@Autowired CustomerService customerService;
 	
 	private final int ROW_PER_PAGE = 5;
+	private final int row_per_page = 10;
+	
 	// 고객 페이지
-	// QNA
+	@GetMapping("/qnaList")
+	public String qnaList(Model model, String customerId, int currentPage) {
+		log.debug(customerId);
+		
+		Map<String, Object> map = customerService.getselectQna(customerId, currentPage, row_per_page);
+		model.addAttribute("qnaList", map.get("qnaList"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("currentPage", currentPage);
+		return "customer/qnaList";
+	}
+	
+	// 고객페이지 메인 qna 5개
 	@GetMapping("/customerIndex")
 	public String shopsingle(Model model, String customerId, int currentPage) {
 		log.debug(customerId);

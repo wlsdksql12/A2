@@ -93,10 +93,10 @@
 					    </ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Forms &amp; table</label>
+					    <label>QNA</label>
 					</li>
 					<li class="nav-item">
-					    <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Forms</span></a>
+					    <a href="/qnaList?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Qna</span></a>
 					</li>
 					<li class="nav-item">
 					    <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Bootstrap table</span></a>
@@ -482,7 +482,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 <c:forEach items="${qnaList}" var="qna">
+                                 <c:forEach items="${qnaList}"  var="qna">
                                 	
                                     <tr>
                                         <td>
@@ -501,7 +501,7 @@
                                         </td>
                                         <td>${qna.customerId}</td>
                                         <td>${qna.createDate}</td>
-                                        <td class="text-right"><label class="badge badge-light-danger">Low</label></td>
+                                        <td class="text-right"><label class="badge badge-light-danger">${qna.qnaSecret}</label></td>
                                     </tr>
                                    
                                     </c:forEach>
