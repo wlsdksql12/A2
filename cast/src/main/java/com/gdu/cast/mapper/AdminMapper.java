@@ -18,10 +18,5 @@ public interface AdminMapper {
 	int selectNewTraveler();
 	
 	int selectNewCeo();
-	
-	//Qna리스트
-	List<Qna> selectQnaList(Map<String, Object> map);
-	//페이징
-	int selectQnaTotalCount();
 }
 

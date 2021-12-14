@@ -7,15 +7,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gdu.cast.mapper.AdminMapper;
+import com.gdu.cast.mapper.AdminQnaMapper;
 import com.gdu.cast.vo.Qna;
+import com.gdu.cast.vo.QnaComment;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
 public class AdminQnaService {
-	@Autowired AdminMapper adminMapper;
+	@Autowired AdminQnaMapper adminQnaMapper;
 	 public Map<String, Object> selectQna(int currentPage, int ROW_PER_PAGE) {
 		   Map<String, Object> map = new HashMap<>();
 		   
@@ -23,11 +24,11 @@ public class AdminQnaService {
 		   map.put("beginRow", beginRow); 
 		   map.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		
-		   List<Qna> qnaList = adminMapper.selectQnaList(map);
+		   List<Qna> qnaList = adminQnaMapper.selectQnaList(map);
 			Map<String, Object> returnMap = new HashMap<>();
 			
 			int lastPage = 0;
-			int totalCount = adminMapper.selectQnaTotalCount();
+			int totalCount = adminQnaMapper.selectQnaTotalCount();
 			lastPage = totalCount / ROW_PER_PAGE;
 			
 			if(totalCount%ROW_PER_PAGE != 0) {
@@ -38,4 +39,13 @@ public class AdminQnaService {
 			returnMap.put("lastPage", lastPage);
 			return returnMap;
 	   }
+	 
+	 public void insertQnaComment(QnaComment qnaComment) {
+		 adminQnaMapper.insertQnaComment(qnaComment);
+	 }
+	 
+	 public QnaComment selectQnaComment(int qnaId) {
+		QnaComment qnaComment = adminQnaMapper.selectQnaComment(qnaId);
+		return qnaComment;
+	 }
 }

@@ -23,8 +23,16 @@
 <body>
    <div class="container" style="text-align:center">
       <h1>qna상세보기</h1>
-      <a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
-      <a href="/deleteQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
+      <c:if test="${loginCustomerId != null}">
+      	<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
+      	<a href="/deleteQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
+      </c:if>	
+      
+      <c:if test="${loginAdminId != null}">
+	      <c:if test="${qnaCommentContent  == null}">
+	       	<a href="/admin/qnaComment?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
+	       </c:if>
+ 	</c:if>
       <table border="1">
          <tr style="text-align:center" class="table-primary">
             <th width="40">번호</th>
@@ -46,7 +54,9 @@
             </tr>
       </table>
       <a href="/customerIndex?customerId=${customerId}&currentPage=1">이전</a>
-
+      
+      	<h1>Qna 답변</h1>
+	<div>${qnaCommentContent}</div>
    </div>
 </body>
 </html>
