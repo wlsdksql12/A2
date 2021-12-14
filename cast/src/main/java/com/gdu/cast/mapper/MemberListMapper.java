@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Customer;
+import com.gdu.cast.vo.Traveler;
 
 @Mapper
 public interface MemberListMapper {
@@ -22,4 +23,10 @@ public interface MemberListMapper {
 		
 	// 사업자 리스트 출력
 	List<Ceo> selectCeoList(Map<String, Object> map);
+	
+	// 여행작가 리스트 글갯수
+	int selectTravelerListTotalCount(String searchTitle);
+		
+	// 여행작가 리스트 출력
+	List<Traveler> selectTravelerList(Map<String, Object> map);
 }

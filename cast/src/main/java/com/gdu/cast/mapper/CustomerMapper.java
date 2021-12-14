@@ -39,6 +39,8 @@ public interface CustomerMapper {
 	Customer_Login selectCustomerLogin(Customer_Login customer_Login);
 	// 비활성화 상태 적용
 	int updateActiveZeroDate(String CustomerId);
+	// 활성화 상태 적용
+	int updateActiveOneDate(String CustomerId);
 	
 	
 }
