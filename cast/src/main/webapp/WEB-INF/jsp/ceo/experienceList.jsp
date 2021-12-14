@@ -50,37 +50,31 @@
 							</c:forEach>
 						</tbody>
 					</table>
+					<br>
 					<div>
 						<c:if test="${startPage > 1}">
 							<a
-								href="/experienceList?currentPage=${startPage-1}&searchTitle=${searchTitle}"
+								href="/experienceList?currentPage=${startPage-1}"
 								class="btn btn-outline-light text-dark">처음으로</a>
 						</c:if>
+						<div class="btn-group">
 						<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 							<c:choose>
 								<c:when test="${i == currentPage}">
-									<a
-										href="/experienceList?currentPage=${i}&searchTitle=${searchTitle}"
-										class="btn btn-secondary">${i}</a>
+									<a href="/experienceList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
 								</c:when>
 								<c:otherwise>
-									<a
-										href="/experienceList?currentPage=${i}&searchTitle=${searchTitle}"
-										class="btn btn-outline-light text-dark">${i}</a>
+									<a href="/experienceList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
+						</div>
 						<c:if test="${lastPage != totalPage}">
 							<a
-								href="/experienceList?currentPage=${lastPage+1}&searchTitle=${searchTitle}"
+								href="/experienceList?currentPage=${lastPage+1}"
 								class="btn btn-outline-light text-dark">끝으로</a>
 						</c:if>
 					</div>
-					<br>
-					<form method="get" id="/experienceList">
-						<input name="searchTitle" value="${searchTitle}">
-						<button>검색</button>
-					</form>
 				</div>
 			</div>
 		</div>
