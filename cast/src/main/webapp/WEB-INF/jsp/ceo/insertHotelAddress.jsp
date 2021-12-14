@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>주소 입력 페이지</title>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -13,15 +12,16 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/vendors/base/vendor.bundle.base.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
-<!-- End plugin css for this page -->
 <!-- inject:css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/css/style.css">
 <!-- endinject -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
+	<%@ include file="ceoBase.jsp" %>
 	<form method="post" action="/insertHotelAddress" class="form-sample">
-		<div class="col-12 grid-margin jumbotron bg-white">
+	<br>
+		<div class="col-12 grid-margin bg-white">
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title">주소입력</h4>
@@ -31,13 +31,13 @@
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">우편번호</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="sample4_postcode" name="postcode" readonly />
+									<input type="text" class="form-control" id="postcode" name="postcode" readonly />
 								</div>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group row">
-								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn btn-inverse-secondary"><br>
+								<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기" class="btn btn-inverse-secondary"><br>
 							</div>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">도로명주소</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="sample4_roadAddress" name="roadAddress" readonly />
+									<input type="text" class="form-control" id="roadAddress" name="roadAddress" readonly />
 								</div>
 							</div>
 						</div>
@@ -54,7 +54,7 @@
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">지번주소</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="sample4_jibunAddress" name="jibunAddress" readonly />
+									<input type="text" class="form-control" id="jibunAddress" name="jibunAddress" readonly />
 								</div>
 							</div>
 						</div>
@@ -65,7 +65,7 @@
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">상세주소</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="sample4_detailAddress" name="detailAddress" />
+									<input type="text" class="form-control" id="detailAddress" name="detailAddress" required/>
 								</div>
 							</div>
 						</div>
@@ -73,7 +73,7 @@
 							<div class="form-group row">
 								<label class="col-sm-3 col-form-label">참고항목</label>
 								<div class="col-sm-9">
-									<input type="text" class="form-control" id="sample4_extraAddress" name="extraAddress" readonly />
+									<input type="text" class="form-control" id="extraAddress" name="extraAddress" readonly />
 								</div>
 							</div>
 						</div>
@@ -85,6 +85,7 @@
 						<br>
 						<button type="submit" class="btn btn-inverse-primary">등록</button>
 					</div>
+					<div id="latLng"></div>
 				</div>
 			</div>
 		</div>
@@ -93,21 +94,23 @@
 		<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div
         mapOption = {
-            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+            center: new daum.maps.LatLng(37.4780757, 126.8785684), // 지도의 중심좌표
             level: 3 // 지도의 확대 레벨
         };
 
 	    //지도를 미리 생성
 	    var map = new daum.maps.Map(mapContainer, mapOption);
+	 	// 마우스 휠과 모바일 터치를 이용한 지도 확대, 축소를 막는다
+		map.setZoomable(false); 
 	    //주소-좌표 변환 객체를 생성
 	    var geocoder = new daum.maps.services.Geocoder();
 	    //마커를 미리 생성
 	    var marker = new daum.maps.Marker({
-	        position: new daum.maps.LatLng(37.537187, 127.005476),
+	        position: new daum.maps.LatLng(37.4780757, 126.8785684),
 	        map: map
 	    });
 	    
-			function sample4_execDaumPostcode() {
+			function execDaumPostcode() {
 				new daum.Postcode({
 							oncomplete : function(data) {
 								// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -133,15 +136,15 @@
 								}
 
 								// 우편번호와 주소 정보를 해당 필드에 넣는다.
-								document.getElementById('sample4_postcode').value = data.zonecode;
-								document.getElementById("sample4_roadAddress").value = roadAddr;
-								document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+								document.getElementById('postcode').value = data.zonecode;
+								document.getElementById("roadAddress").value = roadAddr;
+								document.getElementById("jibunAddress").value = data.jibunAddress;
 
 								// 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
 								if (roadAddr !== '') {
-									document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+									document.getElementById("extraAddress").value = extraRoadAddr;
 								} else {
-									document.getElementById("sample4_extraAddress").value = '';
+									document.getElementById("extraAddress").value = '';
 								}
 
 								var guideTextBox = document.getElementById("guide");
@@ -169,6 +172,13 @@
 	
 				                        // 해당 주소에 대한 좌표를 받아서
 				                        var coords = new daum.maps.LatLng(result.y, result.x);
+				                        
+				                        var message = '<input type="hidden" value="'+ result.y +'" name="lat">';
+				                        message += '<input type="hidden" value="'+ result.x +'" name="lng">';
+				                        
+				                        var resultDiv = document.getElementById('latLng');
+				                        resultDiv.innerHTML = message;
+				                        
 				                        // 지도를 보여준다.
 				                        mapContainer.style.display = "block";
 				                        map.relayout();

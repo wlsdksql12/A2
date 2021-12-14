@@ -28,7 +28,7 @@
 					<i class="ti-map-alt" style="font-size:100px;"><br><br>체험</i>
 				</a>
 				&emsp;&emsp;&emsp;&emsp;&emsp;
-				<a href="/insertHotel" class="btn btn-inverse-info" style="height: 500px; width: 500px">
+				<a href="/insertHotelAddress?ceoId=${loginCeoId}" class="btn btn-inverse-info" style="height: 500px; width: 500px">
 					<i class="ti-home" style="font-size:100px"><br><br>호텔</i>
 				</a>
 			</p>

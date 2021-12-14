@@ -28,7 +28,9 @@
 	href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
+	<%@ include file="ceoBase.jsp" %>
 	<form method="post" action="/insertHotel" class="forms-sample">
+	<br>
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
@@ -43,14 +45,12 @@
 							class="form-control" value="${loginCeoId}" name="ceoId" readonly>
 					</div>
 					<div class="form-group">
+						<label for="exampleInputName1">호텔 방의 갯수</label> <input type="number"
+							class="form-control" name="countRoom" placeholder="방의 수">
+					</div>
+					<div class="form-group">
 						<input type="hidden" class="form-control" value="${addressId}"
 							name="addressId">
-					</div>
-					<label for="exampleSelectGender" style="font-size: 15px">체험일자</label>
-					<div class="form-group input-group">
-						<input type="date" class="form-control" style="width: 250px" name="experienceStartdate" >
-						<div class="input-group-text">~</div>
-						<input type="date" class="form-control" style="width: 250px" name="experienceEnddate">
 					</div>
 					<div class="form-group">
 						<label>이미지 등록[미구현]</label> <input type="file" name="img[]"
