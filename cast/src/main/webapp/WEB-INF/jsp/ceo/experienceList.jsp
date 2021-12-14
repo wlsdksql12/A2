@@ -21,6 +21,8 @@
 	href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
+	<%@ include file="ceoBase.jsp" %>
+	<br>
 	<div class="col-lg-12 grid-margin stretch-card">
 		<div class="card">
 			<div class="card-body">

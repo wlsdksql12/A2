@@ -19,7 +19,7 @@
 	<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<%@ include file="ceoBase.jsp" %>
 <div class="jumbotron bg-white">
 	<div class="card">
 		<div class="card-body">

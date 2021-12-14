@@ -28,6 +28,8 @@
 	href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
+	<%@ include file="ceoBase.jsp" %>
+	<br>
 	<form method="post" action="/insertExp" class="forms-sample">
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">

@@ -18,8 +18,10 @@
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
 <body>
+	<%@ include file="ceoBase.jsp" %>
 	<form method="post" action="/insertExpAddress" class="form-sample">
-		<div class="col-12 grid-margin jumbotron bg-white">
+	<br>
+		<div class="col-12 grid-margin bg-white">
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title">주소입력</h4>
