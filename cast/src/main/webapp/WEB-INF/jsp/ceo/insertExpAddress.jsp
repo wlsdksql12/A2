@@ -83,6 +83,7 @@
 						<br>
 						<button type="submit" class="btn btn-inverse-primary">등록</button>
 					</div>
+					<div id="latLng"></div>
 				</div>
 			</div>
 		</div>
