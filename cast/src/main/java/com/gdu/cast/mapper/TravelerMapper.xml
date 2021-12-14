@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
+
+	<!-- 여행작가 내정보 보기 -->
+	<select id="selectTravelerMyInfo" parameterType="com.gdu.cast.vo.Traveler" resultType="com.gdu.cast.vo.Traveler">
+		SELECT
+			traveler_id travelerId,
+			traveler_pw travelerPw,
+			traveler_name travelerName,
+			traveler_jumin travelerJumin,
+			traveler_phonenum travelerPhoneNum,
+			traveler_email travelerEmail,
+			traveler_license travelerLicense,
+			traveler_career travelerCareer
+		FROM traveler
+		WHERE traveler_id=#{travelerId}
+	</select>
 	
 	<!-- 여행작가 로그인 -->
 	<select id="selectTraveler" parameterType="com.gdu.cast.vo.Traveler" resultType="com.gdu.cast.vo.Traveler">
@@ -8,7 +23,7 @@
 			traveler_id travelerId,
 			traveler_pw travelerPw
 		FROM traveler
-		Where traveler_id=#{travelerId}
+		WHERE traveler_id=#{travelerId}
 		AND traveler_pw=password(#{travelerPw})
 	</select>
 

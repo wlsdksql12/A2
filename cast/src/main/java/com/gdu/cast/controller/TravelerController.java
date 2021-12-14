@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -18,11 +19,26 @@ public class TravelerController {
 	
 	@Autowired
 	TravelerService travelerService;
+	
+	// 여행작가 내정보 보기
+	@GetMapping("/travelerInfo")
+	public String getTravelerMyInfo(Model model, String travelerId) {
+		Traveler traveler = travelerService.getTravelerMyInfo(travelerId);
+		model.addAttribute("traveler", traveler);
+		return "traveler/travelerMyInfo";
+	}
 		
 	// 여행작가 메인 페이지
 	@GetMapping("/travelerIndex")
 	public String travelerIndex() {
 		return "traveler/travelerIndex";
+	}
+	
+	// 여행작가 로그아웃
+	@GetMapping("/travelerLogout")
+	public String travelerLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/index";
 	}
 	
 	// 여행작가 로그인
@@ -43,13 +59,6 @@ public class TravelerController {
 		}
 		session.setAttribute("loginTravelerId", loginTraveler.getTravelerId());
 		log.debug((String) session.getAttribute("loginTravelerId"));
-		return "redirect:/index";
-	}
-	
-	// 여행작가 로그아웃
-	@GetMapping("/travelerLogout")
-	public String travelerLogout(HttpSession session) {
-		session.invalidate();
 		return "redirect:/index";
 	}
 	
