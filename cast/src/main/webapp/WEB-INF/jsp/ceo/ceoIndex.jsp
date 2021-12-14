@@ -174,7 +174,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="ExperienceList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
+            <a href="experienceList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
               <i class="ti-pie-chart menu-icon ti-clipboard"></i>
               <span class="menu-title">사업체 목록</span>
             </a>

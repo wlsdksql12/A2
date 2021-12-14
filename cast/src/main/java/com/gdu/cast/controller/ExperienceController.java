@@ -59,11 +59,15 @@ public class ExperienceController {
 		return "redirect:/insertExp?addressId="+address.getAddressId() + "&ceoId=" + experience.getCeoId();
 	}
 	
+	// 체험 리스트
 	@GetMapping("/experienceList")
-	public String noticeList(Model model, HttpSession session,
-			@RequestParam(defaultValue = "1") int currentPage) {
+	public String experienceList(Model model, HttpSession session,
+			@RequestParam(defaultValue = "1") int currentPage,
+			@RequestParam(required = false) String searchTitle) {
+			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
+		System.out.println(searchTitle);
 		final int ROW_PER_PAGE = 10;
-		Map<String, Object> map = experienceService.getExperienceList(currentPage, ROW_PER_PAGE);
+		Map<String, Object> map = experienceService.getExperienceList(currentPage, ROW_PER_PAGE, searchTitle);
 		System.out.println(session);
 		System.out.println(session.getAttribute("loginCeoId"));
 		model.addAttribute("experienceList", map.get("experienceList"));
@@ -71,8 +75,9 @@ public class ExperienceController {
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("searchTitle", searchTitle);
 		model.addAttribute("loginCeoId", session.getAttribute("loginCeoId"));
-		System.out.println(session.getAttribute("loginCeoId") + " 공지사항리스트 세션값");
-		return "experienceList";
+		System.out.println(session.getAttribute("loginCeoId") + " 체험리스트 세션값");
+		return "ceo/experienceList";
 	}
 }

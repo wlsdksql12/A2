@@ -26,28 +26,30 @@ public class ExperienceService {
 		experienceMapper.insertExpAddress(address);
 	}
 	
-	// return : boardList, lastPage
-	public Map<String, Object> getExperienceList(int currentPage, int ROW_PER_PAGE){
+	public Map<String, Object> getExperienceList(int currentPage, int ROW_PER_PAGE, String searchTitle){
 		// 1. 매개변수 가공
 		Map<String, Object> paramMap = new HashMap<>();
 		int beginRow = 0;
 		int displayPage = 10;
 		int startPage = 0;
 		int lastPage = 0;
+		System.out.println(searchTitle + "ExperienceService");
 		beginRow = (currentPage - 1) * ROW_PER_PAGE;
 		paramMap.put("beginRow", beginRow); // currentPage 가공
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		paramMap.put("searchTitle", searchTitle);
 		
-		// 체험리스트 가져오기
-		List<Experience> ExperienceList = experienceMapper.selectExperienceList(paramMap);
+		// 체험 리스트 가져오기
+		List<Experience> experienceList = experienceMapper.selectExperienceList(paramMap);
+		System.out.println(experienceList + "ExperienceService");
 		// 2. 리턴값 가공
 		Map<String, Object> returnMap = new HashMap<>();
 		
 		
 		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
 		
-		int totalCount = 0;
-		System.out.println(totalCount + "experienceSerivce");
+		int totalCount = experienceMapper.selectExperienceTotalCount(searchTitle);
+		System.out.println(totalCount + "ExperienceService");
 		lastPage = startPage + displayPage - 1;
 		int totalPage = totalCount / ROW_PER_PAGE;
 		if(totalCount % ROW_PER_PAGE != 0) {
@@ -57,7 +59,7 @@ public class ExperienceService {
 			lastPage = totalPage;
 		}
 		
-		returnMap.put("ExperienceList", ExperienceList);
+		returnMap.put("experienceList", experienceList);
 		returnMap.put("startPage", startPage);
 		returnMap.put("lastPage", lastPage);
 		returnMap.put("totalPage", totalPage);

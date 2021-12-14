@@ -58,8 +58,24 @@
 			experience_name experienceName,
 			create_date createDate
 		FROM experience
+		<where>
+			<if test='searchTitle != null or searchTitle == ""'>
+				experience_name LIKE '%${searchTitle}%'
+			</if>
+		</where>
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<!-- 체험 글갯수 -->
+	<select id="selectExperienceTotalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM experience
+		<where>
+			<if test='searchTitle != null or searchTitle == "" '>
+			 	experience_name LIKE '%{searchTitle}%'
+			</if>
+		</where>
 	</select>
 	
 	<!-- 체험 상세보기 -->

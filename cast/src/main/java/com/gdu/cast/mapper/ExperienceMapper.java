@@ -18,4 +18,6 @@ public interface ExperienceMapper {
 	List<Experience> selectExperienceList(Map<String, Object> map);
 	// 체험 상세보기
 	Experience selectExperienceOne(int ExperienceId);
+	// 체험 전체 글 수
+	int selectExperienceTotalCount(String searchTitle);
 }
