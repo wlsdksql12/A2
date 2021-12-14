@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Zay Shop - Contact</title>
+    <title>Cast Shop - Contact</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -15,23 +15,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/templatemo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/custom.css">
 
-    <!-- Load fonts style after rendering the layout styles -->
+    <!-- 레이아웃 렌더링한 후 폰트 스타일 로드 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/fontawesome.min.css">
 
-    <!-- Load map styles -->
+    <!-- 로드맵 스타일 -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-<!--
-    
-TemplateMo 559 Zay Shop
-
-https://templatemo.com/tm-559-zay-shop
-
--->
 </head>
 
 <body>
-    <!-- Start Top Nav -->
+    <!-- 최상단 네비게이션 -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
         <div class="container text-light">
             <div class="w-100 d-flex justify-content-between">
@@ -50,15 +43,15 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
     </nav>
-    <!-- Close Top Nav -->
+    <!-- 최상단 네비게이션 끝 -->
 
 
-    <!-- Header -->
+    <!-- 최상단 목록 선택 웬만하면 통일 -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index">
-                Zay
+                Cast
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -98,18 +91,49 @@ https://templatemo.com/tm-559-zay-shop
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    <c:choose>
+                   <c:when test="${loginCustomerId != null}">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/customerIndex?customerId=${loginCustomerId}&currentPage=1">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
+					</c:when>
+					
+				   	<c:when test="${loginCeoId != null}">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/ceoIndex?ceoId=${loginCeoId}">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:when>
+					
+                   <c:when test="${loginTravelerId != null}">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/travelerIndex?travelerId=${loginTravelerId}">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:when>
+				
+	                   <c:when test="${loginAdminId != null}">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/admin/adminIndex">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:when>
+					
+					<c:otherwise>
+					 <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/loginSelect">
+                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                    </a>
+					</c:otherwise>
+					</c:choose>
                 </div>
             </div>
-
         </div>
     </nav>
-    <!-- Close Header -->
+    <!-- 최상단부 끝 -->
 
-    <!-- Modal -->
+    <!-- 모달창? -->
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="w-100 pt-1 mb-5 text-right">
@@ -127,7 +151,7 @@ https://templatemo.com/tm-559-zay-shop
     </div>
 
 
-    <!-- Start Content Page -->
+    <!-- 상단부 내용 설명 칸 -->
     <div class="container-fluid bg-light py-5">
         <div class="col-md-6 m-auto text-center">
             <h1 class="h1">Contact Us</h1>
@@ -138,7 +162,7 @@ https://templatemo.com/tm-559-zay-shop
         </div>
     </div>
 
-    <!-- Start Map -->
+    <!-- 지도 시작 -->
     <div id="mapid" style="width: 100%; height: 300px;"></div>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
     <script>
@@ -146,7 +170,7 @@ https://templatemo.com/tm-559-zay-shop
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
             maxZoom: 18,
-            attribution: 'Zay Telmplte | Template Design by <a href="https://templatemo.com/">Templatemo</a> | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            attribution: 'Cast Telmplte | Template Design by <a href="https://templatemo.com/">Templatemo</a> | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
                 '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
                 'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
             id: 'mapbox/streets-v11',
@@ -155,14 +179,14 @@ https://templatemo.com/tm-559-zay-shop
         }).addTo(mymap);
 
         L.marker([-23.013104, -43.394365, 13]).addTo(mymap)
-            .bindPopup("<b>Zay</b> eCommerce Template<br />Location.").openPopup();
+            .bindPopup("<b>Cast</b> eCommerce Template<br />Location.").openPopup();
 
         mymap.scrollWheelZoom.disable();
         mymap.touchZoom.disable();
     </script>
-    <!-- Ena Map -->
+    <!-- 지도 끝 -->
 
-    <!-- Start Contact -->
+    <!-- 메인 내용 -->
     <div class="container py-5">
         <div class="row py-5">
             <form class="col-md-9 m-auto" method="post" role="form">
@@ -192,16 +216,16 @@ https://templatemo.com/tm-559-zay-shop
             </form>
         </div>
     </div>
-    <!-- End Contact -->
+    <!-- 메인 내용 끝 -->
 
 
-    <!-- Start Footer -->
+    <!-- 하단부 웬만하면 통일 -->
     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Zay Shop</h2>
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Cast Shop</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
@@ -279,8 +303,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="row pt-2">
                     <div class="col-12">
                         <p class="text-left text-light">
-                            Copyright &copy; 2021 Company Name 
-                            | Designed by <a rel="sponsored" href="https://templatemo.com" target="_blank">TemplateMo</a>
+                            &copy; 2021 CAST
                         </p>
                     </div>
                 </div>
@@ -288,15 +311,15 @@ https://templatemo.com/tm-559-zay-shop
         </div>
 
     </footer>
-    <!-- End Footer -->
+    <!-- 하단부 끝 -->
 
-    <!-- Start Script -->
+    <!-- 스크립트 -->
     <script src="assets/js/jquery-1.11.0.min.js"></script>
     <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/templatemo.js"></script>
     <script src="assets/js/custom.js"></script>
-    <!-- End Script -->
+    
 </body>
 
 </html>
