@@ -1,5 +1,10 @@
 package com.gdu.cast.controller;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +28,6 @@ public class AdminController {
 		int newCustomer = adminService.selectNewCustomer();
 		int newTraveler = adminService.selectNewTraveler();
 		int newCeo = adminService.selectNewCeo();
-		
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
@@ -51,7 +55,9 @@ public class AdminController {
 			return "redirect:/adminLogin";
 		}
 		session.setAttribute("loginAdminId", loginAdmin.getAdminId());
-		System.out.println(session.getAttribute("loginAdminId"));
+		session.setAttribute("loginAdminName", loginAdmin.getAdminName());
+		System.out.println(session.getAttribute("loginAdminId") + " <---AdminController");
+		System.out.println(session.getAttribute("loginAdminName") + " <---AdminController");
 		return "redirect:/admin/adminIndex";
 	}
 	
