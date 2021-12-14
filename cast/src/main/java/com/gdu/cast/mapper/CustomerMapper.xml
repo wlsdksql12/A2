@@ -26,6 +26,20 @@
 		now()	
 	)
 	</insert>
+	<!-- 회원 가입 시 로그인기록 생성 -->	
+	<insert id="insertCustomerLogin" parameterType="com.gdu.cast.vo.Customer_Login">
+		INSERT INTO Customer_Login(
+		customer_id,
+		create_date,
+		update_date
+		) VALUES(
+		#{customerId},
+		now(),
+		now()
+		)
+		
+	</insert>
+	
 	<!-- 로그인(세션) -->
 	<select id="selectCustomer" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
 		SELECT
@@ -105,5 +119,40 @@
 		WHERE customer_id = #{customerId}
 	</update>
 	
+	<!-- 일반회원 활성화 및 비활성화 조건문 활용 -->
+	<select id = "selectActive" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
+		SELECT
+			active
+		FROM Customer
+		WHERE customer_id = #{customerId}	
+	</select>
+	
+	<!--  일반회원 로그인 할 시 update_date now() -->
+	<update id="updateDate" parameterType="com.gdu.cast.vo.Customer_Login">
+		UPDATE Customer_Login SET update_date = now()
+		WHERE customer_id = #{customerId}
+	</update>
+	
+	<!-- 날짜 계산할때 update_date 날짜 구하기 위함. -->
+	<select id = "selectCustomerLogin" parameterType="com.gdu.cast.vo.Customer_Login" resultType="com.gdu.cast.vo.Customer_Login">
+		SELECT
+			customer_id customerId,
+			create_date createDate,
+			update_date updateDate
+		FROM customer_login
+		WHERE customer_id = #{customerId}	
+	</select >
+	<!--  0으로 비활성화 -->
+	<update id="updateActiveZeroDate" parameterType="com.gdu.cast.vo.Customer">
+		UPDATE Customer SET active = "0"
+		WHERE customer_id = #{customerId}
+	</update>
+	
+	<!-- 1로 활성화 -->
+	<update id="updateActiveOneDate" parameterType="com.gdu.cast.vo.Customer">
+		UPDATE Customer SET active = "1"
+		WHERE customer_id = #{customerId}
+	</update>
+
 	
 </mapper>

@@ -31,7 +31,10 @@ public class CustomerLoginController {
 	//고객 회원가입 추가
 	@PostMapping("/addCustomer")
 	public String PostaddCustomer(Customer customer) {
+		//customer테이블에 입력
 		customerService.getaddCustomer(customer);
+		//customerLogin (로그인 기록) 생성
+		customerService.getinsertCustomerLogin(customer.getCustomerId());
 		return "redirect:/loginSelect";
 	}
 	

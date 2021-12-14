@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Customer;
+import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Qna;
 
 @Mapper
@@ -28,5 +29,16 @@ public interface CustomerMapper {
 	Customer selectInfo(String customerId);
 	// 내정보 수정
 	int updateInfo(Customer customer);
+	// 활성화, 비활성화
+	Customer selectActive(String customerId);
+	// 로그인 기록 업데이트
+	int updateDate(String customerId);
+	//  회원 가입 시 로그인 기록 생성
+	int insertCustomerLogin(String customerId);
+	// 로그인 기록 출력
+	Customer_Login selectCustomerLogin(Customer_Login customer_Login);
+	// 비활성화 상태 적용
+	int updateActiveZeroDate(String CustomerId);
+	
 	
 }

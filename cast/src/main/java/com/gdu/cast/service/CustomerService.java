@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.vo.Customer;
+import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Qna;
 
 import lombok.extern.slf4j.Slf4j;
@@ -109,6 +110,32 @@ public class CustomerService {
 	   //내정보 수정
 	   public int getupdateInfo(Customer customer) {
 		   return customerMapper.updateInfo(customer);
+	   }
+	   
+	   // 활성화 비활성화
+	   public Customer getSelectActive(String customerId) {
+		   return customerMapper.selectActive(customerId);
+	   }
+	   
+	   //로그인 기록 엽데이트
+	   public int getupdateDate(String customerId) {
+		   return customerMapper.updateDate(customerId);
+	   }
+	   
+	   //로그인 기록 생성
+	   
+	   public int getinsertCustomerLogin(String customerId) {
+		   return customerMapper.insertCustomerLogin(customerId);
+	   }
+	   
+	   // 로그인 기록 출력
+	   public Customer_Login getselectCustomerLogin(Customer_Login customer_Login) {
+		   return customerMapper.selectCustomerLogin(customer_Login);
+	   }
+	   
+	   // 비활성화 상태 적용
+	   public int getupdateActiveZeroDate(String customerId) {
+		   return customerMapper.updateActiveZeroDate(customerId);
 	   }
 
 }
