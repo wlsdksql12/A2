@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>[여행작가]숙소 추천 삭제 페이지</title>
+<title>[여행작가]체험 추천 삭제 페이지</title>
 </head>
 <body>
 	<div style="text-align:center">
-		<h1>숙소 추천 삭제</h1>
-		<form method="post" action="/removeRoomSelect">
+		<h1>체험 추천 삭제</h1>
+		<form method="post" action="/removeExperienceSelect">
 			<h3>여행작가 아이디를 입력해주세요!</h3>
 			<div>
-				<input type="hidden" name="roomSelectId" value="${roomSelect.roomSelectId}">
+				<input type="hidden" name="experienceSelectId" value="${experienceSelect.experienceSelectId}">
 			</div>
 			<div>
 				아이디 : 

@@ -21,8 +21,9 @@ public class RoomSelectService {
 	@Autowired
 	RoomSelectMapper roomSelectMapper;
 	
-	// 여행작가 숙소 추천 추가
+	// 여행작가 체험 추천 추가
 	public void addRoomSelect(RoomSelect roomSelect) {
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		roomSelectMapper.insertRoomSelect(roomSelect);
 	}
 	

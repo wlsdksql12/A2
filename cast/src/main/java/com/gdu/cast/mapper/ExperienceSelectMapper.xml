@@ -2,6 +2,60 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceSelectMapper">
 
+	<!-- 여행작가 체험 추천 추가 -->
+	<insert id="insertExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
+		INSERT INTO experience_select(
+			traveler_id,
+			experience_id,
+			experience_select_title,
+			experience_select_content,
+			create_date,
+			update_date
+		) VALUES (
+			#{travelerId},
+			#{experienceId},
+			#{experienceSelectTitle},
+			#{experienceSelectContent},		
+			NOW(),
+			NOW()
+		)
+		<selectKey resultType="int" order="BEFORE" keyProperty="experienceSelectId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<!-- 여행작가 체험 추천 삭제 -->
+	<delete id="deleteExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
+		DELETE FROM experience_select
+		WHERE experience_select_id = #{experienceSelectId}
+		AND traveler_id = #{travelerId}
+	</delete>
+	
+	<!-- 여행작가 체험 추천 수정 -->
+	<update id="updateExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
+		UPDATE experience_select
+		SET 
+			experience_select_title = #{experienceSelectTitle}, 
+			experience_select_content = #{experienceSelectContent},
+			update_date = NOW()
+		WHERE 
+			experience_select_id = #{experienceSelectId}
+	</update>
+
+	<!-- 여행작가 체험 추천 상세보기 -->
+	<select id="selectExperienceSelectOne" parameterType="int" resultType="com.gdu.cast.vo.ExperienceSelect">
+		SELECT 
+			experience_select_id experienceSelectId,
+			traveler_id travelerId,
+			experience_id experienceId,
+			experience_select_title experienceSelectTitle,
+			experience_select_content experienceSelectContent,
+			create_date createDate,
+			update_date updateDate
+		FROM experience_select
+		WHERE experience_select_id = #{experienceSelectId}
+	</select>
+
 	<!-- 페이징 -->
 	<select id="selectExperienceTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 

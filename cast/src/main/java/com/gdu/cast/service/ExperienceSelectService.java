@@ -21,6 +21,30 @@ public class ExperienceSelectService {
 	@Autowired
 	ExperienceSelectMapper experienceSelectMapper;
 	
+	// 여행작가 숙소 추천 추가
+	public void addExperienceSelect(ExperienceSelect experienceSelect) {
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		experienceSelectMapper.insertExperienceSelect(experienceSelect);
+	}
+	
+	// 여행작가 체첨 추천 삭제
+	public void removeExperienceSelect(ExperienceSelect experienceSelect) {
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		experienceSelectMapper.deleteExperienceSelect(experienceSelect);
+	}
+	
+	// 여행작가 체첨 추천 수정
+	public void modifyExperienceSelect(ExperienceSelect experienceSelect) {
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		experienceSelectMapper.updateExperienceSelect(experienceSelect);
+	}
+	
+	// 여행작가 체험 추천 상세보기
+	public ExperienceSelect getexperienceSelectOne(int experienceSelectId) {
+		ExperienceSelect experienceSelect = experienceSelectMapper.selectExperienceSelectOne(experienceSelectId);
+		return experienceSelect;
+	}
+	
 	// 여행작가 체험 추천 리스트
 	public Map<String, Object> getSelectExperienceSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
 		

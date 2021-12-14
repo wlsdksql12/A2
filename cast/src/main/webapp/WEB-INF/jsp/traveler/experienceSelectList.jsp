@@ -926,20 +926,20 @@
                 <!-- Pagination -->
                 <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
 					<c:if test="${startPage > 1}">
-						<a href="/roomSelectList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
+						<a href="/experienceSelectList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/roomSelectList?currentPage=${i}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+								<a href="/experienceSelectList?currentPage=${i}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/roomSelectList?currentPage=${i}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+								<a href="/experienceSelectList?currentPage=${i}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${lastPage != totalPage}">
-						<a href="/roomSelectList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">끝</a>
+						<a href="/experienceSelectList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">끝</a>
 					</c:if>
                 </span>
               </div>
