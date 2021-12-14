@@ -8,7 +8,7 @@
 		FROM customer
 		<where>
 			<if test='searchTitle != null or searchTitle == "" '>
-				customer_id LIKE '%${searchTitle}%'
+				customer_id LIKE '%${searchTitle}%' OR customer_name LIKE '%${searchTitle}%'
 			</if>
 		</where>
 	</select>
@@ -19,7 +19,7 @@
 		FROM customer
 		<where>
 			<if test='searchTitle != null or searchTitle == ""'>
-				customer_id LIKE '%${searchTitle}%'
+				customer_id LIKE '%${searchTitle}%' OR customer_name LIKE '%${searchTitle}%'
 			</if>
 		</where>
 		ORDER BY create_date DESC
@@ -32,18 +32,42 @@
 		FROM ceo
 		<where>
 			<if test='searchTitle != null or searchTitle == "" '>
-				ceo_id LIKE '%${searchTitle}%'
+				ceo_id LIKE '%${searchTitle}%' OR ceo_name LIKE '%${searchTitle}%'
 			</if>
 		</where>
 	</select>
 	
 	<!-- 사업자 리스트 목록 조회 -->
-	<select id="selectCeoList" parameterType="Map" resultType="com.gdu.cast.vo.Customer">
+	<select id="selectCeoList" parameterType="Map" resultType="com.gdu.cast.vo.Ceo">
 		SELECT ceo_id ceoId, ceo_name ceoName, ceo_email ceoEmail,  ceo_phonenum ceoPhonenum, ceo_license ceoLicense, create_date createDate, update_date updateDate
 		FROM ceo
 		<where>
 			<if test='searchTitle != null or searchTitle == ""'>
-				ceo_id LIKE '%${searchTitle}%'
+				ceo_id LIKE '%${searchTitle}%' OR ceo_name LIKE '%${searchTitle}%'
+			</if>
+		</where>
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<!-- 여행작가 리스트 글갯수 -->
+	<select id="selectTravelerListTotalCount" parameterType="String" resultType="int" >
+		SELECT COUNT(*)
+		FROM traveler
+		<where>
+			<if test='searchTitle != null or searchTitle == "" '>
+				traveler_id LIKE '%${searchTitle}%' OR traveler_name LIKE '%${searchTitle}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 여행작가 리스트 목록 조회 -->
+	<select id="selectTravelerList" parameterType="Map" resultType="com.gdu.cast.vo.Traveler">
+		SELECT traveler_id travelerId, traveler_name travelerName, traveler_email travelerEmail,  traveler_phonenum travelerPhonenum, traveler_license travelerLicense, create_date createDate, update_date updateDate
+		FROM traveler
+		<where>
+			<if test='searchTitle != null or searchTitle == ""'>
+				traveler_id LIKE '%${searchTitle}%' OR traveler_name LIKE '%${searchTitle}%'
 			</if>
 		</where>
 		ORDER BY create_date DESC

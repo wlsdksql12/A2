@@ -31,7 +31,7 @@
 		SELECT
 			qna_id qnaId, qna_title qnaTitle, customer_id customerId, qna_content qnaContent,
 			qna_category qnaCategory, qna_secret qnaSecret, create_date createDate, update_date updateDate
-		FROM Qna
+		FROM qna
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
