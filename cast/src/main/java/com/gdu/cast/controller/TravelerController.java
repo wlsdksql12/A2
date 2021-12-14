@@ -19,7 +19,7 @@ public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
 		
-	// 여행작가 페이지 템플릿
+	// 여행작가 메인 페이지
 	@GetMapping("/travelerIndex")
 	public String travelerIndex() {
 		return "traveler/travelerIndex";
@@ -27,13 +27,13 @@ public class TravelerController {
 	
 	// 여행작가 로그인
 	@GetMapping("/travelerLogin")
-	public String login() {
+	public String travelerLogin() {
 		return "traveler/travelerLogin";
 	}
 	
 	// 여행작가 로그인
 	@PostMapping("/travelerLogin")
-	public String login(HttpSession session, Traveler traveler) {
+	public String travelerLogin(HttpSession session, Traveler traveler) {
 		log.debug(traveler.getTravelerId());
 		log.debug(traveler.getTravelerPw());
 		Traveler loginTraveler = travelerService.getSelectTraveler(traveler);
@@ -47,8 +47,9 @@ public class TravelerController {
 	}
 	
 	// 여행작가 로그아웃
-	@GetMapping("/logout")
-	public String logout() {
+	@GetMapping("/travelerLogout")
+	public String travelerLogout(HttpSession session) {
+		session.invalidate();
 		return "redirect:/index";
 	}
 	

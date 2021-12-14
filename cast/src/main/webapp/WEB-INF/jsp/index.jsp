@@ -112,7 +112,7 @@ https://templatemo.com/tm-559-zay-shop
 					</c:when>
 					
                    <c:when test="${loginTravelerId != null}">
-                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/travelerIndex">
+                    <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/travelerIndex?travelerId=${loginTravelerId}">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>

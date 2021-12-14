@@ -13,7 +13,7 @@
 <link href="${pageContext.request.contextPath}/resources/admin_template/css/ruang-admin.min.css" rel="stylesheet">
 </head>
 <body class="bg-gradient-login">
-  <!-- Login Content -->
+<!-- 로그인 -->
   <div class="container-login">
     <div class="row justify-content-center">
       <div class="col-xl-6 col-lg-12 col-md-9">
@@ -25,15 +25,16 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
-					<form method="post" action="/index" id="loginCusForm">
+					<form method="post" action="/index" id="loginForm">
 						<div>
 						<select name="login">
-				 			<option value=""></option>
+				 			<option value="">로그인 방식을 선택해주세요..</option>
 				 			<option value="adminLogin">관리자</option>
 				 			<option value="travelerLogin">여행작가</option>
 				 			<option value="customerLogin">일반회원</option>
 				 			<option value="ceoLogin">사업자</option>
 			 			</select>
+			 			<hr>
 						</div>
 
 	                    <div class="form-group">
@@ -43,10 +44,13 @@
 	                      <input type="password" class="form-control" id="Pw" name="Pw" placeholder="비밀번호를 입력해주세요">
 	                    </div>
 	                    <div class="form-group">
-	                      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Login</button>
+	                      <button type="button" class="btn btn-primary btn-block" id="loginBtn">Login</button>
 	                    </div>
 					</form>
                     <hr>
+                    <div class="text-center">
+                    	<a class="font-weight-bold small" href="${pageContext.request.contextPath}/customersingup">회원가입</a>
+                    </div>
                 </div>
                 <footer class="my-3 text-center text-small">
 				<p class="mb-1">&copy; 2021 CAST</p>
@@ -58,27 +62,27 @@
       </div>
     </div>
 </div>
-<!-- 
+<!-- jquery -->
 <script type="text/javascript">
 	$(function(){
 		// 로그인 유효성 검사
 		$('#loginBtn').click(function(){
-			if($('#customerId').val() == ""){
+			if($('#Id').val() == ""){
 				alert("아이디를 입력하세요.");
-				$('#customerId').focus();
+				$('#Id').focus();
 				return false;
 			}
-			else if($('#customerPw').val() == ""){
+			else if($('#Pw').val() == ""){
 				alert("비밀번호를 입력하세요.");
-				$('#customerPw').focus();
+				$('#Pw').focus();
 				return false;
 			}
 			else {
-				$('#loginCusForm').submit();
+				$('#loginForm').submit();
 			}
 		});
 		// 로그인 엔터키 이벤트
-		$('#loginCusForm').keypress(function(event){
+		$('#loginForm').keypress(function(event){
 			if(event.which == 13) {
 				$('#loginBtn').click();
 				return false;
@@ -86,6 +90,5 @@
 		});
 	});
 </script>
--->
 </body>
 </html>
