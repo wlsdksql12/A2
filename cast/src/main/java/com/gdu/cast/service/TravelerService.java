@@ -17,6 +17,12 @@ public class TravelerService {
 	@Autowired
 	TravelerMapper travelerMapper;
 	
+	// 여행작가 숙소 추천 수정
+	public void modifyTravelerMyInfo(Traveler traveler) {
+		log.debug("★★★★Hyun★★★★"+traveler.toString());
+		travelerMapper.updateTravelerMyInfo(traveler);
+	}
+	
 	// 여행작가 내정보 보기
 	public Traveler getTravelerMyInfo(String travlerId) {
 		log.debug("★★★★Hyun★★★★"+travlerId);

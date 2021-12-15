@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>[여행작가]내정보 보기</title>
+<title>[여행작가]프로필</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <!-- Bootstrap CSS -->
@@ -36,42 +36,29 @@
 	<div class="container">
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
-				<h4 class="mb-3">내정보</h4>
-				<div class="mb-3">
-					<label for="name">아이디</label>
-					<input type="text" class="form-control" name="travelerId" value="${travelerId}" required>
-				</div>
-				<div class="mb-3">
-					<label for="password">비밀번호</label>
-					<input type="password" class="form-control" name="travelerPw" value="${travelerPw}" required>
-				</div>
+				<h4 class="mb-3">${loginTravelerId}님의 프로필!</h4>
 				<div class="mb-3">
 					<label for="name">이름</label>
-					<input type="text" class="form-control" name="travelerName" value="${travelerName}" required>
-				</div>
-				<div class="mb-3">
-					<label for="jumin">주민번호</label>
-					<input type="text" class="form-control" name="travelerJumin" value="${travelerJumin}" required>
+					<input type="text" class="form-control" name="travelerName" value="${traveler.travelerName}" readonly="readonly" required>
 				</div>
 				<div class="mb-3">
 					<label for="phonenumber">전화번호</label>
-					<input type="text" class="form-control" name="travelerPhoneNum" value="${travelerPhoneNum}" required>
+					<input type="text" class="form-control" name="travelerPhoneNum" value="${traveler.travelerPhoneNum}" readonly="readonly"required>
 				</div>
 				<div class="mb-3">
 					<label for="email">이메일</label>
-					<input type="text" class="form-control" name="travelerEmail" value="${travelerEmail}" required>
+					<input type="text" class="form-control" name="travelerEmail" value="${traveler.travelerEmail}" readonly="readonly"required>
 				</div>
 				<div class="mb-3">
 					<label for="license">라이센스</label>
-					<input type="text" class="form-control" name=travelerLicense value="${travelerLicense}" required>
+					<input type="text" class="form-control" name=travelerLicense value="${traveler.travelerLicense}" readonly="readonly" required>
 				</div>
 				<div class="mb-3">
 					<label for="career">경력</label>
-					<input type="text" class="form-control" name="travelerCareer" value="${travelerCareer}" required>
+					<input type="text" class="form-control" name="travelerCareer" value="${traveler.travelerCareer}" readonly="readonly" required>
 				</div>
 				<input type="button" class="btn btn-primary" value="이전" onclick="history.back(-1)">
-				<a class="btn btn-warning" href="/modifytravelerMyInfo?travelerId=${travelerId}">수정</a>
-				<a class="btn btn-danger" href="/removetravelerMyInfo?travelerId=${travelerId}">삭제</a>
+				<a class="btn btn-warning" href="/modifyTravelerMyInfo?travelerId=${loginTravelerId}">회원정보 수정</a>
 			</div>
 		</div>
 		<footer class="my-3 text-center text-small">

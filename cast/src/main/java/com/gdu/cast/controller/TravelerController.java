@@ -20,19 +20,29 @@ public class TravelerController {
 	@Autowired
 	TravelerService travelerService;
 	
-	// 여행작가 내정보 보기
+	// 여행작가 내정보 수정
+	@GetMapping("/modifyTravelerMyInfo")
+	public String modifyTravelerMyInfo(Model model, HttpSession session, String travelerId) {
+		travelerId = (String)session.getAttribute("loginTravelerId");
+		Traveler traveler = travelerService.getTravelerMyInfo(travelerId);
+		model.addAttribute("traveler", traveler);
+		return "traveler/modifyTravelerMyInfo";
+	}
+	
+	// 여행작가 내정보 수정
+	@PostMapping("/modifyTravelerMyInfo")
+	public String modifyTravelerMyInfo(Traveler traveler) {
+		travelerService.modifyTravelerMyInfo(traveler);
+		log.debug("★★★★Hyun★★★★"+traveler.toString()); 
+		return "redirect:/modifyTravelerMyInfo?travelerId="+traveler.getTravelerId();
+	}
+	
+	// 여행작가 프로필
 	@GetMapping("/travelerMyInfo")
 	public String getTravelerMyInfo(Model model, HttpSession session, String travelerId) {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		Traveler traveler = travelerService.getTravelerMyInfo(travelerId);
-		model.addAttribute("travelerId", traveler.getTravelerId());
-		model.addAttribute("travelerPw", traveler.getTravelerPw());
-		model.addAttribute("travelerName", traveler.getTravelerName());
-		model.addAttribute("travelerJumin", traveler.getTravelerJumin());
-		model.addAttribute("travelerPhoneNum", traveler.getTravelerPhoneNum());
-		model.addAttribute("travelerEmail", traveler.getTravelerEmail());
-		model.addAttribute("travelerLicense", traveler.getTravelerLicense());
-		model.addAttribute("travelerCareer", traveler.getTravelerCareer());
+		model.addAttribute("traveler", traveler);
 		return "traveler/travelerMyInfo";
 	}
 		

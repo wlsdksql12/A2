@@ -2,12 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
 
-	<!-- 여행작가 내정보 보기 -->
+	<!-- 여행작가 내정보 수정 -->
+	<update id="updateTravelerMyInfo" parameterType="com.gdu.cast.vo.Traveler">
+		UPDATE traveler
+		SET
+			traveler_pw = password(#{travelerPw}),
+			traveler_name = #{travelerName},
+			traveler_PhoneNum = #{travelerPhoneNum},
+			traveler_email = #{travelerEmail},
+			traveler_career = #{travelerCareer}
+		WHERE traveler_id=#{travelerId}
+	</update>
+
+	<!-- 여행작가 프로필 -->
 	<select id="selectTravelerMyInfo" parameterType="com.gdu.cast.vo.Traveler" resultType="com.gdu.cast.vo.Traveler">
 		SELECT
-			traveler_id travelerId,
-			traveler_pw travelerPw,
 			traveler_name travelerName,
+			traveler_pw travelerPw,
 			traveler_jumin travelerJumin,
 			traveler_phonenum travelerPhoneNum,
 			traveler_email travelerEmail,
