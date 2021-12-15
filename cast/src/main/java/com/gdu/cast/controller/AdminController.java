@@ -1,5 +1,7 @@
 package com.gdu.cast.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,28 +9,38 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.AdminService;
 import com.gdu.cast.vo.Admin;
 
 @Controller
 public class AdminController {
-	@Autowired
-	AdminService adminService;
+	@Autowired AdminService adminService;
+	@Autowired AdminQnaService adminQnaService;
+	private final int ROW_PER_PAGE = 5;
 	
 	// 관리자 메인페이지
 	@GetMapping("/admin/adminIndex")
-	public String adminIndex(Model model) {
+	public String adminIndex(Model model, @RequestParam(defaultValue = "1") int currentPage) {
 		
 		int newCustomer = adminService.selectNewCustomer();
 		int newTraveler = adminService.selectNewTraveler();
 		int newCeo = adminService.selectNewCeo();
+		Map<String, Object> map = adminQnaService.selectNotQnaComment(currentPage, ROW_PER_PAGE);
+		
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		
 		model.addAttribute("newCustomer", newCustomer);
 		model.addAttribute("newTraveler", newTraveler);
 		model.addAttribute("newCeo", newCeo);
+		model.addAttribute("notQnaCommentList", map.get("notQnaCommentList"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("currentPage", currentPage);
+		
 		return "admin/adminIndex";
 	}
 	

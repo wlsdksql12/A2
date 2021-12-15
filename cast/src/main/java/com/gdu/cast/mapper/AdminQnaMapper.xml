@@ -5,7 +5,7 @@
 		SELECT
 			qna_id qnaId, qna_title qnaTitle, customer_id customerId, qna_content qnaContent,
 			qna_category qnaCategory, qna_secret qnaSecret, create_date createDate, update_date updateDate
-		FROM Qna
+		FROM qna
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
@@ -36,5 +36,13 @@
 		WHERE q.customer_id= #{customerId}
 	</select>
 	
-	
+	<select id="selectNotQnaCommentList" parameterType="Map" resultType="com.gdu.cast.vo.Qna">
+		SELECT
+			qna_id qnaId, qna_title qnaTitle, customer_id customerId, qna_content qnaContent,
+			qna_category qnaCategory, qna_secret qnaSecret, create_date createDate, update_date updateDate
+		FROM qna
+		WHERE qna_id NOT IN (SELECT qna_id FROM qna_comment)
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
 </mapper>

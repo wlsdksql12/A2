@@ -22,4 +22,7 @@ public interface AdminQnaMapper {
 	QnaComment selectQnaComment(int qnaId);
 	// Qna 알람
 	List<Qna> selectQnaAlarm(String customerId);
+	
+	//Qna 미답변 리스트
+	List<Qna> selectNotQnaCommentList(Map<String, Object> map);
 }

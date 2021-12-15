@@ -55,4 +55,27 @@ public class AdminQnaService {
 		 return adminQnaMapper.selectQnaAlarm(customerId); 
 		 
 	 }
+	 
+	 public Map<String, Object> selectNotQnaComment(int currentPage, int ROW_PER_PAGE) {
+		   Map<String, Object> map = new HashMap<>();
+		   
+		   int beginRow = (currentPage-1)*ROW_PER_PAGE;
+		   map.put("beginRow", beginRow); 
+		   map.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		
+		   List<Qna> notQnaCommentList = adminQnaMapper.selectNotQnaCommentList(map);
+			Map<String, Object> returnMap = new HashMap<>();
+			
+			int lastPage = 0;
+			int totalCount = adminQnaMapper.selectQnaTotalCount();
+			lastPage = totalCount / ROW_PER_PAGE;
+			
+			if(totalCount%ROW_PER_PAGE != 0) {
+				lastPage += 1;
+			}
+			
+			returnMap.put("notQnaCommentList", notQnaCommentList);
+			returnMap.put("lastPage", lastPage);
+			return returnMap;
+	   }
 }
