@@ -21,10 +21,18 @@ public class TravelerController {
 	TravelerService travelerService;
 	
 	// 여행작가 내정보 보기
-	@GetMapping("/travelerInfo")
-	public String getTravelerMyInfo(Model model, String travelerId) {
+	@GetMapping("/travelerMyInfo")
+	public String getTravelerMyInfo(Model model, HttpSession session, String travelerId) {
+		travelerId = (String)session.getAttribute("loginTravelerId");
 		Traveler traveler = travelerService.getTravelerMyInfo(travelerId);
-		model.addAttribute("traveler", traveler);
+		model.addAttribute("travelerId", traveler.getTravelerId());
+		model.addAttribute("travelerPw", traveler.getTravelerPw());
+		model.addAttribute("travelerName", traveler.getTravelerName());
+		model.addAttribute("travelerJumin", traveler.getTravelerJumin());
+		model.addAttribute("travelerPhoneNum", traveler.getTravelerPhoneNum());
+		model.addAttribute("travelerEmail", traveler.getTravelerEmail());
+		model.addAttribute("travelerLicense", traveler.getTravelerLicense());
+		model.addAttribute("travelerCareer", traveler.getTravelerCareer());
 		return "traveler/travelerMyInfo";
 	}
 		

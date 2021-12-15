@@ -30,7 +30,7 @@
 		</table>
 		<p></p>
 		<div>
-			<a class="btn btn-primary" href="/roomSelectList">이전</a>
+			<input type="button" class="btn btn-primary" value="이전" onclick="history.back(-1)">
 			<a class="btn btn-warning" href="/modifyRoomSelect?roomSelectId=${roomSelect.roomSelectId}">수정</a>
 			<a class="btn btn-danger" href="/removeRoomSelect?roomSelectId=${roomSelect.roomSelectId}">삭제</a>
 		</div>
