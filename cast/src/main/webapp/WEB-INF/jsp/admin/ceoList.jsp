@@ -35,7 +35,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">사업자 리스트</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item">가입자리스트</li>
               <li class="breadcrumb-item active" aria-current="page">사업자리스트</li>
             </ol>

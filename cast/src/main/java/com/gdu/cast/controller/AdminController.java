@@ -29,11 +29,12 @@ public class AdminController {
 		int newTraveler = adminService.selectNewTraveler();
 		int newCeo = adminService.selectNewCeo();
 		Map<String, Object> map = adminQnaService.selectNotQnaComment(currentPage, ROW_PER_PAGE);
-		
+		// 차트에 사용할 임시 데이터
+		int[] data = {0,3000000,5000000,15000000,8000000,20000000,15000000,25000000,20000000,30000000,25000000,45000000};
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
-		
+		model.addAttribute("data", data);
 		model.addAttribute("newCustomer", newCustomer);
 		model.addAttribute("newTraveler", newTraveler);
 		model.addAttribute("newCeo", newCeo);

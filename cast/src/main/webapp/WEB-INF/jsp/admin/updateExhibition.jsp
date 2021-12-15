@@ -42,10 +42,10 @@
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"></h1>
+            <h1 class="h3 mb-0 text-gray-800">전시소개 수정</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+              <li class="breadcrumb-item"><a href="/adminIndex">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">전시소개</li>
             </ol>
           </div>
 		<div class="container" style="text-align:center">

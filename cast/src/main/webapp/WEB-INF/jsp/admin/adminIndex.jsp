@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,7 +145,7 @@
               </div>
             </div>
             
-                        <!-- New User Card Example -->
+            <!-- New User Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card h-100">
                 <div class="card-body">
@@ -166,10 +167,11 @@
             </div>
             
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-9 col-lg-7">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Monthly Recap Report</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">월간표</h6>
+                  <!-- 차트 메뉴 시작 -->
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                       aria-haspopup="true" aria-expanded="false">
@@ -184,6 +186,7 @@
                       <a class="dropdown-item" href="#">Something else here</a>
                     </div>
                   </div>
+                  <!-- 차트 메뉴 끝 -->
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
@@ -195,36 +198,60 @@
 		</div>             
 		</div>
 		<!-- Container Fluid-->
-	<div class="container-fluid" id="container-wrapper" style="width: 1700px">
-		<div class="row mb-3">
-            <!-- Qna Example -->
-            <div class="col-xl-8 col-lg-7 mb-4">
-              <div class="card">
+            <!-- Invoice Example -->
+            <div class="col-xl-11 col-lg-7 mb-4">
+              <div class="card ">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Qna</h6>
-                  <a class="m-0 float-right btn btn-danger btn-sm" href="/admin/qnaList">Qna More <i
+                  <h6 class="m-0 font-weight-bold text-primary">Invoice</h6>
+                  <a class="m-0 float-right btn btn-danger btn-sm" href="#">View More <i
                       class="fas fa-chevron-right"></i></a>
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
-                        <th style="text-align: center">제목</th>
-                        <th style="text-align: center">작성자</th>
-                        <th style="text-align: center">작성 날짜</th>
-                        <th style="text-align: center">비밀글</th>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                      	<c:forEach items="${notQnaCommentList}" var="nqcl">
-							<tr style="text-align:center" height="70px">
-								<td><a href ="/qnaListOne?qnaId=${nqcl.qnaId}&customerId=${nqcl.customerId}">${nqcl.qnaTitle}</a></td>
-								<td>${nqcl.customerId}</td>
-								<td>${nqcl.createDate}</td>
-								<td>${nqcl.qnaSecret}</td>
-							</tr>
-						</c:forEach>
+                        <td><a href="#">RA0449</a></td>
+                        <td>Udin Wayang</td>
+                        <td>Nasi Padang</td>
+                        <td><span class="badge badge-success">Delivered</span></td>
+                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">RA5324</a></td>
+                        <td>Jaenab Bajigur</td>
+                        <td>Gundam 90' Edition</td>
+                        <td><span class="badge badge-warning">Shipping</span></td>
+                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">RA8568</a></td>
+                        <td>Rivat Mahesa</td>
+                        <td>Oblong T-Shirt</td>
+                        <td><span class="badge badge-danger">Pending</span></td>
+                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">RA1453</a></td>
+                        <td>Indri Junanda</td>
+                        <td>Hat Rounded</td>
+                        <td><span class="badge badge-info">Processing</span></td>
+                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                      </tr>
+                      <tr>
+                        <td><a href="#">RA1998</a></td>
+                        <td>Udin Cilok</td>
+                        <td>Baby Powder</td>
+                        <td><span class="badge badge-success">Delivered</span></td>
+                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
                       </tr>
                     </tbody>
                   </table>
@@ -232,13 +259,11 @@
                 <div class="card-footer"></div>
               </div>
             </div>
-           </div>
-           <div class="row mb-3">
             <!-- Message From Customer-->
             <div class="col-xl-4 col-lg-5 ">
               <div class="card">
                 <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">여행작가 승인신청</h6>
+                  <h6 class="m-0 font-weight-bold text-light">Message From Customer</h6>
                 </div>
                 <div>
                   <div class="customer-message align-items-center">
@@ -277,51 +302,7 @@
                 </div>
               </div>
             </div>
-              <div class="col-xl-4 col-lg-5 ">
-              <div class="card">
-                <div class="card-header py-4 bg-primary d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-light">사업가 승인신청</h6>
-                </div>
-                <div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Hi there! I am wondering if you can help me with a
-                        problem I've been having.</div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok Â· 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a href="#">
-                      <div class="text-truncate message-title">But I must explain to you how all this mistaken idea
-                      </div>
-                      <div class="small text-gray-500 message-time">Nana Haminah Â· 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau Â· 25m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">At vero eos et accusamus et iusto odio dignissimos
-                        ducimus qui blanditiis
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang Â· 54m</div>
-                    </a>
-                  </div>
-                  <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="#">View More <i
-                        class="fas fa-chevron-right"></i></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-         </div>
-         </div>
-        </div>
+          </div>
           <!--Row-->
 
           <div class="row">
@@ -370,6 +351,104 @@
   <script src="${pageContext.request.contextPath}/resources/admin_template/js/ruang-admin.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/chart.js/Chart.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/js/demo/chart-area-demo.js"></script>  
-</body>
 
+<script type="text/javascript">
+	var myData=[];
+	// 자바스크립트에서 JSTL사용해서 EL데이터를 입력
+	<c:forEach items="${data}" var="item">
+		myData.push("${item}");
+	</c:forEach>
+	
+	// Area Chart Example
+	var ctx = document.getElementById("myAreaChart");
+	var myLineChart = new Chart(ctx, {
+	  type: 'line',
+	  data: {	
+	    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+	    datasets: [{
+	      label: "",
+	      lineTension: 0.3,
+	      backgroundColor: "rgba(78, 115, 223, 0.5)",
+	      borderColor: "rgba(78, 115, 223, 1)",
+	      pointRadius: 3,
+	      pointBackgroundColor: "rgba(78, 115, 223, 1)",
+	      pointBorderColor: "rgba(78, 115, 223, 1)",
+	      pointHoverRadius: 3,
+	      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+	      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+	      pointHitRadius: 10,
+	      pointBorderWidth: 2,
+	      data: myData,
+	    }],
+	  },
+	  options: {
+	    maintainAspectRatio: false,
+	    layout: {
+	      padding: {
+	        left: 10,
+	        right: 25,
+	        top: 25,
+	        bottom: 0
+	      }
+	    },
+	    scales: {
+	      xAxes: [{
+	        time: {
+	          unit: 'date'
+	        },
+	        gridLines: {
+	          display: false,
+	          drawBorder: false
+	        },
+	        ticks: {
+	          maxTicksLimit: 7
+	        }
+	      }],
+	      yAxes: [{
+	        ticks: {
+	          beginAtZero: true,
+	          userCallback: function(value, index, values){
+	        	  value = value.toString();
+	        	  value = value.split(/(?=(?:...)*$)/);
+	        	  value = value.join(',');
+	        	  return value+"원";
+	          },
+	        },
+	        gridLines: {
+	          color: "rgb(234, 236, 244)",
+	          zeroLineColor: "rgb(234, 236, 244)",
+	          drawBorder: false,
+	          borderDash: [2],
+	          zeroLineBorderDash: [2]
+	        }
+	      }],
+	    },
+	    legend: {
+	      display: false
+	    },
+	    tooltips: {
+	      backgroundColor: "rgb(255,255,255)",
+	      bodyFontColor: "#858796",
+	      titleMarginBottom: 10,
+	      titleFontColor: '#6e707e',
+	      titleFontSize: 14,
+	      borderColor: '#dddfeb',
+	      borderWidth: 1,
+	      xPadding: 15,
+	      yPadding: 15,
+	      displayColors: false,
+	      intersect: false,
+	      mode: 'index',
+	      caretPadding: 10,
+	      callbacks: {
+	        label: function(tooltipItem, chart) {
+	          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+	          return datasetLabel  + number_format(tooltipItem.yLabel) + '원';
+	        }
+	      }
+	    }
+	  }
+	});
+</script>
+</body>
 </html>
