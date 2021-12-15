@@ -56,7 +56,7 @@
 		WHERE experience_select_id = #{experienceSelectId}
 	</select>
 
-	<!-- 페이징 -->
+	<!-- 체험 추천 전체 글 수 -->
 	<select id="selectExperienceTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM experience_select

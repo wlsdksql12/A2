@@ -28,6 +28,9 @@
                             <a class="nav-link" href="mainNotice">고객센터</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="mainRoomSelect">여행작가 추천!</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="shop">Shop</a>
                         </li>
                         <li class="nav-item">

@@ -43,7 +43,7 @@
 				</div>
 				<div class="mb-3">
 					<label for="phonenumber">전화번호</label>
-					<input type="text" class="form-control" name="travelerPhoneNum" value="${traveler.travelerPhoneNum}" readonly="readonly"required>
+					<input type="text" class="form-control" name="travelerPhoneNum" value="${traveler.travelerPhoneNum}" readonly="readonly" required>
 				</div>
 				<div class="mb-3">
 					<label for="email">이메일</label>

@@ -56,7 +56,7 @@
 		WHERE room_select_id = #{roomSelectId}
 	</select>
 	
-	<!-- 페이징 -->
+	<!-- 숙소 추천 전체 글 수 -->
 	<select id="selectRoomSelectTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM room_select

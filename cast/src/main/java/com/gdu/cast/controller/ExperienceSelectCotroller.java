@@ -73,7 +73,7 @@ public class ExperienceSelectCotroller {
 	
 	// 여행작가 체험 추천 리스트
 	@GetMapping("/experienceSelectList")
-	public String roomSelectList(Model model,
+	public String experienceSelectList(Model model,
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
 			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
