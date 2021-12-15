@@ -80,13 +80,20 @@ public class LoginContrlloer {
 			
 			Customer_Login customer_Login = new Customer_Login();
 			customer_Login.setCustomerId(customer.getCustomerId());
-			//로그인 기록 셀렉트
-			Customer_Login customerLogin = customerService.getselectCustomerLogin(customer_Login);
-			System.out.println(customerLogin.getUpdatedate()+"@#@#@#@#@#updateDate");	
 			
 			// 세션용
 			Customer loginCustomer = customerService.getselectCustomer(customer);
+			
+			
+			//로그인 기록 셀렉트
+			if(loginCustomer == null) {
+				return "redirect:/loginSelect";
+			}
 			session.setAttribute("loginCustomerId", loginCustomer.getCustomerId());
+			
+			Customer_Login customerLogin = customerService.getselectCustomerLogin(customer_Login);
+			System.out.println(customerLogin.getUpdatedate()+"@#@#@#@#@#updateDate");	
+			
 		
 			
 			
@@ -110,7 +117,6 @@ public class LoginContrlloer {
 				log.debug("날짜 차이 : "+ calDateDays);
 				
 			}catch(ParseException e) {
-				
 				e.printStackTrace();
 			}
 			// 60일 이상이라면
