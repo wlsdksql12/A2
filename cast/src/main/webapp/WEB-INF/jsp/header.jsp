@@ -25,7 +25,7 @@
                             <a class="nav-link" href="index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about">고객센터</a>
+                            <a class="nav-link" href="mainNotice">고객센터</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="shop">Shop</a>

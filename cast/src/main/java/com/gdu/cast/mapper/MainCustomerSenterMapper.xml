@@ -27,5 +27,28 @@
 	
 	</select>
 	
-
+	<!-- 공지사항 글갯수 -->
+	<select id="selectNoticeTotalCount" parameterType="String" resultType="int" >
+		SELECT COUNT(*)
+		FROM notice
+		<where>
+			<if test='searchTitle != null or searchTitle == "" '>
+				notice_title LIKE '%${searchTitle}%'
+			</if>
+		</where>
+	</select>
+	
+	<!-- 공지사항 목록 조회 -->
+	<select id="selectNoticeList" parameterType="Map" resultType="com.gdu.cast.vo.Notice">
+		SELECT notice_no noticeNo, admin_id adminId, notice_title noticeTitle,  create_date createDate
+		FROM notice
+		<where>
+			<if test='searchTitle != null or searchTitle == ""'>
+				notice_title LIKE '%${searchTitle}%'
+			</if>
+		</where>
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
 </mapper>

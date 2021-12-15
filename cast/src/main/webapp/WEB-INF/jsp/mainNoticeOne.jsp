@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>Cast Shop - About Page</title>
+    <title>Cast Shop - 공지사항 Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/fontawesome.min.css">
 </head>
-
+<style>
+	.content {
+ 	 	border: none;
+ 	 	resize: none;
+ 	 
+	}
+	.content:focus {
+  		outline: none;
+	}
+</style>
 <body>
     <!-- 최상단 네비게이션 -->
     <nav class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block" id="templatemo_nav_top">
@@ -89,49 +98,26 @@
       </li>
     </ul>
    	<div style="text-align:center">
-   		<table class="table table-hover mb-0" >
+   		<table class="table mb-0" >
 			<thead class="thead-light">
 				<tr>
-					<th width="10%">번호</th>
-					<th width="60%">제목</th>
-					<th width="10%">작성자</th>
-					<th width="20%">작성날짜</th>
+					<th width="20%">공지사항 번호</td>
+					<th width="60%">제목</td>
+					<th width="20%">작성 시간</td>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${noticeList}" var="notice">
-					<tr style="text-align:center">
-						<td>${notice.noticeNo}</td>
-						<td><a href="/mainNoticeOne?noticeNo=${notice.noticeNo}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a></td>
-						<td>관리자</td>
-						<td>${fn:substring(notice.createDate,0,10)}</td>
-					</tr>
-				</c:forEach>
+				<tr>
+					<td>${noticeNo}</td>
+					<td>${noticeTitle}</td>
+					<td>${fn:substring(createDate,0,19)}</td>
+				</tr>
 			</tbody>
+			<tr>
+				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${noticeContent}</textarea></td>
+			</tr>
 		</table>
-		<div>
-			<c:if test="${startPage > 1}">
-				<a href="/mainNotice?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
-			</c:if>
-			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-				<c:choose>
-					<c:when test="${i == currentPage}">
-						<a href="/mainNotice?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
-					</c:when>
-					<c:otherwise>
-						<a href="/mainNotice?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${lastPage != totalPage}">
-				<a href="/mainNotice?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
-			</c:if>
-		</div>
-		<br>
-		<form method="get" id="/mainNotice">
-			<input name="searchTitle" value="${searchTitle}">
-				<button>검색</button>
-		</form>		
+		<input type="button" value="이전" onclick="history.back(-1)">	
 	</div>
    	
     </section>
