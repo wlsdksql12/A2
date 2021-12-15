@@ -21,6 +21,9 @@
 			now(),
 			now()
 		)
+		<selectKey resultType="integer" keyProperty="hotelId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	
 	<!-- 주소 추가 -->
@@ -47,4 +50,43 @@
 				SELECT LAST_INSERT_ID()
 			</selectKey>
 	</insert>
+	
+	<!-- 호텔 방 추가 -->
+	<insert id="insertRoom" parameterType="com.gdu.cast.vo.Room">
+		INSERT INTO
+			room (
+				hotel_id,
+				room_name,
+				room_content,
+				room_startdate,
+				room_enddate,
+				room_remainder,
+				room_price,
+				create_date,
+				update_date
+			) VALUES (
+				#{hotelId},
+				#{roomName},
+				#{roomContent}
+				#{roomStartdate},
+				#{roomEnddate},
+				#{roomRemainder},
+				#{roomPrice},
+				NOW(),
+				NOW()
+			)
+	</insert>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

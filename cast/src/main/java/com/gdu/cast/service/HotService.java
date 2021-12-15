@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gdu.cast.mapper.HotMapper;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Hotel;
+import com.gdu.cast.vo.Room;
 
 @Service
 @Transactional
@@ -22,5 +23,10 @@ public class HotService {
 	// 호텔 주소 추가
 	public void insertHotelAddress(Address address) {
 		hotMapper.insertHotelAddress(address);
+	}
+	
+	// 방 추가
+	public void insertRoom(Room room) {
+		hotMapper.insertRoom(room);
 	}
 }

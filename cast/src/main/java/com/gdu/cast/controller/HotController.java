@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.service.HotService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Hotel;
+import com.gdu.cast.vo.Room;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,7 +39,7 @@ public class HotController {
 		log.debug("====================================" + ceoId + " << ceoId");
 		log.debug("====================================" + hotel.toString() + " << hotel Debug");
 		
-		return "/ceo/ceoIndex";
+		return "redirect:/insertRoom?hotelId="+hotel.getHotelId();
 	}
 	
 	// 호텔주소 등록
@@ -55,6 +56,21 @@ public class HotController {
 		hotService.insertHotelAddress(address);
 		
 		return "redirect:/insertHotel?addressId=" + address.getAddressId() + "&ceoId=" + hotel.getCeoId();
+	}
+	
+	// 방 등록
+	@GetMapping("/insertRoom")
+	public String insertRoom(Model model, int hotelId) {
+		model.addAttribute("hotelId", hotelId);
+		
+		return "/ceo/insertRoom";
+	}
+	
+	@PostMapping("/insertRoom")
+	public String insertRoom(Room room) {
+		hotService.insertRoom(room);
+		
+		return "/ceo/ceoIndex";
 	}
 	
 }
