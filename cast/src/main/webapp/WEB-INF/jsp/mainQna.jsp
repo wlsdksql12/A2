@@ -106,13 +106,25 @@
                                             <div class="d-inline-block align-middle">
                                                 <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-4.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
                                                 <div class="d-inline-block">
-                                                    <h6><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
+                                                   <c:choose>
+                                                    	<c:when test="${(loginCustomerId eq qna.customerId && qna.qnaSecret eq 'Y') || loginAdminId != null}">
+                                                    	<h6><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
+                                                		</c:when>
+                                                		
+                                                		<c:when test="${qna.qnaSecret eq 'Y'}">
+                                                    	<h6><a href="/mainQna?currentPage=${currentPage}">${qna.qnaTitle}</a></h6>
+                                                		</c:when>
+                                                		
+                                                		<c:otherwise>
+                                                			<h6><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
+                                                		</c:otherwise>
+                                                	</c:choose>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>${qna.customerId}</td>
                                         <td>${qna.createDate.substring(0,10)}</td>
-                                        <td class="text-right"><label class="badge badge-light-danger">${qna.qnaSecret}</label></td>
+                                        <td>${qna.qnaSecret}</td>
                                     </tr>
                                    
                                     </c:forEach>
