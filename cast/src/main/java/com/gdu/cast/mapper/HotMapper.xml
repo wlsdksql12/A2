@@ -60,17 +60,15 @@
 				room_content,
 				room_startdate,
 				room_enddate,
-				room_remainder,
 				room_price,
 				create_date,
 				update_date
 			) VALUES (
 				#{hotelId},
 				#{roomName},
-				#{roomContent}
+				#{roomContent},
 				#{roomStartdate},
 				#{roomEnddate},
-				#{roomRemainder},
 				#{roomPrice},
 				NOW(),
 				NOW()

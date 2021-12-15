@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,28 +8,37 @@
 </head>
 <body>
 	<%@ include file="ceoBase.jsp" %>
-	<form method="post" action="/insertHotel" class="forms-sample">
+	<form method="post" action="/insertRoom" class="forms-sample">
 	<br>
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
+			
 				<div class="card-body">
-					<h2 class="card-title">호텔 등록</h2>
-					<p class="card-description">등록하실 호텔의 정보를 입력해주세요.</p>
+					<h2 class="card-title">방 등록</h2>
+					<p class="card-description">호텔의 방 정보를 입력해주세요.</p>
 					<div class="form-group">
-						<label for="exampleInputName1"></label> <input type="text"
-							class="form-control" name="hotelName" placeholder="체험제목">
-					</div>
-					<div class="form-group">
-						<label for="exampleInputName1"></label> <input type="text"
-							class="form-control" value="${loginCeoId}" name="ceoId" readonly>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputName1"></label> <input type="number"
-							class="form-control" name="countRoom" placeholder="방의 수">
+						<label for="exampleInputName1"></label>방 이름<input type="text"
+							class="form-control" name="roomName" placeholder="방이름">
 					</div>
 					<div class="form-group">
 						<input type="hidden" class="form-control" value="${hotelId}"
 							name="hotelId">
+					</div>
+					<label for="exampleSelectGender" style="font-size: 15px">판매일자</label>
+					<div class="form-group input-group">
+						<input type="date" class="form-control" style="width: 250px" name="roomStartdate" >
+						<div class="input-group-text">~</div>
+						<input type="date" class="form-control" style="width: 250px" name="roomEnddate">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail3">가격</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="roomPrice"
+								placeholder="가격">
+							<div class="input-group-append">
+								<span style="color: black" class="input-group-text">&#8361;</span>
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<label>이미지 등록[미구현]</label> <input type="file" name="img[]"
@@ -42,8 +52,8 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="exampleTextarea1">호텔 소개</label>
-						<textarea class="form-control" name="hotelContent" rows="10"></textarea>
+						<label for="exampleTextarea1">방 설명</label>
+						<textarea class="form-control" name="roomContent" rows="10"></textarea>
 					</div>
 					<button type="submit" class="btn btn-primary mr-2">Submit</button>
 					<button class="btn btn-light">Cancel</button>

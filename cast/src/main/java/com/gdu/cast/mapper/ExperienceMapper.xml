@@ -82,6 +82,4 @@
       </where>
    </select>
    
-   <!-- 체험 상세보기 -->
-   
 </mapper>

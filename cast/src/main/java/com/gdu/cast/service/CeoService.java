@@ -15,8 +15,16 @@ public class CeoService {
 	public void addCeo(Ceo ceo) {
 		ceoMapper.insertCeo(ceo);
 	}
-	
+	// 사업가 로그인
 	public Ceo loginCeo(Ceo ceo) {
 		return ceoMapper.loginCeo(ceo);
+	}
+	// 사업가 내정보
+	public Ceo getselectCeo(String ceoId) {
+		return ceoMapper.selectCeo(ceoId);
+	}
+	// 사업가 내정보 수정
+	public int getupdateCeo(Ceo ceo) {
+		return ceoMapper.updateCeo(ceo);
 	}
 }

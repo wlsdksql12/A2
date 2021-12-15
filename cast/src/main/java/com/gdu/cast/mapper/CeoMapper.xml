@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.CeoMapper">
+	<!-- 회원가입 -->
 	<insert id="insertCeo" parameterType="com.gdu.cast.vo.Ceo">
 	INSERT ceo(
 		ceo_name,
@@ -26,6 +27,7 @@
 	)
 	</insert>
 	
+	<!-- 로그인 -->
 	<select id="loginCeo" parameterType="com.gdu.cast.vo.Ceo" resultType="com.gdu.cast.vo.Ceo">
 		SELECT
 			ceo_id ceoId
@@ -33,6 +35,29 @@
 		WHERE ceo_id = #{ceoId}
 		AND ceo_pw = password(#{ceoPw})
 	</select>
+	
+	<!-- 내정보 -->
+	<select id="selectCeo" parameterType="com.gdu.cast.vo.Ceo" resultType="com.gdu.cast.vo.Ceo">
+		SELECT 
+			ceo_name ceoName,
+			ceo_id ceoId,
+			ceo_email ceoEmail,
+			ceo_license ceoLicense,
+			ceo_phonenum ceoPhonenum,
+			create_date createDate
+		FROM ceo
+		WHERE ceo_id = #{ceoId} 
+	</select>
+	
+	<!-- 내정보 수정 -->
+	<update id="updateCeo" parameterType="com.gdu.cast.vo.Ceo" >
+		UPDATE ceo SET 
+			ceo_id = #{ceoId},
+			ceo_email = #{ceoEmail},
+			ceo_license = #{ceoLicense},
+			ceo_phonenum = #{ceoPhonenum}
+		WHERE ceo_id = #{ceoId}
+	</update>
 </mapper>
 
 

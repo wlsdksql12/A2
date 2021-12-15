@@ -190,6 +190,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="selectCeo" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title">내정보</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="experienceList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
               <i class="ti-pie-chart menu-icon ti-clipboard"></i>
               <span class="menu-title">사업체 목록</span>

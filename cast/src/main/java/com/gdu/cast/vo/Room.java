@@ -11,8 +11,6 @@ public class Room {
 	private String roomContent;
 	private String roomStartdate;
 	private String roomEnddate;
-	private int roomCount;
-	private int roomRemainder;
 	private int roomPrice;
 	private String createDate;
 	private String updateDate;

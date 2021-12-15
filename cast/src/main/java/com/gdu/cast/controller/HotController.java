@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,6 @@ public class HotController {
 	@GetMapping("/insertRoom")
 	public String insertRoom(Model model, int hotelId) {
 		model.addAttribute("hotelId", hotelId);
-		
 		return "/ceo/insertRoom";
 	}
 	
