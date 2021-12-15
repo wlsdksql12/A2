@@ -14,10 +14,25 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/templatemo.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/custom.css">
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- 레이아웃 렌더링한 후 폰트 스타일 로드 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/fontawesome.min.css">
+
+<style>
+   table {
+            width: 700px;
+            margin-left:auto; 
+             margin-right:auto;
+         }
+   #boardCategoryDiv{
+      margin-right:555px; 
+   }
+   #insertBtn{
+      margin-left:640px; 
+   }
+</style>
+
 </head>
 
 <body>
@@ -88,44 +103,47 @@
       </li>
     </ul>
          <table class="table table-hover mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            제목
-                                        </th>
-                                        <th>작성자</th>
-                                        <th>작성 날짜</th>
-                                        <th class="text-right">비밀글</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                 <c:forEach items="${qnaList}"  var="qna">
-                                	
-                                    <tr>
-                                        <td>
-                                            <div class="d-inline-block align-middle">
-                                                <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-4.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
-                                                <div class="d-inline-block">
-                                                    <h6><a href ="/qnaListOne?qnaId=${qna.qnaId}&customerId=${loginCustomerId}">${qna.qnaTitle}</a></h6>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>${qna.customerId}</td>
-                                        <td>${qna.createDate}</td>
-                                        <td class="text-right"><label class="badge badge-light-danger">${qna.qnaSecret}</label></td>
-                                    </tr>
-                                   
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-                            <div class="table container mt-3">
-							<c:if test="${currentPage > 1}">
-								<a href="/customerIndex?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
-							</c:if>
-							<c:if test="${currentPage < lastPage}">
-								<a href="/customerIndex?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
-							</c:if>
-							</div>
+  <div class="container" style="text-align:center">
+      <h1>qna상세보기</h1>
+      <c:if test="${loginCustomerId == customerId}">
+      	<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
+      	<a href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
+      </c:if>	
+      
+      <c:if test="${loginAdminId != null}">
+	      <c:if test="${qnaCommentContent  == null}">
+	       	<a href="/admin/qnaComment?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
+	       </c:if>
+ 	</c:if>
+      <table border="1">
+         <tr style="text-align:center" class="table-primary">
+            <th width="40">번호</th>
+            <th width="110">카테고리</th>
+            <th width="380">제목</th>
+            <th width="380">내용</th>
+            <th width="110">작성자</th>
+            <th width="90">작성날짜</th>
+            <th width="90">수정날짜</th>
+         </tr>
+            <tr style="text-align:center" height="70px">
+               <td>${qnaId}</td>
+               <td>${qnaCategory}</td>
+               <td>${qnaTitle}</td>
+               <td>${qnaContent}</td>
+               <td>${customerId}</td>
+               <td>${createDate}</td>
+               <td>${updateDate}</td>
+            </tr>
+      </table>
+      
+      <input type="button" value="뒤로가기" onclick="history.back(-1)">
+	
+      
+      	<h1>Qna 답변</h1>
+	<div>${qnaCommentContent}</div>
+   </div>
+          </table>
+
         
         
         

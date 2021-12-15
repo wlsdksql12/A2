@@ -49,6 +49,7 @@ public class CustomerQnaController {
 		model.addAttribute("currentPage", currentPage);
 		return "customer/customerIndex";
 	}
+	
 	//qna상세보기
 	@GetMapping("/qnaListOne")
 	public String qnaOne(Model model, int qnaId, String customerId, QnaComment qnaComment) {
@@ -68,6 +69,10 @@ public class CustomerQnaController {
 		return "customer/qnaListOne";
 		
 	}
+	
+
+	
+	
 	//qna수정
 	@GetMapping("/updateQna")
 	public String updateQna(Model model,int qnaId, String customerId) {
@@ -94,7 +99,7 @@ public class CustomerQnaController {
 		
 	}
 	
-	//qna 삭제
+	//고객 qna 삭제
 	@GetMapping("deleteQna")
 	public String deleteQna(Qna qna) {
 		
@@ -103,5 +108,8 @@ public class CustomerQnaController {
 		return "redirect:/customerIndex?customerId="+qna.getCustomerId()+"&currentPage=1";
 		
 	}
+	
+
+	
 	
 }

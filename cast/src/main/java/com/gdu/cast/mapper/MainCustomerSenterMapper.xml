@@ -26,4 +26,6 @@
 	FROM qna
 	
 	</select>
+	
+
 </mapper>

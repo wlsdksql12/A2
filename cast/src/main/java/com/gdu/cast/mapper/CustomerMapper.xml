@@ -81,6 +81,7 @@
 			qna_id qnaId,
 			qna_title qnaTitle,
 			qna_content qnaContent,
+			customer_id customerId,
 			qna_category qnaCategory,
 			create_date createDate,
 			update_date updateDate
@@ -94,10 +95,10 @@
 		WHERE qna_id = #{qnaId} AND customer_id = #{customerId}
 	</update>
 	<!-- qna 삭제 -->
-	<delete id="deleteQnaOne" parameterType="int">
+	<delete id="deleteQnaOne" parameterType="com.gdu.cast.vo.Qna">
 		DELETE
 		FROM qna
-		WHERE qna_id = #{qnaId}
+		WHERE qna_id = #{qnaId} AND customer_id = #{customerId}
 	</delete>
 	
 	<!-- 내정보 보기 -->

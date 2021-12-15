@@ -53,7 +53,9 @@
                <td>${updateDate}</td>
             </tr>
       </table>
-      <a href="/customerIndex?customerId=${customerId}&currentPage=1">이전</a>
+      
+      <input type="button" value="뒤로가기" onclick="history.back(-1)">
+	
       
       	<h1>Qna 답변</h1>
 	<div>${qnaCommentContent}</div>

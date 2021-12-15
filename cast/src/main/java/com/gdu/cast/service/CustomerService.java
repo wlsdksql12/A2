@@ -78,7 +78,7 @@ public class CustomerService {
 	   }
 	   
 	   //qnaOne
-	   public Qna getSelectQnaOne(int qnaId) {
+	   public Qna getSelectQnaOne(int qnaId){
  
 		return customerMapper.selectQnaOne(qnaId);
 		   
