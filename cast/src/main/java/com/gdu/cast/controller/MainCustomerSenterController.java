@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.AdminQnaService;
@@ -31,11 +32,18 @@ public class MainCustomerSenterController {
 	
 	//메인페이지 qna리스트
 	@GetMapping("/mainQna")
-	public String mainQnaList(Model model, int currentPage) {
-		Map<String, Object> map = mainCustomerSenterService.getselectQna(currentPage, ROW_PER_PAGE);
+	public String mainQnaList(Model model,
+			@RequestParam(defaultValue = "1") int currentPage,
+			@RequestParam(required = false) String searchTitle) {
+		Map<String, Object> map = mainCustomerSenterService.getselectQna(currentPage, ROW_PER_PAGE, searchTitle);
 		model.addAttribute("qnaList", map.get("qnaList"));
+		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("searchTitle", searchTitle);
+		System.out.println(currentPage+"currentPage");
+		System.out.println(map.get("lastPage")+"lastPage");
 		return "mainQna";
 		
 	}
@@ -107,5 +115,47 @@ public class MainCustomerSenterController {
 		model.addAttribute("updateDate", notice.getUpdateDate());
 		return"mainNoticeOne";
 	}
+	
+	//qna게시글 작성페이지로 이동
+	@GetMapping("/addMainQna")
+	public String getaddMainQna(Model model, String customerId) {
+		model.addAttribute("customerId", customerId);
+		return "addMainQna";
+	}
+	//qna 게시글 작성
+	@PostMapping("/addMainQna")
+	public String postaddMainQna(Qna qna) {
+		mainCustomerSenterService.getaddQna(qna);
+		return "redirect:/mainQna?currentPage=1";
+		
+	}
+
+	//메인 qna수정
+	@GetMapping("/mainUpdateQna")
+	public String updateQna(Model model,int qnaId, String customerId) {
+		model.addAttribute("qnaId", qnaId);
+		model.addAttribute("customerId", customerId);
+		return "/mainUpdateQna";
+	}
+	//메인 qna수정
+	@PostMapping("/mainUpdateQna")
+	public String updateQna(Qna qna) {
+		System.out.println(qna+"!@#qna!@#");
+		log.debug(qna.toString());
+		customerService.getupdateQnaOne(qna);
+
+		/*
+		Qna qna = new Qna();
+		qna.setQnaId(qnaId);
+		qna.setQnaTitle(qnaTitle);
+		qna.setQnaCategory(qnaCategory);
+		qna.setQnaContent(qnaContent);
+		*/
+		
+		return "redirect:/mainQnaListOne?qnaId="+qna.getQnaId();
+		
+	}
+	
+	
 	
 }

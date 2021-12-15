@@ -155,6 +155,8 @@
 		UPDATE Customer SET active = "1"
 		WHERE customer_id = #{customerId}
 	</update>
+	
+
 
 	
 </mapper>

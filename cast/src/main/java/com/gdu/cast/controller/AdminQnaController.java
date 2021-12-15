@@ -51,6 +51,8 @@ public class AdminQnaController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + qnaComment + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		
 		adminQnaService.insertQnaComment(qnaComment);
+		
+		
 		return "redirect:/qnaListOne?qnaId="+qnaComment.getQnaId()+"&customerId="+customerId;
 		
 	}

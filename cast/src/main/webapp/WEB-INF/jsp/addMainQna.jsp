@@ -74,90 +74,40 @@
     <!-- Close Banner -->
 		
     <!-- Start Section -->
+    
     <section class="container py-5">
-        
-        
-            <ul>
-      <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="/mainNotice">공지사항</a>
-      </li>
-		
-                        
-      <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainQna">Qna</a>
-      </li>
-    </ul>
-    <div><a href="/addMainQna?customerId=${loginCustomerId}">게시글 작성</a></div>
-         <table class="table table-hover mb-0">
-        
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            제목
-                                        </th>
-                                        <th>작성자</th>
-                                        <th>작성 날짜</th>
-                                        <th class="text-right">비밀글</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                 <c:forEach items="${qnaList}"  var="qna">
-                                	
-                                    <tr>
-                                        <td>
-                                            <div class="d-inline-block align-middle">
-                                                
-                                                <div class="d-inline-block">
-                                                   <c:choose>
-                                                    	<c:when test="${(loginCustomerId eq qna.customerId && qna.qnaSecret eq 'Y') || loginAdminId != null}">
-                                                    	<h6><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
-                                                		</c:when>
-                                                		
-                                                		<c:when test="${qna.qnaSecret eq 'Y'}">
-                                                    	<h6><a href="/mainQna?currentPage=${currentPage}">${qna.qnaTitle}</a></h6>
-                                                		</c:when>
-                                                		
-                                                		<c:otherwise>
-                                                			<h6><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
-                                                		</c:otherwise>
-                                                	</c:choose>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>${qna.customerId}</td>
-                                        <td>${qna.createDate.substring(0,10)}</td>
-                                        <td>${qna.qnaSecret}</td>
-                                    </tr>
-                                   
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-             
-			<c:if test="${startPage > 1}">
-				<a href="/mainQna?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
-			</c:if>
-			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-				<c:choose>
-					<c:when test="${i == currentPage}">
-						<a href="/mainQna?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
-					</c:when>
-					<c:otherwise>
-						<a href="/mainQna?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${lastPage != totalPage}">
-				<a href="/mainQna?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
-			</c:if>
-		<br>
-		<form method="get" id="/mainQna">
-			<input name="searchTitle" value="${searchTitle}">
-		<button type="submit">검색</button>
+        <ul>
+         <li class="list-inline-item"><a
+            class="h3 text-dark text-decoration-none mr-3" href="/about">공지사항</a>
+         </li>
+
+
+         <li class="list-inline-item"><a
+            class="h3 text-dark text-decoration-none"
+            href="/mainQna?currentPage=1">Qna</a></li>
+      </ul>
+      <h1>Qna 게시글 쓰기</h1>
+      <form method="post" action="/addMainQna">
+      <div>ID</div>
+      <input type="text" name="customerId" value="${customerId}" readonly="readonly">
+      <div>타이틀</div>  
+      <input type="text" name="qnaTitle">
+      <div>내용</div>
+      <input type="text" name="qnaContent">
+      <div>카테고리</div>
+		<select name="qnaCategory" size="1">
+			<option value="">선택하세요.</option>
+			<option value="자유">자유</option>
+			<option value="기타">기타</option>
+		</select>
+		<div>비밀글</div>
+		<select name="qnaSecret" size="1">
+			<option value="">선택하세요.</option>
+			<option value="Y">Y</option>
+			<option value="N">N</option>
+		</select>
+		<button type=submit>입력</button>
 		</form>
-       
-        
-        
-        
     </section>
     <!-- End Section -->
 	<section class="container py-5">

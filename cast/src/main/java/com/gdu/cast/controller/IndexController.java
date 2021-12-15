@@ -11,11 +11,6 @@ import com.sun.tools.javac.util.Log;
 @Controller
 public class IndexController {
 	
-	@GetMapping("/about")
-	public String about() {
-		return "about";
-	}
-	
 	@GetMapping("/index")
 	public String index(HttpSession session, Model model) {
 		

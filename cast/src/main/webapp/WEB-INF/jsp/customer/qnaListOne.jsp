@@ -24,7 +24,7 @@
    <div class="container" style="text-align:center">
       <h1>qna상세보기</h1>
       <c:if test="${loginCustomerId != null}">
-      	<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
+      	<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}&currentPage=${currentPage}" id="insertBtn" class="btn btn-outline-success">수정</a>
       	<a href="/deleteQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
       </c:if>	
       
@@ -54,7 +54,7 @@
             </tr>
       </table>
       
-      <input type="button" value="뒤로가기" onclick="history.back(-1)">
+      <a href="/customerIndex?customerId=${loginCustomerId}&currentPage=${currentPage}">이전</a>
 	
       
       	<h1>Qna 답변</h1>

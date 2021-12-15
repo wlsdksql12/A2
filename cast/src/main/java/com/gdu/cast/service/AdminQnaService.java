@@ -48,4 +48,11 @@ public class AdminQnaService {
 		QnaComment qnaComment = adminQnaMapper.selectQnaComment(qnaId);
 		return qnaComment;
 	 }
+	 
+	 // qna 알람
+	 public List<Qna> getQnaAlarm(String customerId){
+		 System.out.println(adminQnaMapper.selectQnaAlarm(customerId).toString() + "adminQnaMapper.selectQnaAlarm(qna)");
+		 return adminQnaMapper.selectQnaAlarm(customerId); 
+		 
+	 }
 }

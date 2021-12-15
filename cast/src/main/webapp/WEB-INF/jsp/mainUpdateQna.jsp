@@ -111,44 +111,23 @@ table {
 				href="/mainQna?currentPage=1">Qna</a></li>
 		</ul>
 		<div class="container">
-			<h1>qna상세보기</h1>
-			<c:if test="${loginCustomerId == customerId}">
-				<a href="/mainUpdateQna?qnaId=${qnaId}&customerId=${customerId}"
-					id="insertBtn" class="btn btn-outline-success">수정</a>
-				<a
-					href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}"
-					id="insertBtn" class="btn btn-outline-success">삭제</a>
-			</c:if>
-
-			<c:if test="${loginAdminId != null}">
-				<c:if test="${qnaCommentContent  == null}">
-					<a href="/admin/qnaComment?qnaId=${qnaId}&customerId=${customerId}"
-						id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
-				</c:if>
-			</c:if>
-			<table class="table table-bordered">
-				<tr style="text-align: center" class="table-primary">
-					<th width="80">번호</th>
-					<th width="120">카테고리</th>
-					<th width="380">제목</th>
-					<th width="380">내용</th>
-					<th width="110">작성자</th>
-					<th width="90">작성날짜</th>
-					<th width="90">수정날짜</th>
-				</tr>
-				<tr style="text-align: center" height="70px">
-					<td>${qnaId}</td>
-					<td>${qnaCategory}</td>
-					<td>${qnaTitle}</td>
-					<td>${qnaContent}</td>
-					<td>${customerId}</td>
-					<td>${createDate}</td>
-					<td>${updateDate}</td>
-				</tr>
-			</table>
-			<a href="/mainQna?currentPage="+${currentPage}>이전으로</a>
-			<h1>Qna 답변</h1>
-			<div>${qnaCommentContent}</div>
+			<h1>qna 수정</h1>
+	<form method="post" action="/mainUpdateQna">
+	
+	<input type="text" name="qnaId" value="${qnaId}" readonly="readonly">
+	<input type="text" name="customerId" value="${customerId}" readonly="readonly">
+	<div>qnaTitle</div>
+	<input type="text" name="qnaTitle">
+	<div>qnaCategory</div>
+	<select name="qnaCategory" size="1">
+		<option value="">선택하세요.</option>
+		<option value="자유">자유</option>
+		<option value="기타">기타</option>
+	</select>
+	<div>qnaContent</div>
+	<input type="text" name="qnaContent">
+	<button type="submit">수정</button>
+	</form>
 		</div>
 
 

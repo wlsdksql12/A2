@@ -13,5 +13,4 @@ public class Qna {
 	private String qnaSecret;
 	private String createDate;
 	private String updateDate;
-	
 }

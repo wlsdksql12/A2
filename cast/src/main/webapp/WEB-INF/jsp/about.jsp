@@ -85,7 +85,7 @@
 		
                         
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainQna?currentPage=1">Qna</a>
+          <a class="h3 text-dark text-decoration-none" href="/mainQna">Qna</a>
       </li>
     </ul>
    	<div style="text-align:center">

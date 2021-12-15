@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form method="post" action="/updateQna">
-	
+	<input type="hidden" name="currentPage" value="${currentPage}">
 	<input type="text" name="qnaId" value="${qnaId}" readonly="readonly">
 	<input type="text" name="customerId" value="${customerId}" readonly="readonly">
 	<div>qnaTitle</div>

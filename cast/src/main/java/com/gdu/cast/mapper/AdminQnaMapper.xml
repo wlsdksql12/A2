@@ -28,4 +28,13 @@
 		FROM qna_comment
 		WHERE qna_id =#{qnaId}
 	</select>
+		
+	<!-- 알람 -->
+	<select id="selectQnaAlarm" parameterType="String" resultType="com.gdu.cast.vo.Qna">
+		SELECT q.qna_id qnaId, q.qna_title qnaTitle
+		FROM qna q INNER JOIN qna_comment qc ON q.qna_id = qc.qna_id 
+		WHERE q.customer_id= #{customerId}
+	</select>
+	
+	
 </mapper>

@@ -21,24 +21,42 @@ public class MainCustomerSenterService {
 	@Autowired MainCustomerSenterMapper mainCustomerSenMapper;
 	
 	//qna List
-	public Map<String, Object> getselectQna(int currentPage, int ROW_PER_PAGE) {
+	public Map<String, Object> getselectQna(int currentPage, int ROW_PER_PAGE, String searchTitle) {
 	   Map<String, Object> paramMap = new HashMap<>();
-	   
-	   int beginRow = (currentPage-1)*ROW_PER_PAGE;
+		
+	   int beginRow = 0;
+		int displayPage = 10;
+		int startPage = 0;
+		int lastPage = 0;
+		System.out.println(searchTitle+ "searchTitleWEWEWEWE@#@#@#@#");
+	   beginRow = (currentPage-1)*ROW_PER_PAGE;
 	   paramMap.put("beginRow", beginRow); 
 	   paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
-	
+	   paramMap.put("searchTitle", searchTitle);
 	   List<Qna> qnaList = mainCustomerSenMapper.selectQnaList(paramMap);
 	   
-		Map<String, Object> returnMap = new HashMap<>();
-		int lastPage = 0;
-		int totalCount = mainCustomerSenMapper.selectQnaTotalCount();
-		lastPage = totalCount / ROW_PER_PAGE;
-		if(totalCount%ROW_PER_PAGE != 0) {
-			lastPage += 1;
+	   startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
+	   
+	   
+	   
+	   int totalCount = mainCustomerSenMapper.selectQnaTotalCount(searchTitle);
+		System.out.println(totalCount + " <---MainCustomerSenterService");
+		lastPage = startPage + displayPage - 1;
+		int totalPage = totalCount / ROW_PER_PAGE;
+		if(totalCount % ROW_PER_PAGE != 0) {
+			totalPage += 1;
 		}
+		if(lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		
+		// 리턴값
+		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("qnaList", qnaList);
+		returnMap.put("startPage", startPage);
 		returnMap.put("lastPage", lastPage);
+		returnMap.put("totalPage", totalPage);
+		
 		return returnMap;
 	}
 	
@@ -83,4 +101,10 @@ public class MainCustomerSenterService {
 		
 		return returnMap;
 	}
+	// qna 추가
+	public int getaddQna(Qna qna) {
+		return mainCustomerSenMapper.insertQna(qna);
+		
+	}
+	
 }

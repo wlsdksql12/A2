@@ -20,4 +20,6 @@ public interface AdminQnaMapper {
 	
 	// Qna 답글 출력
 	QnaComment selectQnaComment(int qnaId);
+	// Qna 알람
+	List<Qna> selectQnaAlarm(String customerId);
 }

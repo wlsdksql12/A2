@@ -13,6 +13,11 @@
 			create_date createDate,
 			update_date updateDate
 		FROM Qna
+		<where>
+			<if test='searchTitle != null or searchTitle == ""'>
+				qna_title LIKE '%${searchTitle}%'
+			</if>
+		</where>
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	
@@ -24,7 +29,11 @@
 	<select id="selectQnaTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
 	FROM qna
-	
+		<where>
+			<if test='searchTitle != null or searchTitle == "" '>
+				qna_title LIKE '%${searchTitle}%'
+			</if>
+		</where>
 	</select>
 	
 	<!-- 공지사항 글갯수 -->
@@ -50,5 +59,28 @@
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
+	
+	
+		<!--  qna게시글 추가 -->
+	<insert id="insertQna" parameterType="com.gdu.cast.vo.Qna">
+	INSERT INTO qna(
+		customer_id,
+		qna_title,
+		qna_content,
+		qna_category,
+		qna_secret,
+		create_date,
+		update_date
+		
+	) VALUES(
+		#{customerId},
+		#{qnaTitle},
+		#{qnaContent},
+		#{qnaCategory},
+		#{qnaSecret},
+		now(),
+		now()	
+	)
+	</insert>
 	
 </mapper>
