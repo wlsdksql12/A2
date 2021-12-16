@@ -59,7 +59,7 @@
 					    <label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="/customerIndex?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					    <a href="/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
 					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">관심상품</span></a>

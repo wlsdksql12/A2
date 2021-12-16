@@ -16,6 +16,7 @@ import com.gdu.cast.vo.ExperienceSelectComment;
 @Service
 public class MainSelectCommentService {
 	@Autowired MainSelectCommentMapper mainSelectCommentMapper; 
+	//추천 댓글 리스트 출력 및 페이징
 	public Map<String, Object> getexperienceSelectComment(int currentPage, int row_per_page,int experienceSelectId){
 		   Map<String, Object> paramMap = new HashMap<>();
 			

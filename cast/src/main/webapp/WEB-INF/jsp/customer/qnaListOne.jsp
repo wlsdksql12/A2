@@ -59,7 +59,7 @@
 					    <label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="/customerIndex?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					    <a href="/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
 					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">관심상품</span></a>
@@ -255,7 +255,7 @@
 								</div>
 								<div class="container-fluid">
 									
-									<div style="margin-left: 1660px">
+									<div style="margin-left: auto;">
 										<c:if test="${loginCustomerId == customerId}">
 												<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}&currentPage=${currentPage}" id="insertBtn" class="btn btn-outline-success">수정</a>
 												<a href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>

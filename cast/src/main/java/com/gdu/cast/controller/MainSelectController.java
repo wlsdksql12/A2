@@ -25,7 +25,7 @@ public class MainSelectController {
 	private final int ROW_PER_PAGE = 10;
 	private final int row_per_page = 5;
 	
-	// 여행 작가 체험 추천 상세보기
+	// 여행 작가 체험 추천 상세보기 및 댓글 리스트 출력(페이징)
 	@GetMapping("/mainExperienceSelectOne")
 	public String experienceSelectOne(Model model, int experienceSelectId, @RequestParam(defaultValue = "1") int currentPage) {
 		System.out.println(experienceSelectId + " <- experienceSelectId");
