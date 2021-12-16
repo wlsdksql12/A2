@@ -47,7 +47,7 @@ public class RoomSelectService {
 	}
 		
 	// 여행작가 숙소 추천 리스트
-	public Map<String, Object> getSelectRoomSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
+	public Map<String, Object> getSelectRoomSelectList(String travelerId, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공
 		Map<String, Object> paramMap = new HashMap<>();
@@ -59,16 +59,17 @@ public class RoomSelectService {
 		beginRow = (currentPage - 1) * ROW_PER_PAGE;
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
-		paramMap.put("searchTitle", searchTitle);
-		log.debug(searchTitle);
+		paramMap.put("searchTitle", travelerId);
+		log.debug(travelerId);
 		
 		// 여행작가 숙소 추천 리스트
 		List<RoomSelect> roomSelectList = roomSelectMapper.selectRoomSelectList(paramMap);
+		System.out.println(roomSelectList + "<-- roomSelectList");
 		
 		// 2) 리턴값 가공
 		Map<String, Object> returnMap = new HashMap<>();
 		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
-		int totalCount = roomSelectMapper.selectRoomSelectTotalCount(searchTitle);
+		int totalCount = roomSelectMapper.selectRoomSelectTotalCount(travelerId);
 		lastPage = startPage + displayPage - 1;
 		int totalPage = totalCount / ROW_PER_PAGE;
 		if(totalCount % ROW_PER_PAGE != 0) {

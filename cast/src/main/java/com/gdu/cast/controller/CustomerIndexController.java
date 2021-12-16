@@ -33,6 +33,10 @@ public class CustomerIndexController {
 	public String qnaList(Model model, String customerId, int currentPage) {
 		log.debug(customerId);
 		
+		List<Qna> list = adminQnaService.getQnaAlarm(customerId);
+		log.debug(list.toString() + "@#$@##@$@list@#$@#$@#");
+		model.addAttribute("list", list);
+		
 		Map<String, Object> map = customerService.getselectQna(customerId, currentPage, row_per_page);
 		model.addAttribute("qnaList", map.get("qnaList"));
 		model.addAttribute("lastPage", map.get("lastPage"));
@@ -42,7 +46,7 @@ public class CustomerIndexController {
 	}
 	
 	// 고객페이지 메인 qna 5개
-	@GetMapping("/customerIndex")
+	@GetMapping("/customer/customerIndex")
 	public String shopsingle(Model model, String customerId, int currentPage) {
 		log.debug(customerId);
 		
@@ -54,12 +58,19 @@ public class CustomerIndexController {
 		List<Qna> list = adminQnaService.getQnaAlarm(customerId);
 		log.debug(list.toString() + "@#$@##@$@list@#$@#$@#");
 		model.addAttribute("list", list);
+		
 		return "customer/customerIndex";
 	}
 	
 	//qna상세보기
-	@GetMapping("/qnaListOne")
+	@GetMapping("/customer/qnaListOne")
 	public String qnaOne(Model model, int qnaId, String customerId, QnaComment qnaComment, @RequestParam(defaultValue = "1") int currentPage) {
+	
+		
+		List<Qna> list = adminQnaService.getQnaAlarm(customerId);
+		log.debug(list.toString() + "@#$@##@$@list@#$@#$@#");
+		model.addAttribute("list", list);
+		
 		log.debug(qnaId + "<-0------------------QnaId");
 		Qna qna = customerService.getSelectQnaOne(qnaId);
 		qnaComment = adminQnaService.selectQnaComment(qnaId);
@@ -84,6 +95,11 @@ public class CustomerIndexController {
 	//qna수정
 	@GetMapping("/updateQna")
 	public String updateQna(Model model,int qnaId, String customerId, int currentPage) {
+		List<Qna> list = adminQnaService.getQnaAlarm(customerId);
+		log.debug(list.toString() + "@#$@##@$@list@#$@#$@#");
+		model.addAttribute("list", list);
+		
+		
 		model.addAttribute("qnaId", qnaId);
 		model.addAttribute("customerId", customerId);
 		model.addAttribute("currentPage", currentPage);

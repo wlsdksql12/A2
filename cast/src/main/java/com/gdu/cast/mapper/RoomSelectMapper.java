@@ -26,5 +26,5 @@ public interface RoomSelectMapper {
 	List<RoomSelect> selectRoomSelectList(Map<String, Object> map);
 	
 	// 숙소 추천 전체 글 수
-	int selectRoomSelectTotalCount(String searchTitle);
+	int selectRoomSelectTotalCount(String travelerId);
 }

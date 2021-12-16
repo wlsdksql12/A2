@@ -56,4 +56,6 @@ public class AdminQnaController {
 		return "redirect:/qnaListOne?qnaId="+qnaComment.getQnaId()+"&customerId="+customerId;
 		
 	}
+
+	
 }

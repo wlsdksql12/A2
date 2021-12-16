@@ -57,6 +57,23 @@
           </div>
         </div>
       </li>
+      <hr class="sidebar-divider my-0">	
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseJoinRequestList"
+          aria-expanded="true" aria-controls="collapseJoinRequestList">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>가입 승인 요청 리스트</span>
+        </a>
+        
+        <div id="collapseJoinRequestList" class="collapse" aria-labelledby="headingJoinRequestList" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Traveler</h6>
+            <a class="collapse-item" href="/admin/travelerJoinRequestList">여행작가 가입 요청</a>
+            <h6 class="collapse-header">Ceo</h6>
+            <a class="collapse-item" href="/admin/ceoJoinRequestList">사업자 가입 요청</a>
+          </div>
+        </div>
+      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Features

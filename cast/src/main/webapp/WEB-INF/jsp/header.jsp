@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,11 +57,11 @@
                    </a>
                    <c:choose>
                    <c:when test="${loginCustomerId != null}">
-                   <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/customerIndex?customerId=${loginCustomerId}&currentPage=1">
+                   <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     </a>
-               </c:when>
+             		 </c:when>
                
                   <c:when test="${loginCeoId != null}">
                     <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/ceo/ceoIndex?ceoId=${loginCeoId}">

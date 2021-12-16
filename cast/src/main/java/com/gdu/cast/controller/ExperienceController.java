@@ -81,4 +81,34 @@ public class ExperienceController {
 		return "/ceo/experienceList";
 	}
 	
+	// 체험 상세보기
+	@GetMapping("/ceo/experienceOne")
+	public String experienceOne(Model model, Experience experience, Address address) {
+		experienceService.selectExperienceOne(experience.getExperienceId());
+		
+		model.addAttribute("experience", experience);
+		model.addAttribute("address", address);
+		
+		System.out.println(experience + " << Experience");
+		System.out.println(address + "<< Address");
+		
+		return "/ceo/experienceOne";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

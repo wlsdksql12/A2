@@ -6,11 +6,13 @@
 		SELECT 
 		experience_select_comment_id experienceSelectCommentId,
 		customer_id customerId,
-		experience_select_content esperienceSelectContent,
+		experience_select_content experienceSelectContent,
 		create_date createDate,
 		update_date updateDate 
 		FROM experience_select_comment
 		WHERE experience_select_id = #{experienceSelectId}
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 
 		<!--  experience select comment list 페이징 -->

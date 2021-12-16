@@ -14,7 +14,8 @@ public class Experience {
 	private String experienceStartdate;
 	private String experienceEnddate;
 	private int experiencePerson;
-	private String experienceDetailedAddress;
 	private String createDate;
 	private String updateDate;
+	
+	private Address address;
 }

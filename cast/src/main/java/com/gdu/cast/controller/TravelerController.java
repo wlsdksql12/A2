@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.service.TravelerService;
 import com.gdu.cast.vo.Traveler;
 
@@ -19,6 +20,9 @@ public class TravelerController {
 	
 	@Autowired
 	TravelerService travelerService;
+	// 12.15
+	@Autowired
+	JoinRequestService joinRequestService;
 	
 	// 여행작가 내정보 수정
 	@GetMapping("/modifyTravelerMyInfo")
@@ -91,6 +95,10 @@ public class TravelerController {
 	public String addBoard(Traveler traveler) {
 		travelerService.addTraveler(traveler);
 		log.debug("★★★★Hyun★★★★"+traveler.toString());
+		
+		// 12.15 여행작가 회원가입 시 여행작가 회원가입 요청 리스트에 추가
+		joinRequestService.addTravelerJoinRequest(traveler.getTravelerId());
+		
 		return "redirect:/index";
 	}
 }

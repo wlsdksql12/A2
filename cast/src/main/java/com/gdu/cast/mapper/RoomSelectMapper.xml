@@ -60,11 +60,7 @@
 	<select id="selectRoomSelectTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM room_select
-		<where>
-			<if test='searchTitle != null or searchTitle == ""'>
-				room_select_title LIKE '%${searchTitle}%'
-			</if>
-		</where>
+		WHERE traveler_id = #{traveler_id}
 	</select>
 	
 	<!-- 여행작가 숙소 추천 리스트 -->
@@ -72,14 +68,12 @@
 		SELECT 
 			room_select_id roomSelectId,
 			traveler_id travelerId,
+			hotel_id hotelId,
 			room_select_title roomSelectTitle,
+			room_select_content roomSelectContent,
 			create_date createDate
 		FROM room_select
-		<where>
-			<if test='searchTitle != null or searchTitle == ""'>
-				room_select_title LIKE '%${searchTitle}%'
-			</if>
-		</where>
+		WHERE traveler_id = #{travelerId}
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>

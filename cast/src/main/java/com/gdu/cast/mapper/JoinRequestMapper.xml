@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.JoinRequestMapper">
+	
+	<resultMap type="com.gdu.cast.vo.JoinTraveler" id="resultJoinTraveler">
+		<id column="join_traveler_id" property="joinTravelerId"></id>
+		<result column="traveler_id" property="travelerId"></result>
+		<result column="admin_id" property="adminId"></result>
+		<result column="active" property="active"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="traveler" ofType="com.gdu.cast.vo.Traveler">
+			<id column="traveler_id" property="travelerId"></id>
+			<result column="traveler_name" property="travelerName"></result>
+			<result column="traveler_phonenum" property="travelerPhoneNum"></result>
+			<result column="traveler_email" property="travelerEmail"></result>
+			<result column="traveler_license" property="travelerLicense"></result>
+			<result column="traveler_career" property="travelerCareer"></result>
+		</collection>
+	</resultMap>
+	
+	<!-- 여행작가 회원가입 요청 추가 -->
+	<insert id="insertTravelerJoinRequest" parameterType="com.gdu.cast.vo.JoinTraveler">
+		INSERT INTO join_traveler(
+			traveler_id, active, create_date, update_date) 
+			VALUES( #{travelerId}, '요청', now(), now())
+	</insert>
+	
+	<!-- 여행작가 회원가입 요청 중인 리스트 4개 -->
+	<select id="selectTravelerJoinRequestList4" resultType="com.gdu.cast.vo.JoinTraveler">
+		SELECT join_traveler_id joinTravelerId, traveler_id travelerId, create_date createDate
+		FROM join_traveler
+		WHERE active = '요청'
+		ORDER BY create_date DESC
+		LIMIT 0, 4
+	</select>
+	
+	<!-- 여행작가 가입 요청 리스트 -->
+	<select id="selectTravelerJoinRequestList" parameterType="Map" resultMap="resultJoinTraveler">
+		SELECT	jt.join_traveler_id, jt.active, t.traveler_id, t.traveler_name,
+				t.traveler_phonenum, t.traveler_email,
+				t.traveler_license, t.traveler_career, jt.create_date
+		FROM join_traveler jt
+		JOIN traveler t ON jt.traveler_id = t.traveler_id
+		<where>
+			<if test='state != null or searchTitle == ""'>
+				jt.active LIKE '%${state}%'
+			</if>
+		</where>
+		ORDER BY jt.create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<!-- 여행작가 가입 요청 리스트 글갯수 -->
+	<select id="selectTravelerJoinRequestTotalCount" parameterType="String" resultType="int">
+		SELECT	COUNT(*)
+		FROM join_traveler jt
+		JOIN traveler t ON jt.traveler_id = t.traveler_id
+		<where>
+			<if test='state != null or searchTitle == ""'>
+				jt.active LIKE '%${state}%'
+			</if>
+		</where>
+	</select>
+</mapper>
