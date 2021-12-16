@@ -40,8 +40,9 @@ public class RoomSelectService {
 	}
 
 	// 여행작가 숙소 추천 상세보기
-	public RoomSelect getroomSelectOne(int RoomSelectId) {
-		RoomSelect roomSelect = roomSelectMapper.selectRoomSelectOne(RoomSelectId);
+	public RoomSelect getroomSelectOne(int roomSelectId) {
+		System.out.println(roomSelectId + "<-- roomSelectId");
+		RoomSelect roomSelect = roomSelectMapper.selectRoomSelectOne(roomSelectId);
 		return roomSelect;
 	}
 		

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.MainSelectService;
+import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.RoomSelect;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +23,24 @@ public class MainSelectController {
 	
 	// 페이지
 	private final int ROW_PER_PAGE = 10;
+	
+	// 여행 작가 체험 추천 상세보기
+	@GetMapping("/mainExperienceSelectOne")
+	public String experienceSelectOne(Model model, int experienceSelectId) {
+		System.out.println(experienceSelectId + " <- experienceSelectId");
+		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
+		model.addAttribute("experienceSelect", experienceSelect);
+		return "mainExperienceSelectOne";
+	}
+	
+	// 메인 페이지의 숙소 추천 상세보기
+	@GetMapping("/mainRoomSelectOne")
+	public String roomSelectOne(Model model, int roomSelectId) {
+		System.out.println(roomSelectId + "roomSelectId");
+		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
+		model.addAttribute("roomSelect", roomSelect);
+		return "mainRoomSelectOne";
+	}
 	
 	// 메인 페이지의 체험 추천 리스트
 	@GetMapping("/mainExperienceSelect")
@@ -54,8 +74,4 @@ public class MainSelectController {
 		model.addAttribute("searchTitle", searchTitle);
 		return "mainRoomSelect";
 	}
-	
-	
-	
-	
 }

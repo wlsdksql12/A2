@@ -22,7 +22,21 @@ public class MainSelectService {
 	@Autowired
 	MainSelectMapper mainSelectMapper;
 	
-	// 여행작가 체험 추천 리스트
+	// 여행작가 체험 추천 상세보기
+	public ExperienceSelect getexperienceSelectOne(int experienceSelectId) {
+		System.out.println(experienceSelectId + "<-- experienceSelectId");
+		ExperienceSelect experienceSelect = mainSelectMapper.selectExperienceSelectOne(experienceSelectId);
+		return experienceSelect;
+	}
+	
+	// 메인 페이지 숙소 추천 상세보기
+	public RoomSelect getroomSelectOne(int roomSelectId) {
+		System.out.println(roomSelectId + "<-- roomSelectId");
+		RoomSelect roomSelect = mainSelectMapper.selectRoomSelectOne(roomSelectId);
+		return roomSelect;
+	}
+	
+	// 메인 페이지 체험 추천 리스트
 	public Map<String, Object> getSelectExperienceSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공
@@ -38,7 +52,7 @@ public class MainSelectService {
 		paramMap.put("searchTitle", searchTitle);
 		log.debug(searchTitle);
 		
-		// 여행작가 체험 추천 리스트
+		// 메인 페이지 체험 추천 리스트
 		List<ExperienceSelect> experienceSelectList = mainSelectMapper.selectExperienceList(paramMap);
 		
 		// 2) 리턴값 가공
@@ -61,7 +75,7 @@ public class MainSelectService {
 		return returnMap;
 	}
 	
-	// 여행작가 숙소 추천 리스트
+	// 메인 페이지 숙소 추천 리스트
 	public Map<String, Object> getSelectRoomSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공

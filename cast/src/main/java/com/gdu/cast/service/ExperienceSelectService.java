@@ -41,6 +41,7 @@ public class ExperienceSelectService {
 	
 	// 여행작가 체험 추천 상세보기
 	public ExperienceSelect getexperienceSelectOne(int experienceSelectId) {
+		System.out.println(experienceSelectId + "<-- experienceSelectId");
 		ExperienceSelect experienceSelect = experienceSelectMapper.selectExperienceSelectOne(experienceSelectId);
 		return experienceSelect;
 	}

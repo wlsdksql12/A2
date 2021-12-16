@@ -69,20 +69,19 @@
     <section class="bg-success py-5" style="text-align: center;">
         여행작가가 추천하는 호텔 추천! & 체험 추천!
     </section>
-   <!-- Close Banner -->
-		
+    <!-- Close Banner -->		
     <!-- Start Section -->
-    <section class="container py-5">  
+    <section class="container py-5">              
     <ul>
       <li class="list-inline-item">
           <a class="h3 text-dark text-decoration-none mr-3" href="/mainRoomSelect">숙소</a>
-      </li>                     
+      </li>                       
       <li class="list-inline-item">
           <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
       </li>
     </ul>
    	<div style="text-align:center">
-   		<table class="table table-hover mb-0" >
+   		<table class="table mb-0" >
 			<thead class="thead-light">
 				<tr>
 					<th width="10%">번호</th>
@@ -92,39 +91,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${roomSelectList}" var="roomSelect">
 					<tr style="text-align:center">
-						<td>${roomSelect.roomSelectId}</td>
-						<td>${roomSelect.travelerId}</td>
-						<td><a href="/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}" style="text-decoration: none; color: black;">${roomSelect.roomSelectTitle}</a></td>
-						<td>${fn:substring(roomSelect.createDate,0,10)}</td>
+						<td>${experienceSelect.experienceSelectId}</td>
+						<td>${experienceSelect.travelerId}</td>
+						<td>${experienceSelect.experienceSelectTitle}</td>
+						<td>${fn:substring(experienceSelect.createDate,0,10)}</td>
 					</tr>
-				</c:forEach>
-			</tbody>
+			<tr>
+				<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none;" rows="10" cols="100" readonly="readonly">${experienceSelect.experienceSelectContent}</textarea></td>		
+			</tr>
 		</table>
-		<div>
-			<c:if test="${startPage > 1}">
-				<a href="/mainRoomSelect?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
-			</c:if>
-			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-				<c:choose>
-					<c:when test="${i == currentPage}">
-						<a href="/mainRoomSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
-					</c:when>
-					<c:otherwise>
-						<a href="/mainRoomSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${lastPage != totalPage}">
-				<a href="/mainRoomSelect?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
-			</c:if>
-		</div>
-		<br>
-		<form method="get" id="/mainRoomSelect">
-			<input name="searchTitle" value="${searchTitle}">
-				<button>검색</button>
-		</form>		
+		<p></p>
+		<input type="button" value="이전" onclick="history.back(-1)">	
 	</div>
    	
     </section>

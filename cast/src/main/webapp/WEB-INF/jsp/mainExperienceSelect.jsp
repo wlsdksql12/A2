@@ -99,7 +99,7 @@
 				<c:forEach items="${experienceSelectList}" var="experienceSelect">
 					<tr style="text-align:center">
 						<td>${experienceSelect.experienceSelectId}</td>
-						<td><a href="/mainexperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}" style="text-decoration: none; color: black;">${experienceSelect.experienceSelectTitle}</a></td>
+						<td><a href="/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}" style="text-decoration: none; color: black;">${experienceSelect.experienceSelectTitle}</a></td>
 						<td>${experienceSelect.travelerId}</td>
 						<td>${fn:substring(experienceSelect.createDate,0,10)}</td>
 					</tr>
