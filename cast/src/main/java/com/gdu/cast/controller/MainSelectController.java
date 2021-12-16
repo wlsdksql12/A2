@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gdu.cast.service.MainSelectCommentService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.RoomSelect;
@@ -18,17 +19,24 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class MainSelectController {
 	
-	@Autowired
-	MainSelectService mainSelectService;
-	
+	@Autowired MainSelectService mainSelectService;
+	@Autowired MainSelectCommentService mainSelectCommentService;
 	// 페이지
 	private final int ROW_PER_PAGE = 10;
+	private final int row_per_page = 5;
 	
 	// 여행 작가 체험 추천 상세보기
 	@GetMapping("/mainExperienceSelectOne")
-	public String experienceSelectOne(Model model, int experienceSelectId) {
+	public String experienceSelectOne(Model model, int experienceSelectId, @RequestParam(defaultValue = "1") int currentPage) {
 		System.out.println(experienceSelectId + " <- experienceSelectId");
 		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
+		Map<String, Object> map = mainSelectCommentService.getexperienceSelectComment(currentPage, row_per_page,experienceSelectId);
+		
+		model.addAttribute("selectCommentList", map.get("selectCommentList"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("experienceSelect", experienceSelect);
 		return "mainExperienceSelectOne";
 	}
