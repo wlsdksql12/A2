@@ -27,4 +27,8 @@ public class CeoService {
 	public int getupdateCeo(Ceo ceo) {
 		return ceoMapper.updateCeo(ceo);
 	}
+	// 사업가 비밀번호 변경
+	public int getUpdateCeoPw(String ceoId, String ceoPw, String newCeoPw) {
+		return ceoMapper.updateCeoPw(ceoId, ceoPw, newCeoPw);
+	}
 }

@@ -14,5 +14,7 @@ public interface CeoMapper {
 	Ceo selectCeo(String ceoId);
 	// 내정보 수정
 	int updateCeo(Ceo ceo);
+	// 비밀번호 변경
+	int updateCeoPw(String ceoId, String ceoPw, String newCeoPw);
 }
 
