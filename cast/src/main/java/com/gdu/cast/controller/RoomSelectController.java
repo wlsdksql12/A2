@@ -72,17 +72,14 @@ public class RoomSelectController {
 	
 	// 여행작가 숙소 추천 리스트
 	@GetMapping("/roomSelectList")
-	public String roomSelectList(Model model,
-			@RequestParam(defaultValue = "1") int currentPage,
-			@RequestParam(required = false) String searchTitle) {
-			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
-		Map<String, Object> map = roomSelectService.getSelectRoomSelectList(searchTitle, currentPage, ROW_PER_PAGE);
+	public String roomSelectList(Model model, int currentPage, String travelerId) {
+		log.debug(travelerId);
+		Map<String, Object> map = roomSelectService.getSelectRoomSelectList(travelerId, currentPage, ROW_PER_PAGE);
 		model.addAttribute("roomSelectList", map.get("roomSelectList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("searchTitle", searchTitle);
 		return "traveler/roomSelectList";
 	}
 }
