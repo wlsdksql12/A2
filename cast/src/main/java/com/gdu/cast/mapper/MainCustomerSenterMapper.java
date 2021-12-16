@@ -21,4 +21,5 @@ public interface MainCustomerSenterMapper {
 	int selectNoticeTotalCount(String searchTitle);
 	// qna 게시글 추가
 	int insertQna(Qna qna);
+
 }

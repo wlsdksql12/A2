@@ -34,6 +34,8 @@
 		SELECT q.qna_id qnaId, q.qna_title qnaTitle
 		FROM qna q INNER JOIN qna_comment qc ON q.qna_id = qc.qna_id 
 		WHERE q.customer_id= #{customerId}
+		ORDER BY qc.create_date DESC
+		LIMIt 0,5
 	</select>
 	
 	<select id="selectNotQnaCommentList" parameterType="Map" resultType="com.gdu.cast.vo.Qna">

@@ -59,7 +59,7 @@ public class CustomerIndexController {
 	
 	//qna상세보기
 	@GetMapping("/qnaListOne")
-	public String qnaOne(Model model, int qnaId, String customerId, QnaComment qnaComment) {
+	public String qnaOne(Model model, int qnaId, String customerId, QnaComment qnaComment, @RequestParam(defaultValue = "1") int currentPage) {
 		log.debug(qnaId + "<-0------------------QnaId");
 		Qna qna = customerService.getSelectQnaOne(qnaId);
 		qnaComment = adminQnaService.selectQnaComment(qnaId);
@@ -70,6 +70,7 @@ public class CustomerIndexController {
 		model.addAttribute("qnaCategory", qna.getQnaCategory());
 		model.addAttribute("createDate", qna.getCreateDate());
 		model.addAttribute("updateDate",qna.getUpdateDate());
+		model.addAttribute("currentPage" , currentPage);
 		if(qnaComment != null) {
 			model.addAttribute("qnaCommentContent", qnaComment.getQnaCommentContent());
 		}

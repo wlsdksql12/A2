@@ -62,10 +62,10 @@
 					    <a href="/customerIndex?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
-					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
+					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">관심상품</span></a>
 					    <ul class="pcoded-submenu">
-					        <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
-					        <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
+					        <li><a href="layout-vertical.html" target="_blank">체험 관심상품</a></li>
+					        <li><a href="layout-horizontal.html" target="_blank">숙소 관심상품</a></li>
 					    </ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
@@ -97,9 +97,6 @@
 					</li>
 					<li class="nav-item">
 					    <a href="/qnaList?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Qna</span></a>
-					</li>
-					<li class="nav-item">
-					    <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Bootstrap table</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
 					    <label>Chart & Maps</label>
@@ -180,8 +177,13 @@
 											<p class="m-b-0">NEW</p>
 										<br>
 										<c:forEach items="${list}"  var="qna">
-											${qna.qnaId},
-											${qna.qnaTitle }
+											<a href="/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
+											${qna.qnaId}번,
+											${qna.qnaTitle}
+											제목에 헤당하는 QNA 게시글에 답글이 달렸습니다.
+											</a>
+											
+											<br>
 										</c:forEach>
 										
 										
@@ -237,8 +239,8 @@
                             <h5 class="m-b-10">Dashboard Analytics</h5>
                         </div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index1"><i class="feather icon-home"></i></a></li>
-                            <li class="breadcrumb-item"><a href="#!">Dashboard Analytics</a></li>
+                            <li class="breadcrumb-item"><a href="/index"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/index">go to MainMenu</a></li>
                         </ul>
                     </div>
                 </div>

@@ -10,4 +10,6 @@ public interface SettingCustomerMapper {
 	  void insertDeleteId(String customerId);
 	  // 회원탈퇴(customer 테이블 삭제)
 	  void deleteCustomer(String customerId, String customerPw);
+	  //로그인 기록 삭제
+	  void deleteCustomerLogin(String customerId);
 }

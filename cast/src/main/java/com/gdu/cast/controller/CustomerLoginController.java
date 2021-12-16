@@ -38,7 +38,4 @@ public class CustomerLoginController {
 		return "redirect:/loginSelect";
 	}
 	
-
-
-	
 }

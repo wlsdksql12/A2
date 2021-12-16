@@ -29,4 +29,8 @@ public class SettingCustomerService {
 		   settingCustomerMapper.deleteCustomer(customerId, customerPw);
 	   }
 	   
+	   // 로그인 기록 삭제
+	   public void getdeleteCustomerLogin(String customerId) {
+		   settingCustomerMapper.deleteCustomerLogin(customerId);
+	   }
 }

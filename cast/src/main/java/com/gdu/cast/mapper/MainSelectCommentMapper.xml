@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.MainSelectCommentMapper">
+	<!-- experience select comment list-->
+	<select id="experienceSelectComment" parameterType="Map" resultType="com.gdu.cast.vo.ExperienceSelectComment">
+		SELECT 
+		experience_select_comment_id experienceSelectCommentId,
+		customer_id customerId,
+		experience_select_content esperienceSelectContent,
+		create_date createDate,
+		update_date updateDate 
+		FROM experience_select_comment
+		WHERE experience_select_id = #{experienceSelectId}
+	</select>
+
+		<!--  experience select comment list 페이징 -->
+	<select id="selectCommentTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM experience_select_comment
+	</select>
+</mapper>

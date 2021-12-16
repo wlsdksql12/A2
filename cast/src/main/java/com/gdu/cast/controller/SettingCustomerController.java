@@ -42,7 +42,11 @@ public class SettingCustomerController {
 	   @PostMapping("/deleteCustomer")
 	   public String getDeleteCustomer(Customer customer) {
 		   settingCustomerService.getInsertDeleteId(customer.getCustomerId());
+		   settingCustomerService.getdeleteCustomerLogin(customer.getCustomerId());
 		   settingCustomerService.getDeleteCustomer(customer.getCustomerId(), customer.getCustomerPw());
+		  
 		   return "redirect:/loginSelect";
 	   }
+	   
+	   
 }
