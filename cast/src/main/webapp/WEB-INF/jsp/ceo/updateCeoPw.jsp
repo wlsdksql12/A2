@@ -19,36 +19,18 @@
 <body>
 	<%@ include file="ceoBase.jsp"%>
 	<br>
+	<form method="post" action="/updateCeoPw">
 	<table border="1">
 		<tr>
-			<td>ID</td>
-			<td>${ceoId}</td>
+			<td>기존 비밀번호 입력</td>
+			<td><input type="password" name="ceoPw"></td>
 		</tr>
 		<tr>
-			<td>PW</td>
-			<td><a href="updateCeoPw">비밀번호 수정</a></td>
+			<td>변경할 비밀번호 입력</td>
+			<td><input type="password" name="newCeoPw"></td>
 		</tr>
-		<tr>
-			<td>Name</td>
-			<td>${ceoName}</td>
-		</tr>
-		<tr>
-			<td>Email</td>
-			<td>${ceoEmail}</td>
-		</tr>
-		<tr>
-			<td>License</td>
-			<td>${ceoLicense}</td>
-		</tr>
-		<tr>
-			<td>PhoneNum</td>
-			<td>${ceoPhonenum}</td>
-		</tr>
-		<tr>
-			<td>생성일</td>
-			<td>${createDate}</td>
-		</tr>
-		<a href="updateCeo?ceoId=${ceoId}&ceoEmail=${ceoEmail}&ceoLicense=${ceoLicense}&ceoPhoneNum=${ceoPhonenum}">내정보 수정</a>
 	</table>
+	<button type="submit">입력완료</button>
+	</form>
 </body>
 </html>

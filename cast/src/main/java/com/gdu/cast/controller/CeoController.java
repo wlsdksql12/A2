@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.vo.Ceo;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Controller
 public class CeoController {
 	@Autowired
 		CeoService ceoService;
 	
+	// 사업체 추가시 호텔과 체험 선택
 	@GetMapping("/selectExpHotel")
 	public String selectExpHotel() {
 		return "ceo/selectExpHotel";
@@ -49,5 +49,18 @@ public class CeoController {
 	public String postupdateCeo(Ceo ceo) {
 		ceoService.getupdateCeo(ceo);
 		return "redirect:/selectCeo?ceoId="+ceo.getCeoId()+"&ceoEmail="+ceo.getCeoEmail();
+	}
+	
+	// 비밀번호 수정
+	@GetMapping("/updateCeoPw") 
+	public String settingCeo(Ceo ceo) {
+		return "ceo/updateCeoPw";
+	}
+	
+	@PostMapping("/updateCeoPw")
+	public String postUpdateCeoPw(HttpSession session, String ceoPw, String newCeoPw) {
+		String ceoId = (String) session.getAttribute("loginCeoId");
+		ceoService.getUpdateCeoPw(ceoId, ceoPw, newCeoPw);
+		return "redirect:/selectCeo?ceoId="+ceoId;
 	}
 }

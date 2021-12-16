@@ -58,6 +58,13 @@
 			ceo_phonenum = #{ceoPhonenum}
 		WHERE ceo_id = #{ceoId}
 	</update>
+	
+	<!-- 비밀번호 변경 -->
+	<update id="updateCeoPw" parameterType="com.gdu.cast.vo.Ceo">
+		UPDATE ceo SET
+			ceo_pw = password(#{newCeoPw}), update_date = now()
+		WHERE ceo_id = #{ceoId} AND ceo_pw = password(#{ceoPw})
+	</update>
 </mapper>
 
 
