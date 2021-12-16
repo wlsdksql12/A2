@@ -87,8 +87,8 @@
           <a class="h3 text-dark text-decoration-none" href="/mainQna">Qna</a>
       </li>
     </ul>
-    <div><a href="/addMainQna?customerId=${loginCustomerId}">게시글 작성</a></div>
-         <table class="table table-hover mb-0">
+    
+         <table style="text-align:center" class="table table-hover mb-0">
         
                                 <thead>
                                     <tr>
@@ -132,7 +132,12 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-             
+
+            <div style="text-align: right;">
+            	<a class="btn btn-outline-success" href="/addMainQna?customerId=${loginCustomerId}">글작성</a>
+            </div>
+            <br>
+            <div style="text-align: center;">
 			<c:if test="${startPage > 1}">
 				<a href="/mainQna?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
@@ -149,10 +154,13 @@
 			<c:if test="${lastPage != totalPage}">
 				<a href="/mainQna?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
+			
+			</div>
 		<br>
-		<form method="get" id="/mainQna">
+		<form style="text-align: center;" method="get" id="/mainQna">
 			<input name="searchTitle" value="${searchTitle}">
 		<button type="submit">검색</button>
+		
 		</form>
        
         

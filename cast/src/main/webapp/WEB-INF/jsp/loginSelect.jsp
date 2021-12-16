@@ -27,7 +27,7 @@
                   </div>
 					<form method="post" action="/index" id="loginForm">
 						<div>
-						<select name="login">
+						<select id="loginSelect" name="login">
 				 			<option value="">로그인 방식을 선택해주세요..</option>
 				 			<option value="adminLogin">관리자</option>
 				 			<option value="travelerLogin">여행작가</option>
@@ -67,14 +67,20 @@
 	$(function(){
 		// 로그인 유효성 검사
 		$('#loginBtn').click(function(){
-			if($('#Id').val() == ""){
-				alert("아이디를 입력하세요.");
-				$('#Id').focus();
+			if($('#loginSelect').val() == ""){
+				alert("로그인 방식을 선택해주세요....");
+				$('#loginSelect').focus();
 				return false;
 			}
+			
 			else if($('#Pw').val() == ""){
 				alert("비밀번호를 입력하세요.");
 				$('#Pw').focus();
+				return false;
+			}
+			else if($('#Id').val() == ""){
+				alert("아이디를 입력하세요.");
+				$('#Id').focus();
 				return false;
 			}
 			else {

@@ -26,13 +26,6 @@ table {
 	margin-right: auto;
 }
 
-#boardCategoryDiv {
-	margin-right: 555px;
-}
-
-#insertBtn {
-	margin-left: 640px;
-}
 </style>
 
 </head>
@@ -101,31 +94,22 @@ table {
 	<!-- Start Section -->
 	<section class="container py-5">
 		<ul>
-			<li class="list-inline-item"><a
-				class="h3 text-dark text-decoration-none mr-3" href="/mainNotice">공지사항</a>
+			<li class="list-inline-item"><a class="h3 text-dark text-decoration-none mr-3" href="/mainNotice">공지사항</a>
 			</li>
 
 
-			<li class="list-inline-item"><a
-				class="h3 text-dark text-decoration-none"
-				href="/mainQna?currentPage=1">Qna</a></li>
+			<li class="list-inline-item"><a class="h3 text-dark text-decoration-none" href="/mainQna?currentPage=1">Qna</a></li>
 		</ul>
 		<div class="container">
-			<h1>qna상세보기</h1>
-			<c:if test="${loginCustomerId == customerId}">
-				<a href="/mainUpdateQna?qnaId=${qnaId}&customerId=${customerId}"
-					id="insertBtn" class="btn btn-outline-success">수정</a>
-				<a
-					href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}"
-					id="insertBtn" class="btn btn-outline-success">삭제</a>
-			</c:if>
-
-			<c:if test="${loginAdminId != null}">
-				<c:if test="${qnaCommentContent  == null}">
-					<a href="/admin/qnaComment?qnaId=${qnaId}&customerId=${customerId}"
-						id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
+			
+			<h1>Q&A상세보기</h1>
+			<div style="margin-left: 951px">
+				<c:if test="${loginCustomerId == customerId}">
+						<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
+						<a href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
 				</c:if>
-			</c:if>
+			</div>
+			
 			<table class="table table-bordered">
 				<tr style="text-align: center" class="table-primary">
 					<th width="80">번호</th>
@@ -133,8 +117,8 @@ table {
 					<th width="380">제목</th>
 					<th width="380">내용</th>
 					<th width="110">작성자</th>
-					<th width="90">작성날짜</th>
-					<th width="90">수정날짜</th>
+					<th width="150">작성날짜</th>
+					<th width="150">수정날짜</th>
 				</tr>
 				<tr style="text-align: center" height="70px">
 					<td>${qnaId}</td>
@@ -146,12 +130,24 @@ table {
 					<td>${updateDate}</td>
 				</tr>
 			</table>
-			<a href="/mainQna?currentPage="+${currentPage}>이전으로</a>
-			<h1>Qna 답변</h1>
-			<div>${qnaCommentContent}</div>
+			<div style="text-align: right;">
+				<div>
+					<c:if test="${loginAdminId != null}">
+						<c:if test="${qnaCommentContent  == null}">
+							<a href="/admin/qnaComment?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
+						</c:if>
+					</c:if>
+				</div>
+				<input class="btn btn-outline-success" type="button" value="이전페이지" onclick="history.back(-1)">
+			</div>
+			<h1>Comment</h1>
+			<table class="table table-bordered">
+				<tr>
+					<td>${qnaCommentContent}</td>
+				</tr>
+			</table>
 		</div>
-
-
+		
 	</section>
 	<!-- End Section -->
 	<section class="container py-5"></section>
@@ -180,12 +176,9 @@ table {
 						<li><a class="text-decoration-none" href="#">Luxury</a></li>
 						<li><a class="text-decoration-none" href="#">Sport Wear</a></li>
 						<li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-						<li><a class="text-decoration-none" href="#">Women's
-								Shoes</a></li>
-						<li><a class="text-decoration-none" href="#">Popular
-								Dress</a></li>
-						<li><a class="text-decoration-none" href="#">Gym
-								Accessories</a></li>
+						<li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
+						<li><a class="text-decoration-none" href="#">Popular Dress</a></li>
+						<li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
 						<li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
 					</ul>
 				</div>
@@ -268,3 +261,4 @@ table {
 	<!-- End Script -->
 </body>
 </html>
+
