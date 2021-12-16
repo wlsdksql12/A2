@@ -55,7 +55,8 @@
 			ceo_id = #{ceoId},
 			ceo_email = #{ceoEmail},
 			ceo_license = #{ceoLicense},
-			ceo_phonenum = #{ceoPhonenum}
+			ceo_phonenum = #{ceoPhonenum},
+			update_date = now()
 		WHERE ceo_id = #{ceoId}
 	</update>
 	

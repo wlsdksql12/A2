@@ -40,8 +40,11 @@ public class CeoController {
 
 	// 사업가 내정보 수정
 	@GetMapping("/updateCeo")
-	public String getupdateCeo(Model model, String ceoId) {
-		model.addAttribute("ceoId", ceoId);
+	public String getupdateCeo(Model model, Ceo ceo) {
+		model.addAttribute("ceoId", ceo.getCeoId());
+		model.addAttribute("ceoEmail", ceo.getCeoEmail());
+		model.addAttribute("ceoPhonenum", ceo.getCeoPhonenum());
+		model.addAttribute("ceoLicense", ceo.getCeoLicense());
 		return "ceo/updateCeo";
 	}
 	
