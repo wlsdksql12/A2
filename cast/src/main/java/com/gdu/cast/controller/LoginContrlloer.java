@@ -83,18 +83,23 @@ public class LoginContrlloer {
 			
 			// 세션용
 			Customer loginCustomer = customerService.getselectCustomer(customer);
-			
-			
+
 			//로그인 기록 셀렉트
 			if(loginCustomer == null) {
 				return "redirect:/loginSelect";
 			}
+			if(customerService.getSelectActive(loginCustomer.getCustomerId()).getActive().equals("0")) {
+				return "redirect:/active";
+			}
 			session.setAttribute("loginCustomerId", loginCustomer.getCustomerId());
 			
 			Customer_Login customerLogin = customerService.getselectCustomerLogin(customer_Login);
+			
 			System.out.println(customerLogin.getUpdatedate()+"@#@#@#@#@#updateDate");	
 			
-		
+
+			
+			System.out.println(customerService.getSelectActive(loginCustomer.getCustomerId()).equals("0") +"customerService.getSelectActive(loginCustomer.getCustomerId()).equals(\"0\")");
 			
 			
 			
@@ -124,12 +129,9 @@ public class LoginContrlloer {
 				customerService.getupdateActiveZeroDate(customer.getCustomerId());
 				return "redirect:/active?customerId="+customer.getCustomerId();
 			}
+			
 			// 로그인 기록 업데이트
-			customerService.getupdateDate(loginCustomer.getCustomerId());
-						
-			if(customerService.getSelectActive(loginCustomer.getCustomerId()).equals("0")) {
-				return "redirect:/loginSelect";
-			}
+			customerService.getupdateDate(loginCustomer.getCustomerId());	
 		
 			// 로그인 정보가 다르면 다시 로그인 창으로 소환!
 

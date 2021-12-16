@@ -114,6 +114,7 @@ public class CustomerService {
 	   
 	   // 활성화 비활성화
 	   public Customer getSelectActive(String customerId) {
+		   System.out.println(customerMapper.selectActive(customerId) + "customerMapper.selectActive(customerId)");
 		   return customerMapper.selectActive(customerId);
 	   }
 	   

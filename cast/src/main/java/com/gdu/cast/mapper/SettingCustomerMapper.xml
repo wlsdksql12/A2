@@ -16,7 +16,7 @@
 		FROM customer
 		WHERE customer_id = #{customerId} AND customer_pw = password(#{customerPw})
 	</delete>
-	<!-- 로그인 기록 삭ㅈ제 -->
+	<!-- 로그인 기록 삭제 -->
 	   	<delete id="deleteCustomerLogin" parameterType="com.gdu.cast.vo.Customer_Login">
 		DELETE 
 		FROM customer_login

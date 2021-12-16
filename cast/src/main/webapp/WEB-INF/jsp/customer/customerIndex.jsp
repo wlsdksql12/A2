@@ -256,8 +256,8 @@
                         <div class="card support-bar overflow-hidden">
                             <div class="card-body pb-0">
                                 <h2 class="m-0">350</h2>
-                                <span class="text-c-blue">Support Requests</span>
-                                <p class="mb-3 mt-3">Total number of support requests that come in.</p>
+                                <span class="text-c-blue">월별 결제</span>
+                                <p class="mb-3 mt-3">#</p>
                             </div>
                             <div id="support-chart"></div>
                             <div class="card-footer bg-primary text-white">
@@ -282,8 +282,8 @@
                         <div class="card support-bar overflow-hidden">
                             <div class="card-body pb-0">
                                 <h2 class="m-0">350</h2>
-                                <span class="text-c-green">Support Requests</span>
-                                <p class="mb-3 mt-3">Total number of support requests that come in.</p>
+                                <span class="text-c-green">연별 예약</span>
+                                <p class="mb-3 mt-3">#</p>
                             </div>
                             <div id="support-chart1"></div>
                             <div class="card-footer bg-success text-white">
@@ -316,7 +316,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <h4 class="text-c-yellow">$30200</h4>
-                                        <h6 class="text-muted m-b-0">All Earnings</h6>
+                                        <h6 class="text-muted m-b-0">총 결제금액</h6>
                                     </div>
                                     <div class="col-4 text-right">
                                         <i class="feather icon-bar-chart-2 f-28"></i>
@@ -341,7 +341,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <h4 class="text-c-green">290+</h4>
-                                        <h6 class="text-muted m-b-0">Page Views</h6>
+                                        <h6 class="text-muted m-b-0">총 예약 수</h6>
                                     </div>
                                     <div class="col-4 text-right">
                                         <i class="feather icon-file-text f-28"></i>
@@ -366,7 +366,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <h4 class="text-c-red">145</h4>
-                                        <h6 class="text-muted m-b-0">Task</h6>
+                                        <h6 class="text-muted m-b-0">추천 댓글 수</h6>
                                     </div>
                                     <div class="col-4 text-right">
                                         <i class="feather icon-calendar f-28"></i>
@@ -391,7 +391,7 @@
                                 <div class="row align-items-center">
                                     <div class="col-8">
                                         <h4 class="text-c-blue">500</h4>
-                                        <h6 class="text-muted m-b-0">Downloads</h6>
+                                        <h6 class="text-muted m-b-0">상품 후기 수</h6>
                                     </div>
                                     <div class="col-4 text-right">
                                         <i class="feather icon-thumbs-down f-28"></i>
@@ -492,7 +492,7 @@
             <div class="col-xl-6 col-md-12">
                 <div class="card latest-update-card">
                     <div class="card-header">
-                        <h5>Latest Updates</h5>
+                        <h5>업데이트된 상품</h5>
                         <div class="card-header-right">
                             <div class="btn-group card-option">
                                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

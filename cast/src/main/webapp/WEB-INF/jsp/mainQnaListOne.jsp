@@ -105,7 +105,7 @@ table {
 			<h1>Q&A상세보기</h1>
 			<div style="margin-left: 951px">
 				<c:if test="${loginCustomerId == customerId}">
-						<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
+						<a href="/mainUpdateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
 						<a href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
 				</c:if>
 			</div>
