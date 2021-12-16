@@ -62,7 +62,7 @@
 							<tr style="text-align:center">
 								<td><a href ="/qnaListOne?qnaId=${qna.qnaId}&customerId=${qna.customerId}">${qna.qnaTitle}</a></td>
 								<td>${qna.customerId}</td>
-								<td>${qna.createDate}</td>
+								<td>${fn:substring(qna.createDate,0,10)}</td>
 								<td>${qna.qnaSecret}</td>
 							</tr>
 						</c:forEach>
