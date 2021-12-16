@@ -78,9 +78,17 @@
                             Gender
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
-                        <ul class="collapse show list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Men</a></li>
-                            <li><a class="text-decoration-none" href="#">Women</a></li>
+                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                         	<li class="pb-3">
+	                         	 <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+	                            	Men
+	                            	<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+	                            </a>
+	                            <ul class="collapse show list-unstyled pl-4">
+                        			<li><a class="text-decoration-none" href="#">boy</a></li>
+                        			<li><a class="text-decoration-none" href="#">Gentleman</a></li>
+                        		</ul>
+                            </li>
                         </ul>
                     </li>
                     <li class="pb-3">
@@ -104,6 +112,7 @@
                             <li><a class="text-decoration-none" href="#">Sunglass</a></li>
                         </ul>
                     </li>
+                    
                 </ul>
             </div>
 
@@ -686,11 +695,11 @@
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="assets/js/jquery-1.11.0.min.js"></script>
-    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/templatemo.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery-1.11.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/templatemo.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
     <!-- End Script -->
 </body>
 
