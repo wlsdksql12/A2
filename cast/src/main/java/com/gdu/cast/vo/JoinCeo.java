@@ -7,6 +7,7 @@ import lombok.Data;
 public class JoinCeo {
 	private int joinCeoId;
 	private String ceoId;
+	private String active;
 	private String createDate;
 	private String updateDate;
 }
