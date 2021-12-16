@@ -17,7 +17,7 @@ public interface ExperienceMapper {
 	// 체험 리스트 출력
 	List<Experience> selectExperienceList(Map<String, Object> map);
 	// 체험 상세보기
-	Experience selectExperienceOne(int ExperienceId);
+	Experience selectExperienceOne(int experienceId);
 	// 체험 전체 글 수
 	int selectExperienceTotalCount(String searchTitle);
 }

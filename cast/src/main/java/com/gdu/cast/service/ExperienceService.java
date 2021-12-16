@@ -65,5 +65,11 @@ public class ExperienceService {
 		returnMap.put("totalPage", totalPage);
 		
 		return returnMap;
-		}
+	}
+	
+	// 체험 상세보기
+	public Experience selectExperienceOne(int experienceId) {
+		Experience experience = experienceMapper.selectExperienceOne(experienceId);
+		return experience;
+	}
 }
