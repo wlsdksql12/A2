@@ -34,7 +34,7 @@
 							<tr>
 								<th>#</th>
 								<th>제목</th>
-								<th>작성자</th>
+								<th>가격</th>
 								<th>작성날짜</th>
 							</tr>
 						</thead>
@@ -43,8 +43,8 @@
 								<tr>
 									<td>${experience.experienceId}</td>
 									<td><a
-										href="/experienceOne?experienceId=${experience.experienceId}">${experience.experienceName}</a></td>
-									<td>${experience.ceoId}</td>
+										href="/ceo/experienceOne?experienceId=${experience.experienceId}">${experience.experienceName}</a></td>
+									<td>${experience.experiencePrice}&#8361;</td>
 									<td>${experience.createDate}</td>
 								</tr>
 							</c:forEach>
@@ -54,24 +54,24 @@
 					<div>
 						<c:if test="${startPage > 1}">
 							<a
-								href="/experienceList?currentPage=${startPage-1}"
+								href="/ceo/experienceList?currentPage=${startPage-1}"
 								class="btn btn-outline-light text-dark">처음으로</a>
 						</c:if>
 						<div class="btn-group">
 						<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 							<c:choose>
 								<c:when test="${i == currentPage}">
-									<a href="/experienceList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
+									<a href="/ceo/experienceList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
 								</c:when>
 								<c:otherwise>
-									<a href="/experienceList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
+									<a href="/ceo/experienceList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
 								</c:otherwise>
 							</c:choose>
 						</c:forEach>
 						</div>
 						<c:if test="${lastPage != totalPage}">
 							<a
-								href="/experienceList?currentPage=${lastPage+1}"
+								href="/ceo/experienceList?currentPage=${lastPage+1}"
 								class="btn btn-outline-light text-dark">끝으로</a>
 						</c:if>
 					</div>

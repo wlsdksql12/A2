@@ -16,7 +16,7 @@ public class LoginCeoController {
 	CeoService ceoService;
 	
 	// 사업자 메인 페이지
-	@GetMapping("/ceoIndex")
+	@GetMapping("/ceo/ceoIndex")
 	public String ceoIndex() {
 		return "ceo/ceoIndex";
 	}

@@ -58,8 +58,8 @@
    <select id="selectExperienceList" parameterType="Map" resultType="com.gdu.cast.vo.Experience">
       SELECT 
          experience_id experienceId,
-         ceo_id ceoId,
          experience_name experienceName,
+         experience_price experiencePrice,
          create_date createDate
       FROM experience
       <where>

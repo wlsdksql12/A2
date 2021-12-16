@@ -23,7 +23,7 @@ public class HotController {
 	HotService hotService;
 	
 	// 호텔 등록
-	@GetMapping("/insertHotel")
+	@GetMapping("/ceo/insertHotel")
 	public String insertHotel(Model model, int addressId) {
 		
 		model.addAttribute("addressId", addressId);
@@ -31,7 +31,7 @@ public class HotController {
 		return "/ceo/insertHotel";
 	}
 	
-	@PostMapping("/insertHotel")
+	@PostMapping("/ceo/insertHotel")
 	public String insertHotel(HttpSession session, Hotel hotel) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		hotel.setCeoId(ceoId);
@@ -40,33 +40,33 @@ public class HotController {
 		log.debug("====================================" + ceoId + " << ceoId");
 		log.debug("====================================" + hotel.toString() + " << hotel Debug");
 		
-		return "redirect:/insertRoom?hotelId="+hotel.getHotelId();
+		return "redirect:/ceo/insertRoom?hotelId="+hotel.getHotelId();
 	}
 	
 	// 호텔주소 등록
-	@GetMapping("/insertHotelAddress")
+	@GetMapping("/ceo/insertHotelAddress")
 	public String insertHotelAddress() {
 		return "/ceo/insertHotelAddress";
 	}
 	
-	@PostMapping("/insertHotelAddress")
+	@PostMapping("/ceo/insertHotelAddress")
 	public String insertHotelAddress(HttpSession session, Address address, Hotel hotel) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		hotel.setCeoId(ceoId);
 		
 		hotService.insertHotelAddress(address);
 		
-		return "redirect:/insertHotel?addressId=" + address.getAddressId() + "&ceoId=" + hotel.getCeoId();
+		return "redirect:/ceo/insertHotel?addressId=" + address.getAddressId() + "&ceoId=" + hotel.getCeoId();
 	}
 	
 	// 방 등록
-	@GetMapping("/insertRoom")
+	@GetMapping("/ceo/insertRoom")
 	public String insertRoom(Model model, int hotelId) {
 		model.addAttribute("hotelId", hotelId);
 		return "/ceo/insertRoom";
 	}
 	
-	@PostMapping("/insertRoom")
+	@PostMapping("/ceo/insertRoom")
 	public String insertRoom(Room room) {
 		hotService.insertRoom(room);
 		

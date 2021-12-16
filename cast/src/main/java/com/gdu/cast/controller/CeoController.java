@@ -18,13 +18,13 @@ public class CeoController {
 		CeoService ceoService;
 	
 	// 사업체 추가시 호텔과 체험 선택
-	@GetMapping("/selectExpHotel")
+	@GetMapping("/ceo/selectExpHotel")
 	public String selectExpHotel() {
 		return "ceo/selectExpHotel";
 	}
 	
 	// 사업가 내정보 보기
-	@GetMapping("/selectCeo")
+	@GetMapping("/ceo/selectCeo")
 	public String selectCeo(Model model, HttpSession session) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		Ceo ceo = ceoService.getselectCeo(ceoId);
@@ -39,7 +39,7 @@ public class CeoController {
 	}
 
 	// 사업가 내정보 수정
-	@GetMapping("/updateCeo")
+	@GetMapping("/ceo/updateCeo")
 	public String getupdateCeo(Model model, Ceo ceo) {
 		model.addAttribute("ceoId", ceo.getCeoId());
 		model.addAttribute("ceoEmail", ceo.getCeoEmail());
@@ -48,19 +48,19 @@ public class CeoController {
 		return "ceo/updateCeo";
 	}
 	
-	@PostMapping("/updateCeo") 
+	@PostMapping("/ceo/updateCeo") 
 	public String postupdateCeo(Ceo ceo) {
 		ceoService.getupdateCeo(ceo);
 		return "redirect:/selectCeo?ceoId="+ceo.getCeoId()+"&ceoEmail="+ceo.getCeoEmail();
 	}
 	
 	// 비밀번호 수정
-	@GetMapping("/updateCeoPw") 
+	@GetMapping("/ceo/updateCeoPw") 
 	public String settingCeo(Ceo ceo) {
 		return "ceo/updateCeoPw";
 	}
 	
-	@PostMapping("/updateCeoPw")
+	@PostMapping("/ceo/updateCeoPw")
 	public String postUpdateCeoPw(HttpSession session, String ceoPw, String newCeoPw) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		ceoService.getUpdateCeoPw(ceoId, ceoPw, newCeoPw);

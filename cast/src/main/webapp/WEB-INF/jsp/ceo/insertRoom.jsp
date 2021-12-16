@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file="ceoBase.jsp" %>
-	<form method="post" action="/insertRoom" class="forms-sample">
+	<form method="post" action="/ceo/insertRoom" class="forms-sample">
 	<br>
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">

@@ -23,7 +23,7 @@ public class ExperienceController {
 	@Autowired
 	ExperienceService experienceService;
 	
-	@GetMapping("/insertExp")
+	@GetMapping("/ceo/insertExp")
 	public String insertExp(Model model, int addressId) {
 		
 		model.addAttribute("addressId" , addressId);
@@ -31,7 +31,7 @@ public class ExperienceController {
 		return "/ceo/insertExp";
 	}
 	
-	@PostMapping("/insertExp")
+	@PostMapping("/ceo/insertExp")
 	public String insertExp(HttpSession session, Experience experience) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		experience.setCeoId(ceoId);
@@ -44,23 +44,23 @@ public class ExperienceController {
 		return "/ceo/ceoIndex";
 	}
 	
-	@GetMapping("/insertExpAddress")
+	@GetMapping("/ceo/insertExpAddress")
 	public String insertAddress() {
 		return "/ceo/insertExpAddress";
 	}
 	
-	@PostMapping("/insertExpAddress")
+	@PostMapping("/ceo/insertExpAddress")
 	public String insertAddress(HttpSession session, Address address, Experience experience) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		experience.setCeoId(ceoId);
 		
 		experienceService.insertExpAddress(address);
 		
-		return "redirect:/insertExp?addressId="+address.getAddressId() + "&ceoId=" + experience.getCeoId();
+		return "redirect:/ceo/insertExp?addressId="+address.getAddressId() + "&ceoId=" + experience.getCeoId();
 	}
 	
 	// 체험 리스트
-	@GetMapping("/experienceList")
+	@GetMapping("/ceo/experienceList")
 	public String experienceList(Model model, HttpSession session,
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
@@ -78,7 +78,7 @@ public class ExperienceController {
 		model.addAttribute("searchTitle", searchTitle);
 		model.addAttribute("loginCeoId", session.getAttribute("loginCeoId"));
 		System.out.println(session.getAttribute("loginCeoId") + " 체험리스트 세션값");
-		return "ceo/experienceList";
+		return "/ceo/experienceList";
 	}
 	
 }

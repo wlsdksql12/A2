@@ -23,7 +23,7 @@
 <body>
 	<%@ include file="ceoBase.jsp"%>
 	<br>
-	<form method="post" action="/selectCeo">
+	<form method="post" action="/ceo/selectCeo">
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
@@ -36,7 +36,7 @@
 							</tr>
 							<tr>
 								<td>PW</td>
-								<td><a href="updateCeoPw">비밀번호 수정</a></td>
+								<td><a href="/ceo/updateCeoPw">비밀번호 수정</a></td>
 							</tr>
 							<tr>
 								<td>Name</td>
@@ -61,7 +61,7 @@
 						</table>
 						<br>
 						<div style="text-align:right">
-							<a class="btn btn-outline-primary btn-icon-text" href="updateCeo?ceoId=${ceoId}&ceoEmail=${ceoEmail}&ceoLicense=${ceoLicense}&ceoPhonenum=${ceoPhonenum}">
+							<a class="btn btn-outline-primary btn-icon-text" href="/ceo/updateCeo?ceoId=${ceoId}&ceoEmail=${ceoEmail}&ceoLicense=${ceoLicense}&ceoPhonenum=${ceoPhonenum}">
 							 <i class="ti-file btn-icon-prepend"></i>
 							내 정보수정
 							</a>

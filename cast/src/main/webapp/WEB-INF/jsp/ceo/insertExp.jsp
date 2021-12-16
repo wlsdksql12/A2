@@ -30,7 +30,7 @@
 <body>
 	<%@ include file="ceoBase.jsp" %>
 	<br>
-	<form method="post" action="/insertExp" class="forms-sample">
+	<form method="post" action="/ceo/insertExp" class="forms-sample">
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
