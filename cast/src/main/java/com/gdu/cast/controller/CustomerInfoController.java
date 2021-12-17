@@ -26,7 +26,8 @@ public class CustomerInfoController {
 		Customer customer = customerService.getselectInfo(customerId);
 		model.addAttribute("customerId", customer.getCustomerId());
 		model.addAttribute("customerName", customer.getCustomerName());
-		model.addAttribute("customerJumin", customer.getCustomerEmail());
+		model.addAttribute("customerJumin",customer.getCustomerJumin());
+		model.addAttribute("customerEmail", customer.getCustomerEmail());
 		model.addAttribute("customerPhoneNum", customer.getCustomerPhoneNum());
 		
 		return "customer/myInfo";
