@@ -14,11 +14,13 @@
 			<div class="card">
 				<div class="card-body">
 					<h4 class="card-title">상세 보기</h4>
-					<p class="card-description">${experience.experienceName}의 정보입니다.</p>
+					<p class="card-description">${experience.addressId}의 정보입니다.</p>
+					${experience.address.postcode}
+					${experience.address.roadAddress}
 					<div class="table-responsive pt-3" id="form1">
 						<table class="table table-bordered">
 							<thead>
-							
+								
 							</thead>
 							<tbody>
 							
