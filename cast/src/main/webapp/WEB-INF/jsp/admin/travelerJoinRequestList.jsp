@@ -50,8 +50,8 @@
                   <h6 class="m-0 font-weight-bold text-primary">여행작가 가입 요청</h6>
 
 					<select class="form-control-sm" name="state" id="state" onchange="chageState()">
-						<option hidden="">선택</option>
-						<option value="">전체</option>
+						<option hidden="" selected="selected">전체</option>
+						<option value="" >전체</option>
                         <option value="요청">요청</option>
                         <option value="거절">거절</option>
                         <option value="승인">승인</option>
@@ -73,7 +73,15 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${joinTravelerList}" var="joinTraveler">
-							<tr style="text-align:center">
+							<c:choose>
+								<c:when test="${joinTraveler.active eq '요청'}">
+									<tr style="text-align:center" style = "cursor:pointer;" onClick = " location.href='/admin/travelerSelectOne?joinTravelerId=${joinTraveler.joinTravelerId}'">
+								</c:when>
+								<c:otherwise>
+									<tr style="text-align:center">
+								</c:otherwise>
+							</c:choose>
+							
 								<td>${joinTraveler.joinTravelerId}</td>
 								<td>${joinTraveler.traveler.travelerId}</td>
 								<td>${joinTraveler.traveler.travelerName}</td>
@@ -107,6 +115,7 @@
 				<br>
 				<form method="get" action="/admin/travelerJoinRequestList" id="search">
 					<input name="searchTitle" value="${searchTitle}">
+					<input type="hidden" name="state" value="${state}">
 					<button>검색</button>
 				</form>
 				<br>
@@ -150,16 +159,25 @@
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 </body>
 <script type="text/javascript">
+// 넘어오는 state값으로 select의 option선택되게 보여주기
+$(document).ready(function(){
+	$('#state').val("<c:out value='${state}'/>").prop("selected",true);
+});
+
+	
 	function chageState() {
 		
 		var selectState = document.getElementById("state");
 		var selectValue = selectState.options[selectState.selectedIndex].value;
 		console.log(selectValue);
-		
+		$('input[name=state]').attr('value',selectValue);
+		$('input[name=searchTitle]').attr('value','');
+		/*
 		var search = document.getElementById("search");
 		var newP = document.createElement('p');
 		newP.innerHTML = "<input type='hidden'name='state' value='"+selectValue+"'>";
 		search.appendChild(newP);
+		*/
 		$('#search').submit();
 	}
 

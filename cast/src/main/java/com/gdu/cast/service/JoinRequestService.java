@@ -6,10 +6,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.JoinRequestMapper;
 import com.gdu.cast.vo.JoinTraveler;
+import com.gdu.cast.vo.Traveler;
 
+@Transactional
 @Service
 public class JoinRequestService {
 	@Autowired
@@ -26,7 +29,7 @@ public class JoinRequestService {
 	}
 	
 	// 여행작가 가입 요청 페이지
-	public Map<String, Object> getTravelerJoinRequestList(int currentPage, int ROW_PER_PAGE, String state){
+	public Map<String, Object> getTravelerJoinRequestList(int currentPage, int ROW_PER_PAGE, String state, String searchTitle){
 		Map<String, Object> paramMap = new HashMap<>();
 		int beginRow = 0;
 		int displayPage = 10;
@@ -38,7 +41,7 @@ public class JoinRequestService {
 		paramMap.put("beginRow", beginRow);
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("state", state);
-		
+		paramMap.put("searchTitle", searchTitle);
 		// 여행작가 가입 요청 가져오기
 		List<JoinTraveler> joinTravelerList = joinRequestMapper.selectTravelerJoinRequestList(paramMap);
 		System.out.println(joinTravelerList + "<----JoinRequestService");
@@ -66,5 +69,42 @@ public class JoinRequestService {
 		returnMap.put("totalPage", totalPage);
 		
 		return returnMap;
+	}
+	
+	// 관리자페이지에서 여행작가 상세보기
+	public JoinTraveler getTravelerOne(String joinTravelerId) {
+		System.out.println(joinTravelerId + "<----JoinRequestService");
+		return joinRequestMapper.selectTravelerOne(Integer.parseInt(joinTravelerId));
+	}
+	
+	// 여행작가 가입 승인&거절
+	public void updateTravelerJoinRequest(String joinTravelerId, String adminId, String state) {
+		// 디버깅
+		System.out.println(joinTravelerId + "<---JoinRequestService");
+		System.out.println(adminId + "<---JoinRequestService");
+		System.out.println(state + "<---JoinRequestService");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("joinTravelerId", Integer.parseInt(joinTravelerId));
+		map.put("adminId", adminId);
+		map.put("state", state);
+		
+		joinRequestMapper.updateTravelerJoinRequest(map);
+	}
+	
+	// 여행작가 로그인 시 가입 요청 결과
+	public String getTravelerJoinRequestResult(String travelerId) {
+		// 디버깅
+		System.out.println(travelerId + "<---JoinRequestService");
+		return joinRequestMapper.selectTravelerJoinRequestResult(travelerId);
+	}
+	
+	// 여행작가 로그인 시 가입 요청 결과
+	public void deleteTravelerJoinRequest(String travelerId) {
+		// 디버깅
+		System.out.println(travelerId + "<---JoinRequestService");
+		// 선 요청 결과 삭제 후 회원가입 삭제...
+		joinRequestMapper.deleteTravelerJoinRequest(travelerId);
+		joinRequestMapper.deleteTravelerMembership(travelerId);
 	}
 }

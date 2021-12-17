@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.JoinRequestMapper">
-	
+	<!-- JoinTraveler와 Traveler vo를 합침 -->
 	<resultMap type="com.gdu.cast.vo.JoinTraveler" id="resultJoinTraveler">
 		<id column="join_traveler_id" property="joinTravelerId"></id>
 		<result column="traveler_id" property="travelerId"></result>
@@ -43,9 +43,22 @@
 		FROM join_traveler jt
 		JOIN traveler t ON jt.traveler_id = t.traveler_id
 		<where>
+			<choose>
+				<when test='(state != null or state == "") and (searchTitle != null or searchTitle == "")'>
+					jt.active LIKE '%${state}%' AND t.traveler_id LIKE '%${searchTitle}%'
+				</when>
+				<when test='state != null or state == ""'>
+					jt.active LIKE '%${state}%'
+				</when>
+				<when test='searchTitle != null or searchTitle == ""'>
+					t.traveler_id LIKE '%${searchTitle}%'
+				</when>
+			</choose>
+			<!-- 
 			<if test='state != null or searchTitle == ""'>
 				jt.active LIKE '%${state}%'
 			</if>
+			 -->
 		</where>
 		ORDER BY jt.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
@@ -57,9 +70,54 @@
 		FROM join_traveler jt
 		JOIN traveler t ON jt.traveler_id = t.traveler_id
 		<where>
+			<choose>
+				<when test='state != null or state == ""'>
+					jt.active LIKE '%${state}%'
+				</when>
+			</choose>
+			<!-- 
 			<if test='state != null or searchTitle == ""'>
 				jt.active LIKE '%${state}%'
 			</if>
+			 -->
 		</where>
 	</select>
+	
+	<!-- 여행작가 상세보기 -->
+	<select id="selectTravelerOne" parameterType="int" resultMap="resultJoinTraveler">
+		SELECT
+			jt.join_traveler_id, jt.active,
+			t.traveler_id, t.traveler_name, t.traveler_jumin, t.traveler_phonenum,
+			t.traveler_email, t.traveler_license, t.traveler_career
+		FROM join_traveler jt JOIN traveler t ON jt.traveler_id = t.traveler_id
+		WHERE jt.join_traveler_id = #{joinTravelerId}
+	</select>
+	
+	<!-- 여행작가 가입 요청 처리 시 -->
+	<update id="updateTravelerJoinRequest" parameterType="Map">
+		UPDATE join_traveler SET
+			active = #{state}, admin_id = #{adminId}, update_date = NOW()
+		WHERE join_traveler_id = #{joinTravelerId}
+	</update>
+	
+	<!-- 여행작가 로그인 시 가입 요청 결과 -->
+	<select id="selectTravelerJoinRequestResult" parameterType="String" resultType="String">
+		SELECT active active
+		FROM join_traveler
+		WHERE traveler_id = #{travelerId}
+		ORDER BY create_date DESC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- 여행작가 가입 거절시 요청 결과 삭제 -->
+	<delete id="deleteTravelerJoinRequest" parameterType="String">
+		DELETE FROM join_traveler
+		WHERE traveler_id = #{travelerId}
+	</delete>
+	
+	<!-- 여행작가 가입 거절시 여행작가 회원가입 삭제 -->
+	<delete id="deleteTravelerMembership" parameterType="String">
+		DELETE FROM traveler
+		WHERE traveler_id = #{travelerId}
+	</delete>
 </mapper>

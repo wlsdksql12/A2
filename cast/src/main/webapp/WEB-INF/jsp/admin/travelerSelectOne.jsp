@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix='form' uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,13 +13,17 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="${pageContext.request.contextPath}/resources/admin_template/img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - 고객 리스트</title>
+  <title>RuangAdmin - 여행작가 가입 요청</title>
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="${pageContext.request.contextPath}/resources/admin_template/css/ruang-admin.min.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
-
+<style>
+	input{
+		text-align: center;
+	}
+</style>
 <body id="page-top">
   <div id="wrapper">
     <!-- adminSidebar include -->
@@ -26,83 +31,73 @@
     
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
-       
-       <!-- adminTopbar include -->
+        
+        <!-- adminTopbar include -->
 		<%@ include file="adminTopbar.jsp"%>
-       
+		
         <!-- Container Fluid-->
         <div class="container-fluid" id="container-wrapper">
+        
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">여행작가 리스트</h1>
+            <h1 class="h3 mb-0 text-gray-800">여행작가 상세보기</h1>
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
-              <li class="breadcrumb-item">가입자리스트</li>
-              <li class="breadcrumb-item active" aria-current="page">여행작가리스트</li>
+              <li class="breadcrumb-item">가입승인요청리스트</li>
+              <li class="breadcrumb-item active" aria-current="page">여행작가상세보기</li>
             </ol>
           </div>
           <!-- Row -->
           <div class="row" style="text-align:center">
             <!-- DataTable with Hover -->
             <div class="col-lg-12">
-              <div class="card mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">여행작가 리스트</h6>
-                </div>
-                <div class="table-responsive p-3">
-                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-                    <thead class="thead-light">
-					<tr style="text-align:center" class="table-primary">
-						<th width="15%">아이디</th>
-						<th width="10%">이름</th>
-						<th width="15%">E-mail</th>
-						<th width="15%">전화번호</th>
-						<th width="15%">자격증</th>
-						<th width="15%">생성날짜</th>
-						<th width="15%">최근접속날짜</th>
-					</tr>
-					</thead>
-					<tbody>
-						<c:forEach items="${travelerList}" var="traveler">
-							<tr style="text-align:center">
-								<td>${traveler.travelerId}</td>
-								<td>${traveler.travelerName}</td>
-								<td>${traveler.travelerEmail}</td>
-								<td>${traveler.travelerPhoneNum}</td>
-								<td>${traveler.travelerLicense}</td>
-								<td>${fn:substring(traveler.createDate,0,10)}</td>
-								<td>${fn:substring(traveler.updateDate,0,10)}</td>
-							</tr>
-						</c:forEach>
-					</tbody>
-                  </table>
-                </div>
-                <div>
-					<c:if test="${startPage > 1}">
-						<a href="/admin/travelerList?currentPage=${startPage-1}&searchTitle=${searchTitle}&state=${state}" class="btn btn-outline-light text-dark">◁</a>
+            	<div class="card mb-4">
+            		<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                 		 <h6 class="m-0 font-weight-bold text-primary">여행작가 상세보기</h6>
+            		</div>
+            		<div class="table-responsive p-3">
+					<div class="input-form-backgroud row">
+					<div class="input-form col-md-12 mx-auto">
+					<div class="mb-3">
+						<label for="name">ID</label>
+						<input type="text" class="form-control" name="travelerName" value="${joinTraveler.traveler.travelerId}" readonly="readonly" required>
+					</div>
+					<div class="mb-3">
+						<label for="name">이름</label>
+						<input type="text" class="form-control" name="travelerName" value="${joinTraveler.traveler.travelerName}" readonly="readonly" required>
+					</div>
+					<div class="mb-3">
+						<label for="phonenumber">전화번호</label>
+						<input type="text" class="form-control" name="travelerPhoneNum" value="${joinTraveler.traveler.travelerPhoneNum}" readonly="readonly" required>
+					</div>
+					<div class="mb-3">
+						<label for="email">이메일</label>
+						<input type="text" class="form-control" name="travelerEmail" value="${joinTraveler.traveler.travelerEmail}" readonly="readonly"required>
+					</div>
+					<div class="mb-3">
+						<label for="license">라이센스</label>
+						<input type="text" class="form-control" name=travelerLicense value="${joinTraveler.traveler.travelerLicense}" readonly="readonly" required>
+					</div>
+					<div class="mb-3">
+						<label for="career">경력</label>
+						<input type="text" class="form-control" name="travelerCareer" value="${joinTraveler.traveler.travelerCareer}" readonly="readonly" required>
+					</div>
+					<c:if test="${joinTraveler.active eq '요청' }">
+						<a class="btn btn-outline-success" href="/admin/updateTravelerJoinRequest?joinTravelerId=${joinTraveler.joinTravelerId}&adminId=${loginAdminId}&state=승인">승인</a>
+						<a class="btn btn-outline-danger" href="/admin/updateTravelerJoinRequest?joinTravelerId=${joinTraveler.joinTravelerId}&adminId=${loginAdminId}&state=거절">거절</a>
 					</c:if>
-					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-						<c:choose>
-							<c:when test="${i == currentPage}">
-								<a href="/admin/travelerList?currentPage=${i}&searchTitle=${searchTitle}&state=${state}" class="btn btn-secondary">${i}</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/admin/travelerList?currentPage=${i}&searchTitle=${searchTitle}&state=${state}" class="btn btn-outline-light text-dark">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${lastPage != totalPage}">
-						<a href="/admin/travelerList?currentPage=${lastPage+1}&searchTitle=${searchTitle}&state=${state}" class="btn btn-outline-light text-dark">▷</a>
+					<c:if test="${joinTraveler.active eq '승인' }">
+						<hr>
+						<p>승인되었습니다</p>
+					</c:if>
+					<c:if test="${joinTraveler.active eq '거절' }">
+						<hr>
+						<p>거절되었습니다</p>
 					</c:if>
 				</div>
-				<br>
-				<form method="get" id="/admin/travelerList">
-					<input name="searchTitle" value="${searchTitle}">
-					<button>검색</button>
-				</form>
-				<br>
-              </div>
-            </div>
-          </div>
+			</div>
+		</div>
+       </div>
+      </div>
           <!--Row-->
           
           <!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->
@@ -125,7 +120,7 @@
       <!-- Footer -->
     </div>
   </div>
-
+</div>
   <!-- Scroll to top -->
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
@@ -138,7 +133,5 @@
   <!-- Page level plugins 삭제해도 문제 없을듯?-->
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/jquery.dataTables.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
 </body>
-
 </html>

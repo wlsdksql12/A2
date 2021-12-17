@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.service.AdminService;
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.service.CustomerService;
+import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.service.TravelerService;
 import com.gdu.cast.vo.Admin;
 import com.gdu.cast.vo.Ceo;
@@ -35,6 +36,7 @@ public class LoginContrlloer {
 	@Autowired CeoService ceoService;
 	@Autowired AdminService adminService;
 	@Autowired TravelerService travelerService;
+	@Autowired JoinRequestService joinRequestService;
 	
 	
 	@GetMapping("/loginSelect")
@@ -43,7 +45,7 @@ public class LoginContrlloer {
 	}
 	
 	@PostMapping("/index")
-	public String postCustomerLogin(HttpSession session, String login, String Id, String Pw) {
+	public String postCustomerLogin(HttpSession session, Model model, String login, String Id, String Pw) {
 		
 		
 		if(login.equals("adminLogin")) {
@@ -52,8 +54,15 @@ public class LoginContrlloer {
 			admin.setAdminId(Id);
 			admin.setAdminPw(Pw);
 			Admin loginAdmin = adminService.getSelectAdmin(admin);
+			
+			// 관리자 로그인 시 관리자 테이블에 해당하는 ID,PW 없을 시 리턴
+			if(loginAdmin == null) {
+				return "redirect:/loginSelect";
+			}
+			
 			session.setAttribute("loginAdminId", loginAdmin.getAdminId());
-
+			session.setAttribute("loginAdminName", loginAdmin.getAdminName());
+			
 			return "redirect:/index?adminId="+loginAdmin.getAdminId();
 		}
 		else if(login.equals("travelerLogin")) {
@@ -61,12 +70,24 @@ public class LoginContrlloer {
 			traveler.setTravelerId(Id);
 			traveler.setTravelerPw(Pw);
 			Traveler loginTraveler = travelerService.getSelectTraveler(traveler);
+			
+			// 12.17 추가...
+			// 여행작가 로그인 시 여행작가 테이블에 해당하는 ID,PW 없을 시 리턴
+			if(loginTraveler == null) {
+				return "redirect:/loginSelect";
+			}
+			String state = joinRequestService.getTravelerJoinRequestResult(Id);
+			System.out.println(state + "!@#!!@$!$#%");
+			
+			if(state.equals("요청")) {
+				return"joinRequesting";
+			} else if(state.equals("거절")) {
+				model.addAttribute("travelerId",Id);
+				return"joinRequestCancel";
+			}
+			
 			session.setAttribute("loginTravelerId", loginTraveler.getTravelerId());
-
 			return "redirect:/index";
-			
-			
-			
 			
 		}else if(login.equals("customerLogin")) {
 			// 현재 날짜
