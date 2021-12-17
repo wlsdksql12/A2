@@ -19,5 +19,5 @@ public interface ExperienceMapper {
 	// 체험 상세보기
 	Experience selectExperienceOne(int experienceId);
 	// 체험 전체 글 수
-	int selectExperienceTotalCount(String searchTitle);
+	int selectExperienceList(String searchTitle);
 }

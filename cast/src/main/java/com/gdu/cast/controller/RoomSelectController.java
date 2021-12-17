@@ -70,7 +70,7 @@ public class RoomSelectController {
 		return "traveler/roomSelectOne";
 	}
 	
-	// 여행작가 숙소 추천 리스트
+	// 자신이 쓴 숙소 추천 리스트 출력
 	@GetMapping("/roomSelectList")
 	public String roomSelectList(Model model, 
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
@@ -82,6 +82,7 @@ public class RoomSelectController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("travelerId", travelerId);
+		System.out.println(model + "model");
 		return "traveler/roomSelectList";
 	}
 }

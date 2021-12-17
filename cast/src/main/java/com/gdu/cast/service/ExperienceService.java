@@ -48,7 +48,7 @@ public class ExperienceService {
 		
 		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
 		
-		int totalCount = experienceMapper.selectExperienceTotalCount(searchTitle);
+		int totalCount = experienceMapper.selectExperienceList(searchTitle);
 		System.out.println(totalCount + "ExperienceService");
 		lastPage = startPage + displayPage - 1;
 		int totalPage = totalCount / ROW_PER_PAGE;

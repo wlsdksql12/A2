@@ -22,9 +22,9 @@ public interface RoomSelectMapper {
 	// 숙소 추천 상세보기
 	RoomSelect selectRoomSelectOne(int roomSelectId);
 	
-	// 숙소 추천 리스트
+	// 자신이 쓴 숙소 추천 리스트
 	List<RoomSelect> selectRoomSelectList(Map<String, Object> map);
 	
-	// 숙소 추천 전체 글 수
+	// 자신이 쓴 숙소 추천 글 수
 	int selectRoomSelectTotalCount(String travelerId);
 }

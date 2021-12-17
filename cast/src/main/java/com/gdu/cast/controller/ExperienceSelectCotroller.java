@@ -74,16 +74,14 @@ public class ExperienceSelectCotroller {
 	// 여행작가 체험 추천 리스트
 	@GetMapping("/experienceSelectList")
 	public String experienceSelectList(Model model,
-			@RequestParam(defaultValue = "1") int currentPage,
-			@RequestParam(required = false) String searchTitle) {
-			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
-		Map<String, Object> map = experienceSelectService.getSelectExperienceSelectList(searchTitle, currentPage, ROW_PER_PAGE);
+			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
+		Map<String, Object> map = experienceSelectService.getSelectExperienceSelectList(travelerId, currentPage, ROW_PER_PAGE);
 		model.addAttribute("experienceSelectList", map.get("experienceSelectList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("searchTitle", searchTitle);
+		model.addAttribute("travelerId", travelerId);
 		System.out.println(model + "model");
 		return "traveler/experienceSelectList";
 	}

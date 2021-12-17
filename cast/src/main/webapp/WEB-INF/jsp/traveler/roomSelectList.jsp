@@ -90,7 +90,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="experienceSelectList"
+                href="experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -885,6 +885,7 @@
                     >
                       <th class="px-3 py-3">번호</th>
                       <th class="px-10 py-10">제목</th>
+                      <th class="px-3 py-3">아이디</th>
                       <th class="px-10 py-10">작성 날짜</th>
                     </tr>
                   </thead>
@@ -898,6 +899,9 @@
                       </td>
                       <td class="px-10 py-10 text-sm"> 
                         <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}&travelerId=${loginTravelerId}">${roomSelect.roomSelectTitle}</a>
+                      </td>
+                       <td class="px-4 py-3">
+                          ${roomSelect.travelerId}
                       </td>
                       <td class="px-10 py-10 text-sm">
                         ${roomSelect.createDate.substring(0,10)}
@@ -913,7 +917,7 @@
                 <!-- Pagination -->
                 <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
 					<c:if test="${startPage > 1}">
-						<a href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
+						<a href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=${startPage-1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>

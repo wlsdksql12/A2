@@ -46,7 +46,7 @@ public class RoomSelectService {
 		return roomSelect;
 	}
 		
-	// 여행작가 숙소 추천 리스트
+	// 자신이 쓴 숙소 추천 리스트 출력
 	public Map<String, Object> getSelectRoomSelectList(String travelerId, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공

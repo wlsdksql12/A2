@@ -46,8 +46,8 @@ public class ExperienceSelectService {
 		return experienceSelect;
 	}
 	
-	// 여행작가 체험 추천 리스트
-	public Map<String, Object> getSelectExperienceSelectList(String searchTitle, int currentPage, int ROW_PER_PAGE) {
+	// 자신이 쓴 체험 추천 리스트
+	public Map<String, Object> getSelectExperienceSelectList(String travelerId, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공
 		Map<String, Object> paramMap = new HashMap<>();
@@ -59,8 +59,8 @@ public class ExperienceSelectService {
 		beginRow = (currentPage - 1) * ROW_PER_PAGE;
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
-		paramMap.put("searchTitle", searchTitle);
-		log.debug(searchTitle);
+		paramMap.put("travelerId", travelerId);
+		log.debug(travelerId);
 		
 		// 여행작가 체험 추천 리스트
 		List<ExperienceSelect> experienceSelectList = experienceSelectMapper.selectExperienceList(paramMap);
@@ -68,7 +68,7 @@ public class ExperienceSelectService {
 		// 2) 리턴값 가공
 		Map<String, Object> returnMap = new HashMap<>();
 		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
-		int totalCount = experienceSelectMapper.selectExperienceTotalCount(searchTitle);
+		int totalCount = experienceSelectMapper.selectExperienceTotalCount(travelerId);
 		lastPage = startPage + displayPage - 1;
 		int totalPage = totalCount / ROW_PER_PAGE;
 		if(totalCount % ROW_PER_PAGE != 0) {

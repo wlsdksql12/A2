@@ -60,11 +60,7 @@
 	<select id="selectExperienceTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM experience_select
-		<where>
-			<if test='searchTitle != null or searchTitle == ""'>
-			experience_select_title LIKE '%${searchTitle}%'
-			</if>
-		</where>
+		WHERE traveler_id = #{travelerId}
 	</select>
 
 	<!-- 여행작가 체험 추천 리스트 -->
@@ -75,11 +71,7 @@
 			experience_select_title experienceSelectTitle,
 			create_date createDate
 		FROM experience_select
-		<where>
-			<if test='searchTitle != null or searchTitle == ""'>
-			experience_select_title LIKE '%${searchTitle}%'
-			</if>
-		</where>
+		WHERE traveler_id = #{travelerId}
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
