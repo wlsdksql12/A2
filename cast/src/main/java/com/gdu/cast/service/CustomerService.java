@@ -13,6 +13,7 @@ import com.gdu.cast.mapper.AdminQnaMapper;
 import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
+import com.gdu.cast.vo.Delete_Id;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
 
@@ -141,4 +142,9 @@ public class CustomerService {
 		   return customerMapper.updateActiveZeroDate(customerId);
 	   }
 
+	   public String getselectDeleteId() {
+		   System.out.println(customerMapper.selectDeleteId() + "customerMapper.selectDeleteId()");
+		   
+		   return customerMapper.selectDeleteId();
+	   }
 }

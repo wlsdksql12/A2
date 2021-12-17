@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
+import com.gdu.cast.vo.Delete_Id;
 import com.gdu.cast.vo.Qna;
 
 @Mapper
@@ -42,5 +43,5 @@ public interface CustomerMapper {
 	// 활성화 상태 적용
 	int updateActiveOneDate(String CustomerId);
 	
-	
+	String selectDeleteId();
 }
