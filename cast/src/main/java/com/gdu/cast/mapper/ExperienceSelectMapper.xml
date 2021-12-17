@@ -42,7 +42,7 @@
 			experience_select_id = #{experienceSelectId}
 	</update>
 
-	<!-- 자신이 쓴 체험 추천 상세보기 -->
+	<!-- 자신이 등록한 체험 추천 상세보기 -->
 	<select id="selectExperienceSelectOne" parameterType="com.gdu.cast.vo.ExperienceSelect" resultType="com.gdu.cast.vo.ExperienceSelect">
 		SELECT 
 			experience_select_id experienceSelectId,
@@ -57,14 +57,14 @@
 		AND traveler_id = #{travelerId}
 	</select>
 
-	<!-- 자신이 쓴 체험 추천 글 수 -->
+	<!-- 자신이 등록한 체험 추천 글 수 -->
 	<select id="selectExperienceTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM experience_select
 		WHERE traveler_id = #{travelerId}
 	</select>
 
-	<!-- 자신이 쓴 체험 추천 리스트 -->
+	<!-- 자신이 등록한 체험 추천 리스트 -->
 	<select id="selectExperienceList" parameterType="Map" resultType="com.gdu.cast.vo.ExperienceSelect">
 		SELECT 
 			experience_select_id experienceSelectId,

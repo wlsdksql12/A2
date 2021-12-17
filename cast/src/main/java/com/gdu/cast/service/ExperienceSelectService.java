@@ -39,7 +39,7 @@ public class ExperienceSelectService {
 		experienceSelectMapper.updateExperienceSelect(experienceSelect);
 	}
 	
-	// 여행작가 체험 추천 상세보기
+	// 자신이 등록한 체험 추천 상세보기
 	public ExperienceSelect getexperienceSelectOne(int experienceSelectId, String travelerId) {
 		System.out.println(experienceSelectId + "<-- experienceSelectId");
 		System.out.println(travelerId + "<-- travelerId");
@@ -47,7 +47,7 @@ public class ExperienceSelectService {
 		return experienceSelect;
 	}
 	
-	// 자신이 쓴 체험 추천 리스트
+	// 자신이 등록한 체험 추천 리스트
 	public Map<String, Object> getSelectExperienceSelectList(String travelerId, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공

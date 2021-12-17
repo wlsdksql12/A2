@@ -53,15 +53,15 @@ public class RoomSelectController {
 		return "traveler/modifyRoomSelect";
 	}
 	
-	// 여행작가 숙소 추천 수정
+	// 자신이 등록한 숙소 추천 수정
 	@PostMapping("/modifyRoomSelect")
 	public String modifyRoomSelect(RoomSelect roomSelect) {
 		roomSelectService.modifyRoomSelect(roomSelect);
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
-		return "redirect:/roomSelectOne?roomSelectId="+roomSelect.getRoomSelectId();
+		return "redirect:/roomSelectOne?travelerId="+roomSelect.getTravelerId()+"&roomSelectId="+roomSelect.getRoomSelectId();
 	}
 	
-	// 자신이 쓴 숙소 추천 상세보기
+	// 자신이 등록한 숙소 추천 상세보기
 	@GetMapping("/roomSelectOne")
 	public String roomSelectOne(Model model, int roomSelectId, String travelerId) {
 		System.out.println(roomSelectId + "roomSelectId");
@@ -71,7 +71,7 @@ public class RoomSelectController {
 		return "traveler/roomSelectOne";
 	}
 	
-	// 자신이 쓴 숙소 추천 리스트 출력
+	// 자신이 등록한 숙소 추천 리스트 출력
 	@GetMapping("/roomSelectList")
 	public String roomSelectList(Model model, 
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {

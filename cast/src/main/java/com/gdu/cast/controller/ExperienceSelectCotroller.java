@@ -62,7 +62,7 @@ public class ExperienceSelectCotroller {
 		return "redirect:/roomSelectOne?experienceSelectId="+experienceSelect.getExperienceId();
 	}
 	
-	// 여행 작가 체험 추천 상세보기
+	// 자신이 등록한 체험 추천 상세보기
 	@GetMapping("/experienceSelectOne")
 	public String experienceSelectOne(Model model, int experienceSelectId, String travelerId) {
 		System.out.println(experienceSelectId + " <- experienceSelectId");
@@ -72,7 +72,7 @@ public class ExperienceSelectCotroller {
 		return "traveler/experienceSelectOne";
 	}
 	
-	// 자신이 쓴 체험 추천 리스트 출력
+	// 자신이 등록한 체험 추천 리스트 출력
 	@GetMapping("/experienceSelectList")
 	public String experienceSelectList(Model model,
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {

@@ -33,13 +33,13 @@ public class RoomSelectService {
 		roomSelectMapper.deleteRoomSelect(roomSelect);
 	}
 	
-	// 여행작가 숙소 추천 수정
+	// 자신이 등록한 숙소 추천 수정
 	public void modifyRoomSelect(RoomSelect roomSelect) {
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		roomSelectMapper.updateRoomSelect(roomSelect);
 	}
 
-	// 여행작가 숙소 추천 상세보기
+	// 자신이 등록한 숙소 추천 상세보기
 	public RoomSelect getroomSelectOne(int roomSelectId, String travelerId) {
 		System.out.println(roomSelectId + "<-- roomSelectId");
 		System.out.println(travelerId + "<-- travelerId");
@@ -47,7 +47,7 @@ public class RoomSelectService {
 		return roomSelect;
 	}
 		
-	// 자신이 쓴 숙소 추천 리스트 출력
+	// 자신이 등록한 숙소 추천 리스트 출력
 	public Map<String, Object> getSelectRoomSelectList(String travelerId, int currentPage, int ROW_PER_PAGE) {
 		
 		// 1) 매개변수 가공

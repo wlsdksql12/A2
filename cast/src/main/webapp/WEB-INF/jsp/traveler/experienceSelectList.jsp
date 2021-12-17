@@ -897,7 +897,7 @@
                           ${experienceSelect.experienceSelectId}
                       </td>
                       <td class="px-10 py-10 text-sm">
-                        <a href="/experienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}&travelerId=${loginTravelerId}">${experienceSelect.experienceSelectTitle}</a>
+                        <a href="/experienceSelectOne?travelerId=${loginTravelerId}&experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
                       </td>
                       <td class="px-4 py-3">
                           ${experienceSelect.travelerId}

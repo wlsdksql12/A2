@@ -907,14 +907,14 @@
                       </td>
                     </tr>
                     <tr>
-						<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none; width:100%;" rows="10" readonly="readonly">${roomSelect.roomSelectContent}</textarea></td>		
+						<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none; outline: none; width:100%;" rows="10" readonly="readonly">${roomSelect.roomSelectContent}</textarea></td>		
 					</tr>
                   </tbody>
                 </table>
                 <p></p>
 				<div style="text-align:center;">
 					<input type="button" class="btn btn-primary center" value="이전" onclick="history.back(-1)">
-					<a class="btn btn-warning center" href="/modifyRoomSelect?roomSelectId=${roomSelect.roomSelectId}">수정</a>
+					<a class="btn btn-warning center" href="/modifyRoomSelect?travelerId=${roomSelect.travelerId}&roomSelectId=${roomSelect.roomSelectId}">수정</a>
 					<a class="btn btn-danger center" href="/removeRoomSelect?roomSelectId=${roomSelect.roomSelectId}">삭제</a>
 				</div>
               </div>

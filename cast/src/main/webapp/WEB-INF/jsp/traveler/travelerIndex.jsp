@@ -993,7 +993,7 @@
                           ${roomSelect.roomSelectId}
                       </td>
                       <td class="px-10 py-10 text-sm"> 
-                        <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}&travelerId=${loginTravelerId}">${roomSelect.roomSelectTitle}</a>
+                        <a href="/roomSelectOne?travelerId=${loginTravelerId}&roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
                       </td>
                        <td class="px-4 py-3">
                           ${roomSelect.travelerId}
@@ -1058,7 +1058,7 @@
                           ${experienceSelect.experienceSelectId}
                       </td>
                       <td class="px-10 py-10 text-sm">
-                        <a href="/experienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}&travelerId=${loginTravelerId}">${experienceSelect.experienceSelectTitle}</a>
+                        <a href="/experienceSelectOne?travelerId=${loginTravelerId}&experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
                       </td>
                       <td class="px-4 py-3">
                           ${experienceSelect.travelerId}

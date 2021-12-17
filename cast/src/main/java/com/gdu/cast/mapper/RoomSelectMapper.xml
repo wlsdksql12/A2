@@ -31,7 +31,7 @@
 		AND traveler_id = #{travelerId}
 	</delete>
 	
-	<!-- 여행작가 숙소 추천 수정 -->
+	<!-- 자신이 등록한 여행작가 숙소 추천 수정 -->
 	<update id="updateRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
 		UPDATE room_select
 		SET 
@@ -40,9 +40,10 @@
 			update_date = NOW()
 		WHERE 
 			room_select_id = #{roomSelectId}
+		AND traveler_id = #{travelerId}
 	</update>
 
-	<!-- 자신이 쓴 숙소 추천 상세보기 -->
+	<!-- 자신이 등록한 숙소 추천 상세보기 -->
 	<select id="selectRoomSelectOne" parameterType="com.gdu.cast.vo.RoomSelect" resultType="com.gdu.cast.vo.RoomSelect">
 		SELECT 
 			room_select_id roomSelectId,
@@ -57,14 +58,14 @@
 		AND traveler_id = #{travelerId}
 	</select>
 	
-	<!-- 자신이 쓴 숙소 추천 글 수 -->
+	<!-- 자신이 등록한 숙소 추천 글 수 -->
 	<select id="selectRoomSelectTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
 		FROM room_select
 		WHERE traveler_id = #{travelerId}
 	</select>
 	
-	<!-- 자신이 쓴 숙소 추천 리스트 -->
+	<!-- 자신이 등록한 숙소 추천 리스트 -->
 	<select id="selectRoomSelectList" parameterType="Map" resultType="com.gdu.cast.vo.RoomSelect">
 		SELECT 
 			room_select_id roomSelectId,

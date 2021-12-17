@@ -898,7 +898,7 @@
                           ${roomSelect.roomSelectId}
                       </td>
                       <td class="px-10 py-10 text-sm"> 
-                        <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}&travelerId=${loginTravelerId}">${roomSelect.roomSelectTitle}</a>
+                        <a href="/roomSelectOne?travelerId=${loginTravelerId}&roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
                       </td>
                        <td class="px-4 py-3">
                           ${roomSelect.travelerId}
