@@ -31,8 +31,8 @@ public class ExperienceSelectCotroller {
 	
 	// 여행작가 체험 추천 삭제
 	@GetMapping("/removeExperienceSelect")
-	public String removeExperienceSelect(Model model, int experienceSelectId) {
-		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId);
+	public String removeExperienceSelect(Model model, int experienceSelectId, String travelerId) {
+		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId, travelerId);
 		System.out.println(experienceSelectId+"<-- experienceSelectId");
 		model.addAttribute("experienceSelect", experienceSelect);
 		System.out.println(experienceSelect+"< -- experienceSelect");
@@ -48,8 +48,8 @@ public class ExperienceSelectCotroller {
 	
 	// 여행작가 체험 추천 수정
 	@GetMapping("/modifyExperienceSelect")
-	public String modifyExperienceSelect(Model model, int experienceSelectId) {
-		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId);
+	public String modifyExperienceSelect(Model model, int experienceSelectId, String travelerId) {
+		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId, travelerId);
 		model.addAttribute("experienceSelect", experienceSelect);
 		return "traveler/modifyExperienceSelect";
 	}
@@ -64,9 +64,10 @@ public class ExperienceSelectCotroller {
 	
 	// 여행 작가 체험 추천 상세보기
 	@GetMapping("/experienceSelectOne")
-	public String experienceSelectOne(Model model, int experienceSelectId) {
+	public String experienceSelectOne(Model model, int experienceSelectId, String travelerId) {
 		System.out.println(experienceSelectId + " <- experienceSelectId");
-		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId);
+		System.out.println(travelerId + "<-- travelerId");
+		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId, travelerId);
 		model.addAttribute("experienceSelect", experienceSelect);
 		return "traveler/experienceSelectOne";
 	}

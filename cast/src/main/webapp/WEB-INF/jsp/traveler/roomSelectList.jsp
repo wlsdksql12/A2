@@ -177,7 +177,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="buttons.html"
+                href="button"
               >
                 <svg
                   class="w-5 h-5"
@@ -883,10 +883,10 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-3 py-3">번호</th>
-                      <th class="px-10 py-10">제목</th>
-                      <th class="px-3 py-3">아이디</th>
-                      <th class="px-10 py-10">작성 날짜</th>
+                      <th class="px-3 py-3" width="20%">번호</th>
+                      <th class="px-10 py-10" width="40%">제목</th>
+                      <th class="px-4 py-3" width="20%">아이디</th>
+                      <th class="px-4 py-3" width="20%">작성 날짜</th>
                     </tr>
                   </thead>
                   <tbody
@@ -894,7 +894,7 @@
                   >
 					<c:forEach items="${roomSelectList}" var="roomSelect">
                     <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3">
+                      <td class="px-5 py-4">
                           ${roomSelect.roomSelectId}
                       </td>
                       <td class="px-10 py-10 text-sm"> 
@@ -903,7 +903,7 @@
                        <td class="px-4 py-3">
                           ${roomSelect.travelerId}
                       </td>
-                      <td class="px-10 py-10 text-sm">
+                      <td class="px-4 py-3 text-sm">
                         ${roomSelect.createDate.substring(0,10)}
                       </td>
                     </tr>

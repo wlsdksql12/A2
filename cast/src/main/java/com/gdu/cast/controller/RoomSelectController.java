@@ -32,8 +32,8 @@ public class RoomSelectController {
 	
 	// 여행작가 숙소 추천 삭제
 	@GetMapping("/removeRoomSelect")
-	public String removeRoomSelect(Model model, int roomSelectId) {
-		RoomSelect roomSelect = roomSelectService.getroomSelectOne(roomSelectId);
+	public String removeRoomSelect(Model model, int roomSelectId, String travelerId) {
+		RoomSelect roomSelect = roomSelectService.getroomSelectOne(roomSelectId, travelerId);
 		model.addAttribute("roomSelect", roomSelect);
 		return "traveler/removeRoomSelect";
 	}
@@ -47,8 +47,8 @@ public class RoomSelectController {
 	
 	// 여행작가 숙소 추천 수정
 	@GetMapping("/modifyRoomSelect")
-	public String modifyRoomSelect(Model model, int roomSelectId) {
-		RoomSelect roomSelect = roomSelectService.getroomSelectOne(roomSelectId);
+	public String modifyRoomSelect(Model model, int roomSelectId, String travelerId) {
+		RoomSelect roomSelect = roomSelectService.getroomSelectOne(roomSelectId, travelerId);
 		model.addAttribute("roomSelect", roomSelect);
 		return "traveler/modifyRoomSelect";
 	}
@@ -61,11 +61,12 @@ public class RoomSelectController {
 		return "redirect:/roomSelectOne?roomSelectId="+roomSelect.getRoomSelectId();
 	}
 	
-	// 여행 작가 숙소 추천 상세보기
+	// 자신이 쓴 숙소 추천 상세보기
 	@GetMapping("/roomSelectOne")
-	public String roomSelectOne(Model model, int roomSelectId) {
+	public String roomSelectOne(Model model, int roomSelectId, String travelerId) {
 		System.out.println(roomSelectId + "roomSelectId");
-		RoomSelect roomSelect = roomSelectService.getroomSelectOne(roomSelectId);
+		System.out.println(travelerId + "travelerId");
+		RoomSelect roomSelect = roomSelectService.getroomSelectOne(roomSelectId, travelerId);
 		model.addAttribute("roomSelect", roomSelect);
 		return "traveler/roomSelectOne";
 	}

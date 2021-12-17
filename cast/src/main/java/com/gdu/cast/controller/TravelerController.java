@@ -99,6 +99,11 @@ public class TravelerController {
 		return "traveler/travelerIndex";
 	} 
 	*/
+	// 여행작가 메인 버튼
+	@GetMapping("/button")
+	public String button() {
+		return "traveler/button";
+	}
 	
 	// 여행작가 로그아웃
 	@GetMapping("/travelerLogout")

@@ -20,7 +20,7 @@ public interface RoomSelectMapper {
 	int updateRoomSelect(RoomSelect roomSelect);
 	
 	// 숙소 추천 상세보기
-	RoomSelect selectRoomSelectOne(int roomSelectId);
+	RoomSelect selectRoomSelectOne(int roomSelectId, String travelerId);
 	
 	// 자신이 쓴 숙소 추천 리스트
 	List<RoomSelect> selectRoomSelectList(Map<String, Object> map);
