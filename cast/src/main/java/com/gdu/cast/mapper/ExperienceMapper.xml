@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceMapper">
+	
+	<resultMap type="com.gdu.cast.vo.Experience" id="resultExperience">
+		<result column="experience_id" property="experienceId" />
+		<result column="ceo_id" property="ceoId" />
+		<result column="address_id" property="addressId" />
+		<result column="experience_name" property="experienceName" />
+		<result column="experience_content" property="experienceContent" />
+		<result column="experience_price" property="experiencePrice" />
+		<result column="experience_startdate" property="experienceStartdate" />
+		<result column="experience_enddate" property="experienceEnddate" />
+		<result column="experience_person" property="experiencePerson" />
+		<result column="experience_create_date" property="createDate" />
+		<result column="experience_update_date" property="updateDate" />
+		<association property="address" javaType="com.gdu.cast.vo.Address">
+			<result column="address_id" property="addressId" />
+			<result column="postcode" property="postcode" />
+			<result column="road_address" property="roadAddress" />
+			<result column="jibun_address" property="jibunAddress" />
+			<result column="detail_address" property="detailAddress" />
+			<result column="extra_address" property="extraAddress" />
+			<result column="lat" property="lat" />
+			<result column="lng" property="lng" />
+		</association>
+	</resultMap>
+	
    <!-- 체험 추가 -->
    <insert id="insertExp" parameterType="com.gdu.cast.vo.Experience">
       INSERT INTO
@@ -82,7 +107,7 @@
       </where>
    </select>
    
-   <select id="selectExperienceOne" parameterType="int" resultType="com.gdu.cast.vo.Experience">
+   <select id="selectExperienceOne" parameterType="int" resultMap="resultExperience">
    		SELECT *
 		FROM address a INNER JOIN experience e
 		ON a.address_id = e.address_id
