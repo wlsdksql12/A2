@@ -138,11 +138,7 @@
                                     </c:forEach>
                                 </tbody>
                             </table>
-		
-		
-		
-		
-		
+
 		            <div style="text-align: right;">
             	<a class="btn btn-outline-success" href="/addMainExperienceSelectComment?customerId=${loginCustomerId}&experienceSelectId=${experienceSelect.experienceSelectId}&currentPage=${currentPage}">댓글작성</a>
             </div>
