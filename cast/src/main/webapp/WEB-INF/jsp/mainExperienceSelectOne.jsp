@@ -112,6 +112,8 @@
                                         <th>작성자</th>
                                         <th>내용</th>
                                         <th>작성 날짜</th>
+                                        <th>수정</th>
+                                        <th>삭제</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -122,6 +124,16 @@
                                         <td>${comment.customerId}</td>
                                         <td>${comment.experienceSelectContent}</td>
                                         <td>${comment.createDate.substring(0,10)}</td>
+                                      
+                                        <c:if test="${loginCustomerId == comment.customerId}">
+                                         <td>
+                                        <a href="">수정</a>
+                                        </td>
+                                        <td>
+                                        <a href="">삭제</a>
+                                        </td>
+                                        </c:if>
+                                       
                                     </tr>
                                    
                                     </c:forEach>
@@ -133,7 +145,7 @@
 		
 		
 		            <div style="text-align: right;">
-            	<a class="btn btn-outline-success" href="/addMainQna?customerId=${loginCustomerId}">댓글작성</a>
+            	<a class="btn btn-outline-success" href="/addMainExperienceSelectComment?customerId=${loginCustomerId}&experienceSelectId=${experienceSelect.experienceSelectId}&currentPage=${currentPage}">댓글작성</a>
             </div>
             <br>
             <div style="text-align: center;">

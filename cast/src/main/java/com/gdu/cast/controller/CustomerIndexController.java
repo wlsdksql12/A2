@@ -125,12 +125,11 @@ public class CustomerIndexController {
 	}
 	
 	//고객 qna 삭제
-	@GetMapping("deleteQna")
+	@GetMapping("/deleteQna")
 	public String deleteQna(Qna qna) {
-		
 		customerService.deleteQnaOne(qna);
 		log.debug(qna + "<-- qnad@@@@@@@@@@@@@@@@@@");
-		return "redirect:/customerIndex?customerId="+qna.getCustomerId()+"&currentPage=1";
+		return "redirect:/customer/customerIndex?customerId="+qna.getCustomerId()+"&currentPage=1";
 		
 	}
 	

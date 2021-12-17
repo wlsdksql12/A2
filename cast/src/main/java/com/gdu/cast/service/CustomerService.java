@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gdu.cast.mapper.AdminQnaMapper;
 import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Qna;
+import com.gdu.cast.vo.QnaComment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 @Transactional
 public class CustomerService {
 	@Autowired CustomerMapper customerMapper;
-	
+	@Autowired AdminQnaMapper adminQnaMapper;
 	//고객 회원가입
 	public void getaddCustomer(Customer customer) {
 		String customerId = customer.getCustomerId();
@@ -98,7 +100,7 @@ public class CustomerService {
 	   }
 	   // qna 삭제
 	   public int deleteQnaOne(Qna qna) {
-		   
+		   adminQnaMapper.deleteQnaComment(qna);
 		   return customerMapper.deleteQnaOne(qna);
 	   }
 	   

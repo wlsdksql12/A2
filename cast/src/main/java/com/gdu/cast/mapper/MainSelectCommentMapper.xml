@@ -20,4 +20,23 @@
 	SELECT COUNT(*) 
 	FROM experience_select_comment
 	</select>
+	
+	<!-- experience select comment add -->
+	<insert id="ExperienceSelectInsertcomment" parameterType="com.gdu.cast.vo.ExperienceSelectComment">
+		INSERT INTO Experience_Select_Comment(
+		customer_id,
+		experience_select_id,
+		experience_select_content,
+		create_Date,
+		update_Date
+	) VALUES(
+		#{customerId},
+		#{experienceSelectId},
+		#{experienceSelectContent},
+		now(),
+		now()	
+	)
+	</insert>
+	
+	
 </mapper>

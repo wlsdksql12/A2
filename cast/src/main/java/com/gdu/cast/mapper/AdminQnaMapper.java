@@ -27,7 +27,7 @@ public interface AdminQnaMapper {
 	List<Qna> selectNotQnaCommentList(Map<String, Object> map);
 	
 	// Qna 답변 삭제
-	void deleteQnaComment(QnaComment qnaComment);
+	int deleteQnaComment(Qna qna);
 	
 	//Qna 답변 수정
 	void updateQnaCommnet(QnaComment qnaComment);

@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.MainSelectCommentService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.RoomSelect;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +35,7 @@ public class MainSelectController {
 		Map<String, Object> map = mainSelectCommentService.getexperienceSelectComment(currentPage, row_per_page,experienceSelectId);
 		
 		model.addAttribute("selectCommentList", map.get("selectCommentList"));
+		
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
@@ -81,5 +84,25 @@ public class MainSelectController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchTitle", searchTitle);
 		return "mainRoomSelect";
+	}
+	////메인 체험 상세보기 댓글 추가
+	@GetMapping("/addMainExperienceSelectComment")
+	public String getaddMainExperienceSelectComment(Model model,String customerId, int experienceSelectId, int currentPage) {
+		model.addAttribute("customerId",customerId);
+		model.addAttribute("experienceSelectId",experienceSelectId);
+		model.addAttribute("currentPage",currentPage);
+		return "addMainExperienceSelectComment";
+	}
+	
+	
+	
+	//메인 체험 상세보기 댓글 추가
+	@PostMapping("/addMainExperienceSelectComment")
+	public String postaddMainExperienceSelectComment(Model model, ExperienceSelectComment experienceSelectComment) {
+		System.out.println(experienceSelectComment.getCustomerId()+ "@#@#@#experienceSelectComment2#@#@#");
+		mainSelectCommentService.getExperienceSelectInsertComment(experienceSelectComment);
+		
+		return "redirect:/mainExperienceSelectOne?experienceSelectId="+experienceSelectComment.experienceSelectId;
+		
 	}
 }

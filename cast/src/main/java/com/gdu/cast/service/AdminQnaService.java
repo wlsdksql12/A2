@@ -79,8 +79,8 @@ public class AdminQnaService {
 			return returnMap;
 	   }
 	 
-	 public void deleteQnaComment(QnaComment qnaCommnet) {
-		 adminQnaMapper.deleteQnaComment(qnaCommnet);
+	 public void deleteQnaComment(Qna qna) {
+		 adminQnaMapper.deleteQnaComment(qna);
 	 }
 	 
 	 public void updateQnaComment(QnaComment qnaCommnet) {

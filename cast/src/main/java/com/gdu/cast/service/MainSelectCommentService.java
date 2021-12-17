@@ -54,4 +54,11 @@ public class MainSelectCommentService {
 			
 			return returnMap;
 	}
+	
+	//메인 체험 추천 댓글 추가
+	public void getExperienceSelectInsertComment(ExperienceSelectComment experienceSelectComment) {
+		System.out.println(experienceSelectComment.getCustomerId() + "experienceSelectComment. service");
+		mainSelectCommentMapper.ExperienceSelectInsertcomment(experienceSelectComment);
+		
+	}
 }

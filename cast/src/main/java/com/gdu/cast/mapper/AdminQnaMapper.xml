@@ -48,9 +48,9 @@
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
-	<delete id="deleteQnaComment" parameterType="com.gdu.cast.vo.QnaComment">
+	<delete id="deleteQnaComment" parameterType="int">
 		DELETE FROM qna_comment
-		WHERE qna_id = #{qnaId} AND admin_id = #{adminId}
+		WHERE qna_id = #{qnaId}
 	</delete>
 	
 	<update id="updateQnaCommnet" parameterType="com.gdu.cast.vo.QnaComment">

@@ -258,7 +258,7 @@
 									<div style="margin-left: auto;">
 										<c:if test="${loginCustomerId == customerId}">
 												<a href="/updateQna?qnaId=${qnaId}&customerId=${customerId}&currentPage=${currentPage}" id="insertBtn" class="btn btn-outline-success">수정</a>
-												<a href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
+												<a href="/deleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
 										</c:if>
 									</div>
 									

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.gdu.cast.service.AdminQnaService;
+import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +33,6 @@ public class AdminQnaController {
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("currentPage", currentPage);
 		
-		
 		return "/admin/qnaList";
 	}
 	
@@ -50,7 +50,6 @@ public class AdminQnaController {
 		
 		adminQnaService.insertQnaComment(qnaComment);
 		
-		
 		return "redirect:/mainQnaListOne?qnaId="+qnaComment.getQnaId();
 		
 	}
@@ -63,10 +62,10 @@ public class AdminQnaController {
 	}
 	
 	@PostMapping("/admin/deleteQnaComment")
-	public String deleteQnaComment(QnaComment qnaComment) {
-		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + qnaComment + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
-		adminQnaService.deleteQnaComment(qnaComment);
-		return "redirect:/mainQnaListOne?qnaId="+qnaComment.getQnaId();
+	public String deleteQnaComment(Qna qna) {
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + qna + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		adminQnaService.deleteQnaComment(qna);
+		return "redirect:/mainQnaListOne?qnaId="+qna.getQnaId();
 		
 	}
 	
