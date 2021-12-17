@@ -1,5 +1,7 @@
 package com.gdu.cast.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,11 +42,11 @@ public class SettingCustomerController {
 	   
 	   //회원 탈퇴 페이지
 	   @PostMapping("/deleteCustomer")
-	   public String getDeleteCustomer(Customer customer) {
+	   public String getDeleteCustomer(Customer customer, HttpSession session) {
 		   settingCustomerService.getInsertDeleteId(customer.getCustomerId());
 		   settingCustomerService.getdeleteCustomerLogin(customer.getCustomerId());
 		   settingCustomerService.getDeleteCustomer(customer.getCustomerId(), customer.getCustomerPw());
-		  
+		   session.invalidate();
 		   return "redirect:/loginSelect";
 	   }
 	   
