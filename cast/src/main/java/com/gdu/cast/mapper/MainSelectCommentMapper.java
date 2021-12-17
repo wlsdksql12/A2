@@ -22,4 +22,12 @@ public interface MainSelectCommentMapper {
 	int ExperienceSelectDeletecomment(ExperienceSelectComment experienceSelectComment);
 	// 숙소 추천 댓글 리스트 출력
 	List<RoomSelectComment> roomSelectComment(Map<String, Object> map);
+	//숙소 추천 댓글 리스트 페이징
+	int roomCommentTotalCount();
+	//숙소 추천 댓글 수정
+	int roomSelectUpdatecomment(RoomSelectComment roomSelectComment);
+	// 숙소 추천 댓글 삭제
+	int roomSelectDeletecomment(RoomSelectComment roomSelectComment);
+	// 숙소 추천 댓글 추가
+	void roomSelectInsertcomment(RoomSelectComment roomSelectComment);
 }

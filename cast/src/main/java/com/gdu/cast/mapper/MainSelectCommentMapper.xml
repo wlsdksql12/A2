@@ -68,4 +68,40 @@
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
+			<!--  room select comment list 페이징 -->
+	<select id="roomCommentTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM room_select_comment
+	</select>
+	
+		<!-- 숙소 추천 댓글 수정  -->
+	<update id="roomSelectUpdatecomment" parameterType="com.gdu.cast.vo.RoomSelectComment">
+		UPDATE room_select_comment 
+		SET room_select_content = #{roomSelectContent}, update_date = now()
+		WHERE room_select_comment_id = #{roomSelectCommentId}
+	</update>
+	
+	<!-- 숙소 추천 댓글 삭제 -->
+	<delete id="roomSelectDeletecomment" parameterType="com.gdu.cast.vo.RoomSelectComment">
+		DELETE
+		FROM room_select_comment 
+		WHERE room_select_comment_id = #{roomSelectCommentId}
+	</delete>
+	
+		<!-- room select comment add -->
+	<insert id="roomSelectInsertcomment" parameterType="com.gdu.cast.vo.RoomSelectComment">
+		INSERT INTO Room_Select_Comment(
+		customer_id,
+		room_select_id,
+		room_select_content,
+		create_Date,
+		update_Date
+	) VALUES(
+		#{customerId},
+		#{roomSelectId},
+		#{roomSelectContent},
+		now(),
+		now()	
+	)
+	</insert>
 </mapper>

@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.RoomSelectComment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,9 +49,18 @@ public class MainSelectController {
 	
 	// 메인 페이지의 숙소 추천 상세보기
 	@GetMapping("/mainRoomSelectOne")
-	public String roomSelectOne(Model model, int roomSelectId) {
+	public String roomSelectOne(Model model, int roomSelectId , @RequestParam(defaultValue = "1") int currentPage) {
 		System.out.println(roomSelectId + "roomSelectId");
 		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
+		
+		Map<String, Object> list = mainSelectCommentService.getroomSelectComment(currentPage, row_per_page, roomSelectId);
+		
+		model.addAttribute("selectCommentList", list.get("selectCommentList"));
+		model.addAttribute("startPage", list.get("startPage"));
+		model.addAttribute("lastPage", list.get("lastPage"));
+		model.addAttribute("totalPage", list.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+
 		model.addAttribute("roomSelect", roomSelect);
 		return "mainRoomSelectOne";
 	}
@@ -131,4 +142,48 @@ public class MainSelectController {
 		return "redirect:/mainExperienceSelectOne?experienceSelectId=" + experienceSelectComment.experienceSelectId + "&currentPage="+currentPage;
 	}
 	
+	//메인 숙소 댓글 update
+	@GetMapping("/updateMainRoomSelectComment")
+	public String getupdateMainRoomSelectComment(Model model,int roomSelectCommentId, int currentPage, String customerId, int roomSelectId) {
+		model.addAttribute("roomSelectCommentId", roomSelectCommentId);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("customerId", customerId);
+		model.addAttribute("roomSelectId", roomSelectId);
+		return "updateMainRoomSelectComment";
+	}
+	
+	//메인 숙소 댓글 update
+	@PostMapping("/updateMainRoomSelectComment")
+	public String postUpdateMainRoomSelectComment( int currentPage,RoomSelectComment roomSelectComment) {
+
+		mainSelectCommentService.getRoomSelectUpdatecomment(roomSelectComment);
+		
+		return "redirect:/mainRoomSelectOne?roomSelectId=" + roomSelectComment.getRoomSelectId() + "&currentPage="+currentPage;
+		
+	}
+	// 메인 체험 댓글 삭제
+	@GetMapping("/deleteMainRoomSelectComment")
+	public String deleteMainRoomSelectComment(int currentPage,RoomSelectComment roomSelectComment) {
+		mainSelectCommentService.getRoomSelectDeletecomment(roomSelectComment);
+	
+		return "redirect:/mainRoomSelectOne?roomSelectId=" + roomSelectComment.getRoomSelectId()+ "&currentPage="+currentPage;
+	}
+	
+	//메인 숙소 상세보기 댓글 추가
+	@GetMapping("/addMainRoomSelectComment")
+	public String getaddMainRoomSelectComment(Model model,String customerId, int roomSelectId, int currentPage) {
+		model.addAttribute("customerId",customerId);
+		model.addAttribute("roomSelectId",roomSelectId);
+		model.addAttribute("currentPage",currentPage);
+		return "addMainRoomSelectComment";
+	}
+	
+	//메인 숙소 상세보기 댓글 추가
+	@PostMapping("/addMainRoomSelectComment")
+	public String postaddMainRoomSelectComment(Model model, RoomSelectComment roomSelectComment) {
+		mainSelectCommentService.getRoomSelectInsertComment(roomSelectComment);
+		
+		return "redirect:/mainRoomSelectOne?roomSelectId="+roomSelectComment.roomSelectId;
+		
+	}
 }

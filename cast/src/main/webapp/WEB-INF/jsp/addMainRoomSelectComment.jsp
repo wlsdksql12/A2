@@ -80,95 +80,17 @@
           <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
       </li>
     </ul>
-   	<div style="text-align:center">
-   		<table class="table mb-0" >
-			<thead class="thead-light">
-				<tr>
-					<th width="10%">번호</th>
-					<th width="60%">제목</th>
-					<th width="10%">아이디</th>
-					<th width="20%">작성날짜</th>
-				</tr>
-			</thead>
-			<tbody>
-					<tr style="text-align:center">
-						<td>${roomSelect.roomSelectId}</td>
-						<td>${roomSelect.roomSelectTitle}</td>
-						<td>${roomSelect.travelerId}</td>
-						<td>${fn:substring(roomSelect.createDate,0,10)}</td>
-					</tr>
-			<tr>
-				<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none;" rows="10" cols="100" readonly="readonly">${roomSelect.roomSelectContent}</textarea></td>		
-			</tr>
-		</table>
-		<p></p>
-		<input type="button" value="이전" onclick="history.back(-1)">	
-		
-		
-		 <table style="text-align:center" class="table table-hover mb-0">
-        
-                                <thead>
-                                    <tr>
-                                        <th>작성자</th>
-                                        <th>내용</th>
-                                        <th>작성 날짜</th>
-                                        <th>수정</th>
-                                        <th>삭제</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                 <c:forEach items="${selectCommentList}"  var="comment">
-                                	
-                                    <tr>
+    
+	<form method ="post" action="/addMainRoomSelectComment">
+	<div>작성자</div>
+	<input type="text" name="customerId" value="${customerId}" readonly="readonly">
+	<div>내용</div>
+	<input type="text" name="roomSelectContent">
+	<input type="hidden" name ="roomSelectId" value="${roomSelectId}">
+	<button type="submit">입력</button>
+	</form>
+	<a href="javascript:history.back(-1)">뒤로가기</a>
 
-                                        <td>${comment.customerId}</td>
-                                        <td>${comment.roomSelectContent}</td>
-                                        <td>${comment.createDate.substring(0,10)}</td>
-                                      
-                                        <c:if test="${loginCustomerId == comment.customerId}">
-                                         <td>
-                                        <a href="/updateMainRoomSelectComment?roomSelectCommentId=${comment.roomSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&roomSelectId=${comment.roomSelectId}">수정</a>
-                                        </td>
-                                        <td>
-                                        <a href="/deleteMainRoomSelectComment?roomSelectCommentId=${comment.roomSelectCommentId}&currentPage=${currentPage}&roomSelectId=${comment.roomSelectId}">삭제</a>
-                                        </td>
-                                        </c:if>
-                                    </tr>
-                                   
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-
-		            <div style="text-align: right;">
-            	<a class="btn btn-outline-success" href="/addMainRoomSelectComment?customerId=${loginCustomerId}&roomSelectId=${roomSelect.roomSelectId}&currentPage=${currentPage}">댓글작성</a>
-            </div>
-            <br>
-            <div style="text-align: center;">
-			<c:if test="${startPage > 1}">
-				<a href="/mainRoomSelectOne?experienceSelectId=${roomSelect.roomSelectId}&currentPage=${startPage-1}" class="btn btn-outline-light text-dark">◁</a>
-			</c:if>
-			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-				<c:choose>
-					<c:when test="${i == currentPage}">
-						<a href="/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}&currentPage=${i}" class="btn btn-secondary">${i}</a>
-					</c:when>
-					<c:otherwise>
-						<a href="/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}&currentPage=${i}" class="btn btn-outline-light text-dark">${i}</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${lastPage != totalPage}">
-				<a href="/mainExperienceSelectOne?roomSelectId=${roomSelect.roomSelectId}&currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">▷</a>
-			</c:if>
-			
-			</div>
-		
-		
-		
-		
-		
-	</div>
-   	
     </section>
     <!-- End Section -->
 	<section class="container py-5" >
