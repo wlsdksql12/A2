@@ -78,7 +78,7 @@
                             Gender
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
-                         <ul id="collapseTwo" class="collapse list-unstyled pl-3">
+                         <ul id="collapseMiddle" class="collapse list-unstyled pl-3">
                          	<li class="pb-3">
 	                         	 <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
 	                            	Men

@@ -11,6 +11,7 @@ $(document).ready(function() {
 
     // Accordion
     var all_panels = $('.templatemo-accordion > li > ul').hide();
+    var all_panels_middle = $('.collapseMiddle > li > ul').hide();
 
     $('.templatemo-accordion > li > a').click(function() {
         console.log('Hello world!');
@@ -19,8 +20,19 @@ $(document).ready(function() {
             all_panels.removeClass('active').slideUp();
             target.addClass('active').slideDown();
         }
+        
       return false;
     });
+    
+    $('.collapseMiddle > li > a').click(function() {
+        console.log('world!');
+        var target =  $(this).next();
+        if(!target.hasClass('active')){
+        }
+        
+      return false;
+    });
+    
     // End accordion
 
     // Product detail
