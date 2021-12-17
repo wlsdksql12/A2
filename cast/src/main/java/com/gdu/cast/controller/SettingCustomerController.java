@@ -34,7 +34,7 @@ public class SettingCustomerController {
 	   public String postUpdatePw(String customerId, String customerPw, String newCustomerPw) {
 	    
 		   settingCustomerService.getUpdatePwCustomer(customerId, customerPw,newCustomerPw);
-	      return "redirect:/customerIndex?customerId="+customerId+"&currentPage=1";
+	      return "redirect:/customer/customerIndex?customerId="+customerId+"&currentPage=1";
 
 	   }
 	   

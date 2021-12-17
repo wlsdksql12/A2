@@ -24,6 +24,7 @@
 <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/favicon.ico" type="image/x-icon">
 <!-- vendor css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/css/style.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
@@ -223,7 +224,7 @@
 					<div class="row align-items-center">
 						<div class="col-md-12">
 							<div class="page-header-title">
-								<h3 style="color: white;" class="m-b-10">내정보</h3>
+								<h3 style="color: white;" class="m-b-10"> Setting</h3>
 							</div>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="/index"><i
@@ -244,30 +245,30 @@
 						<div class="col-sm-12">
 							<div class="card support-bar overflow-hidden">
 								<div class="card-body pb-0">
-									<h2 class="m-0">내정보수정</h2>
+									<h2 class="feather icon-settings m-r-5 m-b-10 sm-0"> Setting</h2>
 									<span class="text-c-blue"></span>
 									<p class="mb-3 mt-3"></p>
 								</div>
 								<div class="container-fluid">
 
-									<form id="deleteForm" method="post" action="/deleteCustomer">
-										<table class="table">
-											<tr>
-												<td>아이디</td>
-												<td><input type="text" name="customerId"
-													value="${loginCustomerId}" readonly="readonly"></td>
-											</tr>
-											<tr>
-												<td>비밀번호</td>
-												<td><input type="password" id="customerPw " name="customerPw"></td>
-											</tr>
-										</table>
+										<form id="deleteForm" method="post" action="/deleteCustomer">
+											<table class="table table-bordered">
+												<tr>
+													<td>아이디</td>
+													<td><input type="text" name="customerId"
+														value="${loginCustomerId}" readonly="readonly"></td>
+												</tr>
+												<tr>
+													<td>비밀번호</td>
+													<td><input type="password" id="customerPw" name="customerPw"></td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								<div class="float-right">
+									<a class="btn btn-outline-primary" href="/updatePw?customerId=${loginCustomerId}">비밀번호 변경</a>
+									<button id="deleteBtn" class="btn btn-outline-primary" type="button">회원탈퇴</button>
 								</div>
-							</div>
-							<div class="float-right">
-								<a class="btn btn-outline-primary" href="/updatePw?customerId=${loginCustomerId}">비밀번호 변경</a>
-								<button id="deleteBtn" class="btn btn-outline-primary" type="submit">회원탈퇴</button>
-							</div>
 							</form>
 						</div>
 					</div>
@@ -292,25 +293,23 @@
 		<!-- custom-chart js -->
 		<script	src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/pages/dashboard-main.js"></script>
 		<script type="text/javascript">
-		<script type="text/javascript">
-		$(function(){
-			$('#deleteBtn').click(function(){
-				if($('#customerPw').val() == ""){
-					alert("비밀번호를 입력하세요");
-					$('#customerPw').focus();
-					return false;
-				}
-				
-				else if($('#customerPw').val() == ){
-					alert("수정할 주민번호를 입력하세요.");
-					$('#customerPw').focus();
-					return false;
-				}
-				else {
-					$('#updateForm').submit();
-				}
-			});
-		});
-	</script>
+				$(function(){
+					$('#deleteBtn').click(function(){
+						var result = confirm('회원탈퇴 하시겠습니까?');
+						if($('#customerPw').val() == ""){
+							alert("비밀번호를 입력하세요");
+							$('#customerPw').focus();
+							return false;
+						}
+						else {
+							if(result){
+								$('#deleteForm').submit();
+							} else {
+								
+							}
+						}
+					});
+				});
+		</script>
 </body>
 </html>
