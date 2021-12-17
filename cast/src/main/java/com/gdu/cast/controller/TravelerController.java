@@ -39,7 +39,7 @@ public class TravelerController {
 	// 페이지
 	private final int ROW_PER_PAGE = 5;
 	
-	// 여행작가 메인 페이지 숙소/체험 추천 리스트 출력
+	// 여행작가 메인 페이지 자신이 쓴 숙소/체험 추천 리스트 출력
 	@GetMapping("/travelerIndex")
 	public String SelectListMain(Model model,
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
