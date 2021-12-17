@@ -40,7 +40,7 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="travelerIndex?travelerId=${loginTravelerId}"
+            href="travelerIndex?travelerId=${loginTravelerId}&currentPage=1"
           >
            마이 페이지
           </a>
@@ -52,7 +52,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="travelerIndex?travelerId=${loginTravelerId}"
+                href="travelerIndex?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -832,12 +832,12 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Dashboard
+              여행작가
             </h2>
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="https://github.com/estevanmaito/windmill-dashboard"
+              href="index"
             >
               <div class="flex items-center">
                 <svg
@@ -849,9 +849,9 @@
                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                   ></path>
                 </svg>
-                <span>Star this project on GitHub</span>
+                <span>메인으로</span>
               </div>
-              <span>View more &RightArrow;</span>
+              <span>이동 &RightArrow;</span>
             </a>
             <!-- Cards -->
             <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
@@ -872,7 +872,7 @@
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Total clients
+                    방문수
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
@@ -900,7 +900,7 @@
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Account balance
+                    결제 금액
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
@@ -926,7 +926,7 @@
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    New sales
+                    장바구니
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
@@ -954,7 +954,7 @@
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Pending contacts
+                    댓글
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
@@ -966,6 +966,11 @@
             </div>
 
             <!-- New Table -->
+             <h4
+              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              내 숙소 추천 리스트!
+            </h4>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -987,44 +992,21 @@
                       <td class="px-4 py-3">
                           ${roomSelect.roomSelectId}
                       </td>
-                      <td class="px-10 py-10 text-sm">
-                        <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
+                      <td class="px-10 py-10 text-sm"> 
+                        <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}&travelerId=${loginTravelerId}">${roomSelect.roomSelectTitle}</a>
                       </td>
-                      <td class="px-4 py-3">
+                       <td class="px-4 py-3">
                           ${roomSelect.travelerId}
                       </td>
                       <td class="px-10 py-10 text-sm">
-                        ${roomSelect.createDate}
+                        ${roomSelect.createDate.substring(0,10)}
                       </td>
                     </tr>
                     </c:forEach>
                   </tbody>
                 </table>
               </div>
-              <br>
-              <form method="get" id="/roomSelectList">
-              <div class="flex justify-center flex-1 lg:mr-32">
-              <div
-                class="relative w-full max-w-xl mr-6 focus-within:text-purple-500"
-              >
-                <div class="absolute inset-y-0 flex items-center pl-2">
-                  <svg
-                    class="w-4 h-4"
-                    aria-hidden="true"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                      clip-rule="evenodd"
-                    ></path>
-                  </svg>
-                </div>
-            </div>
-            </div>
-            </form>
-            <br>
+            <br><br>
               <div>
                 <span class="col-span-2"></span>
                 <!-- Pagination -->
@@ -1050,9 +1032,9 @@
             </div>
             <!-- Charts -->
             <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Charts
+              차트
             </h2>
             <div class="grid gap-6 mb-8 md:grid-cols-2">
               <div

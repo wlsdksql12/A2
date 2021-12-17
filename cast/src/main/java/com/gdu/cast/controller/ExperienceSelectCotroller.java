@@ -71,7 +71,7 @@ public class ExperienceSelectCotroller {
 		return "traveler/experienceSelectOne";
 	}
 	
-	// 여행작가 체험 추천 리스트
+	// 자신이 쓴 체험 추천 리스트 출력
 	@GetMapping("/experienceSelectList")
 	public String experienceSelectList(Model model,
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {

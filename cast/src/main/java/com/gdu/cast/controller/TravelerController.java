@@ -49,12 +49,11 @@ public class TravelerController {
 		model.addAttribute("traveler", traveler);
 		return "traveler/travelerMyInfo";
 	}
-		
 	// 여행작가 메인 페이지
-	@GetMapping("/travelerIndex")
-	public String travelerIndex() {
-		return "traveler/travelerIndex";
-	}
+	//@GetMapping("/travelerIndex")
+	//public String travelerIndex() {
+	//	return "traveler/travelerIndex";
+	//}
 	
 	// 여행작가 로그아웃
 	@GetMapping("/travelerLogout")
