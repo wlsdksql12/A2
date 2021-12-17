@@ -133,7 +133,6 @@
                                         <a href="/deleteMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&experienceSelectId=${comment.experienceSelectId}">삭제</a>
                                         </td>
                                         </c:if>
-                                       
                                     </tr>
                                    
                                     </c:forEach>

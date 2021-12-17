@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.ExperienceSelectComment;
+import com.gdu.cast.vo.RoomSelectComment;
 
 @Mapper
 public interface MainSelectCommentMapper {
@@ -19,4 +20,6 @@ public interface MainSelectCommentMapper {
 	int ExperienceSelectUpdatecomment(ExperienceSelectComment experienceSelectComment);
 	// 체험 추천 댓글 삭제
 	int ExperienceSelectDeletecomment(ExperienceSelectComment experienceSelectComment);
+	// 숙소 추천 댓글 리스트 출력
+	List<RoomSelectComment> roomSelectComment(Map<String, Object> map);
 }
