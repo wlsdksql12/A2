@@ -134,7 +134,11 @@ table {
 				<div>
 					<c:if test="${loginAdminId != null}">
 						<c:if test="${qnaCommentContent  == null}">
-							<a href="/admin/qnaComment?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
+							<a href="/admin/qnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
+						</c:if>
+						<c:if test="${qnaCommentContent  != null}">
+							<a href="/admin/deleteQnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변삭제</a>
+							<a href="/admin/updateQnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변수정</a>
 						</c:if>
 					</c:if>
 				</div>

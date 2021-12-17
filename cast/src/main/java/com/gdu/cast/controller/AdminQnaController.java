@@ -37,25 +37,52 @@ public class AdminQnaController {
 	}
 	
 	@GetMapping("/admin/qnaComment")
-	public String qnaComment(Model model, int qnaId, String customerId) {
+	public String qnaComment(Model model, int qnaId) {
 		model.addAttribute("qnaId", qnaId);
-		model.addAttribute("customerId", customerId);
 		return "/admin/qnaComment";
 	}
 	
 	@PostMapping("/admin/qnaComment")
-	public String qnaComment(HttpSession session, String customerId, QnaComment qnaComment, Model model) {
+	public String qnaComment(HttpSession session, QnaComment qnaComment, Model model) {
 		String adminId = (String) session.getAttribute("loginAdminId");
 		qnaComment.setAdminId(adminId);
-		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + customerId + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + qnaComment + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		
 		adminQnaService.insertQnaComment(qnaComment);
 		
 		
-		return "redirect:/qnaListOne?qnaId="+qnaComment.getQnaId()+"&customerId="+customerId;
+		return "redirect:/mainQnaListOne?qnaId="+qnaComment.getQnaId();
 		
 	}
-
+	
+	@GetMapping("/admin/deleteQnaComment")
+	public String deleteQnaComment(int qnaId, Model model) {
+		System.out.println(qnaId + "<-------qnaId");
+		model.addAttribute("qnaId", qnaId);
+		return "/admin/deleteQnaComment";
+	}
+	
+	@PostMapping("/admin/deleteQnaComment")
+	public String deleteQnaComment(QnaComment qnaComment) {
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + qnaComment + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		adminQnaService.deleteQnaComment(qnaComment);
+		return "redirect:/mainQnaListOne?qnaId="+qnaComment.getQnaId();
+		
+	}
+	
+	@GetMapping("/admin/updateQnaComment")
+	public String updateQnaComment(int qnaId, Model model) {
+		System.out.println(qnaId + "<-------qnaId");
+		model.addAttribute("qnaId", qnaId);
+		return "/admin/updateQnaComment";
+	}
+	
+	@PostMapping("/admin/updateQnaComment")
+	public String updateQnaComment(QnaComment qnaComment) {
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + qnaComment + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		adminQnaService.updateQnaComment(qnaComment);
+		return "redirect:/mainQnaListOne?qnaId="+qnaComment.getQnaId();
+		
+	}
 	
 }

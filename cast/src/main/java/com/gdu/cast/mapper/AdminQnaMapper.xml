@@ -47,4 +47,15 @@
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
+	
+	<delete id="deleteQnaComment" parameterType="com.gdu.cast.vo.QnaComment">
+		DELETE FROM qna_comment
+		WHERE qna_id = #{qnaId} AND admin_id = #{adminId}
+	</delete>
+	
+	<update id="updateQnaCommnet" parameterType="com.gdu.cast.vo.QnaComment">
+		UPDATE qna_comment SET
+			qna_comment_content = #{qnaCommentContent}, update_date = now()
+		WHERE qna_id = #{qnaId}
+	</update>
 </mapper>

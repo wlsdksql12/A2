@@ -25,4 +25,10 @@ public interface AdminQnaMapper {
 	
 	//Qna 미답변 리스트
 	List<Qna> selectNotQnaCommentList(Map<String, Object> map);
+	
+	// Qna 답변 삭제
+	void deleteQnaComment(QnaComment qnaComment);
+	
+	//Qna 답변 수정
+	void updateQnaCommnet(QnaComment qnaComment);
 }

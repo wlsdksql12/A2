@@ -223,7 +223,7 @@
                       <tr>
                       	 <c:forEach items="${notQnaCommentList}" var="nqcl">
 		                     <tr style="text-align:center">
-		                        <td style="text-align: center;"><a href ="/qnaListOne?qnaId=${nqcl.qnaId}&customerId=${nqcl.customerId}">${nqcl.qnaTitle}</a></td>
+		                        <td style="text-align: center;"><a href ="/mainQnaListOne?qnaId=${nqcl.qnaId}">${nqcl.qnaTitle}</a></td>
 		                        <td style="text-align: center;">${nqcl.customerId}</td>
 		                        <td style="text-align: center;">${fn:substring(nqcl.createDate,0,10)}</td>
 		                        <td style="text-align: center;">${nqcl.qnaSecret}</td>

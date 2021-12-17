@@ -78,4 +78,12 @@ public class AdminQnaService {
 			returnMap.put("lastPage", lastPage);
 			return returnMap;
 	   }
+	 
+	 public void deleteQnaComment(QnaComment qnaCommnet) {
+		 adminQnaMapper.deleteQnaComment(qnaCommnet);
+	 }
+	 
+	 public void updateQnaComment(QnaComment qnaCommnet) {
+		 adminQnaMapper.updateQnaCommnet(qnaCommnet);
+	 }
 }
