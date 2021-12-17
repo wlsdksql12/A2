@@ -15,5 +15,8 @@ public interface MainSelectCommentMapper {
 	int selectCommentTotalCount();
 	//체험 추천 댓글 추가
 	void ExperienceSelectInsertcomment(ExperienceSelectComment experienceSelectComment);
-	
+	// 체험 추천 댓글 수정
+	int ExperienceSelectUpdatecomment(ExperienceSelectComment experienceSelectComment);
+	// 체험 추천 댓글 삭제
+	int ExperienceSelectDeletecomment(ExperienceSelectComment experienceSelectComment);
 }

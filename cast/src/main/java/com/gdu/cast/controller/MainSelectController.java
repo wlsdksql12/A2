@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.MainSelectCommentService;
 import com.gdu.cast.service.MainSelectService;
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.RoomSelect;
@@ -85,6 +86,7 @@ public class MainSelectController {
 		model.addAttribute("searchTitle", searchTitle);
 		return "mainRoomSelect";
 	}
+	
 	////메인 체험 상세보기 댓글 추가
 	@GetMapping("/addMainExperienceSelectComment")
 	public String getaddMainExperienceSelectComment(Model model,String customerId, int experienceSelectId, int currentPage) {
@@ -93,8 +95,6 @@ public class MainSelectController {
 		model.addAttribute("currentPage",currentPage);
 		return "addMainExperienceSelectComment";
 	}
-	
-	
 	
 	//메인 체험 상세보기 댓글 추가
 	@PostMapping("/addMainExperienceSelectComment")
@@ -105,4 +105,30 @@ public class MainSelectController {
 		return "redirect:/mainExperienceSelectOne?experienceSelectId="+experienceSelectComment.experienceSelectId;
 		
 	}
+	
+	//메인 체험 댓글 update
+	@GetMapping("/updateMainExperienceSelectComment")
+	public String getupdateMainExperienceSelectComment(Model model,int experienceSelectCommentId, int currentPage, String customerId, int experienceSelectId) {
+		model.addAttribute("experienceSelectCommentId", experienceSelectCommentId);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("customerId", customerId);
+		model.addAttribute("experienceSelectId", experienceSelectId);
+		return "updateMainExperienceSelectComment";
+	}
+	//메인 체험 댓글 update
+	@PostMapping("/updateMainExperienceSelectComment")
+	public String postUpdateMainExperienceSelectComment( int currentPage,ExperienceSelectComment experienceSelectComment) {
+		System.out.println(experienceSelectComment.getExperienceSelectContent() + "@#!@#!@#!@#!@#content!@#");
+		mainSelectCommentService.getExperienceSelectUpdatecomment(experienceSelectComment);
+		
+		return "redirect:/mainExperienceSelectOne?experienceSelectId=" + experienceSelectComment.experienceSelectId + "&currentPage="+currentPage;
+		
+	}
+	// 메인 체험 댓글 삭제
+	@GetMapping("/deleteMainExperienceSelectComment")
+	public String deleteMainExperienceSelectComment(int currentPage,ExperienceSelectComment experienceSelectComment) {
+		mainSelectCommentService.getExperienceSelectDeletecomment(experienceSelectComment);
+		return "redirect:/mainExperienceSelectOne?experienceSelectId=" + experienceSelectComment.experienceSelectId + "&currentPage="+currentPage;
+	}
+	
 }

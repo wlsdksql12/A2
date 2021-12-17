@@ -61,4 +61,14 @@ public class MainSelectCommentService {
 		mainSelectCommentMapper.ExperienceSelectInsertcomment(experienceSelectComment);
 		
 	}
+	
+	//메인 체험 추천 댓글 수정
+	public int getExperienceSelectUpdatecomment(ExperienceSelectComment experienceSelectComment) {
+		return mainSelectCommentMapper.ExperienceSelectUpdatecomment(experienceSelectComment);
+	}
+	
+	//메인 체험 추천 댓글 삭제
+	public int getExperienceSelectDeletecomment(ExperienceSelectComment experienceSelectComment) {
+		return mainSelectCommentMapper.ExperienceSelectDeletecomment(experienceSelectComment);
+	}
 }

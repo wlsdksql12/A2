@@ -7,6 +7,7 @@
 		experience_select_comment_id experienceSelectCommentId,
 		customer_id customerId,
 		experience_select_content experienceSelectContent,
+		experience_select_id experienceSelectId,
 		create_date createDate,
 		update_date updateDate 
 		FROM experience_select_comment
@@ -24,12 +25,14 @@
 	<!-- experience select comment add -->
 	<insert id="ExperienceSelectInsertcomment" parameterType="com.gdu.cast.vo.ExperienceSelectComment">
 		INSERT INTO Experience_Select_Comment(
+		experience_select_comment_id
 		customer_id,
 		experience_select_id,
 		experience_select_content,
 		create_Date,
 		update_Date
 	) VALUES(
+		#{experienceSelectCommentId},
 		#{customerId},
 		#{experienceSelectId},
 		#{experienceSelectContent},
@@ -38,5 +41,16 @@
 	)
 	</insert>
 	
+	<update id="ExperienceSelectUpdatecomment" parameterType="com.gdu.cast.vo.ExperienceSelectComment">
+		UPDATE experience_select_comment 
+		SET experience_select_content = #{experienceSelectContent}, update_date = now()
+		WHERE experience_select_comment_id = #{experienceSelectCommentId}
+	</update>
+	
+	<delete id="ExperienceSelectDeletecomment" parameterType="com.gdu.cast.vo.ExperienceSelectComment">
+		DELETE
+		FROM experience_select_comment 
+		WHERE experience_select_comment_id = #{experienceSelectCommentId}
+	</delete>
 	
 </mapper>
