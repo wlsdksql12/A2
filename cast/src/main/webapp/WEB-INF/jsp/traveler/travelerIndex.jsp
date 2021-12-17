@@ -1030,6 +1030,71 @@
                 </span>
               </div>
             </div>
+            
+            <h4
+              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
+            >
+              내 체험 추천 리스트!
+            </h4>
+                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
+              <div class="w-full overflow-x-auto">
+                <table class="w-full whitespace-no-wrap">
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                      <th class="px-3 py-3">번호</th>
+                      <th class="px-10 py-10">제목</th>
+                      <th class="px-3 py-3">아이디</th>
+                      <th class="px-10 py-10">작성 날짜</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                  >
+					<c:forEach items="${experienceSelectList}" var="experienceSelect">
+                    <tr class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                          ${experienceSelect.experienceSelectId}
+                      </td>
+                      <td class="px-10 py-10 text-sm">
+                        <a href="/experienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}&travelerId=${loginTravelerId}">${experienceSelect.experienceSelectTitle}</a>
+                      </td>
+                      <td class="px-4 py-3">
+                          ${experienceSelect.travelerId}
+                      </td>
+                      <td class="px-10 py-10 text-sm">
+                         ${experienceSelect.createDate.substring(0,10)}
+                      </td>
+                    </tr>
+                    </c:forEach>
+                  </tbody>
+                </table>
+              </div>
+              <br><br>
+              <div>
+                <span class="col-span-2"></span>
+                <!-- Pagination -->
+                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
+					<c:if test="${startPage > 1}">
+						<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${startPage-1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
+					</c:if>
+					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
+						<c:choose>
+							<c:when test="${i == currentPage}">
+								<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${lastPage != totalPage}">
+						<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">끝</a>
+					</c:if>
+                </span>
+              </div>
+            </div>
             <!-- Charts -->
             <h2
               class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"

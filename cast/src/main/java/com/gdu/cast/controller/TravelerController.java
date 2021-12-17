@@ -1,5 +1,7 @@
 package com.gdu.cast.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.gdu.cast.service.ExperienceSelectService;
 import com.gdu.cast.service.JoinRequestService;
+import com.gdu.cast.service.RoomSelectService;
 import com.gdu.cast.service.TravelerService;
 import com.gdu.cast.vo.Traveler;
 
@@ -20,9 +25,47 @@ public class TravelerController {
 	
 	@Autowired
 	TravelerService travelerService;
+	
+	@Autowired
+	RoomSelectService roomSelectService;
+	
+	@Autowired
+	ExperienceSelectService experienceSelectService;
+	
 	// 12.15
 	@Autowired
 	JoinRequestService joinRequestService;
+	
+	// 페이지
+	private final int ROW_PER_PAGE = 5;
+	
+	// 여행작가 메인 페이지 숙소/체험 추천 리스트 출력
+	@GetMapping("/travelerIndex")
+	public String SelectListMain(Model model,
+			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
+		log.debug(travelerId);
+		
+		// 숙소 리스트 출력
+		Map<String, Object> roomMap = roomSelectService.getSelectRoomSelectList(travelerId, currentPage, ROW_PER_PAGE);
+		model.addAttribute("roomSelectList", roomMap.get("roomSelectList"));
+		model.addAttribute("startPage", roomMap.get("startPage"));
+		model.addAttribute("lastPage", roomMap.get("lastPage"));
+		model.addAttribute("totalPage", roomMap.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("travelerId", travelerId);
+		
+		// 체험 리스트 출력
+		Map<String, Object> experienceMap = experienceSelectService.getSelectExperienceSelectList(travelerId, currentPage, ROW_PER_PAGE);
+		model.addAttribute("experienceSelectList", experienceMap.get("experienceSelectList"));
+		model.addAttribute("startPage", experienceMap.get("startPage"));
+		model.addAttribute("lastPage", experienceMap.get("lastPage"));
+		model.addAttribute("totalPage", experienceMap.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("travelerId", travelerId);
+		
+		System.out.println(model + "model");
+		return "traveler/travelerIndex";
+	}
 	
 	// 여행작가 내정보 수정
 	@GetMapping("/modifyTravelerMyInfo")
@@ -49,11 +92,13 @@ public class TravelerController {
 		model.addAttribute("traveler", traveler);
 		return "traveler/travelerMyInfo";
 	}
-	// 여행작가 메인 페이지
-	//@GetMapping("/travelerIndex")
-	//public String travelerIndex() {
-	//	return "traveler/travelerIndex";
-	//}
+	
+	/* 여행작가 메인 페이지
+	@GetMapping("/travelerIndex")
+	public String travelerIndex() {
+		return "traveler/travelerIndex";
+	} 
+	*/
 	
 	// 여행작가 로그아웃
 	@GetMapping("/travelerLogout")

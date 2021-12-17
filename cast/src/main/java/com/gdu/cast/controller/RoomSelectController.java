@@ -22,7 +22,7 @@ public class RoomSelectController {
 	RoomSelectService roomSelectService;
 	
 	// 페이지
-	private final int ROW_PER_PAGE = 5;
+	private final int ROW_PER_PAGE = 10;
 	
 	// 여행작가 숙소 추천 추가
 	@GetMapping("/addRoomSelect")
@@ -68,22 +68,6 @@ public class RoomSelectController {
 		RoomSelect roomSelect = roomSelectService.getroomSelectOne(roomSelectId);
 		model.addAttribute("roomSelect", roomSelect);
 		return "traveler/roomSelectOne";
-	}
-	
-	// 여행작가 페이지 안 숙소 추천 리스트 출력
-	@GetMapping("/travelerIndex")
-	public String roomSelectListMain(Model model,
-			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
-		log.debug(travelerId);
-		Map<String, Object> map = roomSelectService.getSelectRoomSelectList(travelerId, currentPage, ROW_PER_PAGE);
-		model.addAttribute("roomSelectList", map.get("roomSelectList"));
-		model.addAttribute("startPage", map.get("startPage"));
-		model.addAttribute("lastPage", map.get("lastPage"));
-		model.addAttribute("totalPage", map.get("totalPage"));
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("travelerId", travelerId);
-		System.out.println(model + "model");
-		return "traveler/travelerIndex";
 	}
 	
 	// 자신이 쓴 숙소 추천 리스트 출력
