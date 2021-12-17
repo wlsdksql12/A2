@@ -40,7 +40,7 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="travelerIndex"
+            href="travelerIndex?travelerId=${loginTravelerId}"
           >
            마이 페이지
           </a>
@@ -52,7 +52,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="travelerIndex"
+                href="travelerIndex?travelerId=${loginTravelerId}"
               >
                 <svg
                   class="w-5 h-5"
@@ -147,7 +147,7 @@
           <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
+                href="roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -161,7 +161,7 @@
                 >
                   <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                 </svg>
-                <span class="ml-4">숙소 추천</span>
+                <span class="ml-4">내 숙소 추천</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -181,7 +181,7 @@
                 >
                   <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                 </svg>
-                <span class="ml-4">체험 추천</span>
+                <span class="ml-4">내 체험 추천</span>
               </a>
             </li>
             <li class="relative px-6 py-3">

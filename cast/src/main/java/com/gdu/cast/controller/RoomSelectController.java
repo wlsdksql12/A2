@@ -72,7 +72,8 @@ public class RoomSelectController {
 	
 	// 여행작가 숙소 추천 리스트
 	@GetMapping("/roomSelectList")
-	public String roomSelectList(Model model, int currentPage, String travelerId) {
+	public String roomSelectList(Model model, 
+			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
 		log.debug(travelerId);
 		Map<String, Object> map = roomSelectService.getSelectRoomSelectList(travelerId, currentPage, ROW_PER_PAGE);
 		model.addAttribute("roomSelectList", map.get("roomSelectList"));
@@ -80,6 +81,7 @@ public class RoomSelectController {
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("travelerId", travelerId);
 		return "traveler/roomSelectList";
 	}
 }

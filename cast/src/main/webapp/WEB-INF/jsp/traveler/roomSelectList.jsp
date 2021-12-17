@@ -30,7 +30,7 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="travelerIndex"
+            href="travelerIndex?travelerId=${loginTravelerId}"
           >
             마이 페이지
           </a>
@@ -42,7 +42,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="travelerIndex"
+                href="travelerIndex?travelerId=${loginTravelerId}"
               >
                 <svg
                   class="w-5 h-5"
@@ -70,7 +70,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-               href="roomSelectList"
+               href="roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -84,7 +84,27 @@
                 >
                   <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                 </svg>
-                <span class="ml-4">숙소 추천</span>
+                <span class="ml-4">내 숙소 추천</span>
+              </a>
+            </li>
+            <li class="relative px-6 py-3">
+              <a
+                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                href="experienceSelectList"
+              >
+                <svg
+                  class="w-5 h-5"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
+                </svg>
+                <span class="ml-4">내 체험 추천</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -837,7 +857,7 @@
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="index"
+              href="mainRoomSelect"
             >
               <div class="flex items-center">
                 <svg
@@ -853,6 +873,7 @@
               </div>
               <span>더보기 &RightArrow;</span>
             </a>
+            
             
             <!-- With actions -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
@@ -875,14 +896,11 @@
                       <td class="px-4 py-3">
                           ${roomSelect.roomSelectId}
                       </td>
-                      <td class="px-10 py-10 text-sm">
-                      	${roomSelect.roomSelectTitle}
-                      	<!-- 
-                        <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}"></a>
-                         -->
+                      <td class="px-10 py-10 text-sm"> 
+                        <a href="/roomSelectOne?roomSelectId=${roomSelect.roomSelectId}&travelerId=${loginTravelerId}">${roomSelect.roomSelectTitle}</a>
                       </td>
                       <td class="px-10 py-10 text-sm">
-                        ${roomSelect.createDate}
+                        ${roomSelect.createDate.substring(0,10)}
                       </td>
                     </tr>
                     </c:forEach>
@@ -900,10 +918,10 @@
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+								<a href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+								<a href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>

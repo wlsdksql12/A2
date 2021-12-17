@@ -59,7 +59,7 @@ public class RoomSelectService {
 		beginRow = (currentPage - 1) * ROW_PER_PAGE;
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
-		paramMap.put("searchTitle", travelerId);
+		paramMap.put("travelerId", travelerId);
 		log.debug(travelerId);
 		
 		// 여행작가 숙소 추천 리스트
