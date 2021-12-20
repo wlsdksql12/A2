@@ -26,4 +26,10 @@
 		FROM ceo
 		WHERE SUBSTR(create_date, 1, 10) = SUBSTR(now(), 1, 10)
 	</select>
+	
+	<select id="selectNewNotQnaComment" parameterType="com.gdu.cast.vo.QnaComment" resultType="int">
+		SELECT COUNT(*)
+		FROM qna
+		WHERE qna_id NOT IN (SELECT qna_id FROM qna_comment)
+	</select>
 </mapper>

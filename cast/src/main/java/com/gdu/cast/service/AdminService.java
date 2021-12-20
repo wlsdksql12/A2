@@ -29,4 +29,8 @@ public class AdminService {
 	public int selectNewCeo() {
 		return adminMapper.selectNewCeo();
 	}
+	
+	public int selectNewNotQnaComment() {
+		return adminMapper.selectNewNotQnaComment();
+	}
 }

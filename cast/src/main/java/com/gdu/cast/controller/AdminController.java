@@ -34,6 +34,7 @@ public class AdminController {
 		int newCustomer = adminService.selectNewCustomer();
 		int newTraveler = adminService.selectNewTraveler();
 		int newCeo = adminService.selectNewCeo();
+		int newNotQnaComment = adminService.selectNewNotQnaComment();
 		Map<String, Object> map = adminQnaService.selectNotQnaComment(currentPage, ROW_PER_PAGE);
 		// 차트에 사용할 임시 데이터
 		int[] data = {0,3000000,5000000,15000000,8000000,20000000,15000000,25000000,20000000,30000000,25000000,45000000};
@@ -53,6 +54,7 @@ public class AdminController {
 		model.addAttribute("newCustomer", newCustomer);
 		model.addAttribute("newTraveler", newTraveler);
 		model.addAttribute("newCeo", newCeo);
+		model.addAttribute("newNotQnaComment", newNotQnaComment);
 		model.addAttribute("notQnaCommentList", map.get("notQnaCommentList"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("currentPage", currentPage);

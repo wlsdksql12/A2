@@ -31,4 +31,5 @@ public interface AdminQnaMapper {
 	
 	//Qna 답변 수정
 	void updateQnaCommnet(QnaComment qnaComment);
+	
 }
