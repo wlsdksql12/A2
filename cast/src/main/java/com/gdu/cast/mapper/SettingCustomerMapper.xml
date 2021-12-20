@@ -12,10 +12,9 @@
    	</insert>
    	
    	<delete id="deleteCustomer" parameterType="com.gdu.cast.vo.Customer">
-		set FOREIGN_KEY_CHECKS = 0
 		DELETE 
 		FROM customer
-		WHERE and customer_id = #{customerId} AND customer_pw = password(#{customerPw})
+		WHERE customer_id = #{customerId} AND customer_pw = password(#{customerPw})
 	</delete>
 	<!-- 로그인 기록 삭제 -->
 	   	<delete id="deleteCustomerLogin" parameterType="com.gdu.cast.vo.Customer_Login">
