@@ -142,9 +142,9 @@ public class CustomerService {
 		   return customerMapper.updateActiveZeroDate(customerId);
 	   }
 
-	   public String getselectDeleteId() {
-		   System.out.println(customerMapper.selectDeleteId() + "customerMapper.selectDeleteId()");
-		   
-		   return customerMapper.selectDeleteId();
+	   public int getselectDeleteId(String customerId) {
+		   System.out.println(customerMapper.selectDeleteId(customerId) + "customerMapper.selectDeleteId()");
+		   int result = customerMapper.selectDeleteId(customerId);
+		   return result;
 	   }
 }

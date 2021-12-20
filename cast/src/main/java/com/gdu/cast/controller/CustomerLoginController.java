@@ -35,16 +35,16 @@ public class CustomerLoginController {
 	@PostMapping("/addCustomer")
 	public String PostaddCustomer(Customer customer) {
 		
-		if(customerService.getselectDeleteId().equals(customer.getCustomerId())) {
-			return "redirect:/deleteId";
+		//회원가입할때 회원탈퇴티에블에 존재하는 아이디를 적는다면?
+		if(customerService.getselectDeleteId(customer.getCustomerId()) == 1) {
+			return "redirect:/addCustomer";
 		}
 		//customer테이블에 입력
 		customerService.getaddCustomer(customer);
 		//customerLogin (로그인 기록) 생성
 		customerService.getinsertCustomerLogin(customer.getCustomerId());
 		return "redirect:/loginSelect";
-		
-		
+			
 	}
 	
 }

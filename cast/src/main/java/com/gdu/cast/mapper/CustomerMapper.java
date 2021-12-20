@@ -43,5 +43,5 @@ public interface CustomerMapper {
 	// 활성화 상태 적용
 	int updateActiveOneDate(String CustomerId);
 	
-	String selectDeleteId();
+	int selectDeleteId(String customerId);
 }

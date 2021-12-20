@@ -156,10 +156,11 @@
 		WHERE customer_id = #{customerId}
 	</update>
 	
-	<select id="selectDeleteId"  resultType="String">
-		SELECT id Id
+	<select id="selectDeleteId"  parameterType="String" resultType="int">
+		SELECT count(*)
 		
 		FROM delete_id
+		WHERE id = #{customerId}
 	</select>
 
 	
