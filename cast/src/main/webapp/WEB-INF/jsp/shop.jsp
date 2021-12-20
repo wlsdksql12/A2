@@ -18,6 +18,13 @@
     <!-- 레이아웃 렌더링한 후 폰트 스타일 로드 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/fontawesome.min.css">
+    <style>
+    ul{
+  		 list-style:none;
+  	}
+		.menu a{cursor:pointer;}
+		.menu .hide{display:none;}
+    </style>
 </head>
 
 <body>
@@ -64,57 +71,52 @@
         </div>
     </div>
 
-
-
     <!-- Start Content -->
     <div class="container py-5">
         <div class="row">
-
-            <div class="col-lg-3">
-                <h1 class="h2 pb-4">Categories</h1>
-                <ul class="list-unstyled templatemo-accordion">
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Gender
-                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                        </a>
-                         <ul id="collapseMiddle" class="collapse list-unstyled pl-3">
-                         	<li class="pb-3">
-	                         	 <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-	                            	Men
-	                            	<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-	                            </a>
-	                            <ul class="collapse show list-unstyled pl-4">
-                        			<li><a class="text-decoration-none" href="#">boy</a></li>
-                        			<li><a class="text-decoration-none" href="#">Gentleman</a></li>
-                        		</ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Sale
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                        </a>
-                        <ul id="collapseTwo" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Sport</a></li>
-                            <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                        </ul>
-                    </li>
-                    <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Product
-                            <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
-                        </a>
-                        <ul id="collapseThree" class="collapse list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="#">Bag</a></li>
-                            <li><a class="text-decoration-none" href="#">Sweather</a></li>
-                            <li><a class="text-decoration-none" href="#">Sunglass</a></li>
-                        </ul>
-                    </li>
-                    
-                </ul>
-            </div>
+			<div class="col-lg-3">
+			<h1 class="h2 pb-4">Categories</h1>
+			    <ul class="hide">
+			        <li class="menu">
+			            <a>메뉴1<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			            <ul>
+			                <li class="menu">
+			                	<a>메뉴1-1<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			                	<ul class="hide">
+			                		<li>메뉴1-1-1</li>
+			                		<li>메뉴1-1-2</li>
+			                	</ul>
+			                </li>
+			                <li class="menu">
+								<a>메뉴1-2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+								<ul class="hide">
+			                		<li>메뉴1-2-1</li>
+			                		<li>메뉴1-2-2</li>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			        <li class="menu">
+			            <a>메뉴2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			            <ul class="hide">
+			                <li class="menu">
+			                	<a>메뉴2-1<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			                	<ul class="hide">
+			                		<li>메뉴2-1-1</li>
+			                		<li>메뉴2-1-2</li>
+			                	</ul>
+			                </li>
+			                <li class="menu">
+								<a>메뉴2-2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+								<ul class="hide">
+			                		<li>메뉴2-2-1</li>
+			                		<li>메뉴2-2-2</li>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			    </ul>
+			</div>
 
             <div class="col-lg-9">
                 <div class="row">
@@ -701,6 +703,22 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/templatemo.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
     <!-- End Script -->
+    <script>
+    // html dom 이 다 로딩된 후 실행된다.
+    $(document).ready(function(){
+        // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+        $(".menu>a").click(function(){
+            var submenu = $(this).next("ul");
+ 
+            // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+            if( submenu.is(":visible") ){
+                submenu.slideUp();
+            }else{
+                submenu.slideDown();
+            }
+        });
+    });
+</script>
 </body>
 
 </html>
