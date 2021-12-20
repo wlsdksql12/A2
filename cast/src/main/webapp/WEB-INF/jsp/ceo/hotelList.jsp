@@ -9,15 +9,21 @@
 
 </head>
 <body>
-
-					<div class="table-responsive pt-3" id="form2">
-						<!-- 호텔 리스트 -->
+	<%@ include file="ceoBase.jsp" %>
+	<br>
+	<div>
+		<div class="col-lg-12 grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">호텔 목록</h4>
+					<p class="card-description">등록한 호텔 목록입니다</p>
+					<div class="table-responsive pt-3" id="form1">
 						<table class="table table-bordered">
 							<thead>
 								<tr>
 									<th>#</th>
 									<th>제목</th>
-									<th>가격</th>
+									<th>방 갯수</th>
 									<th>작성날짜</th>
 								</tr>
 							</thead>
@@ -28,15 +34,13 @@
 										<td>
 											<a href="#">${hotel.hotelName}</a>
 										</td>
-										<td>${hotel.hotelPrice}&#8361;</td>
+										<td>${hotel.countRoom}</td>
 										<td>${hotel.createDate}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						
-						
-						<!-- 페이징 -->
+						<br>
 						<div>
 							<c:if test="${startPage > 1}">
 								<a href="/ceo/hotelList?currentPage=${startPage-1}" class="btn btn-outline-light text-dark">처음으로</a>
@@ -62,12 +66,5 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-        $("#form2, #form3").hide();
-        $("#select").change(function(){
-            $("#form1, #form2, #form3").hide();
-            $('#form'+$(this).find('option:selected').attr('id')).show();
-        });
-    </script>
 </body>
 </html>

@@ -78,18 +78,23 @@ public class HotController {
 	
 	// 호텔리스트
 	@GetMapping("/ceo/hotelList")
-	public String roomSelectList(Model model, 
-		@RequestParam(defaultValue = "1") int currentPage, String ceoId) {
-		log.debug(ceoId);
-		final int ROW_PER_PAGE = 10;
-		Map<String, Object> map = hotService.getHotelList(ceoId, currentPage, ROW_PER_PAGE);
-		model.addAttribute("hotelList", map.get("hotelList"));
-		model.addAttribute("startPage", map.get("startPage"));
-		model.addAttribute("lastPage", map.get("lastPage"));
-		model.addAttribute("totalPage", map.get("totalPage"));
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("ceoId", ceoId);
-		System.out.println(model + "model");
-		return "/ceo/hotelList";
-	}
+	 public String experienceList(Model model, HttpSession session,
+	         @RequestParam(defaultValue = "1") int currentPage,
+	         @RequestParam(required = false) String searchTitle) {
+	         // required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
+	      System.out.println(searchTitle);
+	      final int ROW_PER_PAGE = 10;
+	      Map<String, Object> map = hotService.getHotelList(currentPage, ROW_PER_PAGE, searchTitle);
+	      System.out.println(session);
+	      System.out.println(session.getAttribute("loginCeoId"));
+	      model.addAttribute("hotelList", map.get("hotelList"));
+	      model.addAttribute("startPage", map.get("startPage"));
+	      model.addAttribute("lastPage", map.get("lastPage"));
+	      model.addAttribute("totalPage", map.get("totalPage"));
+	      model.addAttribute("currentPage", currentPage);
+	      model.addAttribute("searchTitle", searchTitle);
+	      model.addAttribute("loginCeoId", session.getAttribute("loginCeoId"));
+	      System.out.println(session.getAttribute("loginCeoId") + " 호텔리스트 세션값");
+	      return "/ceo/hotelList";
+	   }
 }

@@ -15,14 +15,8 @@
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title">사업체 목록</h4>
-					<p class="card-description">등록한 사업체 목록입니다</p>
-					<div align="right">
-						<select id="select" class="form-control" style="width:100px; height:30px">
-							<option id="1">체험</option>
-							<option id="2">호텔</option>
-						</select>
-					</div>
+					<h4 class="card-title">체험 목록</h4>
+					<p class="card-description">등록한 체험 목록입니다</p>
 					<div class="table-responsive pt-3" id="form1">
 						<table class="table table-bordered">
 							<thead>
@@ -68,41 +62,9 @@
 							</c:if>
 						</div>
 					</div>
-					<div class="table-responsive pt-3" id="form2">
-						<!-- 호텔 리스트 -->
-						<%@ include file="hotelList.jsp" %>
-						<!-- 페이징 -->
-						<div>
-							<c:if test="${startPage > 1}">
-								<a href="/ceo/hotelList?currentPage=${startPage-1}" class="btn btn-outline-light text-dark">처음으로</a>
-							</c:if>
-							<div class="btn-group">
-							<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-								<c:choose>
-									<c:when test="${i == currentPage}">
-										<a href="/ceo/hotelList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
-									</c:when>
-									<c:otherwise>
-										<a href="/ceo/hotelList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
-									</c:otherwise>
-								</c:choose>
-							</c:forEach>
-							</div>
-							<c:if test="${lastPage != totalPage}">
-								<a href="/ceo/hotelList?currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">끝으로</a>
-							</c:if>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-        $("#form2, #form3").hide();
-        $("#select").change(function(){
-            $("#form1, #form2, #form3").hide();
-            $('#form'+$(this).find('option:selected').attr('id')).show();
-        });
-    </script>
 </body>
 </html>

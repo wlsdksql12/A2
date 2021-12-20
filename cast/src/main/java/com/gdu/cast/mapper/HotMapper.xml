@@ -80,7 +80,7 @@
 		SELECT
 			hotel_id hotelId,
 			hotel_name hotelName,
-			hotel_price hotelPrice,
+			count_room countRoom,
 			create_date createDate
 		FROM hotel
 		WHERE ceo_id = #{ceoId}
