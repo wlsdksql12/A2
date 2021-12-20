@@ -36,7 +36,7 @@ public class CustomerLoginController {
 	public String PostaddCustomer(Customer customer) {
 		
 		//회원가입할때 회원탈퇴티에블에 존재하는 아이디를 적는다면?
-		if(customerService.getselectDeleteId(customer.getCustomerId()) == 1) {
+		if((customerService.getselectDeleteId(customer.getCustomerId()) == 1) || (customerService.getCustomerOK(customer.getCustomerId()).equals(customer.getCustomerId()))) {
 			return "redirect:/addCustomer";
 		}
 		//customer테이블에 입력
