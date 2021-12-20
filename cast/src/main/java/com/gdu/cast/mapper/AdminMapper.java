@@ -15,8 +15,13 @@ public interface AdminMapper {
 	// 관리자 페이지 신규회원수
 	int selectNewCustomer();
 	
+	// 관리자 페이지 신규 여행작가수
 	int selectNewTraveler();
 	
+	// 관리자 페이지 신규 ceo수
 	int selectNewCeo();
+	
+	//관리자 페이지에 qna미답변 개수 출력
+	int selectNewNotQnaComment();
 }
 
