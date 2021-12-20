@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gdu.cast.service.ExperienceService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperienceSelect;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -95,4 +96,18 @@ public class ExperienceController {
       return "/ceo/experienceOne";
    }
    
+   //체험 수정
+   @GetMapping("/ceo/updateExperience")
+   public String updateExperience(Model model, int experienceId) {
+	   Experience experience = experienceService.selectExperienceOne(experienceId);
+		model.addAttribute("experience", experience);
+		return "/ceo/updateExperience";
+   }
+   
+   @PostMapping("/ceo/updateExperience")
+   public String updateExperience(Experience experience) {
+		experienceService.updateExperience(experience);
+		log.debug("experience"+experience.toString());
+		return "redirect:/experienceOne?experienceId="+experience.getExperienceId();
+	}
 }

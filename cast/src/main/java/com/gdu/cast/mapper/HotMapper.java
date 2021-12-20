@@ -1,8 +1,12 @@
 package com.gdu.cast.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Address;
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Room;
 
@@ -16,4 +20,7 @@ public interface HotMapper {
 	
 	// 방 등록
 	int insertRoom(Room room);
+	
+	//호텔 리스트 출력
+	List<Experience> selectHotelList(Map<String, Object> map);
 }

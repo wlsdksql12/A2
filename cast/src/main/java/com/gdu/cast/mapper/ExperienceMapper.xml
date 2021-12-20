@@ -28,6 +28,7 @@
 	
    <!-- 체험 추가 -->
    <insert id="insertExp" parameterType="com.gdu.cast.vo.Experience">
+   
       INSERT INTO
          experience (
          ceo_id,
@@ -107,33 +108,27 @@
       </where>
    </select>
    
+   <!-- 체험 상세보기 -->
    <select id="selectExperienceOne" parameterType="int" resultMap="resultExperience">
    		SELECT *
 		FROM address a INNER JOIN experience e
 		ON a.address_id = e.address_id
 		WHERE experience_id = #{experienceId}
    </select>
+   
+   <!-- 체험 수정하기 -->
+   <update id="updateExperience" parameterType="com.gdu.cast.vo.Experience">
+   		UPDATE address a INNER JOIN experience e
+   		ON a.address_id = e.address_id
+   		SET 
+   			e.experience_name = #{experienceName},
+   			e.experience_content = #{experienceContent},
+   			e.experience_price = #{experiencePrice},
+   			e.experience_startdate = #{experienceStartdate},
+   			e.experience_enddate = #{experienceEnddate},
+   			e.experience_person = #{experiencePerson},
+   			update_date = NOW()
+   		WHERE experience_id = #{experienceId}
+   		
+   </update>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

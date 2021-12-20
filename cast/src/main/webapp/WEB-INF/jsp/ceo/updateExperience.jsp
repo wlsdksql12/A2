@@ -9,13 +9,19 @@
 <body>
 	<%@ include file="ceoBase.jsp" %>
 	<br>
+	<form  method="post" action="/ceo/updateExperience">
 	<div>
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
-					<h4 class="card-title">${experience.experienceId}번째글 상세보기</h4>
+					<h4 class="card-title">${experience.experienceId}번째글 수정하기</h4>
 					
-					<h3>${experience.experienceName}</h3>
+					<input type="hidden" class="form-control" name="experienceId"
+								value="${experience.experienceId}" >
+								
+					<p class="card-description">체험이름</p>
+					<input type="text" class="form-control" name="experienceName"
+								value="${experience.experienceName}">
 					<br><hr><br>
 					
 					<p class="card-description">주소</p>
@@ -24,20 +30,36 @@
 					<br><hr><br>
 					
 					<p class="card-description">예약 가능 날짜</p>
-					<h4>${experience.experienceStartdate} ~ ${experience.experienceEnddate}</h4>
+					<div class="form-group input-group">
+					<input type="date" class="form-control" name="experienceStartdate"
+								value="${experience.experienceStartdate}">
+					<div class="input-group-text">~</div>
+					<input type="date" class="form-control" name="experienceEnddate"
+								value="${experience.experienceEnddate}">
+					</div>
 					<br> 
 					<p class="card-description">최대 인원수</p>
-					<h4>${experience.experiencePerson} 명</h4>
+					<div class="input-group-append">
+					<input type="number" class="form-control" name="experiencePerson"
+								value="${experience.experiencePerson}"> 
+					<span style="color: black" class="input-group-text">명</span>
+							</div>
+					
 					<br> 
 					<p class="card-description">가격</p>
-					<h4>${experience.experiencePrice}&nbsp;&#8361;</h4>
+					<div class="input-group">
+					<input type="number" class="form-control" name="experiencePrice"
+								value="${experience.experiencePrice}">
+					<div class="input-group-append">
+								<span style="color: black" class="input-group-text">&#8361;</span>
+					</div></div>
 					<br><hr><br>
 					<p class="card-description">이미지(미구현)</p>
 					<h4></h4>
 					<br><hr><br>
 					 
 					<p class="card-description">프로그램</p>
-					<h4>${experience.experienceContent}</h4>
+					<textarea class="form-control" name="experienceContent" rows="10">${experience.experienceContent}</textarea>
 					<br><hr><br>
 					
 					<!-- 지도자리 -->
@@ -68,12 +90,12 @@
 				</div>
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				<a href="/ceo/updateExperience?experienceId=${experience.experienceId}" class="btn btn-inverse-warning">수정</a>
-				<a href="#" class="btn btn-inverse-danger">삭제</a>&emsp;
+				<button type="submit" class="btn btn-inverse-warning">수정하기</button>
 				</div>
 				<br>
 			</div>
 		</div>
 	</div>
+	</form>
 </body>
 </html>

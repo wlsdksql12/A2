@@ -20,4 +20,6 @@ public interface ExperienceMapper {
 	Experience selectExperienceOne(int experienceId);
 	// 체험 전체 글 수
 	int selectExperienceTotalCount(String searchTitle);
+	// 체험수정
+	int updateExperience(Experience experience);
 }

@@ -12,6 +12,9 @@ import com.gdu.cast.mapper.ExperienceMapper;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional
 public class ExperienceService {
@@ -71,5 +74,11 @@ public class ExperienceService {
 	public Experience selectExperienceOne(int experienceId) {
 		Experience experience = experienceMapper.selectExperienceOne(experienceId);
 		return experience;
+	}
+	
+	// 체험 수정하기
+	public void updateExperience(Experience experience) {
+		log.debug(experience.toString());
+		experienceMapper.updateExperience(experience);
 	}
 }
