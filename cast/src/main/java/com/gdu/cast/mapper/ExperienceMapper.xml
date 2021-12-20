@@ -129,6 +129,12 @@
    			e.experience_person = #{experiencePerson},
    			update_date = NOW()
    		WHERE experience_id = #{experienceId}
-   		
    </update>
+   
+   <!-- 체험 삭제 -->
+   <delete id="deleteExperience" parameterType="com.gdu.cast.vo.Experience">
+   		DELETE FROM experience
+   		WHERE experience_id = #{experienceId}
+   		AND ceo_id = #{ceoId}
+   </delete>
 </mapper>

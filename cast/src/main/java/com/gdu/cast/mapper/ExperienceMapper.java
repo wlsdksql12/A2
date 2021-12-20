@@ -22,4 +22,6 @@ public interface ExperienceMapper {
 	int selectExperienceTotalCount(String searchTitle);
 	// 체험수정
 	int updateExperience(Experience experience);
+	// 체험삭제
+	int deleteExperience(Experience experience);
 }

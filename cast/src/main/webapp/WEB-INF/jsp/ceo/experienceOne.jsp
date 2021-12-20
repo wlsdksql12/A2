@@ -15,6 +15,9 @@
 				<div class="card-body">
 					<h4 class="card-title">${experience.experienceId}번째글 상세보기</h4>
 					
+					<input type="hidden" class="form-control" name="experienceId"
+								value="${experience.experienceId}" >
+								
 					<h3>${experience.experienceName}</h3>
 					<br><hr><br>
 					
@@ -69,7 +72,7 @@
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
 				<a href="/ceo/updateExperience?experienceId=${experience.experienceId}" class="btn btn-inverse-warning">수정</a>
-				<a href="#" class="btn btn-inverse-danger">삭제</a>&emsp;
+				<a href="/ceo/deleteExperience?experienceId=${experience.experienceId}&ceoId=${loginCeoId}" id="insertBtn" class="btn btn-inverse-danger">삭제</a>&emsp;
 				</div>
 				<br>
 			</div>

@@ -81,4 +81,10 @@ public class ExperienceService {
 		log.debug(experience.toString());
 		experienceMapper.updateExperience(experience);
 	}
+	
+	// 체험 삭제
+	public void deleteExperience(Experience experience) {
+		log.debug(experience.toString());
+		experienceMapper.deleteExperience(experience);
+	}
 }

@@ -90,7 +90,7 @@
 				</div>
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				<button type="submit" class="btn btn-inverse-warning">수정하기</button>
+				<button type="submit" class="btn btn-inverse-warning">수정하기</button>&emsp;
 				</div>
 				<br>
 			</div>

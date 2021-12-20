@@ -41,7 +41,7 @@ public class ExperienceController {
       
       log.debug("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ceoId);
       log.debug("=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-"+experience.toString());
-      
+      // 나중에 체험리스트로 가게 바꾸기
       return "/ceo/ceoIndex";
    }
    
@@ -103,11 +103,24 @@ public class ExperienceController {
 		model.addAttribute("experience", experience);
 		return "/ceo/updateExperience";
    }
-   
    @PostMapping("/ceo/updateExperience")
    public String updateExperience(Experience experience) {
 		experienceService.updateExperience(experience);
 		log.debug("experience"+experience.toString());
 		return "redirect:/experienceOne?experienceId="+experience.getExperienceId();
 	}
-}
+   
+   // 체험 삭제
+   @GetMapping("/ceo/deleteExperience")
+   public String deleteExperience(Model model, int experienceId, String ceoId) {
+	   Experience experience = experienceService.selectExperienceOne(experienceId);
+	   log.debug(ceoId);
+	   model.addAttribute("experience", experience);
+	   return "/ceo/deleteExperience";
+   }   
+   @PostMapping("/ceo/deleteExperience")
+   public String deleteExperience(Experience experience) {
+	   experienceService.deleteExperience(experience);
+	   return "redirect:/ceo/experienceList";
+   }
+}	
