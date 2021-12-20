@@ -21,7 +21,7 @@ public class ExperienceSelectService {
 	@Autowired
 	ExperienceSelectMapper experienceSelectMapper;
 	
-	// 여행작가 숙소 추천 추가
+	// 여행작가 체험 추천 추가
 	public void addExperienceSelect(ExperienceSelect experienceSelect) {
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		experienceSelectMapper.insertExperienceSelect(experienceSelect);
@@ -33,7 +33,7 @@ public class ExperienceSelectService {
 		experienceSelectMapper.deleteExperienceSelect(experienceSelect);
 	}
 	
-	// 여행작가 체첨 추천 수정
+	// 자신이 등록한 체첨 추천 수정
 	public void modifyExperienceSelect(ExperienceSelect experienceSelect) {
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		experienceSelectMapper.updateExperienceSelect(experienceSelect);

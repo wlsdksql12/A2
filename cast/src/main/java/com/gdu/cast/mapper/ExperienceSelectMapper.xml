@@ -31,7 +31,7 @@
 		AND traveler_id = #{travelerId}
 	</delete>
 	
-	<!-- 여행작가 체험 추천 수정 -->
+	<!-- 자신이 등록한 체험 추천 수정 -->
 	<update id="updateExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		UPDATE experience_select
 		SET 
@@ -40,6 +40,7 @@
 			update_date = NOW()
 		WHERE 
 			experience_select_id = #{experienceSelectId}
+		AND traveler_id = #{travelerId}
 	</update>
 
 	<!-- 자신이 등록한 체험 추천 상세보기 -->

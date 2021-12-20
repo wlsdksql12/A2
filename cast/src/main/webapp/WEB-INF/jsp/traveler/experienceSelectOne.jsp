@@ -914,8 +914,8 @@
                 <p></p>
 				<div style="text-align:center;">
 					<input type="button" class="btn btn-primary center" value="이전" onclick="history.back(-1)">
-					<a class="btn btn-warning center" href="/modifyRoomSelect?roomSelectId=${roomSelect.roomSelectId}">수정</a>
-					<a class="btn btn-danger center" href="/removeRoomSelect?roomSelectId=${roomSelect.roomSelectId}">삭제</a>
+					<a class="btn btn-warning center" href="/modifyExperienceSelect?travelerId=${experienceSelect.travelerId}&experienceSelectId=${experienceSelect.experienceSelectId}">수정</a>
+					<a class="btn btn-danger center" href="/removeExperienceSelect?travelerId=${experienceSelect.travelerId}&experienceSelectId=${experienceSelect.experienceSelectId}">삭제</a>
 				</div>
               </div>
             </div>

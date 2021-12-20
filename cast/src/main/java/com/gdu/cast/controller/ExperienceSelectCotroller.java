@@ -46,7 +46,7 @@ public class ExperienceSelectCotroller {
 		return "redirect:/experienceSelectList";
 	}
 	
-	// 여행작가 체험 추천 수정
+	// 자신이 등록한 체험 추천 수정
 	@GetMapping("/modifyExperienceSelect")
 	public String modifyExperienceSelect(Model model, int experienceSelectId, String travelerId) {
 		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId, travelerId);
@@ -54,12 +54,12 @@ public class ExperienceSelectCotroller {
 		return "traveler/modifyExperienceSelect";
 	}
 	
-	// 여행작가 체험 추천 수정
+	// 자신이 등록한 체험 추천 수정
 	@PostMapping("/modifyExperienceSelect")
 	public String modifyExperienceSelect(ExperienceSelect experienceSelect) {
 		experienceSelectService.modifyExperienceSelect(experienceSelect);
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
-		return "redirect:/roomSelectOne?experienceSelectId="+experienceSelect.getExperienceId();
+		return "redirect:/experienceSelectOne?travelerId="+experienceSelect.getTravelerId()+"&experienceSelectId="+experienceSelect.getExperienceSelectId();
 	}
 	
 	// 자신이 등록한 체험 추천 상세보기

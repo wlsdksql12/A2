@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>[여행작가]숙소 추천 수정</title>
+    <title>[여행작가]체험 추천 수정</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
@@ -858,7 +858,7 @@
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="mainRoomSelect"
+              href="mainExperienceSelect"
             >
               <div class="flex items-center">
                 <svg
@@ -870,7 +870,7 @@
                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                   ></path>
                 </svg>
-                <span>숙소 추천 리스트로 이동</span>
+                <span>체험 추천 리스트로 이동</span>
               </div>
               <span>더보기 &RightArrow;</span>
             </a>
@@ -884,7 +884,7 @@
 	                    <tr
 	                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
 	                    >
-	                      <th class="px-3 py-3" width="20%">번호</th>
+	                      <th class="px-5 py-4" width="20%">번호</th>
 	                      <th class="px-10 py-10" width="40%">제목</th>
 	                      <th class="px-4 py-3" width="20%">아이디</th>
 	                      <th class="px-4 py-3" width="20%">작성 날짜</th>
@@ -895,28 +895,28 @@
 	                  >
 	                    <tr class="text-gray-700 dark:text-gray-400">
 	                      <td class="px-5 py-4">
-	                          ${roomSelect.roomSelectId}
+	                          <input style="outline:none;" type="text" name= "experienceSelectId" value="${experienceSelect.experienceSelectId}" readonly="readonly">
 	                      </td>
 	                      <td class="px-10 py-10 text-sm">
-	                      	  ${roomSelect.roomSelectTitle}
+	                      	  <input style="outline:none;" type="text" name="experienceSelectTitle" value="${experienceSelect.experienceSelectTitle}">
 	                      </td>
 	                       <td class="px-4 py-3">
-	                          ${roomSelect.travelerId}
+	                          <input style="outline:none;" type="text" name="travelerId" value="${experienceSelect.travelerId}" readonly="readonly">
 	                      </td>
 	                      <td class="px-4 py-3 text-sm">
-	                        ${roomSelect.createDate.substring(0,10)}
+	                        <input style="outline:none;" type="text" name="createDate" value="${experienceSelect.createDate.substring(0,10)}" readonly="readonly">
 	                      </td>
 	                    </tr>
 	                    <tr>
-							<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none; outline: none; width:100%;" rows="10" readonly="readonly">${roomSelect.roomSelectContent}</textarea></td>		
+							<td colspan="5"><textarea name="experienceSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%; outline: none;" rows="10">${experienceSelect.experienceSelectContent}</textarea></td>		
 						</tr>
 	                  </tbody>
 	                </table>
 	                <p></p>
 					<div style="text-align:center;">
-						<input type="button" class="btn btn-primary center" value="이전" onclick="history.back(-1)">
-						<a class="btn btn-warning center" href="/modifyRoomSelect?travelerId=${roomSelect.travelerId}&roomSelectId=${roomSelect.roomSelectId}">수정</a>
-						<a class="btn btn-danger center" href="/removeRoomSelect?roomSelectId=${roomSelect.roomSelectId}">삭제</a>
+						<input type="button" class="btn btn-primary" value="이전" onclick="history.back(-1)">
+						<button type="submit" class="btn btn-warning">수정</button>
+						<button type="reset" class="btn btn-danger">초기화</button>
 					</div>
 	              </div>
 	            </div>
