@@ -25,10 +25,9 @@
 	</insert>
 	
 	<!-- 여행작가 숙소 추천 삭제 -->
-	<delete id="deleteRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
+	<delete id="deleteRoomSelect" parameterType="int">
 		DELETE FROM room_select
 		WHERE room_select_id = #{roomSelectId}
-		AND traveler_id = #{travelerId}
 	</delete>
 	
 	<!-- 자신이 등록한 여행작가 숙소 추천 수정 -->

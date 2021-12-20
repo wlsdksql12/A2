@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gdu.cast.mapper.MainSelectCommentMapper;
 import com.gdu.cast.mapper.RoomSelectMapper;
 import com.gdu.cast.vo.RoomSelect;
 
@@ -20,6 +21,7 @@ public class RoomSelectService {
 	
 	@Autowired
 	RoomSelectMapper roomSelectMapper;
+	MainSelectCommentMapper mainSelectCommentMapper;
 	
 	// 여행작가 체험 추천 추가
 	public void addRoomSelect(RoomSelect roomSelect) {
@@ -27,10 +29,11 @@ public class RoomSelectService {
 		roomSelectMapper.insertRoomSelect(roomSelect);
 	}
 	
-	// 여행작가 숙소 추천 삭제
-	public void removeRoomSelect(RoomSelect roomSelect) {
+	// 자신이 등록한 숙소 추천 삭제
+	public int removeRoomSelect(RoomSelect roomSelect) {
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
-		roomSelectMapper.deleteRoomSelect(roomSelect);
+		mainSelectCommentMapper.roomSelectDeletecomment(null);
+		return roomSelectMapper.deleteRoomSelect(roomSelect);
 	}
 	
 	// 자신이 등록한 숙소 추천 수정
