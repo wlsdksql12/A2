@@ -81,12 +81,11 @@
 									<tr style="text-align:center">
 								</c:otherwise>
 							</c:choose>
-							
 								<td>${joinTraveler.joinTravelerId}</td>
-								<td>${joinTraveler.traveler.travelerId}</td>
-								<td>${joinTraveler.traveler.travelerName}</td>
-								<td>${joinTraveler.traveler.travelerEmail}</td>
-								<td>${joinTraveler.traveler.travelerPhoneNum}</td>
+								<td>${joinTraveler.travelerId}</td>
+								<td>${joinTraveler.travelerName}</td>
+								<td>${joinTraveler.travelerEmail}</td>
+								<td>${joinTraveler.travelerPhoneNum}</td>
 								<td>${joinTraveler.active}</td>
 								<td>${fn:substring(joinTraveler.createDate,0,10)}</td>
 							</tr>

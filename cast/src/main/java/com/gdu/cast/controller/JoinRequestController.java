@@ -82,15 +82,6 @@ public class JoinRequestController {
 		}
 		return"joinRequestCancel";
 	}
-	
-	// 가입 실패 시 여행작가 회원가입 삭제
-	@GetMapping("/deleteTraveler")
-	public String deleteTraveler(HttpSession session, String travelerId) {
-		System.out.println(travelerId);
-		joinRequestService.deleteTravelerJoinRequest(travelerId);
-		session.invalidate();
-		return"redirect:/customersingup";
-	}
 
 	//---------------------사업자------------------------
 	
@@ -139,14 +130,5 @@ public class JoinRequestController {
 		System.out.println(state + " <-----JoinRequestController");
 		joinRequestService.updateCeoJoinRequest(joinCeoId, adminId, state);
 		return"redirect:/admin/ceoJoinRequestList";
-	}
-	
-	// 가입 실패 시 사업자 회원가입 삭제
-	@GetMapping("/deleteCeo")
-	public String deleteCeo(HttpSession session, String ceoId) {
-		System.out.println(ceoId);
-		joinRequestService.deleteCeoJoinRequest(ceoId);
-		session.invalidate();
-		return"redirect:/customersingup";
 	}
 }

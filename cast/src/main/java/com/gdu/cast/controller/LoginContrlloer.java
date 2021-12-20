@@ -45,7 +45,7 @@ public class LoginContrlloer {
 	}
 	
 	@PostMapping("/index")
-	public String postCustomerLogin(HttpSession session, Model model, String login, String Id, String Pw) {
+	public String postCustomerLogin(HttpSession session, String login, String Id, String Pw) {
 		
 		
 		if(login.equals("adminLogin")) {
@@ -75,17 +75,12 @@ public class LoginContrlloer {
 			// 여행작가 로그인 시 여행작가 테이블에 해당하는 ID,PW 없을 시 리턴
 			if(loginTraveler == null) {
 				return "redirect:/loginSelect";
-			}
+			}	
 			String state = joinRequestService.getTravelerJoinRequestResult(Id);
 			System.out.println(state + "여행작가 요청 상태");
-			
-			if(state.equals("요청")) {
-				return"joinRequesting";
-			} else if(state.equals("거절")) {
-				model.addAttribute("travelerId",Id);
-				return"joinRequestCancel";
-			}
-			
+			// 12.20 요청or거절을 세션에 넣어서 로그인되도록
+			// 가입 요청 세션을 추가(ex.'요청','거절',승인')
+			session.setAttribute("state", state);
 			session.setAttribute("loginTravelerId", loginTraveler.getTravelerId());
 			return "redirect:/index";
 			
@@ -171,14 +166,9 @@ public class LoginContrlloer {
 			}
 			String state = joinRequestService.getCeoJoinRequestResult(Id);
 			System.out.println(state + "사업자 요청 상태");
-			
-			if(state.equals("요청")) {
-				return"joinRequesting";
-			} else if(state.equals("거절")) {
-				model.addAttribute("ceoId",Id);
-				return"joinRequestCancel";
-			}
-			
+			// 12.20 요청or거절을 세션에 넣어서 로그인되도록
+			// 가입 요청 세션을 추가(ex.'요청','거절',승인')
+			session.setAttribute("state", state);
 			session.setAttribute("loginCeoId", loginCeo.getCeoId());
 			// 로그인 정보가 다르면 다시 로그인 창으로 소환!
 

@@ -59,23 +59,23 @@
 					<div class="input-form col-md-12 mx-auto">
 					<div class="mb-3">
 						<label for="name">ID</label>
-						<input type="text" class="form-control" name="travelerName" value="${joinCeo.ceo.ceoId}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerName" value="${joinCeo.ceoId}" readonly="readonly" required>
 					</div>
 					<div class="mb-3">
 						<label for="name">이름</label>
-						<input type="text" class="form-control" name="travelerName" value="${joinCeo.ceo.ceoName}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerName" value="${joinCeo.ceoName}" readonly="readonly" required>
 					</div>
 					<div class="mb-3">
 						<label for="phonenumber">전화번호</label>
-						<input type="text" class="form-control" name="travelerPhoneNum" value="${joinCeo.ceo.ceoPhonenum}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerPhoneNum" value="${joinCeo.ceoPhonenum}" readonly="readonly" required>
 					</div>
 					<div class="mb-3">
 						<label for="email">이메일</label>
-						<input type="text" class="form-control" name="travelerEmail" value="${joinCeo.ceo.ceoEmail}" readonly="readonly"required>
+						<input type="text" class="form-control" name="travelerEmail" value="${joinCeo.ceoEmail}" readonly="readonly"required>
 					</div>
 					<div class="mb-3">
 						<label for="license">라이센스</label>
-						<input type="text" class="form-control" name=travelerLicense value="${joinCeo.ceo.ceoLicense}" readonly="readonly" required>
+						<input type="text" class="form-control" name=travelerLicense value="${joinCeo.ceoLicense}" readonly="readonly" required>
 					</div>
 					<c:if test="${joinCeo.active eq '요청' }">
 						<a class="btn btn-outline-success" href="/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=승인">승인</a>

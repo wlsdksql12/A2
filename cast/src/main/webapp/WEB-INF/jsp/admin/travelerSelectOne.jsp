@@ -59,27 +59,27 @@
 					<div class="input-form col-md-12 mx-auto">
 					<div class="mb-3">
 						<label for="name">ID</label>
-						<input type="text" class="form-control" name="travelerName" value="${joinTraveler.traveler.travelerId}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerName" value="${joinTraveler.travelerId}" readonly="readonly" required>
 					</div>
 					<div class="mb-3">
 						<label for="name">이름</label>
-						<input type="text" class="form-control" name="travelerName" value="${joinTraveler.traveler.travelerName}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerName" value="${joinTraveler.travelerName}" readonly="readonly" required>
 					</div>
 					<div class="mb-3">
 						<label for="phonenumber">전화번호</label>
-						<input type="text" class="form-control" name="travelerPhoneNum" value="${joinTraveler.traveler.travelerPhoneNum}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerPhoneNum" value="${joinTraveler.travelerPhoneNum}" readonly="readonly" required>
 					</div>
 					<div class="mb-3">
 						<label for="email">이메일</label>
-						<input type="text" class="form-control" name="travelerEmail" value="${joinTraveler.traveler.travelerEmail}" readonly="readonly"required>
+						<input type="text" class="form-control" name="travelerEmail" value="${joinTraveler.travelerEmail}" readonly="readonly"required>
 					</div>
 					<div class="mb-3">
 						<label for="license">라이센스</label>
-						<input type="text" class="form-control" name=travelerLicense value="${joinTraveler.traveler.travelerLicense}" readonly="readonly" required>
+						<input type="text" class="form-control" name=travelerLicense value="${joinTraveler.travelerLicense}" readonly="readonly" required>
 					</div>
 					<div class="mb-3">
 						<label for="career">경력</label>
-						<input type="text" class="form-control" name="travelerCareer" value="${joinTraveler.traveler.travelerCareer}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerCareer" value="${joinTraveler.travelerCareer}" readonly="readonly" required>
 					</div>
 					<c:if test="${joinTraveler.active eq '요청' }">
 						<a class="btn btn-outline-success" href="/admin/updateTravelerJoinRequest?joinTravelerId=${joinTraveler.joinTravelerId}&adminId=${loginAdminId}&state=승인">승인</a>

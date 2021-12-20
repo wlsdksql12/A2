@@ -83,10 +83,10 @@
 							</c:choose>
 							
 								<td>${joinCeo.joinCeoId}</td>
-								<td>${joinCeo.ceo.ceoId}</td>
-								<td>${joinCeo.ceo.ceoName}</td>
-								<td>${joinCeo.ceo.ceoEmail}</td>
-								<td>${joinCeo.ceo.ceoPhonenum}</td>
+								<td>${joinCeo.ceoId}</td>
+								<td>${joinCeo.ceoName}</td>
+								<td>${joinCeo.ceoEmail}</td>
+								<td>${joinCeo.ceoPhonenum}</td>
 								<td>${joinCeo.active}</td>
 								<td>${fn:substring(joinCeo.createDate,0,10)}</td>
 							</tr>

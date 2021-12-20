@@ -246,10 +246,10 @@
                 </div>
                 <div>
                 <!-- 여행작가 리스트 시작-->
-	               <c:forEach items="${joinTravelerList}" var="traveler">
+	               <c:forEach items="${joinTravelerList}" var="joinTraveler">
 						<div class="customer-message align-items-center">
-							<a class="font-weight-bold" href="/admin/travelerSelectOne?joinTravelerId=${traveler.joinTravelerId}">
-								<div class="text-truncate message-title">${traveler.travelerId}님께서 여행작가 가입 요청했습니다.</div>
+							<a class="font-weight-bold" href="/admin/travelerSelectOne?joinTravelerId=${joinTraveler.joinTravelerId}">
+								<div class="text-truncate message-title">${joinTraveler.travelerId}님께서 여행작가 가입 요청했습니다.</div>
 								<div class="small text-gray-500 message-time font-weight-bold">${fn:substring(traveler.createDate,0,19)}</div>
 							</a>
 						</div>
@@ -270,11 +270,11 @@
                 </div>
                 <div>
                 <!-- 사업자 리스트 시작 -->
-                  <c:forEach items="${joinCeoList}" var="ceo">
+                  <c:forEach items="${joinCeoList}" var="joinCeo">
 						<div class="customer-message align-items-center">
-							<a class="font-weight-bold" href="/admin/ceoSelectOne?joinCeoId=${ceo.joinCeoId}">
-								<div class="text-truncate message-title">${ceo.ceoId}님께서 사업자 가입 요청했습니다.</div>
-								<div class="small text-gray-500 message-time font-weight-bold">${fn:substring(ceo.createDate,0,19)}</div>
+							<a class="font-weight-bold" href="/admin/ceoSelectOne?joinCeoId=${joinCeo.joinCeoId}">
+								<div class="text-truncate message-title">${joinCeo.ceoId}님께서 사업자 가입 요청했습니다.</div>
+								<div class="small text-gray-500 message-time font-weight-bold">${fn:substring(joinCeo.createDate,0,19)}</div>
 							</a>
 						</div>
 					</c:forEach>
