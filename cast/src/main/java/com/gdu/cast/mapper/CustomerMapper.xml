@@ -163,5 +163,10 @@
 		WHERE id = #{customerId}
 	</select>
 
+	<select id="selectCustomerOK"  parameterType="String" resultType="String">
+		Select customer_id customerId
+		FROM customer
+		WHERE customer_id = #{customerId}
 	
+	</select>
 </mapper>

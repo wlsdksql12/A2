@@ -131,6 +131,9 @@ public class CustomerService {
 	   public int getinsertCustomerLogin(String customerId) {
 		   return customerMapper.insertCustomerLogin(customerId);
 	   }
+	   public String getCustomerOK(String customerId) {
+		   return customerMapper.selectCustomerOK(customerId);
+	   }
 	   
 	   // 로그인 기록 출력
 	   public Customer_Login getselectCustomerLogin(Customer_Login customer_Login) {

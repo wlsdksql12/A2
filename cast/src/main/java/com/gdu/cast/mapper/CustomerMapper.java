@@ -44,4 +44,6 @@ public interface CustomerMapper {
 	int updateActiveOneDate(String CustomerId);
 	
 	int selectDeleteId(String customerId);
+	
+	String selectCustomerOK(String customerId);
 }
