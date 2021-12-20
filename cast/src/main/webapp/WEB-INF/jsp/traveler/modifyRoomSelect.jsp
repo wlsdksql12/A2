@@ -884,7 +884,7 @@
 	                    <tr
 	                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
 	                    >
-	                      <th class="px-3 py-3" width="20%">번호</th>
+	                      <th class="px-5 py-4" width="20%">번호</th>
 	                      <th class="px-10 py-10" width="40%">제목</th>
 	                      <th class="px-4 py-3" width="20%">아이디</th>
 	                      <th class="px-4 py-3" width="20%">작성 날짜</th>
@@ -895,20 +895,20 @@
 	                  >
 	                    <tr class="text-gray-700 dark:text-gray-400">
 	                      <td class="px-5 py-4">
-	                          ${roomSelect.roomSelectId}
+	                          <input style="outline:none;" type="text" name= "roomSelectId" value="${roomSelect.roomSelectId}" readonly="readonly">
 	                      </td>
 	                      <td class="px-10 py-10 text-sm">
-	                      	  <input type="text" name="roomSelectTitle" value="${roomSelect.roomSelectTitle}">
+	                      	  <input style="outline:none;" type="text" name="roomSelectTitle" value="${roomSelect.roomSelectTitle}">
 	                      </td>
 	                       <td class="px-4 py-3">
-	                          ${roomSelect.travelerId}
+	                          <input style="outline:none;" type="text" name="travelerId" value="${roomSelect.travelerId}" readonly="readonly">
 	                      </td>
 	                      <td class="px-4 py-3 text-sm">
-	                        ${roomSelect.createDate.substring(0,10)}
+	                        <input style="outline:none;" type="text" name="createDate" value="${roomSelect.createDate.substring(0,10)}" readonly="readonly">
 	                      </td>
 	                    </tr>
 	                    <tr>
-							<td colspan="5"><textarea name="roomSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%;" rows="10">${roomSelect.roomSelectContent}</textarea></td>		
+							<td colspan="5"><textarea name="roomSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%; outline: none;" rows="10">${roomSelect.roomSelectContent}</textarea></td>		
 						</tr>
 	                  </tbody>
 	                </table>
