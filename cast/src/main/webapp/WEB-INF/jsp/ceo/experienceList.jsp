@@ -6,17 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>체험 리스트</title>
-<!-- plugins:css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/vendors/ti-icons/css/themify-icons.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/vendors/base/vendor.bundle.base.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/css/style.css">
-<!-- endinject -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
-<!-- JQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body>
 	<%@ include file="ceoBase.jsp" %>
@@ -80,7 +70,7 @@
 					</div>
 					<div class="table-responsive pt-3" id="form2">
 						<!-- 호텔 리스트 -->
-						
+						<%@ include file="hotelList.jsp" %>
 						<!-- 페이징 -->
 						<div>
 							<c:if test="${startPage > 1}">

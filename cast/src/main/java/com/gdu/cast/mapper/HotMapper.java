@@ -21,6 +21,9 @@ public interface HotMapper {
 	// 방 등록
 	int insertRoom(Room room);
 	
-	//호텔 리스트 출력
-	List<Experience> selectHotelList(Map<String, Object> map);
+	// 호텔 리스트 출력
+	List<Hotel> selectHotelList(Map<String, Object> map);
+	
+	// 호텔 전체 글 수
+	int selectHotelTotalCount(String ceoId);
 }

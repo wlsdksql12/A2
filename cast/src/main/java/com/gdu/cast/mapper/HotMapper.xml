@@ -74,6 +74,26 @@
 				NOW()
 			)
 	</insert>
+	
+	<!-- 호텔리스트 -->
+	<select id="selectHotelList" parameterType="Map" resultType="com.gdu.cast.vo.Hotel">
+		SELECT
+			hotel_id hotelId,
+			hotel_name hotelName,
+			hotel_price hotelPrice,
+			create_date createDate
+		FROM hotel
+		WHERE ceo_id = #{ceoId}
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<!-- 자신이 등록한 호텔 글 수 -->
+	<select id="selectHotelTotalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*) 
+		FROM hotel
+		WHERE ceo_id = #{ceoId}
+	</select>
 </mapper>
 
 
