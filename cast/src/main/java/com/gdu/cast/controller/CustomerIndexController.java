@@ -14,6 +14,7 @@ import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.CustomerService;
 import com.gdu.cast.vo.Customer;
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
 
@@ -51,6 +52,8 @@ public class CustomerIndexController {
 		log.debug(customerId);
 		
 		Map<String, Object> map = customerService.getselectQna(customerId, currentPage, ROW_PER_PAGE);
+		List<Experience> experienceList = customerService.getselectCustomerIndexExperienceList();
+		model.addAttribute("experienceList", experienceList);
 		model.addAttribute("qnaList", map.get("qnaList"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("currentPage", currentPage);
@@ -132,6 +135,8 @@ public class CustomerIndexController {
 		return "redirect:/customer/customerIndex?customerId="+qna.getCustomerId()+"&currentPage=1";
 		
 	}
+	
+	
 	
 
 	

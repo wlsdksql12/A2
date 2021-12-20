@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Delete_Id;
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Qna;
 
 @Mapper
@@ -42,8 +43,10 @@ public interface CustomerMapper {
 	int updateActiveZeroDate(String CustomerId);
 	// 활성화 상태 적용
 	int updateActiveOneDate(String CustomerId);
-	
+	// 회원탈퇴 중복
 	int selectDeleteId(String customerId);
-	
+	// customer테이블 회원가입 중복
 	String selectCustomerOK(String customerId);
+	// 체험 등록 5개 리스트
+	List<Experience> selectCustomerIndexExperienceList();
 }

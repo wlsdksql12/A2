@@ -507,8 +507,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="latest-update-box">
+                    
+                    <div class="card-body">                        
+                    <div class="latest-update-box">
+
                             <div class="row p-t-30 p-b-30">
                                 <div class="col-auto text-right update-meta">
                                     <p class="text-muted m-b-0 d-inline-flex">2 hrs ago</p>
@@ -544,19 +546,7 @@
                                     </a>
                                     <p class="text-muted m-b-10">This is great, keep it up!</p>
                                     <div class="table-responsive">
-                                        <table class="table table-hover">
-                                            <tr>
-                                                <td class="b-none">
-                                                    <a href="#!" class="align-middle">
-                                                        <img src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-2.jpg" alt="user image" class="img-radius wid-40 align-top m-r-15">
-                                                        <div class="d-inline-block">
-                                                            <h6>Jeny William</h6>
-                                                            <p class="text-muted m-b-0">Graphic Designer</p>
-                                                        </div>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                       
                                     </div>
                                 </div>
                             </div>

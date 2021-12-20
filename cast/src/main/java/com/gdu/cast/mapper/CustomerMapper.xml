@@ -155,18 +155,30 @@
 		UPDATE Customer SET active = "1"
 		WHERE customer_id = #{customerId}
 	</update>
-	
+	<!-- 회원탈퇴 아이디 중복 -->
 	<select id="selectDeleteId"  parameterType="String" resultType="int">
 		SELECT count(*)
 		
 		FROM delete_id
 		WHERE id = #{customerId}
 	</select>
-
+	<!-- 회원가입 중복 아이디 검사 -->
 	<select id="selectCustomerOK"  parameterType="String" resultType="String">
 		Select customer_id customerId
 		FROM customer
 		WHERE customer_id = #{customerId}
 	
 	</select>
+	
+	<select id="selectCustomerIndexExperienceList" parameterType="Map" resultType="com.gdu.cast.vo.Experience">
+		 SELECT 
+         experience_id experienceId,
+         experience_name experienceName,
+         experience_price experiencePrice,
+          SUBSTR(create_date, 1, 19) createDate
+      FROM experience
+      ORDER BY create_date DESC
+      LIMIT 0, 5
+	</select>
+
 </mapper>

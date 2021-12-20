@@ -14,6 +14,7 @@ import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Delete_Id;
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
 
@@ -131,6 +132,8 @@ public class CustomerService {
 	   public int getinsertCustomerLogin(String customerId) {
 		   return customerMapper.insertCustomerLogin(customerId);
 	   }
+	   
+	   //customer테이블 회원 중복
 	   public String getCustomerOK(String customerId) {
 		   return customerMapper.selectCustomerOK(customerId);
 	   }
@@ -144,10 +147,16 @@ public class CustomerService {
 	   public int getupdateActiveZeroDate(String customerId) {
 		   return customerMapper.updateActiveZeroDate(customerId);
 	   }
-
+	   // 회원탈퇴 아이디 중복
 	   public int getselectDeleteId(String customerId) {
 		   System.out.println(customerMapper.selectDeleteId(customerId) + "customerMapper.selectDeleteId()");
 		   int result = customerMapper.selectDeleteId(customerId);
 		   return result;
 	   }
+	   
+	   public  List<Experience> getselectCustomerIndexExperienceList(){
+		
+		   return customerMapper.selectCustomerIndexExperienceList();
+	   }
+	   
 }
