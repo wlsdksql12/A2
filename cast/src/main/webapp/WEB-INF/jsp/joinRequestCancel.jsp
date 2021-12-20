@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +29,19 @@
             	<h3>회원가입을 다시 진행해주세요.</h3>
             </div>
         </div>
-        <div style="text-align: center; margin: 50px auto;">
-        	<a class="btn btn-outline-warning" href="/deleteTraveler?travelerId=${travelerId}">확인</a>
-        </div>
+        <c:choose>
+        	<c:when test="${travelerId != null}">
+        		<div style="text-align: center; margin: 50px auto;">
+        			<a class="btn btn-outline-warning" href="/deleteTraveler?travelerId=${travelerId}">확인</a>
+				</div>
+        	</c:when>
+        	<c:when test="${ceoId != null}">
+        		<div style="text-align: center; margin: 50px auto;">
+        			<a class="btn btn-outline-warning" href="/deleteCeo?ceoId=${ceoId}">확인</a>
+				</div>
+        	</c:when>
+        </c:choose>
+        
     </section>
     <!-- End Section -->
     <footer class="my-3 text-center text-small">

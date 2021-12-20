@@ -145,7 +145,7 @@ public class TravelerController {
 		travelerService.addTraveler(traveler);
 		log.debug("★★★★Hyun★★★★"+traveler.toString());
 		
-		// 12.15 여행작가 회원가입 시 여행작가 회원가입 요청 리스트에 추가
+		// 여행작가 회원가입 시 여행작가 회원가입 요청 리스트에 추가
 		joinRequestService.addTravelerJoinRequest(traveler.getTravelerId());
 		
 		return "redirect:/index";

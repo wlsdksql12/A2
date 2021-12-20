@@ -245,18 +245,18 @@
                   <h6 class="m-0 font-weight-bold text-light">여행작가 가입 요청</h6>
                 </div>
                 <div>
-                <!-- 리스트 시작-->
-	                <c:forEach items="${joinTravelerList}" var="traveler">
+                <!-- 여행작가 리스트 시작-->
+	               <c:forEach items="${joinTravelerList}" var="traveler">
 						<div class="customer-message align-items-center">
-							<a class="font-weight-bold" href="#">
+							<a class="font-weight-bold" href="/admin/travelerSelectOne?joinTravelerId=${traveler.joinTravelerId}">
 								<div class="text-truncate message-title">${traveler.travelerId}님께서 여행작가 가입 요청했습니다.</div>
 								<div class="small text-gray-500 message-time font-weight-bold">${fn:substring(traveler.createDate,0,19)}</div>
 							</a>
 						</div>
 					</c:forEach>	
-                  <!-- 리스트 끝 -->
+                  <!-- 여행작가 리스트 끝 -->
                   <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="/admin/travelerJoinRequestList">View More <i
+                    <a class="m-0 small text-primary card-link" href="/admin/travelerJoinRequestList?state=요청">View More <i
                         class="fas fa-chevron-right"></i></a>
                   </div>
                 </div>
@@ -269,37 +269,18 @@
                   <h6 class="m-0 font-weight-bold text-light">사업자 가입 요청</h6>
                 </div>
                 <div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Hi there! I am wondering if you can help me with a
-                        problem I've been having.</div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Cilok Â· 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a href="#">
-                      <div class="text-truncate message-title">But I must explain to you how all this mistaken idea
-                      </div>
-                      <div class="small text-gray-500 message-time">Nana Haminah Â· 58m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Jajang Cincau Â· 25m</div>
-                    </a>
-                  </div>
-                  <div class="customer-message align-items-center">
-                    <a class="font-weight-bold" href="#">
-                      <div class="text-truncate message-title">At vero eos et accusamus et iusto odio dignissimos
-                        ducimus qui blanditiis
-                      </div>
-                      <div class="small text-gray-500 message-time font-weight-bold">Udin Wayang Â· 54m</div>
-                    </a>
-                  </div>
+                <!-- 사업자 리스트 시작 -->
+                  <c:forEach items="${joinCeoList}" var="ceo">
+						<div class="customer-message align-items-center">
+							<a class="font-weight-bold" href="/admin/ceoSelectOne?joinCeoId=${ceo.joinCeoId}">
+								<div class="text-truncate message-title">${ceo.ceoId}님께서 사업자 가입 요청했습니다.</div>
+								<div class="small text-gray-500 message-time font-weight-bold">${fn:substring(ceo.createDate,0,19)}</div>
+							</a>
+						</div>
+					</c:forEach>
+					 <!-- 사업자 리스트 끝 -->
                   <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="#">View More <i
+                    <a class="m-0 small text-primary card-link" href="/admin/ceoJoinRequestList?state=요청">View More <i
                         class="fas fa-chevron-right"></i></a>
                   </div>
                 </div>

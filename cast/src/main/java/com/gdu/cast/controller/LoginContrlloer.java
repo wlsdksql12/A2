@@ -77,7 +77,7 @@ public class LoginContrlloer {
 				return "redirect:/loginSelect";
 			}
 			String state = joinRequestService.getTravelerJoinRequestResult(Id);
-			System.out.println(state + "!@#!!@$!$#%");
+			System.out.println(state + "여행작가 요청 상태");
 			
 			if(state.equals("요청")) {
 				return"joinRequesting";
@@ -163,6 +163,22 @@ public class LoginContrlloer {
 			ceo.setCeoId(Id);
 			ceo.setCeoPw(Pw);
 			Ceo loginCeo = ceoService.loginCeo(ceo);
+			
+			// 12.18 추가...
+			// 사업자 로그인 시 사업자 테이블에 해당하는 ID,PW 없을 시 리턴
+			if(loginCeo == null) {
+				return "redirect:/loginSelect";
+			}
+			String state = joinRequestService.getCeoJoinRequestResult(Id);
+			System.out.println(state + "사업자 요청 상태");
+			
+			if(state.equals("요청")) {
+				return"joinRequesting";
+			} else if(state.equals("거절")) {
+				model.addAttribute("ceoId",Id);
+				return"joinRequestCancel";
+			}
+			
 			session.setAttribute("loginCeoId", loginCeo.getCeoId());
 			// 로그인 정보가 다르면 다시 로그인 창으로 소환!
 

@@ -89,9 +89,11 @@ public class MemberListController {
 		System.out.println(searchTitle + " <-----MemberListController");
 
 		// 여행작가 리스트 가져오기
-		Map<String, Object> map = memberListService.getTravelerList(currentPage, currentPage, searchTitle);
+		Map<String, Object> map = memberListService.getTravelerList(currentPage, ROW_PER_PAGE, searchTitle);
 		System.out.print(map.get("ceoList") + " <-----MemberListController");
-		
+		System.out.println(map.get("startPage") + " <-----MemberListController");
+		System.out.println(map.get("lastPage") + " <-----MemberListController");
+		System.out.println(map.get("totalPage") + " <-----MemberListController");
 		// 사업자 리스트 페이지에 리턴 값
 		model.addAttribute("travelerList", map.get("travelerList"));
 		model.addAttribute("startPage", map.get("startPage"));

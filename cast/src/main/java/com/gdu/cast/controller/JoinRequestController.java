@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.JoinRequestService;
+import com.gdu.cast.vo.JoinCeo;
 import com.gdu.cast.vo.JoinTraveler;
 import com.gdu.cast.vo.Notice;
 import com.gdu.cast.vo.Traveler;
@@ -53,7 +54,7 @@ public class JoinRequestController {
 	
 	// 여행작가 가입 리스트에서 상세보기
 	@GetMapping("/admin/travelerSelectOne")
-	public String getTravelerOne(Model model, String joinTravelerId) {
+	public String getTravelerOne(Model model, int joinTravelerId) {
 		System.out.println(joinTravelerId + " <-----JoinRequestController");
 		JoinTraveler joinTraveler = joinRequestService.getTravelerOne(joinTravelerId);
 		log.debug(joinTraveler.toString());
@@ -63,7 +64,7 @@ public class JoinRequestController {
 	
 	// 여행작가 상세보기에서 가입 승인 시
 	@GetMapping("/admin/updateTravelerJoinRequest")
-	public String travelerJoinRequestCancel(String joinTravelerId,String adminId, String state) {
+	public String updateTravelerJoinRequest(int joinTravelerId,String adminId, String state) {
 		// 디버깅
 		System.out.println(joinTravelerId + " <-----JoinRequestController");
 		System.out.println(adminId + " <-----JoinRequestController");
@@ -91,4 +92,61 @@ public class JoinRequestController {
 		return"redirect:/customersingup";
 	}
 
+	//---------------------사업자------------------------
+	
+	// 사업자 가입 요청 리스트
+	@GetMapping("/admin/ceoJoinRequestList")
+	public String ceoJoinRequestList(Model model,
+			@RequestParam(defaultValue = "1") int currentPage,
+			@RequestParam(required = false) String state,
+			@RequestParam(required = false) String searchTitle) {
+		// 페이지 수, 검색어 디버깅
+		System.out.println(currentPage + " <-----JoinRequestController");
+		System.out.println(state + " <-----JoinRequestController");
+		System.out.println(searchTitle + " <-----JoinRequestController");
+		// 사업자 가입 요청 가져오기
+		Map<String, Object> map = joinRequestService.getCeoJoinRequestList(currentPage, ROW_PER_PAGE, state, searchTitle);
+		System.out.print(map.get("joinCeoList") + " <-----JoinRequestController");
+		
+		// 사업자 가입 요청페이지 리턴 값
+		model.addAttribute("joinCeoList", map.get("joinCeoList"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("state", state);
+		model.addAttribute("searchTitle", searchTitle);
+		
+		return"/admin/ceoJoinRequestList";	
+	}
+	
+	// 사업자 가입 리스트에서 상세보기
+	@GetMapping("/admin/ceoSelectOne")
+	public String getCeoOne(Model model, int joinCeoId) {
+		System.out.println(joinCeoId + " <-----JoinRequestController");
+		JoinCeo joinCeo = joinRequestService.getCeoOne(joinCeoId);
+		log.debug(joinCeo.toString());
+		model.addAttribute("joinCeo",joinCeo);
+		return"/admin/ceoSelectOne";
+	}
+	
+	// 사업자 상세보기에서 가입 승인 시
+	@GetMapping("/admin/updateCeoJoinRequest")
+	public String updateCeoJoinRequest(int joinCeoId,String adminId, String state) {
+		// 디버깅
+		System.out.println(joinCeoId + " <-----JoinRequestController");
+		System.out.println(adminId + " <-----JoinRequestController");
+		System.out.println(state + " <-----JoinRequestController");
+		joinRequestService.updateCeoJoinRequest(joinCeoId, adminId, state);
+		return"redirect:/admin/ceoJoinRequestList";
+	}
+	
+	// 가입 실패 시 사업자 회원가입 삭제
+	@GetMapping("/deleteCeo")
+	public String deleteCeo(HttpSession session, String ceoId) {
+		System.out.println(ceoId);
+		joinRequestService.deleteCeoJoinRequest(ceoId);
+		session.invalidate();
+		return"redirect:/customersingup";
+	}
 }

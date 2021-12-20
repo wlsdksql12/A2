@@ -67,10 +67,10 @@
         
         <div id="collapseJoinRequestList" class="collapse" aria-labelledby="headingJoinRequestList" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Traveler</h6>
-            <a class="collapse-item" href="/admin/travelerJoinRequestList">여행작가 가입 요청</a>
             <h6 class="collapse-header">Ceo</h6>
             <a class="collapse-item" href="/admin/ceoJoinRequestList">사업자 가입 요청</a>
+            <h6 class="collapse-header">Traveler</h6>
+            <a class="collapse-item" href="/admin/travelerJoinRequestList">여행작가 가입 요청</a>
           </div>
         </div>
       </li>

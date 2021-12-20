@@ -105,6 +105,10 @@ public class MemberListService {
 			lastPage = totalPage;
 		}
 		
+		System.out.println(startPage + "startPage<----MemberListService");
+		System.out.println(lastPage + "lastPage<----MemberListService");
+		System.out.println(totalPage + "totalPage<----MemberListService");
+		
 		// 리턴값
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("ceoList", ceoList);
@@ -135,8 +139,8 @@ public class MemberListService {
 		// 하단 페이지 숫자에 보이는 첫번째 숫자
 		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
 		// 여행작가 리스트 총 글갯수
-		int totalCount = memberListMapper.selectCeoListTotalCount(searchTitle);
-		System.out.println(totalCount + "<----MemberListService");
+		int totalCount = memberListMapper.selectTravelerListTotalCount(searchTitle);
+		System.out.println(totalCount + "totalCount<----MemberListService");
 		// 하단 페이지 숫자에 보이는 마지막 숫자
 		lastPage = startPage + displayPage - 1;
 		int totalPage = totalCount / ROW_PER_PAGE;
@@ -146,7 +150,9 @@ public class MemberListService {
 		if(lastPage > totalPage) {
 			lastPage = totalPage;
 		}
-		
+		System.out.println(startPage + "startPage<----MemberListService");
+		System.out.println(lastPage + "lastPage<----MemberListService");
+		System.out.println(totalPage + "totalPage<----MemberListService");
 		// 리턴값
 		Map<String, Object> returnMap = new HashMap<>();
 		returnMap.put("travelerList", travelerList);
