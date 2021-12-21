@@ -84,16 +84,16 @@ public class HotController {
 	         // required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
 	      System.out.println(searchTitle);
 	      final int ROW_PER_PAGE = 10;
-	      Map<String, Object> map = hotService.getHotelList(currentPage, ROW_PER_PAGE, searchTitle);
+	      String ceoId = (String) session.getAttribute("loginCeoId");
+	      Map<String, Object> map = hotService.getHotelList(currentPage, ROW_PER_PAGE, searchTitle, ceoId);
 	      System.out.println(session);
 	      System.out.println(session.getAttribute("loginCeoId"));
-	      model.addAttribute("hotelList", map.get("hotelList"));
+	      model.addAttribute("hotList", map.get("hotList"));
 	      model.addAttribute("startPage", map.get("startPage"));
 	      model.addAttribute("lastPage", map.get("lastPage"));
 	      model.addAttribute("totalPage", map.get("totalPage"));
 	      model.addAttribute("currentPage", currentPage);
-	      model.addAttribute("searchTitle", searchTitle);
-	      model.addAttribute("loginCeoId", session.getAttribute("loginCeoId"));
+	      
 	      System.out.println(session.getAttribute("loginCeoId") + " 호텔리스트 세션값");
 	      return "/ceo/hotelList";
 	   }
