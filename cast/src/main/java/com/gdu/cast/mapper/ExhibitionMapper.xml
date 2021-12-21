@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExhibitionMapper">
+	<resultMap type="com.gdu.cast.vo.Exhibition" id="exhibitionAndAdmin">
+		<id column="exhibition_no" property="exhibitionNo"></id>
+		<result column="admin_id" property="adminId"></result>
+		<result column="exhibition_title" property="exhibitionTitle"></result>
+		<result column="exhibition_content" property="exhibitionContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="admin" ofType="com.gdu.cast.vo.Admin">
+			<result column="admin_name" property="adminName"></result>
+		</collection>
+	</resultMap>
+	
 	<!-- 전시소개 작성 -->
 	<insert id="insertExhibition" parameterType="com.gdu.cast.vo.Exhibition">
 		INSERT INTO exhibition(
@@ -22,24 +34,23 @@
 	</select>
 	
 	<!-- 전시소개 목록 조회 -->
-	<select id="selectExhibitionList" parameterType="Map" resultType="com.gdu.cast.vo.Exhibition">
-		SELECT exhibition_no exhibitionNo, admin_id adminId, exhibition_title exhibitionTitle,  create_date createDate
-		FROM exhibition
+	<select id="selectExhibitionList" parameterType="Map" resultMap="exhibitionAndAdmin">
+		SELECT e.exhibition_no, e.admin_id, e.exhibition_title, e.create_date, a.admin_name
+		FROM exhibition e JOIN admin a ON e.admin_id = a.admin_id
 		<where>
 			<if test='searchTitle != null or searchTitle == ""'>
-				exhibition_title LIKE '%${searchTitle}%'
+				e.exhibition_title LIKE '%${searchTitle}%'
 			</if>
 		</where>
-		ORDER BY create_date DESC
+		ORDER BY e.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
 	<!-- 전시소개 상세보기 -->
-	<select id="selectExhibitionOne" parameterType="int" resultType="com.gdu.cast.vo.Exhibition">
-		SELECT exhibition_no exhibitionNo, admin_id adminId, exhibition_title exhibitionTitle, exhibition_content exhibitionContent, 
-				create_date createDate, update_date updateDate
-		FROM exhibition
-		WHERE exhibition_no = #{exhibitionNo}
+	<select id="selectExhibitionOne" parameterType="int" resultMap="exhibitionAndAdmin">
+		SELECT  e.exhibition_no, e.admin_id, e.exhibition_title, e.exhibition_content, e.create_date, a.admin_name
+		FROM exhibition e JOIN admin a ON e.admin_id = a.admin_id
+		WHERE e.exhibition_no = #{exhibitionNo}
 	</select>
 	
 	<!-- 전시소개 수정 -->

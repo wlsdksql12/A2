@@ -13,16 +13,7 @@
 			<result column="admin_name" property="adminName"></result>
 		</collection>
 	</resultMap>
-	<!-- 
-	private int noticeNo;
-	private String adminId;
-	private String noticeTitle;
-	private String noticeContent;
-	private String createDate;
-	private String updateDate;
-	private Admin admin;
-	
-	 -->
+
 	<!-- 공지사항 추가 -->
 	<insert id="insertNotice" parameterType="com.gdu.cast.vo.Notice">
 		INSERT INTO notice(

@@ -11,4 +11,5 @@ public class Exhibition {
 	private String exhibitionContent;
 	private String createDate;
 	private String updateDate;
+	private Admin admin;
 }

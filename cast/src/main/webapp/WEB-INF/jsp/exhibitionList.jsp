@@ -61,7 +61,7 @@
 					<tr style="text-align:center">
 						<td>${exhibition.exhibitionNo}</td>
 						<td><a href="/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
-						<td>관리자</td>
+						<td>${exhibition.admin.adminName}</td>
 						<td>${exhibition.createDate}</td>
 					</tr>
 				</c:forEach>

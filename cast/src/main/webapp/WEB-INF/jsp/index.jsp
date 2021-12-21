@@ -69,17 +69,19 @@
 
     <!-- Start Banner Hero -->
     <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <!-- 아래 언더바  -->
         <ol class="carousel-indicators">
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="3"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_01.jpg"" alt="">
+                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_01.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
@@ -101,7 +103,7 @@
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_02.jpg"" alt="">
+                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_02.jpg" alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -129,6 +131,25 @@
                                 <p>
                                     We bring you 100% free CSS templates for your websites. 
                                     If you wish to support TemplateMo, please make a small contribution via PayPal or tell your friends about our website. Thank you.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_04.jpg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">Proident occaecat</h1>
+                                <h3 class="h2">Aliquip ex ea commodo consequat</h3>
+                                <p>
+                                    You are permitted to use this Zay CSS template for your commercial websites. 
+                                    You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
                                 </p>
                             </div>
                         </div>

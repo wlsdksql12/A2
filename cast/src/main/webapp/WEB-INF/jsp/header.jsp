@@ -35,6 +35,9 @@
                             <a class="nav-link" href="shop">Shop</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="mainExhibition">전시소개</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="contact">Contact</a>
                         </li>
                     </ul>

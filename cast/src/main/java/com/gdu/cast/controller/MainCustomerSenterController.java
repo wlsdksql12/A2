@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.CustomerService;
+import com.gdu.cast.service.ExhibitionService;
 import com.gdu.cast.service.MainCustomerSenterService;
 import com.gdu.cast.service.NoticeService;
+import com.gdu.cast.vo.Exhibition;
 import com.gdu.cast.vo.Notice;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
@@ -27,6 +29,7 @@ public class MainCustomerSenterController {
 	@Autowired MainCustomerSenterService mainCustomerSenterService;
 	@Autowired AdminQnaService adminQnaService;
 	@Autowired NoticeService noticeService;
+	@Autowired ExhibitionService exhibitionService;
 	
 	private final int ROW_PER_PAGE = 10;
 	
@@ -156,6 +159,32 @@ public class MainCustomerSenterController {
 		
 	}
 	
+	// 메인 페이지 전시소개 리스트 출력
+	@GetMapping("/mainExhibition")
+	public String exhibitionList(Model model,
+			@RequestParam(defaultValue = "1") int currentPage,
+			@RequestParam(required = false) String searchTitle) {
+			// required = true -> 값이 안넘어오면 에러, required = false -> 안넘어오면 null
+		System.out.println(searchTitle);
+		final int ROW_PER_PAGE = 10;
+		Map<String, Object> map = exhibitionService.getExhibitionList(currentPage, ROW_PER_PAGE, searchTitle);
+		model.addAttribute("exhibitionList", map.get("exhibitionList"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("searchTitle", searchTitle);
+		return "mainExhibition";
+	}
 	
-	
+	//메인 페이지 전시소개 상세 페이지
+	@GetMapping("/mainExhibitionOne")
+	public String noticeOne(Model model, int exhibitionNo) {
+		// 전시소개 글 번호 디버깅
+		System.out.println(exhibitionNo + "<-------exhibitionNo");
+		Exhibition exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
+		System.out.println(exhibition + "<---MainCustomerSenterController");
+		model.addAttribute("exhibition", exhibition);
+		return"mainExhibitionOne";
+	}
 }
