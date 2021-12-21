@@ -17,6 +17,22 @@ public class TravelerService {
 	@Autowired
 	TravelerMapper travelerMapper;
 	
+	/*
+	// 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 출력(5개)
+	public Map<String, Object> getselectExperienceListByMain(String travelerId) {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("travelerId", travelerId);
+		log.debug(travelerId);
+		List<RoomSelect> roomSelectList = travelerMapper.selectRoomSelectListByMain(paramMap);
+		return paramMap;
+	}
+	
+	// 여행작가 메인 페이지 자신이 쓴 숙소 추천 리스트 출력(5개)
+	public List<RoomSelect> getselectRoomSelectListByMain(String travelerId) {
+		return travelerMapper.selectRoomSelectListByMain();
+	}
+	*/
+	
 	// 여행작가 내정보 수정
 	public void modifyTravelerMyInfo(Traveler traveler) {
 		log.debug("★★★★Hyun★★★★"+traveler.toString());

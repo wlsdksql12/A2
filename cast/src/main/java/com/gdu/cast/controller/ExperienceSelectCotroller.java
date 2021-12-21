@@ -6,15 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceSelectService;
-import com.gdu.cast.vo.ExperienceSelect;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Controller
 public class ExperienceSelectCotroller {
 	@Autowired
@@ -27,49 +22,6 @@ public class ExperienceSelectCotroller {
 	@GetMapping("/addExperienceSelect")
 	public String addExperienceSelect() {
 		return "traveler/addExperienceSelect";
-	}
-	
-	// 여행작가 체험 추천 삭제
-	@GetMapping("/removeExperienceSelect")
-	public String removeExperienceSelect(Model model, int experienceSelectId, String travelerId) {
-		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId, travelerId);
-		System.out.println(experienceSelectId+"<-- experienceSelectId");
-		model.addAttribute("experienceSelect", experienceSelect);
-		System.out.println(experienceSelect+"< -- experienceSelect");
-		return "traveler/removeExperienceSelect";
-	}
-	
-	// 여행작가 체험 추천 삭제
-	@PostMapping("/removeExperienceSelect")
-	public String removeExperienceSelect(ExperienceSelect experienceSelect) {
-		experienceSelectService.removeExperienceSelect(experienceSelect);
-		return "redirect:/experienceSelectList";
-	}
-	
-	// 자신이 등록한 체험 추천 수정
-	@GetMapping("/modifyExperienceSelect")
-	public String modifyExperienceSelect(Model model, int experienceSelectId, String travelerId) {
-		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId, travelerId);
-		model.addAttribute("experienceSelect", experienceSelect);
-		return "traveler/modifyExperienceSelect";
-	}
-	
-	// 자신이 등록한 체험 추천 수정
-	@PostMapping("/modifyExperienceSelect")
-	public String modifyExperienceSelect(ExperienceSelect experienceSelect) {
-		experienceSelectService.modifyExperienceSelect(experienceSelect);
-		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
-		return "redirect:/experienceSelectOne?travelerId="+experienceSelect.getTravelerId()+"&experienceSelectId="+experienceSelect.getExperienceSelectId();
-	}
-	
-	// 자신이 등록한 체험 추천 상세보기
-	@GetMapping("/experienceSelectOne")
-	public String experienceSelectOne(Model model, int experienceSelectId, String travelerId) {
-		System.out.println(experienceSelectId + " <- experienceSelectId");
-		System.out.println(travelerId + "<-- travelerId");
-		ExperienceSelect experienceSelect = experienceSelectService.getexperienceSelectOne(experienceSelectId, travelerId);
-		model.addAttribute("experienceSelect", experienceSelect);
-		return "traveler/experienceSelectOne";
 	}
 	
 	// 자신이 등록한 체험 추천 리스트 출력

@@ -27,26 +27,6 @@ public class ExperienceSelectService {
 		experienceSelectMapper.insertExperienceSelect(experienceSelect);
 	}
 	
-	// 여행작가 체첨 추천 삭제
-	public void removeExperienceSelect(ExperienceSelect experienceSelect) {
-		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
-		experienceSelectMapper.deleteExperienceSelect(experienceSelect);
-	}
-	
-	// 자신이 등록한 체첨 추천 수정
-	public void modifyExperienceSelect(ExperienceSelect experienceSelect) {
-		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
-		experienceSelectMapper.updateExperienceSelect(experienceSelect);
-	}
-	
-	// 자신이 등록한 체험 추천 상세보기
-	public ExperienceSelect getexperienceSelectOne(int experienceSelectId, String travelerId) {
-		System.out.println(experienceSelectId + "<-- experienceSelectId");
-		System.out.println(travelerId + "<-- travelerId");
-		ExperienceSelect experienceSelect = experienceSelectMapper.selectExperienceSelectOne(experienceSelectId, travelerId);
-		return experienceSelect;
-	}
-	
 	// 자신이 등록한 체험 추천 리스트
 	public Map<String, Object> getSelectExperienceSelectList(String travelerId, int currentPage, int ROW_PER_PAGE) {
 		

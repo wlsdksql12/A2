@@ -19,9 +19,6 @@ public interface RoomSelectMapper {
 	// 자신이 등록한 숙소 추천 수정
 	int updateRoomSelect(RoomSelect roomSelect);
 	
-	// 자신이 등록한 추천 상세보기
-	RoomSelect selectRoomSelectOne(int roomSelectId, String travelerId);
-	
 	// 자신이 등록한 숙소 추천 리스트
 	List<RoomSelect> selectRoomSelectList(Map<String, Object> map);
 	
