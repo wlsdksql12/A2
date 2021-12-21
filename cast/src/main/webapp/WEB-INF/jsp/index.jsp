@@ -68,13 +68,15 @@
 
 
     <!-- Start Banner Hero -->
-    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <!-- style="height"로 높이 조절 -->
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel" style="height: 650px;">
         <!-- 아래 언더바  -->
         <ol class="carousel-indicators">
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="3"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="4"></li>
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -137,25 +139,27 @@
                     </div>
                 </div>
             </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/banner_img_04.jpg" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Proident occaecat</h1>
-                                <h3 class="h2">Aliquip ex ea commodo consequat</h3>
-                                <p>
-                                    You are permitted to use this Zay CSS template for your commercial websites. 
-                                    You are <strong>not permitted</strong> to re-distribute the template ZIP file in any kind of template collection websites.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- 테스트 중 -->
+            <c:forEach items="${exhibitionList}" var="exhibition">
+	            <div class="carousel-item">
+	                <div class="container">
+	                    <div class="row p-5" OnClick="location.href ='${pageContext.request.contextPath}/mainExhibitionOne?exhibitionNo=${exhibition.exhibitionNo}'" style="cursor:pointer;">
+	                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+	                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/${exhibition.exhibitionNo}.jpg" alt="">
+	                        </div>
+	                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+	                            <div class="text-align-left">
+	                                <h1 class="h1">${exhibition.exhibitionTitle}</h1>
+	                                <h3 class="h2"></h3>
+	                                <p>
+	                                	${exhibition.exhibitionContent}   
+	                                </p>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+            </c:forEach>
         </div>
         <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
             <i class="fas fa-chevron-left"></i>

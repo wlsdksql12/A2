@@ -65,4 +65,12 @@
 		DELETE FROM exhibition
 		WHERE exhibition_no = #{exhibitionNo} AND admin_id = #{adminId}
 	</delete>
+	
+	<!-- 메인페이지 전시소개 목록 1개 조회 -->
+	<select id="selectExhibitionList1" resultType="com.gdu.cast.vo.Exhibition">
+		SELECT exhibition_no exhibitionNo, exhibition_title exhibitionTitle, exhibition_content exhibitionContent
+		FROM exhibition
+		ORDER BY create_date DESC
+		LIMIT 0, 2
+	</select>
 </mapper>

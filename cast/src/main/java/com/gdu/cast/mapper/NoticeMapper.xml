@@ -56,7 +56,7 @@
 	</select>
 	
 	<select id="selectNoticeOne" parameterType="int" resultMap="noticeAndAdmin">
-		SELECT n.notice_no, n.admin_id, n.notice_title, n.create_date, a.admin_name
+		SELECT n.notice_no, n.admin_id, n.notice_title, n.notice_content, n.create_date, a.admin_name
 		FROM notice n JOIN admin a ON n.admin_id = a.admin_id
 		WHERE n.notice_no = #{noticeNo}
 	</select>

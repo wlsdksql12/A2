@@ -26,4 +26,7 @@ public interface ExhibitionMapper {
 	
 	// 전시소개 삭제
 	void deleteExhibition(Exhibition exhibition);
+	
+	// 전시소개 리스트 출력
+	List<Exhibition> selectExhibitionList1();
 }

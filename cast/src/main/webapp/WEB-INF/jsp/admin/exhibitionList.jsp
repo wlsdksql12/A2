@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,54 +47,54 @@
 			</c:if>
       </div>
       
-      <div class="table-responsive">
-		<table class="table align-items-center table-flush">
-		  <thead class="thead-light">
-			<tr style="text-align:center" class="table-primary">
-				<th width="10%">번호</th>
-				<th width="60%">제목</th>
-				<th width="10%">작성자</th>
-				<th width="20%">작성날짜</th>
-			</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${exhibitionList}" var="exhibition">
-					<tr style="text-align:center">
-						<td>${exhibition.exhibitionNo}</td>
-						<td><a href="/admin/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
-						<td>${exhibition.admin.adminName}</td>
-						<td>${exhibition.createDate}</td>
-					</tr>
+	      <div class="table-responsive">
+			<table class="table align-items-center table-flush">
+			  <thead class="thead-light">
+				<tr style="text-align:center" class="table-primary">
+					<th width="10%">번호</th>
+					<th width="60%">제목</th>
+					<th width="10%">작성자</th>
+					<th width="20%">작성날짜</th>
+				</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${exhibitionList}" var="exhibition">
+						<tr style="text-align:center">
+							<td>${exhibition.exhibitionNo}</td>
+							<td><a href="/admin/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
+							<td>${exhibition.admin.adminName}</td>
+							<td>${fn:substring(exhibition.createDate,0,10)}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div>
+				<c:if test="${startPage > 1}">
+					<a href="/admin/exhibitionList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				</c:if>
+				<c:forEach begin="${startPage}" end="${lastPage}" var="i">
+					<c:choose>
+						<c:when test="${i == currentPage}">
+							<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
-			</tbody>
-		</table>
-		<div>
-			<c:if test="${startPage > 1}">
-				<a href="/admin/exhibitionList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
-			</c:if>
-			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-				<c:choose>
-					<c:when test="${i == currentPage}">
-						<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
-					</c:when>
-					<c:otherwise>
-						<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${lastPage != totalPage}">
-				<a href="/admin/exhibitionList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
-			</c:if>
+				<c:if test="${lastPage != totalPage}">
+					<a href="/admin/exhibitionList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				</c:if>
+			</div>
+			<br>
+			<form method="get" id="/admin/exhibitionList">
+				<input name="searchTitle" value="${searchTitle}">
+				<button>검색</button>
+			</form>	
+			</div>
+			<br>
 		</div>
-		<br>
-		<form method="get" id="/admin/exhibitionList">
-			<input name="searchTitle" value="${searchTitle}">
-			<button>검색</button>
-		</form>	
 		</div>
-		<br>
-	</div>
-</div>
 
 
           <!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->

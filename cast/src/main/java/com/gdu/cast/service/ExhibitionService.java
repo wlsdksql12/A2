@@ -79,4 +79,12 @@ public class ExhibitionService {
 	public void deleteExhibition(Exhibition exhibition) {
 		exhibitionMapper.deleteExhibition(exhibition);
 	}
+	
+	// 메인페이지 전시소개 리스트 1개
+	public List<Exhibition> getExhibitionList1(){
+		List<Exhibition> exhibitionList = exhibitionMapper.selectExhibitionList1();
+		System.out.println(exhibitionList + "<----ExhibitionService");
+		
+		return exhibitionList;
+	}
 }
