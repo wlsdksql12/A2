@@ -39,18 +39,18 @@ public class HotService {
 	}
 	
 	// 호텔 리스트
-	public Map<String, Object> getHotelList(int currentPage, int ROW_PER_PAGE, String searchTitle){
+	public Map<String, Object> getHotelList(int currentPage, int ROW_PER_PAGE, String searchTitle, String ceoId){
 		// 1. 매개변수 가공
 		Map<String, Object> paramMap = new HashMap<>();
 		int beginRow = 0;
 		int displayPage = 10;
 		int startPage = 0;
 		int lastPage = 0;
-		System.out.println(searchTitle + "HotService");
 		beginRow = (currentPage - 1) * ROW_PER_PAGE;
 		paramMap.put("beginRow", beginRow); // currentPage 가공
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("searchTitle", searchTitle);
+		paramMap.put("ceoId", ceoId);
 		
 		// 호텔 리스트 가져오기
 		List<Hotel> hotList = hotMapper.selectHotelList(paramMap);
@@ -61,7 +61,7 @@ public class HotService {
 		
 		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
 		
-		int totalCount = hotMapper.selectHotelTotalCount(searchTitle);
+		int totalCount = hotMapper.selectHotelTotalCount(ceoId);
 		System.out.println(totalCount + "hotService");
 		lastPage = startPage + displayPage - 1;
 		int totalPage = totalCount / ROW_PER_PAGE;
