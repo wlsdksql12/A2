@@ -1,5 +1,8 @@
 package com.gdu.cast.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,15 +21,21 @@ public class AdminService {
 		return adminMapper.selectAdmin(admin);
 	}
 	
-	public int selectNewCustomer() {
-		return adminMapper.selectNewCustomer();
+	public Map<String, Object> selectNewCustomer() {
+		Map<String, Object> map = new HashMap<>();
+		map = adminMapper.selectNewCustomer();
+		return map;
 	}
 	
-	public int selectNewTraveler() {
+	public Map<String, Object> selectNewTraveler() {
+		Map<String, Object> map = new HashMap<>();
+		map = adminMapper.selectNewTraveler();
 		return adminMapper.selectNewTraveler();
 	}
 	
-	public int selectNewCeo() {
+	public Map<String, Object> selectNewCeo() {
+		Map<String, Object> map = new HashMap<>();
+		map = adminMapper.selectNewCeo();
 		return adminMapper.selectNewCeo();
 	}
 	

@@ -11,6 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="${pageContext.request.contextPath}/resources/admin_template/img/logo/logo.png" rel="icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>RuangAdmin - Dashboard</title>
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -54,29 +55,21 @@
         <h6 class="m-0 font-weight-bold text-primary">Qna답변 수정</h6>
       </div>
       <div class="table-responsive">
-		 <form method="post" action="/admin/updateQnaComment">
+		 <form method="post" action="/admin/updateQnaComment" id="updateQnaCommentForm">
 		 	<input type="hidden" name="qnaId" value="${qnaId}" readonly="readonly">
 			<table class="table align-items-center table-flush">
 				<tbody>
 					<tr>
 						<td style="text-align: right">내용</td>
-						<td><textarea name="qnaCommentContent" rows="10" cols="80"></textarea></td>
+						<td><textarea id="qnaCommentContent" name="qnaCommentContent" rows="10" cols="80"></textarea></td>
 					</tr>
 				</tbody>
 			</table>
-			<button type="submit" class="btn btn-outline-success">수정하기</button>
+			<button id="updateQnaCommentBtn" type="button" class="btn btn-outline-success">수정하기</button>
 		</form>
 		<br>
 	</div>
 </div>
-          <!--Row-->
-
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
-                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-            </div>
-          </div>
 
 			<!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->
 			<%@ include file="adminModalLogout.jsp"%>          
@@ -110,7 +103,27 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  
+  <script>
+  $(function(){
+		$('#updateQnaCommentBtn').click(function(){
+	        if($('#qnaCommentContent').val() == '') {
+	           alert('수정할 Qna답변을 입력해주세요.');
+	           return;
+	        } else {
+	           $('#updateQnaCommentForm').submit();
+	        }
+	     });
+		
+		$('#updateQnaCommentForm').keypress(function(event){
+			if(event.which == 13) {
+				$('#updateQnaCommentBtn').click();
+				return false;
+			}
+		});
+	  });
+  </script>
+  
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery-easing/jquery.easing.min.js"></script>

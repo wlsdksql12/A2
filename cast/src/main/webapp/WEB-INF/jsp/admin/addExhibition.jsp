@@ -10,6 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="${pageContext.request.contextPath}/resources/admin_template/img/logo/logo.png" rel="icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>RuangAdmin - Dashboard</title>
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -53,32 +54,24 @@
         <h6 class="m-0 font-weight-bold text-primary">전시소개 작성</h6>
       </div>
       <div class="table-responsive">
-		<form method="post" action="/admin/addExhibition">
+		<form method="post" action="/admin/addExhibition" id="addExhibitionForm">
 			<table class="table align-items-center table-flush">
 				<tr>
 					<td width="10%" style="text-align: right">제목</td>
-					<td width="80%"><input type="text" name="exhibitionTitle" style="width:685px; text-align: center"></td>
+					<td width="80%"><input type="text" id="exhibitionTitle" name="exhibitionTitle" style="width:685px; text-align: center"></td>
 				</tr>
 				<tbody>
 					<tr>
 						<td style="text-align: right">내용</td>
-						<td><textarea name="exhibitionContent" rows="10" cols="80"></textarea></td>
+						<td><textarea id="exhibitionContent" name="exhibitionContent" rows="10" cols="80"></textarea></td>
 					</tr>
 				</tbody>
 			</table>
-			<button type="submit" class="btn btn-outline-success">저장</button>
+			<button id="addExhibitionBtn" type="button" class="btn btn-outline-success">저장</button>
 		</form>
 		<br>
 		</div>
 	</div>
-          <!--Row-->
-
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
-                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-            </div>
-          </div>
 
 			<!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->
 			<%@ include file="adminModalLogout.jsp"%>
@@ -112,7 +105,30 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  
+  <script>
+  $(function(){
+	$('#addExhibitionBtn').click(function(){
+        if($('#exhibitionTitle').val() == '') {
+           alert('제목을 입력해주세요.');
+           return;
+        } else if($('#exhibitionContent').val() == '') {
+            alert('내용을 입력해주세요.');
+            return;
+        } else {
+           $('#addExhibitionForm').submit();
+        }
+     });
+	
+	$('#addExhibitionForm').keypress(function(event){
+		if(event.which == 13) {
+			$('#addExhibitionBtn').click();
+			return false;
+		}
+	});
+  });
+  </script>
+  
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery-easing/jquery.easing.min.js"></script>

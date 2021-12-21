@@ -48,10 +48,6 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">연간 수익</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                        <span>Since last month</span>
-                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-primary"></i>
@@ -68,10 +64,6 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">예약수</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                        <span>Since last years</span>
-                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -89,10 +81,6 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">미답변 Qna</div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">${newNotQnaComment}</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                        <span>Since yesterday</span>
-                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-warning"></i>
@@ -112,14 +100,14 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">신규 사업자</div>
                       <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${newCeo}</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
-                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-users fa-2x text-info"></i>
                     </div>
+                  </div>
+                   <div class="mt-0 mb-0 text-muted text-xs">
+                        <i>총</i><span class="text-success mr-2">${TotalCeo}</span>
+                        <span>명의 사업자</span>
                   </div>
                 </div>
               </div>
@@ -133,14 +121,14 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">신규 여행작가</div>
                       <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${newTraveler}</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
-                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-users fa-2x text-info"></i>
                     </div>
+                  </div>
+                  <div class="mt-0 mb-0 text-muted text-xs">
+                        <i>총</i><span class="text-success mr-2">${TotalTraveler}</span>
+                        <span>명의 여행작가</span>
                   </div>
                 </div>
               </div>
@@ -154,14 +142,14 @@
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-uppercase mb-1">신규 회원</div>
                       <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${newCustomer}</div>
-                      <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
-                      </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-users fa-2x text-info"></i>
                     </div>
+                  </div>
+                  <div class="mt-0 mb-0 text-muted text-xs">
+                        <i>총</i><span class="text-success mr-2">${TotalCustomer}</span>
+                        <span>명의 회원</span>
                   </div>
                 </div>
               </div>
@@ -288,14 +276,6 @@
             </div>
             </div>
            </div>
-          </div>
-          <!--Row-->
-
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
-                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-            </div>
           </div>
 
 			<!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->

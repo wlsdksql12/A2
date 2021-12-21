@@ -93,14 +93,7 @@
 		<br>
 	</div>
 </div>
-          <!--Row-->
 
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
-                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-            </div>
-          </div>
 
           <!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->
           <%@ include file="/WEB-INF/jsp/admin/adminModalLogout.jsp"%>

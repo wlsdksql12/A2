@@ -31,9 +31,9 @@ public class AdminController {
 	@GetMapping("/admin/adminIndex")
 	public String adminIndex(Model model, @RequestParam(defaultValue = "1") int currentPage) {
 		
-		int newCustomer = adminService.selectNewCustomer();
-		int newTraveler = adminService.selectNewTraveler();
-		int newCeo = adminService.selectNewCeo();
+		Map<String, Object> newCustomer = adminService.selectNewCustomer();
+		Map<String, Object> newTraveler = adminService.selectNewTraveler();
+		Map<String, Object> newCeo = adminService.selectNewCeo();
 		int newNotQnaComment = adminService.selectNewNotQnaComment();
 		Map<String, Object> map = adminQnaService.selectNotQnaComment(currentPage, ROW_PER_PAGE);
 		// 차트에 사용할 임시 데이터
@@ -45,15 +45,19 @@ public class AdminController {
 		// 여행작가 회원가입 요청 리스트 4개
 		List<JoinCeo> joinCeoList = joinRequestService.getCeoJoinRequestList4();
 		System.out.println(joinCeoList.toString());
-		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer.get("count") + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer.get("TotalCount") + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		model.addAttribute("data", data);
 		model.addAttribute("joinTravelerList",joinTravelerList);
 		model.addAttribute("joinCeoList",joinCeoList);
-		model.addAttribute("newCustomer", newCustomer);
-		model.addAttribute("newTraveler", newTraveler);
-		model.addAttribute("newCeo", newCeo);
+		model.addAttribute("newCustomer", newCustomer.get("count"));
+		model.addAttribute("TotalCustomer", newCustomer.get("TotalCount"));
+		model.addAttribute("newTraveler", newTraveler.get("count"));
+		model.addAttribute("TotalTraveler", newTraveler.get("TotalCount"));
+		model.addAttribute("newCeo", newCeo.get("count"));
+		model.addAttribute("TotalCeo", newCeo.get("TotalCount"));
 		model.addAttribute("newNotQnaComment", newNotQnaComment);
 		model.addAttribute("notQnaCommentList", map.get("notQnaCommentList"));
 		model.addAttribute("lastPage", map.get("lastPage"));

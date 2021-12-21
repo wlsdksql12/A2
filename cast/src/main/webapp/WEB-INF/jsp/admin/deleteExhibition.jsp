@@ -10,6 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="${pageContext.request.contextPath}/resources/admin_template/img/logo/logo.png" rel="icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <title>RuangAdmin - Dashboard</title>
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -54,27 +55,19 @@
       </div>
       <div class="table-responsive">
       		<h6 class="m-3 font-weight-bold text-danger">전시소개를 삭제하시겠습니까?</h6>
-		 <form method="post" action="/admin/deleteExhibition">
+		 <form method="post" action="/admin/deleteExhibition" id="deleteExhibitionForm">
 		 <input type="hidden" name="exhibitionNo" value="${exhibitionNo}" readonly="readonly">
 			<table class="table align-items-center table-flush">
 				<tr>
 					<td width="10%" style="text-align: right">아이디</td>
-					<td width="80%"><input type="text" name="adminId" style="width:685px; text-align: center"></td>
+					<td width="80%"><input type="text" id="adminId" name="adminId" style="width:685px; text-align: center"></td>
 				</tr>
 			</table>
-			<button type="submit" class="btn btn-outline-success">삭제하기</button>
+			<button id="deleteExhibitionBtn" type="button" class="btn btn-outline-success">삭제하기</button>
 		</form>
 		<br>
 	</div>
 </div>
-          <!--Row-->
-
-          <div class="row">
-            <div class="col-lg-12 text-center">
-              <p>Do you like this template ? you can download from <a href="https://github.com/indrijunanda/RuangAdmin"
-                  class="btn btn-primary btn-sm" target="_blank"><i class="fab fa-fw fa-github"></i>&nbsp;GitHub</a></p>
-            </div>
-          </div>
 
           <!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->
           <%@ include file="adminModalLogout.jsp"%>
@@ -108,7 +101,27 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
+  
+    <script>
+  $(function(){
+	  $('#deleteExhibitionBtn').click(function(){
+	        if($('#adminId').val() == '') {
+	           alert('아이디를 입력해주세요.');
+	           return;
+	        } else {
+	           $('#deleteExhibitionForm').submit();
+	        }
+	     });
+		
+		$('#deleteExhibitionForm').keypress(function(event){
+			if(event.which == 13) {
+				$('#deleteExhibitionBtn').click();
+				return false;
+			}
+		});
+	  });
+  </script>
+  
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery-easing/jquery.easing.min.js"></script>
