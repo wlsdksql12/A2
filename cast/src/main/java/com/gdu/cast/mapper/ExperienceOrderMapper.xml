@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.ExperienceOrderMapper">
+		<!-- experience select comment add -->
+	<insert id="ExperienceInsertOrder" parameterType="com.gdu.cast.vo.ExperienceOrder">
+		INSERT INTO experience_order(
+		experience_order_id
+		customer_id,
+		experience_id,
+		experience_order_people,
+		experience_order_startdate,
+		experience_order_enddate,
+		create_Date,
+		update_Date
+	) VALUES(
+		#{experienceOrderId},
+		#{customerId},
+		#{experienceId},
+		#{experienceOrderPeople},
+		#{experienceOrderStartDate},
+		#{experienceOrderEndDate},
+		now(),
+		now()	
+	)
+	</insert>
+
+</mapper>

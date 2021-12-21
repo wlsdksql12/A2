@@ -53,7 +53,7 @@
   <!-- header include -->
    <%@ include file="/WEB-INF/jsp/header.jsp"%>
     <!-- Close Header -->
-
+	
     <!-- Modal -->
     <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
@@ -104,6 +104,7 @@
 			                	<ul class="hide">
 			                		<li>메뉴2-1-1</li>
 			                		<li>메뉴2-1-2</li>
+			                		<li><a href="/addExperienceOrder">주문</a></li>
 			                	</ul>
 			                </li>
 			                <li class="menu">
