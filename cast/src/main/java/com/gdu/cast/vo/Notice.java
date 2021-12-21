@@ -11,4 +11,5 @@ public class Notice {
 	private String noticeContent;
 	private String createDate;
 	private String updateDate;
+	private Admin admin;
 }

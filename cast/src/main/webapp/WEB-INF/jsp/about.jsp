@@ -103,7 +103,7 @@
 					<tr style="text-align:center">
 						<td>${notice.noticeNo}</td>
 						<td><a href="/mainNoticeOne?noticeNo=${notice.noticeNo}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a></td>
-						<td>관리자</td>
+						<td>${notice.admin.adminName}</td>
 						<td>${fn:substring(notice.createDate,0,10)}</td>
 					</tr>
 				</c:forEach>

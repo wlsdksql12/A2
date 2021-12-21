@@ -15,6 +15,7 @@ import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Delete_Id;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
 
@@ -159,4 +160,7 @@ public class CustomerService {
 		   return customerMapper.selectCustomerIndexExperienceList();
 	   }
 	   
+	   public List<Hotel> getselectCustomerIndexHoelList(){
+		   return customerMapper.selectCustomerIndexHoelList();
+	   }
 }

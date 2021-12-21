@@ -9,6 +9,7 @@ import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Delete_Id;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Qna;
 
 @Mapper
@@ -49,4 +50,6 @@ public interface CustomerMapper {
 	String selectCustomerOK(String customerId);
 	// 체험 등록 5개 리스트
 	List<Experience> selectCustomerIndexExperienceList();
+	// 호텔 등록 5개 리스트
+	List<Hotel> selectCustomerIndexHoelList();
 }
