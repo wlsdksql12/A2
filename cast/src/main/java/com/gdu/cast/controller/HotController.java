@@ -35,15 +35,20 @@ public class HotController {
 	}
 	
 	@PostMapping("/ceo/insertHotel")
-	public String insertHotel(HttpSession session, Hotel hotel) {
+	public String insertHotel(Model model, HttpSession session, Hotel hotel) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		hotel.setCeoId(ceoId);
 		hotService.insertHotel(hotel);
 		
+		
 		log.debug("====================================" + ceoId + " << ceoId");
 		log.debug("====================================" + hotel.toString() + " << hotel Debug");
 		
-		return "redirect:/ceo/insertRoom?hotelId="+hotel.getHotelId();
+		
+		
+		
+		
+		return "redirect:/ceo/insertRoom?hotelId="+hotel.getHotelId() + "&countRoom=" + hotel.getCountRoom();
 	}
 	
 	// 호텔주소 등록
@@ -59,20 +64,35 @@ public class HotController {
 		
 		hotService.insertHotelAddress(address);
 		
+		
+		
 		return "redirect:/ceo/insertHotel?addressId=" + address.getAddressId() + "&ceoId=" + hotel.getCeoId();
 	}
 	
 	// 방 등록
 	@GetMapping("/ceo/insertRoom")
-	public String insertRoom(Model model, int hotelId) {
-		model.addAttribute("hotelId", hotelId);
+	public String insertRoom(Model model, Hotel hotel) {
+		model.addAttribute("hotelId", hotel.getHotelId());
+		
+		log.debug("@@@@@@@@@"+hotel.getCountRoom());
+		int count = hotel.getCountRoom();
+		
+		model.addAttribute("countRoom",count);
+		
 		return "/ceo/insertRoom";
 	}
 	
 	@PostMapping("/ceo/insertRoom")
-	public String insertRoom(Room room) {
-		hotService.insertRoom(room);
+	public String insertRoom(Model model, Room room, Hotel hotel) {
+		System.out.println("@@@@@@@@@@@@@");
 		
+		hotService.insertRoom(room);
+		System.out.println("@@@@@@@@@@@@@");
+		
+		
+		
+		model.addAttribute(hotel);
+		System.out.println("HotController countRoom"+hotel.getCountRoom());
 		return "/ceo/ceoIndex";
 	}
 	

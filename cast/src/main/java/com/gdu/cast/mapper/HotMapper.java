@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Address;
-import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Room;
 
@@ -26,4 +25,7 @@ public interface HotMapper {
 	
 	// 호텔 전체 글 수
 	int selectHotelTotalCount(String ceoId);
+	
+	// 호텔 방 수
+	int selectCountRoom(Hotel hotel);
 }

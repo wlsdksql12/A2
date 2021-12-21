@@ -72,7 +72,7 @@
 				#{roomPrice},
 				NOW(),
 				NOW()
-			)
+			);
 	</insert>
 	
 	<!-- 호텔리스트 -->
@@ -94,6 +94,14 @@
 		FROM hotel
 		WHERE ceo_id = #{ceoId}
 	</select>
+	
+	<!-- 호텔 등록 방 수 -->
+	<select id="selectCountRoom" parameterType="com.gdu.cast.vo.Hotel" resultType="int">
+		SELECT count_room
+		FROM hotel
+		WHERE hotel_id = #{hotelId}
+	</select>
+	
 </mapper>
 
 

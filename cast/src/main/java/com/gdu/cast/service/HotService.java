@@ -36,7 +36,13 @@ public class HotService {
 	// 방 추가
 	public void insertRoom(Room room) {
 		hotMapper.insertRoom(room);
+		
 	}
+	
+	public int selectCountRoom(Hotel hotel) {
+		return hotMapper.selectCountRoom(hotel);
+	}
+	
 	
 	// 호텔 리스트
 	public Map<String, Object> getHotelList(int currentPage, int ROW_PER_PAGE, String searchTitle, String ceoId){
