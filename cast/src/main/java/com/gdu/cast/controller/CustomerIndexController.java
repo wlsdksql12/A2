@@ -15,6 +15,7 @@ import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.CustomerService;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
 
@@ -50,9 +51,14 @@ public class CustomerIndexController {
 	@GetMapping("/customer/customerIndex")
 	public String shopsingle(Model model, String customerId, int currentPage) {
 		log.debug(customerId);
-		
+		// 내가 쓴 qna 5개 리스트
 		Map<String, Object> map = customerService.getselectQna(customerId, currentPage, ROW_PER_PAGE);
+		// 체험 5개 등록 리스트
 		List<Experience> experienceList = customerService.getselectCustomerIndexExperienceList();
+		// 숙소 5개 등록 리스트
+		List<Hotel> hotelList = customerService.getselectCustomerIndexHoelList();
+		
+		model.addAttribute("hotelList", hotelList);
 		model.addAttribute("experienceList", experienceList);
 		model.addAttribute("qnaList", map.get("qnaList"));
 		model.addAttribute("lastPage", map.get("lastPage"));

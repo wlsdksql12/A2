@@ -189,15 +189,10 @@
 							<br>
 							<c:forEach items="${list}" var="qna">
 								<a
-									href="/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
+									href="/customer/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
 									${qna.qnaId}번, ${qna.qnaTitle} 제목에 헤당하는 QNA 게시글에 답글이 달렸습니다. </a>
 								<br>
 							</c:forEach>
-
-
-
-
-
 
 							<div class="noti-footer">
 								<a href="#!">show all</a>
@@ -461,38 +456,46 @@
 
 								<div class="card-body">
 									<div style="width: 45%; display: inline-block;" class="float-left">
+									
 										<table class="table table-bordered">
 											<thead>
 												<tr>
-													<th>1</th>
-													<th>2</th>
-													<th>3</th>
+													<th>체험 번호</th>
+													<th>체험 이름</th>
+													<th>체험 등록일</th>
 												</tr>
 											</thead>
 											<tbody>
+											<c:forEach items="${experienceList}"  var="list">
 												<tr>
-													<td>1</td>
-													<td>2</td>
-													<td>3</td>
+													<td>${list.experienceId}</td>
+													<td><a href= "customerIndex?customerId=${loginCustomerId}&currentPage=1">${list.experienceName}</a></td>
+													<td>${list.createDate}</td>
 												</tr>
+											</c:forEach>
 											</tbody>
 										</table>
+										
 									</div>
 									<div style="width: 45%; display: inline-block;" class="float-right">
 										<table class="table table-bordered">
 											<thead>
+											
 												<tr>
-													<th>1</th>
-													<th>2</th>
-													<th>3</th>
+													<th>호텔 번호</th>
+													<th>호텔 이름</th>
+													<th>호텔 등록일</th>
 												</tr>
+												
 											</thead>
+											<c:forEach items="${hotelList}"  var="list">
 											<tbody>
 												<tr>
-													<td>1</td>
-													<td>2</td>
-													<td>3</td>
+													<td>${list.hotelId}</td>
+													<td> <a href= "customerIndex?customerId=${loginCustomerId}&currentPage=1">${list.hotelName}</a></td>
+													<td>${list.createDate}</td>
 												</tr>
+											</c:forEach>
 											</tbody>
 										</table>
 									</div>

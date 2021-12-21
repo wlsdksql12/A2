@@ -169,14 +169,24 @@
 		WHERE customer_id = #{customerId}
 	
 	</select>
-	
+	<!-- 체험 등록될때마다 업데이트 -->
 	<select id="selectCustomerIndexExperienceList" parameterType="Map" resultType="com.gdu.cast.vo.Experience">
 		 SELECT 
          experience_id experienceId,
          experience_name experienceName,
-         experience_price experiencePrice,
           SUBSTR(create_date, 1, 19) createDate
       FROM experience
+      ORDER BY create_date DESC
+      LIMIT 0, 5
+	</select>
+	
+		<!-- 호텔 등록될때마다 업데이트 -->
+	<select id="selectCustomerIndexHoelList" parameterType="Map" resultType="com.gdu.cast.vo.Hotel">
+		 SELECT 
+         hotel_id hotelId,
+         hotel_name hotelName,
+         SUBSTR(create_date, 1, 19) createDate
+      FROM hotel
       ORDER BY create_date DESC
       LIMIT 0, 5
 	</select>
