@@ -33,10 +33,10 @@ public class NoticeController {
 		notice.setAdminId(adminId);
 		System.out.println(notice);
 		noticeService.addNotice(notice);
-		return"redirect:/noticeList";
+		return"redirect:/admin/noticeList";
 	}
 	
-	@GetMapping("/noticeList")
+	@GetMapping("/admin/noticeList")
 	public String noticeList(Model model, HttpSession session,
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
@@ -54,10 +54,10 @@ public class NoticeController {
 		model.addAttribute("searchTitle", searchTitle);
 		model.addAttribute("loginAdminId", session.getAttribute("loginAdminId"));
 		System.out.println(session.getAttribute("loginAdminId") + " 공지사항리스트 세션값");
-		return "noticeList";
+		return "/admin/noticeList";
 	}
 	
-	@GetMapping("/noticeOne")
+	@GetMapping("/admin/noticeOne")
 	public String noticeOne(Model model, int noticeNo) {
 		System.out.println(noticeNo);
 		Notice notice = noticeService.NoticeOne(noticeNo);
@@ -68,7 +68,7 @@ public class NoticeController {
 		model.addAttribute("noticeContent", notice.getNoticeContent());
 		model.addAttribute("createDate", notice.getCreateDate());
 		model.addAttribute("updateDate", notice.getUpdateDate());
-		return"noticeOne";
+		return"/admin/noticeOne";
 	}
 	
 	@GetMapping("/admin/updateNotice")
@@ -82,7 +82,7 @@ public class NoticeController {
 	public String updateNotice(Notice notice) {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + notice + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		noticeService.updateNotice(notice);
-		return "redirect:/noticeOne?noticeNo="+notice.getNoticeNo();
+		return "redirect:/admin/noticeOne?noticeNo="+notice.getNoticeNo();
 		
 	}
 	
@@ -98,7 +98,7 @@ public class NoticeController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ넘어옴ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + notice + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		noticeService.deleteNotice(notice);
-		return "redirect:/noticeList";
+		return "redirect:/admin/noticeList";
 		
 	}
 }

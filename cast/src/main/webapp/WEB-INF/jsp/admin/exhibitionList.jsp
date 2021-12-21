@@ -60,7 +60,7 @@
 				<c:forEach items="${exhibitionList}" var="exhibition">
 					<tr style="text-align:center">
 						<td>${exhibition.exhibitionNo}</td>
-						<td><a href="/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
+						<td><a href="/admin/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
 						<td>${exhibition.admin.adminName}</td>
 						<td>${exhibition.createDate}</td>
 					</tr>
@@ -69,24 +69,24 @@
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/exhibitionList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="/admin/exhibitionList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/exhibitionList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="/admin/exhibitionList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
 		<br>
-		<form method="get" id="/exhibitionList">
+		<form method="get" id="/admin/exhibitionList">
 			<input name="searchTitle" value="${searchTitle}">
 			<button>검색</button>
 		</form>	

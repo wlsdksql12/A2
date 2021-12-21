@@ -59,7 +59,7 @@
 				<c:forEach items="${noticeList}" var="notice">
 					<tr style="text-align:center">
 						<td>${notice.noticeNo}</td>
-						<td><a href="/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
+						<td><a href="/admin/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
 						<td>${notice.admin.adminName}</td>
 						<td>${notice.createDate}</td>
 					</tr>
@@ -68,24 +68,24 @@
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/noticeList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="/admin/noticeList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="/admin/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="/admin/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/noticeList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="/admin/noticeList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
 		<br>
-		<form method="get" id="/noticeList">
+		<form method="get" id="/admin/noticeList">
 			<input name="searchTitle" value="${searchTitle}">
 			<button>검색</button>
 		</form>	

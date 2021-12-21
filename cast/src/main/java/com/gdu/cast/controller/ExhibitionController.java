@@ -22,7 +22,7 @@ public class ExhibitionController {
 	// 전시소개 작성 페이지
 	@GetMapping("/admin/addExhibition")
 	public String addExhibition() {
-		return "admin/addExhibition";
+		return "/admin/addExhibition";
 	}
 	
 	// 전시소개 작성 후
@@ -36,11 +36,11 @@ public class ExhibitionController {
 		System.out.println(exhibition);
 		exhibitionService.addExhibition(exhibition);
 		
-		return "redirect:/exhibitionList";
+		return "redirect:/admin/exhibitionList";
 	}
 	
 	// 전시소개 리스트 출력
-	@GetMapping("/exhibitionList")
+	@GetMapping("/admin/exhibitionList")
 	public String exhibitionList(Model model, HttpSession session,
 			@RequestParam(defaultValue = "1") int currentPage,
 			@RequestParam(required = false) String searchTitle) {
@@ -58,18 +58,18 @@ public class ExhibitionController {
 		model.addAttribute("searchTitle", searchTitle);
 		model.addAttribute("loginAdminId", session.getAttribute("loginAdminId"));
 		System.out.println(session.getAttribute("loginAdminId") + " 전시소개 리스트 세션값");
-		return "exhibitionList";
+		return "/admin/exhibitionList";
 	}
 	
 	//전시소개 상세 페이지
-	@GetMapping("/exhibitionOne")
+	@GetMapping("/admin/exhibitionOne")
 	public String noticeOne(Model model, int exhibitionNo) {
 		// 전시소개 글 번호 디버깅
 		System.out.println(exhibitionNo + "<-------exhibitionNo");
 		Exhibition exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
 		System.out.println(exhibition + " ExhibitionController");
 		model.addAttribute("exhibition", exhibition);
-		return"exhibitionOne";
+		return"/admin/exhibitionOne";
 	}
 	
 	// 전시소개 수정 페이지 이동
@@ -87,7 +87,7 @@ public class ExhibitionController {
 	public String updateNotice(Exhibition exhibition) {
 		System.out.println(exhibition + "<-------exhibitionNo");
 		exhibitionService.updateNotice(exhibition);
-		return "redirect:/exhibitionOne?exhibitionNo="+exhibition.getExhibitionNo();	
+		return "redirect:/admin/exhibitionOne?exhibitionNo="+exhibition.getExhibitionNo();	
 	}
 	
 	// 전시소개 삭제 전 확인 페이지 이동
@@ -103,7 +103,7 @@ public class ExhibitionController {
 	public String deletetNotice(Exhibition exhibition) {
 		System.out.println(exhibition + "<-------exhibitionNo");
 		exhibitionService.deleteExhibition(exhibition);
-		return "redirect:/exhibitionList";
+		return "redirect:/admin/exhibitionList";
 		
 	}
 }

@@ -23,13 +23,13 @@
       </li>
        <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="/noticeList">
+        <a class="nav-link" href="/admin/noticeList">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>공지사항</span></a>
       </li>
        <hr class="sidebar-divider my-0">	
       <li class="nav-item active">
-        <a class="nav-link" href="/exhibitionList">
+        <a class="nav-link" href="/admin/exhibitionList">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>전시소개</span></a>
       </li>
