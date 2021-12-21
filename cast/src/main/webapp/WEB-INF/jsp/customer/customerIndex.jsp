@@ -373,7 +373,7 @@
 								<div class="card-body">
 									<div class="row align-items-center">
 										<div class="col-8">
-											<h4 class="text-c-red">145</h4>
+											<h4 class="text-c-red">${selectCount}</h4>
 											<h6 class="text-muted m-b-0">추천 댓글 수</h6>
 										</div>
 										<div class="col-4 text-right">

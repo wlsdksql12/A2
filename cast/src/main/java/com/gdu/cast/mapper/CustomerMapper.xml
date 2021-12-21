@@ -191,4 +191,29 @@
       LIMIT 0, 5
 	</select>
 
+	<!-- 등록한 추천 댓글 수 -->
+	<select id="selectCustomerCommentCount" parameterType="String" resultType="int">
+		SELECT
+		sum(c.count) as sum
+		FROM
+		(SELECT
+		count(*) as count
+		FROM room_select_comment
+		WHERE customer_id = #{customerId}
+		UNION ALL
+		SELECT
+		COUNT(*) as count
+		FROM experience_select_comment
+		WHERE customer_id = #{customerId}
+		) as c
+		
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 </mapper>

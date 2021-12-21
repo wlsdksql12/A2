@@ -154,13 +154,20 @@ public class CustomerService {
 		   int result = customerMapper.selectDeleteId(customerId);
 		   return result;
 	   }
-	   
+	   // 고객페이지에 등록된 5개의 체험 리스트 출력
 	   public  List<Experience> getselectCustomerIndexExperienceList(){
 		
 		   return customerMapper.selectCustomerIndexExperienceList();
 	   }
-	   
+	   // 고객페이지에 등록된 5개의 숙소 리스트 출력
 	   public List<Hotel> getselectCustomerIndexHoelList(){
 		   return customerMapper.selectCustomerIndexHoelList();
+	   }
+	   
+	   //사용자가 작성한 추천 댓글의 총 수
+	   public int getselectCustomerCommentCount(String customerId) {
+		   int hi = customerMapper.selectCustomerCommentCount(customerId);
+		   System.out.println(customerMapper.selectCustomerCommentCount(customerId)+"@#!@#!@#!@#!@#!@#!@#!@#!@#!@#!testtestetestsetsetsetsetsetset");
+		   return hi;
 	   }
 }

@@ -52,4 +52,6 @@ public interface CustomerMapper {
 	List<Experience> selectCustomerIndexExperienceList();
 	// 호텔 등록 5개 리스트
 	List<Hotel> selectCustomerIndexHoelList();
+	// 고객이 작성한 총 댓글 수
+	int selectCustomerCommentCount(String CustomerId);
 }

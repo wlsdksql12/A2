@@ -51,6 +51,9 @@ public class CustomerIndexController {
 	@GetMapping("/customer/customerIndex")
 	public String shopsingle(Model model, String customerId, int currentPage) {
 		log.debug(customerId);
+		// 내가 작성한 추천 댓글의 총 수
+		int selectCount = customerService.getselectCustomerCommentCount(customerId);
+		
 		// 내가 쓴 qna 5개 리스트
 		Map<String, Object> map = customerService.getselectQna(customerId, currentPage, ROW_PER_PAGE);
 		// 체험 5개 등록 리스트
@@ -58,6 +61,7 @@ public class CustomerIndexController {
 		// 숙소 5개 등록 리스트
 		List<Hotel> hotelList = customerService.getselectCustomerIndexHoelList();
 		
+		model.addAttribute("selectCount", selectCount);
 		model.addAttribute("hotelList", hotelList);
 		model.addAttribute("experienceList", experienceList);
 		model.addAttribute("qnaList", map.get("qnaList"));
