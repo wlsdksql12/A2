@@ -40,7 +40,7 @@ public class NoticeService {
 		
 		// 공지사항 리스트 가져오기
 		List<Notice> noticeList = noticeMapper.selectNoticeList(paramMap);
-		System.out.println(noticeList + "NoticeService");
+		System.out.println(noticeList + "<----NoticeService");
 		// 2. 리턴값 가공
 		Map<String, Object> returnMap = new HashMap<>();
 		

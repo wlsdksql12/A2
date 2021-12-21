@@ -60,7 +60,7 @@
 					<tr style="text-align:center">
 						<td>${notice.noticeNo}</td>
 						<td><a href="/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
-						<td>관리자</td>
+						<td>${notice.admin.adminName}</td>
 						<td>${notice.createDate}</td>
 					</tr>
 				</c:forEach>
