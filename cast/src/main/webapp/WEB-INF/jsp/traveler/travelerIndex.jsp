@@ -993,7 +993,7 @@
                           ${roomSelect.roomSelectId}
                       </td>
                       <td class="px-10 py-10 text-sm"> 
-                        <a href="/roomSelectOne?travelerId=${loginTravelerId}&roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
+                        <a href="/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
                       </td>
                        <td class="px-4 py-3">
                           ${roomSelect.travelerId}
@@ -1009,24 +1009,8 @@
             <br><br>
               <div>
                 <span class="col-span-2"></span>
-                <!-- Pagination -->
                 <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-					<c:if test="${startPage > 1}">
-						<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${startPage-1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
-					</c:if>
-					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-						<c:choose>
-							<c:when test="${i == currentPage}">
-								<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${lastPage != totalPage}">
-						<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">끝</a>
-					</c:if>
+
                 </span>
               </div>
             </div>
@@ -1058,7 +1042,7 @@
                           ${experienceSelect.experienceSelectId}
                       </td>
                       <td class="px-10 py-10 text-sm">
-                        <a href="/experienceSelectOne?travelerId=${loginTravelerId}&experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
+                        <a href="/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
                       </td>
                       <td class="px-4 py-3">
                           ${experienceSelect.travelerId}
@@ -1074,24 +1058,7 @@
               <br><br>
               <div>
                 <span class="col-span-2"></span>
-                <!-- Pagination -->
                 <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-					<c:if test="${startPage > 1}">
-						<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${startPage-1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
-					</c:if>
-					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-						<c:choose>
-							<c:when test="${i == currentPage}">
-								<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
-							</c:when>
-							<c:otherwise>
-								<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${lastPage != totalPage}">
-						<a href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">끝</a>
-					</c:if>
                 </span>
               </div>
             </div>

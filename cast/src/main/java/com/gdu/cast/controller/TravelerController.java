@@ -27,10 +27,10 @@ public class TravelerController {
 	TravelerService travelerService;
 	
 	@Autowired
-	RoomSelectService roomSelectService;
+	ExperienceSelectService experienceSelectService;
 	
 	@Autowired
-	ExperienceSelectService experienceSelectService;
+	RoomSelectService roomSelectService;
 	
 	// 12.15
 	@Autowired

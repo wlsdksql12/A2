@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gdu.cast.mapper.MainSelectCommentMapper;
 import com.gdu.cast.mapper.RoomSelectMapper;
 import com.gdu.cast.vo.RoomSelect;
 
@@ -21,7 +20,6 @@ public class RoomSelectService {
 	
 	@Autowired
 	RoomSelectMapper roomSelectMapper;
-	MainSelectCommentMapper mainSelectCommentMapper;
 	
 	// 여행작가 체험 추천 추가
 	public void addRoomSelect(RoomSelect roomSelect) {
@@ -29,27 +27,6 @@ public class RoomSelectService {
 		roomSelectMapper.insertRoomSelect(roomSelect);
 	}
 	
-	// 자신이 등록한 숙소 추천 삭제
-	public int removeRoomSelect(RoomSelect roomSelect) {
-		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
-		mainSelectCommentMapper.roomSelectDeletecomment(null);
-		return roomSelectMapper.deleteRoomSelect(roomSelect);
-	}
-	
-	// 자신이 등록한 숙소 추천 수정
-	public void modifyRoomSelect(RoomSelect roomSelect) {
-		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
-		roomSelectMapper.updateRoomSelect(roomSelect);
-	}
-
-	// 자신이 등록한 숙소 추천 상세보기
-	public RoomSelect getroomSelectOne(int roomSelectId, String travelerId) {
-		System.out.println(roomSelectId + "<-- roomSelectId");
-		System.out.println(travelerId + "<-- travelerId");
-		RoomSelect roomSelect = roomSelectMapper.selectRoomSelectOne(roomSelectId, travelerId);
-		return roomSelect;
-	}
-		
 	// 자신이 등록한 숙소 추천 리스트 출력
 	public Map<String, Object> getSelectRoomSelectList(String travelerId, int currentPage, int ROW_PER_PAGE) {
 		

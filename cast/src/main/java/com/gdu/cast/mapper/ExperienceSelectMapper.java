@@ -13,15 +13,6 @@ public interface ExperienceSelectMapper {
 	// 체험 추천 추가
 	void insertExperienceSelect(ExperienceSelect experienceSelect);
 	
-	// 체험 추천 삭제
-	int deleteExperienceSelect(ExperienceSelect experienceSelect);
-	
-	// 체험 추천 수정
-	int updateExperienceSelect(ExperienceSelect experienceSelect);
-	
-	// 자신이 등록한 체험 추천 상세보기
-	ExperienceSelect selectExperienceSelectOne(int experienceSelectId, String travelerId);
-	
 	// 자신이 등록한 체험 추천 리스트 
 	List<ExperienceSelect> selectExperienceList(Map<String, Object> map);
 	
