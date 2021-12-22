@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.MainSelectCommentMapper;
+import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
+import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.RoomSelectComment;
 
 
@@ -69,8 +71,8 @@ public class MainSelectCommentService {
 	}
 	
 	//메인 체험 추천 댓글 삭제
-	public int getExperienceSelectDeletecomment(ExperienceSelectComment experienceSelectComment) {
-		return mainSelectCommentMapper.ExperienceSelectDeletecomment(experienceSelectComment);
+	public int getExperienceSelectDeletecomment(ExperienceSelect experienceSelect) {
+		return mainSelectCommentMapper.ExperienceSelectDeletecomment(experienceSelect);
 	}
 	
 	//숙소 추천 댓글 리스트 출력 및 페이징
@@ -118,8 +120,8 @@ public class MainSelectCommentService {
 	}
 	
 	//메인 숙소 추천 댓글 삭제
-	public int getRoomSelectDeletecomment(RoomSelectComment roomSelectComment) {
-		return mainSelectCommentMapper.roomSelectDeletecomment(roomSelectComment);
+	public int getRoomSelectDeletecomment(RoomSelect roomSelect) {
+		return mainSelectCommentMapper.roomSelectDeletecomment(roomSelect);
 	}
 	
 	//메인 숙소 추천 댓글 추가

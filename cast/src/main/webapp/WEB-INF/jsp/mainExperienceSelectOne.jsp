@@ -104,7 +104,7 @@
 		<p></p>
 		<div>
 			<input class="btn btn-outline-success" type="button" value="이전" onclick="history.back(-1)">
-			<c:if test="${loginTravelerId != null}">
+			<c:if test="${loginTravelerId == experienceSelect.travelerId}">
 					<a href="/modifyExperienceSelect?experienceSelectId=${experienceSelect.experienceSelectId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">수정</a>
 					<a href="/removeExperienceSelect?experienceSelectId=${experienceSelect.experienceSelectId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">삭제</a>
 			</c:if>

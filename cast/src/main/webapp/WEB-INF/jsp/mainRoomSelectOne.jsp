@@ -103,7 +103,7 @@
 		<p></p>
 		<div>
 			<input class="btn btn-outline-success" type="button" value="이전" onclick="history.back(-1)">
-			<c:if test="${loginTravelerId != null}">
+			<c:if test="${loginTravelerId == roomSelect.travelerId}">
 					<a href="/modifyRoomSelect?roomSelectId=${roomSelect.roomSelectId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">수정</a>
 					<a href="/removeRoomSelect?roomSelectId=${roomSelect.roomSelectId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">삭제</a>
 			</c:if>

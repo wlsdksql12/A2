@@ -25,7 +25,7 @@
 	<!-- experience select comment add -->
 	<insert id="ExperienceSelectInsertcomment" parameterType="com.gdu.cast.vo.ExperienceSelectComment">
 		INSERT INTO Experience_Select_Comment(
-		experience_select_comment_id
+		experience_select_comment_id,
 		customer_id,
 		experience_select_id,
 		experience_select_content,
@@ -47,10 +47,10 @@
 		WHERE experience_select_comment_id = #{experienceSelectCommentId}
 	</update>
 	<!-- 체험 추천 댓글 삭제 -->
-	<delete id="ExperienceSelectDeletecomment" parameterType="com.gdu.cast.vo.ExperienceSelectComment">
+	<delete id="ExperienceSelectDeletecomment" parameterType="int">
 		DELETE
-		FROM experience_select_comment 
-		WHERE experience_select_comment_id = #{experienceSelectCommentId}
+		FROM experience_select_comment
+		WHERE experience_select_id = #{experienceSelectId}
 	</delete>
 	
 	<!-- 숙소 추천 리스트 -->
@@ -68,13 +68,13 @@
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
-			<!--  room select comment list 페이징 -->
+	<!--  room select comment list 페이징 -->
 	<select id="roomCommentTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
 	FROM room_select_comment
 	</select>
 	
-		<!-- 숙소 추천 댓글 수정  -->
+	<!-- 숙소 추천 댓글 수정  -->
 	<update id="roomSelectUpdatecomment" parameterType="com.gdu.cast.vo.RoomSelectComment">
 		UPDATE room_select_comment 
 		SET room_select_content = #{roomSelectContent}, update_date = now()
@@ -82,13 +82,13 @@
 	</update>
 	
 	<!-- 숙소 추천 댓글 삭제 -->
-	<delete id="roomSelectDeletecomment" parameterType="com.gdu.cast.vo.RoomSelectComment">
+	<delete id="roomSelectDeletecomment" parameterType="int">
 		DELETE
 		FROM room_select_comment 
-		WHERE room_select_comment_id = #{roomSelectCommentId}
+		WHERE room_select_id = #{roomSelectId}
 	</delete>
 	
-		<!-- room select comment add -->
+	<!-- room select comment add -->
 	<insert id="roomSelectInsertcomment" parameterType="com.gdu.cast.vo.RoomSelectComment">
 		INSERT INTO Room_Select_Comment(
 		customer_id,

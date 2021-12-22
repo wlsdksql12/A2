@@ -6,6 +6,7 @@
 	<delete id="deleteExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		DELETE FROM experience_select
 		WHERE experience_select_id = #{experienceSelectId}
+		AND traveler_id = #{travelerId}
 	</delete>
 	
 	<!-- 메인 페이지의 체험 추천 수정 -->
@@ -21,9 +22,10 @@
 	</update>
 	
 	<!-- 메인 페이지의 숙소 추천 삭제 -->
-	<delete id="deleteRoomSelect" parameterType="int">
+	<delete id="deleteRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
 		DELETE FROM room_select
 		WHERE room_select_id = #{roomSelectId}
+		AND traveler_id = #{travelerId}
 	</delete>
 	
 	<!-- 메인 페이지의 숙소 추천 수정 -->

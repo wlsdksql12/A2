@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gdu.cast.mapper.MainSelectCommentMapper;
 import com.gdu.cast.mapper.MainSelectMapper;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.RoomSelect;
@@ -22,22 +23,27 @@ public class MainSelectService {
 	@Autowired
 	MainSelectMapper mainSelectMapper;
 	
+	@Autowired
+	MainSelectCommentMapper mainSelectCommentMapper;
+	
 	// 메인 페이지 체험 추천 삭제
-	public void removeExperienceSelect(ExperienceSelect experienceSelect) {
+	public int removeExperienceSelect(ExperienceSelect experienceSelect) {
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
-		mainSelectMapper.deleteExperienceSelect(experienceSelect);
+		mainSelectCommentMapper.ExperienceSelectDeletecomment(experienceSelect);
+		return mainSelectMapper.deleteExperienceSelect(experienceSelect);
+	}
+	
+	// 메인 페이지 숙소 추천 삭제
+	public int removeRoomSelect(RoomSelect roomSelect) {
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		mainSelectCommentMapper.roomSelectDeletecomment(roomSelect);
+		return mainSelectMapper.deleteRoomSelect(roomSelect);
 	}
 	
 	// 메인 페이지 체험 추천 수정
 	public void modifyExperienceSelect(ExperienceSelect experienceSelect) {
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		mainSelectMapper.updateExperienceSelect(experienceSelect);
-	}
-	
-	// 메인 페이지 숙소 추천 삭제
-	public void removeRoomSelect(RoomSelect roomSelect) {
-		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
-		mainSelectMapper.deleteRoomSelect(roomSelect);
 	}
 	
 	// 메인 페이지 숙소 추천 수정

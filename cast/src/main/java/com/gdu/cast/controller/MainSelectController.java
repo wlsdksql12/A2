@@ -33,18 +33,16 @@ public class MainSelectController {
 	
 	// 여행작가 체험 추천 삭제
 	@GetMapping("/removeExperienceSelect")
-	public String removeExperienceSelect(Model model, int experienceSelectId, String travelerId) {
-		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
-		model.addAttribute("experienceSelect", experienceSelect);
-		return "traveler/removeExperienceSelect";
-	}
-	
-	// 여행작가 체험 추천 삭제
-	@PostMapping("/removeExperienceSelect")
 	public String removeExperienceSelect(ExperienceSelect experienceSelect) {
 		mainSelectService.removeExperienceSelect(experienceSelect);
-		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
-		return "redirect:/experienceSelectList";
+		return "redirect:/mainExperienceSelect";
+	}
+	
+	// 여행작가 숙소 추천 삭제
+	@GetMapping("/removeRoomSelect")
+	public String removeRoomSelect(RoomSelect roomSelect) {
+		mainSelectService.removeRoomSelect(roomSelect);
+		return "redirect:/mainRoomSelect";
 	}
 	
 	// 여행작가 체험 추천 수정
@@ -62,22 +60,6 @@ public class MainSelectController {
 		mainSelectService.modifyExperienceSelect(experienceSelect);
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		return "redirect:/mainExperienceSelectOne?experienceSelectId="+experienceSelect.getExperienceSelectId();
-	}
-	
-	// 여행작가 숙소 추천 삭제
-	@GetMapping("/removeRoomSelect")
-	public String removeRoomSelect(Model model, int roomSelectId, String travelerId) {
-		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
-		model.addAttribute("roomSelect", roomSelect);
-		return "traveler/removeRoomSelect";
-	}
-	
-	// 여행작가 숙소 추천 삭제
-	@PostMapping("/removeRoomSelect")
-	public String removeRoomSelect(RoomSelect roomSelect) {
-		mainSelectService.removeRoomSelect(roomSelect);
-		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
-		return "redirect:/mainRoomSelectList";
 	}
 	
 	// 여행작가 숙소 추천 수정
@@ -202,9 +184,9 @@ public class MainSelectController {
 	}
 	// 메인 체험 댓글 삭제
 	@GetMapping("/deleteMainExperienceSelectComment")
-	public String deleteMainExperienceSelectComment(int currentPage,ExperienceSelectComment experienceSelectComment) {
-		mainSelectCommentService.getExperienceSelectDeletecomment(experienceSelectComment);
-		return "redirect:/mainExperienceSelectOne?experienceSelectId=" + experienceSelectComment.experienceSelectId + "&currentPage="+currentPage;
+	public String deleteMainExperienceSelectComment(int currentPage, ExperienceSelect experienceSelect) {
+		mainSelectCommentService.getExperienceSelectDeletecomment(experienceSelect);
+		return "redirect:/mainExperienceSelectOne?experienceSelectId=" + experienceSelect.experienceSelectId + "&currentPage="+currentPage;
 	}
 	
 	//메인 숙소 댓글 update
@@ -219,7 +201,7 @@ public class MainSelectController {
 	
 	//메인 숙소 댓글 update
 	@PostMapping("/updateMainRoomSelectComment")
-	public String postUpdateMainRoomSelectComment( int currentPage,RoomSelectComment roomSelectComment) {
+	public String postUpdateMainRoomSelectComment(int currentPage, RoomSelectComment roomSelectComment) {
 
 		mainSelectCommentService.getRoomSelectUpdatecomment(roomSelectComment);
 		
@@ -228,10 +210,9 @@ public class MainSelectController {
 	}
 	// 메인 체험 댓글 삭제
 	@GetMapping("/deleteMainRoomSelectComment")
-	public String deleteMainRoomSelectComment(int currentPage,RoomSelectComment roomSelectComment) {
-		mainSelectCommentService.getRoomSelectDeletecomment(roomSelectComment);
-	
-		return "redirect:/mainRoomSelectOne?roomSelectId=" + roomSelectComment.getRoomSelectId()+ "&currentPage="+currentPage;
+	public String deleteMainRoomSelectComment(int currentPage,RoomSelect roomSelect) {
+		mainSelectCommentService.getRoomSelectDeletecomment(roomSelect);
+		return "redirect:/mainRoomSelectOne?roomSelectId="+roomSelect.getRoomSelectId()+ "&currentPage="+currentPage;
 	}
 	
 	//메인 숙소 상세보기 댓글 추가
