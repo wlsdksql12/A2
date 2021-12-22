@@ -13,12 +13,6 @@ public interface RoomSelectMapper {
 	// 숙소 추천 추가
 	void insertRoomSelect(RoomSelect roomSelect);
 	
-	// 숙소 추천 삭제
-	int deleteRoomSelect(RoomSelect roomSelect);
-		
-	// 자신이 등록한 숙소 추천 수정
-	int updateRoomSelect(RoomSelect roomSelect);
-	
 	// 자신이 등록한 숙소 추천 리스트
 	List<RoomSelect> selectRoomSelectList(Map<String, Object> map);
 	

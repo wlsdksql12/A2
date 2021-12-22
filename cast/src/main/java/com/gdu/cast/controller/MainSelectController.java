@@ -1,7 +1,8 @@
 package com.gdu.cast.controller;
 
-import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.MainSelectCommentService;
 import com.gdu.cast.service.MainSelectService;
-import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.RoomSelect;
@@ -26,9 +26,76 @@ public class MainSelectController {
 	
 	@Autowired MainSelectService mainSelectService;
 	@Autowired MainSelectCommentService mainSelectCommentService;
+	
 	// 페이지
 	private final int ROW_PER_PAGE = 10;
 	private final int row_per_page = 5;
+	
+	// 여행작가 체험 추천 삭제
+	@GetMapping("/removeExperienceSelect")
+	public String removeExperienceSelect(Model model, int experienceSelectId, String travelerId) {
+		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
+		model.addAttribute("experienceSelect", experienceSelect);
+		return "traveler/removeExperienceSelect";
+	}
+	
+	// 여행작가 체험 추천 삭제
+	@PostMapping("/removeExperienceSelect")
+	public String removeExperienceSelect(ExperienceSelect experienceSelect) {
+		mainSelectService.removeExperienceSelect(experienceSelect);
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		return "redirect:/experienceSelectList";
+	}
+	
+	// 여행작가 체험 추천 수정
+	@GetMapping("/modifyExperienceSelect")
+	public String modifyExperienceSelect(Model model, int experienceSelectId, String travelerId, HttpSession session) {
+		travelerId = (String)session.getAttribute("loginTravelerId");
+		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
+		model.addAttribute("experienceSelect", experienceSelect);
+		return "traveler/modifyExperienceSelect";
+	}
+	
+	// 여행작가 체험 추천 수정
+	@PostMapping("/modifyExperienceSelect")
+	public String modifyExperienceSelect(ExperienceSelect experienceSelect) {
+		mainSelectService.modifyExperienceSelect(experienceSelect);
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		return "redirect:/mainExperienceSelectOne?experienceSelectId="+experienceSelect.getExperienceSelectId();
+	}
+	
+	// 여행작가 숙소 추천 삭제
+	@GetMapping("/removeRoomSelect")
+	public String removeRoomSelect(Model model, int roomSelectId, String travelerId) {
+		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
+		model.addAttribute("roomSelect", roomSelect);
+		return "traveler/removeRoomSelect";
+	}
+	
+	// 여행작가 숙소 추천 삭제
+	@PostMapping("/removeRoomSelect")
+	public String removeRoomSelect(RoomSelect roomSelect) {
+		mainSelectService.removeRoomSelect(roomSelect);
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		return "redirect:/mainRoomSelectList";
+	}
+	
+	// 여행작가 숙소 추천 수정
+	@GetMapping("/modifyRoomSelect")
+	public String modifyRoomSelect(Model model, int roomSelectId, String travelerId, HttpSession session) {
+		travelerId = (String)session.getAttribute("loginTravelerId");
+		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
+		model.addAttribute("roomSelect", roomSelect);
+		return "traveler/modifyRoomSelect";
+	}
+	
+	// 여행작가 숙소 추천 수정
+	@PostMapping("/modifyRoomSelect")
+	public String modifyRoomSelect(RoomSelect roomSelect) {
+		mainSelectService.modifyRoomSelect(roomSelect);
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		return "redirect:/mainRoomSelectOne?roomSelectId="+roomSelect.getRoomSelectId();
+	}
 	
 	// 여행 작가 체험 추천 상세보기 및 댓글 리스트 출력(페이징)
 	@GetMapping("/mainExperienceSelectOne")
@@ -38,7 +105,6 @@ public class MainSelectController {
 		Map<String, Object> map = mainSelectCommentService.getexperienceSelectComment(currentPage, row_per_page,experienceSelectId);
 		
 		model.addAttribute("selectCommentList", map.get("selectCommentList"));
-		
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
@@ -60,7 +126,6 @@ public class MainSelectController {
 		model.addAttribute("lastPage", list.get("lastPage"));
 		model.addAttribute("totalPage", list.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
-
 		model.addAttribute("roomSelect", roomSelect);
 		return "mainRoomSelectOne";
 	}

@@ -22,31 +22,31 @@ public class MainSelectService {
 	@Autowired
 	MainSelectMapper mainSelectMapper;
 	
-	// 자신이 등록한 체험 추천 삭제
+	// 메인 페이지 체험 추천 삭제
 	public void removeExperienceSelect(ExperienceSelect experienceSelect) {
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		mainSelectMapper.deleteExperienceSelect(experienceSelect);
 	}
 	
-	// 자신이 등록한 체험 추천 수정
+	// 메인 페이지 체험 추천 수정
 	public void modifyExperienceSelect(ExperienceSelect experienceSelect) {
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		mainSelectMapper.updateExperienceSelect(experienceSelect);
 	}
 	
-	// 자신이 등록한 숙소 추천 삭제
+	// 메인 페이지 숙소 추천 삭제
 	public void removeRoomSelect(RoomSelect roomSelect) {
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		mainSelectMapper.deleteRoomSelect(roomSelect);
 	}
 	
-	// 자신이 등록한 숙소 추천 수정
+	// 메인 페이지 숙소 추천 수정
 	public void modifyRoomSelect(RoomSelect roomSelect) {
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		mainSelectMapper.updateRoomSelect(roomSelect);
 	}
 	
-	// 여행작가 체험 추천 상세보기
+	// 메인 페이지 체험 추천 상세보기
 	public ExperienceSelect getexperienceSelectOne(int experienceSelectId) {
 		System.out.println(experienceSelectId + "<-- experienceSelectId");
 		ExperienceSelect experienceSelect = mainSelectMapper.selectExperienceSelectOne(experienceSelectId);

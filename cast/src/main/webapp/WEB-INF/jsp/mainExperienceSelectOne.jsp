@@ -102,48 +102,46 @@
 			</tr>
 		</table>
 		<p></p>
-		<input type="button" value="이전" onclick="history.back(-1)">	
-		
-		
-		         <table style="text-align:center" class="table table-hover mb-0">
-        
-                                <thead>
-                                    <tr>
-                                        <th>작성자</th>
-                                        <th>내용</th>
-                                        <th>작성 날짜</th>
-                                        <th>수정</th>
-                                        <th>삭제</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                 <c:forEach items="${selectCommentList}"  var="comment">
-                                	
-                                    <tr>
-
-                                        <td>${comment.customerId}</td>
-                                        <td>${comment.experienceSelectContent}</td>
-                                        <td>${comment.createDate.substring(0,10)}</td>
-                                      
-                                        <c:if test="${loginCustomerId == comment.customerId}">
-                                         <td>
-                                        <a href="/updateMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&experienceSelectId=${comment.experienceSelectId}">수정</a>
-                                        </td>
-                                        <td>
-                                        <a href="/deleteMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&experienceSelectId=${comment.experienceSelectId}">삭제</a>
-                                        </td>
-                                        </c:if>
-                                    </tr>
-                                   
-                                    </c:forEach>
-                                </tbody>
-                            </table>
-
-		            <div style="text-align: right;">
-            	<a class="btn btn-outline-success" href="/addMainExperienceSelectComment?customerId=${loginCustomerId}&experienceSelectId=${experienceSelect.experienceSelectId}&currentPage=${currentPage}">댓글작성</a>
-            </div>
-            <br>
-            <div style="text-align: center;">
+		<div>
+			<input class="btn btn-outline-success" type="button" value="이전" onclick="history.back(-1)">
+			<c:if test="${loginTravelerId != null}">
+					<a href="/modifyExperienceSelect?experienceSelectId=${experienceSelect.experienceSelectId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">수정</a>
+					<a href="/removeExperienceSelect?experienceSelectId=${experienceSelect.experienceSelectId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">삭제</a>
+			</c:if>
+		</div>
+		<table style="text-align:center" class="table table-hover mb-0">
+			<thead>
+				<tr>
+					<th>작성자</th>
+					<th>내용</th>
+					<th>작성 날짜</th>
+					<th>수정</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+ 				<c:forEach items="${selectCommentList}"  var="comment">
+					<tr>
+						<td>${comment.customerId}</td>
+						<td>${comment.experienceSelectContent}</td>
+						<td>${comment.createDate.substring(0,10)}</td>
+						<c:if test="${loginCustomerId == comment.customerId}">
+						<td>
+							<a href="/updateMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&experienceSelectId=${comment.experienceSelectId}">수정</a>
+						</td>
+						<td>
+							<a href="/deleteMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&experienceSelectId=${comment.experienceSelectId}">삭제</a>
+						</td>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<div style="text-align: right;">
+			<a class="btn btn-outline-success" href="/addMainExperienceSelectComment?customerId=${loginCustomerId}&experienceSelectId=${experienceSelect.experienceSelectId}&currentPage=${currentPage}">댓글작성</a>
+		</div>
+		<br>
+		<div style="text-align: center;">
 			<c:if test="${startPage > 1}">
 				<a href="/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}&currentPage=${startPage-1}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
@@ -157,18 +155,14 @@
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
-			<c:if test="${lastPage != totalPage}">
+				<c:if test="${lastPage != totalPage}">
 				<a href="/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}&currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">▷</a>
-			</c:if>
-			
-			</div>
-		
+				</c:if>
+		</div>
 	</div>
-   	
     </section>
     <!-- End Section -->
 	<section class="container py-5" >
-		
     </section>
     <!-- Start Footer -->
     <footer class="bg-dark" id="tempaltemo_footer">
@@ -192,7 +186,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
@@ -205,7 +198,6 @@
                         <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
                     </ul>
                 </div>
-
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
@@ -216,9 +208,7 @@
                         <li><a class="text-decoration-none" href="#">Contact</a></li>
                     </ul>
                 </div>
-
             </div>
-
             <div class="row text-light mb-4">
                 <div class="col-12 mb-3">
                     <div class="w-100 my-3 border-top border-light"></div>
@@ -248,7 +238,6 @@
                 </div>
             </div>
         </div>
-
         <div class="w-100 bg-black py-3">
             <div class="container">
                 <div class="row pt-2">
@@ -260,7 +249,6 @@
                 </div>
             </div>
         </div>
-
     </footer>
     <!-- End Footer -->
 

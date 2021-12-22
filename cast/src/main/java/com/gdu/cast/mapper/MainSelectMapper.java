@@ -11,16 +11,16 @@ import com.gdu.cast.vo.RoomSelect;
 @Mapper
 public interface MainSelectMapper {
 	
-	// 자신이 등록한 체험 추천 삭제
+	// 메인 페이지 체험 추천 삭제
 	int deleteExperienceSelect(ExperienceSelect experienceSelect);
 	
-	// 자신이 등록한 체험 추천 수정
+	// 메인 페이지 체험 추천 수정
 	int updateExperienceSelect(ExperienceSelect experienceSelect);
 	
-	// 자신이 등록한 숙소 추천 삭제
+	// 메인 페이지 숙소 추천 삭제
 	int deleteRoomSelect(RoomSelect roomSelect);
 		
-	// 자신이 등록한 숙소 추천 수정
+	// 메인 페이지 숙소 추천 수정
 	int updateRoomSelect(RoomSelect roomSelect);
 	
 	// 메인 페이지 체험 추천 상세보기

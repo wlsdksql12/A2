@@ -2,14 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.MainSelectMapper">
 
-	<!-- 자신이 등록한 체험 추천 삭제 -->
+	<!-- 메인 페이지의 체험 추천 삭제 -->
 	<delete id="deleteExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		DELETE FROM experience_select
 		WHERE experience_select_id = #{experienceSelectId}
-		AND traveler_id = #{travelerId}
 	</delete>
 	
-	<!-- 자신이 등록한 체험 추천 수정 -->
+	<!-- 메인 페이지의 체험 추천 수정 -->
 	<update id="updateExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		UPDATE experience_select
 		SET 
@@ -21,13 +20,13 @@
 		AND traveler_id = #{travelerId}
 	</update>
 	
-	<!-- 자신이 등록한 숙소 추천 삭제 -->
+	<!-- 메인 페이지의 숙소 추천 삭제 -->
 	<delete id="deleteRoomSelect" parameterType="int">
 		DELETE FROM room_select
 		WHERE room_select_id = #{roomSelectId}
 	</delete>
 	
-	<!-- 자신이 등록한 여행작가 숙소 추천 수정 -->
+	<!-- 메인 페이지의 숙소 추천 수정 -->
 	<update id="updateRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
 		UPDATE room_select
 		SET 
