@@ -68,6 +68,12 @@
 			</tr>
 			</tbody>
 			<tr>
+				<td colspan="3">소개 내용</td>
+			</tr>
+			<tr>
+				<td colspan="3">${exhibition.exhibitionIntro}</td>
+			</tr>
+			<tr>
 				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${exhibition.exhibitionContent}</textarea></td>
 			</tr>
 		</table>

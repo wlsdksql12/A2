@@ -5,6 +5,7 @@
 		<id column="exhibition_no" property="exhibitionNo"></id>
 		<result column="admin_id" property="adminId"></result>
 		<result column="exhibition_title" property="exhibitionTitle"></result>
+		<result column="exhibition_intro" property="exhibitionIntro"></result>
 		<result column="exhibition_content" property="exhibitionContent"></result>
 		<result column="create_date" property="createDate"></result>
 		<result column="update_date" property="updateDate"></result>
@@ -16,9 +17,9 @@
 	<!-- 전시소개 작성 -->
 	<insert id="insertExhibition" parameterType="com.gdu.cast.vo.Exhibition">
 		INSERT INTO exhibition(
-			admin_id, exhibition_title, exhibition_content, create_date, update_date
+			admin_id, exhibition_title, exhibition_intro, exhibition_content, create_date, update_date
 		) VALUES(
-			#{adminId}, #{exhibitionTitle}, #{exhibitionContent}, now(), now()
+			#{adminId}, #{exhibitionTitle}, #{exhibitionIntro}, #{exhibitionContent}, now(), now()
 		)
 	</insert>
 	
@@ -48,7 +49,7 @@
 	
 	<!-- 전시소개 상세보기 -->
 	<select id="selectExhibitionOne" parameterType="int" resultMap="exhibitionAndAdmin">
-		SELECT  e.exhibition_no, e.admin_id, e.exhibition_title, e.exhibition_content, e.create_date, a.admin_name
+		SELECT  e.exhibition_no, e.admin_id, e.exhibition_title, e.exhibition_intro, e.exhibition_content, e.create_date, a.admin_name
 		FROM exhibition e JOIN admin a ON e.admin_id = a.admin_id
 		WHERE e.exhibition_no = #{exhibitionNo}
 	</select>
@@ -56,7 +57,7 @@
 	<!-- 전시소개 수정 -->
 	<update id="updateExhibition" parameterType="com.gdu.cast.vo.Exhibition">
 		UPDATE exhibition SET
-			exhibition_title = #{exhibitionTitle}, exhibition_content = #{exhibitionContent}, update_date = now()
+			exhibition_title = #{exhibitionTitle}, exhibition_intro = #{exhibitionIntro}, exhibition_content = #{exhibitionContent}, update_date = now()
 		WHERE exhibition_no = #{exhibitionNo}
 	</update>
 	
@@ -66,9 +67,9 @@
 		WHERE exhibition_no = #{exhibitionNo} AND admin_id = #{adminId}
 	</delete>
 	
-	<!-- 메인페이지 전시소개 목록 1개 조회 -->
+	<!-- 메인페이지 전시소개 목록 2개 조회 -->
 	<select id="selectExhibitionList1" resultType="com.gdu.cast.vo.Exhibition">
-		SELECT exhibition_no exhibitionNo, exhibition_title exhibitionTitle, exhibition_content exhibitionContent
+		SELECT exhibition_no exhibitionNo, exhibition_title exhibitionTitle, exhibition_intro exhibitionIntro
 		FROM exhibition
 		ORDER BY create_date DESC
 		LIMIT 0, 2

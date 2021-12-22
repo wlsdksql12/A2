@@ -16,8 +16,8 @@ import com.sun.tools.javac.util.Log;
 @Controller
 public class IndexController {
 	@Autowired ExhibitionService exhibitionService;
-	
-	@GetMapping("/index")
+	// localhost로 주소검색해도 "index" Controller가 실행이 되도록 함
+	@GetMapping(value={"/","/index"})
 	public String index(HttpSession session, Model model) {
 		
 		System.out.println("loginCustomerId"+session.getAttribute("loginCustomerId"));

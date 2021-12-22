@@ -62,6 +62,10 @@
 				</tr>
 				<tbody>
 					<tr>
+						<td style="text-align: right">소개</td>
+						<td><input id="exhibitionIntro" name="exhibitionIntro" placeholder="50자이내 작성" style="width:685px;"></td>
+					</tr>
+					<tr>
 						<td style="text-align: right">내용</td>
 						<td><textarea id="exhibitionContent" name="exhibitionContent" rows="10" cols="80"></textarea></td>
 					</tr>
@@ -112,20 +116,24 @@
         if($('#exhibitionTitle').val() == '') {
            alert('제목을 입력해주세요.');
            return;
+        } else if($('#exhibitionIntro').val() == '') {
+            alert('소개 내용을 입력해주세요.');
+            return;
         } else if($('#exhibitionContent').val() == '') {
             alert('내용을 입력해주세요.');
-            return;
-        } else {
+            return; 
+        }else {
            $('#addExhibitionForm').submit();
         }
      });
-	
+	/*
 	$('#addExhibitionForm').keypress(function(event){
 		if(event.which == 13) {
 			$('#addExhibitionBtn').click();
 			return false;
 		}
 	});
+	*/
   });
   </script>
   
