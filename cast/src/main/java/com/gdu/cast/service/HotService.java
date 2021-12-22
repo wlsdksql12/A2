@@ -85,4 +85,29 @@ public class HotService {
 		
 		return returnMap;
 	}
+	// 호텔 상세보기
+	public Hotel selectHotelOne(int hotelId) {
+		Hotel hotel = hotMapper.selectHotelOne(hotelId);
+		return hotel;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

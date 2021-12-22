@@ -22,8 +22,17 @@
 					<br><hr><br>
 					
 					<p class="card-description">주소</p>
-					<h4>(${experience.address.postcode}) ${experience.address.roadAddress} ${experience.address.extraAddress} ${experience.address.detailAddress}</h4>
-					<h5> &emsp; &emsp; &emsp;${experience.address.jibunAddress}</h5>
+					<table>
+					<tr>
+						<td style="font-size:14px">도로명 &nbsp;</td>
+						<td>(${experience.address.postcode})</td>
+						<td>${experience.address.roadAddress} ${experience.address.extraAddress} ${hotel.address.detailAddress}</td>
+					</tr>
+					<tr>
+						<td colspan="2" style="font-size:14px">지번 &nbsp;</td>
+						<td>${experience.address.jibunAddress}</td>
+					</tr>
+					</table>
 					<br><hr><br>
 					
 					<p class="card-description">예약 가능 날짜</p>
@@ -42,6 +51,9 @@
 					<p class="card-description">프로그램</p>
 					<h4>${experience.experienceContent}</h4>
 					<br><hr><br>
+
+					<!-- 방 리스트 -->
+					
 					
 					<!-- 지도자리 -->
 					<br> 

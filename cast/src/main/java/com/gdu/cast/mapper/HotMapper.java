@@ -28,4 +28,7 @@ public interface HotMapper {
 	
 	// 호텔 방 수
 	int selectCountRoom(Hotel hotel);
+	
+	// 호텔 상세보기
+	Hotel selectHotelOne(int hotelId);
 }

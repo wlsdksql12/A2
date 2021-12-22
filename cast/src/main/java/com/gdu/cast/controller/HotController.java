@@ -40,13 +40,8 @@ public class HotController {
 		hotel.setCeoId(ceoId);
 		hotService.insertHotel(hotel);
 		
-		
 		log.debug("====================================" + ceoId + " << ceoId");
 		log.debug("====================================" + hotel.toString() + " << hotel Debug");
-		
-		
-		
-		
 		
 		return "redirect:/ceo/insertRoom?hotelId="+hotel.getHotelId() + "&countRoom=" + hotel.getCountRoom();
 	}
@@ -62,9 +57,7 @@ public class HotController {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		hotel.setCeoId(ceoId);
 		
-		hotService.insertHotelAddress(address);
-		
-		
+		hotService.insertHotelAddress(address);	
 		
 		return "redirect:/ceo/insertHotel?addressId=" + address.getAddressId() + "&ceoId=" + hotel.getCeoId();
 	}
@@ -88,8 +81,6 @@ public class HotController {
 		
 		hotService.insertRoom(room);
 		System.out.println("@@@@@@@@@@@@@");
-		
-		
 		
 		model.addAttribute(hotel);
 		System.out.println("HotController countRoom"+hotel.getCountRoom());
@@ -117,4 +108,46 @@ public class HotController {
 	      System.out.println(session.getAttribute("loginCeoId") + " 호텔리스트 세션값");
 	      return "/ceo/hotelList";
 	   }
+	
+	// 호텔 상세보기 페이지
+	@GetMapping("/ceo/hotelOne")
+	public String hotelOne(Model model, Address address, int hotelId) {
+		Hotel hotel = hotService.selectHotelOne(hotelId);
+		
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("address", address);
+		
+		System.out.println(hotel + " << Hotel");
+		
+		return "/ceo/hotelOne";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

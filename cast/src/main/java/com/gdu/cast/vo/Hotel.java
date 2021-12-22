@@ -13,4 +13,5 @@ public class Hotel {
 	private int countRoom;
 	private String createDate;
 	private String updateDate;
+	private Address address;
 }

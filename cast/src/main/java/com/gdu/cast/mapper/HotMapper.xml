@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.HotMapper">
+
+	<resultMap type="com.gdu.cast.vo.Hotel" id="resultHotel">
+		<result column="hotel_id" property="hotelId" />
+		<result column="ceo_id" property="ceoId" />
+		<result column="address_id" property="addressId" />
+		<result column="hotel_name" property="hotelName" />
+		<result column="hotel_content" property="hotelContent" />
+		<result column="count_room" property="countRoom" />
+		<result column="create_date" property="createDate" />
+		<result column="update_date" property="updateDate" />
+		<association property="address" javaType="com.gdu.cast.vo.Address">
+			<result column="address_id" property="addressId" />
+			<result column="postcode" property="postcode" />
+			<result column="road_address" property="roadAddress" />
+			<result column="jibun_address" property="jibunAddress" />
+			<result column="detail_address" property="detailAddress" />
+			<result column="extra_address" property="extraAddress" />
+			<result column="lat" property="lat" />
+			<result column="lng" property="lng" />
+		</association>
+	</resultMap>
+	
 	<!-- 호텔 추가 -->
 	<insert id="insertHotel" parameterType="com.gdu.cast.vo.Hotel">
 		INSERT INTO
@@ -102,6 +124,13 @@
 		WHERE hotel_id = #{hotelId}
 	</select>
 	
+	<!-- 호텔 상세보기 페이지 -->
+	<select id="selectHotelOne" parameterType="int" resultMap="resultHotel">
+		SELECT *
+		FROM address a INNER JOIN hotel h
+		ON a.address_id = h.address_id
+		WHERE hotel_id = #{hotelId}
+	</select>
 </mapper>
 
 

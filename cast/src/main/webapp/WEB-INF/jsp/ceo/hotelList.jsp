@@ -32,7 +32,7 @@
 									<tr>
 										<td>${hotel.hotelId}</td>
 										<td>
-											<a href="#">${hotel.hotelName}</a>
+											<a href="/ceo/hotelOne?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
 										</td>
 										<td>${hotel.countRoom}</td>
 										<td>${hotel.createDate}</td>
