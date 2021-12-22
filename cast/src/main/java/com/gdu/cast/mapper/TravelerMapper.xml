@@ -2,6 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
 
+	<!-- 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 출력(5개) -->
+	<select id="selectExperienceListByMain" parameterType="com.gdu.cast.vo.ExperienceSelect" resultType="com.gdu.cast.vo.ExperienceSelect">
+		SELECT 
+			experience_select_id experienceSelectId,
+			traveler_id travelerId,
+			experience_select_title experienceSelectTitle,
+			create_date createDate
+		FROM experience_select
+		WHERE traveler_id = #{travelerId}
+		ORDER BY create_date DESC
+		LIMIT 0, 5
+	</select>
+
+	<!-- 여행작가 메인 페이지 자신이 쓴 숙소 추천 리스트 출력(5개) -->
+	<select id="selectRoomSelectListByMain" parameterType="com.gdu.cast.vo.RoomSelect" resultType="com.gdu.cast.vo.RoomSelect">
+		SELECT 
+			room_select_id roomSelectId,
+			traveler_id travelerId,
+			room_select_title roomSelectTitle,
+			room_select_content roomSelectContent,
+			create_date createDate
+		FROM room_select
+		WHERE traveler_id = #{travelerId}
+		ORDER BY create_date DESC
+		LIMIT 0, 5
+	</select>
+
 	<!-- 여행작가 내정보 수정 -->
 	<update id="updateTravelerMyInfo" parameterType="com.gdu.cast.vo.Traveler">
 		UPDATE traveler

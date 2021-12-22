@@ -1,6 +1,6 @@
 package com.gdu.cast.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,12 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.gdu.cast.service.ExperienceSelectService;
 import com.gdu.cast.service.JoinRequestService;
-import com.gdu.cast.service.RoomSelectService;
 import com.gdu.cast.service.TravelerService;
+import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.Traveler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -24,46 +23,22 @@ import lombok.extern.slf4j.Slf4j;
 public class TravelerController {
 	
 	@Autowired
-	TravelerService travelerService;
-	
-	@Autowired
-	ExperienceSelectService experienceSelectService;
-	
-	@Autowired
-	RoomSelectService roomSelectService;
+	TravelerService travelerService;	
 	
 	// 12.15
 	@Autowired
 	JoinRequestService joinRequestService;
 	
-	// 페이지
-	private final int ROW_PER_PAGE = 5;
-	
-	// 여행작가 메인 페이지 자신이 쓴 숙소/체험 추천 리스트 출력
+	// 여행작가 메인 페이지 자신이 쓴 숙소/체험 추천 리스트 출력(5개)
 	@GetMapping("/travelerIndex")
-	public String SelectListMain(Model model,
-			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
-		log.debug(travelerId);
+	public String SelectListMain(Model model, String travelerId) {
+		List<RoomSelect> roomSelectList = travelerService.getselectRoomSelectListByMain(travelerId);
+		List<ExperienceSelect> experienceSelectList = travelerService.getselectExperienceSelectListByMain(travelerId);
 		
-		// 숙소 리스트 출력
-		Map<String, Object> roomMap = roomSelectService.getSelectRoomSelectList(travelerId, currentPage, ROW_PER_PAGE);
-		model.addAttribute("roomSelectList", roomMap.get("roomSelectList"));
-		model.addAttribute("startPage", roomMap.get("startPage"));
-		model.addAttribute("lastPage", roomMap.get("lastPage"));
-		model.addAttribute("totalPage", roomMap.get("totalPage"));
-		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("roomSelectList", roomSelectList);
+		model.addAttribute("experienceSelectList", experienceSelectList);
 		model.addAttribute("travelerId", travelerId);
 		
-		// 체험 리스트 출력
-		Map<String, Object> experienceMap = experienceSelectService.getSelectExperienceSelectList(travelerId, currentPage, ROW_PER_PAGE);
-		model.addAttribute("experienceSelectList", experienceMap.get("experienceSelectList"));
-		model.addAttribute("startPage", experienceMap.get("startPage"));
-		model.addAttribute("lastPage", experienceMap.get("lastPage"));
-		model.addAttribute("totalPage", experienceMap.get("totalPage"));
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("travelerId", travelerId);
-		
-		System.out.println(model + "model");
 		return "traveler/travelerIndex";
 	}
 	

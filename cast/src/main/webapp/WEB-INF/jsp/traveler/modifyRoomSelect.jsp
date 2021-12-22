@@ -43,7 +43,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="travelerIndex?travelerId=${loginTravelerId}&currentPage=1"
+                href="travelerIndex?travelerId=${loginTravelerId}"
               >
                 <svg
                   class="w-5 h-5"

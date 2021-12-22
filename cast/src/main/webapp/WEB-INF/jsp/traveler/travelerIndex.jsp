@@ -52,7 +52,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="travelerIndex?travelerId=${loginTravelerId}&currentPage=1"
+                href="travelerIndex?travelerId=${loginTravelerId}"
               >
                 <svg
                   class="w-5 h-5"
@@ -980,7 +980,7 @@
                     >
                       <th class="px-3 py-3" width="20%">번호</th>
                       <th class="px-10 py-10" width="40%">제목</th>
-                      <th class="px-4 py-3" width="20%">아이디</th>
+                      <th class="px-3 py-5" width="20%">아이디</th>
                       <th class="px-4 py-3" width="20%">작성 날짜</th>
                     </tr>
                   </thead>
@@ -1006,13 +1006,17 @@
                   </tbody>
                 </table>
               </div>
-            <br><br>
-              <div>
-                <span class="col-span-2"></span>
-                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-
-                </span>
-              </div>
+            	<br>
+	              <div class="px-1 my-4">
+		            <a
+		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+		               href="roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
+		            >
+		              더보기
+		              <span class="ml-2" aria-hidden="true">+</span>
+		              
+		            </a>
+	          	</div>
             </div>
             
             <h4
@@ -1029,7 +1033,7 @@
                     >
                       <th class="px-3 py-3" width="20%">번호</th>
                       <th class="px-10 py-10" width="40%">제목</th>
-                      <th class="px-4 py-3" width="20%">아이디</th>
+                      <th class="px-3 py-5" width="20%">아이디</th>
                       <th class="px-4 py-3" width="20%">작성 날짜</th>
                     </tr>
                   </thead>
@@ -1055,12 +1059,17 @@
                   </tbody>
                 </table>
               </div>
-              <br><br>
-              <div>
-                <span class="col-span-2"></span>
-                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                </span>
-              </div>
+              	<br>
+	              <div class="px-1 my-4">
+		            <a
+		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+		               href="experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"`
+		            >
+		              더보기
+		              <span class="ml-2" aria-hidden="true">+</span>
+		              
+		            </a>
+	          	</div>
             </div>
             <!-- Charts -->
             <h2
