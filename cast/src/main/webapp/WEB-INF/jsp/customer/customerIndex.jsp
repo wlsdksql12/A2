@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<title>Ablepro v8.0 bootstrap admin template by Phoenixcoded</title>
+<title>고객페이지</title>
 <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 11]>

@@ -133,7 +133,7 @@ public class CustomerIndexController {
 		qna.setQnaContent(qnaContent);
 		*/
 		
-		return "redirect:/qnaListOne?qnaId="+qna.getQnaId()+"&customerId="+qna.getCustomerId()+"&currentPage="+currentPage;
+		return "redirect:/customer/qnaListOne?qnaId="+qna.getQnaId()+"&customerId="+qna.getCustomerId()+"&currentPage="+currentPage;
 		
 	}
 	

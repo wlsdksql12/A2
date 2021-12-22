@@ -37,14 +37,14 @@
 				<h4 class="mb-3">회원가입</h4>
 					<form id="cusForm" method='post' action="/addCustomer" class="validation-form" novalidate>
 						<div class="mb-3">
-							<label for="name">아이디</label>
+							<label for="id">아이디</label>
 							<input type="text" class="form-control" name="customerId" id="customerId" placeholder="" value="" required>
 							<div class="invalid-feedback"> 아이디를 입력해주세요.
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="nickname">비밀번호</label>
-							<input type="text" class="form-control" name="customerPw" id="customerPw" placeholder="" value="" required>
+							<label for="password">비밀번호</label>
+							<input type="password" class="form-control" name="customerPw" id="customerPw" placeholder="" value="" required>
 							<div class="invalid-feedback"> 비밀번호를 입력해주세요.
 							</div>
 						</div>

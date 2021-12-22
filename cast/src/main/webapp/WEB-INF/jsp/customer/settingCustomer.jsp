@@ -72,7 +72,9 @@
 					<li class="nav-item"><a
 						href="/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1"
 						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+								class="feather icon-home"></i></span><span class="pcoded-mtext">고객페이지</span></a>
+					</li>
+					<li class="nav-item pcoded-menu-caption"><label>관심상품 목록</label>
 					</li>
 					<li class="nav-item pcoded-hasmenu"><a href="#!"
 						class="nav-link "><span class="pcoded-micon"><i
@@ -83,59 +85,35 @@
 							<li><a href="layout-horizontal.html" target="_blank">숙소
 									관심상품</a></li>
 						</ul></li>
-					<li class="nav-item pcoded-menu-caption"><label>UI
-							Element</label></li>
+					<li class="nav-item pcoded-menu-caption"><label>결제목록</label></li>
 					<li class="nav-item pcoded-hasmenu"><a href="#!"
 						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-box"></i></span><span class="pcoded-mtext">Basic</span></a>
+								class="feather icon-monitor"></i></span><span class="pcoded-mtext">결제</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="bc_alert.html">Alert</a></li>
-							<li><a href="bc_button.html">Button</a></li>
-							<li><a href="bc_badges.html">Badges</a></li>
-							<li><a href="bc_breadcrumb-pagination.html">Breadcrumb & paggination</a></li>
-							<li><a href="bc_card.html">Cards</a></li>
-							<li><a href="bc_collapse.html">Collapse</a></li>
-							<li><a href="bc_carousel.html">Carousel</a></li>
-							<li><a href="bc_grid.html">Grid system</a></li>
-							<li><a href="bc_progress.html">Progress</a></li>
-							<li><a href="bc_modal.html">Modal</a></li>
-							<li><a href="bc_spinner.html">Spinner</a></li>
-							<li><a href="bc_tabs.html">Tabs & pills</a></li>
-							<li><a href="bc_typography.html">Typography</a></li>
-							<li><a href="bc_tooltip-popover.html">Tooltip & popovers</a></li>
-							<li><a href="bc_toasts.html">Toasts</a></li>
-							<li><a href="bc_extra.html">Other</a></li>
-						</ul></li>
-					<li class="nav-item pcoded-menu-caption"><label>QNA</label></li>
-					<li class="nav-item"><a href="/qnaList?customerId=${loginCustomerId}&currentPage=1" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Qna</span></a>
+							<li><a href="layout-vertical.html" target="_blank">상품예약
+									</a></li>
+							<li><a href="layout-horizontal.html" target="_blank">결제내역
+									</a></li>
+							<li><a href="layout-horizontal.html" target="_blank">상품후기
+									</a></li>
+						</ul>
 					</li>
-					<li class="nav-item pcoded-menu-caption"><label>Chart & Maps</label></li>
+					<li class="nav-item pcoded-menu-caption"><label>Q&A</label></li>
+					<li class="nav-item"><a
+						href="/qnaList?customerId=${loginCustomerId}&currentPage=1"
+						class="nav-link "><span class="pcoded-micon"><i
+								class="feather icon-file-text"></i></span><span class="pcoded-mtext">Q&A목록</span></a>
+					</li>
+					<li class="nav-item pcoded-menu-caption"><label>추천댓글</label></li>
 					<li class="nav-item"><a href="chart-apex.html"
-						class="nav-link "><span class="pcoded-micon"><i class="feather icon-pie-chart"></i></span><span class="pcoded-mtext">Chart</span></a>
+						class="nav-link "><span class="pcoded-micon"><i
+								class="feather icon-clock"></i></span><span class="pcoded-mtext">체험추천댓글</span></a>
 					</li>
-					<li class="nav-item"><a href="map-google.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-map"></i></span><span class="pcoded-mtext">Maps</span></a>
+					<li class="nav-item"><a href="map-google.html"
+						class="nav-link "><span class="pcoded-micon"><i
+								class="feather icon-clock"></i></span><span class="pcoded-mtext">숙소추천댓글</span></a>
 					</li>
-					<li class="nav-item pcoded-menu-caption"><label>Pages</label>
-					</li>
-					<li class="nav-item pcoded-hasmenu"><a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-lock"></i></span><span class="pcoded-mtext">Authentication</span></a>
-						<ul class="pcoded-submenu">
-							<li><a href="auth-signup.html" target="_blank">Sign up</a></li>
-							<li><a href="auth-signin.html" target="_blank">Sign in</a></li>
-						</ul></li>
-					<li class="nav-item"><a href="sample-page.html" class="nav-link "><span class="pcoded-micon"><i	class="feather icon-sidebar"></i></span><span class="pcoded-mtext">Sample page</span></a></li>
-
 				</ul>
-
-				<div class="card text-center">
-					<div class="card-block">
-						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-						<i class="feather icon-sunset f-40"></i>
-						<h6 class="mt-3">Download Pro</h6>
-						<p>Getting more features with pro version</p>
-						<a href="https://1.envato.market/qG0m5" target="_blank"	class="btn btn-primary btn-sm text-white m-0">Upgrade Now</a>
-					</div>
-				</div>
-
 			</div>
 		</div>
 	</nav>
