@@ -20,13 +20,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/fontawesome.min.css">
 </head>
 <style>
-	.content {
- 	 	border: none;
- 	 	resize: none;
- 	 
-	}
-	.content:focus {
-  		outline: none;
+	table {
+		width: 700px;
+		margin-left: auto;
+		margin-right: auto;
 	}
 </style>
 
@@ -98,9 +95,7 @@
       </li>
     </ul>
 	<div style="text-align:center">
-			<h1>Q&A상세보기</h1>
-
-			<div style="margin-left: 951px">
+			<div style="text-align: right;">
 				<c:if test="${loginCustomerId == customerId}">
 						<a href="/mainUpdateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
 						<a href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
@@ -110,7 +105,7 @@
 			<table class="table mb-0" >
 				<thead class="thead-light">
 					<tr style="text-align: center" class="table-primary">
-						<th width="80">번호</th>
+						<th width="80">글번호</th>
 						<th width="120">카테고리</th>
 						<th width="380">제목</th>
 						<th width="380">내용</th>
@@ -145,7 +140,7 @@
 				</div>
 				<input class="btn btn-outline-success" type="button" value="이전페이지" onclick="history.back(-1)">
 			</div>
-			<h1>Comment</h1>
+			<h2 style="text-align: left;">Comment</h2>
 			<table class="table table-bordered">
 				<tr>
 					<td>${qnaCommentContent}</td>
