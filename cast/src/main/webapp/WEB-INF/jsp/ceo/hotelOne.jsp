@@ -33,12 +33,20 @@
 					</tr>
 					</table>
 					<br><hr><br>
+	
 					<p class="card-description">이미지(미구현)</p>
 					<h4></h4>
 					<br><hr><br>
 					 
-					<p class="card-description">프로그램</p>
+					<p class="card-description">호텔 소개</p>
 					<h4>${hotel.hotelContent}</h4>
+					<br><hr><br>
+					
+					<p class="card-description">숙박 장소 : 이용 가능한 ${hotel.countRoom} 개의 객실</p>
+					<div align="right">
+					<a href="/ceo/insertRoom?HotelId=${hotel.hotelId}" class="btn btn-inverse-success">객실 추가하기</a>
+					</div>
+					<h4><!-- 방 리스트 --></h4>
 					<br><hr><br>
 					
 					<!-- 지도자리 -->

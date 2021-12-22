@@ -43,7 +43,7 @@ public class HotController {
 		log.debug("====================================" + ceoId + " << ceoId");
 		log.debug("====================================" + hotel.toString() + " << hotel Debug");
 		
-		return "redirect:/ceo/insertRoom?hotelId="+hotel.getHotelId() + "&countRoom=" + hotel.getCountRoom();
+		return "redirect:/ceo/hotelList";
 	}
 	
 	// 호텔주소 등록

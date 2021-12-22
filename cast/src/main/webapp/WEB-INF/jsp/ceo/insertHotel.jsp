@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,11 +21,6 @@
 					<div class="form-group">
 						<label for="exampleInputName1">작성자</label> <input type="text"
 							class="form-control" value="${loginCeoId}" name="ceoId" readonly>
-					</div>
-					<div class="form-group">
-						<label for="exampleInputName1">호텔 방의 갯수</label>
-						 <input type="number"
-							class="form-control" name="countRoom" placeholder="방의 수">
 					</div>
 					<div class="form-group">
 						<input type="hidden" class="form-control" value="${addressId}"

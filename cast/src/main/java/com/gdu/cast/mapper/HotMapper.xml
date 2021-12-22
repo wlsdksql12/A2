@@ -23,6 +23,8 @@
 		</association>
 	</resultMap>
 	
+	
+	
 	<!-- 호텔 추가 -->
 	<insert id="insertHotel" parameterType="com.gdu.cast.vo.Hotel">
 		INSERT INTO
@@ -39,7 +41,7 @@
 			#{addressId},
 			#{hotelName},
 			#{hotelContent},
-			#{countRoom},
+			0,
 			now(),
 			now()
 		)

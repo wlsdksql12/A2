@@ -18,8 +18,6 @@
 					<h2 class="card-title">방 등록</h2>
 					<p class="card-description">호텔의 방 정보를 입력해주세요.</p>
 					<div>
-		
-					<c:forEach var="room" begin="1" end="${countRoom}">
 								
 					<div class="form-group">
 						<label for="exampleInputName1"></label>방 이름
@@ -61,11 +59,12 @@
 						<label for="exampleTextarea1">방 설명</label>
 						<textarea class="form-control" name="roomContent" rows="10"></textarea>
 					</div>
-					<hr><br>
-					</c:forEach>
+					<br>
 					</div>
-					<button type="submit" class="btn btn-primary mr-2">Submit</button>
+					<div align="right">
 					<button class="btn btn-light">Cancel</button>
+					<button type="submit" class="btn btn-primary mr-2">NEXT</button>
+					</div>
 				</div>
 			</div>
 		</div>
