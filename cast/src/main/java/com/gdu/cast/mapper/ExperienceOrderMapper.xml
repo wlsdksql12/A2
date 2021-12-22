@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceOrderMapper">
-		<!-- experience select comment add -->
-	<insert id="ExperienceInsertOrder" parameterType="com.gdu.cast.vo.ExperienceOrder">
+		<!-- experience 예약 -->
+	<insert id="experienceInsertOrder" parameterType="com.gdu.cast.vo.ExperienceOrder">
 		INSERT INTO experience_order(
-		experience_order_id
 		customer_id,
-		experience_id,
+		experience_name,
 		experience_order_people,
 		experience_order_startdate,
 		experience_order_enddate,
 		create_Date,
 		update_Date
 	) VALUES(
-		#{experienceOrderId},
 		#{customerId},
-		#{experienceId},
+		#{experienceName},
 		#{experienceOrderPeople},
 		#{experienceOrderStartDate},
 		#{experienceOrderEndDate},
@@ -23,5 +21,74 @@
 		now()	
 	)
 	</insert>
-
+	
+	<!-- experience 결제 -->
+		<insert id="experienceInsertPayment" parameterType="com.gdu.cast.vo.ExperiencePayment">
+		INSERT INTO experience_payment(
+		experience_order_id,
+		experience_payment_method,
+		experience_payment_method_number,
+		experience_payment_money,
+		create_date,
+		update_Date
+	) VALUES(
+		#{experienceOrderId},
+		#{experiencePaymentMethod},
+		#{experiencePaymentMethodNumber},
+		#{experiencePaymentMoney},
+		now(),
+		now()	
+	)
+	</insert>
+	
+	<select id="experienceOrderId" parameterType="String" resultType="int">
+		SELECT
+		experience_order_id
+		FROM experience_order
+		WHERE customer_id = #{customerId}
+		ORDER BY create_date DESC
+		LIMIT 0,1
+	</select>
+	
+	
+	<!-- 결제 금액에서 사용 -->
+	<select id="experienceSelectPrice" parameterType="int" resultType="int">
+		SELECT
+			experience_price experiencePrice
+		FROM experience
+		WHERE experience_id = #{experienceId}
+	</select>
+	
+		<!-- 체험 이름에서 사용 -->
+	<select id="experienceSelectName" parameterType="int" resultType="String">
+		SELECT
+			experience_name experienceName
+		FROM experience
+		WHERE experience_id = #{experienceId}
+	</select>
+	
+	<select id="CustomerIndexExperienceOrder" parameterType="Map" resultType="com.gdu.cast.vo.ExperienceOrder">
+		SELECT
+			experience_order_id experienceOrderId,
+			customer_id customerId,
+			experience_name experienceName,
+			experience_order_people experienceOrderPeople,
+			experience_order_startdate experienceOrderStartDate,
+			experience_order_enddate experienceOrderEndDate,
+			create_Date createDate,
+			update_Date updateDate
+		FROM experience_order
+		where customer_id = #{customerId}
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	
+	</select>
+	
+	<!--  예약 List 페이징 -->
+	<select id="selectExperienceOrderTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM experience_order
+	WHERE customer_Id = #{customerId}
+	
+	</select>
 </mapper>

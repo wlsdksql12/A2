@@ -90,7 +90,7 @@
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-monitor"></i></span><span class="pcoded-mtext">결제</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="layout-vertical.html" target="_blank">상품예약
+							<li><a href="/CustomerOrderList" target="_blank">상품예약
 									</a></li>
 							<li><a href="layout-horizontal.html" target="_blank">결제내역
 									</a></li>
