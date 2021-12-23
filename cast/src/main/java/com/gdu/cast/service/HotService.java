@@ -15,6 +15,9 @@ import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Room;
+import com.gdu.cast.vo.RoomBedroom;
+import com.gdu.cast.vo.RoomConvenience;
+import com.gdu.cast.vo.RoomFilter;
 import com.gdu.cast.vo.RoomSelect;
 
 @Service
@@ -38,11 +41,6 @@ public class HotService {
 		hotMapper.insertRoom(room);
 		
 	}
-	
-	public int selectCountRoom(Hotel hotel) {
-		return hotMapper.selectCountRoom(hotel);
-	}
-	
 	
 	// 호텔 리스트
 	public Map<String, Object> getHotelList(int currentPage, int ROW_PER_PAGE, String searchTitle, String ceoId){
@@ -85,12 +83,27 @@ public class HotService {
 		
 		return returnMap;
 	}
+	
 	// 호텔 상세보기
 	public Hotel selectHotelOne(int hotelId) {
 		Hotel hotel = hotMapper.selectHotelOne(hotelId);
 		return hotel;
 	}
 	
+	// room_bedroom 추가
+	public void insertRoomBedroom(RoomBedroom roomBedroom) {
+		hotMapper.insertRoomBedroom(roomBedroom);
+	}
+	
+	// room_convenience 추가
+	public void insertRoomConvenience(RoomConvenience roomConvenience) {
+		hotMapper.insertRoomConvenience(roomConvenience);
+	}
+	
+	// room_filter 추가
+	public void insertRoomFilter(RoomFilter roomFilter) {
+		hotMapper.insertRoomFilter(roomFilter);
+	}
 }
 
 

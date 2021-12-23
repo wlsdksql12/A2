@@ -119,13 +119,6 @@
 		WHERE ceo_id = #{ceoId}
 	</select>
 	
-	<!-- 호텔 등록 방 수 -->
-	<select id="selectCountRoom" parameterType="com.gdu.cast.vo.Hotel" resultType="int">
-		SELECT count_room
-		FROM hotel
-		WHERE hotel_id = #{hotelId}
-	</select>
-	
 	<!-- 호텔 상세보기 페이지 -->
 	<select id="selectHotelOne" parameterType="int" resultMap="resultHotel">
 		SELECT *
@@ -133,6 +126,72 @@
 		ON a.address_id = h.address_id
 		WHERE hotel_id = #{hotelId}
 	</select>
+	
+	<!-- room_bedroom 추가 -->
+	<insert id="insertRoomBedroom" parameterType="com.gdu.cast.vo.RoomBedroom">
+		INSERT INTO
+			room_bedroom (
+				bed_count,
+				bedroom_count,
+				bathroom_count,
+				create_date,
+				update_date
+			) VALUES (
+				${bedCount},
+				${bedroomCount},
+				${bathroomCount},
+				NOW(),
+				NOW()
+			)
+	</insert>
+	
+	<!-- room_convenience 추가 -->
+	<insert id="insertRoomConvenience" parameterType="com.gdu.cast.vo.RoomConvenience">
+		INSERT INTO
+			room_convenience (
+				stairs_threshold,
+				toilet_handle,
+				shower_stall_handle,
+				create_date,
+				update_date
+			) VALUES (
+				${stairsThreshold},
+				${toiletHandle},
+				${showerStallHandle},
+				NOW(),
+				NOW()
+			)
+	</insert>
+	
+	<!-- room_filter 추가 -->
+	<insert id="insertRoomFilter" parameterType="com.gdu.cast.vo.RoomFilter">
+		INSERT INTO
+			room_filter(
+				internet,
+				kitchen,
+				boiler,
+				aircon,
+				washing_machine,
+				breakfast,
+				tv,
+				hairdyer,
+				bidet,
+				create_date,
+				update_date
+			) VALUES (
+				${internet},
+				${kitchen},
+				${boiler},
+				${aircon},
+				${washingMachine},
+				${breakfast},
+				${tv},
+				${hairdyer},
+				${bidet},
+				NOW(),
+				NOW()
+			)	
+	</insert>
 </mapper>
 
 
