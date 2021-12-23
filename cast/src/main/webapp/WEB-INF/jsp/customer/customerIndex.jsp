@@ -160,13 +160,17 @@
 									<a href="#!">clear all</a>
 								</div>
 							</div>
-							<p class="m-b-0">NEW</p>
+							<br>
+							<h6 class="m-b-0">최신 Q&A 답변</h6>
 							<br>
 							<c:forEach items="${list}" var="qna">
-								<a
-									href="/customer/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
-									${qna.qnaId}번, ${qna.qnaTitle} 제목에 헤당하는 QNA 게시글에 답글이 달렸습니다. </a>
-								<br>
+							<div class="row-fluid" style="width: 350px; height: 50px; margin-left: 3px;">
+								<i class="feather icon-bell"></i>&nbsp;
+								<a href="/customer/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
+									${qna.qnaTitle} 제목에 해당되는 Q&A에 답글이 달렸습니다. </a>
+									
+								<hr>
+							</div>
 							</c:forEach>
 
 							<div class="noti-footer">
@@ -183,20 +187,17 @@
 						<div
 							class="dropdown-menu dropdown-menu-right profile-notification">
 							<div class="pro-head">
-								<img
-									src="${pageContext.request.contextPath}/resources/assets/dist/assets/images/user/avatar-1.jpg"
-									class="img-radius" alt="User-Profile-Image"> <span>John
-									Doe</span> <a href="auth-signin.html" class="dud-logout"
+								<span>${loginCustomerId }</span> <a href="/logOut" class="dud-logout"
 									title="Logout"> <i class="feather icon-log-out"></i>
 								</a>
 							</div>
 							<ul class="pro-body">
-								<li><a href="user-profile.html" class="dropdown-item"><i
-										class="feather icon-user"></i> Profile</a></li>
-								<li><a href="email_inbox.html" class="dropdown-item"><i
-										class="feather icon-mail"></i> My Messages</a></li>
-								<li><a href="auth-signin.html" class="dropdown-item"><i
-										class="feather icon-lock"></i> Lock Screen</a></li>
+								<li><a href="/myinfo?customerId=${loginCustomerId}" class="dropdown-item"><i
+										class="feather icon-user"></i> 내정보</a></li>
+								<li><a href="/qnaList?customerId=${loginCustomerId}&currentPage=1" class="dropdown-item"><i
+										class="feather icon-file-text"></i> Q&A</a></li>
+								<li><a href="/CustomerOrderList" class="dropdown-item"><i
+										class="feather icon-monitor"></i> 예약정보</a></li>
 							</ul>
 						</div>
 					</div>

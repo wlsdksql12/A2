@@ -119,21 +119,29 @@
 	</nav>
 	<!-- [ navigation menu ] end -->
 	<!-- [ Header ] start -->
-	<header class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
+	<header
+		class="navbar pcoded-header navbar-expand-lg navbar-light header-blue">
 
 
 		<div class="m-header">
 			<a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
 			<a href="#!" class="b-brand"> <!-- ========   change your logo hear   ============ -->
-				<img src="${pageContext.request.contextPath}/resources/assets/dist/assets/images/logo.png" alt="" class="logo"> <img src="${pageContext.request.contextPath}/resources/assets/dist/assets/images/logo-icon.png"	alt="" class="logo-thumb">
-			</a> <a href="#!" class="mob-toggler"> <i class="feather icon-more-vertical"></i>
+				<img
+				src="${pageContext.request.contextPath}/resources/assets/dist/assets/images/logo.png"
+				alt="" class="logo"> <img
+				src="${pageContext.request.contextPath}/resources/assets/dist/assets/images/logo-icon.png"
+				alt="" class="logo-thumb">
+			</a> <a href="#!" class="mob-toggler"> <i
+				class="feather icon-more-vertical"></i>
 			</a>
 		</div>
 		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item"><a href="#!" class="pop-search"><i	class="feather icon-search"></i></a>
+				<li class="nav-item"><a href="#!" class="pop-search"><i
+						class="feather icon-search"></i></a>
 					<div class="search-bar">
-						<input type="text" class="form-control border-0 shadow-none" placeholder="Search hear">
+						<input type="text" class="form-control border-0 shadow-none"
+							placeholder="Search hear">
 						<button type="button" class="close" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
@@ -142,7 +150,8 @@
 			<ul class="navbar-nav ml-auto">
 				<li>
 					<div class="dropdown">
-						<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon feather icon-bell"></i></a>
+						<a class="dropdown-toggle" href="#" data-toggle="dropdown"><i
+							class="icon feather icon-bell"></i></a>
 						<div class="dropdown-menu dropdown-menu-right notification">
 							<div class="noti-head">
 								<h6 class="d-inline-block m-b-0">알람</h6>
@@ -151,15 +160,19 @@
 									<a href="#!">clear all</a>
 								</div>
 							</div>
-							<p class="m-b-0">NEW</p>
+							<br>
+							<h6 class="m-b-0">최신 Q&A 답변</h6>
 							<br>
 							<c:forEach items="${list}" var="qna">
-								<a
-									href="/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
-									${qna.qnaId}번, ${qna.qnaTitle} 제목에 헤당하는 QNA 게시글에 답글이 달렸습니다. </a>
-
-								<br>
+							<div class="row-fluid" style="width: 350px; height: 50px; margin-left: 3px;">
+								<i class="feather icon-bell"></i>&nbsp;
+								<a href="/customer/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
+									${qna.qnaTitle} 제목에 해당되는 Q&A에 답글이 달렸습니다. </a>
+									
+								<hr>
+							</div>
 							</c:forEach>
+
 							<div class="noti-footer">
 								<a href="#!">show all</a>
 							</div>
@@ -174,14 +187,17 @@
 						<div
 							class="dropdown-menu dropdown-menu-right profile-notification">
 							<div class="pro-head">
-								<img
-									src="${pageContext.request.contextPath}/resources/assets/dist/assets/images/user/avatar-1.jpg" class="img-radius" alt="User-Profile-Image"> <span>Johnm Doe</span> <a href="auth-signin.html" class="dud-logout" title="Logout"> <i class="feather icon-log-out"></i>
+								<span>${loginCustomerId }</span> <a href="/logOut" class="dud-logout"
+									title="Logout"> <i class="feather icon-log-out"></i>
 								</a>
 							</div>
 							<ul class="pro-body">
-								<li><a href="user-profile.html" class="dropdown-item"><i class="feather icon-user"></i> Profile</a></li>
-								<li><a href="email_inbox.html" class="dropdown-item"><i class="feather icon-mail"></i> My Messages</a></li>
-								<li><a href="auth-signin.html" class="dropdown-item"><i class="feather icon-lock"></i> Lock Screen</a></li>
+								<li><a href="/myinfo?customerId=${loginCustomerId}" class="dropdown-item"><i
+										class="feather icon-user"></i> 내정보</a></li>
+								<li><a href="/qnaList?customerId=${loginCustomerId}&currentPage=1" class="dropdown-item"><i
+										class="feather icon-file-text"></i> Q&A</a></li>
+								<li><a href="/CustomerOrderList" class="dropdown-item"><i
+										class="feather icon-monitor"></i> 예약정보</a></li>
 							</ul>
 						</div>
 					</div>
