@@ -24,7 +24,7 @@ public class CustomerOrderController {
 	
 	// 예약 입력
 	@GetMapping("/addExperienceOrder")
-	public String getaddOrder(HttpSession session, Model model, @RequestParam(defaultValue = "1") int experienceId) {
+	public String getaddExperienceOrder(HttpSession session, Model model, @RequestParam(defaultValue = "1") int experienceId) {
 	System.out.println(experienceId + "EXID");
 	String customerId = (String) session.getAttribute("loginCustomerId");
 	model.addAttribute("experienceId",experienceId);
@@ -74,6 +74,10 @@ public class CustomerOrderController {
 		model.addAttribute("currentPage",currentPage);
 		return "customer/experienceOrder";
 	}
-	
-	
+	/*
+	@GetMapping("/addHotelOrder")
+	public String getaddHotelOrder() {
+		
+	}
+	*/
 }

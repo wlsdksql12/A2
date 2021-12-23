@@ -41,7 +41,7 @@ public class ExperienceOrderService {
 	}
 	
 	// 고객 페이지에 본인이 한 예약 리스트 출력
-	public Map<String, Object> getCustomerIndexExperienceOrder(String customerId, int ROW_PER_PAGE, int currentPage){
+	public Map<String, Object> getCustomerIndexExperienceOrder(String customerId, int currentPage, int ROW_PER_PAGE){
 		   Map<String, Object> paramMap = new HashMap<>();
 		   
 		   int beginRow = (currentPage-1)*ROW_PER_PAGE;
