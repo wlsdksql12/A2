@@ -71,9 +71,6 @@ public class HotController {
 	public String insertRoom(Model model, Hotel hotel) {
 		model.addAttribute("hotelId", hotel.getHotelId());
 		
-		log.debug("@@@@@@@@@"+hotel.getCountRoom());
-		int count = hotel.getCountRoom();
-		
 		return "/ceo/insertRoom";
 	}
 	
@@ -85,7 +82,6 @@ public class HotController {
 		model.addAttribute(hotel);
 		model.addAttribute(room);
 		
-		System.out.println("HotController countRoom"+hotel.getCountRoom());
 		return "redirect:/ceo/insertRoomBedroom?roomId="+room.getRoomId();
 	}
 	

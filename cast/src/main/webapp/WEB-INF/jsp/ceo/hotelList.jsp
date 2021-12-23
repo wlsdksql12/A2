@@ -23,7 +23,6 @@
 								<tr>
 									<th>#</th>
 									<th>제목</th>
-									<th>방 갯수</th>
 									<th>작성날짜</th>
 								</tr>
 							</thead>
@@ -34,7 +33,6 @@
 										<td>
 											<a href="/ceo/hotelOne?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
 										</td>
-										<td>${hotel.countRoom}</td>
 										<td>${hotel.createDate}</td>
 									</tr>
 								</c:forEach>

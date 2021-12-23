@@ -10,7 +10,6 @@ public class Hotel {
 	private int addressId;
 	private String hotelName;
 	private String hotelContent;
-	private int countRoom;
 	private String createDate;
 	private String updateDate;
 	private Address address;

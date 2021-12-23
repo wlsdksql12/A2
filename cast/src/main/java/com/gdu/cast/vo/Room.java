@@ -9,6 +9,7 @@ public class Room {
 	private int hotelId;
 	private String roomName;
 	private String roomContent;
+	private int roomCount;
 	private String roomStartdate;
 	private String roomEnddate;
 	private int roomPrice;

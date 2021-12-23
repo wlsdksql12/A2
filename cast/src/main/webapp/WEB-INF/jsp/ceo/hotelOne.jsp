@@ -42,7 +42,7 @@
 					<h4>${hotel.hotelContent}</h4>
 					<br><hr><br>
 					
-					<p class="card-description">숙박 장소 : 이용 가능한 ${hotel.countRoom} 개의 객실</p>
+					<p class="card-description">숙박 장소</p>
 					<div align="right">
 					<a href="/ceo/insertRoom?HotelId=${hotel.hotelId}" class="btn btn-inverse-success">객실 추가하기</a>
 					</div>
@@ -84,5 +84,16 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+
+		window.history.forward();
+
+		function noBack() {
+
+			window.history.forward();
+
+		}
+
+         </script>
 </body>
 </html>

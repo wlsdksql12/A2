@@ -13,10 +13,14 @@
 	<br>
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
-			
+				
 				<div class="card-body">
+				<div class="progress" style="height:20px">
+				<div class="progress-bar progress-bar-striped" style="width:25%">25%</div>
+				</div>
+				<br>
 					<h2 class="card-title">방 등록</h2>
-					<p class="card-description">호텔의 방 정보를 입력해주세요.</p>
+					<p class="card-description">호텔의 객실 정보를 입력해주세요.</p>
 					<div>
 								
 					<div class="form-group">
@@ -33,6 +37,16 @@
 						<input type="date" class="form-control" style="width: 250px" name="roomStartdate" >
 						<div class="input-group-text">~</div>
 						<input type="date" class="form-control" style="width: 250px" name="roomEnddate">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputEmail3">객실 수</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="roomCount"
+								placeholder="객실 수">
+							<div class="input-group-append">
+								<span style="color: black" class="input-group-text"> 개</span>
+							</div>
+						</div>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputEmail3">가격</label>
@@ -62,13 +76,14 @@
 					<br>
 					</div>
 					<div align="right">
-					<button class="btn btn-light">Cancel</button>
 					<button type="submit" class="btn btn-primary mr-2">NEXT</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+	
+
 
 </body>
 </html>

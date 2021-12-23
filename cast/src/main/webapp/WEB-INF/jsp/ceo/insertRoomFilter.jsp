@@ -12,6 +12,10 @@
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
+				<div class="progress" style="height:20px">
+				<div class="progress-bar progress-bar-striped" style="width:100%">100%</div>
+				</div>
+				<br>
 					<h2 class="card-title">편의 시설 등록</h2>
 					<p class="card-description">등록하실 편의 시설의 정보를 입력해주세요.</p>
 					<div class="form-group">
@@ -72,12 +76,22 @@
 						<input type="hidden" class="form-control" value="${roomId}" name="roomId">
 					</div>
 					<div align="right">
-					<button type="submit" class="btn btn-primary mr-2">Submit</button>
-					<button class="btn btn-light">Cancel</button>
+					<button type="submit" class="btn btn-primary mr-2">SUBMIT</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</form>
+<script type="text/javascript">
+
+		window.history.forward();
+
+		function noBack() {
+
+			window.history.forward();
+
+		}
+
+         </script>
 </body>
 </html>

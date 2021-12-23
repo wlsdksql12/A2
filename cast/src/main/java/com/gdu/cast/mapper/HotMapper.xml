@@ -8,7 +8,6 @@
 		<result column="address_id" property="addressId" />
 		<result column="hotel_name" property="hotelName" />
 		<result column="hotel_content" property="hotelContent" />
-		<result column="count_room" property="countRoom" />
 		<result column="create_date" property="createDate" />
 		<result column="update_date" property="updateDate" />
 		<association property="address" javaType="com.gdu.cast.vo.Address">
@@ -33,7 +32,6 @@
 			address_id,
 			hotel_name,
 			hotel_content,
-			count_room,
 			create_date,
 			update_date
 		) VALUES (
@@ -41,7 +39,6 @@
 			#{addressId},
 			#{hotelName},
 			#{hotelContent},
-			0,
 			now(),
 			now()
 		)
@@ -82,6 +79,7 @@
 				hotel_id,
 				room_name,
 				room_content,
+				room_count,
 				room_startdate,
 				room_enddate,
 				room_price,
@@ -91,6 +89,7 @@
 				#{hotelId},
 				#{roomName},
 				#{roomContent},
+				#{roomCount},
 				#{roomStartdate},
 				#{roomEnddate},
 				#{roomPrice},
@@ -107,7 +106,6 @@
 		SELECT
 			hotel_id hotelId,
 			hotel_name hotelName,
-			count_room countRoom,
 			create_date createDate
 		FROM hotel
 		WHERE ceo_id = #{ceoId}
