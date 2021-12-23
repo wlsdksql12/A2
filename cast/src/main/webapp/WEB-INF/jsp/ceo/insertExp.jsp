@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <meta charset="utf-8">
@@ -27,10 +28,47 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
 </head>
+
+<script>
+		function button1_click() {
+			console.log("버튼1을 누르셨습니다.");
+			var val = $('#hashtag[0]');
+			console.log(var);
+			console.log($('#hashtag[0]').val());
+			console.log($('input[name=tag]').val());
+			if($('#hashtag[0]').val() == null){
+				alert("태그입력후 추가를 눌러주세요");
+				$('#hashtag[0]').focus();
+				return false;
+			} else{
+				var numHashtag = numHashtag + 1;
+				let inputHashtag = '<input  name="hashtag['+numHashtag+']" id="hashtag['+numHashtag+']" name="hashtag['+numHashtag+']"  type="text" placeholder="태그를 입력해주세요 (최대 10개)" class="tag_input">';
+				$('#hashtag').append(inputHashtag);
+			}
+		}
+		/*	
+	document.addEventListener('keydown', function(event) {
+		  if (event.keyCode === 13) {
+			  event.preventDefault();
+			  var numHashtag = 1;
+			  if($('#hashtag[0]').val() == ""){
+					alert("해시태그를 입력해주세요");
+					$('#loginSelect').focus();
+					return false;
+				} else if(($('#hashtag[0]').val() != "")){
+					let inputHashtag = '<input  name="hashtag['+numHashtag+']" id="hashtag['+numHashtag+']" name="hashtag['+numHashtag+']"  type="text" placeholder="태그를 입력해주세요 (최대 10개)" class="tag_input">';
+					$('#hashtag').append(inputHashtag);
+				}
+			  $('#hashtag[1]').focus();
+		    event.preventDefault();
+		  };
+		}, true);
+	*/
+	</script>
 <body>
 	<%@ include file="ceoBase.jsp" %>
 	<br>
-	<form method="post" action="/ceo/insertExp" class="forms-sample">
+	<form method="post" action="/ceo/insertExp" class="forms-sample" onsubmit="return false">
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
@@ -89,6 +127,19 @@
 						<label for="exampleTextarea1">내용</label>
 						<textarea class="form-control" name="experienceContent" rows="10"></textarea>
 					</div>
+					<!-- 해시태그 추가 -->
+					<hr>
+					<div class="WritingTag">
+						<div class="tag_inner">
+							<strong class="blind">태그 입력</strong>
+							<button id="button1" onclick="button1_click();">추가</button>
+							<div class="tag_input_box inactive" id="hashtag">
+								<input name="tag" id="tag" type="text" placeholder="태그를 입력해주세요 (최대 10개)"value="12" onkeypress="if(event.keyCode == 13) addHashtag();" >
+               			</div>
+               		</div>
+               	</div>
+               	
+               	<!-- 해시태그 추가 끝 -->
 					<button type="submit" class="btn btn-primary mr-2">Submit</button>
 					<button class="btn btn-light">Cancel</button>
 				</div>

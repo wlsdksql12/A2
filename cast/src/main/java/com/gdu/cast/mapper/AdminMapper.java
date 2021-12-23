@@ -23,5 +23,8 @@ public interface AdminMapper {
 	
 	//관리자 페이지에 qna미답변 개수 출력
 	int selectNewNotQnaComment();
+	
+	//테스트
+	int selectAdminCount(String admin);
 }
 

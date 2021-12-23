@@ -30,6 +30,10 @@ public class AdminController {
 	// 관리자 메인페이지
 	@GetMapping("/admin/adminIndex")
 	public String adminIndex(Model model, @RequestParam(defaultValue = "1") int currentPage) {
+		// test
+		int count = adminService.selectAdminCount("admin");
+		System.out.println(count + "test중입니다.....");
+		
 		
 		Map<String, Object> newCustomer = adminService.selectNewCustomer();
 		Map<String, Object> newTraveler = adminService.selectNewTraveler();

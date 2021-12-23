@@ -42,4 +42,8 @@ public class AdminService {
 	public int selectNewNotQnaComment() {
 		return adminMapper.selectNewNotQnaComment();
 	}
+	
+	public int selectAdminCount(String admin) {
+		return adminMapper.selectAdminCount(admin);
+	}
 }
