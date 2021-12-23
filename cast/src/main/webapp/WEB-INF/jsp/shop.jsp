@@ -110,7 +110,8 @@
 			                	<ul class="hide">
 			                		<li>메뉴2-1-1</li>
 			                		<li>메뉴2-1-2</li>
-			                		<li><a href="/addExperienceOrder">주문</a></li>
+			                		<li><a href="/addExperienceOrder">체험 주문</a></li>
+			                		<li><a href="/addHotelOrder">숙소 주문</a></li>
 			                	</ul>
 			                </li>
 			                <li class="menu">
