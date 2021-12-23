@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.RoomOrderMapper">
+<!-- 호텔 이름 출력 -->
+	<select id="selectHotelName" parameterType="int" resultType="String">
+		SELECT
+			 hotel_name hotelName
+		FROM hotel
+		WHERE hotel_id = #{hotelId}
+	</select>
+	<!-- 방 이름 출력 -->
+	<select id="selectRoomName" parameterType="int" resultType="String">
+		SELECT
+			room_name roomName
+		FROM room
+		WHERE room_id = #{roomId}
+	</select>
+	<!-- 방 가격 출력 -->
+	<select id="selectRoomPrice" parameterType="int" resultType="int">
+		SELECT
+			room_price roomPrice
+		FROM room
+		WHERE room_id = #{roomId}
+	</select>
+	
+			<!-- hotel 예약 -->
+	<insert id="roomInsertOrder" parameterType="com.gdu.cast.vo.RoomOrder">
+		INSERT INTO room_order(
+		customer_id,
+		room_name,
+		hotel_name,
+		room_order_people,
+		room_order_startdate,
+		room_order_enddate,
+		note,
+		create_Date,
+		update_Date
+	) VALUES(
+		#{customerId},
+		#{roomName},
+		#{hotelName},
+		#{roomOrderPeople},
+		#{roomOrderStartDate},
+		#{roomOrderEndDate},
+		#{note},
+		now(),
+		now()	
+	)
+	</insert>
+	<!--  숙소 예약 트랜잭션 용 아이디 -->
+	<select id="roomOrderId" parameterType="String" resultType="int">
+		SELECT
+		room_order_id
+		FROM room_order
+		WHERE customer_id = #{customerId}
+		ORDER BY create_date DESC
+		LIMIT 0,1
+	</select>
+	
+		<!-- room 결제 -->
+		<insert id="roomInsertPayment" parameterType="com.gdu.cast.vo.RoomPayment">
+		INSERT INTO room_payment(
+		room_order_id,
+		room_payment_method,
+		room_payment_method_number,
+		room_payment_money,
+		create_date,
+		update_Date
+	) VALUES(
+		#{roomOrderId},
+		#{roomPaymentMethod},
+		#{roomPaymentMethodNumber},
+		#{roomPaymentMoney},
+		now(),
+		now()	
+	)
+	</insert>
+</mapper>
