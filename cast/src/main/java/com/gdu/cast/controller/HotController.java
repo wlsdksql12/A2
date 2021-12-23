@@ -83,8 +83,10 @@ public class HotController {
 		hotService.insertRoom(room);
 		
 		model.addAttribute(hotel);
+		model.addAttribute(room);
+		
 		System.out.println("HotController countRoom"+hotel.getCountRoom());
-		return "/ceo/ceoIndex";
+		return "redirect:/ceo/insertRoomBedroom?roomId="+room.getRoomId();
 	}
 	
 	// 호텔리스트
@@ -173,7 +175,7 @@ public class HotController {
 	public String insertRoomFilter(Model model, Room room, RoomFilter roomFilter) {
 		hotService.insertRoomFilter(roomFilter);
 		
-		return "redirect:/ceo/ceoIndex";
+		return "redirect:/ceo/hotelList";
 	}
 }
 

@@ -96,7 +96,10 @@
 				#{roomPrice},
 				NOW(),
 				NOW()
-			);
+			)
+		<selectKey resultType="integer" keyProperty="roomId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
 	
 	<!-- 호텔리스트 -->
@@ -131,12 +134,14 @@
 	<insert id="insertRoomBedroom" parameterType="com.gdu.cast.vo.RoomBedroom">
 		INSERT INTO
 			room_bedroom (
+				room_id,
 				bed_count,
 				bedroom_count,
 				bathroom_count,
 				create_date,
 				update_date
 			) VALUES (
+				${roomId},
 				${bedCount},
 				${bedroomCount},
 				${bathroomCount},
@@ -149,15 +154,17 @@
 	<insert id="insertRoomConvenience" parameterType="com.gdu.cast.vo.RoomConvenience">
 		INSERT INTO
 			room_convenience (
+				room_id,
 				stairs_threshold,
 				toilet_handle,
 				shower_stall_handle,
 				create_date,
 				update_date
 			) VALUES (
-				${stairsThreshold},
-				${toiletHandle},
-				${showerStallHandle},
+				${roomId},
+				'${stairsThreshold}',
+				'${toiletHandle}',
+				'${showerStallHandle}',
 				NOW(),
 				NOW()
 			)
@@ -167,6 +174,7 @@
 	<insert id="insertRoomFilter" parameterType="com.gdu.cast.vo.RoomFilter">
 		INSERT INTO
 			room_filter(
+				room_id,
 				internet,
 				kitchen,
 				boiler,
@@ -174,20 +182,21 @@
 				washing_machine,
 				breakfast,
 				tv,
-				hairdyer,
+				hairdryer,
 				bidet,
 				create_date,
 				update_date
 			) VALUES (
-				${internet},
-				${kitchen},
-				${boiler},
-				${aircon},
-				${washingMachine},
-				${breakfast},
-				${tv},
-				${hairdyer},
-				${bidet},
+				${roomId},
+				'${internet}',
+				'${kitchen}',
+				'${boiler}',
+				'${aircon}',
+				'${washingMachine}',
+				'${breakfast}',
+				'${tv}',
+				'${hairdryer}',
+				'${bidet}',
 				NOW(),
 				NOW()
 			)	
