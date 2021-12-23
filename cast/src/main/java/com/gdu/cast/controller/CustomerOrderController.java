@@ -52,7 +52,7 @@ public class CustomerOrderController {
 		model.addAttribute("ExperienceOrderStartDate",experienceOrder.getExperienceOrderStartDate());
 		model.addAttribute("ExperienceOrderEndDate", experienceOrder.getExperienceOrderEndDate());
 		model.addAttribute("CustomerId", experienceOrder.getCustomerId());
-		
+		model.addAttribute("experienceId", experienceId);
 		return "addExperiencePayment";
 	}
 	
@@ -76,8 +76,9 @@ public class CustomerOrderController {
 	}
 	/*
 	@GetMapping("/addHotelOrder")
-	public String getaddHotelOrder() {
+	public String getaddHotelOrder(HttpSession session, Model model, ) {
 		
 	}
 	*/
+	
 }

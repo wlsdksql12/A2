@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class ExperienceOrder {
 	private int experienceOrderId;
+	private int experienceId;
 	private String experienceName;
 	private String customerId;
 	private int experienceOrderPeople;
