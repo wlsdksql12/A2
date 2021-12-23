@@ -38,7 +38,7 @@
 	</div>
 	<!-- [ Pre-loader ] End -->
 	<!-- [ navigation menu ] start -->
-<nav class="pcoded-navbar menu-light ">
+	<nav class="pcoded-navbar menu-light ">
 		<div class="navbar-wrapper  ">
 			<div class="navbar-content scroll-div ">
 
@@ -81,9 +81,9 @@
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-layout"></i></span><span class="pcoded-mtext">관심상품</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="layout-vertical.html" target="_blank">체험
+							<li><a href="layout-vertical.html">체험
 									관심상품</a></li>
-							<li><a href="layout-horizontal.html" target="_blank">숙소
+							<li><a href="layout-horizontal.html">숙소
 									관심상품</a></li>
 						</ul></li>
 					<li class="nav-item pcoded-menu-caption"><label>결제목록</label></li>
@@ -91,11 +91,11 @@
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-monitor"></i></span><span class="pcoded-mtext">결제</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="layout-vertical.html" target="_blank">상품예약
+							<li><a href="/CustomerOrderList">상품예약
 									</a></li>
-							<li><a href="layout-horizontal.html" target="_blank">결제내역
+							<li><a href="layout-horizontal.html">결제내역
 									</a></li>
-							<li><a href="layout-horizontal.html" target="_blank">상품후기
+							<li><a href="layout-horizontal.html">상품후기
 									</a></li>
 						</ul>
 					</li>
