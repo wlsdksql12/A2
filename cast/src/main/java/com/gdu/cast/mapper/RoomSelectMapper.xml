@@ -2,6 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.RoomSelectMapper">
 
+	<!-- 자신이 등록한 숙소 추천 리스트에 여행작가 이름 Join -->
+	<resultMap type="com.gdu.cast.vo.RoomSelect" id="resultRoomSelect">
+		<id column="room_select_id" property="roomSelectId"></id>
+		<result column="traveler_id" property="travelerId"></result>
+		<result column="hotel_id" property="hotelId"></result>
+		<result column="room_select_title" property="roomSelectTitle"></result>
+		<result column="room_select_content" property="roomSelectContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="traveler" ofType="com.gdu.cast.vo.Traveler">
+			<result column="traveler_name" property="travelerName"></result>
+		</collection>
+	</resultMap>
+
 	<!-- 여행작가 숙소 추천 추가 -->
 	<insert id="insertRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
 		INSERT INTO room_select(
@@ -32,16 +46,17 @@
 	</select>
 	
 	<!-- 자신이 등록한 숙소 추천 리스트 -->
-	<select id="selectRoomSelectList" parameterType="Map" resultType="com.gdu.cast.vo.RoomSelect">
+	<select id="selectRoomSelectList" parameterType="Map" resultMap="resultRoomSelect">
 		SELECT 
-			room_select_id roomSelectId,
-			traveler_id travelerId,
-			room_select_title roomSelectTitle,
-			room_select_content roomSelectContent,
-			create_date createDate
-		FROM room_select
-		WHERE traveler_id = #{travelerId}
-		ORDER BY create_date DESC
+			r.room_select_id,
+			r.traveler_id,
+			r.room_select_title,
+			t.traveler_name,
+			r.create_date
+		FROM traveler t INNER JOIN room_select r
+		ON t.traveler_id = r.traveler_id
+		WHERE t.traveler_id = #{travelerId}
+		ORDER BY r.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 </mapper>

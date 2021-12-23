@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class ExperienceSelectImage {
-	public int experienceSelectImageId;
-	public int experienceSelectId;
-	public String imageSize;
-	public String imageExt;
-	public String imageName;
-	public String createDate;
-	public String updateDate;
+	private int experienceSelectImageId;
+	private int experienceSelectId;
+	private String imageSize;
+	private String imageExt;
+	private String imageName;
+	private String createDate;
+	private String updateDate;
 }

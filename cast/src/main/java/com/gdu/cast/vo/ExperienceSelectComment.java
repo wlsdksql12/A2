@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class ExperienceSelectComment {
-	public int experienceSelectCommentId;
-	public String customerId;
-	public int experienceSelectId;
-	public String experienceSelectContent;
-	public String createDate;
-	public String updateDate;
+	private int experienceSelectCommentId;
+	private String customerId;
+	private int experienceSelectId;
+	private String experienceSelectContent;
+	private String createDate;
+	private String updateDate;
 }

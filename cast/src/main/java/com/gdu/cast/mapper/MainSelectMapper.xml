@@ -2,6 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.MainSelectMapper">
 
+	<!-- 메인 페이지 체험 추천 리스트에 여행작가 이름 Join -->
+	<resultMap type="com.gdu.cast.vo.ExperienceSelect" id="resultExperienceSelect">
+		<id column="experience_select_id" property="experienceSelectId"></id>
+		<result column="traveler_id" property="travelerId"></result>
+		<result column="experience_id" property="experienceId"></result>
+		<result column="experience_select_title" property="experienceSelectTitle"></result>
+		<result column="experience_select_content" property="experienceSelectContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="traveler" ofType="com.gdu.cast.vo.Traveler">
+			<result column="traveler_name" property="travelerName"></result>
+		</collection>
+	</resultMap>
+	
+	<!-- 메인 페이지 숙소 추천 리스트에 여행작가 이름 Join -->
+	<resultMap type="com.gdu.cast.vo.RoomSelect" id="resultRoomSelect">
+		<id column="room_select_id" property="roomSelectId"></id>
+		<result column="traveler_id" property="travelerId"></result>
+		<result column="hotel_id" property="hotelId"></result>
+		<result column="room_select_title" property="roomSelectTitle"></result>
+		<result column="room_select_content" property="roomSelectContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="traveler" ofType="com.gdu.cast.vo.Traveler">
+			<result column="traveler_name" property="travelerName"></result>
+		</collection>
+	</resultMap>
+
 	<!-- 메인 페이지의 체험 추천 삭제 -->
 	<delete id="deleteExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		DELETE FROM experience_select
@@ -41,31 +69,35 @@
 	</update>
 
 	<!-- 메인 페이지의 체험 추천 상세보기 -->
-	<select id="selectExperienceSelectOne" parameterType="int" resultType="com.gdu.cast.vo.ExperienceSelect">
+	<select id="selectExperienceSelectOne" parameterType="int" resultMap="resultExperienceSelect">
 		SELECT 
-			experience_select_id experienceSelectId,
-			traveler_id travelerId,
-			experience_id experienceId,
-			experience_select_title experienceSelectTitle,
-			experience_select_content experienceSelectContent,
-			create_date createDate,
-			update_date updateDate
-		FROM experience_select
-		WHERE experience_select_id = #{experienceSelectId}
+			e.experience_select_id,
+			e.traveler_id,
+			e.experience_id,
+			e.experience_select_title,
+			e.experience_select_content,
+			t.traveler_name,
+			e.create_date,
+			e.update_date
+		FROM traveler t INNER JOIN experience_select e
+		ON t.traveler_id = e.traveler_id
+		WHERE e.experience_select_id = #{experienceSelectId}
 	</select>
 
 	<!-- 메인 페이지의 숙소 추천 상세보기 -->
-	<select id="selectRoomSelectOne" parameterType="int" resultType="com.gdu.cast.vo.RoomSelect">
+	<select id="selectRoomSelectOne" parameterType="int" resultMap="resultRoomSelect">
 		SELECT 
-			room_select_id roomSelectId,
-			traveler_id travelerId,
-			hotel_id hotelId,
-			room_select_title roomSelectTitle,
-			room_select_content roomSelectContent,
-			create_date createDate,
-			update_date updateDate
-		FROM room_select
-		WHERE room_select_id = #{roomSelectId}
+			r.room_select_id,
+			r.traveler_id,
+			r.hotel_id,
+			r.room_select_title,
+			r.room_select_content,
+			t.traveler_name,
+			r.create_date,
+			r.update_date
+		FROM traveler t INNER JOIN room_select r
+		ON t.traveler_id = r.traveler_id
+		WHERE r.room_select_id = #{roomSelectId}
 	</select>
 	
 	<!-- 메인 페이지의 체험 추천 전체 글 수 -->
@@ -80,19 +112,21 @@
 	</select>
 
 	<!-- 메인 페이지의 체험 추천 리스트 -->
-	<select id="selectExperienceList" parameterType="Map" resultType="com.gdu.cast.vo.ExperienceSelect">
+	<select id="selectExperienceList" parameterType="Map" resultMap="resultExperienceSelect">
 		SELECT 
-			experience_select_id experienceSelectId,
-			traveler_id travelerId,
-			experience_select_title experienceSelectTitle,
-			create_date createDate
-		FROM experience_select
+			e.experience_select_id,
+			e.traveler_id,
+			e.experience_select_title,
+			t.traveler_name,
+			e.create_date
+		FROM traveler t INNER JOIN experience_select e
+		ON t.traveler_id = e.traveler_id
 		<where>
 			<if test='searchTitle != null or searchTitle == ""'>
 			experience_select_title LIKE '%${searchTitle}%'
 			</if>
 		</where>
-		ORDER BY create_date DESC
+		ORDER BY e.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 
@@ -108,19 +142,21 @@
 	</select>
 	
 	<!-- 메인 페이지의 숙소 추천 리스트 -->
-	<select id="selectRoomSelectList" parameterType="Map" resultType="com.gdu.cast.vo.RoomSelect">
+	<select id="selectRoomSelectList" parameterType="Map" resultMap="resultRoomSelect">
 		SELECT 
-			room_select_id roomSelectId,
-			traveler_id travelerId,
-			room_select_title roomSelectTitle,
-			create_date createDate
-		FROM room_select
+			r.room_select_id,
+			r.traveler_id,
+			r.room_select_title,
+			t.traveler_name,
+			r.create_date
+		FROM traveler t INNER JOIN room_select r
+		ON t.traveler_id = r.traveler_id
 		<where>
 			<if test='searchTitle != null or searchTitle == ""'>
 				room_select_title LIKE '%${searchTitle}%'
 			</if>
 		</where>
-		ORDER BY create_date DESC
+		ORDER BY r.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 </mapper>

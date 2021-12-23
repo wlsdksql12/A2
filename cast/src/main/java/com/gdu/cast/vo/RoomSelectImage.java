@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class RoomSelectImage {
-	public int roomSelectImageId;
-	public int roomSelectId;
-	public String imageSize;
-	public String imageName;
-	public String createDate;
-	public String updateDate;
+	private int roomSelectImageId;
+	private int roomSelectId;
+	private String imageSize;
+	private String imageName;
+	private String createDate;
+	private String updateDate;
 }

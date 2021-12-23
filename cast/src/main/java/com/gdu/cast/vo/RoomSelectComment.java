@@ -4,10 +4,10 @@ import lombok.Data;
 
 @Data
 public class RoomSelectComment {
-	public int roomSelectCommentId;
-	public String customerId;
-	public int roomSelectId;
-	public String roomSelectContent;
-	public String createDate;
-	public String updateDate;
+	private int roomSelectCommentId;
+	private String customerId;
+	private int roomSelectId;
+	private String roomSelectContent;
+	private String createDate;
+	private String updateDate;
 }

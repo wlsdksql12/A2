@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class Traveler {
-	public String travelerId;
-	public String travelerPw;
-	public String travelerName;
-	public String travelerJumin;
-	public String travelerPhoneNum;
-	public String travelerEmail;
-	public String travelerLicense;
-	public String travelerCareer;
-	public String createDate;
-	public String updateDate;
+	private String travelerId;
+	private String travelerPw;
+	private String travelerName;
+	private String travelerJumin;
+	private String travelerPhoneNum;
+	private String travelerEmail;
+	private String travelerLicense;
+	private String travelerCareer;
+	private String createDate;
+	private String updateDate;
 }

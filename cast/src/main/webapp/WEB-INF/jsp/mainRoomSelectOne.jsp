@@ -85,7 +85,7 @@
 				<tr>
 					<th width="10%">번호</th>
 					<th width="60%">제목</th>
-					<th width="10%">아이디</th>
+					<th width="10%">작성자</th>
 					<th width="20%">작성날짜</th>
 				</tr>
 			</thead>
@@ -93,7 +93,7 @@
 					<tr style="text-align:center">
 						<td>${roomSelect.roomSelectId}</td>
 						<td>${roomSelect.roomSelectTitle}</td>
-						<td>${roomSelect.travelerId}</td>
+						<td>${roomSelect.traveler.travelerName}</td>
 						<td>${fn:substring(roomSelect.createDate,0,10)}</td>
 					</tr>
 			<tr>

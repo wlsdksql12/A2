@@ -304,7 +304,6 @@
             >
               메인으로
               <span class="ml-2" aria-hidden="true">+</span>
-              
             </a>
           </div>
         </div>
@@ -978,9 +977,9 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-3 py-3" width="20%">번호</th>
+                      <th class="px-4 py-5" width="20%">번호</th>
                       <th class="px-10 py-10" width="40%">제목</th>
-                      <th class="px-3 py-5" width="20%">아이디</th>
+                      <th class="px-5 py-5" width="20%">작성자</th>
                       <th class="px-4 py-3" width="20%">작성 날짜</th>
                     </tr>
                   </thead>
@@ -992,11 +991,11 @@
                       <td class="px-5 py-4">
                           ${roomSelect.roomSelectId}
                       </td>
-                      <td class="px-10 py-10 text-sm"> 
+                      <td class="px-5 py-5 text-sm"> 
                         <a href="/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
                       </td>
                        <td class="px-4 py-3">
-                          ${roomSelect.travelerId}
+                          ${roomSelect.traveler.travelerName}
                       </td>
                       <td class="px-4 py-3 text-sm">
                         ${roomSelect.createDate.substring(0,10)}
@@ -1031,9 +1030,9 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-3 py-3" width="20%">번호</th>
+                      <th class="px-4 py-5" width="20%">번호</th>
                       <th class="px-10 py-10" width="40%">제목</th>
-                      <th class="px-3 py-5" width="20%">아이디</th>
+                      <th class="px-5 py-5" width="20%">작성자</th>
                       <th class="px-4 py-3" width="20%">작성 날짜</th>
                     </tr>
                   </thead>
@@ -1042,14 +1041,14 @@
                   >
 					<c:forEach items="${experienceSelectList}" var="experienceSelect">
                     <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-5 py-4">
+                       <td class="px-5 py-4">
                           ${experienceSelect.experienceSelectId}
                       </td>
-                      <td class="px-10 py-10 text-sm">
+                      <td class="px-5 py-5 text-sm">
                         <a href="/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
                       </td>
                       <td class="px-4 py-3">
-                          ${experienceSelect.travelerId}
+                          ${experienceSelect.traveler.travelerName}
                       </td>
                       <td class="px-4 py-3 text-sm">
                          ${experienceSelect.createDate.substring(0,10)}

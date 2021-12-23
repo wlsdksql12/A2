@@ -4,11 +4,12 @@ import lombok.Data;
 
 @Data
 public class RoomSelect {
-	public int roomSelectId;
-	public String travelerId;
-	public int hotelId;
-	public String roomSelectTitle;
-	public String roomSelectContent;
-	public String createDate;
-	public String updateDate;
+	private int roomSelectId;
+	private String travelerId;
+	private int hotelId;
+	private String roomSelectTitle;
+	private String roomSelectContent;
+	private String createDate;
+	private String updateDate;
+	private Traveler traveler;
 }

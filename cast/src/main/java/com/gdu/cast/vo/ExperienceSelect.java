@@ -4,11 +4,12 @@ import lombok.Data;
 
 @Data
 public class ExperienceSelect {
-	public int experienceSelectId;
-	public String travelerId;
-	public int experienceId;
-	public String experienceSelectTitle;
-	public String experienceSelectContent;
-	public String createDate;
-	public String updateDate;
+	private int experienceSelectId;
+	private String travelerId;
+	private int experienceId;
+	private String experienceSelectTitle;
+	private String experienceSelectContent;
+	private String createDate;
+	private String updateDate;
+	private Traveler traveler;
 }
