@@ -9,4 +9,7 @@ public class ThemeSmallHotel {
 	private int HotelId;
 	private String createDate;
 	private String updateDate;
+	
+	private Hotel hotel;
+	private ThemeSmall themeSmall;
 }

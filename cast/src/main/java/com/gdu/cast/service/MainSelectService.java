@@ -15,6 +15,7 @@ import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.ThemeMiddle;
 import com.gdu.cast.vo.ThemeSmall;
 import com.gdu.cast.vo.ThemeSmallExperience;
+import com.gdu.cast.vo.ThemeSmallHotel;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -162,12 +163,21 @@ public class MainSelectService {
 		return ThemeSmallmap;
 	}
 	
-	public Map<String, Object> selectThemeShopList(String ThemeSmallName) {
+	public Map<String, Object> selectThemeShopExperienceList(String ThemeSmallName) {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
-		List<ThemeSmallExperience> selectThemeShopList = mainSelectMapper.selectThemeShopList(ThemeSmallName);
-		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
-		map.put("selectThemeShopList", selectThemeShopList);
+		List<ThemeSmallExperience> selectThemeShopExperienceList = mainSelectMapper.selectThemeShopExperienceList(ThemeSmallName);
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopExperienceList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
+		map.put("selectThemeShopExperienceList", selectThemeShopExperienceList);
+		return map;
+	}
+	
+	public Map<String, Object> selectThemeShopHotelList(String ThemeSmallName) {
+		Map<String, Object> map = new HashMap<>();
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
+		List<ThemeSmallHotel> selectThemeShopHotelList = mainSelectMapper.selectThemeShopHotelList(ThemeSmallName);
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopHotelList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
+		map.put("selectThemeShopHotelList", selectThemeShopHotelList);
 		return map;
 	}
 	

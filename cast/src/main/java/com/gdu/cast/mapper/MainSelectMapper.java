@@ -10,6 +10,7 @@ import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.ThemeMiddle;
 import com.gdu.cast.vo.ThemeSmall;
 import com.gdu.cast.vo.ThemeSmallExperience;
+import com.gdu.cast.vo.ThemeSmallHotel;
 
 @Mapper
 public interface MainSelectMapper {
@@ -49,5 +50,7 @@ public interface MainSelectMapper {
 	
 	List<ThemeSmall> selectThemeSmallList();
 	
-	List<ThemeSmallExperience> selectThemeShopList(String ThemeSmallName);
+	List<ThemeSmallExperience> selectThemeShopExperienceList(String ThemeSmallName);
+	
+	List<ThemeSmallHotel> selectThemeShopHotelList(String ThemeSmallName);
 }

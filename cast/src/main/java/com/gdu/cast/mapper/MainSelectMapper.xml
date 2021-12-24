@@ -73,6 +73,29 @@
 		</association>
 	</resultMap>
 	
+	<resultMap type="com.gdu.cast.vo.ThemeSmallHotel" id="resultThemeSmallHotel">
+		<result column="theme_small_id" property="themeSmallId" />
+		<result column="hotel_id" property="hotelId" />
+		<result column="create_date" property="createDate" />
+		<result column="update_date" property="updateDate" />
+		<association property="hotel" javaType="com.gdu.cast.vo.Hotel">
+			<result column="hotel_id" property="hotelId" />
+			<result column="ceo_id" property="ceoId" />
+			<result column="address_id" property="addressId" />
+			<result column="hotel_name" property="hotelName" />
+			<result column="hotel_content" property="hotelContent" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+		<association property="themeSmall" javaType="com.gdu.cast.vo.ThemeSmall">
+			<result column="theme_small_id" property="themeSmallId" />
+			<result column="theme_middle_id" property="themeMiddleId" />
+			<result column="theme_small_name" property="themeSmallName" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+	</resultMap>
+	
 	<!-- 메인 페이지의 체험 추천 삭제 -->
 	<delete id="deleteExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		DELETE FROM experience_select
@@ -215,13 +238,22 @@
 		ORDER BY theme_middle_id ASC
 	</select>
 	
-	<select id="selectThemeShopList" parameterType="String" resultMap="resultThemeSmallExperience">
+	<select id="selectThemeShopExperienceList" parameterType="String" resultMap="resultThemeSmallExperience">
 		SELECT themeSmall.theme_small_name, experience.experience_name, experience.experience_content,
 				 experience.experience_id, experience.experience_price
 		FROM theme_small_experience themeSmallExperience INNER JOIN experience
 		ON themeSmallExperience.experience_id = experience.experience_id
 		INNER JOIN theme_small themeSmall
 		ON themeSmallExperience.theme_small_id = themeSmall.theme_small_id
+		WHERE themeSmall.theme_small_name = #{ThemeSmallName}
+	</select>
+	
+	<select id="selectThemeShopHotelList" parameterType="String" resultMap="resultThemeSmallHotel">
+		SELECT themeSmall.theme_small_name, hotel.hotel_name, hotel.hotel_content, hotel.hotel_id
+		FROM theme_small_hotel themeSmallHotel INNER JOIN hotel
+		ON themeSmallHotel.hotel_id = hotel.hotel_id
+		INNER JOIN theme_small themeSmall
+		ON themeSmallHotel.theme_small_id = themeSmall.theme_small_id
 		WHERE themeSmall.theme_small_name = #{ThemeSmallName}
 	</select>
 </mapper>
