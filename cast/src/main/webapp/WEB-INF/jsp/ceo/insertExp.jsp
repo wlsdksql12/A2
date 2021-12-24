@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -100,7 +100,13 @@
 						<div class="tag_input_box inactive" id="hashtag">
               			</div>
             		</div>
-               	
+               		<div class="form-group">테마 선택
+               			<select>
+               				<c:forEach items="${selectThemeSmallList}" var="themeSmall">
+               					<option value="${themeSmall.themeSmallName}">${themeSmall.themeSmallName}</option>
+               				</c:forEach>
+               			</select>
+               		</div>
               	 	<!-- 해시태그 추가 끝 -->
 					<button type="button" id="addBtn" class="btn btn-primary mr-2">Submit</button>
 					<button class="btn btn-light">Cancel</button>

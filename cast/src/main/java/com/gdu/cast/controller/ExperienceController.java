@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceService;
 import com.gdu.cast.service.KeywordService;
+import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.ThemeSmall;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,13 +32,16 @@ public class ExperienceController {
    ExperienceService experienceService;
    @Autowired
    KeywordService keywordService;
+   @Autowired
+   MainSelectService mainSelectService;
    
    @GetMapping("/ceo/insertExp")
    public String insertExp(Model model, int addressId) {
-      
-      model.addAttribute("addressId" , addressId);
-      
-      return "/ceo/insertExp";
+	   Map<String, Object> ThemeSmallmap = mainSelectService.selectThemeSmall();
+	   System.out.println(ThemeSmallmap.get("selectThemeSmallList")+ "tset");
+	   model.addAttribute("addressId" , addressId);
+	   model.addAttribute("selectThemeSmallList",ThemeSmallmap.get("selectThemeSmallList"));
+	   return "/ceo/insertExp";
    }
    
    @PostMapping("/ceo/insertExp")
