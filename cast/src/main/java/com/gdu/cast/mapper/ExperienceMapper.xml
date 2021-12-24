@@ -137,4 +137,13 @@
    		WHERE experience_id = #{experienceId}
    		AND ceo_id = #{ceoId}
    </delete>
+   
+   <!-- 체험 등록 시 제일 최근 experienceId 조회 -->
+   <select id="selectExperienceId" parameterType="com.gdu.cast.vo.Experience" resultType="int">
+   		SELECT experience_id experienceId
+   		FROM experience
+   		WHERE ceo_id = #{ceoId}
+   		ORDER BY create_date DESC
+   		LIMIT 0,1
+   </select>
 </mapper>

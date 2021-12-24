@@ -1,7 +1,11 @@
 package com.gdu.cast.controller;
 
+import java.sql.Array;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceService;
+import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
@@ -23,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 public class ExperienceController {
    @Autowired
    ExperienceService experienceService;
+   @Autowired
+   KeywordService keywordService;
    
    @GetMapping("/ceo/insertExp")
    public String insertExp(Model model, int addressId) {
@@ -33,14 +40,28 @@ public class ExperienceController {
    }
    
    @PostMapping("/ceo/insertExp")
-   public String insertExp(HttpSession session, Experience experience) {
+   public String insertExp(HttpServletRequest request,HttpSession session, Experience experience, String keyword
+) {
       String ceoId = (String) session.getAttribute("loginCeoId");
       experience.setCeoId(ceoId);
       System.out.println(ceoId + " << ceoId");
-      experienceService.insertExp(experience);
       
+      int experienceId = experienceService.insertExp(experience);
+      System.out.println(experienceId  + "체험 id");
       log.debug("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ceoId);
       log.debug("=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-"+experience.toString());
+      // 해시태그 결과값 불러오기
+      System.out.println(keyword + "test");
+      System.out.println(keyword.length() + "test");
+      String[] keywordList = keyword.split(",");
+      System.out.println(keywordList.length + "문자열 나누기");
+      System.out.println(Arrays.toString(keywordList) + "문자열 나누기");
+      
+      for(int i = 0; i < keywordList.length; i++) {
+    	  System.out.println(keywordList[i] + "입력되는 값");
+    	  keywordService.insertExperienceKeyword(keywordList[i], experienceId);
+      }
+      
       // 나중에 체험리스트로 가게 바꾸기
       return "/ceo/ceoIndex";
    }

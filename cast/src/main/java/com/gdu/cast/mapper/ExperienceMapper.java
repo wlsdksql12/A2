@@ -24,4 +24,6 @@ public interface ExperienceMapper {
 	int updateExperience(Experience experience);
 	// 체험삭제
 	int deleteExperience(Experience experience);
+	// 체험추가 시 추가한 체험id 출력
+	int selectExperienceId(Experience experience);
 }

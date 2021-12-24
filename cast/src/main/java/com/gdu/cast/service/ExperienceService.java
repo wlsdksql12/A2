@@ -21,8 +21,9 @@ public class ExperienceService {
 	@Autowired
 	ExperienceMapper experienceMapper;
 	
-	public void insertExp(Experience experience) {
+	public int insertExp(Experience experience) {
 		experienceMapper.insertExp(experience);
+		return experienceMapper.selectExperienceId(experience);
 	}
 	
 	public void insertExpAddress(Address address) {
