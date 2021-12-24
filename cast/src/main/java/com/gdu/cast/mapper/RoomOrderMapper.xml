@@ -47,6 +47,34 @@
 		now()	
 	)
 	</insert>
+	
+	<!-- 고객페이지 숙소 예약 리스트 -->
+	<select id="CustomerIndexRoomOrder" parameterType="Map" resultType="com.gdu.cast.vo.RoomOrder">
+		SELECT
+			room_order_id roomOrderId,
+			customer_id customerId,
+			room_name roomName,
+			room_order_people roomOrderPeople,
+			room_order_startdate roomOrderStartDate,
+			room_order_enddate roomOrderEndDate,
+			create_Date createDate,
+			update_Date updateDate
+		FROM room_order
+		where customer_id = #{customerId}
+		ORDER BY create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	
+	</select>
+	
+		<!-- 숙소 예약 List 페이징 -->
+	<select id="selectRoomOrderTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM room_order
+	WHERE customer_Id = #{customerId}
+	
+	</select>
+	
+	
 	<!--  숙소 예약 트랜잭션 용 아이디 -->
 	<select id="roomOrderId" parameterType="String" resultType="int">
 		SELECT

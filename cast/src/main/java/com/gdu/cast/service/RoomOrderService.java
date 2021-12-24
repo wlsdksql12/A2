@@ -1,9 +1,14 @@
 package com.gdu.cast.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gdu.cast.mapper.RoomOrderMapper;
+import com.gdu.cast.vo.RoomOrder;
 
 @Service
 public class RoomOrderService {
@@ -33,5 +38,30 @@ public class RoomOrderService {
 	public void getroomInsertPayment(int roomOrderId, String roomPaymentMethod, String roomPaymentMethodNumber, int roomPaymentMoney) {
 		roomOrderMapper.roomInsertPayment(roomOrderId, roomPaymentMethod, roomPaymentMethodNumber, roomPaymentMoney);
 	}
+	
+	public Map<String, Object> getCustomerIndexRoomOrder(String customerId, int currentPage2, int ROW_PER_PAGE){
+		 Map<String, Object> paramMap = new HashMap<>();
+		 
+		   int beginRow = (currentPage2-1)*ROW_PER_PAGE;
+		   paramMap.put("customerId", customerId);
+		   paramMap.put("beginRow", beginRow); 
+		   paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		   System.out.println(ROW_PER_PAGE +"ROW_PER_PAGE");
+		   System.out.println(currentPage2 +"currentPage");
+		   List<RoomOrder> roomOrderList = roomOrderMapper.CustomerIndexRoomOrder(paramMap);
+		   Map<String, Object> returnMap = new HashMap<>();
+			int lastPage = 0;
+			int totalCount = roomOrderMapper.selectRoomOrderTotalCount(customerId);
+			lastPage = totalCount / ROW_PER_PAGE;
+			if(totalCount%ROW_PER_PAGE != 0) {
+				lastPage += 1;
+			}
+			returnMap.put("roomOrderList", roomOrderList);
+			returnMap.put("lastPage", lastPage);
+		 
+		 return returnMap;
+		 
+	}
+	
 	
 }

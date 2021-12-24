@@ -61,7 +61,7 @@ public class CustomerOrderController {
 		model.addAttribute("experienceId", experienceId);
 		return "addExperiencePayment";
 	}
-	
+	// 체혐 결제
 	@PostMapping("/addExperiencePayment")
 	public String postaddPayment(String experiencePaymentMethod,String experiencePaymentMethodNumber,int experienceOrderPeople, int experiencePaymentMoney, String experienceName, String customerId, String experienceOrderEndDate, String experienceOrderStartDate) {
 		int Order = experienceOrderService.getexperienceInsertOrder(experienceOrderPeople, experienceName,customerId,experienceOrderEndDate,experienceOrderStartDate);
@@ -71,15 +71,23 @@ public class CustomerOrderController {
 	}
 	// 고객페이지 예약 리스트 출력
 	@GetMapping("/CustomerOrderList")
-	public String OrderList(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
+	public String OrderList(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") int currentPage2) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		Map<String,Object> map = experienceOrderService.getCustomerIndexExperienceOrder(customerId, currentPage, ROW_PER_PAGE);
 		System.out.println(map.get("experienceOrderList").toString() + "@#@#map.get(\"experienceOrderList\")@#@#@#");
+		Map<String,Object> map2 = roomOrderService.getCustomerIndexRoomOrder(customerId, currentPage2, ROW_PER_PAGE);
+		
+		
+		
+		model.addAttribute("roomOrderList", map2.get("roomOrderList"));
+		model.addAttribute("lastPage2", map2.get("lastPage"));
 		model.addAttribute("experienceOrderList", map.get("experienceOrderList"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("currentPage",currentPage);
-		return "customer/experienceOrder";
+		model.addAttribute("currentPage2",currentPage2);
+		return "customer/customerOrder";
 	}
+	
 	// 숙소 예약 입력 페이지
 	@GetMapping("/addHotelOrder")
 	public String getaddHotelOrder(HttpSession session, Model model, @RequestParam(defaultValue = "1") int roomId, @RequestParam(defaultValue = "1") int hotelId,

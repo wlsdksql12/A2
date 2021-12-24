@@ -1,6 +1,11 @@
 package com.gdu.cast.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
+
+import com.gdu.cast.vo.RoomOrder;
 
 @Mapper
 public interface RoomOrderMapper {
@@ -17,4 +22,10 @@ public interface RoomOrderMapper {
 	public int roomOrderId(String customerId);
 	// 호텔 결제
 	public void roomInsertPayment(int roomOrderId, String roomPaymentMethod, String roomPaymentMethodNumber, int roomPaymentMoney);
+	// 고객 페이지 본인이 한 숙소 예약
+	List<RoomOrder> CustomerIndexRoomOrder(Map<String, Object> map);
+	// 고객 페이지 숙소 예약 페이징
+	int selectRoomOrderTotalCount(String CustomerId);
+	
+
 }

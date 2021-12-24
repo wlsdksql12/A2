@@ -84,7 +84,7 @@
 	
 	</select>
 	
-	<!--  예약 List 페이징 -->
+	<!-- 체험 예약 List 페이징 -->
 	<select id="selectExperienceOrderTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
 	FROM experience_order
