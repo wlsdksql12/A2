@@ -1,11 +1,14 @@
 package com.gdu.cast.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.CeoMapper;
 import com.gdu.cast.vo.Ceo;
+import com.gdu.cast.vo.Experience;
 
 @Service
 @Transactional
@@ -30,5 +33,11 @@ public class CeoService {
 	// 사업가 비밀번호 변경
 	public int getUpdateCeoPw(String ceoId, String ceoPw, String newCeoPw) {
 		return ceoMapper.updateCeoPw(ceoId, ceoPw, newCeoPw);
+	}
+	
+	// 사업자 메인페이지 체험리스트
+	public List<Experience> getselectExperienceIndex(String ceoId){
+		
+		return ceoMapper.selectExperienceIndex(ceoId);
 	}
 }

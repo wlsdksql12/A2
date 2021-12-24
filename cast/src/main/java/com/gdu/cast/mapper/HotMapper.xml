@@ -113,6 +113,17 @@
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
+	<!-- 방 리스트 -->
+	<select id="selectRoomList" parameterType="Map" resultType="com.gdu.cast.vo.Room">
+		SELECT 
+			room_name roomName,
+			room_count roomCount,
+			room_startdate roomStartdate,
+			room_enddate roomEnddate
+		FROM room
+		WHERE hotel_id = #{hotelId}
+	</select>
+	
 	<!-- 자신이 등록한 호텔 글 수 -->
 	<select id="selectHotelTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 

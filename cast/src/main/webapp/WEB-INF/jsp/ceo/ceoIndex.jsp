@@ -80,8 +80,35 @@
                         <table class="table">
                            <thead>
                               <tr>
-                                 <th>제목</th>
-                                 <th>작성자</th>
+                                 <th>체험이름</th>
+                                 <th>가격</th>
+                                 <th>작성날짜</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <c:forEach items="${experienceList}" var="experience">
+                                 <tr>
+                                    <td>${experience.experienceName}</td>
+                                    <td>${experience.experiencePrice}</td>
+                                    <td>${experience.createDate}</td>
+                                 </tr>
+                              </c:forEach>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-lg-6 grid-margin stretch-card">
+               <div class="card">
+                  <div class="card-body">
+                     <h4 class="card-title">내 호텔 목록</h4>
+                     <div class="table-responsive">
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th>호텔 이름</th>
+                                 <th>가격</th>
                                  <th>작성날짜</th>
                               </tr>
                            </thead>
@@ -99,8 +126,18 @@
                   </div>
                </div>
             </div>
+            <div class="col-lg-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">수익</h4>
+                  <canvas id="areaChart"></canvas>
+                </div>
+              </div>
+            </div>
          </div>
       </div>
    </div>
 </body>
+<!-- Plugin js for this page-->
+  <script src="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chart.js/Chart.min.js"></script>
 </html>

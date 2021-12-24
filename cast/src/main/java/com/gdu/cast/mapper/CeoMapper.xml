@@ -66,6 +66,18 @@
 			ceo_pw = password(#{newCeoPw}), update_date = now()
 		WHERE ceo_id = #{ceoId} AND ceo_pw = password(#{ceoPw})
 	</update>
+	
+	<!-- 체험리스트 -->
+	<select id="selectExperienceIndex" parameterType="Map" resultType="com.gdu.cast.vo.Experience">
+		SELECT
+			experience_name experienceName,
+			experience_price experiencePrice,
+			create_date createDate
+      FROM experience
+      WHERE ceo_id = #{ceoId}
+	  ORDER BY create_date DESC
+      LIMIT 0, 3
+	</select>
 </mapper>
 
 

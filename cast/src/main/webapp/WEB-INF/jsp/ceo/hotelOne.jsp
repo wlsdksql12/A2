@@ -48,7 +48,7 @@
 					
 					<!-- 방 리스트 -->
 					
-					<table class="table table-bordered">
+					<table class="table">
 					<thead>
 						<tr>
 							<th>방이름</th>

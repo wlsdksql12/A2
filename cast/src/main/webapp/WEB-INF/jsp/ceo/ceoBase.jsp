@@ -60,6 +60,12 @@
         </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
+          <div>
+	            <a href="/index" style="font-weight:bold;" class="btn btn-light btn-icon-text">
+	              <i class="ti-home btn-icon-prepend"></i>메인페이지
+	            </a>
+            </div>
+             &emsp;
           	<div>
 	            <a href="/ceo/selectExpHotel" style="font-weight:bold;" class="btn btn-light btn-icon-text">
 	              <i class="ti-clipboard btn-icon-prepend"></i>사업체 등록

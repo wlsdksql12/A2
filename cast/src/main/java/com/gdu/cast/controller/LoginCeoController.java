@@ -1,14 +1,18 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.vo.Ceo;
+import com.gdu.cast.vo.Experience;
 
 @Controller
 public class LoginCeoController {
@@ -17,7 +21,12 @@ public class LoginCeoController {
 	
 	// 사업자 메인 페이지
 	@GetMapping("/ceo/ceoIndex")
-	public String ceoIndex() {
+	public String ceoIndex(Model model, String ceoId) {
+		
+		List<Experience> experienceList = ceoService.getselectExperienceIndex(ceoId);
+		model.addAttribute("experienceList",experienceList);
+		System.out.println("@@@@@@LoginCeoController" + model);
+		
 		return "ceo/ceoIndex";
 	}
 	

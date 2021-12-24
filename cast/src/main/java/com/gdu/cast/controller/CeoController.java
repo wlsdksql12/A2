@@ -66,4 +66,5 @@ public class CeoController {
 		ceoService.getUpdateCeoPw(ceoId, ceoPw, newCeoPw);
 		return "redirect:/selectCeo?ceoId="+ceoId;
 	}
+	
 }

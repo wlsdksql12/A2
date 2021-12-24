@@ -1,8 +1,12 @@
 package com.gdu.cast.mapper;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Ceo;
+import com.gdu.cast.vo.Experience;
 
 @Mapper
 public interface CeoMapper {
@@ -16,5 +20,7 @@ public interface CeoMapper {
 	int updateCeo(Ceo ceo);
 	// 비밀번호 변경
 	int updateCeoPw(String ceoId, String ceoPw, String newCeoPw);
+	// 사업자 메인페이지 체험리스트
+	List<Experience> selectExperienceIndex(String ceoId);
 }
 

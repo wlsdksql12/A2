@@ -75,6 +75,9 @@
 					<div class="form-group">
 						<input type="hidden" class="form-control" value="${roomId}" name="roomId">
 					</div>
+					<div class="form-group">
+						<input type="hidden" class="form-control" value="${hotelId}" name="hotelId">
+					</div>
 					<div align="right">
 					<button type="submit" class="btn btn-primary mr-2">SUBMIT</button>
 					</div>
