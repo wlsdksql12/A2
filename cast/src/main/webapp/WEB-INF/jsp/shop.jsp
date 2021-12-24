@@ -133,33 +133,16 @@
 			    </ul>
 			    <br>
 			    <h1 class="h2 pb-4">HashTag</h1>
-			     <button type="submit" class="hashtagBtn" data-wow-delay="0.3s"
-                  style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"
-                  id="hashtagtest" >
-               		#test
-           		 </button>
-           		 <button type="submit" class="hashtagBtn" data-wow-delay="0.3s"
-                  style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"
-                  id="hashtagtest" >
-               		#test1
-           		 </button>
-           		 <button type="submit" class="hashtagBtn" data-wow-delay="0.3s"
-                  style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"
-                  id="hashtagtest" >
-               		#test11231
-           		 </button>
-           		 <button type="submit" class="hashtagBtn" style="visibility: visible;" id="hashtagtest" >
-					#test124
-           		 </button>
-           		 <button type="submit" class="hashtagBtn" data-wow-delay="0.3s"
-                  style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"
-                  id="hashtagtest" >
-               		#test1
-           		 </button>
-           		 <form method="get" id="" style="height: 25px">
+				<c:forEach items="${keywordList}" var="keyword">
+					<button type="button" class="hashtagBtn" data-wow-delay="0.3s"
+					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"id="hashtagtest" >
+               		${keyword.keywordName}
+           			</button>
+				    </c:forEach>
+				    <form method="get" id="" style="height: 25px">
 						<input class="hashtagBtn" name="searchTitle" value="" placeholder="해시태그를 입력하세요" style="height: 25px">
-				<button class="hashtagBtn" style="height: 30px;">검색</button>
-			</form>
+					<button class="hashtagBtn" style="height: 30px;">검색</button>
+				</form>
 			</div>
 
             <div class="col-lg-9">

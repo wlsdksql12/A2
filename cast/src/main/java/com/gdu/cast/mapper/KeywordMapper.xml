@@ -18,4 +18,10 @@
 			#{hotelId}, #{keyword}, "hotel", now(), now()
 		)
 	</insert>
+	
+	<!-- shop페이지에 키워드 출력 -->
+	<select id="selectKeywordList" resultType="com.gdu.cast.vo.Keyword">
+		SELECT DISTINCT keyword_name keywordName
+		FROM keyword
+	</select> 
 </mapper>
