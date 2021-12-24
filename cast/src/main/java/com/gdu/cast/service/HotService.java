@@ -4,21 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.HotMapper;
 import com.gdu.cast.vo.Address;
-import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Room;
 import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
 import com.gdu.cast.vo.RoomFilter;
-import com.gdu.cast.vo.RoomSelect;
 
 @Service
 @Transactional
@@ -42,6 +38,11 @@ public class HotService {
 		
 	}
 	
+	// 방 리스트
+	public List<Room> getSelectRoomList(int hotelId) {
+		
+		return hotMapper.selectRoomList(hotelId);
+	}
 	// 호텔 리스트
 	public Map<String, Object> getHotelList(int currentPage, int ROW_PER_PAGE, String searchTitle, String ceoId){
 		// 1. 매개변수 가공
@@ -87,6 +88,7 @@ public class HotService {
 	// 호텔 상세보기
 	public Hotel selectHotelOne(int hotelId) {
 		Hotel hotel = hotMapper.selectHotelOne(hotelId);
+		
 		return hotel;
 	}
 	
@@ -104,6 +106,7 @@ public class HotService {
 	public void insertRoomFilter(RoomFilter roomFilter) {
 		hotMapper.insertRoomFilter(roomFilter);
 	}
+	
 }
 
 

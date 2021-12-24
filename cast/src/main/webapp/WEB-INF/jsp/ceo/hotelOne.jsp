@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,11 +43,36 @@
 					<h4>${hotel.hotelContent}</h4>
 					<br><hr><br>
 					
-					<p class="card-description">숙박 장소</p>
+					<p class="card-description">숙박 장소 
+					</p>
+					
+					<!-- 방 리스트 -->
+					
+					<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>방이름</th>
+							<th>방 개수</th>
+							<th>시작날짜</th>
+							<th>종료날짜</th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${roomList}" var="list">
+					
+					<tr>
+						<td>${list.roomName}</td>
+						<td>${list.roomCount}</td>
+						<td>${list.roomStartdate}</td>
+						<td>${list.roomEnddate}</td>
+					</tr>
+					</c:forEach>
+					</tbody>
+					</table>
+					<br>
 					<div align="right">
 					<a href="/ceo/insertRoom?HotelId=${hotel.hotelId}" class="btn btn-inverse-success">객실 추가하기</a>
 					</div>
-					<h4><!-- 방 리스트 --></h4>
 					<br><hr><br>
 					
 					<!-- 지도자리 -->

@@ -1,6 +1,7 @@
 package com.gdu.cast.controller;
 
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -103,6 +104,7 @@ public class HotController {
 	      model.addAttribute("totalPage", map.get("totalPage"));
 	      model.addAttribute("currentPage", currentPage);
 	      
+	      
 	      System.out.println(session.getAttribute("loginCeoId") + " 호텔리스트 세션값");
 	      return "/ceo/hotelList";
 	   }
@@ -115,7 +117,10 @@ public class HotController {
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("address", address);
 		
-		System.out.println(hotel + " << Hotel");
+		List<Room> roomList = hotService.getSelectRoomList(hotelId);
+		model.addAttribute("roomList", roomList);
+		
+		System.out.println(" << HotelController" + model);
 		
 		return "/ceo/hotelOne";
 	}

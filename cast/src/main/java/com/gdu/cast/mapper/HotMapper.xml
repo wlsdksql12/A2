@@ -20,6 +20,18 @@
 			<result column="lat" property="lat" />
 			<result column="lng" property="lng" />
 		</association>
+		<association property="room" javaType="com.gdu.cast.vo.Room">
+			<result column="room_id" property="roomId" />
+			<result column="hotel_id" property="hotelId" />
+			<result column="room_name" property="roomName" />
+			<result column="room_count" property="roomCount" />
+			<result column="room_startdate" property="roomStartdate" />
+			<result column="room_enddate" property="roomEnddate" />
+			<result column="room_price" property="roomPrice" />
+			<result column="room_content" property="roomContent" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
 	</resultMap>
 	
 	
@@ -113,6 +125,17 @@
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
+	<!-- 방 리스트 -->
+	<select id="selectRoomList" parameterType="Map" resultType="com.gdu.cast.vo.Room">
+		SELECT 
+			room_name roomName,
+			room_count roomCount,
+			room_startdate roomStartdate,
+			room_enddate roomEnddate
+		FROM room
+		WHERE hotel_id = #{hotelId}
+	</select>
+	
 	<!-- 자신이 등록한 호텔 글 수 -->
 	<select id="selectHotelTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*) 
@@ -123,9 +146,9 @@
 	<!-- 호텔 상세보기 페이지 -->
 	<select id="selectHotelOne" parameterType="int" resultMap="resultHotel">
 		SELECT *
-		FROM address a INNER JOIN hotel h
+		FROM hotel h INNER JOIN address a 
 		ON a.address_id = h.address_id
-		WHERE hotel_id = #{hotelId}
+		WHERE h.hotel_id = #{hotelId}
 	</select>
 	
 	<!-- room_bedroom 추가 -->

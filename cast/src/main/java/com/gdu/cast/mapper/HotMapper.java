@@ -43,4 +43,8 @@ public interface HotMapper {
 	
 	// room_filter 추가
 	int insertRoomFilter(RoomFilter roomFilter);
+	
+	// 방 리스트
+	List<Room> selectRoomList(int hotelId);
+	
 }
