@@ -23,4 +23,15 @@ public class KeywordService {
 		System.out.println(map.toString());
 		keywordMapper.insertExperienceKeyword(map);
 	}
+	
+	// 호텔 키워드 등록
+	public void insertHotelKeyword(String keyword, int hotelId) {
+		System.out.println(keyword + "키워드");
+		System.out.println(hotelId + "hotelId");
+		Map<String, Object> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("hotelId", hotelId);
+		System.out.println(map.toString());
+		keywordMapper.insertHotelKeyword(map);
+	}
 }

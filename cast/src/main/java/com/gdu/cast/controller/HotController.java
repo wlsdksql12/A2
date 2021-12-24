@@ -1,6 +1,7 @@
 package com.gdu.cast.controller;
 
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.HotService;
+import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Room;
@@ -28,6 +30,8 @@ import lombok.extern.slf4j.Slf4j;
 public class HotController {
 	@Autowired
 	HotService hotService;
+	@Autowired
+	KeywordService keywordService;
 	
 	// 호텔 등록
 	@GetMapping("/ceo/insertHotel")
@@ -39,13 +43,23 @@ public class HotController {
 	}
 	
 	@PostMapping("/ceo/insertHotel")
-	public String insertHotel(Model model, HttpSession session, Hotel hotel) {
+	public String insertHotel(Model model, HttpSession session, Hotel hotel, String keyword) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		hotel.setCeoId(ceoId);
-		hotService.insertHotel(hotel);
-		
+		int hotelId = hotService.insertHotel(hotel);
+		System.out.println(hotelId + "호텔id");
 		log.debug("====================================" + ceoId + " << ceoId");
 		log.debug("====================================" + hotel.toString() + " << hotel Debug");
+		System.out.println(keyword + " <---키워드 값");
+		System.out.println(keyword.length() + " <---키워드 길이");
+		String[] keywordList = keyword.split(",");
+		System.out.println(keywordList.length + "문자열 나누기");
+		System.out.println(Arrays.toString(keywordList) + "문자열 나누기");
+		
+		for(int i = 0; i < keywordList.length; i++) {
+			System.out.println(keywordList[i] + "입력되는 값");
+			keywordService.insertHotelKeyword(keywordList[i], hotelId);
+		}
 		
 		return "redirect:/ceo/hotelList";
 	}

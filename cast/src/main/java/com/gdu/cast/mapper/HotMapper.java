@@ -47,4 +47,7 @@ public interface HotMapper {
 	// 방 리스트
 	List<Room> selectRoomList(int hotelId);
 	
+	// 호텔추가 시 추가한 호텔id 출력
+	int selectHotelId(Hotel hotel);
+	
 }

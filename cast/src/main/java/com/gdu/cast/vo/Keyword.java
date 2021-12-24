@@ -7,6 +7,7 @@ public class Keyword {
 	private int experienceHotelKeywordId;
 	private int hotelExperience;
 	private String keywordName;
+	private String hotelExperienceFrom;
 	private String createDate;
 	private String updateDate;
 	

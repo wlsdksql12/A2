@@ -8,4 +8,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface KeywordMapper {
 	// 체험 키워드 등록
 	void insertExperienceKeyword(Map<String, Object> map);
+	// 호텔 키워드 등록
+	void insertHotelKeyword(Map<String, Object> map);
 }

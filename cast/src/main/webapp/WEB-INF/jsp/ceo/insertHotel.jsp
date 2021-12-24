@@ -7,7 +7,7 @@
 </head>
 <body>
 	<%@ include file="ceoBase.jsp" %>
-	<form method="post" action="/ceo/insertHotel" class="forms-sample">
+	<form method="post" action="/ceo/insertHotel" class="forms-sample" id="addForm">
 	<br>
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
@@ -41,11 +41,75 @@
 						<label for="exampleTextarea1">호텔 소개</label>
 						<textarea class="form-control" name="hotelContent" rows="10"></textarea>
 					</div>
+					<!-- 해시태그 추가 -->
+					<hr>
+					<div class="form-group">태그 입력
+						<div>
+							<input name="addHashtag" id="addHashtag" type="text" placeholder="태그를 입력해주세요 (최대 10개)">
+							<button type="button" name="addHashtag">추가</button>
+						</div>
+						<div class="tag_input_box inactive" id="hashtag">
+              			</div>
+            		</div>
+               	
+              	 	<!-- 해시태그 추가 끝 -->
 					<button type="submit" class="btn btn-primary mr-2">Submit</button>
 					<button class="btn btn-light">Cancel</button>
 				</div>
 			</div>
 		</div>
 	</form>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$('input[type="text"]').keydown(function() {
+			    if (event.keyCode === 13) {
+			        event.preventDefault();
+			    }
+			});
+			$('input[type="number"]').keydown(function() {
+			    if (event.keyCode === 13) {
+			        event.preventDefault();
+			    }
+			});
+			// 해시태그 추가 버튼 클릭 시
+			$('button[name=addHashtag]').click(function () {
+				var value = $('input[name=addHashtag]').val();
+				/*
+				console.log("버튼1을 누르셨습니다.");
+				
+				console.log(value);
+				console.log($('#hashtag0').val());
+				console.log($('input[name=addHashtag]').val());
+				*/
+				if($('input[name=addHashtag]').val() == ""){
+					alert("태그입력후 추가를 눌러주세요");
+					$('#addHashtag').focus();
+					return false;
+				} else{
+					// 버튼 타입 시 form으로 값이 안넘어옴 > 문제 수정
+					let inputHashtag = '<label name ="label" class="btn btn-light" style="visibility: visible; background-color: rgba(255, 255, 255);border-radius: 50px;margin-bottom: 3px;margin-top: 3px;">#'+value+''; 
+					inputHashtag += '<input type="hidden" style="opacity:0; padding: 10px;" name="keyword" value="#'+value+'">';
+					inputHashtag += '</label>';
+					$('#hashtag').append(inputHashtag);
+					$('input[name=addHashtag]').val("");
+				}
+			});
+			
+			// 해시태그 버튼 클릭 시 삭제...
+			$(document).on("click", "label[name='label']", function () {
+				console.log($(this).val());
+			   	$(this).remove();
+			});
+			
+			
+		});
+		//  Submit 버튼 클리 시 addForm Submit
+		$(function(){
+			$('#addBtn').click(function(){
+				$('#addForm').submit();
+			});
+		});
+	
+	</script>
 </body>
 </html>

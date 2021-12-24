@@ -23,8 +23,9 @@ public class HotService {
 	HotMapper hotMapper;
 	
 	// 호텔 추가
-	public void insertHotel(Hotel hotel) {
+	public int insertHotel(Hotel hotel) {
 		hotMapper.insertHotel(hotel);
+		return hotMapper.selectHotelId(hotel);
 	}
 	
 	// 호텔 주소 추가
