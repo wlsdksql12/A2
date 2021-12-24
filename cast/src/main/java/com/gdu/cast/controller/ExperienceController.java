@@ -144,4 +144,18 @@ public class ExperienceController {
 	   experienceService.deleteExperience(experience);
 	   return "redirect:/ceo/experienceList";
    }
+   
+   // 메인 체험 상세보기
+   @GetMapping("/mainExperienceOne")
+   public String mainExperienceOne(Model model, Address address, int experienceId) {
+      Experience experience = experienceService.selectExperienceOne(experienceId);
+      
+      model.addAttribute("experience", experience);
+      model.addAttribute("address", address);
+      
+      System.out.println(experience + " << Experience");
+      System.out.println(address + " << Address");
+      
+      return "/mainExperienceOne";
+   }
 }	

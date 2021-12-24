@@ -10,4 +10,7 @@ public class ThemeMiddle {
 	private String ThemeMiddleName;
 	private String createDate;
 	private String updateDate;
+	
+	private ThemeSmall themeSmall;
+	private ThemeBig themeBig;
 }

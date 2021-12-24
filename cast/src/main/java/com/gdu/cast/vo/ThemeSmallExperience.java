@@ -9,4 +9,7 @@ public class ThemeSmallExperience {
 	private int experienceId;
 	private String createDate;
 	private String updateDate;
+	
+	private Experience experience;
+	private ThemeSmall themeSmall;
 }

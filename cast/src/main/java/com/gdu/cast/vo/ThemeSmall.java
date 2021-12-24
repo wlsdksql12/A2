@@ -1,4 +1,6 @@
 package com.gdu.cast.vo;
+import java.util.List;
+
 import lombok.Data;
 
 @Data

@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.ThemeMiddle;
+import com.gdu.cast.vo.ThemeSmall;
+import com.gdu.cast.vo.ThemeSmallExperience;
 
 @Mapper
 public interface MainSelectMapper {
@@ -41,4 +44,10 @@ public interface MainSelectMapper {
 	// 메인 페이지의 숙소 추천 전체 글 수
 	int selectRoomSelectTotalCount(String searchTitle);
 	
+	
+	List<ThemeMiddle> selectThemeList();
+	
+	List<ThemeSmall> selectThemeSmallList();
+	
+	List<ThemeSmallExperience> selectThemeShopList(String ThemeSmallName);
 }

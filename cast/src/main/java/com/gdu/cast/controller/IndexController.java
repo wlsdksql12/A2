@@ -1,6 +1,7 @@
 package com.gdu.cast.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,12 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.gdu.cast.service.ExhibitionService;
+import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.Exhibition;
 import com.sun.tools.javac.util.Log;
 
 @Controller
 public class IndexController {
 	@Autowired ExhibitionService exhibitionService;
+	@Autowired MainSelectService mainSelectService;
 	// localhost로 주소검색해도 "index" Controller가 실행이 되도록 함
 	@GetMapping(value={"/","/index"})
 	public String index(HttpSession session, Model model) {
@@ -37,7 +40,17 @@ public class IndexController {
 		return "index";
 	}
 	@GetMapping("/shop")
-	public String shop() {
+	public String shop(Model model, String themeSmallName) {
+		Map<String, Object> map = mainSelectService.selectTheme();
+		Map<String, Object> ThemeSmallmap = mainSelectService.selectThemeSmall();
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+map.get("selectThemeList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		System.out.println("★☆★☆★☆★☆★☆★☆★☆★☆★☆"+ThemeSmallmap.get("selectThemeSmallList")+"★☆★☆★☆★☆★☆★☆★☆★☆");
+		System.out.println("★☆★☆★☆★☆★☆★☆★☆"+themeSmallName+"★☆★☆★☆★☆★☆★☆★☆ThemeShopList");
+		model.addAttribute("selectThemeList", map.get("selectThemeList"));
+		model.addAttribute("selectThemeSmallList", ThemeSmallmap.get("selectThemeSmallList"));
+		Map<String, Object> themeSmallListmap = mainSelectService.selectThemeShopList(themeSmallName);
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+themeSmallListmap.get("selectThemeShopList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁselectThemeShopList");
+		model.addAttribute("selectThemeShopList", themeSmallListmap.get("selectThemeShopList"));
 		return "shop";
 	}
 	@GetMapping("/contact")

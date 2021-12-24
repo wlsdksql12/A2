@@ -12,6 +12,9 @@ import com.gdu.cast.mapper.MainSelectCommentMapper;
 import com.gdu.cast.mapper.MainSelectMapper;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.ThemeMiddle;
+import com.gdu.cast.vo.ThemeSmall;
+import com.gdu.cast.vo.ThemeSmallExperience;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -142,6 +145,30 @@ public class MainSelectService {
 		returnMap.put("totalPage", totalPage);
 		
 		return returnMap;
+	}
+	
+	public Map<String, Object> selectTheme() {
+		Map<String, Object> map = new HashMap<>();
+		List<ThemeMiddle> selectThemeList = mainSelectMapper.selectThemeList();
+		map.put("selectThemeList", selectThemeList);
+		return map;
+		
+	}
+	
+	public Map<String, Object> selectThemeSmall() {
+		Map<String, Object> ThemeSmallmap = new HashMap<>();
+		List<ThemeSmall> selectThemeSmallList = mainSelectMapper.selectThemeSmallList();
+		ThemeSmallmap.put("selectThemeSmallList", selectThemeSmallList);
+		return ThemeSmallmap;
+	}
+	
+	public Map<String, Object> selectThemeShopList(String ThemeSmallName) {
+		Map<String, Object> map = new HashMap<>();
+		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
+		List<ThemeSmallExperience> selectThemeShopList = mainSelectMapper.selectThemeShopList(ThemeSmallName);
+		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
+		map.put("selectThemeShopList", selectThemeShopList);
+		return map;
 	}
 	
 }

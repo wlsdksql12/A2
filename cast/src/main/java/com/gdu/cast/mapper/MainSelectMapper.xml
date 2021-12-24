@@ -29,7 +29,50 @@
 			<result column="traveler_name" property="travelerName"></result>
 		</collection>
 	</resultMap>
-
+	
+	
+	<resultMap type="com.gdu.cast.vo.ThemeMiddle" id="resultThemeMiddle">
+		<result column="theme_middle_id" property="themeMiddleId"></result>
+		<result column="theme_big_id" property="themeBigId"></result>
+		<result column="theme_middle_name" property="themeMiddleName"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<association property="themeBig" javaType="com.gdu.cast.vo.ThemeBig">
+			<result column="theme_big_id" property="themeBigId" />
+			<result column="theme_big_name" property="themeBigName" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+	</resultMap>
+	
+	
+	<resultMap type="com.gdu.cast.vo.ThemeSmallExperience" id="resultThemeSmallExperience">
+		<result column="theme_small_id" property="themeSmallId" />
+		<result column="experience_id" property="experienceId" />
+		<result column="create_date" property="createDate" />
+		<result column="update_date" property="updateDate" />
+		<association property="experience" javaType="com.gdu.cast.vo.Experience">
+			<result column="experience_id" property="experienceId" />
+			<result column="ceo_id" property="ceoId" />
+			<result column="address_id" property="addressId" />
+			<result column="experience_name" property="experienceName" />
+			<result column="experience_content" property="experienceContent" />
+			<result column="experience_price" property="experiencePrice" />
+			<result column="experience_startdate" property="experienceStartdate" />
+			<result column="experience_enddate" property="experienceEnddate" />
+			<result column="experience_person" property="experiencePerson" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+		<association property="themeSmall" javaType="com.gdu.cast.vo.ThemeSmall">
+			<result column="theme_small_id" property="themeSmallId" />
+			<result column="theme_middle_id" property="themeMiddleId" />
+			<result column="theme_small_name" property="themeSmallName" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+	</resultMap>
+	
 	<!-- 메인 페이지의 체험 추천 삭제 -->
 	<delete id="deleteExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		DELETE FROM experience_select
@@ -158,5 +201,27 @@
 		</where>
 		ORDER BY r.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<select id="selectThemeList" resultMap="resultThemeMiddle">
+		SELECT big.theme_big_name, middle.theme_middle_name, big.theme_big_id, middle.theme_middle_id
+		FROM theme_middle middle INNER JOIN theme_big big
+		ON middle.theme_big_id = big.theme_big_id
+	</select>
+	
+	<select id="selectThemeSmallList" resultType="com.gdu.cast.vo.ThemeSmall">
+		SELECT theme_middle_id themeMiddleId, theme_small_id themeSmallId, theme_small_name themeSmallName
+		FROM theme_small
+		ORDER BY theme_middle_id ASC
+	</select>
+	
+	<select id="selectThemeShopList" parameterType="String" resultMap="resultThemeSmallExperience">
+		SELECT themeSmall.theme_small_name, experience.experience_name, experience.experience_content,
+				 experience.experience_id, experience.experience_price
+		FROM theme_small_experience themeSmallExperience INNER JOIN experience
+		ON themeSmallExperience.experience_id = experience.experience_id
+		INNER JOIN theme_small themeSmall
+		ON themeSmallExperience.theme_small_id = themeSmall.theme_small_id
+		WHERE themeSmall.theme_small_name = #{ThemeSmallName}
 	</select>
 </mapper>

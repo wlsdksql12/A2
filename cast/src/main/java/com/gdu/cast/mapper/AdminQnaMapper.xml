@@ -17,7 +17,7 @@
 	</select>
 	
 	<insert id="insertQnaComment" parameterType="com.gdu.cast.vo.QnaComment">
-		INSERT qna_comment(admin_id, qna_id, qna_comment_content, create_date, update_date) 
+		INSERT INTO qna_comment(admin_id, qna_id, qna_comment_content, create_date, update_date) 
 		VALUES (#{adminId}, #{qnaId}, #{qnaCommentContent}, now(), now())
 	</insert>
 	
