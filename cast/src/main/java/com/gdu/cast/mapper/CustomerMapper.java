@@ -56,4 +56,6 @@ public interface CustomerMapper {
 	int selectCustomerCommentCount(String CustomerId);
 	// 고객이 결제한 총 금액
 	int selectCustomerPaymentCount(String CustomerId);
+	// 고객이 예약한 총 횟수
+	int selectCustomerOrderCount(String customerId);
 }

@@ -54,12 +54,15 @@ public class CustomerIndexController {
 		// 내가 작성한 추천 댓글의 총 수
 		int selectCount = customerService.getselectCustomerCommentCount(customerId);
 		int selectPaymentCount = customerService.getselectCustomerPaymentCount(customerId);
+		int selectOrderCount = customerService.getselectCustomerOrderCount(customerId);
+		
 		// 내가 쓴 qna 5개 리스트
 		Map<String, Object> map = customerService.getselectQna(customerId, currentPage, ROW_PER_PAGE);
 		// 체험 5개 등록 리스트
 		List<Experience> experienceList = customerService.getselectCustomerIndexExperienceList();
 		// 숙소 5개 등록 리스트
 		List<Hotel> hotelList = customerService.getselectCustomerIndexHoelList();
+		model.addAttribute("selectOrderCount",selectOrderCount);
 		model.addAttribute("selectPaymentCount",  selectPaymentCount);
 		model.addAttribute("selectCount", selectCount);
 		model.addAttribute("hotelList", hotelList);
@@ -101,8 +104,6 @@ public class CustomerIndexController {
 		return "customer/qnaListOne";
 		
 	}
-	
-
 	
 	
 	//qna수정

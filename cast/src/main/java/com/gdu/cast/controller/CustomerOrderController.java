@@ -87,6 +87,19 @@ public class CustomerOrderController {
 		model.addAttribute("currentPage2",currentPage2);
 		return "customer/customerOrder";
 	}
+
+	// 고객 페이지 결제내역 리스트 출력
+	@GetMapping("/CustomerPaymentList")
+	public String PaymentList(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") int currentPage2) {
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		Map<String,Object> map = experienceOrderService.getCustomerIndexExperiencePayment(customerId, currentPage, ROW_PER_PAGE);
+		model.addAttribute("currentPage",currentPage);
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("experiencePaymentList", map.get("experiencePaymentList"));
+		return "customer/customerPayment";
+		
+	}
+	
 	
 	// 숙소 예약 입력 페이지
 	@GetMapping("/addHotelOrder")

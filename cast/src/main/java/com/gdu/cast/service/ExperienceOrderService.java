@@ -6,11 +6,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.ExperienceOrderMapper;
 import com.gdu.cast.vo.ExperienceOrder;
 import com.gdu.cast.vo.ExperiencePayment;
 
+@Transactional
 @Service
 public class ExperienceOrderService {
 	@Autowired ExperienceOrderMapper experienceOrderMapper;
@@ -63,6 +65,30 @@ public class ExperienceOrderService {
 			returnMap.put("lastPage", lastPage);
 			return returnMap;
 	   }
+	
+	//고객 페이지에 체험 결제한 리스트 출력
+	public Map<String, Object> getCustomerIndexExperiencePayment(String customerId, int currentPage, int ROW_PER_PAGE){
+		   Map<String, Object> paramMap = new HashMap<>();
+		   
+		   int beginRow = (currentPage-1)*ROW_PER_PAGE;
+		   paramMap.put("customerId", customerId);
+		   paramMap.put("beginRow", beginRow); 
+		   paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		   System.out.println(ROW_PER_PAGE +"ROW_PER_PAGE");
+		   System.out.println(currentPage +"currentPage");
+		   List<ExperiencePayment> experiencePaymentList = experienceOrderMapper.CustomerIndexExperiencePayment(paramMap);
+		   System.out.println(experiencePaymentList.toString()+"@#@#experienceOrderList@#@#");
+			Map<String, Object> returnMap = new HashMap<>();
+			int lastPage = 0;
+			int totalCount = experienceOrderMapper.selectExperiencePaymentTotalCount(customerId);
+			lastPage = totalCount / ROW_PER_PAGE;
+			if(totalCount%ROW_PER_PAGE != 0) {
+				lastPage += 1;
+			}
+			returnMap.put("experiencePaymentList", experiencePaymentList);
+			returnMap.put("lastPage", lastPage);
+			return returnMap;
+	}
 	
 	
 }

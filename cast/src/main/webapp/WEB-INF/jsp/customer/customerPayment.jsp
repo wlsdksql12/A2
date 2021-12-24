@@ -5,7 +5,7 @@
 <html lang="en">
 
 <head>
-    <title>Q&A목록</title>
+   <title>체험&숙소 예약</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -23,6 +23,7 @@
     <link rel="icon" href="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/favicon.ico" type="image/x-icon">
     <!-- vendor css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     
 </head>
 <body class="">
@@ -207,7 +208,7 @@
 
 
 	<!-- 주 내용 -->
-	<div class="pcoded-main-container">
+<div class="pcoded-main-container">
 		<div class="pcoded-content">
 			<!-- [ breadcrumb ] start -->
 			<div class="page-header">
@@ -215,7 +216,7 @@
 					<div class="row align-items-center">
 						<div class="col-md-12">
 							<div class="page-header-title">
-								<h3 style="color: white;" class="m-b-10">Q&A</h3>
+								<h3 style="color: white;" class="m-b-10">체험&숙소 예약</h3>
 							</div>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="/index"><i
@@ -227,81 +228,120 @@
 					</div>
 				</div>
 			</div>
-			<!-- 윗화면내용 end -->
-			<!-- 메인컨텐츠 start -->
+	<!-- 윗화면내용 end -->
+	<!-- 메인컨텐츠 start -->
 			<div class="row">
-				<div class="col-lg-12 col-md-24">
+				<div class="col-lg-12 col-md-12">
 					<!-- support-section start -->
 					<div class="row">
 						<div class="col-sm-12">
 							<div class="card support-bar overflow-hidden">
 								<div class="card-body pb-0">
-									<h2 class="m-0">내 Q&A목록</h2>
 									<span class="text-c-blue"></span>
 									<p class="mb-3 mt-3"></p>
 								</div>
-								<div class="card-body p-0">
-									<div class="table-responsive">
-										<table style="text-align: center;" class="table table-bordered">
-											<thead>
-												<tr>
-													<th>
-														<div class="chk-option">
-															
-														</div> 제목
-													</th>
-													<th>작성자</th>
-													<th>작성 날짜</th>
-													<th>비밀글</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${qnaList}" var="qna">
-													<tr>
-														<td>
-															<div class="chk-option">
-															</div>
-															<div class="d-inline-block align-middle">
-															
-																<div class="d-inline-block">
-																	<h6>
-																		<a
-																			href="/customer/qnaListOne?qnaId=${qna.qnaId}&customerId=${loginCustomerId}">${qna.qnaTitle}</a>
-																	</h6>
-																</div>
-															</div>
-														</td>
-														<td>${qna.customerId}</td>
-														<td>${qna.createDate.substring(0,10)}</td>
-														<td><label
-															class="badge badge-light-danger">${qna.qnaSecret}</label></td>
-													</tr>
-												</c:forEach>
-											</tbody>
+									<div class="container-fluid">
+										<h2>체험결제정보</h2>
+										<table class="table table-bordered">
+											<tr>
+												<td>예약 번호</td>
+												<td>체험 이름</td>
+												<td>체험 인원</td>
+												<td>시작일</td>
+												<td>종료일</td>
+												<td>카드 종류</td>
+												<td>카드 번호</td>
+												<td>가격</td>
+												<td>결제자</td>
+												<td>createDate</td>
+												<td>updateDate</td>
+											</tr>
+											<c:forEach items="${experiencePaymentList}"  var="list">
+											<tr>
+												<td>${list.experienceOrder.experienceOrderId}</td>
+												<td>${list.experienceOrder.experienceName}</td>								
+												<td>${list.experienceOrder.experienceOrderPeople}</td>
+												<td>${list.experienceOrder.experienceOrderStartDate}</td>
+												<td>${list.experienceOrder.experienceOrderEndDate}</td>
+												<td>${list.experiencePaymentMethod}</td>
+												<td>${list.experiencePaymentMethodNumber}</td>
+												<td>${list.experiencePaymentMoney}</td>
+												<td>${list.experienceOrder.customerId}</td>
+												<td>${list.createDate}</td>
+												<td>${list.updateDate}</td>
+											</tr>
+											</c:forEach>
 										</table>
-										<div style="text-align: center;" class="table container mt-3">
-											<c:if test="${currentPage > 1}">
-												<a
-													href="/qnaList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
-											</c:if>
-											<c:if test="${currentPage < lastPage}">
-												<a
-													href="/qnaList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
-											</c:if>
-										</div>
+										<div class="text-center table container mt-3">
+										<c:if test="${currentPage > 1}">
+											<a href="/CustomerPaymentList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
+										</c:if>
+										<c:if test="${currentPage < lastPage}">
+											<a href="/CustomerPaymentList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
+										</c:if>
 									</div>
 								</div>
 							</div>
 						</div>
+						<div class="col-sm-12">
+							<div class="card support-bar overflow-hidden">
+								<div class="card-body pb-0">
+									<span class="text-c-blue"></span>
+									<p class="mb-3 mt-3"></p>
+								</div>
+									<div class="container-fluid">
+										<h2>숙소예약정보</h2>
+											<table class="table table-bordered">
+											<tr>
+												<td>예약 번호</td>
+												<td>숙소 이름</td>
+												<td>방 이름</td>
+												<td>예약인</td>
+												<td>예약인원 수</td>
+												<td>예약시작일</td>
+												<td>예약종료일</td>
+												<td>예약생성일</td>
+												<td>예약수정일</td>
+												<td>사업체 정보</td>
+											</tr>
+											<c:forEach items="${roomOrderList}"  var="list">
+											<tr>
+												<td>${list.roomOrderId}</td>
+												<td>${list.hotelName}</td>
+												<td>${list.roomName}</td>
+												<td>${list.customerId}</td>
+												<td>${list.roomOrderPeople}</td>
+												<td>${list.roomOrderStartDate}</td>
+												<td>${list.roomOrderEndDate}</td>
+												<td>${list.createDate}</td>
+												<td>${list.updateDate}</td>
+												<td><a href="/">정보 보기</a></td>
+											</tr>
+											</c:forEach>
+										</table>
+									<div class="text-center table container mt-3">
+										<c:if test="${currentPage2 > 1}">
+											<a href="/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2-1}&currentPage=${currentPage}">이전</a>
+										</c:if>
+										<c:if test="${currentPage2 < lastPage2}">
+											<a href="/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2+1}&currentPage=${currentPage}">다음</a>
+										</c:if>
+									</div>
+								</div>
+							</div>
+							<div class="float-right">
+								<a href="/customer/customerIndex" type="button" class="btn btn-outline-primary">메인페이지로</a>
+							</div>
+						</div>				
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<!-- 메인컨텐츠 end -->
-		<footer class="my-3 text-center text-small">
-			<p class="mb-1">&copy; 2021 CAST</p>
-		</footer>
+			<!-- 메인컨텐츠 end -->
+			<footer class="my-3 text-center text-small">
+				<p class="mb-1">&copy; 2021 CAST</p>
+			</footer>
     <!-- Required Js -->
     <script src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/vendor-all.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/plugins/bootstrap.min.js"></script>
@@ -315,5 +355,4 @@
 <!-- custom-chart js -->
 <script src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/pages/dashboard-main.js"></script>
 </body>
-
 </html>

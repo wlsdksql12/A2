@@ -13,4 +13,5 @@ public class ExperiencePayment {
 	private String createDate;
 	private String updateDate;
 	private String note;
+	private ExperienceOrder experienceOrder;
 }

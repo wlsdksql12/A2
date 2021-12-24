@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceOrderMapper">
+
+		<resultMap type="com.gdu.cast.vo.ExperiencePayment" id="resultExperiencePayment">
+		<result column="experience_payment_method" property="experiencePaymentMethod"></result>
+		<result column="experience_payment_method_number" property="experiencePaymentMethodNumber"></result>
+		<result column="experience_payment_money" property="experiencePaymentMoney"></result>
+		<result column="create_Date" property="createDate"></result>
+		<result column="update_Date" property="updateDate"></result>
+		<association property="experienceOrder" javaType="com.gdu.cast.vo.ExperienceOrder">
+			<result column="experience_order_id" property="experienceOrderId" />
+			<result column="customer_id" property="customerId" />
+			<result column="experience_name" property="experienceName" />
+			<result column="experience_order_people" property="experienceOrderPeople" />
+			<result column="experience_order_startdate" property="experienceOrderStartDate" />
+			<result column="experience_order_enddate" property="experienceOrderEndDate" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+	</resultMap>
+
+		<!-- 고객페이지 체험 결제 리스트 -->
+	<select id="CustomerIndexExperiencePayment" parameterType="Map" resultMap="resultExperiencePayment">
+		SELECT
+			eo.experience_order_id,
+			eo.customer_id,
+			eo.experience_name,
+			eo.experience_order_people,
+			eo.experience_order_startdate,
+			eo.experience_order_enddate,
+			ep.experience_payment_method,
+			ep.experience_payment_method_number,
+			ep.experience_payment_money,
+			ep.create_Date,
+			ep.update_Date
+		FROM experience_payment ep LEFT JOIN experience_order eo
+		ON ep.experience_order_id = eo.experience_order_id
+		where eo.customer_id = #{customerId}
+		ORDER BY ep.create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	
+	</select>
+	
+		<!-- 체험 결제 List 페이징 -->
+	<select id="selectExperiencePaymentTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM experience_order
+	WHERE customer_id = #{customerId}
+	
+	</select>
+
+
+
+
+
 		<!-- experience 예약 -->
 	<insert id="experienceInsertOrder" parameterType="com.gdu.cast.vo.ExperienceOrder">
 		INSERT INTO experience_order(
@@ -66,6 +119,7 @@
 		FROM experience
 		WHERE experience_id = #{experienceId}
 	</select>
+	
 	<!-- 고객페이지 체험 예약 리스트 -->
 	<select id="CustomerIndexExperienceOrder" parameterType="Map" resultType="com.gdu.cast.vo.ExperienceOrder">
 		SELECT
@@ -91,4 +145,5 @@
 	WHERE customer_Id = #{customerId}
 	
 	</select>
+	
 </mapper>

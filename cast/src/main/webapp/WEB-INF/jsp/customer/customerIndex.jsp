@@ -92,7 +92,7 @@
 						<ul class="pcoded-submenu">
 							<li><a href="/CustomerOrderList">상품예약
 									</a></li>
-							<li><a href="layout-horizontal.html">결제내역
+							<li><a href="/CustomerPaymentList">결제내역
 									</a></li>
 							<li><a href="layout-horizontal.html">상품후기
 									</a></li>
@@ -324,7 +324,7 @@
 								<div class="card-body">
 									<div class="row align-items-center">
 										<div class="col-8">
-											<h4 class="text-c-green">290+</h4>
+											<h4 class="text-c-green">${selectOrderCount}</h4>
 											<h6 class="text-muted m-b-0">총 예약 수</h6>
 										</div>
 										<div class="col-4 text-right">

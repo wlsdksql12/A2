@@ -175,4 +175,9 @@ public class CustomerService {
 		   int paymentCount = customerMapper.selectCustomerPaymentCount(customerId);
 		   return paymentCount;
 	   }
+	   // 고객이 예약한 총 횟수
+	   public int getselectCustomerOrderCount(String customerId) {
+		   int orderCount = customerMapper.selectCustomerOrderCount(customerId);
+		   return orderCount;
+	   }
 }

@@ -231,6 +231,23 @@
 	
 	<!-- 총 예약 수 -->
 	
+	<select id="selectCustomerOrderCount" parameterType="String" resultType="int">
+		SELECT
+		sum(c.count) as sum
+		FROM
+		(SELECT
+		count(*) as count
+		FROM room_order
+		WHERE customer_id = #{customerId}
+		UNION ALL
+		SELECT
+		COUNT(*) as count
+		FROM experience_order
+		WHERE customer_id = #{customerId}
+		) as c
+			
+	
+	</select>
 	
 	
 	
