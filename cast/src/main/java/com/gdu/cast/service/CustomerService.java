@@ -170,4 +170,9 @@ public class CustomerService {
 		   System.out.println(customerMapper.selectCustomerCommentCount(customerId)+"@#!@#!@#!@#!@#!@#!@#!@#!@#!@#!testtestetestsetsetsetsetsetset");
 		   return hi;
 	   }
+	   // 고객이 결제한 총 금액
+	   public int getselectCustomerPaymentCount(String customerId) {
+		   int paymentCount = customerMapper.selectCustomerPaymentCount(customerId);
+		   return paymentCount;
+	   }
 }

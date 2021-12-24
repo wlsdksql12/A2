@@ -299,7 +299,7 @@
 								<div class="card-body">
 									<div class="row align-items-center">
 										<div class="col-8">
-											<h4 class="text-c-yellow">$30200</h4>
+											<h4 class="text-c-yellow">${selectPaymentCount}</h4>
 											<h6 class="text-muted m-b-0">총 결제금액</h6>
 										</div>
 										<div class="col-4 text-right">

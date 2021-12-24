@@ -209,6 +209,29 @@
 		
 	</select>
 	
+	<!-- 총 결제 금액 -->
+	<select id="selectCustomerPaymentCount" parameterType="String" resultType="int">
+		SELECT
+		sum(c.money) as sum
+		FROM
+		(SELECT
+		rp.room_payment_money AS money
+		FROM room_payment rp INNER JOIN room_order ro 
+		ON rp.room_order_id = ro.room_order_id
+		WHERE ro.customer_id = #{customerId}
+		UNION ALL
+		SELECT
+		ep.experience_payment_money AS money
+		FROM experience_payment ep INNER JOIN experience_order eo
+		ON ep.experience_order_id = eo.experience_order_id
+		WHERE eo.customer_id = #{customerId}
+		) as c
+		
+	</select>
+	
+	<!-- 총 예약 수 -->
+	
+	
 	
 	
 	

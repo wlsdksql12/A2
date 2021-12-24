@@ -54,4 +54,6 @@ public interface CustomerMapper {
 	List<Hotel> selectCustomerIndexHoelList();
 	// 고객이 작성한 총 댓글 수
 	int selectCustomerCommentCount(String CustomerId);
+	// 고객이 결제한 총 금액
+	int selectCustomerPaymentCount(String CustomerId);
 }

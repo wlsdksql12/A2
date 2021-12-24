@@ -16,9 +16,10 @@
 			<td>예약인</td>
 			<td>예약 인원 수</td>
 			<td>예약 시작 일</td>
-			<td>예약 종류 일</td>
+			<td>예약 종료 일</td>
 			<td>createDate</td>
 			<td>updateDate</td>
+			<td>사업체 정보</td>
 		</tr>
 		<c:forEach items="${experienceOrderList}"  var="list">
 		<tr>
@@ -30,6 +31,7 @@
 			<td>${list.experienceOrderEndDate}</td>
 			<td>${list.createDate}</td>
 			<td>${list.updateDate}</td>
+			<td><a href="/">정보 보기</a></td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -48,17 +50,20 @@
 		<table border="1">
 		<tr>
 			<td>예약 번호</td>
-			<td>체험 이름</td>
+			<td>숙소 이름</td>
+			<td>방 이름</td>
 			<td>예약인</td>
 			<td>예약 인원 수</td>
 			<td>예약 시작 일</td>
-			<td>예약 종류 일</td>
+			<td>예약 종료 일</td>
 			<td>createDate</td>
 			<td>updateDate</td>
+			<td>사업체 정보</td>
 		</tr>
 		<c:forEach items="${roomOrderList}"  var="list">
 		<tr>
 			<td>${list.roomOrderId}</td>
+			<td>${list.hotelName}</td>
 			<td>${list.roomName}</td>
 			<td>${list.customerId}</td>
 			<td>${list.roomOrderPeople}</td>
@@ -66,6 +71,7 @@
 			<td>${list.roomOrderEndDate}</td>
 			<td>${list.createDate}</td>
 			<td>${list.updateDate}</td>
+			<td><a href="/">정보 보기</a></td>
 		</tr>
 		</c:forEach>
 	</table>
@@ -79,7 +85,7 @@
 			</div>
 								
 								
-								
+	<div><a href="/customer/customerIndex" type="button">메인페이지로</a></div>				
 								
 </body>
 </html>

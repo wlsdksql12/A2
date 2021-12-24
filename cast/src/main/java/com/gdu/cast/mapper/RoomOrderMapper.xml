@@ -53,6 +53,7 @@
 		SELECT
 			room_order_id roomOrderId,
 			customer_id customerId,
+			hotel_name hotelName,
 			room_name roomName,
 			room_order_people roomOrderPeople,
 			room_order_startdate roomOrderStartDate,
