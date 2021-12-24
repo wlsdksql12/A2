@@ -874,8 +874,6 @@
               </div>
               <span>더보기 &RightArrow;</span>
             </a>
-            
-            
             <!-- With actions -->
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">

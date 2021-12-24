@@ -101,6 +101,11 @@ public class TravelerController {
 	public String button() {
 		return "traveler/button";
 	}
+	// 여행작가 메인 수정 페이지
+	@GetMapping("/create-account")
+	public String createaccount() {
+		return "traveler/create-account";
+	}
 	
 	// 여행작가 로그아웃
 	@GetMapping("/travelerLogout")
