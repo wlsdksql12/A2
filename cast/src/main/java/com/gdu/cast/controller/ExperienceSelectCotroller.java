@@ -16,7 +16,7 @@ public class ExperienceSelectCotroller {
 	ExperienceSelectService experienceSelectService;
 	
 	// 페이지
-	private final int ROW_PER_PAGE = 10;
+	private final int ROW_PER_PAGE = 5;
 	
 	// 여행작가 체험 추천 추가
 	@GetMapping("/addExperienceSelect")

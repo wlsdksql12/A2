@@ -29,6 +29,28 @@ public class TravelerController {
 	@Autowired
 	JoinRequestService joinRequestService;
 	
+	// 여행작가 회원 탈퇴
+	@GetMapping("/removeTraveler")
+	public String getRemoveTraveler(Traveler traveler) {
+		travelerService.getRemoveTraveler(traveler.getTravelerId(), traveler.getTravelerPw());
+		return "traveler/removeTraveler";
+	}
+	
+	// 여행작가 회원 탈퇴
+	@PostMapping("/removeTraveler")
+	public String getRemoveTraveler(Traveler traveler, HttpSession session) {
+		
+		// 회원 탈퇴(delete_id 테이블에 id 값 입력)
+		travelerService.getAddDeleteTravelerId(traveler.getTravelerId());
+		
+		// 회원 탈퇴(traveler 테이블 데이터 삭제)
+		travelerService.getRemoveTraveler(traveler.getTravelerId(), traveler.getTravelerPw());
+		
+		// 세션 종료
+		session.invalidate();
+		return "redirect:/loginSelect";
+	}
+	
 	// 여행작가 메인 페이지 자신이 쓴 숙소/체험 추천 리스트 출력(5개)
 	@GetMapping("/travelerIndex")
 	public String SelectListMain(Model model, String travelerId) {
@@ -117,6 +139,14 @@ public class TravelerController {
 	// 여행작가 회원가입
 	@PostMapping("/addTraveler")
 	public String addBoard(Traveler traveler) {
+		
+		// 회원가입 시 회원 탈퇴 테이블에 존재하는 아이디를 적는다면 retrun값 호출
+		if((travelerService.getSelectDeleteTravelerId(traveler.getTravelerId()) == 1) || 
+			(travelerService.getSelectTravelerId(traveler.getTravelerId()) != null)) {
+			return "redirect:/addCustomer";
+		}
+		
+		// 회원 가입
 		travelerService.addTraveler(traveler);
 		log.debug("★★★★Hyun★★★★"+traveler.toString());
 		

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
-
+	
 	<!-- 여행작가 메인 페이지 체험 추천 리스트에 여행작가 이름 Join -->
 	<resultMap type="com.gdu.cast.vo.ExperienceSelect" id="resultExperienceSelect">
 		<id column="experience_select_id" property="experienceSelectId"></id>
@@ -15,6 +15,34 @@
 			<result column="traveler_name" property="travelerName"></result>
 		</collection>
 	</resultMap>
+	
+	<!-- 회원 탈퇴 한 아이디의 중복값 -->
+	<select id="selectDeleteTravelerId"  parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM delete_id
+		WHERE id=#{travelerId}
+	</select>
+	
+	<!-- 회원 가입 시 아이디 중복 검사 -->
+	<select id="selectTravelerId"  parameterType="String" resultType="String">
+		SELECT traveler_id travelerId
+		FROM traveler
+		WHERE traveler_id=#{travelerId}
+	</select>
+	
+	<!-- 회원 탈퇴(delete_id 테이블에 id 값 입력) -->
+	<insert id="insertDeleteTravelerId" parameterType="com.gdu.cast.vo.Delete_Id">
+   		INSERT INTO delete_id (id, create_date, update_date)
+   		VALUES(#{travelerId}, now(),now())
+   	</insert>
+
+	<!-- 회원 탈퇴(traveler 테이블 데이터 삭제) -->
+	<delete id="deleteTraveler" parameterType="com.gdu.cast.vo.Customer">
+		DELETE 
+		FROM traveler
+		WHERE traveler_id=#{travelerId}
+		AND traveler_pw=password(#{travelerPw})
+	</delete>
 	
 	<!-- 여행작가 메인 페이지 숙소 추천 리스트에 여행작가 이름 Join -->
 	<resultMap type="com.gdu.cast.vo.RoomSelect" id="resultRoomSelect">
@@ -41,7 +69,7 @@
 		FROM traveler t INNER JOIN experience_select e
 		ON t.traveler_id = e.traveler_id
 		WHERE t.traveler_id = #{travelerId}
-		ORDER BY e.create_date DESC
+		ORDER BY e.experience_select_id DESC
 		LIMIT 0, 5
 	</select>
 
@@ -56,7 +84,7 @@
 		FROM traveler t INNER JOIN room_select r
 		ON t.traveler_id = r.traveler_id
 		WHERE t.traveler_id = #{travelerId}
-		ORDER BY r.create_date DESC
+		ORDER BY r.room_select_id DESC
 		LIMIT 0, 5
 	</select>
 
@@ -89,8 +117,7 @@
 	<!-- 여행작가 로그인 -->
 	<select id="selectTraveler" parameterType="com.gdu.cast.vo.Traveler" resultType="com.gdu.cast.vo.Traveler">
 		SELECT
-			traveler_id travelerId,
-			traveler_pw travelerPw
+			traveler_id travelerId
 		FROM traveler
 		WHERE traveler_id=#{travelerId}
 		AND traveler_pw=password(#{travelerPw})

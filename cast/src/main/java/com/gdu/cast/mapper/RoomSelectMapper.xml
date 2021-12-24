@@ -56,7 +56,7 @@
 		FROM traveler t INNER JOIN room_select r
 		ON t.traveler_id = r.traveler_id
 		WHERE t.traveler_id = #{travelerId}
-		ORDER BY r.create_date DESC
+		ORDER BY r.room_select_id DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 </mapper>

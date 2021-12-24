@@ -82,7 +82,7 @@ public class LoginContrlloer {
 			// 가입 요청 세션을 추가(ex.'요청','거절',승인')
 			session.setAttribute("state", state);
 			session.setAttribute("loginTravelerId", loginTraveler.getTravelerId());
-			return "redirect:/index";
+			return "redirect:/index?travelerId="+loginTraveler.getTravelerId();
 			
 		}else if(login.equals("customerLogin")) {
 			// 현재 날짜

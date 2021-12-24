@@ -56,7 +56,7 @@
 		FROM traveler t INNER JOIN experience_select e
 		ON t.traveler_id = e.traveler_id
 		WHERE t.traveler_id = #{travelerId}
-		ORDER BY e.create_date DESC
+		ORDER BY e.experience_select_id DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 </mapper>

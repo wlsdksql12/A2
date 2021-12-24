@@ -169,7 +169,7 @@
 			experience_select_title LIKE '%${searchTitle}%'
 			</if>
 		</where>
-		ORDER BY e.create_date DESC
+		ORDER BY e.experience_select_id DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 
@@ -199,7 +199,7 @@
 				room_select_title LIKE '%${searchTitle}%'
 			</if>
 		</where>
-		ORDER BY r.create_date DESC
+		ORDER BY r.room_select_id DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	

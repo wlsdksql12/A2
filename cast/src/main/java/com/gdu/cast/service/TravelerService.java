@@ -21,6 +21,28 @@ public class TravelerService {
 	@Autowired
 	TravelerMapper travelerMapper;
 	
+	// 회원 탈퇴 한 아이디의 중복값
+	public int getSelectDeleteTravelerId(String travelerId) {
+		log.debug(travelerId);
+		int row = travelerMapper.selectDeleteTravelerId(travelerId);
+		return row;
+	}
+	
+	// 회원 가입 시 아이디 중복 검사
+	public String getSelectTravelerId(String travelerId) {
+		return travelerMapper.selectTravelerId(travelerId);
+	}
+	
+	// 회원 탈퇴(delete_id 테이블에 id 값 입력)
+	public void getAddDeleteTravelerId(String travlerId) {
+		travelerMapper.insertDeleteTravelerId(travlerId);
+	}
+	
+	// 회원 탈퇴(traveler 테이블 데이터 삭제)
+	public void getRemoveTraveler(String travelerId, String travelerPw) {
+		travelerMapper.deleteTraveler(travelerId, travelerPw);
+	}
+	
 	// 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 출력(5개)
 	public List<ExperienceSelect> getselectExperienceSelectListByMain(String travelerId) {
 		return travelerMapper.selectExperienceListByMain(travelerId);
