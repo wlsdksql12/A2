@@ -41,28 +41,35 @@
 						<label for="exampleTextarea1">호텔 소개</label>
 						<textarea class="form-control" name="hotelContent" rows="10"></textarea>
 					</div>
-					<div class="form-group">테마 선택
+					<hr>
+					<!-- 테마 추가 -->
+					<div class="form-group">
+					<label for="exampleTextarea1">테마 선택</label>
+					<div>
                			<select name="theme">
                				<option value="">테마 선택</option>
                				<c:forEach items="${selectThemeSmallList}" var="themeSmall">
                					<option value="${themeSmall.themeSmallName}">${themeSmall.themeSmallName}</option>
                				</c:forEach>
                			</select>
+               			</div>
                		</div>
 					<!-- 해시태그 추가 -->
-					<hr>
-					<div class="form-group">태그 입력
+					<div class="form-group">
+					<label for="exampleTextarea1">태그 입력</label>
 						<div>
-							<input name="addHashtag" id="addHashtag" type="text" placeholder="태그를 입력해주세요 (최대 10개)">
-							<button type="button" name="addHashtag">추가</button>
+							<input name="addHashtag" id="addHashtag" type="text" style="width:300px;height:30px" placeholder="태그를 입력해주세요 (최대 10개)">
+							<button type="button" name="addHashtag" class="btn btn-outline-info btn-sm">추가</button>
 						</div>
 						<div class="tag_input_box inactive" id="hashtag">
               			</div>
             		</div>
                	
               	 	<!-- 해시태그 추가 끝 -->
-					<button type="submit" class="btn btn-primary mr-2">Submit</button>
+              	 	<div align="right">
 					<button class="btn btn-light">Cancel</button>
+					<button type="submit" class="btn btn-primary mr-2">Submit</button>
+					</div>
 				</div>
 			</div>
 		</div>
