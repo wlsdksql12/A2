@@ -185,7 +185,14 @@
 	                                    <ul class="list-unstyled">
 	                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-	                                        <li><a class="btn btn-success text-white mt-2" href="/experienceWishList"><i class="fas fa-cart-plus"></i></a></li>
+	                                       
+	                                       	                                        	<c:choose>
+	                                        		 <c:when test="${loginCustomerId eq null}">  <li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li></c:when>
+	                                        		 <c:otherwise>  <li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}&customerId=${loginCustomerId}"><i class="fas fa-cart-plus"></i></a></li></c:otherwise>
+	                                        	
+	                                        	</c:choose>
+	                                       
+	                                    
 	                                    </ul>
 	                                </div>
 	                            </div>
