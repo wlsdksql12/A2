@@ -148,7 +148,7 @@ public class CustomerIndexController {
 		return "redirect:/customer/customerIndex?customerId="+qna.getCustomerId()+"&currentPage=1";
 		
 	}
-	
+	// 고객 체험 추천 댓글 페이지
 	@GetMapping("/customerExperienceSelectCommentList")
 	public String getcustomerSelectCommentList(Model model,HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
@@ -159,6 +159,19 @@ public class CustomerIndexController {
 		model.addAttribute("commentList",map.get("commentList"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		return "customer/customerExperienceComment";
+	}
+	
+	// 고객 숙소 추천 댓글 페이지
+	@GetMapping("/customerRoomSelectCommentList")
+	public String getcustomerRoomSelectCommentList(Model model,HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		Map<String, Object> map = customerService.getCustomerRoomSelectCommentList(customerId, currentPage, row_per_page);
+		
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("commentList",map.get("commentList"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		return "customer/customerRoomComment";
+		
 	}
 	
 	

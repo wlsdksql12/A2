@@ -10,4 +10,5 @@ public class RoomSelectComment {
 	private String roomSelectContent;
 	private String createDate;
 	private String updateDate;
+	private RoomSelect roomSelect;
 }

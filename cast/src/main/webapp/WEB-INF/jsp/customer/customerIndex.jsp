@@ -109,7 +109,7 @@
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-clock"></i></span><span class="pcoded-mtext">체험추천댓글</span></a>
 					</li>
-					<li class="nav-item"><a href="map-google.html"
+					<li class="nav-item"><a href="/customerRoomSelectCommentList"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-clock"></i></span><span class="pcoded-mtext">숙소추천댓글</span></a>
 					</li>

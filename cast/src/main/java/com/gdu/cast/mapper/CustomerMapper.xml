@@ -13,6 +13,18 @@
 			<result column="experience_select_title" property="experienceSelectTitle" />
 		</association>
 	</resultMap>
+	
+	<resultMap type="com.gdu.cast.vo.RoomSelectComment" id="resultRoomComment">
+		<result column="room_select_comment_id" property="roomSelectCommentId"></result>
+		<result column="room_select_content" property="roomSelectContent"></result>
+		<result column="create_Date" property="createDate"></result>
+		<result column="update_Date" property="updateDate"></result>
+		<association property="roomSelect" javaType="com.gdu.cast.vo.RoomSelect">
+			<result column="room_select_id" property="roomSelectId" />
+			<result column="traveler_id" property="travelerId" />
+			<result column="room_select_title" property="roomSelectTitle" />
+		</association>
+	</resultMap>
 
 
 	<!--  회원가입 -->
@@ -264,7 +276,7 @@
 	
 	</select>
 	
-	<!--  -->
+	<!-- 고객 체험추천 댓글 페이지  -->
 	<select id="CustomerExperienceSelectCommentList" parameterType="Map" resultMap="resultExperienceComment">
 		SELECT
 			esc.experience_select_comment_id,
@@ -281,10 +293,35 @@
 		LIMIT #{beginRow}, #{row_per_page}
 	</select>
 	
-		<!--  qnaList 페이징 -->
+		<!--  commentList 페이징 -->
 	<select id="CustomerselectCommentTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
 	FROM Experience_select_comment
+	WHERE customer_Id = #{customerId}
+	
+	</select>
+	
+		<!-- 고객 체험추천 댓글 페이지  -->
+	<select id="CustomerRoomSelectCommentList" parameterType="Map" resultMap="resultRoomComment">
+		SELECT
+			rsc.room_select_comment_id,
+			rs.room_select_id,
+			rs.traveler_id,
+			rs.room_select_title,
+			rsc.room_select_content,
+			rsc.create_date,
+			rsc.update_date
+		FROM room_select_comment rsc inner join room_select rs
+		on rsc.room_select_id = rs.room_select_id
+		where rsc.customer_id = #{customerId}
+		ORDER BY rsc.create_date DESC
+		LIMIT #{beginRow}, #{row_per_page}
+	</select>
+	
+		<!--  commentList 페이징 -->
+	<select id="CustomerselectRoomCommentTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM Room_select_comment
 	WHERE customer_Id = #{customerId}
 	
 	</select>

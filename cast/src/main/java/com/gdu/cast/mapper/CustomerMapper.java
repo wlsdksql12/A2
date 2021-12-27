@@ -12,6 +12,7 @@ import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Qna;
+import com.gdu.cast.vo.RoomSelectComment;
 
 @Mapper
 public interface CustomerMapper {
@@ -59,8 +60,12 @@ public interface CustomerMapper {
 	int selectCustomerPaymentCount(String CustomerId);
 	// 고객이 예약한 총 횟수
 	int selectCustomerOrderCount(String customerId);
-	// 고객 댓글 리스트 출력
+	// 고객 체험 댓글 리스트 출력
 	List<ExperienceSelectComment> CustomerExperienceSelectCommentList(Map<String, Object> Map);
-	// 고객 댓글 페이징
+	// 고객 체험 댓글 페이징
 	int CustomerselectCommentTotalCount(String customerId);
+	// 고객 숙소 댓글 리스트 출력
+	List<RoomSelectComment> CustomerRoomSelectCommentList(Map<String , Object> Map);
+	// 고객 숙소 댓글 페이징
+	int CustomerselectRoomCommentTotalCount(String CustomerId);
 }

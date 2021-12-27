@@ -19,6 +19,7 @@ import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
+import com.gdu.cast.vo.RoomSelectComment;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -187,7 +188,7 @@ public class CustomerService {
 		   return orderCount;
 	   }
 	   
-	   // 고객페이지 추천 댓글 페이지
+	   // 고객페이지 체험 추천 댓글 페이지
 	   public Map<String, Object> getCustomerExperienceSelectCommentList(String customerId,int currentPage,int row_per_page){
 	   Map<String, Object> paramMap = new HashMap<>();
 		   
@@ -210,4 +211,27 @@ public class CustomerService {
 			return returnMap;
 		   
 	   }
+	   
+	   // 고객 페이지 숙소 추천 댓글 페이지
+	   public Map<String, Object> getCustomerRoomSelectCommentList(String customerId, int currentPage, int row_per_page){
+	   Map<String, Object> paramMap = new HashMap<>();
+		   
+		   int beginRow = (currentPage-1)*row_per_page;
+		   paramMap.put("customerId", customerId);
+		   paramMap.put("beginRow", beginRow); 
+		   paramMap.put("row_per_page", row_per_page);
+		   List<RoomSelectComment> commentList = customerMapper.CustomerRoomSelectCommentList(paramMap);
+			
+		   Map<String, Object> returnMap = new HashMap<>();
+			int lastPage = 0;
+			int totalCount = customerMapper.CustomerselectRoomCommentTotalCount(customerId);
+			lastPage = totalCount / row_per_page;
+			if(totalCount%row_per_page != 0) {
+				lastPage += 1;
+			}
+			returnMap.put("commentList", commentList);
+			returnMap.put("lastPage", lastPage);
+			return returnMap;
+	   }
+	   
 }
