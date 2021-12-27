@@ -245,7 +245,18 @@
 		ON themeSmallExperience.experience_id = experience.experience_id
 		INNER JOIN theme_small themeSmall
 		ON themeSmallExperience.theme_small_id = themeSmall.theme_small_id
-		WHERE themeSmall.theme_small_name = #{ThemeSmallName}
+		JOIN keyword k
+		ON experience.experience_id = k.hotel_experience_id
+		<where>
+			<choose>
+				<when test='(searchKeyword != null or searchKeyword == "")'>
+					themeSmall.theme_small_name LIKE '%${ThemeSmallName}%' AND k.keyword_name LIKE '%${searchKeyword}%' AND k.hotel_experience_from = 'experience'
+				</when>
+				<otherwise>
+					themeSmall.theme_small_name LIKE '%${ThemeSmallName}%'
+				</otherwise>
+			</choose>
+		</where>
 	</select>
 	
 	<select id="selectThemeShopHotelList" parameterType="String" resultMap="resultThemeSmallHotel">
@@ -254,6 +265,17 @@
 		ON themeSmallHotel.hotel_id = hotel.hotel_id
 		INNER JOIN theme_small themeSmall
 		ON themeSmallHotel.theme_small_id = themeSmall.theme_small_id
-		WHERE themeSmall.theme_small_name = #{ThemeSmallName}
+		JOIN keyword k
+		ON hotel.hotel_id = k.hotel_experience_id
+		<where>
+			<choose>
+				<when test='(searchKeyword != null or searchKeyword == "")'>
+					themeSmall.theme_small_name LIKE '%${ThemeSmallName}%' AND k.keyword_name LIKE '%${searchKeyword}%' AND k.hotel_experience_from = 'hotel'
+				</when>
+				<otherwise>
+					themeSmall.theme_small_name LIKE '%${ThemeSmallName}%'
+				</otherwise>
+			</choose>
+		</where>
 	</select>
 </mapper>

@@ -44,15 +44,17 @@ public class IndexController {
 		return "index";
 	}
 	@GetMapping("/shop")
-	public String shop(Model model, @RequestParam(defaultValue = "F1") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory,String searchKeyword) {
+	public String shop(Model model, @RequestParam(defaultValue = "") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory,String searchKeyword) {
 		// 테마 대,중 출력
 		Map<String, Object> map = mainSelectService.selectTheme();
 		// 테마 소 리스트 출력
 		Map<String, Object> ThemeSmallmap = mainSelectService.selectThemeSmall();
+		
 		// 테마 소에 해당하는 체험 리스트 출력
-		Map<String, Object> themeSmallExperienceListmap = mainSelectService.selectThemeShopExperienceList(themeSmallName);
+		Map<String, Object> themeSmallExperienceListmap = mainSelectService.selectThemeShopExperienceList(themeSmallName, searchKeyword);
 		// 테마 소에 해당하는 숙소 리스트 출력
-		Map<String, Object> themeSmallHotelListmap = mainSelectService.selectThemeShopHotelList(themeSmallName);
+		Map<String, Object> themeSmallHotelListmap = mainSelectService.selectThemeShopHotelList(themeSmallName, searchKeyword);
+		
 		// shop 페이지 키워드 리스트 출력
 		List<Keyword> keywordList = keywordService.getKeywordList();
 		

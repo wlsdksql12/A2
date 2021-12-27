@@ -163,19 +163,19 @@ public class MainSelectService {
 		return ThemeSmallmap;
 	}
 	
-	public Map<String, Object> selectThemeShopExperienceList(String ThemeSmallName) {
+	public Map<String, Object> selectThemeShopExperienceList(String ThemeSmallName, String searchKeyword) {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
-		List<ThemeSmallExperience> selectThemeShopExperienceList = mainSelectMapper.selectThemeShopExperienceList(ThemeSmallName);
+		List<ThemeSmallExperience> selectThemeShopExperienceList = mainSelectMapper.selectThemeShopExperienceList(ThemeSmallName, searchKeyword);
 		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopExperienceList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
 		map.put("selectThemeShopExperienceList", selectThemeShopExperienceList);
 		return map;
 	}
 	
-	public Map<String, Object> selectThemeShopHotelList(String ThemeSmallName) {
+	public Map<String, Object> selectThemeShopHotelList(String ThemeSmallName, String searchKeyword) {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
-		List<ThemeSmallHotel> selectThemeShopHotelList = mainSelectMapper.selectThemeShopHotelList(ThemeSmallName);
+		List<ThemeSmallHotel> selectThemeShopHotelList = mainSelectMapper.selectThemeShopHotelList(ThemeSmallName, searchKeyword);
 		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopHotelList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
 		map.put("selectThemeShopHotelList", selectThemeShopHotelList);
 		return map;

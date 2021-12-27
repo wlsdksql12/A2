@@ -50,7 +50,7 @@ public interface MainSelectMapper {
 	
 	List<ThemeSmall> selectThemeSmallList();
 	
-	List<ThemeSmallExperience> selectThemeShopExperienceList(String ThemeSmallName);
+	List<ThemeSmallExperience> selectThemeShopExperienceList(String ThemeSmallName, String searchKeyword);
 	
-	List<ThemeSmallHotel> selectThemeShopHotelList(String ThemeSmallName);
+	List<ThemeSmallHotel> selectThemeShopHotelList(String ThemeSmallName, String searchKeyword);
 }
