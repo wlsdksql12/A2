@@ -125,14 +125,20 @@
 						<td>${comment.customerId}</td>
 						<td>${comment.experienceSelectContent}</td>
 						<td>${comment.createDate.substring(0,10)}</td>
-						<c:if test="${loginCustomerId == comment.customerId}">
+						<c:choose>
+						<c:when test="${loginCustomerId == comment.customerId}">
 						<td>
 							<a href="/updateMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&experienceSelectId=${comment.experienceSelectId}">수정</a>
 						</td>
 						<td>
 							<a href="/deleteMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&experienceSelectId=${comment.experienceSelectId}">삭제</a>
 						</td>
-						</c:if>
+						</c:when>
+							<c:otherwise>
+								<td>-</td>
+								<td>-</td>
+							</c:otherwise>
+						</c:choose>
 					</tr>
 				</c:forEach>
 			</tbody>

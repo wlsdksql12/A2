@@ -80,19 +80,31 @@
           <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
       </li>
     </ul>
-    
- 	<form method="post" action="/updateMainExperienceSelectComment">
-	<div>댓글번호</div>
-	<input type="text" name="experienceSelectCommentId" value="${experienceSelectCommentId }" readonly="readonly">
-	<div>작성자</div>
-	<input type="text" name="customerId" value="${customerId}" readonly="readonly">
-	<input type="hidden" name="currentPage" value="${currentPage}">
+    <hr>
+ 	<form id="updateMainExperienceForm" method="post" action="/updateMainExperienceSelectComment">
+ 	<input type="hidden" name="experienceSelectCommentId" value="${experienceSelectCommentId }">
+ 	<input type="hidden" name="currentPage" value="${currentPage}">
 	<input type="hidden" name="experienceSelectId" value="${experienceSelectId}">
-	<div>내용</div>
-	<input type="text" name="experienceSelectContent">
-	<button type=submit>수정</button>
+ 	<table class="table table-bordered">
+ 		<tr>
+ 			<td width="250px" style="text-align: center;">작성자</td>
+ 			<td style="text-align: left;">
+ 				<input style="border: none;" type="text" name="customerId" value="${customerId}" readonly="readonly">
+ 			</td>
+ 		</tr>
+ 		<tr>
+ 			<td style="height: 300px; text-align: center;">내용</td>
+ 			<td>
+ 				<textarea style="width: 1000px; height: 300px; resize: none; border: none;" id="experienceSelectContent" name="experienceSelectContent"></textarea>
+ 			</td>
+ 		</tr>
+ 	</table>
+ 	<div style="text-align: right;">
+		<button class="btn btn-outline-success" id="updateCommentBtn" type="button">수정</button>
+		<a class="btn btn-outline-success" href="javascript:history.back(-1)">뒤로가기</a>
+	</div>
 	</form>
-	<a href="javascript:history.back(-1)">뒤로가기</a>
+	
 		
 
    	
@@ -201,6 +213,21 @@
     <script src="${pageContext.request.contextPath}/resources/assets/js/bootstrap.bundle.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/templatemo.js"></script>
     <script src="${pageContext.request.contextPath}/resources/assets/js/custom.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script>
+	$(function(){
+		$('#updateCommentBtn').click(function(){
+			if($('#experienceSelectContent').val() == ""){
+				alert("수정한 내용을 입력하세요");
+				$('#experienceSelectContent').focus();
+				return false;
+			}
+			else {
+				$('#updateMainExperienceForm').submit();
+			}
+		});
+	});
+	</script>
     <!-- End Script -->
 </body>
 </html>

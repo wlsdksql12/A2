@@ -123,15 +123,22 @@
 				 <tr>			
 				     <td>${comment.customerId}</td>
 				     <td>${comment.roomSelectContent}</td>
-				     <td>${comment.createDate.substring(0,10)}</td>			   
-				     <c:if test="${loginCustomerId == comment.customerId}">
-				      <td>
+				     <td>${comment.createDate.substring(0,10)}</td>
+				     <c:choose>  
+				     <c:when test="${loginCustomerId == comment.customerId}">
+				     <td>
 				     <a href="/updateMainRoomSelectComment?roomSelectCommentId=${comment.roomSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&roomSelectId=${comment.roomSelectId}">수정</a>
 				     </td>
 				     <td>
 				     <a href="/deleteMainRoomSelectComment?roomSelectCommentId=${comment.roomSelectCommentId}&currentPage=${currentPage}&roomSelectId=${comment.roomSelectId}">삭제</a>
 				     </td>
-				     </c:if>
+				     </c:when>
+				     <c:otherwise>
+				     <td>-</td>
+				     <td>-</td>
+				     </c:otherwise>
+				     </c:choose>
+				     
 				 </tr>		
 				 </c:forEach>
 			 </tbody>

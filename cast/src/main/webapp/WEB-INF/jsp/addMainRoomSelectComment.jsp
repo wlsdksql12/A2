@@ -69,28 +69,46 @@
     <section class="bg-success py-5" style="text-align: center;">
         여행작가가 추천하는 호텔 추천! & 체험 추천!
     </section>
-    <!-- Close Banner -->		
+
+    <!-- Close Banner -->
+		
     <!-- Start Section -->
-    <section class="container py-5">              
+    <section class="container py-5">
+               
     <ul>
       <li class="list-inline-item">
           <a class="h3 text-dark text-decoration-none mr-3" href="/mainRoomSelect">숙소</a>
-      </li>                       
+      </li>
+		
+                        
       <li class="list-inline-item">
           <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
       </li>
     </ul>
-    
-	<form method ="post" action="/addMainRoomSelectComment">
-	<div>작성자</div>
-	<input type="text" name="customerId" value="${customerId}" readonly="readonly">
-	<div>내용</div>
-	<input type="text" name="roomSelectContent">
-	<input type="hidden" name ="roomSelectId" value="${roomSelectId}">
-	<button type="submit">입력</button>
-	</form>
-	<a href="javascript:history.back(-1)">뒤로가기</a>
-
+    <hr>
+   	<div style="text-align:center">
+		<form method ="post" action="/addMainRoomSelectComment">
+		<table class="table table-bordered">
+			<tr>
+				<td width="250px">작성자</td>
+				<td style="text-align: left;">
+					<input style="border: none;" type="text" name="customerId" value="${customerId}" readonly="readonly">
+				</td>
+			</tr>
+			<tr>
+				<td style="height: 300px; text-align: center;">내용</td>
+				<td style="text-align: left;">
+					<textarea style="width: 1000px; height: 300px; resize: none; border: none;" name="roomSelectContent"></textarea>
+					<input type="hidden" name ="roomSelectId" value="${roomSelectId}">
+				</td>
+			</tr>
+		</table>
+		<div style="text-align: right;">
+			<button class="btn btn-outline-success" type="submit">입력</button>
+		</div>
+		</form>
+	</div>
+   	
     </section>
     <!-- End Section -->
 	<section class="container py-5" >
