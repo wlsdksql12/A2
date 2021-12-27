@@ -330,7 +330,7 @@
 								</div>
 							</div>
 							<div class="float-right">
-								<a href="/customer/customerIndex" type="button" class="btn btn-outline-primary">메인페이지로</a>
+								<a href="/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1" type="button" class="btn btn-outline-primary">메인페이지로</a>
 							</div>
 						</div>				
 					</div>
