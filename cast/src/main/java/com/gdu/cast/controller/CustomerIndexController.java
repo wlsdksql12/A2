@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.CustomerService;
+import com.gdu.cast.service.ExperienceOrderService;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Hotel;
@@ -28,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerIndexController {
 	@Autowired CustomerService customerService;
 	@Autowired AdminQnaService adminQnaService;
+	@Autowired ExperienceOrderService experienceOrderService;
 	
 	private final int ROW_PER_PAGE = 5;
 	private final int row_per_page = 10;
@@ -57,13 +59,13 @@ public class CustomerIndexController {
 		int selectCount = customerService.getselectCustomerCommentCount(customerId);
 		int selectPaymentCount = customerService.getselectCustomerPaymentCount(customerId);
 		int selectOrderCount = customerService.getselectCustomerOrderCount(customerId);
-		
-		// 내가 쓴 qna 5개 리스트
+			// 내가 쓴 qna 5개 리스트
 		Map<String, Object> map = customerService.getselectQna(customerId, currentPage, ROW_PER_PAGE);
 		// 체험 5개 등록 리스트
 		List<Experience> experienceList = customerService.getselectCustomerIndexExperienceList();
 		// 숙소 5개 등록 리스트
 		List<Hotel> hotelList = customerService.getselectCustomerIndexHoelList();
+
 		model.addAttribute("selectOrderCount",selectOrderCount);
 		model.addAttribute("selectPaymentCount",  selectPaymentCount);
 		model.addAttribute("selectCount", selectCount);

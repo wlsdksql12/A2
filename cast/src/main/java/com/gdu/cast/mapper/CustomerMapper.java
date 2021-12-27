@@ -68,4 +68,9 @@ public interface CustomerMapper {
 	List<RoomSelectComment> CustomerRoomSelectCommentList(Map<String , Object> Map);
 	// 고객 숙소 댓글 페이징
 	int CustomerselectRoomCommentTotalCount(String CustomerId);
+	// 총 결제금액 조건문
+	int selectCustomerExperienceOrderId(String customerId);
+	// 총 결제금액 조건문
+	int  selectcustomerRoomOrderId(String customerId);
+
 }

@@ -4,8 +4,8 @@
 		<!-- 체험 관심상품 등록 -->
 	<insert id="insertExperienceWishList" parameterType="com.gdu.cast.vo.ExperienceWishList">
 	INSERT INTO experience_wishlist(
-		customer_id,
-		experience_id,
+		customer_id customerId,
+		experience_id experienceId,
 		create_Date,
 		update_Date
 		

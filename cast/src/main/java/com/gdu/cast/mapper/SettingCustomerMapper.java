@@ -12,4 +12,6 @@ public interface SettingCustomerMapper {
 	  void deleteCustomer(String customerId, String customerPw);
 	  //로그인 기록 삭제
 	  void deleteCustomerLogin(String customerId);
+	  // 비밀번호 조회
+	  int selectCustomerPw(String customerId, String customerPw);
 }

@@ -25,7 +25,6 @@ public interface ExperienceOrderMapper {
 	// 고객 페이지 예약 페이징
 	int selectExperienceOrderTotalCount(String customerId);
 	
-	
 	// 고객 체험 결제 페이지
 	List<ExperiencePayment> CustomerIndexExperiencePayment(Map<String, Object> map);
 	// 고객 체험 결제 페이징

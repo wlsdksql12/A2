@@ -11,16 +11,25 @@
    		VALUES(#{customerId}, now(),now())
    	</insert>
    	
+   	<!-- customer테이블 삭제 -->
    	<delete id="deleteCustomer" parameterType="com.gdu.cast.vo.Customer">
 		DELETE 
 		FROM customer
 		WHERE customer_id = #{customerId} AND customer_pw = password(#{customerPw})
 	</delete>
+	
 	<!-- 로그인 기록 삭제 -->
 	   	<delete id="deleteCustomerLogin" parameterType="com.gdu.cast.vo.Customer_Login">
 		DELETE 
 		FROM customer_login
 		WHERE customer_id = #{customerId}
 	</delete>
+	<!--  비밀번호 조회 -->
+	<select id="selectCustomerPw" parameterType="String" resultType="int">
+	SELECT
+	count(*)
+	from customer
+	where customer_id = #{customerId} AND customer_pw = password(#{customerPw})
 	
+	</select>
 </mapper>

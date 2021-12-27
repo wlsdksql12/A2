@@ -29,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class CustomerService {
 	@Autowired CustomerMapper customerMapper;
 	@Autowired AdminQnaMapper adminQnaMapper;
+	
 	//고객 회원가입
 	public void getaddCustomer(Customer customer) {
 		String customerId = customer.getCustomerId();
@@ -178,8 +179,13 @@ public class CustomerService {
 	   
 	   // 고객이 결제한 총 금액
 	   public int getselectCustomerPaymentCount(String customerId) {
-		   int paymentCount = customerMapper.selectCustomerPaymentCount(customerId);
-		   return paymentCount;
+		  if((customerMapper.selectCustomerExperienceOrderId(customerId) == 0) || (customerMapper.selectcustomerRoomOrderId(customerId) == 0)) {
+			  return 0;
+		  }else {
+			   int paymentCount = customerMapper.selectCustomerPaymentCount(customerId);
+			   return paymentCount; 
+		  }
+		 
 	   }
 	   
 	   // 고객이 예약한 총 횟수
@@ -234,4 +240,15 @@ public class CustomerService {
 			return returnMap;
 	   }
 	   
+	   /*
+	   // 총결제 금액 조건문
+	   public int getselectCustomerExperienceOrderId(String customerId) {
+		   return customerMapper.selectCustomerExperienceOrderId(customerId);
+	   }
+	   
+	   public int getselectcustomerRoomOrderId(String customerId) {
+		   return customerMapper.selectcustomerRoomOrderId(customerId);
+	   }
+	   */
+
 }

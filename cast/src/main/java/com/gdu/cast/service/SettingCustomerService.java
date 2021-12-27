@@ -35,4 +35,8 @@ public class SettingCustomerService {
 	   public void getdeleteCustomerLogin(String customerId) {
 		   settingCustomerMapper.deleteCustomerLogin(customerId);
 	   }
+	   
+	   public int getselectCustomerPw(String customerId, String customerPw) {
+		   return settingCustomerMapper.selectCustomerPw(customerId, customerPw);
+	   }
 }

@@ -43,14 +43,20 @@ public class SettingCustomerController {
 	   //회원 탈퇴 페이지
 	   @PostMapping("/deleteCustomer")
 	   public String getDeleteCustomer(Customer customer, HttpSession session) {
-		   //customer회원탈퇴 테이블에 저장
-		   settingCustomerService.getInsertDeleteId(customer.getCustomerId());
-		   //customer 로그인기록 삭제
-		   settingCustomerService.getdeleteCustomerLogin(customer.getCustomerId());
-		   // customer 테이블 삭제
-		   settingCustomerService.getDeleteCustomer(customer.getCustomerId(), customer.getCustomerPw());
-		  //세션 종료
-		   session.invalidate();
+		   String customerId = (String) session.getAttribute("loginCustomerId");
+		   if(settingCustomerService.getselectCustomerPw(customerId, customer.getCustomerPw()) != 1) {
+
+		   return "redirect:/shop";
+		   }
+			   //customer회원탈퇴 테이블에 저장
+			   settingCustomerService.getInsertDeleteId(customer.getCustomerId());
+			   //customer 로그인기록 삭제
+			   settingCustomerService.getdeleteCustomerLogin(customer.getCustomerId());
+			   // customer 테이블 삭제
+			   settingCustomerService.getDeleteCustomer(customer.getCustomerId(), customer.getCustomerPw());
+			  //세션 종료
+			   session.invalidate();
+		   
 		   return "redirect:/loginSelect";
 	   }
 	   
