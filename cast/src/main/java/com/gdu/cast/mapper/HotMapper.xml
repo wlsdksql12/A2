@@ -64,7 +64,7 @@
 		</association>
 		<association property="roomFilter" javaType="com.gdu.cast.vo.RoomFilter">
 			<result column="room_id" property="roomId" />
-			<result column="intetnet" property="internet" />
+			<result column="internet" property="internet" />
 			<result column="kitchen" property="kitchen" />
 			<result column="boiler" property="boiler" />
 			<result column="aircon" property="aircon" />

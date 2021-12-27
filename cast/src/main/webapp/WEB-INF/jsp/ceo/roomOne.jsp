@@ -46,13 +46,48 @@
 					<h4><i class="fas fa-bath fa-2x"></i>&emsp;욕실 수 : ${room.roomBedroom.bathroomCount}</h4>
 
 					<br><hr><br>
-				
-					<!-- c:if문 사용해서 변경예정 -->		
-					<c:if test="${room.roomFilter.internet eq 'Y'}">
-					<i class="fas fa-bath fa-2x"></i>
-					</c:if>
+					
+					<p class="card-description">접근성</p>
+						<c:if test="${room.roomConvenience.stairsThreshold eq 'Y'}">
+							<h4><i class="fas fa-wifi"></i>&emsp;계단</h4>
+						</c:if>
+						<c:if test="${room.roomConvenience.toiletHandle eq 'Y'}">
+							<h4><i class="fas fa-wifi"></i>&emsp;변기 옆 고정 손잡이</h4>
+						</c:if>
+						<c:if test="${room.roomConvenience.showerStallHandle eq 'Y'}">
+							<h4><i class="fas fa-wifi"></i>&emsp;샤워실 고정 손잡이</h4>
+						</c:if>
+					<br><hr><br>
+					
 					<p class="card-description">객실 편의시설</p>
-			
+						<c:if test="${room.roomFilter.internet eq 'Y'}">
+							<h4><i class="fas fa-wifi"></i>&emsp;인터넷</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.kitchen eq 'Y'}">
+							<h4><i class="fas fa-utensils"></i>&emsp;주방</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.boiler eq 'Y'}">
+							<h4><i class="fas fa-temperature-high"></i>&emsp;난방</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.aircon eq 'Y'}">
+							<h4><i class="fas fa-snowflake"></i>&emsp;에어컨</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.washingMachine eq 'Y'}">
+							<h4><i class="fab fa-algolia"></i>&emsp;세탁기</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.breakfast eq 'Y'}">
+							<h4><i class="fas fa-egg"></i>&emsp;조식</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.tv eq 'Y'}">
+							<h4><i class="fas fa-tv"></i>&emsp;TV</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.hairdryer eq 'Y'}">
+							<h4><i class="fas fa-wind"></i>&emsp;헤어드라이어</h4>
+						</c:if>
+						<c:if test="${room.roomFilter.bidet eq 'Y'}">
+							<h4><i class="fas fa-toilet"></i>&emsp;비데</h4>
+						</c:if>
+						
 				
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
