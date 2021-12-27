@@ -44,7 +44,7 @@ public class IndexController {
 		return "index";
 	}
 	@GetMapping("/shop")
-	public String shop(Model model, @RequestParam(defaultValue = "F1") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory) {
+	public String shop(Model model, @RequestParam(defaultValue = "F1") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory,String searchKeyword) {
 		// 테마 대,중 출력
 		Map<String, Object> map = mainSelectService.selectTheme();
 		// 테마 소 리스트 출력
@@ -62,6 +62,7 @@ public class IndexController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+themeSmallExperienceListmap.get("selectThemeShopExperienceList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁselectThemeShopExperienceList");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+themeSmallHotelListmap.get("selectThemeShopHotelList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁselectThemeShopHotelList");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+shopCategory+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁshopCategory");
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+searchKeyword+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁsearchKeyword");
 		model.addAttribute("selectThemeList", map.get("selectThemeList"));
 		model.addAttribute("selectThemeSmallList", ThemeSmallmap.get("selectThemeSmallList"));
 		model.addAttribute("selectThemeShopExperienceList", themeSmallExperienceListmap.get("selectThemeShopExperienceList"));

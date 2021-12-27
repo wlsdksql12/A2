@@ -136,12 +136,12 @@
 			    <h1 class="h2 pb-4">HashTag</h1>
 				<c:forEach items="${keywordList}" var="keyword">
 					<button type="button" class="hashtagBtn" data-wow-delay="0.3s"
-					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;"id="hashtagtest" >
+					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;" name="searchKeyword" value="${keyword.keywordName}" >
                		${keyword.keywordName}
            			</button>
-				    </c:forEach>
-				    <form method="get" id="" style="height: 25px">
-						<input class="hashtagBtn" name="searchTitle" value="" placeholder="해시태그를 입력하세요" style="height: 25px">
+           		</c:forEach>
+			    <form method="get" action="/shop" style="height: 25px" id="searchKeywordForm">
+					<input class="hashtagBtn" name="searchKeyword" id="searchKeyword" placeholder="해시태그를 입력하세요" style="height: 25px">
 					<button class="hashtagBtn" style="height: 30px;">검색</button>
 				</form>
 			</div>
@@ -185,14 +185,7 @@
 	                                    <ul class="list-unstyled">
 	                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-	                                       
-	                                       	                                        	<c:choose>
-	                                        		 <c:when test="${loginCustomerId eq null}">  <li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li></c:when>
-	                                        		 <c:otherwise>  <li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}&customerId=${loginCustomerId}"><i class="fas fa-cart-plus"></i></a></li></c:otherwise>
-	                                        	
-	                                        	</c:choose>
-	                                       
-	                                    
+	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
 	                                    </ul>
 	                                </div>
 	                            </div>
@@ -604,6 +597,22 @@
 	    });
 
 	});
+ 
+// 해시태그 클릭시 검색에 적용
+$(document).on("click", "button[name='searchKeyword']", function () {
+	console.log($(this).val());
+	$('#searchKeyword').val($(this).val());
+	console.log($('#searchKeyword').val());
+	$('#searchKeywordForm').submit();
+});
+
+//해시태그 클릭시 검색에 적용
+$(document).on("click", "button[name='searchKeyword']", function () {
+	// console.log($(this).val());
+	$('#searchKeyword').val($(this).val());
+	// console.log($('#searchKeyword').val());
+	$('#searchKeywordForm').submit();
+});
  </script>
 </body>
 
