@@ -88,4 +88,12 @@ public class ExperienceService {
 		log.debug(experience.toString());
 		experienceMapper.deleteExperience(experience);
 	}
+	
+	// 테마 체험 등록
+	public void insertThemeExperience(int experienceId, String theme) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("theme", theme);
+		map.put("experienceId", experienceId);
+		experienceMapper.insertThemeExperience(map);
+	}
 }

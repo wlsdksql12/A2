@@ -45,8 +45,7 @@ public class ExperienceController {
    }
    
    @PostMapping("/ceo/insertExp")
-   public String insertExp(HttpServletRequest request,HttpSession session, Experience experience, String keyword
-) {
+   public String insertExp(HttpServletRequest request,HttpSession session, Experience experience, String keyword, String theme) {
       String ceoId = (String) session.getAttribute("loginCeoId");
       experience.setCeoId(ceoId);
       System.out.println(ceoId + " << ceoId");
@@ -66,7 +65,9 @@ public class ExperienceController {
     	  System.out.println(keywordList[i] + "입력되는 값");
     	  keywordService.insertExperienceKeyword(keywordList[i], experienceId);
       }
-      
+      // 테마 값 불러오기
+      System.out.println(theme + "theme");
+      experienceService.insertThemeExperience(experienceId, theme);
       // 나중에 체험리스트로 가게 바꾸기
       return "/ceo/ceoIndex";
    }
@@ -163,4 +164,5 @@ public class ExperienceController {
       
       return "/mainExperienceOne";
    }
+   
 }	

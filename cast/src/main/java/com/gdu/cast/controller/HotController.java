@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.HotService;
 import com.gdu.cast.service.KeywordService;
+import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Room;
@@ -32,18 +33,21 @@ public class HotController {
 	HotService hotService;
 	@Autowired
 	KeywordService keywordService;
-	
+	@Autowired
+	MainSelectService mainSelectService;
 	// 호텔 등록
 	@GetMapping("/ceo/insertHotel")
 	public String insertHotel(Model model, int addressId) {
-		
+		Map<String, Object> ThemeSmallmap = mainSelectService.selectThemeSmall();
+		System.out.println(ThemeSmallmap.get("selectThemeSmallList")+ "tset");
 		model.addAttribute("addressId", addressId);
+		model.addAttribute("selectThemeSmallList",ThemeSmallmap.get("selectThemeSmallList"));
 		
 		return "/ceo/insertHotel";
 	}
 	
 	@PostMapping("/ceo/insertHotel")
-	public String insertHotel(Model model, HttpSession session, Hotel hotel, String keyword) {
+	public String insertHotel(Model model, HttpSession session, Hotel hotel, String keyword, String theme) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		hotel.setCeoId(ceoId);
 		int hotelId = hotService.insertHotel(hotel);
@@ -61,6 +65,7 @@ public class HotController {
 			keywordService.insertHotelKeyword(keywordList[i], hotelId);
 		}
 		
+		hotService.insertThemeHotel(hotelId, theme);
 		return "redirect:/ceo/hotelList";
 	}
 	

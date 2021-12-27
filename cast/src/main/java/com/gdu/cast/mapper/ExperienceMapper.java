@@ -26,4 +26,6 @@ public interface ExperienceMapper {
 	int deleteExperience(Experience experience);
 	// 체험추가 시 추가한 체험id 출력
 	int selectExperienceId(Experience experience);
+	// 테마 체험 등록
+	void insertThemeExperience(Map<String, Object> map);
 }

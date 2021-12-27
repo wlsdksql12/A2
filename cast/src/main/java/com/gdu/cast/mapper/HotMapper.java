@@ -50,4 +50,7 @@ public interface HotMapper {
 	// 호텔추가 시 추가한 호텔id 출력
 	int selectHotelId(Hotel hotel);
 	
+	// 테마 호텔 등록
+	void insertThemeHotel(Map<String, Object> map);
+	
 }

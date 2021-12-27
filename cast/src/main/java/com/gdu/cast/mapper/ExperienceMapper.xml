@@ -146,4 +146,10 @@
    		ORDER BY create_date DESC
    		LIMIT 0,1
    </select>
+   
+   <!-- 테마 체험 등록 -->
+   <insert id="insertThemeExperience" parameterType="Map">
+		INSERT INTO theme_small_experience(theme_small_id, experience_id, create_date, update_date)
+		VALUES((SELECT theme_small_id FROM theme_small WHERE theme_small_name = #{theme}), #{experienceId}, NOW(), NOW())
+   </insert>
 </mapper>

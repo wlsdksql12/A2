@@ -219,4 +219,10 @@
 			ORDER BY create_date DESC
 			LIMIT 0,1
 	</select>
+	
+	<!-- 테마 호텔 등록 -->
+   <insert id="insertThemeHotel" parameterType="Map">
+		INSERT INTO theme_small_hotel(theme_small_id, hotel_id, create_date, update_date)
+		VALUES((SELECT theme_small_id FROM theme_small WHERE theme_small_name = #{theme}), #{hotelId}, NOW(), NOW())
+   </insert>
 </mapper>

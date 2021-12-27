@@ -108,6 +108,13 @@ public class HotService {
 		hotMapper.insertRoomFilter(roomFilter);
 	}
 	
+	// 테마 호텔 등록
+	public void insertThemeHotel(int hotelId, String theme) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("theme", theme);
+		map.put("hotelId", hotelId);
+		hotMapper.insertThemeHotel(map);
+	}
 }
 
 

@@ -41,6 +41,14 @@
 						<label for="exampleTextarea1">호텔 소개</label>
 						<textarea class="form-control" name="hotelContent" rows="10"></textarea>
 					</div>
+					<div class="form-group">테마 선택
+               			<select name="theme">
+               				<option value="">테마 선택</option>
+               				<c:forEach items="${selectThemeSmallList}" var="themeSmall">
+               					<option value="${themeSmall.themeSmallName}">${themeSmall.themeSmallName}</option>
+               				</c:forEach>
+               			</select>
+               		</div>
 					<!-- 해시태그 추가 -->
 					<hr>
 					<div class="form-group">태그 입력
