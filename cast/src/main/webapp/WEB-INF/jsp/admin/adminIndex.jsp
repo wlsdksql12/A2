@@ -106,7 +106,7 @@
                     </div>
                   </div>
                    <div class="mt-0 mb-0 text-muted text-xs">
-                        <i>총</i><span class="text-success mr-2">${TotalCeo}</span>
+                        <i>총</i><span class="mx-2 text-body">${TotalCeo}</span>
                         <span>명의 사업자</span>
                   </div>
                 </div>
@@ -127,7 +127,7 @@
                     </div>
                   </div>
                   <div class="mt-0 mb-0 text-muted text-xs">
-                        <i>총</i><span class="text-success mr-2">${TotalTraveler}</span>
+                        <i>총</i><span class="mx-2 text-body">${TotalTraveler}</span>
                         <span>명의 여행작가</span>
                   </div>
                 </div>
@@ -148,7 +148,7 @@
                     </div>
                   </div>
                   <div class="mt-0 mb-0 text-muted text-xs">
-                        <i>총</i><span class="text-success mr-2">${TotalCustomer}</span>
+                        <i>총</i><span class="mx-2 text-body">${TotalCustomer}</span>
                         <span>명의 회원</span>
                   </div>
                 </div>
