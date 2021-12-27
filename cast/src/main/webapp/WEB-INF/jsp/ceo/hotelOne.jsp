@@ -46,13 +46,12 @@
 					<p class="card-description">숙박 장소 
 					</p>
 					
-					<!-- 방 리스트 -->
-					
+					<!-- 방 리스트 -->	
 					<table class="table table-bordered">
 					<thead>
 						<tr>
-							<th>방이름</th>
-							<th>방 개수</th>
+							<th>객실 이름</th>
+							<th>객실 개수</th>
 							<th>시작날짜</th>
 							<th>종료날짜</th>
 					</tr>
@@ -103,7 +102,7 @@
 				</div>
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				<a href="/ceo/updateExperience?experienceId=${hotel.hotelId}" class="btn btn-inverse-warning">수정</a> &emsp;
+				<a href="/ceo/updateHotel?hotelId=${hotel.hotelId}" class="btn btn-inverse-warning">수정</a> &emsp;
 				</div>
 				<br>
 			</div>

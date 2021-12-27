@@ -35,6 +35,9 @@ public interface HotMapper {
 	// 호텔 상세보기
 	Hotel selectHotelOne(int hotelId);
 	
+	// 호텔 수정
+	int updateHotel(Hotel hotel);
+	
 	// room_bedroom 추가
 	int insertRoomBedroom(RoomBedroom roomBedroom);
 	

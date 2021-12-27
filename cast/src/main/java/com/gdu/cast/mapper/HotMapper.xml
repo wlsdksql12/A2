@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.HotMapper">
+	<!-- hotel 상세보기 : hotel & address 조인 -->
 	<resultMap type="com.gdu.cast.vo.Hotel" id="resultHotel">
 		<result column="hotel_id" property="hotelId" />
 		<result column="ceo_id" property="ceoId" />
@@ -33,6 +34,7 @@
 		</association>
 	</resultMap>
 	
+	<!-- room 상세보기 : room & roomBedroom & roomConvenience & roomFilter 조인 -->
 	<resultMap type="com.gdu.cast.vo.Room" id="resultRoom">
 		<result column="room_id" property="roomId" />
 		<result column="hotel_id" property="hotelId" />
@@ -75,8 +77,6 @@
 			<result column="update_date" property="updateDate" />
 		</association>
 	</resultMap>
-	
-	
 	
 	<!-- 호텔 추가 -->
 	<insert id="insertHotel" parameterType="com.gdu.cast.vo.Hotel">
@@ -193,6 +193,17 @@
 		ON a.address_id = h.address_id
 		WHERE hotel_id = #{hotelId}
 	</select>
+	
+	<!-- 호텔 수정 -->
+	<update id="updateHotel" parameterType="com.gdu.cast.vo.Hotel">
+		UPDATE address a INNER JOIN hotel h
+		ON a.address_id = h.address_id
+		SET 
+			h.hotel_name = #{hotelName},
+			h.hotel_content = #{hotelContent},
+			update_date = NOW()
+		WHERE hotel_id = #{hotelId}
+	</update>
 	
 	<!-- room_bedroom 추가 -->
 	<insert id="insertRoomBedroom" parameterType="com.gdu.cast.vo.RoomBedroom">

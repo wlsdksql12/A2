@@ -46,9 +46,13 @@
 					<h4><i class="fas fa-bath fa-2x"></i>&emsp;욕실 수 : ${room.roomBedroom.bathroomCount}</h4>
 
 					<br><hr><br>
-					
+				
+					<!-- c:if문 사용해서 변경예정 -->		
+					<c:if test="${room.roomFilter.internet eq 'Y'}">
+					<i class="fas fa-bath fa-2x"></i>
+					</c:if>
 					<p class="card-description">객실 편의시설</p>
-
+			
 				
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">

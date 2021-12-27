@@ -144,6 +144,20 @@ public class HotController {
 		return "/ceo/hotelOne";
 	}
 	
+	// 호텔 수정
+	@GetMapping("/ceo/updateHotel")
+	public String updateHotel(Model model, int hotelId) {
+		Hotel hotel = hotService.selectHotelOne(hotelId);
+		model.addAttribute("hotel", hotel);
+		return "/ceo/updateHotel";
+	}
+	@PostMapping("/ceo/updateHotel")
+	public String updateHotel(Hotel hotel) {
+		hotService.updateHotel(hotel);
+		log.debug("hotel" + hotel.toString());
+		return "redirect:/ceo/hotelOne?hotelId="+hotel.getHotelId();
+	}
+	
 	// room_bedroom 추가
 	@GetMapping("/ceo/insertRoomBedroom")
 	public String insertRoomBedroom(Model model, RoomBedroom roomBedroom, Room room) {

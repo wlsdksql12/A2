@@ -1,8 +1,6 @@
 package com.gdu.cast.controller;
 
-import java.sql.Array;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,8 +18,6 @@ import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
-import com.gdu.cast.vo.ExperienceSelect;
-import com.gdu.cast.vo.ThemeSmall;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -123,7 +119,7 @@ public class ExperienceController {
       return "/ceo/experienceOne";
    }
    
-   //체험 수정
+   // 체험 수정
    @GetMapping("/ceo/updateExperience")
    public String updateExperience(Model model, int experienceId) {
 	   Experience experience = experienceService.selectExperienceOne(experienceId);

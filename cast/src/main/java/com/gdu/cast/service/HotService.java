@@ -16,6 +16,9 @@ import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
 import com.gdu.cast.vo.RoomFilter;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional
 public class HotService {
@@ -91,6 +94,12 @@ public class HotService {
 		Hotel hotel = hotMapper.selectHotelOne(hotelId);
 		
 		return hotel;
+	}
+	
+	// 호텔 수정하기
+	public void updateHotel(Hotel hotel) {
+		log.debug(hotel.toString());
+		hotMapper.updateHotel(hotel);
 	}
 	
 	// room_bedroom 추가
