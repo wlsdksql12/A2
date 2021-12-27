@@ -142,15 +142,15 @@
                    <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="/removeTraveler?travelerId=${loginTravelerId}">
-                      회원탈퇴
+                    <a class="w-full" href="/modifyTravelerPw?travelerId=${loginTravelerId}">
+                      비밀번호 변경
                     </a>
                   </li>
-                  <li
+                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="create-account">
-                      수정
+                    <a class="w-full" href="/removeTraveler?travelerId=${loginTravelerId}">
+                      회원탈퇴
                     </a>
                   </li>
                 </ul>

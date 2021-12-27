@@ -11,11 +11,14 @@ import com.gdu.cast.vo.Traveler;
 @Mapper
 public interface TravelerMapper {
 	
+	// 여행작가 비밀번호 변경
+	int updateTravelerPw(String travelerId, String travelerPw, String newTravelerPw);
+	
 	// 회원 탈퇴 한 아이디의 중복값
-	int selectDeleteTravelerId(String TravelerId);
+	int selectDeleteTravelerId(String travelerId);
 	
 	// 회원 가입 시 아이디 중복 검사
-	String selectTravelerId(String TravelerId);
+	String selectTravelerId(String travelerId);
 	
 	// 회원 탈퇴(delete_id 테이블에 id 값 입력)
 	void insertDeleteTravelerId(String travelerId);

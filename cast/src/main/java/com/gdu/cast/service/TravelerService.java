@@ -21,9 +21,17 @@ public class TravelerService {
 	@Autowired
 	TravelerMapper travelerMapper;
 	
+	// 여행작가 비밀번호 변경
+	public int modifyTravelerPw(String travelerId, String travelerPw, String newTravelerPw) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerPw);
+		log.debug("★★★★Hyun★★★★"+newTravelerPw);
+		return travelerMapper.updateTravelerPw(travelerId, travelerPw, newTravelerPw);
+	}
+	
 	// 회원 탈퇴 한 아이디의 중복값
 	public int getSelectDeleteTravelerId(String travelerId) {
-		log.debug(travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		int row = travelerMapper.selectDeleteTravelerId(travelerId);
 		return row;
 	}

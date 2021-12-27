@@ -6,7 +6,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>[여행작가]마이 페이지</title>
+    <title>[여행작가]비밀번호 수정</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -142,15 +142,15 @@
                    <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="/removeTraveler?travelerId=${loginTravelerId}">
-                      회원탈퇴
+                    <a class="w-full" href="/modifyTravelerPw?travelerId=${loginTravelerId}">
+                      비밀번호 변경
                     </a>
                   </li>
-                  <li
+                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="create-account">
-                      수정
+                    <a class="w-full" href="/removeTraveler?travelerId=${loginTravelerId}">
+                      회원탈퇴
                     </a>
                   </li>
                 </ul>
@@ -841,67 +841,49 @@
           </div>
         </header>
         <main class="h-full overflow-y-auto">
-          <div class="container px-6 mx-auto grid">
-            <h2
-              class="my-6 text-4xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              프로필
-            </h2>
-	            <div class="w-full">
-	              <label class="block text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">이름</span>
-	                <input
-	                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text"
-	                  name="travelerName" value="${traveler.travelerName}" readonly="readonly" required
-	                />
-	              </label>
-	              <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">전화번호</span>
-	                <input
-	                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text"
-	                  name="travelerPhoneNum" value="${traveler.travelerPhoneNum}" readonly="readonly" required
-	                />
-	              </label>
-	              <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">이메일</span>
-	                <input
-	                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text"
-	                  name="travelerEmail" value="${traveler.travelerEmail}" readonly="readonly"required
-	                />
-	              </label>
-	               <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">라이센스</span>
-	                <input
-	                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text"
-	                  name=travelerLicense value="${traveler.travelerLicense}" readonly="readonly" required
-	                />
-	              </label>
-	               <label class="block mt-4 text-sm">
-	                <span class="text-gray-700 dark:text-gray-400">경력</span>
-	                <input
-	                  class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-	                  type="text"
-	                  value="${traveler.travelerCareer}" readonly="readonly" required
-	                />
-	              </label>
-	              <a
-	                class="block px-10 py-4 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-	                href="./login.html"
-	              >
-	                이전
-	              </a>
-	              <a
-	                class="block px-10 py-4 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-	                href="./login.html"
-	              >
-	                회원정보 변경
-	              </a>
-	            </div>
-	          </div>
+        	<form method="post" action="/modifyTravelerPw" novalidate>
+		          <div class="container px-10 mx-auto">
+		            <h2
+		              class="my-6 text-4xl font-semibold text-gray-700 dark:text-gray-200"
+		            >
+		              	비밀번호 수정
+		            </h2>
+						<div class="w-full">
+							<label class="block text-sm">
+							  <span class="text-gray-700 dark:text-gray-400"></span>
+							  <input
+							    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+							    type="hidden"
+							    name="travelerId" value="${loginTravelerId}" readonly="readonly" required
+							  />
+							</label>
+							<label class="block text-sm">
+							  <span class="text-gray-700 dark:text-gray-400">현재 비밀번호</span>
+							  <input
+							    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+							    type="password"
+							    name="travelerPw" required
+							  />
+							</label>
+							<label class="block text-sm">
+							  <span class="text-gray-700 dark:text-gray-400">새로운 비밀번호</span>
+							  <input
+							    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+							    type="password"
+							    name="newTravelerPw" required
+							  />
+							</label>
+						</div>
+		              	<input type="button" class="px-3 py-3 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+		              	value="이전" 
+		              	onclick="history.back(-1)">
+		              &nbsp;
+		               <button
+		               	 class="px-3 py-3 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">		               
+		                  수정
+                	</button>
+			      </div>
+	      	</form>
         </main>
       </div>
     </div>

@@ -29,6 +29,22 @@ public class TravelerController {
 	@Autowired
 	JoinRequestService joinRequestService;
 	
+	// 여행작가 비밀번호 변경
+	@GetMapping("/modifyTravelerPw")
+	public String modifyTravelerPw(Model model, Traveler traveler) {
+		return "traveler/modifyTravelerPw";
+	}
+	
+	// 여행작가 비밀번호 변경
+	@PostMapping("/modifyTravelerPw")
+	public String modifyTravelerPw(String travelerId, String travelerPw, String newTravelerPw) {
+		travelerService.modifyTravelerPw(travelerId, travelerPw, newTravelerPw);
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerPw);
+		log.debug("★★★★Hyun★★★★"+newTravelerPw);
+		return "redirect:/travelerIndex?travelerId="+travelerId;
+	}
+	
 	// 여행작가 회원 탈퇴
 	@GetMapping("/removeTraveler")
 	public String getRemoveTraveler(Traveler traveler) {
@@ -100,11 +116,6 @@ public class TravelerController {
 	@GetMapping("/button")
 	public String button() {
 		return "traveler/button";
-	}
-	// 여행작가 메인 수정 페이지
-	@GetMapping("/create-account")
-	public String createaccount() {
-		return "traveler/create-account";
 	}
 	
 	// 여행작가 로그아웃
