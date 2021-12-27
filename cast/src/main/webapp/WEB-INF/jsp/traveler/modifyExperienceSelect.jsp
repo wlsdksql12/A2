@@ -82,12 +82,13 @@
     </ul>
     <form method="post" action="/modifyExperienceSelect">
 	   	<div style="text-align:center">
+	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="travelerId" value="${experienceSelect.travelerId}" readonly="readonly">
 	   		<table class="table mb-0" >
 				<thead class="thead-light">
 					<tr>
 						<th width="10%">번호</th>
 						<th width="60%">제목</th>
-						<th width="10%">아이디</th>
+						<th width="10%">작성자</th>
 						<th width="20%">작성날짜</th>
 					</tr>
 				</thead>
@@ -95,7 +96,7 @@
 					<tr style="text-align:center">
 						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name= "experienceSelectId" value="${experienceSelect.experienceSelectId}" readonly="readonly"></td>
 						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="experienceSelectTitle" value="${experienceSelect.experienceSelectTitle}"></td>
-						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="travelerId" value="${experienceSelect.travelerId}" readonly="readonly"></td>
+						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name= "travelerName" value="${experienceSelect.traveler.travelerName}" readonly="readonly"></td>
 						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="createDate" value="${experienceSelect.createDate.substring(0,10)}" readonly="readonly"></td>
 					</tr>
 					<tr>

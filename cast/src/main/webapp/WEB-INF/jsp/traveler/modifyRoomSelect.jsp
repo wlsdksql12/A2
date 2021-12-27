@@ -82,12 +82,13 @@
     </ul>
     <form method="post" action="/modifyRoomSelect">
 	   	<div style="text-align:center">
+	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="travelerId" value="${roomSelect.travelerId}" readonly="readonly">
 	   		<table class="table mb-0" >
 				<thead class="thead-light">
 					<tr>
 						<th width="10%">번호</th>
 						<th width="60%">제목</th>
-						<th width="10%">아이디</th>
+						<th width="10%">작성자</th>
 						<th width="20%">작성날짜</th>
 					</tr>
 				</thead>
@@ -95,13 +96,13 @@
 					<tr style="text-align:center">
 						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name= "roomSelectId" value="${roomSelect.roomSelectId}" readonly="readonly"></td>
 						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="roomSelectTitle" value="${roomSelect.roomSelectTitle}"></td>
-						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="travelerId" value="${roomSelect.travelerId}" readonly="readonly"></td>
+						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name= "travelerName" value="${roomSelect.traveler.travelerName}" readonly="readonly"></td>
 						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="createDate" value="${roomSelect.createDate.substring(0,10)}" readonly="readonly"></td>
 					</tr>
 					<tr>
 					<td colspan="5"><textarea name="roomSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%; outline: none;" rows="10">${roomSelect.roomSelectContent}</textarea></td>		
 					</tr>
-			</table> 
+			</table>
 			 <p></p>
 			<div style="text-align:center;">
 				<input type="button" class="btn btn-primary" value="이전" onclick="history.back(-1)">
