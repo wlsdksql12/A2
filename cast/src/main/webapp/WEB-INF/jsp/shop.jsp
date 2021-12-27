@@ -190,7 +190,7 @@
 	                                     	<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
 	                                     	</c:when> 
 	                                     	<c:otherwise>
-	                                     	<li><a class="btn btn-success text-white mt-2" href="/experienceWishList"><i class="fas fa-cart-plus"></i></a></li>
+	                                     	<li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
 	                                     	</c:otherwise>
 	                                        
 	                                    </c:choose>
