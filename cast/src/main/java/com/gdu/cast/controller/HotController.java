@@ -197,6 +197,23 @@ public class HotController {
 		
 		return "redirect:/ceo/hotelList";
 	}
+	
+	// 방 상세보기
+	@GetMapping("/ceo/roomOne")
+	public String roomOne(Model model, Room room, RoomFilter roomFilter, RoomConvenience roomConvenience, RoomBedroom roomBedroom) {
+		room = hotService.selectRoomOne(room.getRoomId());
+		
+		model.addAttribute("room", room);
+		model.addAttribute("roomFilter", roomFilter);
+		model.addAttribute("roomConvenience", roomConvenience);
+		model.addAttribute("roomBedroom", roomBedroom);
+		
+		System.out.println("@@@@HotController" + model);
+		
+		return "/ceo/roomOne";
+	}
+
+	
 }
 
 

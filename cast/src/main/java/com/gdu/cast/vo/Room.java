@@ -15,4 +15,8 @@ public class Room {
 	private int roomPrice;
 	private String createDate;
 	private String updateDate;
+	
+	private RoomBedroom roomBedroom;
+	private RoomConvenience roomConvenience;
+	private RoomFilter roomFilter;
 }

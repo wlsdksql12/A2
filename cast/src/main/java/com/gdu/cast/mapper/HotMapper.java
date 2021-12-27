@@ -53,4 +53,6 @@ public interface HotMapper {
 	// 테마 호텔 등록
 	void insertThemeHotel(Map<String, Object> map);
 	
+	// 방 상세보기
+	Room selectRoomOne(int roomId);
 }

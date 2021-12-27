@@ -48,7 +48,7 @@
 					
 					<!-- 방 리스트 -->
 					
-					<table class="table">
+					<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th>방이름</th>
@@ -61,7 +61,7 @@
 					<c:forEach items="${roomList}" var="list">
 					
 					<tr>
-						<td>${list.roomName}</td>
+						<td><a href="/ceo/roomOne?roomId=${list.roomId}">${list.roomName}</a></td>
 						<td>${list.roomCount}</td>
 						<td>${list.roomStartdate}</td>
 						<td>${list.roomEnddate}</td>
@@ -103,23 +103,11 @@
 				</div>
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				<a href="/ceo/updateExperience?experienceId=${hotel.hotelId}" class="btn btn-inverse-warning">수정</a>
-				<a href="/ceo/deleteExperience?experienceId=${hotel.hotelId}&ceoId=${loginCeoId}" id="insertBtn" class="btn btn-inverse-danger">삭제</a>&emsp;
+				<a href="/ceo/updateExperience?experienceId=${hotel.hotelId}" class="btn btn-inverse-warning">수정</a> &emsp;
 				</div>
 				<br>
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript">
-
-		window.history.forward();
-
-		function noBack() {
-
-			window.history.forward();
-
-		}
-
-         </script>
 </body>
 </html>

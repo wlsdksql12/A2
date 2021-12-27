@@ -115,6 +115,14 @@ public class HotService {
 		map.put("hotelId", hotelId);
 		hotMapper.insertThemeHotel(map);
 	}
+	
+	// 방 상세보기
+	public Room selectRoomOne(int roomId) {
+		Room room = hotMapper.selectRoomOne(roomId);
+			
+		return room;
+	}
+	
 }
 
 

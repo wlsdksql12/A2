@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.HotMapper">
-
 	<resultMap type="com.gdu.cast.vo.Hotel" id="resultHotel">
 		<result column="hotel_id" property="hotelId" />
 		<result column="ceo_id" property="ceoId" />
@@ -19,6 +18,61 @@
 			<result column="extra_address" property="extraAddress" />
 			<result column="lat" property="lat" />
 			<result column="lng" property="lng" />
+		</association>
+		<association property="room" javaType="com.gdu.cast.vo.Room">
+			<result column="room_id" property="roomId" />
+			<result column="hotel_id" property="hotelId" />
+			<result column="room_name" property="roomName" />
+			<result column="room_count" property="roomCount" />
+			<result column="room_startdate" property="roomStartdate" />
+			<result column="room_enddate" property="roomEnddate" />
+			<result column="room_price" property="roomPrice" />
+			<result column="room_content" property="roomContent" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+	</resultMap>
+	
+	<resultMap type="com.gdu.cast.vo.Room" id="resultRoom">
+		<result column="room_id" property="roomId" />
+		<result column="hotel_id" property="hotelId" />
+		<result column="room_name" property="roomName" />
+		<result column="room_content" property="roomContent" />
+		<result column="room_startdate" property="roomStartdate" />
+		<result column="room_enddate" property="roomEnddate" />
+		<result column="room_price" property="roomPrice" />
+		<result column="create_date" property="createDate" />
+		<result column="update_date" property="updateDate" />
+		<result column="room_count" property="roomCount" />
+		<association property="roomBedroom" javaType="com.gdu.cast.vo.RoomBedroom">
+			<result column="room_id" property="roomId" />
+			<result column="bed_count" property="bedCount" />
+			<result column="bedroom_count" property="bedroomCount" />
+			<result column="bathroom_count" property="bathroomCount" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+		<association property="roomConvenience" javaType="com.gdu.cast.vo.RoomConvenience">
+			<result column="room_id" property="roomId" />
+			<result column="stairs_threshold" property="stairsThreshold" />
+			<result column="toilet_handle" property="toiletHandle" />
+			<result column="shower_stall_handle" property="showerStallHandle" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
+		</association>
+		<association property="roomFilter" javaType="com.gdu.cast.vo.RoomFilter">
+			<result column="room_id" property="roomId" />
+			<result column="intetnet" property="internet" />
+			<result column="kitchen" property="kitchen" />
+			<result column="boiler" property="boiler" />
+			<result column="aircon" property="aircon" />
+			<result column="washing_machine" property="washingMachine" />
+			<result column="breakfast" property="breakfast" />
+			<result column="tv" property="tv" />
+			<result column="hairdryer" property="hairdryer" />
+			<result column="bidet" property="bidet" />
+			<result column="create_date" property="createDate" />
+			<result column="update_date" property="updateDate" />
 		</association>
 	</resultMap>
 	
@@ -116,6 +170,7 @@
 	<!-- 방 리스트 -->
 	<select id="selectRoomList" parameterType="Map" resultType="com.gdu.cast.vo.Room">
 		SELECT 
+			room_id roomId,
 			room_name roomName,
 			room_count roomCount,
 			room_startdate roomStartdate,
@@ -220,9 +275,13 @@
 			LIMIT 0,1
 	</select>
 	
-	<!-- 테마 호텔 등록 -->
-   <insert id="insertThemeHotel" parameterType="Map">
-		INSERT INTO theme_small_hotel(theme_small_id, hotel_id, create_date, update_date)
-		VALUES((SELECT theme_small_id FROM theme_small WHERE theme_small_name = #{theme}), #{hotelId}, NOW(), NOW())
-   </insert>
+	<!-- 방 상세보기 -->
+	<select id="selectRoomOne" parameterType="int" resultMap="resultRoom">
+		SELECT r.*, rb.*, rc.*, rf.*
+		FROM room r INNER JOIN room_bedroom rb ON r.room_id = rb.room_id
+		INNER JOIN room_convenience rc ON r.room_id = rc.room_id
+		INNER JOIN room_filter rf ON . r.room_id = rf.room_id
+		WHERE r.room_id = ${roomId}
+	</select>
+	
 </mapper>
