@@ -105,7 +105,7 @@
 								class="feather icon-file-text"></i></span><span class="pcoded-mtext">Q&A목록</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>추천댓글</label></li>
-					<li class="nav-item"><a href="chart-apex.html"
+					<li class="nav-item"><a href="/customerExperienceSelectCommentList"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-clock"></i></span><span class="pcoded-mtext">체험추천댓글</span></a>
 					</li>
@@ -299,11 +299,11 @@
 								<div class="card-body">
 									<div class="row align-items-center">
 										<div class="col-8">
-											<h4 class="text-c-yellow">${selectPaymentCount}</h4>
+											<h4 class="text-c-yellow">${selectPaymentCount}원</h4>
 											<h6 class="text-muted m-b-0">총 결제금액</h6>
 										</div>
 										<div class="col-4 text-right">
-											<i class="feather icon-bar-chart-2 f-28"></i>
+											<i class="feather icon-credit-card f-28"></i>
 										</div>
 									</div>
 								</div>
@@ -328,7 +328,7 @@
 											<h6 class="text-muted m-b-0">총 예약 수</h6>
 										</div>
 										<div class="col-4 text-right">
-											<i class="feather icon-file-text f-28"></i>
+											<i class="feather icon-monitor f-28"></i>
 										</div>
 									</div>
 								</div>
@@ -353,7 +353,7 @@
 											<h6 class="text-muted m-b-0">추천 댓글 수</h6>
 										</div>
 										<div class="col-4 text-right">
-											<i class="feather icon-calendar f-28"></i>
+											<i class="feather icon-clock f-28"></i>
 										</div>
 									</div>
 								</div>
@@ -378,7 +378,7 @@
 											<h6 class="text-muted m-b-0">상품 후기 수</h6>
 										</div>
 										<div class="col-4 text-right">
-											<i class="feather icon-thumbs-down f-28"></i>
+											<i class="feather icon-thumbs-up f-28"></i>
 										</div>
 									</div>
 								</div>
