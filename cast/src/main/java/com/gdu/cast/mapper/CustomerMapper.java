@@ -9,6 +9,7 @@ import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Delete_Id;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Qna;
 
@@ -58,4 +59,8 @@ public interface CustomerMapper {
 	int selectCustomerPaymentCount(String CustomerId);
 	// 고객이 예약한 총 횟수
 	int selectCustomerOrderCount(String customerId);
+	// 고객 댓글 리스트 출력
+	List<ExperienceSelectComment> CustomerExperienceSelectCommentList(Map<String, Object> Map);
+	// 고객 댓글 페이징
+	int CustomerselectCommentTotalCount(String customerId);
 }

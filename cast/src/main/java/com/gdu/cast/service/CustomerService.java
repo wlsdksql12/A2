@@ -15,6 +15,7 @@ import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Customer_Login;
 import com.gdu.cast.vo.Delete_Id;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.Qna;
 import com.gdu.cast.vo.QnaComment;
@@ -148,17 +149,20 @@ public class CustomerService {
 	   public int getupdateActiveZeroDate(String customerId) {
 		   return customerMapper.updateActiveZeroDate(customerId);
 	   }
+	   
 	   // 회원탈퇴 아이디 중복
 	   public int getselectDeleteId(String customerId) {
 		   System.out.println(customerMapper.selectDeleteId(customerId) + "customerMapper.selectDeleteId()");
 		   int result = customerMapper.selectDeleteId(customerId);
 		   return result;
 	   }
+	   
 	   // 고객페이지에 등록된 5개의 체험 리스트 출력
 	   public  List<Experience> getselectCustomerIndexExperienceList(){
 		
 		   return customerMapper.selectCustomerIndexExperienceList();
 	   }
+	   
 	   // 고객페이지에 등록된 5개의 숙소 리스트 출력
 	   public List<Hotel> getselectCustomerIndexHoelList(){
 		   return customerMapper.selectCustomerIndexHoelList();
@@ -170,14 +174,40 @@ public class CustomerService {
 		   System.out.println(customerMapper.selectCustomerCommentCount(customerId)+"@#!@#!@#!@#!@#!@#!@#!@#!@#!@#!testtestetestsetsetsetsetsetset");
 		   return hi;
 	   }
+	   
 	   // 고객이 결제한 총 금액
 	   public int getselectCustomerPaymentCount(String customerId) {
 		   int paymentCount = customerMapper.selectCustomerPaymentCount(customerId);
 		   return paymentCount;
 	   }
+	   
 	   // 고객이 예약한 총 횟수
 	   public int getselectCustomerOrderCount(String customerId) {
 		   int orderCount = customerMapper.selectCustomerOrderCount(customerId);
 		   return orderCount;
+	   }
+	   
+	   // 고객페이지 추천 댓글 페이지
+	   public Map<String, Object> getCustomerExperienceSelectCommentList(String customerId,int currentPage,int row_per_page){
+	   Map<String, Object> paramMap = new HashMap<>();
+		   
+		   int beginRow = (currentPage-1)*row_per_page;
+		   paramMap.put("customerId", customerId);
+		   paramMap.put("beginRow", beginRow); 
+		   paramMap.put("row_per_page", row_per_page);
+		
+		   List<ExperienceSelectComment> commentList = customerMapper.CustomerExperienceSelectCommentList(paramMap);
+		   
+			Map<String, Object> returnMap = new HashMap<>();
+			int lastPage = 0;
+			int totalCount = customerMapper.CustomerselectCommentTotalCount(customerId);
+			lastPage = totalCount / row_per_page;
+			if(totalCount%row_per_page != 0) {
+				lastPage += 1;
+			}
+			returnMap.put("commentList", commentList);
+			returnMap.put("lastPage", lastPage);
+			return returnMap;
+		   
 	   }
 }

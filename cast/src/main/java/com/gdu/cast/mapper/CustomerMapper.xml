@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.CustomerMapper">
+
+		<resultMap type="com.gdu.cast.vo.ExperienceSelectComment" id="resultExperienceComment">
+		<result column="experience_select_comment_id" property="experienceSelectCommentId"></result>
+		<result column="experience_select_content" property="experienceSelectContent"></result>
+		<result column="create_Date" property="createDate"></result>
+		<result column="update_Date" property="updateDate"></result>
+		<association property="experienceSelect" javaType="com.gdu.cast.vo.ExperienceSelect">
+			<result column="experience_select_id" property="experienceSelectId" />
+			<result column="traveler_id" property="travelerId" />
+			<result column="experience_select_title" property="experienceSelectTitle" />
+		</association>
+	</resultMap>
+
+
 	<!--  회원가입 -->
 	<insert id="insertCustomer" parameterType="com.gdu.cast.vo.Customer">
 	INSERT INTO customer(
@@ -26,6 +40,7 @@
 		now()	
 	)
 	</insert>
+	
 	<!-- 회원 가입 시 로그인기록 생성 -->	
 	<insert id="insertCustomerLogin" parameterType="com.gdu.cast.vo.Customer_Login">
 		INSERT INTO Customer_Login(
@@ -249,8 +264,30 @@
 	
 	</select>
 	
+	<!--  -->
+	<select id="CustomerExperienceSelectCommentList" parameterType="Map" resultMap="resultExperienceComment">
+		SELECT
+			esc.experience_select_comment_id,
+			es.experience_select_id,
+			es.traveler_id,
+			es.experience_select_title,
+			esc.experience_select_content,
+			esc.create_date,
+			esc.update_date
+		FROM experience_select_comment esc inner join experience_select es
+		on esc.experience_select_id = es.experience_select_id
+		where esc.customer_id = #{customerId}
+		ORDER BY esc.create_date DESC
+		LIMIT #{beginRow}, #{row_per_page}
+	</select>
 	
+		<!--  qnaList 페이징 -->
+	<select id="CustomerselectCommentTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM Experience_select_comment
+	WHERE customer_Id = #{customerId}
 	
+	</select>
 	
 	
 	

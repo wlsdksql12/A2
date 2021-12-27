@@ -3,6 +3,8 @@ package com.gdu.cast.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -147,9 +149,17 @@ public class CustomerIndexController {
 		
 	}
 	
-	
-	
-
+	@GetMapping("/customerExperienceSelectCommentList")
+	public String getcustomerSelectCommentList(Model model,HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		Map<String, Object> map = customerService.getCustomerExperienceSelectCommentList(customerId, currentPage, row_per_page);
+		
+		System.out.println(map.get("commentList") + "1227 test");
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("commentList",map.get("commentList"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		return "customer/customerExperienceComment";
+	}
 	
 	
 }

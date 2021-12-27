@@ -10,4 +10,5 @@ public class ExperienceSelectComment {
 	private String experienceSelectContent;
 	private String createDate;
 	private String updateDate;
+	private ExperienceSelect experienceSelect;
 }
