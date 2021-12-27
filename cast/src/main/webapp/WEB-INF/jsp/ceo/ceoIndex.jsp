@@ -108,16 +108,14 @@
                            <thead>
                               <tr>
                                  <th>호텔 이름</th>
-                                 <th>가격</th>
                                  <th>작성날짜</th>
                               </tr>
                            </thead>
                            <tbody>
-                              <c:forEach items="${experienceList}" var="experience">
+                              <c:forEach items="${hotelList}" var="hotel">
                                  <tr>
-                                    <td>${experience.experienceName}</td>
-                                    <td>${experience.ceoId}</td>
-                                    <td>${experience.createDate}</td>
+                                    <td>${hotel.hotelName}</td>
+                                    <td>${hotel.createDate}</td>
                                  </tr>
                               </c:forEach>
                            </tbody>

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gdu.cast.mapper.CeoMapper;
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.Hotel;
 
 @Service
 @Transactional
@@ -36,8 +37,12 @@ public class CeoService {
 	}
 	
 	// 사업자 메인페이지 체험리스트
-	public List<Experience> getselectExperienceIndex(String ceoId){
-		
+	public List<Experience> getselectExperienceIndex(String ceoId){	
 		return ceoMapper.selectExperienceIndex(ceoId);
+	}
+	
+	// 사업자 메인페이지 호텔리스트
+	public List<Hotel> getselectHotelIndex(String ceoId){
+		return ceoMapper.selectHotelIndex(ceoId);
 	}
 }

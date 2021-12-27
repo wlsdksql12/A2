@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.Hotel;
 
 @Controller
 public class LoginCeoController {
@@ -23,10 +24,15 @@ public class LoginCeoController {
 	@GetMapping("/ceo/ceoIndex")
 	public String ceoIndex(Model model, String ceoId) {
 		
+		// 메인페이지에 체험리스트
 		List<Experience> experienceList = ceoService.getselectExperienceIndex(ceoId);
 		model.addAttribute("experienceList",experienceList);
-		System.out.println("@@@@@@LoginCeoController" + model);
 		
+		// 메인페이지에 호텔리스트
+		List<Hotel> hotelList = ceoService.getselectHotelIndex(ceoId);
+		model.addAttribute("hotelList", hotelList);
+		
+		System.out.println("@@@@@@LoginCeoController" + model);
 		return "ceo/ceoIndex";
 	}
 	
