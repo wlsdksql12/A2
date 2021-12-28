@@ -9481,7 +9481,7 @@
 		 * should contain an array for each column to be sorted initially containing
 		 * the column's index and a direction string ('asc' or 'desc').
 		 *  @type array
-		 *  @default [[0,'asc']]
+		 *  @default [[0,'desc']]
 		 *
 		 *  @dtopt Option
 		 *  @name DataTable.defaults.order
@@ -9490,7 +9490,7 @@
 		 *    // Sort by 3rd column first, and then 4th column
 		 *    $(document).ready( function() {
 		 *      $('#example').dataTable( {
-		 *        "order": [[2,'asc'], [3,'desc']]
+		 *        "order": [[2,'desc'], [3,'asc']]
 		 *      } );
 		 *    } );
 		 *
@@ -9501,7 +9501,7 @@
 		 *      } );
 		 *    } );
 		 */
-		"aaSorting": [[0,'asc']],
+		"aaSorting": [[0,'desc']],
 	
 	
 		/**
