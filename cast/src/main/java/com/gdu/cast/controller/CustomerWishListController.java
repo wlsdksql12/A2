@@ -16,7 +16,12 @@ public class CustomerWishListController {
 	// shop 페이지에서 관심상품 등록
 	@GetMapping("/experienceWishList")
 	public String insertExperienceWishList(HttpSession session, int experienceId) {
+		
 		String customerId = (String) session.getAttribute("loginCustomerId");
+		// 비회원이라면 샵으로 이동.
+		if(customerId == null) {
+			return "redirect:/shop";
+		}
 		experienceWishListService.getinsertExperienceWishList(customerId, experienceId);
 		return "redirect:/shop";
 	}
