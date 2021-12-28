@@ -15,6 +15,28 @@
 			<result column="traveler_name" property="travelerName"></result>
 		</collection>
 	</resultMap>
+	
+	<!-- 여행작가 숙소 추천 사진 추가 -->
+	<insert id="insertRoomSelectImage" parameterType="com.gdu.cast.vo.RoomSelectImage">
+		INSERT INTO room_select_image(
+			room_select_image_id,
+			room_select_id,
+			image_size,
+			image_name,
+			craete_date,
+			update_date
+		) VALEUS (
+			#{roomSelectImageId},
+			#{roomSelectId},
+			#{imageSize},
+			#{imageName},
+			NOW(),
+			NOW()
+		)
+		<selectKey resultType="int" order="BEFORE" keyProperty="roomSelectImageId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
 
 	<!-- 여행작가 숙소 추천 추가 -->
 	<insert id="insertRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">

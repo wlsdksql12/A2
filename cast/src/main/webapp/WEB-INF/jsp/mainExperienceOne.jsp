@@ -146,6 +146,13 @@
 					    map: map // 마커를 표시할 지도 객체
 					});
 				    </script>
+				    <br> 
+					<p class="card-description">여행작가 후기</p>
+					<div>
+						<c:if test="${loginTravelerId != null}">
+								<a href="/addExperienceSelect?experienceId=${experience.experienceId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">추가</a>
+						</c:if>
+					</div>
 				</div>
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">

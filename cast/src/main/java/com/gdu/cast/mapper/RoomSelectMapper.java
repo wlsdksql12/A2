@@ -6,11 +6,15 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.RoomSelectImage;
 
 @Mapper
 public interface RoomSelectMapper {
 	
-	// 숙소 추천 추가
+	// 여행작가 숙소 이미지 추가
+	void insertRoomSelectImage(RoomSelectImage roomSelectImage);
+	
+	// 여행작가 숙소 추천 추가
 	void insertRoomSelect(RoomSelect roomSelect);
 	
 	// 자신이 등록한 숙소 추천 리스트

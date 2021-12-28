@@ -15,10 +15,35 @@
 			<result column="traveler_name" property="travelerName"></result>
 		</collection>
 	</resultMap>
+	
+	<!-- 여행작가 체험 추천 사진 추가 -->
+	<insert id="insertExperienceSelectImage" parameterType="com.gdu.cast.vo.ExperienceSelectImage">
+		INSERT INTO experience_select_image(
+			experience_select_image_id,
+			experience_select_id,
+			image_size,
+			image_ext,
+			image_name,
+			craete_date,
+			update_date
+		) VALEUS (
+			#{experienceSelectImageId},
+			#{experienceSelectId},
+			#{imageSize},
+			#{imageExt},
+			#{imageName},
+			NOW(),
+			NOW()
+		)
+		<selectKey resultType="int" order="BEFORE" keyProperty="roomSelectImageId">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
 
 	<!-- 여행작가 체험 추천 추가 -->
 	<insert id="insertExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		INSERT INTO experience_select(
+			experience_select_id,
 			traveler_id,
 			experience_id,
 			experience_select_title,
@@ -26,6 +51,7 @@
 			create_date,
 			update_date
 		) VALUES (
+			#{experienceSelectId},
 			#{travelerId},
 			#{experienceId},
 			#{experienceSelectTitle},

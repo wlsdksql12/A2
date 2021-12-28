@@ -32,6 +32,7 @@ public class TravelerController {
 	// 여행작가 비밀번호 변경
 	@GetMapping("/modifyTravelerPw")
 	public String modifyTravelerPw(Model model, Traveler traveler) {
+		log.debug("★★★★Hyun★★★★"+traveler.toString());
 		return "traveler/modifyTravelerPw";
 	}
 	
