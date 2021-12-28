@@ -146,8 +146,11 @@
 					    map: map // 마커를 표시할 지도 객체
 					});
 				    </script>
-				    <br> 
-					<p class="card-description">여행작가 후기</p>
+				    <br>
+					<p class="card-description">여행작가 추천</p>
+					<hr>
+						<a href="/mainExperienceSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
+					<p></p><p></p>
 					<div>
 						<c:if test="${loginTravelerId != null}">
 								<a href="/addExperienceSelect?experienceId=${experience.experienceId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">추가</a>
