@@ -245,7 +245,7 @@
 		ON themeSmallExperience.experience_id = experience.experience_id
 		INNER JOIN theme_small themeSmall
 		ON themeSmallExperience.theme_small_id = themeSmall.theme_small_id
-		JOIN keyword k
+		LEFT JOIN keyword k
 		ON experience.experience_id = k.hotel_experience_id
 		<where>
 			<choose>
