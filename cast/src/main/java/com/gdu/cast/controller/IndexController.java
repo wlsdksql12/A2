@@ -15,9 +15,11 @@ import com.gdu.cast.service.ExhibitionService;
 import com.gdu.cast.service.ExperienceWishListService;
 import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.service.MainSelectService;
+import com.gdu.cast.service.RoomWishListService;
 import com.gdu.cast.vo.Exhibition;
 import com.gdu.cast.vo.ExperienceWishList;
 import com.gdu.cast.vo.Keyword;
+import com.gdu.cast.vo.RoomWishList;
 import com.sun.tools.javac.util.Log;
 
 @Controller
@@ -26,6 +28,7 @@ public class IndexController {
 	@Autowired MainSelectService mainSelectService;
 	@Autowired KeywordService keywordService;
 	@Autowired ExperienceWishListService experienceWishListService;
+	@Autowired RoomWishListService roomWishListService;
 	
 	// localhost로 주소검색해도 "index" Controller가 실행이 되도록 함
 	@GetMapping(value={"/","/index"})
@@ -52,7 +55,7 @@ public class IndexController {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		
 		List<ExperienceWishList> experienceId = experienceWishListService.getselectExperienceWishList(customerId);
-		
+		List<RoomWishList> roomId = roomWishListService.getselectRoomWishList(customerId);
 		
 		
 		System.out.println(experienceId.toString() + "experienceId");
@@ -77,6 +80,7 @@ public class IndexController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+themeSmallHotelListmap.get("selectThemeShopHotelList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁselectThemeShopHotelList");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+shopCategory+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁshopCategory");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+searchKeyword+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁsearchKeyword");
+		model.addAttribute("roomWishList" , roomId);
 		model.addAttribute("wishList", experienceId);
 		model.addAttribute("selectThemeList", map.get("selectThemeList"));
 		model.addAttribute("selectThemeSmallList", ThemeSmallmap.get("selectThemeSmallList"));

@@ -244,7 +244,26 @@
 	                                    <ul class="list-unstyled">
 	                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
+	                                        <c:if test="${roomWishList != null}">
+	                                   <c:forEach items="${roomWishList}" var = "roomWishList">
+	            
+											<c:if test="${(roomWishList.hotelId == ShopHotelList.hotel.hotelId)}">
+	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	                                     	</c:if>
+	                                     	
+	                                     	<c:if test="${(loginCustomerId eq null)}">
+	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	                                     	</c:if> 
+	                                     	
+	                                     	<c:if test="${roomWishList.hotelId != ShopHotelList.hotel.hotelId}">
+											<li><a class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
+											</c:if>
+	                                        
+	                                    </c:forEach>
+	                                    </c:if>
+	                                    <c:if test="${empty roomWishList}">
+	                                    <li><a class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
+	                                    </c:if>
 	                                    </ul>
 	                                </div>
 	                            </div>

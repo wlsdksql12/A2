@@ -39,4 +39,11 @@
 		FROM experience_wishlist
 		where customer_id = #{customerId}
 	</delete>
+	
+	<!--  숙소 관심상품 삭제 -->
+		<delete id="deleteCustomerRoomWishList" parameterType="com.gdu.cast.vo.RoomWishList">
+		DELETE
+		FROM room_wishlist
+		where customer_id = #{customerId}
+	</delete>
 </mapper>

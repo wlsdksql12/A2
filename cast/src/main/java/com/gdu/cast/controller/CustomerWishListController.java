@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceWishListService;
+import com.gdu.cast.service.RoomWishListService;
 
 @Controller
 public class CustomerWishListController {
 	@Autowired ExperienceWishListService experienceWishListService;
+	@Autowired RoomWishListService roomWishListService;
 	
 	private final int ROW_PER_PAGE = 10;
 	// shop 페이지에서 관심상품 등록
@@ -43,6 +45,17 @@ public class CustomerWishListController {
 		
 	}
 	
-	
+	@GetMapping("/roomWishList")
+	public String insertRoomWishList(HttpSession session, int hotelId) {
+		
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		// 비회원이라면 샵으로 이동.
+		if(customerId == null) {
+			return "redirect:/shop";
+		}
+
+		roomWishListService.getinsertRoomWishList(customerId, hotelId);
+		return "redirect:/shop";
+	}
 	
 }

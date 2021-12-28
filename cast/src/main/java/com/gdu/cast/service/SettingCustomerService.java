@@ -36,11 +36,16 @@ public class SettingCustomerService {
 		   settingCustomerMapper.deleteCustomerLogin(customerId);
 	   }
 	   
+	   // 비밀번호 조회 조건문
 	   public int getselectCustomerPw(String customerId, String customerPw) {
 		   return settingCustomerMapper.selectCustomerPw(customerId, customerPw);
 	   }
 	   
 	   public void getdeleteCustomerWishList(String customerId) {
+		  // 체험 관심상품 삭제
 		   settingCustomerMapper.deleteCustomerWishList(customerId);
+		   // 숙소 관심상품 삭제
+		   settingCustomerMapper.deleteCustomerRoomWishList(customerId);
 	   }
+
 }
