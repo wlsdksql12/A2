@@ -247,13 +247,9 @@
 												<tr>
 													<th>
 														<div class="chk-option">
-													</div> 체험 이름
+													</div> 호텔 이름
 													</th>
-													<th>체험 내용</th>
-													<th>체험 가격</th>
-													<th>체험 시작일</th>
-													<th>체험 종료일</th>
-													<th>체험 최대 인원 수 </th>
+													<th>호텔 내용</th>
 													<th>createDate</th>
 													<th>updateDate</th>
 												</tr>
@@ -262,15 +258,11 @@
 												<c:forEach items="${wishList}" var="wishList">
 													<tr>
 														<td>
-														${wishList.experience.experienceName}
+														${wishList.hotel.hotelName}
 														</td>
-														<td>${wishList.experience.experienceContent}</td>
-														<td>${wishList.experience.experiencePrice}</td>
-														<td>${wishList.experience.experienceStartdate}</td>
-														<td>${wishList.experience.experienceEnddate}</td>
-														<td>${wishList.experience.experiencePerson}</td>
+														<td>${wishList.hotel.hotelContent}</td>
 														<td>${wishList.createDate}</td>
-														<td>$(wishList.updateDate)</td>
+														<td>${wishList.updateDate}</td>
 														
 														</tr>
 												</c:forEach>
@@ -279,11 +271,11 @@
 										<div style="text-align: center;" class="table container mt-3">
 											<c:if test="${currentPage > 1}">
 												<a
-													href="/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
+													href="/customerRoomWishList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
 											</c:if>
 											<c:if test="${currentPage < lastPage}">
 												<a
-													href="/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
+													href="/customerRoomWishList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
 											</c:if>
 										</div>
 									</div>

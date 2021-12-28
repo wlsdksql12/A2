@@ -23,7 +23,7 @@ public class ExperienceWishListService {
 		return experienceWishListMapper.selectExperienceWishList(customerId);
 	}
 	
-	// 등록한 관심상품 조회
+	// 등록한 체험 관심상품 조회
 	public Map<String, Object> getselectExperienceWishListList(String customerId, int currentPage, int ROW_PER_PAGE){
 		   Map<String, Object> paramMap = new HashMap<>();
 		   

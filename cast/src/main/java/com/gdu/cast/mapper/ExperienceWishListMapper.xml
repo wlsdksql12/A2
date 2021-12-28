@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceWishListMapper">
 
-
 		<resultMap type="com.gdu.cast.vo.ExperienceWishList" id="resultExperienceWishList">
 		<result column="create_Date" property="createDate"></result>
 		<result column="update_Date" property="updateDate"></result>

@@ -48,7 +48,7 @@ public class SettingCustomerController {
 
 		   return "redirect:/shop";
 		   }
-		   		//관심상품 삭제
+		   		//(체험, 숙소)관심상품 삭제
 		   		settingCustomerService.getdeleteCustomerWishList(customerId);
 			   //customer회원탈퇴 테이블에 저장
 			   settingCustomerService.getInsertDeleteId(customer.getCustomerId());

@@ -82,7 +82,7 @@
 						<ul class="pcoded-submenu">
 							<li><a href="/customerExperienceWishList">체험
 									관심상품</a></li>
-							<li><a href="layout-horizontal.html">숙소
+							<li><a href="/customerRoomWishList">숙소
 									관심상품</a></li>
 						</ul></li>
 					<li class="nav-item pcoded-menu-caption"><label>결제목록</label></li>

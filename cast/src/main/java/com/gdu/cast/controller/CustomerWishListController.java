@@ -44,7 +44,7 @@ public class CustomerWishListController {
 		return "customer/customerExperienceWishList";
 		
 	}
-	
+	// 숙소 관심 상품 등록
 	@GetMapping("/roomWishList")
 	public String insertRoomWishList(HttpSession session, int hotelId) {
 		
@@ -58,4 +58,13 @@ public class CustomerWishListController {
 		return "redirect:/shop";
 	}
 	
+	@GetMapping("/customerRoomWishList")
+	public String selectRoomWishList(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		Map<String, Object> map = roomWishListService.getselectRoomWishListList(customerId, currentPage, ROW_PER_PAGE);
+		model.addAttribute("wishList", map.get("wishList"));
+		model.addAttribute("lastPage",map.get("lastPage"));
+		return "customer/customerRoomWishList";
+		
+	}
 }
