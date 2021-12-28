@@ -29,4 +29,7 @@ public interface ExperienceOrderMapper {
 	List<ExperiencePayment> CustomerIndexExperiencePayment(Map<String, Object> map);
 	// 고객 체험 결제 페이징
 	int selectExperiencePaymentTotalCount(String customerId);
+	
+	// 관리자 페이지 예약 리스트
+	List<ExperienceOrder> selectAdminExperienceOrder();
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.AdminService;
+import com.gdu.cast.service.ExperienceOrderService;
 import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.vo.Admin;
 import com.gdu.cast.vo.JoinCeo;
@@ -24,6 +25,7 @@ public class AdminController {
 	@Autowired AdminService adminService;
 	@Autowired AdminQnaService adminQnaService;
 	@Autowired JoinRequestService joinRequestService;
+	@Autowired ExperienceOrderService experienceOrderService; 
 	
 	private final int ROW_PER_PAGE = 5;
 	
@@ -92,6 +94,13 @@ public class AdminController {
 		System.out.println(session.getAttribute("loginAdminId") + " <---AdminController");
 		System.out.println(session.getAttribute("loginAdminName") + " <---AdminController");
 		return "redirect:/admin/adminIndex";
+	}
+	
+	// 관리자 예약 리스트
+	@GetMapping("/admin/orderList")
+	public String getOrderList(Model model) {
+		model.addAttribute("experienceOrderList", experienceOrderService.getAdminExperienceOrder());
+		return"/admin/adminOrderList";
 	}
 	
 }

@@ -90,5 +90,8 @@ public class ExperienceOrderService {
 			return returnMap;
 	}
 	
-	
+	// 관리자 페이지에 체험 예약 리스트 출력
+	public List<ExperienceOrder> getAdminExperienceOrder(){
+		return experienceOrderMapper.selectAdminExperienceOrder();
+	}
 }

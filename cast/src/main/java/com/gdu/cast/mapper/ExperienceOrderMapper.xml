@@ -50,10 +50,6 @@
 	
 	</select>
 
-
-
-
-
 		<!-- experience 예약 -->
 	<insert id="experienceInsertOrder" parameterType="com.gdu.cast.vo.ExperienceOrder">
 		INSERT INTO experience_order(
@@ -135,15 +131,27 @@
 		where customer_id = #{customerId}
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
-	
 	</select>
 	
 	<!-- 체험 예약 List 페이징 -->
 	<select id="selectExperienceOrderTotalCount" parameterType="String" resultType="int">
-	SELECT COUNT(*) 
-	FROM experience_order
-	WHERE customer_Id = #{customerId}
-	
+		SELECT COUNT(*) 
+		FROM experience_order
+		WHERE customer_Id = #{customerId}
 	</select>
 	
+	<!-- 관리자 체험 예약 리스트 -->
+	<select id="selectAdminExperienceOrder" resultType="com.gdu.cast.vo.ExperienceOrder">
+		SELECT
+			experience_order_id experienceOrderId,
+			customer_id customerId,
+			experience_name experienceName,
+			experience_order_people experienceOrderPeople,
+			experience_order_startdate experienceOrderStartDate,
+			experience_order_enddate experienceOrderEndDate,
+			create_Date createDate,
+			update_Date updateDate
+		FROM experience_order
+		ORDER BY create_date DESC
+	</select>
 </mapper>

@@ -74,6 +74,23 @@
           </div>
         </div>
       </li>
+      <hr class="sidebar-divider my-0">	
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOrderPaymentList"
+          aria-expanded="true" aria-controls="collapseOrderPaymentList">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>예약 결제 리스트</span>
+        </a>
+        
+        <div id="collapseOrderPaymentList" class="collapse" aria-labelledby="headingOrderPaymentList" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Order</h6>
+            <a class="collapse-item" href="/admin/orderList">예약리스트</a>
+            <h6 class="collapse-header">Payment</h6>
+            <a class="collapse-item" href="/admin/travelerJoinRequestList">결제리스트</a>
+          </div>
+        </div>
+      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Features
