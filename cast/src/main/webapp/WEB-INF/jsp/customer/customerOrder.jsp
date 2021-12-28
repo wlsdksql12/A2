@@ -103,11 +103,11 @@
 								class="feather icon-file-text"></i></span><span class="pcoded-mtext">Q&A목록</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>추천댓글</label></li>
-					<li class="nav-item"><a href="chart-apex.html"
+					<li class="nav-item"><a href="/customerExperienceSelectCommentList"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-clock"></i></span><span class="pcoded-mtext">체험추천댓글</span></a>
 					</li>
-					<li class="nav-item"><a href="map-google.html"
+					<li class="nav-item"><a href="/customerRoomSelectCommentList"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-clock"></i></span><span class="pcoded-mtext">숙소추천댓글</span></a>
 					</li>
