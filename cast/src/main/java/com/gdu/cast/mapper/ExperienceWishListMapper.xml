@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceWishListMapper">
+
+
+		<resultMap type="com.gdu.cast.vo.ExperienceWishList" id="resultExperienceWishList">
+		<result column="create_Date" property="createDate"></result>
+		<result column="update_Date" property="updateDate"></result>
+		<association property="experience" javaType="com.gdu.cast.vo.Experience">
+			<result column="experience_name" property="experienceName" />
+			<result column="experience_content" property="experienceContent" />
+			<result column="experience_price" property="experiencePrice" />
+			<result column="experience_startdate" property="experienceStartdate" />
+			<result column="experience_enddate" property="experienceEnddate" />
+			<result column="epxerience_person" property="experiencePerson" />
+		</association>
+	</resultMap>
+	
 		<!-- 체험 관심상품 등록 -->
 	<insert id="insertExperienceWishList" parameterType="com.gdu.cast.vo.ExperienceWishList">
 	INSERT INTO experience_wishlist(
@@ -16,11 +31,37 @@
 	)
 	</insert>
 
-	<!-- 관심상품 이중 등록 방지 -->
+	<!-- 체험 관심상품 이중 등록 방지 -->
 	<select id="selectExperienceWishList" parameterType="String" resultType="com.gdu.cast.vo.ExperienceWishList">
 		select experience_id experienceId
 		FROM experience_wishlist
 		where customer_id = #{customerId}
+	</select>
+	
+	<!-- 체험 관심 상품 조회-->
+	<select id="selectExperienceWishListList" parameterType="map" resultMap="resultExperienceWishList">
+		SELECT
+		 e.experience_name,
+		 e.experience_content,
+		 e.experience_price,
+		 e.experience_startdate,
+		 e.experience_enddate,
+		 e.experience_person,
+		 ew.create_date,
+		 ew.update_date
+		FROM experience_wishlist ew inner join experience e
+		ON ew.experience_id = e.experience_id
+		where customer_id = #{customerId}
+		limit #{beginRow}, #{ROW_PER_PAGE}
+	
+	</select>
+	
+			<!--  체험 관심 상품 페이징 -->
+	<select id="selectExperienceWishListTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM Experience_wishlist
+	WHERE customer_Id = #{customerId}
+	
 	</select>
 	
 	
