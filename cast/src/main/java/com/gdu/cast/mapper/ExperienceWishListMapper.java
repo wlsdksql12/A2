@@ -18,5 +18,4 @@ public interface ExperienceWishListMapper {
 	// 고객페이지 관심상품 조회페이징
 	int selectExperienceWishListTotalCount(String customerId);
 	
-	
 }

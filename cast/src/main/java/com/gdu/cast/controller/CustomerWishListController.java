@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceWishListService;
 import com.gdu.cast.service.RoomWishListService;
+import com.gdu.cast.vo.ExperienceWishList;
 
 @Controller
 public class CustomerWishListController {
@@ -29,7 +31,9 @@ public class CustomerWishListController {
 		if(customerId == null) {
 			return "redirect:/shop";
 		}
+
 		experienceWishListService.getinsertExperienceWishList(customerId, experienceId);
+		
 		return "redirect:/shop";
 	}
 	

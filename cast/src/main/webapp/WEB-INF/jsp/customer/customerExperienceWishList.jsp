@@ -270,7 +270,7 @@
 														<td>${wishList.experience.experienceEnddate}</td>
 														<td>${wishList.experience.experiencePerson}</td>
 														<td>${wishList.createDate}</td>
-														<td>$(wishList.updateDate)</td>
+														<td>${wishList.updateDate}</td>
 														
 														</tr>
 												</c:forEach>
