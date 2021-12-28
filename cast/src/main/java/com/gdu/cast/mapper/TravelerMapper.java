@@ -20,6 +20,9 @@ public interface TravelerMapper {
 	// 회원 가입 시 아이디 중복 검사
 	String selectTravelerId(String travelerId);
 	
+	// 회원 탈퇴 시 비밀번호 조회
+	int selectTravelerPw(String travelerId, String travelerPw);
+	
 	// 회원 탈퇴(delete_id 테이블에 id 값 입력)
 	void insertDeleteTravelerId(String travelerId);
 	

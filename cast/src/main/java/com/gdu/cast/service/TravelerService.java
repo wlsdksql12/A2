@@ -41,6 +41,11 @@ public class TravelerService {
 		return travelerMapper.selectTravelerId(travelerId);
 	}
 	
+	// 회원 탈퇴 시 비밀번호 조회
+	public int getSelectTravelerPw(String travelerId, String travelerPw) {
+		return travelerMapper.selectTravelerPw(travelerId, travelerPw);
+	}
+	
 	// 회원 탈퇴(delete_id 테이블에 id 값 입력)
 	public void getAddDeleteTravelerId(String travlerId) {
 		travelerMapper.insertDeleteTravelerId(travlerId);

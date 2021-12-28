@@ -55,16 +55,20 @@ public class TravelerController {
 	// 여행작가 회원 탈퇴
 	@PostMapping("/removeTraveler")
 	public String getRemoveTraveler(Traveler traveler, HttpSession session) {
-		
-		// 회원 탈퇴(delete_id 테이블에 id 값 입력)
-		travelerService.getAddDeleteTravelerId(traveler.getTravelerId());
-		
-		// 회원 탈퇴(traveler 테이블 데이터 삭제)
-		travelerService.getRemoveTraveler(traveler.getTravelerId(), traveler.getTravelerPw());
-		
-		// 세션 종료
-		session.invalidate();
-		return "redirect:/loginSelect";
+		String travelerId = (String)session.getAttribute("loginTravelerId");
+		if(travelerService.getSelectTravelerPw(travelerId, traveler.getTravelerPw()) != 1) {
+			return "redirect:/travelerIndex?travelerId="+travelerId;
+		} else {
+			// 회원 탈퇴(delete_id 테이블에 id 값 입력)
+			travelerService.getAddDeleteTravelerId(traveler.getTravelerId());
+			
+			// 회원 탈퇴(traveler 테이블 데이터 삭제)
+			travelerService.getRemoveTraveler(traveler.getTravelerId(), traveler.getTravelerPw());
+			
+			// 세션 종료
+			session.invalidate();
+			return "redirect:/loginSelect";
+		}
 	}
 	
 	// 여행작가 메인 페이지 자신이 쓴 숙소/체험 추천 리스트 출력(5개)

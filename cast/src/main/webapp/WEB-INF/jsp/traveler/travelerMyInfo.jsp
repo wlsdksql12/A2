@@ -841,7 +841,7 @@
           </div>
         </header>
         <main class="h-full overflow-y-auto">
-          <div class="container px-10 mx-auto">
+          <div class="container px-5 mx-auto">
             <h2
               class="my-6 text-4xl font-semibold text-gray-700 dark:text-gray-200"
             >

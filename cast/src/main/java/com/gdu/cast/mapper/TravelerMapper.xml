@@ -39,6 +39,7 @@
 		AND traveler_pw = password(#{travelerPw})
 	</update>
 	
+	<!-- 회원 탈퇴 아이디 중복 검사 -->
 	<select id="selectDeleteTravelerId"  parameterType="String" resultType="int">
 		SELECT COUNT(*)
 		FROM delete_id
@@ -50,6 +51,14 @@
 		SELECT traveler_id travelerId
 		FROM traveler
 		WHERE traveler_id=#{travelerId}
+	</select>
+	
+	<!-- 회원 탈퇴 시 비밀번호 조회 -->
+	<select id="selectTravelerPw" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM traveler
+		WHERE traveler_id=#{travelerId}
+		AND traveler_pw=password(#{travelerPw})
 	</select>
 	
 	<!-- 회원 탈퇴(delete_id 테이블에 id 값 입력) -->
