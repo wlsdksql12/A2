@@ -292,11 +292,42 @@
 		FROM room r INNER JOIN room_bedroom rb ON r.room_id = rb.room_id
 		INNER JOIN room_convenience rc ON r.room_id = rc.room_id
 		INNER JOIN room_filter rf ON . r.room_id = rf.room_id
-		WHERE r.room_id = ${roomId}
+		WHERE r.room_id = #{roomId}
 	</select>
+	
+	<!-- 방 수정 -->
+	<update id="updateRoom" parameterType="com.gdu.cast.vo.Room">
+		UPDATE room r 
+			INNER JOIN room_bedroom rb ON r.room_id = rb.room_id
+			INNER JOIN room_convenience rc ON r.room_id = rc.room_id
+			INNER JOIN room_filter rf ON r.room_id = rf.room_id
+		SET
+			r.room_name = #{roomName},
+			r.room_content = #{roomContent},
+			r.room_count = #{roomCount},
+			r.room_startdate = DATE(#{roomStartdate}),
+			r.room_enddate = DATE(#{roomEnddate}),
+			r.room_price = #{roomPrice},
+			rb.bed_count = #{roomBedroom.bedCount},
+			rb.bedroom_count = #{roomBedroom.bedroomCount},
+			rb.bathroom_count = #{roomBedroom.bathroomCount},
+			rc.stairs_threshold = #{roomConvenience.stairsThreshold},
+			rc.toilet_handle = #{roomConvenience.toiletHandle},
+			rc.shower_stall_handle = #{roomConvenience.showerStallHandle},
+			rf.kitchen = #{roomFilter.kitchen},
+			rf.internet = #{roomFilter.internet},
+			rf.boiler = #{roomFilter.boiler},
+			rf.aircon = #{roomFilter.aircon},
+			rf.washing_machine = #{roomFilter.washingMachine},
+			rf.breakfast = #{roomFilter.breakfast},
+			rf.tv = #{roomFilter.tv},
+			rf.hairdryer = #{roomFilter.hairdryer},
+			rf.bidet = #{roomFilter.bidet}
+		WHERE r.room_id = #{roomId}
+	</update>
 	<!-- 테마 체험 등록 -->
 	 <insert id="insertThemeHotel" parameterType="Map">
 		INSERT INTO theme_small_hotel(theme_small_id, hotel_id, create_date, update_date)
 		VALUES((SELECT theme_small_id FROM theme_small WHERE theme_small_name = #{theme}), #{hotelId}, NOW(), NOW())
-   </insert>
+   	</insert>
 </mapper>

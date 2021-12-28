@@ -229,7 +229,27 @@ public class HotController {
 		
 		return "/ceo/roomOne";
 	}
+	
+	// 방 수정하기
+	@GetMapping("/ceo/updateRoom")
+	public String updateRoom(Model model, int roomId, RoomFilter roomFilter, RoomConvenience roomConvenience, RoomBedroom roomBedroom) {
 
+		Room room = hotService.selectRoomOne(roomId);
+		model.addAttribute("room", room);
+		model.addAttribute("roomBedroom", roomBedroom);
+		model.addAttribute("roomFilter", roomFilter);
+		model.addAttribute("roomCovenience", roomConvenience);
+		
+		return "/ceo/updateRoom";
+	}
+	
+	@PostMapping("/ceo/updateRoom")
+	public String updateRoom(Room room) {
+		hotService.updateRoom(room);
+		System.out.println(room);
+		return "redirect:/ceo/roomOne?roomId="+room.getRoomId();
+	}
+	
 	
 }
 

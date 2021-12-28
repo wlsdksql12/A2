@@ -8,10 +8,12 @@
 <title>Insert title here</title>
 <!-- 아이콘 -->
 <script src="https://kit.fontawesome.com/def66b134a.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 	<%@ include file="ceoBase.jsp" %>
 	<br>
+	<div>
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
@@ -49,13 +51,13 @@
 					
 					<p class="card-description">접근성</p>
 						<c:if test="${room.roomConvenience.stairsThreshold eq 'Y'}">
-							<h4><i class="fas fa-wifi"></i>&emsp;계단</h4>
+							<h4><span class="material-icons">stairs</span>&emsp;계단</h4>
 						</c:if>
 						<c:if test="${room.roomConvenience.toiletHandle eq 'Y'}">
-							<h4><i class="fas fa-wifi"></i>&emsp;변기 옆 고정 손잡이</h4>
+							<h4><i class="fas fa-toilet"></i><span class='material-icons'>drag_handle</span>&emsp;변기 옆 고정 손잡이</h4>
 						</c:if>
 						<c:if test="${room.roomConvenience.showerStallHandle eq 'Y'}">
-							<h4><i class="fas fa-wifi"></i>&emsp;샤워실 고정 손잡이</h4>
+							<h4><span class='material-icons'>shower</span><span class='material-icons'>drag_handle</span>&emsp;샤워실 고정 손잡이</h4>
 						</c:if>
 					<br><hr><br>
 					
@@ -76,7 +78,7 @@
 							<h4><i class="fab fa-algolia"></i>&emsp;세탁기</h4>
 						</c:if>
 						<c:if test="${room.roomFilter.breakfast eq 'Y'}">
-							<h4><i class="fas fa-egg"></i>&emsp;조식</h4>
+							<h4><span class='material-icons'>free_breakfast</span>&emsp;조식</h4>
 						</c:if>
 						<c:if test="${room.roomFilter.tv eq 'Y'}">
 							<h4><i class="fas fa-tv"></i>&emsp;TV</h4>
@@ -87,13 +89,12 @@
 						<c:if test="${room.roomFilter.bidet eq 'Y'}">
 							<h4><i class="fas fa-toilet"></i>&emsp;비데</h4>
 						</c:if>
-						
-				
-				<div align="right">
-				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				<a href="#" class="btn btn-inverse-warning">수정</a> &emsp;
+					<div align="right">
+					<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
+					<a href="/ceo/updateRoom?roomId=${room.roomId}" class="btn btn-inverse-warning">수정</a> &emsp;
+					</div>
+					<br>
 				</div>
-				<br>
 			</div>
 		</div>
 	</div>

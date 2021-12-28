@@ -58,4 +58,7 @@ public interface HotMapper {
 	
 	// 방 상세보기
 	Room selectRoomOne(int roomId);
+	
+	// 방 수정
+	int updateRoom(Room room);
 }

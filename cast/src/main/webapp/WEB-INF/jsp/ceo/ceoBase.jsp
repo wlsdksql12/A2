@@ -198,21 +198,21 @@
           <li class="nav-item">
             <a href="selectCeo" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
               <i class="ti-user menu-icon"></i>
-              <span class="menu-title">내정보</span>
+              <span class="menu-title" style="font-weight:bold;">내정보</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
               <i class=" menu-icon ti-clipboard"></i>
-              <span class="menu-title">사업체 목록</span>
+              <span class="menu-title" style="font-weight:bold;">사업체 목록</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic1">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                <a href="experienceList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html">체험</a></li>
+                <a href="experienceList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
                 <li class="nav-item">
-                <a href="hotelList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html">호텔</a></li>
+                <a href="hotelList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
               </ul>
             </div>
           </li>

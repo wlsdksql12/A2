@@ -132,6 +132,11 @@ public class HotService {
 		return room;
 	}
 	
+	// 방 수정 
+	public void updateRoom(Room room) {
+		hotMapper.updateRoom(room);
+	}
+	
 }
 
 
