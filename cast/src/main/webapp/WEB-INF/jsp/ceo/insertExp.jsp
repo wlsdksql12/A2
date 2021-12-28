@@ -39,7 +39,7 @@
 					<p class="card-description">등록하실 체험의 정보를 입력해주세요.</p>
 					<div class="form-group">
 						<label for="exampleInputName1">체험 이름</label> <input type="text"
-							class="form-control" name="experienceName" placeholder="체험제목">
+							class="form-control" name="experienceName" id="experienceName" placeholder="체험제목">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputName1">작성자</label> <input type="text"
@@ -52,7 +52,7 @@
 					<div class="form-group">
 						<label for="exampleInputEmail3">가격</label>
 						<div class="input-group">
-							<input type="text" class="form-control" name="experiencePrice"
+							<input type="text" class="form-control" name="experiencePrice" id="experiencePrice"
 								placeholder="가격">
 							<div class="input-group-append">
 								<span style="color: black" class="input-group-text">&#8361;</span>
@@ -62,7 +62,7 @@
 					<div class="form-group">
 						<label for="exampleInputPassword4">최대 수용 인원</label>
 						<div class="input-group">
-							<input type="number" class="form-control" name="experiencePerson"
+							<input type="number" class="form-control" name="experiencePerson" id="experiencePerson"
 								placeholder="최대 수용 인원">
 							<div class="input-group-append">
 								<span style="color: black" class="input-group-text">명</span>
@@ -71,9 +71,9 @@
 					</div>
 					<label for="exampleSelectGender" style="font-size: 15px">체험일자</label>
 					<div class="form-group input-group">
-						<input type="date" class="form-control" style="width: 250px" name="experienceStartdate" >
+						<input type="date" class="form-control" style="width: 250px" name="experienceStartdate" id="experienceStartdate" >
 						<div class="input-group-text">~</div>
-						<input type="date" class="form-control" style="width: 250px" name="experienceEnddate">
+						<input type="date" class="form-control" style="width: 250px" name="experienceEnddate" id="experienceEnddate">
 					</div>
 					<div class="form-group">
 						<label>이미지 등록[미구현]</label> <input type="file" name="img[]"
@@ -88,14 +88,14 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleTextarea1">내용</label>
-						<textarea class="form-control" name="experienceContent" rows="10"></textarea>
+						<textarea class="form-control" name="experienceContent" id="experienceContent" rows="10"></textarea>
 					</div>
 					<hr>
 					<!-- 테마 추가 -->
 					<div class="form-group">
 					<label for="exampleTextarea1">테마 선택</label>
 						<div>
-	               			<select name="theme">
+	               			<select name="theme" id="theme">
 	               				<option value="">테마 선택</option>
 	               				<c:forEach items="${selectThemeSmallList}" var="themeSmall">
 	               					<option value="${themeSmall.themeSmallName}">${themeSmall.themeSmallName}</option>
@@ -166,9 +166,14 @@
 			
 			
 		});
-		//  Submit 버튼 클리 시 addForm Submit
+		//  Submit 버튼 클릭 시 addForm Submit
 		$(function(){
 			$('#addBtn').click(function(){
+				// 내용이 1개라도 빠질 시 submit안되고 경고창출력
+				if($('#experienceName').val() == '' || $('#experiencePrice').val() == '' || $('#experiencePerson').val() == '' || $('#experienceStartdate').val() == '' || $('#experienceEnddate').val() == '' || $('#experienceContent').val() == '' || $('#theme').val() == ''){
+					alert('내용이 비어있습니다');
+					return;
+				}
 				$('#addForm').submit();
 			});
 		});

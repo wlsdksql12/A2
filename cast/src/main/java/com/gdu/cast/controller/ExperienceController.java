@@ -41,7 +41,7 @@ public class ExperienceController {
    }
    
    @PostMapping("/ceo/insertExp")
-   public String insertExp(HttpServletRequest request,HttpSession session, Experience experience, String keyword, String theme) {
+   public String insertExp(HttpServletRequest request,HttpSession session, Experience experience, @RequestParam(defaultValue = "") String keyword, String theme) {
       String ceoId = (String) session.getAttribute("loginCeoId");
       experience.setCeoId(ceoId);
       System.out.println(ceoId + " << ceoId");
@@ -50,16 +50,19 @@ public class ExperienceController {
       System.out.println(experienceId  + "체험 id");
       log.debug("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ceoId);
       log.debug("=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-"+experience.toString());
-      // 해시태그 결과값 불러오기
-      System.out.println(keyword + "test");
-      System.out.println(keyword.length() + "test");
-      String[] keywordList = keyword.split(",");
-      System.out.println(keywordList.length + "문자열 나누기");
-      System.out.println(Arrays.toString(keywordList) + "문자열 나누기");
       
-      for(int i = 0; i < keywordList.length; i++) {
-    	  System.out.println(keywordList[i] + "입력되는 값");
-    	  keywordService.insertExperienceKeyword(keywordList[i], experienceId);
+      // 해시태그 키워드 입력을 안할시 실행이 안되도록
+      if(!keyword.equals("")) {
+    	  // 해시태그 결과값 불러오기
+    	  System.out.println(keyword + "test");
+          System.out.println(keyword.length() + "test");
+          String[] keywordList = keyword.split(",");
+          System.out.println(keywordList.length + "문자열 나누기");
+          System.out.println(Arrays.toString(keywordList) + "문자열 나누기");
+          for(int i = 0; i < keywordList.length; i++) {
+        	  System.out.println(keywordList[i] + "입력되는 값");
+        	  keywordService.insertExperienceKeyword(keywordList[i], experienceId);
+          }  
       }
       // 테마 값 불러오기
       System.out.println(theme + "theme");

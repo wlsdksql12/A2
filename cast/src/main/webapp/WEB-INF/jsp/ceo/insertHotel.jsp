@@ -16,7 +16,7 @@
 					<p class="card-description">등록하실 호텔의 정보를 입력해주세요.</p>
 					<div class="form-group">
 						<label for="exampleInputName1">호텔 이름</label> <input type="text"
-							class="form-control" name="hotelName" placeholder="호텔이름">
+							class="form-control" name="hotelName" id="hotelName" placeholder="호텔이름">
 					</div>
 					<div class="form-group">
 						<label for="exampleInputName1">작성자</label> <input type="text"
@@ -39,14 +39,14 @@
 					</div>
 					<div class="form-group">
 						<label for="exampleTextarea1">호텔 소개</label>
-						<textarea class="form-control" name="hotelContent" rows="10"></textarea>
+						<textarea class="form-control" name="hotelContent" id="hotelContent" rows="10"></textarea>
 					</div>
 					<hr>
 					<!-- 테마 추가 -->
 					<div class="form-group">
 					<label for="exampleTextarea1">테마 선택</label>
 					<div>
-               			<select name="theme">
+               			<select name="theme" id="theme">
                				<option value="">테마 선택</option>
                				<c:forEach items="${selectThemeSmallList}" var="themeSmall">
                					<option value="${themeSmall.themeSmallName}">${themeSmall.themeSmallName}</option>
@@ -68,7 +68,7 @@
               	 	<!-- 해시태그 추가 끝 -->
               	 	<div align="right">
 					<button class="btn btn-light">Cancel</button>
-					<button type="submit" class="btn btn-primary mr-2">Submit</button>
+					<button type="button" id="addBtn" class="btn btn-primary mr-2">Submit</button>
 					</div>
 				</div>
 			</div>
@@ -121,6 +121,11 @@
 		//  Submit 버튼 클리 시 addForm Submit
 		$(function(){
 			$('#addBtn').click(function(){
+				// 이미지,키워드 제외한 내용이 1개라도 빠질 시 submit안되고 경고창출력
+				if($('#hotelName').val() == '' || $('#hotelContent').val() == '' || $('#theme').val() == ''){
+					alert('내용이 비어있습니다');
+					return;
+				}
 				$('#addForm').submit();
 			});
 		});

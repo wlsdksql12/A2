@@ -47,24 +47,27 @@ public class HotController {
 	}
 	
 	@PostMapping("/ceo/insertHotel")
-	public String insertHotel(Model model, HttpSession session, Hotel hotel, String keyword, String theme) {
+	public String insertHotel(Model model, HttpSession session, Hotel hotel, @RequestParam(defaultValue = "") String keyword, String theme) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		hotel.setCeoId(ceoId);
 		int hotelId = hotService.insertHotel(hotel);
 		System.out.println(hotelId + "호텔id");
 		log.debug("====================================" + ceoId + " << ceoId");
 		log.debug("====================================" + hotel.toString() + " << hotel Debug");
-		System.out.println(keyword + " <---키워드 값");
-		System.out.println(keyword.length() + " <---키워드 길이");
-		String[] keywordList = keyword.split(",");
-		System.out.println(keywordList.length + "문자열 나누기");
-		System.out.println(Arrays.toString(keywordList) + "문자열 나누기");
 		
-		for(int i = 0; i < keywordList.length; i++) {
-			System.out.println(keywordList[i] + "입력되는 값");
-			keywordService.insertHotelKeyword(keywordList[i], hotelId);
+		// 해시태그 키워드 입력을 안할시 실행이 안되도록
+		if(!keyword.equals("")) {
+			System.out.println(keyword + " <---키워드 값");
+			System.out.println(keyword.length() + " <---키워드 길이");
+			String[] keywordList = keyword.split(",");
+			System.out.println(keywordList.length + "문자열 나누기");
+			System.out.println(Arrays.toString(keywordList) + "문자열 나누기");
+			
+			for(int i = 0; i < keywordList.length; i++) {
+				System.out.println(keywordList[i] + "입력되는 값");
+				keywordService.insertHotelKeyword(keywordList[i], hotelId);
+			}
 		}
-		
 		hotService.insertThemeHotel(hotelId, theme);
 		return "redirect:/ceo/hotelList";
 	}
