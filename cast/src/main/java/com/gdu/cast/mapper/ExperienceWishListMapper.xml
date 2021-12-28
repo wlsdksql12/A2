@@ -4,11 +4,10 @@
 		<!-- 체험 관심상품 등록 -->
 	<insert id="insertExperienceWishList" parameterType="com.gdu.cast.vo.ExperienceWishList">
 	INSERT INTO experience_wishlist(
-		customer_id customerId,
-		experience_id experienceId,
+		customer_id,
+		experience_id,
 		create_Date,
 		update_Date
-		
 	) VALUES(
 		#{customerId},
 		#{experienceId},
@@ -17,4 +16,10 @@
 	)
 	</insert>
 
+	<!-- 관심상품 이중 등록 방지 -->
+	<select id="selectExperienceWishList" parameterType="String" resultType="int">
+		select experience_id experienceId
+		FROM experience_wishlist
+		where customer_id = #{customerId}
+	</select>
 </mapper>

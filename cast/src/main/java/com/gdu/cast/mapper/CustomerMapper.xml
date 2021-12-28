@@ -325,14 +325,14 @@
 	WHERE customer_Id = #{customerId}
 	
 	</select>
-
+	<!--총 결제 금액 조건문 -->
 	<select id="selectCustomerExperienceOrderId" parameterType="String" resultType="int">
 		SELECT count(*)
 		FROM experience_order
 		WHERE customer_id = #{customerId}
 		
 	</select>
-	
+	<!--총 결제 금액 조건문 -->
 	<select id = "selectcustomerRoomOrderId" parameterType="String" resultType="int">
 		SELECT count(*)
 		FROM room_order

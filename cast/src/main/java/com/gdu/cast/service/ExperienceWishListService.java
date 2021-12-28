@@ -12,4 +12,8 @@ public class ExperienceWishListService {
 	public void getinsertExperienceWishList(String customerId, int experienceId) {
 		experienceWishListMapper.insertExperienceWishList(customerId, experienceId);
 	}
+	
+	public int getselectExperienceWishList(String customerId) {
+		return experienceWishListMapper.selectExperienceWishList(customerId);
+	}
 }

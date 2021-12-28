@@ -13,11 +13,20 @@ import com.gdu.cast.service.ExperienceWishListService;
 public class CustomerWishList {
 	@Autowired ExperienceWishListService experienceWishListService;
 	
+	// shop 페이지에서 관심상품 등록
 	@GetMapping("/experienceWishList")
 	public String insertExperienceWishList(HttpSession session, int experienceId) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		experienceWishListService.getinsertExperienceWishList(customerId, experienceId);
 		return "shop";
 	}
-
+	
+	// 고객페이지에서 본인이 등록한 관심상품 조회
+	@GetMapping("/customerExperienceWishList")
+	public String selectExperienceWishList(HttpSession session) {
+		return "customer/customerExperienceWishList";
+		
+	}
+	
+	
 }

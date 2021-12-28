@@ -39,4 +39,8 @@ public class SettingCustomerService {
 	   public int getselectCustomerPw(String customerId, String customerPw) {
 		   return settingCustomerMapper.selectCustomerPw(customerId, customerPw);
 	   }
+	   
+	   public void getdeleteCustomerWishList(String customerId) {
+		   settingCustomerMapper.deleteCustomerWishList(customerId);
+	   }
 }

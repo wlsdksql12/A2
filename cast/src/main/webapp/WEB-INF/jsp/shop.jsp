@@ -186,7 +186,7 @@
 	                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
 	                                     <c:choose>
-	                                     	<c:when test="${loginCustomerId eq null }">
+	                                     	<c:when test="${(loginCustomerId eq null)  ||(experienceId == ShopExperienceList.experience.experienceId)}">
 	                                     	<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
 	                                     	</c:when> 
 	                                     	<c:otherwise>

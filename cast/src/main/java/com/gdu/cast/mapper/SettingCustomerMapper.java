@@ -14,4 +14,6 @@ public interface SettingCustomerMapper {
 	  void deleteCustomerLogin(String customerId);
 	  // 비밀번호 조회
 	  int selectCustomerPw(String customerId, String customerPw);
+	  // 체험 관심상품 삭제
+	  void deleteCustomerWishList(String customerId);
 }

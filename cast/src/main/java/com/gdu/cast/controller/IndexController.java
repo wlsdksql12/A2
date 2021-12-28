@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExhibitionService;
+import com.gdu.cast.service.ExperienceWishListService;
 import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.Exhibition;
+import com.gdu.cast.vo.ExperienceWishList;
 import com.gdu.cast.vo.Keyword;
 import com.sun.tools.javac.util.Log;
 
@@ -23,6 +25,8 @@ public class IndexController {
 	@Autowired ExhibitionService exhibitionService;
 	@Autowired MainSelectService mainSelectService;
 	@Autowired KeywordService keywordService;
+	@Autowired ExperienceWishListService experienceWishListService;
+	
 	// localhost로 주소검색해도 "index" Controller가 실행이 되도록 함
 	@GetMapping(value={"/","/index"})
 	public String index(HttpSession session, Model model) {
@@ -44,7 +48,9 @@ public class IndexController {
 		return "index";
 	}
 	@GetMapping("/shop")
-	public String shop(Model model, @RequestParam(defaultValue = "") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory,String searchKeyword) {
+	public String shop(HttpSession session,Model model, @RequestParam(defaultValue = "") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory,String searchKeyword) {
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		
 		// 테마 대,중 출력
 		Map<String, Object> map = mainSelectService.selectTheme();
 		// 테마 소 리스트 출력
@@ -65,6 +71,7 @@ public class IndexController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+themeSmallHotelListmap.get("selectThemeShopHotelList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁselectThemeShopHotelList");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+shopCategory+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁshopCategory");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+searchKeyword+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁsearchKeyword");
+		model.addAttribute("experienceId", experienceWishListService.getselectExperienceWishList(customerId));
 		model.addAttribute("selectThemeList", map.get("selectThemeList"));
 		model.addAttribute("selectThemeSmallList", ThemeSmallmap.get("selectThemeSmallList"));
 		model.addAttribute("selectThemeShopExperienceList", themeSmallExperienceListmap.get("selectThemeShopExperienceList"));

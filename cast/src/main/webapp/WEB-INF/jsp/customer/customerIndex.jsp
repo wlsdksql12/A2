@@ -80,7 +80,7 @@
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-layout"></i></span><span class="pcoded-mtext">관심상품</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="layout-vertical.html">체험
+							<li><a href="/customerExperienceWishList">체험
 									관심상품</a></li>
 							<li><a href="layout-horizontal.html">숙소
 									관심상품</a></li>
