@@ -17,9 +17,11 @@
 	</insert>
 
 	<!-- 관심상품 이중 등록 방지 -->
-	<select id="selectExperienceWishList" parameterType="String" resultType="int">
+	<select id="selectExperienceWishList" parameterType="String" resultType="com.gdu.cast.vo.ExperienceWishList">
 		select experience_id experienceId
 		FROM experience_wishlist
 		where customer_id = #{customerId}
 	</select>
+	
+	
 </mapper>

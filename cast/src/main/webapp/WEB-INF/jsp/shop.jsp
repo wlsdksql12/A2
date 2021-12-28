@@ -185,15 +185,26 @@
 	                                    <ul class="list-unstyled">
 	                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-	                                     <c:choose>
-	                                     	<c:when test="${(loginCustomerId eq null)  ||(experienceId == ShopExperienceList.experience.experienceId)}">
-	                                     	<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
-	                                     	</c:when> 
-	                                     	<c:otherwise>
-	                                     	<li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
-	                                     	</c:otherwise>
+	                                  <c:if test="${wishList != null}">
+	                                   <c:forEach items="${wishList}" var = "wishList">
+	            
+											<c:if test="${(wishList.experienceId == ShopExperienceList.experience.experienceId)}">
+	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	                                     	</c:if>
+	                                     	
+	                                     	<c:if test="${(loginCustomerId eq null)}">
+	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	                                     	</c:if> 
+	                                     	
+	                                     	<c:if test="${wishList.experienceId != ShopExperienceList.experience.experienceId}">
+											<li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
+											</c:if>
 	                                        
-	                                    </c:choose>
+	                                    </c:forEach>
+	                                    </c:if>
+	                                    <c:if test="${empty wishList}">
+	                                    <li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
+	                                    </c:if>
 	                                    </ul>
 	                                </div>
 	                            </div>

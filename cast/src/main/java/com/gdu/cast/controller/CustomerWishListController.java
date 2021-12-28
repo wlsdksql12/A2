@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.gdu.cast.service.ExperienceWishListService;
 
 @Controller
-public class CustomerWishList {
+public class CustomerWishListController {
 	@Autowired ExperienceWishListService experienceWishListService;
 	
 	// shop 페이지에서 관심상품 등록
@@ -18,7 +18,7 @@ public class CustomerWishList {
 	public String insertExperienceWishList(HttpSession session, int experienceId) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		experienceWishListService.getinsertExperienceWishList(customerId, experienceId);
-		return "shop";
+		return "redirect:/shop";
 	}
 	
 	// 고객페이지에서 본인이 등록한 관심상품 조회
@@ -27,6 +27,7 @@ public class CustomerWishList {
 		return "customer/customerExperienceWishList";
 		
 	}
+	
 	
 	
 }
