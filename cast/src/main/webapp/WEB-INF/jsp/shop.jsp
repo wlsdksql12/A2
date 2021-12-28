@@ -187,18 +187,21 @@
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
 	                                  <c:if test="${wishList != null}">
 	                                   <c:forEach items="${wishList}" var = "wishList">
-	                                   <c:choose>
-	                                   		<c:when test="${(wishList.experienceId == ShopExperienceList.experience.experienceId) && ((loginCustomerId eq null))}">
-	    										 <li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>                              		
-	                                   		</c:when>
-	                                   		
-	            							<c:when test="${wish.experienceId != ShopExperienceList.experience.experienceId}">
-	            							
-	    										 <li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>                              		
-	                                   		
-	            							</c:when>
-	            							
-	                                        </c:choose>
+	            							<!-- 등록이 되어있다면 -->
+	            							<c:choose>
+	            								<c:when test="${(wishList.experienceId == ShopExperienceList.experience.experienceId)}">
+	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	            								</c:when>
+	            								<c:when test="${(loginCustomerId eq null)}">
+	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	            								</c:when>
+	            								<c:when test="${wishList.experienceId != ShopExperienceList.experience.experienceId}">
+	            								<li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
+	            								</c:when>
+			
+	            							</c:choose>
+
+	                                        
 	                                    </c:forEach>
 	                                    </c:if>
 	                                    <!-- 관심상품 테이블이 비어있다면 -->
