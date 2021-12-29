@@ -158,6 +158,44 @@
 						</c:if>
 					</div>
 				</div>
+				
+				
+			<table style="text-align:center" class="table table-hover mb-0">
+			<thead>
+				<tr>
+					<th>내용</th>
+					<th>작성 날짜</th>
+					<th>수정</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ExperienceReviewList}"  var="comment">
+					<tr>
+						<td>${comment.experiencePaymentReviewContent}</td>
+						<td>${comment.createDate.substring(0,10)}</td>
+						<c:choose>
+						<c:when test="${loginCustomerId == comment.customerId}">
+						<td>
+							<a href="/updateMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&experienceSelectId=${comment.experienceSelectId}">수정</a>
+						</td>
+						<td>
+							<a href="/deleteMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&experienceSelectId=${comment.experienceSelectId}">삭제</a>
+						</td>
+						</c:when>
+							<c:otherwise>
+								<td>-</td>
+								<td>-</td>
+							</c:otherwise>
+						</c:choose>
+					</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+				
+				
+				
+				
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
 				</div>

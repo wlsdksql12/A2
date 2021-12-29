@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceService;
 import com.gdu.cast.service.KeywordService;
+import com.gdu.cast.service.MainExperienceOrHotelReviewService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
@@ -30,6 +31,10 @@ public class ExperienceController {
    KeywordService keywordService;
    @Autowired
    MainSelectService mainSelectService;
+   @Autowired MainExperienceOrHotelReviewService mainExperienceOrHotelReviewService;
+   
+   
+   private final int row_per_page = 5;
    
    @GetMapping("/ceo/insertExp")
    public String insertExp(Model model, int addressId) {
@@ -152,9 +157,15 @@ public class ExperienceController {
    
    // 메인 체험 상세보기
    @GetMapping("/mainExperienceOne")
-   public String mainExperienceOne(Model model, Address address, int experienceId) {
+   public String mainExperienceOne(Model model, Address address, int experienceId, @RequestParam(defaultValue = "1") int currentPage) {
       Experience experience = experienceService.selectExperienceOne(experienceId);
+      Map<String, Object> map = mainExperienceOrHotelReviewService.getexperiencePaymentReview(currentPage, row_per_page, experienceId);
       
+		model.addAttribute("ExperienceReviewList", map.get("ExperienceReviewList"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
       model.addAttribute("experience", experience);
       model.addAttribute("address", address);
       
@@ -163,5 +174,7 @@ public class ExperienceController {
       
       return "/mainExperienceOne";
    }
+   
+   
    
 }	
