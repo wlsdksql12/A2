@@ -52,12 +52,13 @@ public class CustomerOrderController {
 		System.out.println(experienceOrder.toString() +"experienceOrder.toString()");
 		int experiencePrice = experienceOrderService.getexperienceSelectPrice(experienceId);
 		String experienceSelectName = experienceOrderService.getexperienceSelectName(experienceId);
+		model.addAttribute("customerId", experienceOrder.getCustomerId());
 		model.addAttribute("experienceSelectName",experienceSelectName);
 		model.addAttribute("experiencePrice",experiencePrice * experienceOrder.getExperienceOrderPeople());
 		model.addAttribute("experienceOrderPeople", experienceOrder.getExperienceOrderPeople());
 		model.addAttribute("ExperienceOrderStartDate",experienceOrder.getExperienceOrderStartDate());
 		model.addAttribute("ExperienceOrderEndDate", experienceOrder.getExperienceOrderEndDate());
-		model.addAttribute("CustomerId", experienceOrder.getCustomerId());
+		model.addAttribute("customerId", experienceOrder.getCustomerId());
 		model.addAttribute("experienceId", experienceId);
 		return "addExperiencePayment";
 	}

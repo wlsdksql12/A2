@@ -118,7 +118,6 @@
 			                	<ul class="hide">
 			                		<li>메뉴2-1-1</li>
 			                		<li>메뉴2-1-2</li>
-			                		<li><a href="/addExperienceOrder">체험 주문</a></li>
 			                		<li><a href="/addHotelOrder">숙소 주문</a></li>
 			                	</ul>
 			                </li>
@@ -197,9 +196,6 @@
 	            								<c:set var="test" value="true" />
 	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i>1</a></li>
 	            								</c:when>
-	            								<c:when test="${(loginCustomerId eq null)}">
-	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i>2</a></li>
-	            								</c:when>
 	            					
 	            							</c:choose>
 
@@ -221,6 +217,7 @@
 	                            </div>
 	                            <div class="card-body">
 	                                <a href="/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
+	                                
 	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
 	                                    <li class="pt-2">
 	                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
@@ -240,6 +237,7 @@
 	                                    </li>
 	                                </ul>
 	                                <p class="text-center mb-0">${ShopExperienceList.experience.experiencePrice}원</p>
+	                                
 	                            </div>
 	                        </div>
 	                    </div>
@@ -263,10 +261,6 @@
 											<c:set var="test" value="true" />
 	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
 	                                     	</c:if>
-	                                     	
-	                                     	<c:if test="${(loginCustomerId eq null)}">
-	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
-	                                     	</c:if> 
 	                                     	
 	                                        
 	                                    </c:forEach>

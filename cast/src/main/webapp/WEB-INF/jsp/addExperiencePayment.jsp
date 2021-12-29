@@ -18,10 +18,10 @@
 	<div>카드 번호</div>
 	<input type="text" name="experiencePaymentMethodNumber">
 	<div>인원 수</div>
-	<input type="text" name="experienceOrderPeople" value="${experienceOrderPeople }" readonly="readonly">
+	<input type="text" name="experienceOrderPeople" value="${experienceOrderPeople}" readonly="readonly">
 	<div>결제 금액</div>
 	<input type="text" name="experiencePaymentMoney" value="${experiencePrice}" readonly="readonly">
-	<input type="hidden" name="customerId" value="${CustomerId}">
+	<input type="hidden" name="customerId" value="${customerId}">
 	<input type="hidden" name="experienceOrderEndDate" value="${ExperienceOrderEndDate}">
 	<input type="hidden" name="experienceOrderStartDate" value="${ExperienceOrderStartDate}">
 	

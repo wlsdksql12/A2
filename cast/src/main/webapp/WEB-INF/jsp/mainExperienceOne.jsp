@@ -150,6 +150,7 @@
 					<p class="card-description">여행작가 추천</p>
 					<hr>
 						<a href="/mainExperienceSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
+						<a href="/addExperienceOrder?experienceId=${experience.experienceId}" style="text-align:right;" class="btn btn-outline-success">체험 예약</a>
 					<p></p><p></p>
 					<div>
 						<c:if test="${loginTravelerId != null}">
