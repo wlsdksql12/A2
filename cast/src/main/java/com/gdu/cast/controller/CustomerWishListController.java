@@ -32,6 +32,8 @@ public class CustomerWishListController {
 			return "redirect:/shop";
 		}
 
+		
+		
 		experienceWishListService.getinsertExperienceWishList(customerId, experienceId);
 		
 		return "redirect:/shop";

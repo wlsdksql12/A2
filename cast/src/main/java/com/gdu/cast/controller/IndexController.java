@@ -30,6 +30,8 @@ public class IndexController {
 	@Autowired ExperienceWishListService experienceWishListService;
 	@Autowired RoomWishListService roomWishListService;
 	
+	private final String value = "false";
+	
 	// localhost로 주소검색해도 "index" Controller가 실행이 되도록 함
 	@GetMapping(value={"/","/index"})
 	public String index(HttpSession session, Model model) {
@@ -47,6 +49,7 @@ public class IndexController {
 		model.addAttribute("loginTravelerId",session.getAttribute("loginTravelerId"));
 		model.addAttribute("loginAdminId",session.getAttribute("loginAdminId"));
 		model.addAttribute("loginCeoId",session.getAttribute("loginCeoId"));
+		
 		
 		return "index";
 	}
@@ -80,6 +83,7 @@ public class IndexController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+themeSmallHotelListmap.get("selectThemeShopHotelList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁselectThemeShopHotelList");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+shopCategory+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁshopCategory");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+searchKeyword+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁsearchKeyword");
+		model.addAttribute("value",value);
 		model.addAttribute("roomWishList" , roomId);
 		model.addAttribute("wishList", experienceId);
 		model.addAttribute("selectThemeList", map.get("selectThemeList"));

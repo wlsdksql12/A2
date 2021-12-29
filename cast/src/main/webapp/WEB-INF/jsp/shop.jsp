@@ -177,6 +177,7 @@
 				<c:when test="${shopCategory eq '전체보기'}">
 	                <div class="row">
 	                 <c:forEach items="${selectThemeShopExperienceList}" var="ShopExperienceList">
+	                 <c:set var="test" value="${value}" />
 	                    <div class="col-md-4">
 	                        <div class="card mb-4 product-wap rounded-0">
 	                            <div class="card rounded-0">
@@ -185,29 +186,36 @@
 	                                    <ul class="list-unstyled">
 	                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-	                                  <c:if test="${wishList != null}">
+	                                 
+	                                
+	                                  <c:if test="${not empty wishList}">
 	                                   <c:forEach items="${wishList}" var = "wishList">
+	                                   
 	            							<!-- 등록이 되어있다면 -->
 	            							<c:choose>
 	            								<c:when test="${(wishList.experienceId == ShopExperienceList.experience.experienceId)}">
-	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	            								<c:set var="test" value="true" />
+	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i>1</a></li>
 	            								</c:when>
 	            								<c:when test="${(loginCustomerId eq null)}">
-	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
+	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i>2</a></li>
 	            								</c:when>
-	            								<c:when test="${wishList.experienceId != ShopExperienceList.experience.experienceId}">
-	            								<li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
-	            								</c:when>
-			
+	            					
 	            							</c:choose>
 
-	                                        
 	                                    </c:forEach>
+	                                    		
+	                             				 <c:if test="${test eq false}">
+	            								<li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i>3</a></li>
+	            								</c:if>
+	            								
 	                                    </c:if>
+	                                  
 	                                    <!-- 관심상품 테이블이 비어있다면 -->
-	                                    <c:if test="${empty wishList}">
-	                                    <li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
+	                                    <c:if test="${(empty wishList)}">
+	                                    <li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i>4</a></li>
 	                                    </c:if>
+	                                    
 	                                    </ul>
 	                                </div>
 	                            </div>
@@ -239,6 +247,7 @@
 	                </div>
 	                <div class="row">
 	                 <c:forEach items="${selectThemeShopHotelList}" var="ShopHotelList">
+	                 <c:set var="test" value="${value}" />
 	                    <div class="col-md-4">
 	                        <div class="card mb-4 product-wap rounded-0">
 	                            <div class="card rounded-0">
@@ -247,10 +256,11 @@
 	                                    <ul class="list-unstyled">
 	                                        <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
 	                                        <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-	                                        <c:if test="${roomWishList != null}">
+	                                        <c:if test="${not empty roomWishList}">
 	                                   <c:forEach items="${roomWishList}" var = "roomWishList">
 	            
 											<c:if test="${(roomWishList.hotelId == ShopHotelList.hotel.hotelId)}">
+											<c:set var="test" value="true" />
 	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
 	                                     	</c:if>
 	                                     	
@@ -258,11 +268,12 @@
 	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
 	                                     	</c:if> 
 	                                     	
-	                                     	<c:if test="${roomWishList.hotelId != ShopHotelList.hotel.hotelId}">
-											<li><a class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
-											</c:if>
 	                                        
 	                                    </c:forEach>
+	                                    
+	                                     	<c:if test="${test eq false}">
+											<li><a class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
+											</c:if>
 	                                    </c:if>
 	                                    <c:if test="${empty roomWishList}">
 	                                    <li><a class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
