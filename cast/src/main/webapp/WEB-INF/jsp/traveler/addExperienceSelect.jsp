@@ -72,7 +72,7 @@
     <!-- Close Banner -->		
     <!-- Start Section -->
     <section class="container py-5">
-    <form method="post" action="/addExperienceSelect">
+    <form method="post" enctype="multipart/form-data" action="/addExperienceSelect">
 	   	<div style="text-align:center">
 	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="travelerId" value="${loginTravelerId}" readonly="readonly">
 	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="experienceId" value="${experienceId}" readonly="readonly">
@@ -88,6 +88,9 @@
 					</tr>
 					<tr>
 					<td colspan="5"><textarea name="experienceSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%; outline: none;" rows="10"></textarea></td>		
+					</tr>
+					<tr>
+						<td><input type="file" name="experienceSelectImage"></td>
 					</tr>
 			</table> 
 			 <p></p>

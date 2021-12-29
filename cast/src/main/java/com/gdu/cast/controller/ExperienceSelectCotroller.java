@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceSelectService;
-import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.AddExperienceSelect;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -38,9 +38,8 @@ public class ExperienceSelectCotroller {
 	
 	// 여행작가 체험 추천 추가
 	@PostMapping("/addExperienceSelect")
-	public String addExperienceSelect(ExperienceSelect experienceSelect) {
-		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
-		experienceSelectService.addExperienceSelect(experienceSelect);
+	public String addExperienceSelect(AddExperienceSelect addexperienceSelect) {
+		experienceSelectService.addExperienceSelect(addexperienceSelect);
 		return "redirect:/mainExperienceSelect";
 	}
 	

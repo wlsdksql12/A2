@@ -81,7 +81,7 @@
       </li>
     </ul>
    	<div style="text-align:center">
-   		<table class="table mb-0" >
+   		<table class="table mb-0">
 			<thead class="thead-light">
 				<tr>
 					<th width="10%">번호</th>
@@ -91,15 +91,18 @@
 				</tr>
 			</thead>
 			<tbody>
-					<tr style="text-align:center">
-						<td>${experienceSelect.experienceSelectId}</td>
-						<td>${experienceSelect.experienceSelectTitle}</td>
-						<td>${experienceSelect.traveler.travelerName}</td>
-						<td>${fn:substring(experienceSelect.createDate,0,10)}</td>
-					</tr>
-			<tr>
-				<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none;" rows="10" cols="100" readonly="readonly">${experienceSelect.experienceSelectContent}</textarea></td>		
-			</tr>
+				<tr style="text-align:center">
+					<td>${experienceSelect.experienceSelectId}</td>
+					<td>${experienceSelect.experienceSelectTitle}</td>
+					<td>${experienceSelect.traveler.travelerName}</td>
+					<td>${fn:substring(experienceSelect.createDate,0,10)}</td>
+				</tr>
+				<tr>
+					<td colspan="5"><img src="/upload/${experienceSelect.experienceSelectImage.imageName}.${experienceSelect.experienceSelectImage.imageExt}" style="display: block; margin: 0 auto; width:400px; height:400px;"/></td>
+				</tr>
+				<tr>
+					<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none;" rows="10" cols="100" readonly="readonly">${experienceSelect.experienceSelectContent}</textarea></td>		
+				</tr>
 		</table>
 		<p></p>
 		<div>

@@ -19,25 +19,20 @@
 	<!-- 여행작가 체험 추천 사진 추가 -->
 	<insert id="insertExperienceSelectImage" parameterType="com.gdu.cast.vo.ExperienceSelectImage">
 		INSERT INTO experience_select_image(
-			experience_select_image_id,
 			experience_select_id,
-			image_size,
-			image_ext,
 			image_name,
-			craete_date,
+			image_ext,
+			image_size,
+			create_date,
 			update_date
-		) VALEUS (
-			#{experienceSelectImageId},
+		) VALUES (
 			#{experienceSelectId},
-			#{imageSize},
-			#{imageExt},
 			#{imageName},
+			#{imageExt},
+			#{imageSize},
 			NOW(),
 			NOW()
 		)
-		<selectKey resultType="int" order="BEFORE" keyProperty="roomSelectImageId">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
 	</insert>
 
 	<!-- 여행작가 체험 추천 추가 -->

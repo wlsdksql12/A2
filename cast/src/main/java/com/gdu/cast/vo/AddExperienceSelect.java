@@ -1,9 +1,11 @@
 package com.gdu.cast.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
-public class ExperienceSelect {
+public class AddExperienceSelect {
 	private int experienceSelectId;
 	private String travelerId;
 	private int experienceId;
@@ -11,6 +13,5 @@ public class ExperienceSelect {
 	private String experienceSelectContent;
 	private String createDate;
 	private String updateDate;
-	private Traveler traveler;
-	private ExperienceSelectImage experienceSelectImage;
+	private MultipartFile experienceSelectImage;
 }
