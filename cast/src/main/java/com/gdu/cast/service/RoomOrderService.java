@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.gdu.cast.mapper.RoomOrderMapper;
 import com.gdu.cast.vo.RoomOrder;
+import com.gdu.cast.vo.RoomPayment;
 
 @Service
 public class RoomOrderService {
@@ -63,5 +64,14 @@ public class RoomOrderService {
 		 
 	}
 	
+	// 관리자 페이지에 숙소 예약 리스트 출력
+	public List<RoomOrder> getAdminRoomOrder(){
+		return roomOrderMapper.selectAdminRoomOrder();
+	}
+	
+	// 관리자 페이지에 숙소 결제 리스트 출력
+	public List<RoomPayment> getAdminRoomPayment(){
+		return roomOrderMapper.selectAdminRoomPayment();
+	}
 	
 }

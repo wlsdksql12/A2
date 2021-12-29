@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="kr">
 
@@ -35,7 +37,7 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item">예약결제리스트</li>
-              <li class="breadcrumb-item active" aria-current="page">예약 리스트</li>
+              <li class="breadcrumb-item active" aria-current="page">결제 리스트</li>
             </ol>
           </div>
 
@@ -45,7 +47,7 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">체험 예약 리스트</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">체험 결제 리스트</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover" style="text-align: center;">
@@ -54,16 +56,20 @@
                         <th width="100px;">예약 번호</th>
                         <th>고객ID</th>
                         <th>체험 이름</th>
-                        <th>예약 날짜</th>
+                        <th>결제 방식</th>
+                        <th>결제 금액</th>
+                        <th>결제 날짜</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach items="${experienceOrderList}" var="expOrderList">
+                      <c:forEach items="${experiencePaymentList}" var="expPaymentList">
                       	<tr>
-                      		<td>${expOrderList.experienceOrderId}</td>
-                      		<td>${expOrderList.customerId}</td>
-                      		<td>${expOrderList.experienceName}</td>
-                      		<td>${expOrderList.createDate}</td>
+                      		<td>${expPaymentList.experienceOrder.experienceOrderId}</td>
+                      		<td>${expPaymentList.experienceOrder.customerId}</td>
+                      		<td>${expPaymentList.experienceOrder.experienceName}</td>
+                      		<td>${expPaymentList.experiencePaymentMethod}</td>
+                      		<td><fmt:formatNumber value="${expPaymentList.experiencePaymentMoney}" pattern="#,###"/>원</td>
+                      		<td>${fn:substring(expPaymentList.createDate,0,10)}</td>
                       	</tr>
                       </c:forEach>
                     </tbody>
@@ -76,25 +82,25 @@
             <div class="col-lg-12">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">숙소 예약 리스트</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">숙소 결제 리스트</h6>
                 </div>
                 <div class="table-responsive p-3">
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover1" style="text-align: center;">
                     <thead class="thead-light">
                       <tr>
                         <th width="100px;">예약 번호</th>
-                        <th>고객ID</th>
-                        <th>호텔 이름</th>
-                        <th>예약 날짜</th>
+                        <th>결제 방식</th>
+                        <th>결제 금액</th>
+                        <th>결제 날짜</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach items="${roomOrderList}" var="roomOrderList">
+                      <c:forEach items="${roomPaymentList}" var="roomPaymentList">
                       	<tr>
-                      		<td>${roomOrderList.roomOrderId}</td>
-                      		<td>${roomOrderList.customerId}</td>
-                      		<td>${roomOrderList.hotelName}</td>
-                      		<td>${roomOrderList.createDate}</td>
+                      		<td>${roomPaymentList.roomOrderId}</td>
+                      		<td>${roomPaymentList.roomPaymentMethod}</td>
+                      		<td><fmt:formatNumber value="${roomPaymentList.roomPaymentMoney}" pattern="#,###"/>원</td>
+                      		<td>${fn:substring(roomPaymentList.createDate,0,10)}</td>
                       	</tr>
                       </c:forEach>
                     </tbody>

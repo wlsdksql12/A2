@@ -16,6 +16,7 @@ import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.AdminService;
 import com.gdu.cast.service.ExperienceOrderService;
 import com.gdu.cast.service.JoinRequestService;
+import com.gdu.cast.service.RoomOrderService;
 import com.gdu.cast.vo.Admin;
 import com.gdu.cast.vo.JoinCeo;
 import com.gdu.cast.vo.JoinTraveler;
@@ -26,6 +27,7 @@ public class AdminController {
 	@Autowired AdminQnaService adminQnaService;
 	@Autowired JoinRequestService joinRequestService;
 	@Autowired ExperienceOrderService experienceOrderService; 
+	@Autowired RoomOrderService roomOrderService;
 	
 	private final int ROW_PER_PAGE = 5;
 	
@@ -100,7 +102,15 @@ public class AdminController {
 	@GetMapping("/admin/orderList")
 	public String getOrderList(Model model) {
 		model.addAttribute("experienceOrderList", experienceOrderService.getAdminExperienceOrder());
+		model.addAttribute("roomOrderList", roomOrderService.getAdminRoomOrder());
 		return"/admin/adminOrderList";
 	}
 	
+	// 관리자 결제 리스트
+	@GetMapping("/admin/paymentList")
+	public String getPaymentList(Model model) {
+		model.addAttribute("experiencePaymentList", experienceOrderService.getAdminExperiencePayment());
+		model.addAttribute("roomPaymentList", roomOrderService.getAdminRoomPayment());
+		return"/admin/adminPaymentList";
+	}
 }

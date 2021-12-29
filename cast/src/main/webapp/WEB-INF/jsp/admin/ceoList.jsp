@@ -48,53 +48,33 @@
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">사업자 리스트</h6>
                 </div>
-                <div class="table-responsive">
-					<table class="table align-items-center table-flush">
-					  <thead class="thead-light">
-						<tr style="text-align:center" class="table-primary">
-							<th width="10%">번호</th>
-							<th width="60%">제목</th>
-							<th width="10%">작성자</th>
-							<th width="20%">작성날짜</th>
-						</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${noticeList}" var="notice">
-								<tr style="text-align:center">
-									<td>${notice.noticeNo}</td>
-									<td><a href="/admin/noticeOne?noticeNo=${notice.noticeNo}">${notice.noticeTitle}</a></td>
-									<td>${notice.admin.adminName}</td>
-									<td>${fn:substring(notice.createDate,0,10)}</td>
-								</tr>
+                 <div class="table-responsive p-3">
+                  <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+                    <thead class="thead-light">
+					<tr style="text-align:center" class="table-primary">
+						<th width="15%">아이디</th>
+						<th width="10%">이름</th>
+						<th width="15%">E-mail</th>
+						<th width="15%">전화번호</th>
+						<th width="15%">사업자격증</th>
+						<th width="15%">생성날짜</th>
+						<th width="15%">최근접속날짜</th>
+					</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${ceoList}" var="ceo">
+							<tr style="text-align:center">
+								<td>${ceo.ceoId}</td>
+								<td>${ceo.ceoName}</td>
+								<td>${ceo.ceoEmail}</td>
+								<td>${ceo.ceoPhonenum}</td>
+								<td>${ceo.ceoLicense}</td>
+								<td>${fn:substring(ceo.createDate,0,10)}</td>
+								<td>${fn:substring(ceo.updateDate,0,10)}</td>
+							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					<div>
-						<c:if test="${startPage > 1}">
-							<a href="/admin/noticeList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
-						</c:if>
-						<c:forEach begin="${startPage}" end="${lastPage}" var="i">
-							<c:choose>
-								<c:when test="${i == currentPage}">
-									<a href="/admin/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
-								</c:when>
-								<c:otherwise>
-									<a href="/admin/noticeList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
-								</c:otherwise>
-							</c:choose>
-						</c:forEach>
-						<c:if test="${lastPage != totalPage}">
-							<a href="/admin/noticeList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
-						</c:if>
-					</div>
-					<br>
-					<form method="get" id="/admin/noticeList">
-						<input name="searchTitle" value="${searchTitle}">
-						<button>검색</button>
-					</form>	
-					</div>
-					<br>
-				</div>
                 <div>
 					<c:if test="${startPage > 1}">
 						<a href="/admin/ceoList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>

@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gdu.cast.vo.ExperienceOrder;
 import com.gdu.cast.vo.RoomOrder;
+import com.gdu.cast.vo.RoomPayment;
 
 @Mapper
 public interface RoomOrderMapper {
@@ -27,5 +29,8 @@ public interface RoomOrderMapper {
 	// 고객 페이지 숙소 예약 페이징
 	int selectRoomOrderTotalCount(String CustomerId);
 	
-
+	// 관리자 페이지 예약 리스트
+	List<RoomOrder> selectAdminRoomOrder();
+	// 관리자 페이지 결제 리스트
+	List<RoomPayment> selectAdminRoomPayment();
 }

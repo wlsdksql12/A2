@@ -11,4 +11,5 @@ public class RoomPayment {
 	private int roomPaymentMoney;
 	private String createDate;
 	private String updateDate;
+	private RoomOrder roomOrder;
 }

@@ -87,7 +87,7 @@
             <h6 class="collapse-header">Order</h6>
             <a class="collapse-item" href="/admin/orderList">예약리스트</a>
             <h6 class="collapse-header">Payment</h6>
-            <a class="collapse-item" href="/admin/travelerJoinRequestList">결제리스트</a>
+            <a class="collapse-item" href="/admin/paymentList">결제리스트</a>
           </div>
         </div>
       </li>

@@ -30,6 +30,9 @@ public interface ExperienceOrderMapper {
 	// 고객 체험 결제 페이징
 	int selectExperiencePaymentTotalCount(String customerId);
 	
-	// 관리자 페이지 예약 리스트
+	// 관리자 페이지 체험 예약 리스트
 	List<ExperienceOrder> selectAdminExperienceOrder();
+	
+	// 관리자 페이지 체험 결제 리스트
+	List<ExperiencePayment> selectAdminExperiencePayment();
 }
