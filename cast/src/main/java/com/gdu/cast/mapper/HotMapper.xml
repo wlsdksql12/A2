@@ -308,12 +308,15 @@
 			r.room_startdate = DATE(#{roomStartdate}),
 			r.room_enddate = DATE(#{roomEnddate}),
 			r.room_price = #{roomPrice},
+			r.update_date = NOW(),
 			rb.bed_count = #{roomBedroom.bedCount},
 			rb.bedroom_count = #{roomBedroom.bedroomCount},
 			rb.bathroom_count = #{roomBedroom.bathroomCount},
+			rb.update_date = NOW(),
 			rc.stairs_threshold = #{roomConvenience.stairsThreshold},
 			rc.toilet_handle = #{roomConvenience.toiletHandle},
 			rc.shower_stall_handle = #{roomConvenience.showerStallHandle},
+			rc.update_date = NOW(),
 			rf.kitchen = #{roomFilter.kitchen},
 			rf.internet = #{roomFilter.internet},
 			rf.boiler = #{roomFilter.boiler},
@@ -322,7 +325,8 @@
 			rf.breakfast = #{roomFilter.breakfast},
 			rf.tv = #{roomFilter.tv},
 			rf.hairdryer = #{roomFilter.hairdryer},
-			rf.bidet = #{roomFilter.bidet}
+			rf.bidet = #{roomFilter.bidet},
+			rf.update_date = NOW()
 		WHERE r.room_id = #{roomId}
 	</update>
 	<!-- 테마 체험 등록 -->
