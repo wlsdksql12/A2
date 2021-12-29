@@ -29,7 +29,7 @@ public class CustomerWishListController {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		// 비회원이라면 샵으로 이동.
 		if(customerId == null) {
-			return "redirect:/shop";
+			return "redirect:/loginSelect";
 		}
 
 		
@@ -57,7 +57,7 @@ public class CustomerWishListController {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		// 비회원이라면 샵으로 이동.
 		if(customerId == null) {
-			return "redirect:/shop";
+			return "redirect:/loginSelect";
 		}
 
 		roomWishListService.getinsertRoomWishList(customerId, hotelId);

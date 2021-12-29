@@ -118,6 +118,7 @@
 			                	<ul class="hide">
 			                		<li>메뉴2-1-1</li>
 			                		<li>메뉴2-1-2</li>
+			                		<li><a href="/addExperienceOrder">체험 주문</a></li>
 			                		<li><a href="/addHotelOrder">숙소 주문</a></li>
 			                	</ul>
 			                </li>
@@ -194,22 +195,21 @@
 	            							<c:choose>
 	            								<c:when test="${(wishList.experienceId == ShopExperienceList.experience.experienceId)}">
 	            								<c:set var="test" value="true" />
-	            								<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i>1</a></li>
+	            								<li><a name="duplWishListBtn" class="btn btn-success text-white mt-2"><i class="fas fa-cart-plus"></i></a></li>
 	            								</c:when>
-	            					
 	            							</c:choose>
 
 	                                    </c:forEach>
 	                                    		
 	                             				 <c:if test="${test eq false}">
-	            								<li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i>3</a></li>
+	            								<li><a name="ExpAddWishListBtn" class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
 	            								</c:if>
 	            								
 	                                    </c:if>
 	                                  
 	                                    <!-- 관심상품 테이블이 비어있다면 -->
 	                                    <c:if test="${(empty wishList)}">
-	                                    <li><a class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i>4</a></li>
+	                                    <li><a name="ExpEmpWishListBtn" class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
 	                                    </c:if>
 	                                    
 	                                    </ul>
@@ -217,7 +217,8 @@
 	                            </div>
 	                            <div class="card-body">
 	                                <a href="/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
-	                                
+	                                <div>
+	                                </div>
 	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
 	                                    <li class="pt-2">
 	                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
@@ -237,7 +238,6 @@
 	                                    </li>
 	                                </ul>
 	                                <p class="text-center mb-0">${ShopExperienceList.experience.experiencePrice}원</p>
-	                                
 	                            </div>
 	                        </div>
 	                    </div>
@@ -259,18 +259,16 @@
 	            
 											<c:if test="${(roomWishList.hotelId == ShopHotelList.hotel.hotelId)}">
 											<c:set var="test" value="true" />
-	                                     		<li><a class="btn btn-success text-white mt-2" href="/shop"><i class="fas fa-cart-plus"></i></a></li>
-	                                     	</c:if>
-	                                     	
-	                                        
+	                                     		<li><a name="duplWishListBtn" class="btn btn-success text-white mt-2"><i class="fas fa-cart-plus"></i></a></li>
+	                                     	</c:if>   
 	                                    </c:forEach>
 	                                    
 	                                     	<c:if test="${test eq false}">
-											<li><a class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
+											<li><a name="RoomAddWishListBtn" class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
 											</c:if>
 	                                    </c:if>
 	                                    <c:if test="${empty roomWishList}">
-	                                    <li><a class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
+	                                    <li><a name="RoomEmpWishListBtn" class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
 	                                    </c:if>
 	                                    </ul>
 	                                </div>
@@ -659,7 +657,58 @@ $(document).on("click", "button[name='searchKeyword']", function () {
 	// console.log($('#searchKeyword').val());
 	$('#searchKeywordForm').submit();
 });
- </script>
+
+//중복된 관심상품 등록시
+$(document).ready(function(){
+	
+	$('[name="duplWishListBtn"]').click(function(){
+		alert('이미 등록한 관심상품입니다.');
+		location.href = "/shop";
+	});
+});
+// 체험
+	// 등록되지 않은 관심상품 등록시
+	$(document).ready(function(){
+		
+		$('[name="ExpAddWishListBtn"]').click(function(){
+			alert('해당 체험을 관심상품으로 등록했습니다.');
+			location.href = "/shop";
+		});
+	});
+	// 관심상품 테이블이 비워있거나
+	// 로그인을 하지 않은 상태로 관심상품 등록시
+	$(document).ready(function(){
+		
+		$('[name="ExpEmpWishListBtn"]').click(function(){
+			if(${loginCustomerId == null}) {
+				alert('로그인 후 이용해주시기 바랍니다.');
+			} else {
+				alert('해당 체험을 관심상품으로 등록했습니다.');
+			}
+		});
+	});
+// 숙소
+	// 등록되지 않은 관심상품 등록시
+	$(document).ready(function(){
+		
+		$('[name="RoomAddWishListBtn"]').click(function(){
+			alert('해당 숙소를 관심상품으로 등록했습니다.');
+			location.href = "/shop";
+		});
+	});
+	// 관심상품 테이블이 비워있거나
+	// 로그인을 하지 않은 상태로 관심상품 등록시
+	$(document).ready(function(){
+		
+		$('[name="RoomEmpWishListBtn"]').click(function(){
+			if(${loginCustomerId == null}) {
+				alert('로그인 후 이용해주시기 바랍니다.');
+			} else {
+				alert('해당 숙소를 관심상품으로 등록했습니다.');
+			}
+		});
+	});
+</script>
 </body>
 
 </html>
