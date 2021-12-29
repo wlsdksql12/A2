@@ -67,4 +67,10 @@ public class CeoController {
 		return "redirect:/selectCeo?ceoId="+ceoId;
 	}
 	
+	// 사업가 구독 페이지
+	@GetMapping("/ceo/subscribeCeo")
+	public String subscribeCeo(HttpSession session) {
+		return "ceo/subscribeCeo";
+	}
+	
 }

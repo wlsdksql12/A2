@@ -48,71 +48,37 @@
         </button>
         <ul class="navbar-nav mr-lg-2">
           <li class="nav-item nav-search d-none d-lg-block">
-            <div class="input-group">
-              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="ti-search"></i>
-                </span>
-              </div>
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
-            </div>
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
           <div>
-	            <a href="/index" style="font-weight:bold;" class="btn btn-light btn-icon-text">
-	              <i class="ti-home btn-icon-prepend"></i>메인페이지
-	            </a>
-            </div>
-             &emsp;
-          	<div>
-	            <a href="/ceo/selectExpHotel" style="font-weight:bold;" class="btn btn-light btn-icon-text">
-	              <i class="ti-clipboard btn-icon-prepend"></i>사업체 등록
+	            <a href="/index" style="font-weight:bold;" class="nav-link count-indicator">
+	              <i class="ti-home"></i>
 	            </a>
             </div>
             &emsp;
-            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
-              <i class="ti-email mx-0"></i>
+            <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="expHotelDropdown" href="#" data-toggle="dropdown">
+              <i class="ti-clipboard"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                    <img src="${pageContext.request.contextPath}/resources/ceo_template/images/faces/face4.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="item-content flex-grow">
-                  <h6 class="ellipsis font-weight-normal">David Grey
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    The meeting is cancelled
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                    <img src="${pageContext.request.contextPath}/resources/ceo_template/images/faces/face2.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="item-content flex-grow">
-                  <h6 class="ellipsis font-weight-normal">Tim Cook
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    New product launch
-                  </p>
-                </div>
-              </a>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                    <img src="${pageContext.request.contextPath}/resources/ceo_template/images/faces/face3.jpg" alt="image" class="profile-pic">
-                </div>
-                <div class="item-content flex-grow">
-                  <h6 class="ellipsis font-weight-normal"> Johnson
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    Upcoming board meeting
-                  </p>
-                </div>
-              </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="expHotelDropdown">
+            	<p class="mb-0 font-weight-normal float-left dropdown-header">Select</p>
+            	<a href="/ceo/insertExpAddress?ceoId=${loginCeoId}" class="dropdown-item">
+            		<div class="item-content flex-grow">
+	                  <h6 class="ellipsis font-weight-normal">Experience</h6>
+	                  <p class="font-weight-light small-text text-muted mb-0">
+	                  	체험 등록
+	                  </p>
+                	</div>
+            	</a>
+            	<a href="/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="dropdown-item">
+            		<div class="item-content flex-grow">
+	                  <h6 class="ellipsis font-weight-normal">Hotel</h6>
+	                  <p class="font-weight-light small-text text-muted mb-0">
+	                    호텔 등록
+	                  </p>
+                	</div>
+            	</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -200,6 +166,21 @@
               <i class="ti-user menu-icon"></i>
               <span class="menu-title" style="font-weight:bold;">내정보</span>
             </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#selectExpHotel" aria-expanded="false" aria-controls="ui-basic">
+              <i class=" menu-icon ti-clipboard"></i>
+              <span class="menu-title" style="font-weight:bold;">사업체 등록</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="selectExpHotel">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                <a href="insertExpAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
+                <li class="nav-item">
+                <a href="insertsHotelAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
+              </ul>
+            </div>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
