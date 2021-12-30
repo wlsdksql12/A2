@@ -44,7 +44,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">전시소개 삭제</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">전시소개</li>
             </ol>
           </div>
@@ -55,7 +55,7 @@
       </div>
       <div class="table-responsive">
       		<h6 class="m-3 font-weight-bold text-danger">전시소개를 삭제하시겠습니까?</h6>
-		 <form method="post" action="/admin/deleteExhibition" id="deleteExhibitionForm">
+		 <form method="post" action="${pageContext.request.contextPath}/admin/deleteExhibition" id="deleteExhibitionForm">
 		 <input type="hidden" name="exhibitionNo" value="${exhibitionNo}" readonly="readonly">
 			<table class="table align-items-center table-flush">
 				<tr>

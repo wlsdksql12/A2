@@ -44,7 +44,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">전시소개 작성</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">전시소개</li>
             </ol>
           </div>
@@ -54,7 +54,7 @@
         <h6 class="m-0 font-weight-bold text-primary">전시소개 작성</h6>
       </div>
       <div class="table-responsive">
-		<form method="post" action="/admin/addExhibition" id="addExhibitionForm">
+		<form method="post" action="${pageContext.request.contextPath}/admin/addExhibition" id="addExhibitionForm">
 			<table class="table align-items-center table-flush">
 				<tr>
 					<td width="10%" style="text-align: right">제목</td>

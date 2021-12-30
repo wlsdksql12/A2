@@ -35,7 +35,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">고객 리스트</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item">가입자리스트</li>
               <li class="breadcrumb-item active" aria-current="page">고객리스트</li>
             </ol>
@@ -72,11 +72,11 @@
 								<td>
 									<!-- 활성화상태라면(active=1) 비활성화 버튼이 보이도록 -->
 									<c:if test="${customer.active eq '1' }">
-										<a href="/admin/customerDisable?customerId=${customer.customerId}" class="btn btn-secondary">비활성화</a>
+										<a href="${pageContext.request.contextPath}/admin/customerDisable?customerId=${customer.customerId}" class="btn btn-secondary">비활성화</a>
 									</c:if>
 									<!-- 비활성화상태라면(active=0) 활성화 버튼이 보이도록 -->
 									<c:if test="${customer.active eq '0' }">
-										<a href="/admin/customerActive?customerId=${customer.customerId}" class="btn btn-outline-light text-dark" style="width: 90px">활성화</a>
+										<a href="${pageContext.request.contextPath}/admin/customerActive?customerId=${customer.customerId}" class="btn btn-outline-light text-dark" style="width: 90px">활성화</a>
 									</c:if>
 								</td>
 								<td>${fn:substring(customer.createDate,0,10)}</td>
@@ -87,24 +87,24 @@
                 </div>
                 <div>
 					<c:if test="${startPage > 1}">
-						<a href="/admin/customerList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+						<a href="${pageContext.request.contextPath}/admin/customerList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/admin/customerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/customerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/admin/customerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/customerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${lastPage != totalPage}">
-						<a href="/admin/customerList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+						<a href="${pageContext.request.contextPath}/admin/customerList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 					</c:if>
 				</div>
 				<br>
-				<form method="get" id="/admin/customerList">
+				<form method="get" id="${pageContext.request.contextPath}/admin/customerList">
 					<input name="searchTitle" value="${searchTitle}">
 					<button>검색</button>
 				</form>

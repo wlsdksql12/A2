@@ -36,7 +36,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">여행작가 가입 요청</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item">가입승인요청리스트</li>
               <li class="breadcrumb-item active" aria-current="page">여행작가가입요청</li>
             </ol>
@@ -75,7 +75,7 @@
 						<c:forEach items="${joinTravelerList}" var="joinTraveler">
 							<c:choose>
 								<c:when test="${joinTraveler.active eq '요청'}">
-									<tr style="text-align:center" style = "cursor:pointer;" onClick = " location.href='/admin/travelerSelectOne?joinTravelerId=${joinTraveler.joinTravelerId}'">
+									<tr style="text-align:center" style = "cursor:pointer;" onClick = " location.href='${pageContext.request.contextPath}/admin/travelerSelectOne?joinTravelerId=${joinTraveler.joinTravelerId}'">
 								</c:when>
 								<c:otherwise>
 									<tr style="text-align:center">
@@ -95,24 +95,24 @@
                 </div>
                 <div>
 					<c:if test="${startPage > 1}">
-						<a href="/admin/travelerJoinRequestList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+						<a href="${pageContext.request.contextPath}/admin/travelerJoinRequestList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/admin/travelerJoinRequestList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/travelerJoinRequestList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 							</c:when>
 							<c:when test="${i != 0}">
-								<a href="/admin/travelerJoinRequestList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/travelerJoinRequestList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 							</c:when>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${lastPage != totalPage}">
-						<a href="/admin/travelerJoinRequestList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+						<a href="${pageContext.request.contextPath}/admin/travelerJoinRequestList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 					</c:if>
 				</div>
 				<br>
-				<form method="get" action="/admin/travelerJoinRequestList" id="search">
+				<form method="get" action="${pageContext.request.contextPath}/admin/travelerJoinRequestList" id="search">
 					<input name="searchTitle" value="${searchTitle}">
 					<input type="hidden" name="state" value="${state}">
 					<button>검색</button>

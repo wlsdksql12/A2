@@ -34,7 +34,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">전시소개</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">전시소개</li>
             </ol>
           </div>
@@ -43,7 +43,7 @@
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">전시소개</h6>
         <c:if test="${loginAdminId != null}">
-				<a href="/admin/addExhibition" id="insertBtn" class="btn btn-outline-primary" style="margin-right: 60px">작성</a>
+				<a href="${pageContext.request.contextPath}/admin/addExhibition" id="insertBtn" class="btn btn-outline-primary" style="margin-right: 60px">작성</a>
 			</c:if>
       </div>
       
@@ -61,7 +61,7 @@
 					<c:forEach items="${exhibitionList}" var="exhibition">
 						<tr style="text-align:center">
 							<td>${exhibition.exhibitionNo}</td>
-							<td><a href="/admin/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
+							<td><a href="${pageContext.request.contextPath}/admin/exhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
 							<td>${exhibition.admin.adminName}</td>
 							<td>${fn:substring(exhibition.createDate,0,10)}</td>
 						</tr>
@@ -70,24 +70,24 @@
 			</table>
 			<div>
 				<c:if test="${startPage > 1}">
-					<a href="/admin/exhibitionList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+					<a href="${pageContext.request.contextPath}/admin/exhibitionList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 				</c:if>
 				<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 					<c:choose>
 						<c:when test="${i == currentPage}">
-							<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+							<a href="${pageContext.request.contextPath}/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+							<a href="${pageContext.request.contextPath}/admin/exhibitionList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
 				<c:if test="${lastPage != totalPage}">
-					<a href="/admin/exhibitionList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+					<a href="${pageContext.request.contextPath}/admin/exhibitionList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 				</c:if>
 			</div>
 			<br>
-			<form method="get" id="/admin/exhibitionList">
+			<form method="get" id="${pageContext.request.contextPath}/admin/exhibitionList">
 				<input name="searchTitle" value="${searchTitle}">
 				<button>검색</button>
 			</form>	

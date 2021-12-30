@@ -23,7 +23,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-primary" data-dismiss="modal">취소</button>
-            <a href="/logOut" class="btn btn-primary">로그아웃</a>
+            <a href="${pageContext.request.contextPath}/logOut" class="btn btn-primary">로그아웃</a>
           </div>
         </div>
       </div>

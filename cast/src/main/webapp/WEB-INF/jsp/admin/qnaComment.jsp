@@ -43,7 +43,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">QNA답변 작성</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">QNA</li>
             </ol>
           </div>
@@ -53,7 +53,7 @@
         <h6 class="m-0 font-weight-bold text-primary">Qna 답변 작성</h6>
       </div>
       <div class="table-responsive">
-		 <form method="post" action="/admin/qnaComment" id="qnaCommentForm">
+		 <form method="post" action="${pageContext.request.contextPath}/admin/qnaComment" id="qnaCommentForm">
 		 <input type="hidden" name="qnaId" value="${qnaId}" readonly="readonly">
 		 <input type="hidden" name="customerId" value="${customerId}" readonly="readonly">
 			<table class="table align-items-center table-flush">

@@ -45,7 +45,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Qna답변 삭제</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Qna답변 삭제</li>
             </ol>
           </div>
@@ -56,7 +56,7 @@
       </div>
       <div class="table-responsive">
       		<h6 class="m-3 font-weight-bold text-danger">Qna답변을 삭제하시겠습니까?</h6>
-		 <form method="post" action="/admin/deleteQnaComment" id="deleteQnaCommentForm">
+		 <form method="post" action="${pageContext.request.contextPath}/admin/deleteQnaComment" id="deleteQnaCommentForm">
 		 <input type="hidden" name="qnaId" value="${qnaId}" readonly="readonly">
 			<table class="table align-items-center table-flush">
 				<tr>

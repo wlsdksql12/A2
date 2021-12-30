@@ -34,7 +34,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="./">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page" style="margin-right: 450px">Dashboard</li>
             </ol>
           </div>
@@ -194,7 +194,7 @@
               <div class="card ">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Qna 미답변</h6>
-                  <a class="m-0 float-right btn btn-danger btn-sm" href="/admin/qnaList">Qna More <i
+                  <a class="m-0 float-right btn btn-danger btn-sm" href="${pageContext.request.contextPath}/admin/qnaList">Qna More <i
                       class="fas fa-chevron-right"></i></a>
                 </div>
                 <div class="table-responsive">
@@ -211,7 +211,7 @@
                       <tr>
                       	 <c:forEach items="${notQnaCommentList}" var="nqcl">
 		                     <tr style="text-align:center">
-		                        <td style="text-align: center;"><a href ="/mainQnaListOne?qnaId=${nqcl.qnaId}">${nqcl.qnaTitle}</a></td>
+		                        <td style="text-align: center;"><a href ="${pageContext.request.contextPath}/mainQnaListOne?qnaId=${nqcl.qnaId}">${nqcl.qnaTitle}</a></td>
 		                        <td style="text-align: center;">${nqcl.customerId}</td>
 		                        <td style="text-align: center;">${fn:substring(nqcl.createDate,0,10)}</td>
 		                        <td style="text-align: center;">${nqcl.qnaSecret}</td>
@@ -236,7 +236,7 @@
                 <!-- 여행작가 리스트 시작-->
 	               <c:forEach items="${joinTravelerList}" var="joinTraveler">
 						<div class="customer-message align-items-center">
-							<a class="font-weight-bold" href="/admin/travelerSelectOne?joinTravelerId=${joinTraveler.joinTravelerId}">
+							<a class="font-weight-bold" href="${pageContext.request.contextPath}/admin/travelerSelectOne?joinTravelerId=${joinTraveler.joinTravelerId}">
 								<div class="text-truncate message-title">${joinTraveler.travelerId}님께서 여행작가 가입 요청했습니다.</div>
 								<div class="small text-gray-500 message-time font-weight-bold">${fn:substring(traveler.createDate,0,19)}</div>
 							</a>
@@ -244,7 +244,7 @@
 					</c:forEach>	
                   <!-- 여행작가 리스트 끝 -->
                   <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="/admin/travelerJoinRequestList?state=요청">View More <i
+                    <a class="m-0 small text-primary card-link" href="${pageContext.request.contextPath}/admin/travelerJoinRequestList?state=요청">View More <i
                         class="fas fa-chevron-right"></i></a>
                   </div>
                 </div>
@@ -260,7 +260,7 @@
                 <!-- 사업자 리스트 시작 -->
                   <c:forEach items="${joinCeoList}" var="joinCeo">
 						<div class="customer-message align-items-center">
-							<a class="font-weight-bold" href="/admin/ceoSelectOne?joinCeoId=${joinCeo.joinCeoId}">
+							<a class="font-weight-bold" href="${pageContext.request.contextPath}/admin/ceoSelectOne?joinCeoId=${joinCeo.joinCeoId}">
 								<div class="text-truncate message-title">${joinCeo.ceoId}님께서 사업자 가입 요청했습니다.</div>
 								<div class="small text-gray-500 message-time font-weight-bold">${fn:substring(joinCeo.createDate,0,19)}</div>
 							</a>
@@ -268,7 +268,7 @@
 					</c:forEach>
 					 <!-- 사업자 리스트 끝 -->
                   <div class="card-footer text-center">
-                    <a class="m-0 small text-primary card-link" href="/admin/ceoJoinRequestList?state=요청">View More <i
+                    <a class="m-0 small text-primary card-link" href="${pageContext.request.contextPath}/admin/ceoJoinRequestList?state=요청">View More <i
                         class="fas fa-chevron-right"></i></a>
                   </div>
                 </div>

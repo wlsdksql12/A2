@@ -35,7 +35,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">사업자 리스트</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item">가입자리스트</li>
               <li class="breadcrumb-item active" aria-current="page">사업자리스트</li>
             </ol>
@@ -77,24 +77,24 @@
 					</table>
                 <div>
 					<c:if test="${startPage > 1}">
-						<a href="/admin/ceoList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+						<a href="${pageContext.request.contextPath}/admin/ceoList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/admin/ceoList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/ceoList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/admin/ceoList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/ceoList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${lastPage != totalPage}">
-						<a href="/admin/ceoList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+						<a href="${pageContext.request.contextPath}/admin/ceoList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 					</c:if>
 				</div>
 				<br>
-				<form method="get" id="/admin/ceoList">
+				<form method="get" id="${pageContext.request.contextPath}/admin/ceoList">
 					<input name="searchTitle" value="${searchTitle}">
 					<button>검색</button>
 				</form>

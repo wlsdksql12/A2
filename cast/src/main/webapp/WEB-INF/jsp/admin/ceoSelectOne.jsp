@@ -41,7 +41,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">사업자 상세보기</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item">가입승인요청리스트</li>
               <li class="breadcrumb-item active" aria-current="page">사업자상세보기</li>
             </ol>
@@ -78,8 +78,8 @@
 						<input type="text" class="form-control" name=travelerLicense value="${joinCeo.ceoLicense}" readonly="readonly" required>
 					</div>
 					<c:if test="${joinCeo.active eq '요청' }">
-						<a class="btn btn-outline-success" href="/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=승인">승인</a>
-						<a class="btn btn-outline-danger" href="/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=거절">거절</a>
+						<a class="btn btn-outline-success" href="${pageContext.request.contextPath}/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=승인">승인</a>
+						<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=거절">거절</a>
 					</c:if>
 					<c:if test="${joinCeo.active eq '승인' }">
 						<hr>
@@ -108,7 +108,7 @@
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-              <b><a href="https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
+              <b><a href="${pageContext.request.contextPath}https://indrijunanda.gitlab.io/" target="_blank">indrijunanda</a></b>
             </span>
           </div>
         </div>

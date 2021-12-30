@@ -35,7 +35,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">여행작가 리스트</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item">가입자리스트</li>
               <li class="breadcrumb-item active" aria-current="page">여행작가리스트</li>
             </ol>
@@ -78,24 +78,24 @@
                 </div>
                 <div>
 					<c:if test="${startPage > 1}">
-						<a href="/admin/travelerList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+						<a href="${pageContext.request.contextPath}/admin/travelerList?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/admin/travelerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/travelerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/admin/travelerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+								<a href="${pageContext.request.contextPath}/admin/travelerList?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${lastPage != totalPage}">
-						<a href="/admin/travelerList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+						<a href="${pageContext.request.contextPath}/admin/travelerList?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 					</c:if>
 				</div>
 				<br>
-				<form method="get" id="/admin/travelerList">
+				<form method="get" id="${pageContext.request.contextPath}/admin/travelerList">
 					<input name="searchTitle" value="${searchTitle}">
 					<button>검색</button>
 				</form>

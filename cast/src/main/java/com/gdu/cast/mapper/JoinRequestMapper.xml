@@ -156,7 +156,7 @@
 		<where>
 			<choose>
 				<when test='(state != null or state == "") and (searchTitle != null or searchTitle == "")'>
-					active LIKE '%${state}%' AND c.ceo_id LIKE '%${searchTitle}%'
+					active LIKE '%${state}%' AND ceo_id LIKE '%${searchTitle}%'
 				</when>
 				<when test='state != null or state == ""'>
 					active LIKE '%${state}%'

@@ -34,7 +34,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
-					<form method="post" action="/adminLogin" id="adminLoginForm">
+					<form method="post" action="${pageContext.request.contextPath}/adminLogin" id="adminLoginForm">
 	                    <div class="form-group">
 	                      <input type="text" class="form-control" id="adminId" name="adminId"  placeholder="관리자 아이디를 입력해주세요">
 	                    </div>

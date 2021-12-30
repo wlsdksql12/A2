@@ -35,7 +35,7 @@
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">QNA</h1>
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="/admin/adminIndex">Home</a></li>
+              <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/admin/adminIndex">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">QNA</li>
             </ol>
           </div>
@@ -60,7 +60,7 @@
 					<tbody>
 						<c:forEach items="${qnaList}" var="qna">
 							<tr style="text-align:center">
-								<td><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></td>
+								<td><a href ="${pageContext.request.contextPath}/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></td>
 								<td>${qna.customerId}</td>
 								<td>${fn:substring(qna.createDate,0,10)}</td>
 								<td>${qna.qnaSecret}</td>
@@ -71,10 +71,10 @@
                 </div>
                 <div>
 					<c:if test="${currentPage > 1}">
-						<a href="/admin/qnaList?&currentPage=${currentPage-1}" class="btn btn-outline-light text-dark">이전</a>
+						<a href="${pageContext.request.contextPath}/admin/qnaList?&currentPage=${currentPage-1}" class="btn btn-outline-light text-dark">이전</a>
 					</c:if>
 					<c:if test="${currentPage < lastPage}">
-						<a href="/admin/qnaList?&currentPage=${currentPage+1}" class="btn btn-outline-light text-dark">다음</a>
+						<a href="${pageContext.request.contextPath}/admin/qnaList?&currentPage=${currentPage+1}" class="btn btn-outline-light text-dark">다음</a>
 					</c:if>
 				</div>
               </div>
