@@ -55,7 +55,7 @@
 	
 	<!-- 회원 가입 시 로그인기록 생성 -->	
 	<insert id="insertCustomerLogin" parameterType="com.gdu.cast.vo.Customer_Login">
-		INSERT INTO Customer_Login(
+		INSERT INTO customer_login(
 		customer_id,
 		create_date,
 		update_date
@@ -88,7 +88,7 @@
 			qna_secret qnaSecret,
 			create_date createDate,
 			update_date updateDate
-		FROM Qna
+		FROM qna
 		where customer_id = #{customerId}
 		ORDER BY create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
@@ -136,7 +136,7 @@
 			customer_jumin customerJumin,
 			customer_email customerEmail,
 			customer_phonenum customerPhoneNum
-		FROM Customer
+		FROM customer
 		WHERE customer_id = #{customerId}
 	</select> 
 	
@@ -152,13 +152,13 @@
 	<select id = "selectActive" parameterType="com.gdu.cast.vo.Customer" resultType="com.gdu.cast.vo.Customer">
 		SELECT
 			active
-		FROM Customer
+		FROM customer
 		WHERE customer_id = #{customerId}	
 	</select>
 	
 	<!--  일반회원 로그인 할 시 update_date now() -->
 	<update id="updateDate" parameterType="com.gdu.cast.vo.Customer_Login">
-		UPDATE Customer_Login SET update_date = now()
+		UPDATE customer_login SET update_date = now()
 		WHERE customer_id = #{customerId}
 	</update>
 	
@@ -179,7 +179,7 @@
 	
 	<!-- 1로 활성화 -->
 	<update id="updateActiveOneDate" parameterType="com.gdu.cast.vo.Customer">
-		UPDATE Customer SET active = "1"
+		UPDATE customer SET active = "1"
 		WHERE customer_id = #{customerId}
 	</update>
 	<!-- 회원탈퇴 아이디 중복 -->
