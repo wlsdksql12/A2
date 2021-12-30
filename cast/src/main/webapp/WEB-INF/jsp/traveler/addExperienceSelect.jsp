@@ -91,6 +91,9 @@
 					</tr>
 					<tr>
 						<td><input type="file" name="experienceSelectImage"></td>
+						<td><input type="file" name="experienceSelectImage"></td>
+						<td><input type="file" name="experienceSelectImage"></td>
+						<td><input type="file" name="experienceSelectImage"></td>
 					</tr>
 			</table> 
 			 <p></p>

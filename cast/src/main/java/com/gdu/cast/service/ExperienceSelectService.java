@@ -37,7 +37,6 @@ public class ExperienceSelectService {
 		String experienceSelectContent = addExperienceSelect.getExperienceSelectContent();
 		String createDate = addExperienceSelect.getCreateDate();
 		String updateDate = addExperienceSelect.getUpdateDate();
-		MultipartFile file = addExperienceSelect.getExperienceSelectImage();
 		
 		// 1) 체험 추천 입력
 		ExperienceSelect experienceSelect = new ExperienceSelect();
@@ -51,35 +50,19 @@ public class ExperienceSelectService {
 		experienceSelectMapper.insertExperienceSelect(experienceSelect);
 		System.out.println(experienceSelect +"★★★★Hyun★★★★");
 		
-		if(file != null) {
+		List<ExperienceSelectImage> experienceSelectImage = null;
 		
-		// 2) 체험 추천 이미지 추가
-		ExperienceSelectImage experienceSelectImage = new ExperienceSelectImage();
-		experienceSelectImage.setExperienceSelectId(experienceSelect.getExperienceSelectId());
-		
-		String imageName = UUID.randomUUID().toString();
-		experienceSelectImage.setImageName(imageName);
-		
-		String originName = file.getOriginalFilename();
-		int p = originName.lastIndexOf(".");
-		
-		String imageExt = originName.substring(p+1);
-		experienceSelectImage.setImageExt(imageExt);
-		experienceSelectImage.setImageSize(file.getSize());
-		experienceSelectImage.setCreateDate(createDate);
-		experienceSelectImage.setUpdateDate(updateDate);
-		experienceSelectMapper.insertExperienceSelectImage(experienceSelectImage);
+		if(addExperienceSelect.getExperienceSelectImage() != null) {
+			experienceSelectImage = new ArrayList<ExperienceSelectImage>();
+			for(MultipartFile mf : addExperienceSelect.getExperienceSelectImage()) {
+				ExperienceSelectImage esi = new ExperienceSelectImage();
+				esi.setExperienceSelectId(experienceSelect.getExperienceSelectId());
+				int p = mf.getOriginalFilename().lastIndexOf(".");
+				String imageExt = mf.getOriginalFilename().substring(p).toLowerCase();
+				String imageName = UUID.randomUUID().toString().replace("-", "");
+				
+			}
 		System.out.println(experienceSelectImage +"★★★★Hyun★★★★");
-		
-		// 3) 파일 저장
-		File f = new File("D:\\workspace\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt);
-			try {
-				file.transferTo(f);
-			} catch (IllegalStateException | IOException e) {
-				e.printStackTrace();
-				throw new RuntimeException(); // 트랜잭션 구동조건 -> 예외 발생
-			}		
-		}
 	}
 	
 	// 자신이 등록한 체험 추천 리스트
