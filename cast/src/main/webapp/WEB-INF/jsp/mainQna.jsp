@@ -79,12 +79,12 @@
         
             <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="/mainNotice">공지사항</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainNotice">공지사항</a>
       </li>
 		
                         
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainQna">Qna</a>
+          <a class="h3 text-dark text-decoration-none" href="${pageContext.request.contextPath}/mainQna">Q&A</a>
       </li>
     </ul>
     
@@ -110,15 +110,15 @@
                                                 <div class="d-inline-block">
                                                    <c:choose>
                                                     	<c:when test="${(loginCustomerId eq qna.customerId && qna.qnaSecret eq 'Y') || loginAdminId != null}">
-                                                    	<h6><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
+                                                    	<h6><a href ="${pageContext.request.contextPath}/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
                                                 		</c:when>
                                                 		
                                                 		<c:when test="${qna.qnaSecret eq 'Y'}">
-                                                    	<h6><a href="/mainQna?currentPage=${currentPage}">${qna.qnaTitle}</a></h6>
+                                                    	<h6><a href="${pageContext.request.contextPath}/mainQna?currentPage=${currentPage}">${qna.qnaTitle}</a></h6>
                                                 		</c:when>
                                                 		
                                                 		<c:otherwise>
-                                                			<h6><a href ="/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
+                                                			<h6><a href ="${pageContext.request.contextPath}/mainQnaListOne?qnaId=${qna.qnaId}">${qna.qnaTitle}</a></h6>
                                                 		</c:otherwise>
                                                 	</c:choose>
                                                 </div>
@@ -134,25 +134,25 @@
                             </table>
 
             <div style="text-align: right;">
-            	<a class="btn btn-outline-success" href="/addMainQna?customerId=${loginCustomerId}">글작성</a>
+            	<a class="btn btn-outline-success" href="${pageContext.request.contextPath}/addMainQna?customerId=${loginCustomerId}">글작성</a>
             </div>
             <br>
             <div style="text-align: center;">
 			<c:if test="${startPage > 1}">
-				<a href="/mainQna?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="${pageContext.request.contextPath}/mainQna?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/mainQna?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainQna?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/mainQna?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainQna?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/mainQna?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="${pageContext.request.contextPath}/mainQna?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 			
 			</div>

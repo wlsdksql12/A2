@@ -149,12 +149,12 @@
 				    <br>
 					<p class="card-description">여행작가 추천</p>
 					<hr>
-						<a href="/mainExperienceSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
-						<a href="/addExperienceOrder?experienceId=${experience.experienceId}" style="text-align:right;" class="btn btn-outline-success">체험 예약</a>
+						<a href="${pageContext.request.contextPath}/mainExperienceSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
+						<a href="${pageContext.request.contextPath}/addExperienceOrder?experienceId=${experience.experienceId}" style="text-align:right;" class="btn btn-outline-success">체험 예약</a>
 					<p></p><p></p>
 					<div>
 						<c:if test="${loginTravelerId != null}">
-								<a href="/addExperienceSelect?experienceId=${experience.experienceId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">추가</a>
+								<a href="${pageContext.request.contextPath}/addExperienceSelect?experienceId=${experience.experienceId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">추가</a>
 						</c:if>
 					</div>
 				</div>
@@ -177,10 +177,10 @@
 						<c:choose>
 						<c:when test="${loginCustomerId == comment.customerId}">
 						<td>
-							<a href="/updateMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&experienceSelectId=${comment.experienceSelectId}">수정</a>
+							<a href="${pageContext.request.contextPath}/updateMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&customerId=${comment.customerId}&experienceSelectId=${comment.experienceSelectId}">수정</a>
 						</td>
 						<td>
-							<a href="/deleteMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&experienceSelectId=${comment.experienceSelectId}">삭제</a>
+							<a href="${pageContext.request.contextPath}/deleteMainExperienceSelectComment?experienceSelectCommentId=${comment.experienceSelectCommentId}&currentPage=${currentPage}&experienceSelectId=${comment.experienceSelectId}">삭제</a>
 						</td>
 						</c:when>
 							<c:otherwise>

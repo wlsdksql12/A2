@@ -84,17 +84,17 @@
 	<section class="container py-5">
 		<ul>
 			<li class="list-inline-item"><a
-				class="h3 text-dark text-decoration-none mr-3" href="/mainNotice">공지사항</a>
+				class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainNotice">공지사항</a>
 			</li>
 
 
 			<li class="list-inline-item"><a
 				class="h3 text-dark text-decoration-none"
-				href="/mainQna?currentPage=1">Qna</a></li>
+				href="${pageContext.request.contextPath}/mainQna?currentPage=1">Q&A</a></li>
 		</ul>
 		<div class="container">
 			<h1>Q&A 수정</h1>
-				<form id="mainUpdateQnaForm" method="post" action="/mainUpdateQna">
+				<form id="mainUpdateQnaForm" method="post" action="${pageContext.request.contextPath}/mainUpdateQna">
 					<input style="border:none" type="hidden" name="qnaId" value="${qnaId}" readonly="readonly">
 					<input style="border:none" type="hidden" name="customerId" value="${customerId}" readonly="readonly">
 					<table class=" table table-bordered">

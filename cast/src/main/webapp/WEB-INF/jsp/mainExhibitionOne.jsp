@@ -87,7 +87,7 @@
     <section class="container py-5">
      <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="mainExhibition">전시소개</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainExhibition">전시소개</a>
       </li>
      </ul>
    	<div style="text-align:center">

@@ -77,12 +77,12 @@
                
     <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="/mainRoomSelect">숙소</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainRoomSelect">숙소</a>
       </li>
 		
                         
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
+          <a class="h3 text-dark text-decoration-none" href="${pageContext.request.contextPath}/mainExperienceSelect">체험</a>
       </li>
     </ul>
    	<div style="text-align:center">
@@ -99,7 +99,7 @@
 				<c:forEach items="${experienceSelectList}" var="experienceSelect">
 					<tr style="text-align:center">
 						<td>${experienceSelect.experienceSelectId}</td>
-						<td><a href="/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}" style="text-decoration: none; color: black;">${experienceSelect.experienceSelectTitle}</a></td>
+						<td><a href="${pageContext.request.contextPath}/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}" style="text-decoration: none; color: black;">${experienceSelect.experienceSelectTitle}</a></td>
 						<td>${experienceSelect.traveler.travelerName}</td>
 						<td>${fn:substring(experienceSelect.createDate,0,10)}</td>
 					</tr>
@@ -108,20 +108,20 @@
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/mainExperienceSelect?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="${pageContext.request.contextPath}/mainExperienceSelect?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/mainExperienceSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainExperienceSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/mainExperienceSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainExperienceSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/mainExperienceSelect?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="${pageContext.request.contextPath}/mainExperienceSelect?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
 		<br>

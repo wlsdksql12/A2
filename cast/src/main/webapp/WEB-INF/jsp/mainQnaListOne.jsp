@@ -86,19 +86,19 @@
         
             <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="mainNotice">공지사항</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainNotice">공지사항</a>
       </li>
 		
                         
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainQna?currentPage=1">Qna</a>
+          <a class="h3 text-dark text-decoration-none" href="${pageContext.request.contextPath}/mainQna?currentPage=1">Q&A</a>
       </li>
     </ul>
 	<div style="text-align:center">
 			<div style="text-align: right;">
 				<c:if test="${loginCustomerId == customerId}">
-						<a href="/mainUpdateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
-						<a href="/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
+						<a href="${pageContext.request.contextPath}/mainUpdateQna?qnaId=${qnaId}&customerId=${customerId}" id="insertBtn" class="btn btn-outline-success">수정</a>
+						<a href="${pageContext.request.contextPath}/maindeleteQna?qnaId=${qnaId}&customerId=${loginCustomerId}" id="insertBtn" class="btn btn-outline-success">삭제</a>
 				</c:if>
 			</div>
 			
@@ -130,11 +130,11 @@
 				<div>
 					<c:if test="${loginAdminId != null}">
 						<c:if test="${qnaCommentContent  == null}">
-							<a href="/admin/qnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
+							<a href="${pageContext.request.contextPath}/admin/qnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변달기</a>
 						</c:if>
 						<c:if test="${qnaCommentContent  != null}">
-							<a href="/admin/deleteQnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변삭제</a>
-							<a href="/admin/updateQnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변수정</a>
+							<a href="${pageContext.request.contextPath}/admin/deleteQnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변삭제</a>
+							<a href="${pageContext.request.contextPath}/admin/updateQnaComment?qnaId=${qnaId}" id="insertBtn" class="btn btn-outline-success">Qna 답변수정</a>
 						</c:if>
 					</c:if>
 				</div>

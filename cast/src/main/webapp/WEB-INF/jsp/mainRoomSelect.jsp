@@ -75,10 +75,10 @@
     <section class="container py-5">  
     <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="/mainRoomSelect">숙소</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainRoomSelect">숙소</a>
       </li>                     
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
+          <a class="h3 text-dark text-decoration-none" href="${pageContext.request.contextPath}/mainExperienceSelect">체험</a>
       </li>
     </ul>
    	<div style="text-align:center">
@@ -95,7 +95,7 @@
 				<c:forEach items="${roomSelectList}" var="roomSelect">
 					<tr style="text-align:center">
 						<td>${roomSelect.roomSelectId}</td>
-						<td><a href="/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}" style="text-decoration: none; color: black;">${roomSelect.roomSelectTitle}</a></td>
+						<td><a href="${pageContext.request.contextPath}/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}" style="text-decoration: none; color: black;">${roomSelect.roomSelectTitle}</a></td>
 						<td>${roomSelect.traveler.travelerName}</td>
 						<td>${fn:substring(roomSelect.createDate,0,10)}</td>
 					</tr>
@@ -104,20 +104,20 @@
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/mainRoomSelect?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="${pageContext.request.contextPath}/mainRoomSelect?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/mainRoomSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainRoomSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/mainRoomSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainRoomSelect?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/mainRoomSelect?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="${pageContext.request.contextPath}/mainRoomSelect?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
 		<br>

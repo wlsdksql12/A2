@@ -74,13 +74,13 @@
     <section class="container py-5">              
     <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="/mainRoomSelect">숙소</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainRoomSelect">숙소</a>
       </li>                       
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
+          <a class="h3 text-dark text-decoration-none" href="${pageContext.request.contextPath}/mainExperienceSelect">체험</a>
       </li>
     </ul>
-    <form id="updateMainRoomForm" method="post" action="/updateMainRoomSelectComment">
+    <form id="updateMainRoomForm" method="post" action="${pageContext.request.contextPath}/updateMainRoomSelectComment">
  	<input type="hidden" name="roomSelectCommentId" value="${roomSelectCommentId }">
  	<input type="hidden" name="currentPage" value="${currentPage}">
 	<input type="hidden" name="roomSelectId" value="${roomSelectId}">

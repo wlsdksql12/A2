@@ -118,8 +118,8 @@
 			                	<ul class="hide">
 			                		<li>메뉴2-1-1</li>
 			                		<li>메뉴2-1-2</li>
-			                		<li><a href="/addExperienceOrder">체험 주문</a></li>
-			                		<li><a href="/addHotelOrder">숙소 주문</a></li>
+			                		<li><a href="${pageContext.request.contextPath}/addExperienceOrder">체험 주문</a></li>
+			                		<li><a href="${pageContext.request.contextPath}/addHotelOrder">숙소 주문</a></li>
 			                	</ul>
 			                </li>
 			                <li class="menu">
@@ -140,7 +140,7 @@
                		${keyword.keywordName}
            			</button>
            		</c:forEach>
-			    <form method="get" action="/shop" style="height: 25px" id="searchKeywordForm">
+			    <form method="get" action="${pageContext.request.contextPath}/shop" style="height: 25px" id="searchKeywordForm">
 					<input class="hashtagBtn" name="searchKeyword" id="searchKeyword" placeholder="해시태그를 입력하세요" style="height: 25px">
 					<button class="hashtagBtn" style="height: 30px;">검색</button>
 				</form>
@@ -202,21 +202,21 @@
 	                                    </c:forEach>
 	                                    		
 	                             				 <c:if test="${test eq false}">
-	            								<li><a name="ExpAddWishListBtn" class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
+	            								<li><a name="ExpAddWishListBtn" class="btn btn-success text-white mt-2" href="${pageContext.request.contextPath}/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
 	            								</c:if>
 	            								
 	                                    </c:if>
 	                                  
 	                                    <!-- 관심상품 테이블이 비어있다면 -->
 	                                    <c:if test="${(empty wishList)}">
-	                                    <li><a name="ExpEmpWishListBtn" class="btn btn-success text-white mt-2" href="/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
+	                                    <li><a name="ExpEmpWishListBtn" class="btn btn-success text-white mt-2" href="${pageContext.request.contextPath}/experienceWishList?experienceId=${ShopExperienceList.experience.experienceId}"><i class="fas fa-cart-plus"></i></a></li>
 	                                    </c:if>
 	                                    
 	                                    </ul>
 	                                </div>
 	                            </div>
 	                            <div class="card-body">
-	                                <a href="/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
+	                                <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
 	                                <div>
 	                                </div>
 	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
@@ -264,11 +264,11 @@
 	                                    </c:forEach>
 	                                    
 	                                     	<c:if test="${test eq false}">
-											<li><a name="RoomAddWishListBtn" class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
+											<li><a name="RoomAddWishListBtn" class="btn btn-success text-white mt-2" href="${pageContext.request.contextPath}/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
 											</c:if>
 	                                    </c:if>
 	                                    <c:if test="${empty roomWishList}">
-	                                    <li><a name="RoomEmpWishListBtn" class="btn btn-success text-white mt-2" href="/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
+	                                    <li><a name="RoomEmpWishListBtn" class="btn btn-success text-white mt-2" href="${pageContext.request.contextPath}/roomWishList?hotelId=${ShopHotelList.hotel.hotelId}"><i class="fas fa-cart-plus"></i></a></li>
 	                                    </c:if>
 	                                    </ul>
 	                                </div>
@@ -663,7 +663,7 @@ $(document).ready(function(){
 	
 	$('[name="duplWishListBtn"]').click(function(){
 		alert('이미 등록한 관심상품입니다.');
-		location.href = "/shop";
+		location.href = "${pageContext.request.contextPath}/shop";
 	});
 });
 // 체험
@@ -672,7 +672,7 @@ $(document).ready(function(){
 		
 		$('[name="ExpAddWishListBtn"]').click(function(){
 			alert('해당 체험을 관심상품으로 등록했습니다.');
-			location.href = "/shop";
+			location.href = "${pageContext.request.contextPath}/shop";
 		});
 	});
 	// 관심상품 테이블이 비워있거나
@@ -684,6 +684,7 @@ $(document).ready(function(){
 				alert('로그인 후 이용해주시기 바랍니다.');
 			} else {
 				alert('해당 체험을 관심상품으로 등록했습니다.');
+				location.href = "${pageContext.request.contextPath}/shop";
 			}
 		});
 	});
@@ -693,7 +694,7 @@ $(document).ready(function(){
 		
 		$('[name="RoomAddWishListBtn"]').click(function(){
 			alert('해당 숙소를 관심상품으로 등록했습니다.');
-			location.href = "/shop";
+			location.href = "${pageContext.request.contextPath}/shop";
 		});
 	});
 	// 관심상품 테이블이 비워있거나
