@@ -144,7 +144,7 @@
 			 </tbody>
 		</table>
 		<div style="text-align: right;">
-			<a class="btn btn-outline-success" href="/addMainRoomSelectComment?customerId=${loginCustomerId}&roomSelectId=${roomSelect.roomSelectId}&currentPage=${currentPage}">댓글작성</a>
+			<a class="btn btn-outline-success" href="${pageContext.request.contextPath}/addMainRoomSelectComment?customerId=${loginCustomerId}&roomSelectId=${roomSelect.roomSelectId}&currentPage=${currentPage}">댓글작성</a>
 		</div>
 		<br>
 		<div style="text-align: center;">
