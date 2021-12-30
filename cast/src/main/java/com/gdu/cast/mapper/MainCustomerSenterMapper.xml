@@ -24,7 +24,7 @@
 			qna_secret qnaSecret,
 			create_date createDate,
 			update_date updateDate
-		FROM Qna
+		FROM qna
 		<where>
 			<if test='searchTitle != null or searchTitle == ""'>
 				qna_title LIKE '%${searchTitle}%'

@@ -80,12 +80,12 @@
         
             <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="mainNotice">공지사항</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainNotice">공지사항</a>
       </li>
 		
                         
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainQna">Qna</a>
+          <a class="h3 text-dark text-decoration-none" href="${pageContext.request.contextPath}/mainQna">Q&A</a>
       </li>
     </ul>
    	<div style="text-align:center">

@@ -296,7 +296,7 @@
 		<!--  commentList 페이징 -->
 	<select id="CustomerselectCommentTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
-	FROM Experience_select_comment
+	FROM experience_select_comment
 	WHERE customer_Id = #{customerId}
 	
 	</select>
@@ -321,13 +321,13 @@
 		<!--  commentList 페이징 -->
 	<select id="CustomerselectRoomCommentTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
-	FROM Room_select_comment
+	FROM room_select_comment
 	WHERE customer_Id = #{customerId}
 	
 	</select>
 	<!--총 결제 금액 조건문 -->
 	<select id="selectCustomerExperienceOrderId" parameterType="String" resultType="int">
-		SELECT count(*)
+		SELECT COUNT(*)
 		FROM experience_order
 		WHERE customer_id = #{customerId}
 		
@@ -335,7 +335,7 @@
 	
 	<!--총 결제 금액 조건문 -->
 	<select id = "selectcustomerRoomOrderId" parameterType="String" resultType="int">
-		SELECT count(*)
+		SELECT COUNT(*)
 		FROM room_order
 		WHERE customer_id = #{customerId}
 	</select>

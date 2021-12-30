@@ -57,7 +57,7 @@
 			<!--  체험 관심 상품 페이징 -->
 	<select id="selectExperienceWishListTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
-	FROM Experience_wishlist
+	FROM experience_wishlist
 	WHERE customer_Id = #{customerId}
 	
 	</select>

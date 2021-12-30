@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.SettingCustomerMapper">
    <update id="updatePwCustomer" parameterType="com.gdu.cast.vo.Customer">   
-      UPDATE Customer SET customer_pw = password(#{newCustomerPw}), update_date = now()
-      WHERE Customer_id = #{customerId} AND customer_pw = password(#{customerPw})
+      UPDATE customer SET customer_pw = password(#{newCustomerPw}), update_date = now()
+      WHERE customer_id = #{customerId} AND customer_pw = password(#{customerPw})
    </update>
    
    <insert id="insertDeleteId" parameterType="com.gdu.cast.vo.Delete_Id">
