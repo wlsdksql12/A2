@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.CeoMapper">
+
+	<!-- 사업자 메인화면 체험 좋아요 표시 : experience & experience_wishlist 조인 -->
+	<resultMap type="com.gdu.cast.vo.Experience" id="resultWishlist">
+		<result column="experience_id" property="experienceId" />
+		<result column="ceo_id" property="ceoId" />
+	<association property="experienceWishlist" javaType="com.gdu.cast.vo.ExperienceWishList">
+		<result column="experience_id" property="experienceId" />
+	</association>
+	</resultMap>
 	<!-- 회원가입 -->
 	<insert id="insertCeo" parameterType="com.gdu.cast.vo.Ceo">
 		INSERT ceo(
@@ -87,6 +96,15 @@
 		WHERE ceo_id = #{ceoId}
 		ORDER BY create_date DESC
 		LIMIT 0, 4
+	</select>
+	
+	<!-- 메인화면 체험 좋아요 누른 개수 -->
+	<select id="selectExpWishlist" parameterType="int" resultMap="resultWishlist">
+		SELECT 
+			COUNT(ew.customer_id)
+		FROM experience e INNER JOIN experience_wishlist ew
+		ON e.experience_id = ew.experience_id
+		WHERE ceo_id = #{ceoId}
 	</select>
 </mapper>
 

@@ -33,6 +33,10 @@ public class LoginCeoController {
 		model.addAttribute("hotelList", hotelList);
 		
 		System.out.println("@@@@@@LoginCeoController" + model);
+		
+		// 메인페이지에 체험 좋아요 수 표시
+		
+		
 		return "ceo/ceoIndex";
 	}
 	

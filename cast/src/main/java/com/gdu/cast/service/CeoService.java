@@ -45,4 +45,9 @@ public class CeoService {
 	public List<Hotel> getselectHotelIndex(String ceoId){
 		return ceoMapper.selectHotelIndex(ceoId);
 	}
+	
+	// 사업자 메인페이지 체험 좋아요 수 표시
+	public int getselectExpWishlist(String ceoId) {
+		return ceoMapper.selectExpWishlist(ceoId);
+	}
 }

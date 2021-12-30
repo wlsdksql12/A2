@@ -18,4 +18,5 @@ public class Experience {
 	private String updateDate;
 	
 	private Address address;
+	private ExperienceWishList experienceWishlist;
 }
