@@ -40,7 +40,7 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="/travelerIndex?travelerId=${loginTravelerId}&currentPage=1"
+            href="${pageContext.request.contextPath}/travelerIndex?travelerId=${loginTravelerId}&currentPage=1"
           >
            마이 페이지
           </a>
@@ -52,7 +52,7 @@
               ></span>
               <a
                 class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                href="/travelerIndex?travelerId=${loginTravelerId}"
+                href="${pageContext.request.contextPath}/travelerIndex?travelerId=${loginTravelerId}"
               >
                 <svg
                   class="w-5 h-5"
@@ -123,33 +123,33 @@
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="/travelerLogout">로그아웃</a>
+                    <a class="w-full" href="${pageContext.request.contextPath}/travelerLogout">로그아웃</a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="/travelerMyInfo?travelerId=${loginTravelerId}">	
+                    <a class="w-full" href="${pageContext.request.contextPath}/travelerMyInfo?travelerId=${loginTravelerId}">	
                       프로필
                     </a>
                   </li>
                   <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="/modifyTravelerMyInfo?travelerId=${loginTravelerId}">
+                    <a class="w-full" href="${pageContext.request.contextPath}/modifyTravelerMyInfo?travelerId=${loginTravelerId}">
                       정보수정
                     </a>
                   </li>
                    <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="/modifyTravelerPw?travelerId=${loginTravelerId}">
+                    <a class="w-full" href="${pageContext.request.contextPath}/modifyTravelerPw?travelerId=${loginTravelerId}">
                       비밀번호 변경
                     </a>
                   </li>
                    <li
                     class="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                   >
-                    <a class="w-full" href="/removeTraveler?travelerId=${loginTravelerId}">
+                    <a class="w-full" href="${pageContext.request.contextPath}/removeTraveler?travelerId=${loginTravelerId}">
                       회원탈퇴
                     </a>
                   </li>
@@ -161,7 +161,7 @@
           <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
+                href="${pageContext.request.contextPath}/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -181,7 +181,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="/experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"
+                href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -268,7 +268,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="/button"
+                href="${pageContext.request.contextPath}/button"
               >
                 <svg
                   class="w-5 h-5"
@@ -314,7 +314,7 @@
           <div class="px-6 my-6">
             <a
               class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-              href="/index"
+              href="${pageContext.request.contextPath}/index"
             >
               메인으로
               <span class="ml-2" aria-hidden="true">+</span>
@@ -850,7 +850,7 @@
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="/mainExperienceSelect"
+              href="${pageContext.request.contextPath}/mainExperienceSelect"
             >
               <div class="flex items-center">
                 <svg
@@ -890,7 +890,7 @@
                           ${experienceSelect.experienceSelectId}
                       </td>
                       <td class="px-5 py-5 text-sm">
-                        <a href="/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
+                        <a href="${pageContext.request.contextPath}/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
                       </td>
                       <td class="px-4 py-3">
                           ${experienceSelect.traveler.travelerName}
@@ -909,20 +909,20 @@
                 <!-- Pagination -->
                 <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
 					<c:if test="${startPage > 1}">
-						<a href="/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${startPage-1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
+						<a href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${startPage-1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">처음</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 						<c:choose>
 							<c:when test="${i == currentPage}">
-								<a href="/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+								<a href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
 							</c:when>
 							<c:otherwise>
-								<a href="/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
+								<a href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${i}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
 					<c:if test="${lastPage != totalPage}">
-						<a href="/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">끝</a>
+						<a href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=${lastPage+1}" class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">끝</a>
 					</c:if>
                 </span>
               </div>

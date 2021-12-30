@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>여행작가 로그인</h1>
-	<form method="post" action="/travelerLogin">
+	<form method="post" action="${pageContext.request.contextPath}/travelerLogin">
 		<div>
 			아이디 : 
 			<input type="text" name="travelerId">

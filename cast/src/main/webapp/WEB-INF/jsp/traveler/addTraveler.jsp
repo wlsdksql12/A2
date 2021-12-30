@@ -36,7 +36,7 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">여행작가 회원가입</h4>
-					<form id="travelerForm" method='post' action="/addTraveler" class="validation-form" novalidate>
+					<form id="travelerForm" method='post' action="${pageContext.request.contextPath}/addTraveler" class="validation-form" novalidate>
 						<div class="mb-3">
 							<label for="name">아이디</label>
 							<input type="text" class="form-control" name="travelerId" id="travelerId" placeholder="" value="" required>
