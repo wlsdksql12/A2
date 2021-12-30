@@ -32,12 +32,12 @@
         <c:choose>
         	<c:when test="${travelerId != null}">
         		<div style="text-align: center; margin: 50px auto;">
-        			<a class="btn btn-outline-warning" href="/deleteTraveler?travelerId=${travelerId}">확인</a>
+        			<a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/deleteTraveler?travelerId=${travelerId}">확인</a>
 				</div>
         	</c:when>
         	<c:when test="${ceoId != null}">
         		<div style="text-align: center; margin: 50px auto;">
-        			<a class="btn btn-outline-warning" href="/deleteCeo?ceoId=${ceoId}">확인</a>
+        			<a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/deleteCeo?ceoId=${ceoId}">확인</a>
 				</div>
         	</c:when>
         </c:choose>

@@ -35,7 +35,7 @@
 		<div class="input-form-backgroud row">
 			<div class="input-form col-md-12 mx-auto">
 				<h4 class="mb-3">회원가입</h4>
-					<form id="cusForm" method='post' action="/addCustomer" class="validation-form" novalidate>
+					<form id="cusForm" method='post' action="${pageContext.request.contextPath}/addCustomer" class="validation-form" novalidate>
 						<div class="mb-3">
 							<label for="id">아이디</label>
 							<input type="text" class="form-control" name="customerId" id="customerId" placeholder="" value="" required>

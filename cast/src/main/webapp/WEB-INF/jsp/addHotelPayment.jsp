@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1> 결제 </h1>
-	<form method="post" action="/addHotelPayment">
+	<form method="post" action="${pageContext.request.contextPath}/addHotelPayment">
 	<div>호텔 이름</div>
 	<input type="text" name ="hotelName" value="${hotelName}" readonly="readonly">
 	<div>방 이름</div>

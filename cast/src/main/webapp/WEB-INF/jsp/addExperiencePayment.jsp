@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="/addExperiencePayment">
+	<form method="post" action="${pageContext.request.contextPath}/addExperiencePayment">
 	<div>체험 이름</div>
 	<input type="text" name="experienceName" value="${experienceSelectName}" readonly="readonly">
 	<div>카드 선택</div>

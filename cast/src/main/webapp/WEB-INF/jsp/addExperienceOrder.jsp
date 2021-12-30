@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="/addExperienceOrder">
+	<form method="post" action="${pageContext.request.contextPath}/addExperienceOrder">
 	<div>체험 번호</div>
 	<input type="text" name="experienceId" value="${experienceId}" readonly="readonly">
 	<input type="hidden" name="customerId" value="${customerId}">

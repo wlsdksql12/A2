@@ -102,7 +102,7 @@
 				<c:forEach items="${noticeList}" var="notice">
 					<tr style="text-align:center">
 						<td>${notice.noticeNo}</td>
-						<td><a href="/mainNoticeOne?noticeNo=${notice.noticeNo}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a></td>
+						<td><a href="${pageContext.request.contextPath}/mainNoticeOne?noticeNo=${notice.noticeNo}" style="text-decoration: none; color: black;">${notice.noticeTitle}</a></td>
 						<td>${notice.admin.adminName}</td>
 						<td>${fn:substring(notice.createDate,0,10)}</td>
 					</tr>

@@ -78,7 +78,7 @@
     <section class="container py-5">   
      <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="mainExhibition">전시소개</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainExhibition">전시소개</a>
       </li>
     </ul>
    	<div style="text-align:center">
@@ -95,7 +95,7 @@
 				<c:forEach items="${exhibitionList}" var="exhibition">
 					<tr style="text-align:center">
 						<td>${exhibition.exhibitionNo}</td>
-						<td><a href="/mainExhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
+						<td><a href="${pageContext.request.contextPath}/mainExhibitionOne?exhibitionNo=${exhibition.exhibitionNo}">${exhibition.exhibitionTitle}</a></td>
 						<td>${exhibition.admin.adminName}</td>
 						<td>${fn:substring(exhibition.createDate,0,10)}</td>
 					</tr>
@@ -104,20 +104,20 @@
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/mainExhibition?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="${pageContext.request.contextPath}/mainExhibition?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/mainExhibition?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainExhibition?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/mainExhibition?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainExhibition?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/mainExhibition?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="${pageContext.request.contextPath}/mainExhibition?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
 		<br>
@@ -158,24 +158,24 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                        <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                        <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Wear</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Men's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Women's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Popular Dress</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Gym Accessories</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Shoes</a></li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Home</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Contact</a></li>
                     </ul>
                 </div>
 

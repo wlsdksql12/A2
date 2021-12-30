@@ -28,7 +28,7 @@
             </div>
         </div>
         <div style="text-align: center; margin: 50px auto;">
-        	<a class="btn btn-outline-warning" href="/index">메인페이지가기</a>
+        	<a class="btn btn-outline-warning" href="${pageContext.request.contextPath}/index">메인페이지가기</a>
         </div>
     </section>
     <!-- End Section -->

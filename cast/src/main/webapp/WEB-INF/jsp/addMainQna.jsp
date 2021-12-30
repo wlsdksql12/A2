@@ -78,16 +78,16 @@
     <section class="container py-5">
         <ul>
          <li class="list-inline-item"><a
-            class="h3 text-dark text-decoration-none mr-3" href="/about">공지사항</a>
+            class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/about">공지사항</a>
          </li>
 
 
          <li class="list-inline-item"><a
             class="h3 text-dark text-decoration-none"
-            href="/mainQna?currentPage=1">Qna</a></li>
+            href="${pageContext.request.contextPath}/mainQna?currentPage=1">Qna</a></li>
       </ul>
       <h1>Qna 게시글 쓰기</h1>
-      <form method="post" action="/addMainQna">
+      <form method="post" action="${pageContext.request.contextPath}/addMainQna">
       <div>ID</div>
       <input type="text" name="customerId" value="${customerId}" readonly="readonly">
       <div>타이틀</div>  
@@ -139,24 +139,24 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                        <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                        <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Wear</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Men's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Women's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Popular Dress</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Gym Accessories</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Shoes</a></li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Home</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Contact</a></li>
                     </ul>
                 </div>
 

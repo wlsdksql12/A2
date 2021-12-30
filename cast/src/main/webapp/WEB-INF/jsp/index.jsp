@@ -157,10 +157,10 @@
 	            </div>
             </c:forEach>
         </div>
-        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="${pageContext.request.contextPath}/#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
             <i class="fas fa-chevron-left"></i>
         </a>
-        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="${pageContext.request.contextPath}/#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
             <i class="fas fa-chevron-right"></i>
         </a>
     </div>
@@ -180,17 +180,17 @@
         </div>
         <div class="row">
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="${pageContext.request.contextPath}/#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
                 <h5 class="text-center mt-3 mb-3">Watches</h5>
                 <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="${pageContext.request.contextPath}/#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
                 <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
             </div>
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
+                <a href="${pageContext.request.contextPath}/#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
                 <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
                 <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
             </div>
@@ -214,7 +214,7 @@
             <div class="row">
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shopsingle">
+                        <a href="${pageContext.request.contextPath}/shopsingle">
                             <img src="${pageContext.request.contextPath}/resources/assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -228,7 +228,7 @@
                                 </li>
                                 <li class="text-muted text-right">$240.00</li>
                             </ul>
-                            <a href="shopsingle" class="h2 text-decoration-none text-dark">Gym Weight</a>
+                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">Gym Weight</a>
                             <p class="card-text">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
                             </p>
@@ -238,7 +238,7 @@
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shopsingle">
+                        <a href="${pageContext.request.contextPath}/shopsingle">
                             <img src="${pageContext.request.contextPath}/resources/assets/img/feature_prod_02.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -252,7 +252,7 @@
                                 </li>
                                 <li class="text-muted text-right">$480.00</li>
                             </ul>
-                            <a href="shopsingle" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
+                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
                             <p class="card-text">
                                 Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
                             </p>
@@ -262,7 +262,7 @@
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
-                        <a href="shopsingle">
+                        <a href="${pageContext.request.contextPath}/shopsingle">
                             <img src="${pageContext.request.contextPath}/resources/assets/img/feature_prod_03.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
@@ -276,7 +276,7 @@
                                 </li>
                                 <li class="text-muted text-right">$360.00</li>
                             </ul>
-                            <a href="shopsingle" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
+                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
                             <p class="card-text">
                                 Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
                             </p>
@@ -316,24 +316,24 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                        <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                        <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Wear</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Men's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Women's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Popular Dress</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Gym Accessories</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Shoes</a></li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Home</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Contact</a></li>
                     </ul>
                 </div>
 

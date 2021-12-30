@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1> 예약 </h1>
-	<form method="post" action="/addHotelOrder">
+	<form method="post" action="${pageContext.request.contextPath}/addHotelOrder">
 	<div>예약인</div>
 	<input type="text" name="customerId" value="${customerId}" readonly="readonly">
 	<div> 호텔 이름 </div>

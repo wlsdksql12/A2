@@ -77,17 +77,17 @@
                
     <ul>
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none mr-3" href="/mainRoomSelect">숙소</a>
+          <a class="h3 text-dark text-decoration-none mr-3" href="${pageContext.request.contextPath}/mainRoomSelect">숙소</a>
       </li>
 		
                         
       <li class="list-inline-item">
-          <a class="h3 text-dark text-decoration-none" href="/mainExperienceSelect">체험</a>
+          <a class="h3 text-dark text-decoration-none" href="${pageContext.request.contextPath}/mainExperienceSelect">체험</a>
       </li>
     </ul>
     <hr>
    	<div style="text-align:center">
-		<form id="insertCommentForm" method ="post" action="/addMainExperienceSelectComment">
+		<form id="insertCommentForm" method ="post" action="${pageContext.request.contextPath}/addMainExperienceSelectComment">
 		<table class="table table-bordered">
 			<tr>
 				<td width="250px">작성자</td>
@@ -140,24 +140,24 @@
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Luxury</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Wear</a></li>
-                        <li><a class="text-decoration-none" href="#">Men's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Women's Shoes</a></li>
-                        <li><a class="text-decoration-none" href="#">Popular Dress</a></li>
-                        <li><a class="text-decoration-none" href="#">Gym Accessories</a></li>
-                        <li><a class="text-decoration-none" href="#">Sport Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Luxury</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Wear</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Men's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Women's Shoes</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Popular Dress</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Gym Accessories</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Sport Shoes</a></li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Home</a></li>
-                        <li><a class="text-decoration-none" href="#">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}#">Home</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">About Us</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">FAQs</a></li>
+                        <li><a class="text-decoration-none" href="${pageContext.request.contextPath}/#">Contact</a></li>
                     </ul>
                 </div>
 

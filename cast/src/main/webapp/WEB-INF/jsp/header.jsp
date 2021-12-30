@@ -11,7 +11,7 @@
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="${pageContext.request.contextPath}/index">
                 Cast
             </a>
 
@@ -23,22 +23,22 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index">Home</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="mainNotice">고객센터</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/mainNotice">고객센터</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="mainRoomSelect">여행작가 추천!</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/mainRoomSelect">여행작가 추천!</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="shop">Shop</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/shop">Shop</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="mainExhibition">전시소개</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/mainExhibition">전시소개</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact">Contact</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact</a>
                         </li>
                     </ul>
                </div>
@@ -51,10 +51,10 @@
                            </div>
                        </div>
                    </div>
-                   <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
+                   <a class="nav-icon d-none d-lg-inline" href="${pageContext.request.contextPath}/#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                    </a>
-                   <a class="nav-icon position-relative text-decoration-none" href="#">
+                   <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/#">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                    </a>
