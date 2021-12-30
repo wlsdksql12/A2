@@ -60,7 +60,7 @@
 					<c:forEach items="${roomList}" var="list">
 					
 					<tr>
-						<td><a href="/ceo/roomOne?roomId=${list.roomId}">${list.roomName}</a></td>
+						<td><a href="${pageContext.request.contextPath}/ceo/roomOne?roomId=${list.roomId}">${list.roomName}</a></td>
 						<td>${list.roomCount}</td>
 						<td>${list.roomStartdate}</td>
 						<td>${list.roomEnddate}</td>
@@ -70,7 +70,7 @@
 					</table>
 					<br>
 					<div align="right">
-					<a href="/ceo/insertRoom?HotelId=${hotel.hotelId}" class="btn btn-inverse-success">객실 추가하기</a>
+					<a href="${pageContext.request.contextPath}/ceo/insertRoom?HotelId=${hotel.hotelId}" class="btn btn-inverse-success">객실 추가하기</a>
 					</div>
 					<br><hr><br>
 					

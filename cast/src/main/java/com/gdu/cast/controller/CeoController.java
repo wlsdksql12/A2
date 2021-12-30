@@ -51,7 +51,7 @@ public class CeoController {
 	@PostMapping("/ceo/updateCeo") 
 	public String postupdateCeo(Ceo ceo) {
 		ceoService.getupdateCeo(ceo);
-		return "redirect:/selectCeo?ceoId="+ceo.getCeoId()+"&ceoEmail="+ceo.getCeoEmail();
+		return "redirect:/ceo/selectCeo?ceoId="+ceo.getCeoId()+"&ceoEmail="+ceo.getCeoEmail();
 	}
 	
 	// 비밀번호 수정
@@ -64,7 +64,7 @@ public class CeoController {
 	public String postUpdateCeoPw(HttpSession session, String ceoPw, String newCeoPw) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		ceoService.getUpdateCeoPw(ceoId, ceoPw, newCeoPw);
-		return "redirect:/selectCeo?ceoId="+ceoId;
+		return "redirect:/ceo/selectCeo?ceoId="+ceoId;
 	}
 	
 	// 사업가 구독 페이지
