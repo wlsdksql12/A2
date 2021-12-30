@@ -7,7 +7,7 @@
 </head>
 <body>
 	<%@ include file="ceoBase.jsp" %>
-	<form method="post" action="/ceo/insertHotel" class="forms-sample" id="addForm">
+	<form method="post" action="${pageContext.request.contextPath}/ceo/insertHotel" class="forms-sample" id="addForm">
 	<br>
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">

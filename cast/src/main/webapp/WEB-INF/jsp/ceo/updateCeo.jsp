@@ -23,7 +23,7 @@
 <body>
 	<%@ include file="ceoBase.jsp"%>
 	<br>
-	<form method="post" action="/ceo/updateCeo">
+	<form method="post" action="${pageContext.request.contextPath}/ceo/updateCeo">
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">

@@ -83,8 +83,8 @@
 				</div>
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				<a href="/ceo/updateExperience?experienceId=${experience.experienceId}" class="btn btn-inverse-warning">수정</a>
-				<a href="/ceo/deleteExperience?experienceId=${experience.experienceId}&ceoId=${loginCeoId}" id="insertBtn" class="btn btn-inverse-danger">삭제</a>&emsp;
+				<a href="${pageContext.request.contextPath}/ceo/updateExperience?experienceId=${experience.experienceId}" class="btn btn-inverse-warning">수정</a>
+				<a href="${pageContext.request.contextPath}/ceo/deleteExperience?experienceId=${experience.experienceId}&ceoId=${loginCeoId}" id="insertBtn" class="btn btn-inverse-danger">삭제</a>&emsp;
 				</div>
 				<br>
 			</div>

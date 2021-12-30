@@ -9,7 +9,7 @@
 <body>
 	<%@ include file="ceoBase.jsp"%>
 	<br>
-	<form method="post" action="/ceo/deleteExperience">
+	<form method="post" action="${pageContext.request.contextPath}/ceo/deleteExperience">
 		<div class="col-lg-6 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">

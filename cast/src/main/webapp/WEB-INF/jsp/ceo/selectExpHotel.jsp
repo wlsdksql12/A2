@@ -25,10 +25,10 @@
 		<div class="card">
 			<div class="card-body">
 				<p class="text-muted font-weight-light">				
-					<a href="/ceo/insertExpAddress?ceoId=${loginCeoId}" class="btn btn-inverse-info col-lg-6 row-lg-6">
+					<a href="${pageContext.request.contextPath}/ceo/insertExpAddress?ceoId=${loginCeoId}" class="btn btn-inverse-info col-lg-6 row-lg-6">
 						<i class="ti-map-alt" style="font-size:100px;"><br><br>체험</i>
 					</a>
-					<a href="/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="btn btn-inverse-info col-lg-6 row-lg-6">
+					<a href="${pageContext.request.contextPath}/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="btn btn-inverse-info col-lg-6 row-lg-6">
 						<i class="ti-home" style="font-size:100px"><br><br>호텔</i>
 					</a>
 				</p>

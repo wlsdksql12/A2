@@ -39,8 +39,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="/ceo/ceoIndex?ceoId=${loginCeoId}"><img src="${pageContext.request.contextPath}/resources/ceo_template/images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="/ceo/ceoIndex"><img src="${pageContext.request.contextPath}/resources/ceo_template/images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="${pageContext.request.contextPath}/ceo/ceoIndex?ceoId=${loginCeoId}"><img src="${pageContext.request.contextPath}/resources/ceo_template/images/logo.svg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="${pageContext.request.contextPath}/ceo/ceoIndex"><img src="${pageContext.request.contextPath}/resources/ceo_template/images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -53,7 +53,7 @@
         <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown mr-1">
           <div>
-	            <a href="/index" style="font-weight:bold;" class="nav-link count-indicator">
+	            <a href="${pageContext.request.contextPath}/index" style="font-weight:bold;" class="nav-link count-indicator">
 	              <i class="ti-home"></i>
 	            </a>
             </div>
@@ -63,7 +63,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="expHotelDropdown">
             	<p class="mb-0 font-weight-normal float-left dropdown-header">Select</p>
-            	<a href="/ceo/insertExpAddress?ceoId=${loginCeoId}" class="dropdown-item">
+            	<a href="${pageContext.request.contextPath}/ceo/insertExpAddress?ceoId=${loginCeoId}" class="dropdown-item">
             		<div class="item-content flex-grow">
 	                  <h6 class="ellipsis font-weight-normal">Experience</h6>
 	                  <p class="font-weight-light small-text text-muted mb-0">
@@ -71,7 +71,7 @@
 	                  </p>
                 	</div>
             	</a>
-            	<a href="/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="dropdown-item">
+            	<a href="${pageContext.request.contextPath}/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="dropdown-item">
             		<div class="item-content flex-grow">
 	                  <h6 class="ellipsis font-weight-normal">Hotel</h6>
 	                  <p class="font-weight-light small-text text-muted mb-0">
@@ -138,7 +138,7 @@
                 <i class="ti-settings text-primary"></i>
                  내 정보
               </a>
-              <a class="dropdown-item" href="/ceoLogout">
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/ceoLogout">
                 <i class="ti-power-off text-primary"></i>
                 로그아웃
               </a>
@@ -156,13 +156,13 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="/ceo/ceoIndex?ceoId=${loginCeoId}">
+            <a class="nav-link" href="${pageContext.request.contextPath}/ceo/ceoIndex?ceoId=${loginCeoId}">
               <i class="ti-shield menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="selectCeo" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
+            <a href="${pageContext.request.contextPath}/selectCeo" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
               <i class="ti-user menu-icon"></i>
               <span class="menu-title" style="font-weight:bold;">내정보</span>
             </a>
@@ -176,9 +176,9 @@
             <div class="collapse" id="selectExpHotel">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                <a href="insertExpAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
+                <a href="${pageContext.request.contextPath}/insertExpAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
                 <li class="nav-item">
-                <a href="insertsHotelAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
+                <a href="${pageContext.request.contextPath}/insertsHotelAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
               </ul>
             </div>
           </li>
@@ -251,7 +251,7 @@
             </div>
           </li>
           <li class="nav-item">
-          	<a class="nav-link" href="/ceoLogout">
+          	<a class="nav-link" href="${pageContext.request.contextPath}/ceoLogout">
           		<i class="ti-power-off menu-icon"></i>
           		<span class="menu-title">Logout</span>
           	</a>

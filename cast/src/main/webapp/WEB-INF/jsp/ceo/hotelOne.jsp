@@ -102,7 +102,7 @@
 				</div>
 				<div align="right">
 				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				<a href="/ceo/updateHotel?hotelId=${hotel.hotelId}" class="btn btn-inverse-warning">수정</a> &emsp;
+				<a href="${pageContext.request.contextPath}/ceo/updateHotel?hotelId=${hotel.hotelId}" class="btn btn-inverse-warning">수정</a> &emsp;
 				</div>
 				<br>
 			</div>

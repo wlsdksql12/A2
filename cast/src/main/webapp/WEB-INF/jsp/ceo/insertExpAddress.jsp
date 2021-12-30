@@ -19,7 +19,7 @@
 </head>
 <body>
 	<%@ include file="ceoBase.jsp" %>
-	<form method="post" action="/ceo/insertExpAddress" class="form-sample">
+	<form method="post" action="${pageContext.request.contextPath}/ceo/insertExpAddress" class="form-sample">
 	<br>
 		<div class="col-12 grid-margin bg-white">
 			<div class="card">

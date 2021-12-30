@@ -31,7 +31,7 @@
 <body>
 	<%@ include file="ceoBase.jsp" %>
 	<br>
-	<form method="post" action="/ceo/insertExp" class="forms-sample" id="addForm">
+	<form method="post" action="${pageContext.request.contextPath}/ceo/insertExp" class="forms-sample" id="addForm">
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">

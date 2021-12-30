@@ -31,7 +31,7 @@
 									<tr>
 										<td>${hotel.hotelId}</td>
 										<td>
-											<a href="/ceo/hotelOne?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
+											<a href="${pageContext.request.contextPath}/ceo/hotelOne?hotelId=${hotel.hotelId}">${hotel.hotelName}</a>
 										</td>
 										<td>${hotel.createDate}</td>
 									</tr>
@@ -41,22 +41,22 @@
 						<br>
 						<div>
 							<c:if test="${startPage > 1}">
-								<a href="/ceo/hotelList?currentPage=${startPage-1}" class="btn btn-outline-light text-dark">처음으로</a>
+								<a href="${pageContext.request.contextPath}/ceo/hotelList?currentPage=${startPage-1}" class="btn btn-outline-light text-dark">처음으로</a>
 							</c:if>
 							<div class="btn-group">
 							<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 								<c:choose>
 									<c:when test="${i == currentPage}">
-										<a href="/ceo/hotelList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
+										<a href="${pageContext.request.contextPath}/ceo/hotelList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
 									</c:when>
 									<c:otherwise>
-										<a href="/ceo/hotelList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
+										<a href="${pageContext.request.contextPath}/ceo/hotelList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							</div>
 							<c:if test="${lastPage != totalPage}">
-								<a href="/ceo/hotelList?currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">끝으로</a>
+								<a href="${pageContext.request.contextPath}/ceo/hotelList?currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">끝으로</a>
 							</c:if>
 						</div>
 					</div>

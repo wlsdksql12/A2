@@ -10,7 +10,7 @@
 <body>
 	<%@ include file="ceoBase.jsp" %>
 	<br>
-	<form  method="post" action="/ceo/updateHotel">
+	<form  method="post" action="${pageContext.request.contextPath}/ceo/updateHotel">
 	<div>
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
@@ -63,7 +63,7 @@
 					<c:forEach items="${roomList}" var="list">
 					
 					<tr>
-						<td><a href="/ceo/roomOne?roomId=${list.roomId}">${list.roomName}</a></td>
+						<td><a href="${pageContext.request.contextPath}/ceo/roomOne?roomId=${list.roomId}">${list.roomName}</a></td>
 						<td>${list.roomCount}</td>
 						<td>${list.roomStartdate}</td>
 						<td>${list.roomEnddate}</td>

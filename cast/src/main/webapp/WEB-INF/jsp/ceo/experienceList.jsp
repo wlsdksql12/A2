@@ -32,7 +32,7 @@
 									<tr>
 										<td>${experience.experienceId}</td>
 										<td>
-											<a href="/ceo/experienceOne?experienceId=${experience.experienceId}">${experience.experienceName}</a>
+											<a href="${pageContext.request.contextPath}/ceo/experienceOne?experienceId=${experience.experienceId}">${experience.experienceName}</a>
 										</td>
 										<td>${experience.experiencePrice}&#8361;</td>
 										<td>${experience.createDate}</td>
@@ -43,22 +43,22 @@
 						<br>
 						<div>
 							<c:if test="${startPage > 1}">
-								<a href="/ceo/experienceList?currentPage=${startPage-1}" class="btn btn-outline-light text-dark">처음으로</a>
+								<a href="${pageContext.request.contextPath}/ceo/experienceList?currentPage=${startPage-1}" class="btn btn-outline-light text-dark">처음으로</a>
 							</c:if>
 							<div class="btn-group">
 							<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 								<c:choose>
 									<c:when test="${i == currentPage}">
-										<a href="/ceo/experienceList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
+										<a href="${pageContext.request.contextPath}/ceo/experienceList?currentPage=${i}" class="btn btn-group btn-secondary">${i}</a>
 									</c:when>
 									<c:otherwise>
-										<a href="/ceo/experienceList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
+										<a href="${pageContext.request.contextPath}/ceo/experienceList?currentPage=${i}" class="btn btn-group btn-outline-secondary">${i}</a>
 									</c:otherwise>
 								</c:choose>
 							</c:forEach>
 							</div>
 							<c:if test="${lastPage != totalPage}">
-								<a href="/ceo/hotelList?currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">끝으로</a>
+								<a href="${pageContext.request.contextPath}/ceo/hotelList?currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">끝으로</a>
 							</c:if>
 						</div>
 					</div>
