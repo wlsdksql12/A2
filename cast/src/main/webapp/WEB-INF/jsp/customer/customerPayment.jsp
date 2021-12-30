@@ -53,12 +53,12 @@
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
 							<li class="list-group-item"><a
-								href="/myinfo?customerId=${loginCustomerId}"><i
+								href="${pageContext.request.contextPath}/myinfo?customerId=${loginCustomerId}"><i
 									class="feather icon-user m-r-5"></i>내 정보</a></li>
 							<li class="list-group-item"><a
-								href="/setting?customerId=${loginCustomerId}"><i
+								href="${pageContext.request.contextPath}/setting?customerId=${loginCustomerId}"><i
 									class="feather icon-settings m-r-5"></i>Settings</a></li>
-							<li class="list-group-item"><a href="/logOut"><i
+							<li class="list-group-item"><a href="${pageContext.request.contextPath}/logOut"><i
 									class="feather icon-log-out m-r-5"></i>Logout</a></li>
 						</ul>
 					</div>
@@ -68,7 +68,7 @@
 					<li class="nav-item pcoded-menu-caption"><label>Navigation</label>
 					</li>
 					<li class="nav-item"><a
-						href="/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1"
+						href="${pageContext.request.contextPath}/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-home"></i></span><span class="pcoded-mtext">고객페이지</span></a>
 					</li>
@@ -78,9 +78,9 @@
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-layout"></i></span><span class="pcoded-mtext">관심상품</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="/customerExperienceWishList">체험
+							<li><a href="${pageContext.request.contextPath}/customerExperienceWishList">체험
 									관심상품</a></li>
-							<li><a href="/customerRoomWishList">숙소
+							<li><a href="${pageContext.request.contextPath}/customerRoomWishList">숙소
 									관심상품</a></li>
 						</ul></li>
 					<li class="nav-item pcoded-menu-caption"><label>결제목록</label></li>
@@ -88,9 +88,9 @@
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-monitor"></i></span><span class="pcoded-mtext">결제</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="/CustomerOrderList">상품예약
+							<li><a href="${pageContext.request.contextPath}/CustomerOrderList">상품예약
 									</a></li>
-							<li><a href="/CustomerPaymentList">결제내역
+							<li><a href="${pageContext.request.contextPath}/CustomerPaymentList">결제내역
 									</a></li>
 							<li><a href="layout-horizontal.html">상품후기
 									</a></li>
@@ -98,16 +98,16 @@
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>Q&A</label></li>
 					<li class="nav-item"><a
-						href="/qnaList?customerId=${loginCustomerId}&currentPage=1"
+						href="${pageContext.request.contextPath}/qnaList?customerId=${loginCustomerId}&currentPage=1"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-file-text"></i></span><span class="pcoded-mtext">Q&A목록</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>추천댓글</label></li>
-					<li class="nav-item"><a href="/customerExperienceSelectCommentList"
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/customerExperienceSelectCommentList"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-clock"></i></span><span class="pcoded-mtext">체험추천댓글</span></a>
 					</li>
-					<li class="nav-item"><a href="/customerRoomSelectCommentList"
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/customerRoomSelectCommentList"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-clock"></i></span><span class="pcoded-mtext">숙소추천댓글</span></a>
 					</li>
@@ -164,7 +164,7 @@
 							<c:forEach items="${list}" var="qna">
 							<div class="row-fluid" style="width: 350px; height: 50px; margin-left: 3px;">
 								<i class="feather icon-bell"></i>&nbsp;
-								<a href="/customer/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
+								<a href="${pageContext.request.contextPath}/customer/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
 									${qna.qnaTitle} 제목에 해당되는 Q&A에 답글이 달렸습니다. </a>
 									
 								<hr>
@@ -190,11 +190,11 @@
 								</a>
 							</div>
 							<ul class="pro-body">
-								<li><a href="/myinfo?customerId=${loginCustomerId}" class="dropdown-item"><i
+								<li><a href="${pageContext.request.contextPath}/myinfo?customerId=${loginCustomerId}" class="dropdown-item"><i
 										class="feather icon-user"></i> 내정보</a></li>
-								<li><a href="/qnaList?customerId=${loginCustomerId}&currentPage=1" class="dropdown-item"><i
+								<li><a href="${pageContext.request.contextPath}/qnaList?customerId=${loginCustomerId}&currentPage=1" class="dropdown-item"><i
 										class="feather icon-file-text"></i> Q&A</a></li>
-								<li><a href="/CustomerOrderList" class="dropdown-item"><i
+								<li><a href="${pageContext.request.contextPath}/CustomerOrderList" class="dropdown-item"><i
 										class="feather icon-monitor"></i> 예약정보</a></li>
 							</ul>
 						</div>
@@ -219,9 +219,9 @@
 								<h3 style="color: white;" class="m-b-10">체험&숙소 예약</h3>
 							</div>
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="/index"><i
+								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/index"><i
 										class="feather icon-home"></i></a></li>
-								<li class="breadcrumb-item"><a href="/index">go to
+								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/index">go to
 										MainMenu</a></li>
 							</ul>
 						</div>
@@ -274,10 +274,10 @@
 										</table>
 										<div class="text-center table container mt-3">
 										<c:if test="${currentPage > 1}">
-											<a href="/CustomerPaymentList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
+											<a href="${pageContext.request.contextPath}/CustomerPaymentList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
 										</c:if>
 										<c:if test="${currentPage < lastPage}">
-											<a href="/CustomerPaymentList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
+											<a href="${pageContext.request.contextPath}/CustomerPaymentList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
 										</c:if>
 									</div>
 								</div>
@@ -321,16 +321,16 @@
 										</table>
 									<div class="text-center table container mt-3">
 										<c:if test="${currentPage2 > 1}">
-											<a href="/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2-1}&currentPage=${currentPage}">이전</a>
+											<a href="${pageContext.request.contextPath}/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2-1}&currentPage=${currentPage}">이전</a>
 										</c:if>
 										<c:if test="${currentPage2 < lastPage2}">
-											<a href="/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2+1}&currentPage=${currentPage}">다음</a>
+											<a href="${pageContext.request.contextPath}/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2+1}&currentPage=${currentPage}">다음</a>
 										</c:if>
 									</div>
 								</div>
 							</div>
 							<div class="float-right">
-								<a href="/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1" type="button" class="btn btn-outline-primary">메인페이지로</a>
+								<a href="${pageContext.request.contextPath}/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1" type="button" class="btn btn-outline-primary">메인페이지로</a>
 							</div>
 						</div>				
 					</div>
