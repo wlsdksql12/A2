@@ -9,7 +9,7 @@
 <body>
 <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/admins/adminIndex">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="${pageContext.request.contextPath}/admin/adminIndex">
         <div class="sidebar-brand-icon">
           <img src="${pageContext.request.contextPath}/resources/admin_template/img/logo/logo2.png">
         </div>
