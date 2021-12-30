@@ -14,4 +14,5 @@ public class RoomOrder {
 	private String updateDate;
 	private String note;
 	private int roomOrderPeople;
+	private RoomPayment roomPayment;
 }

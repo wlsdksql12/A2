@@ -74,4 +74,8 @@ public class RoomOrderService {
 		return roomOrderMapper.selectAdminRoomPayment();
 	}
 	
+	// 관리자 페이지에 숙소 예약&결제 상세보기
+	public RoomPayment getAdminRoomPaymentOne(int roomOrderId){
+		return roomOrderMapper.selectAdminRoomPaymentOne(roomOrderId);
+	}
 }

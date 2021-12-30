@@ -89,6 +89,9 @@
                     <thead class="thead-light">
                       <tr>
                         <th width="100px;">예약 번호</th>
+                        <th>고객ID</th>
+                        <th>호텔 이름</th>
+                        <th>방 이름</th>
                         <th>결제 방식</th>
                         <th>결제 금액</th>
                         <th>결제 날짜</th>
@@ -96,8 +99,11 @@
                     </thead>
                     <tbody>
                       <c:forEach items="${roomPaymentList}" var="roomPaymentList">
-                      	<tr>
-                      		<td>${roomPaymentList.roomOrderId}</td>
+                      	<tr style="text-align:center" style = "cursor:pointer;" onClick = " location.href='${pageContext.request.contextPath}/admin/roomPaymentOne?roomOrderId=${roomPaymentList.roomOrder.roomOrderId}'">
+                      		<td>${roomPaymentList.roomOrder.roomOrderId}</td>
+                      		<td>${roomPaymentList.roomOrder.customerId}</td>
+                      		<td>${roomPaymentList.roomOrder.hotelName}</td>
+                      		<td>${roomPaymentList.roomOrder.roomName}</td>
                       		<td>${roomPaymentList.roomPaymentMethod}</td>
                       		<td><fmt:formatNumber value="${roomPaymentList.roomPaymentMoney}" pattern="#,###"/>원</td>
                       		<td>${fn:substring(roomPaymentList.createDate,0,10)}</td>

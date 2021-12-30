@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.AdminService;
@@ -20,6 +21,7 @@ import com.gdu.cast.service.RoomOrderService;
 import com.gdu.cast.vo.Admin;
 import com.gdu.cast.vo.JoinCeo;
 import com.gdu.cast.vo.JoinTraveler;
+import com.gdu.cast.vo.RoomPayment;
 
 @Controller
 public class AdminController {
@@ -112,5 +114,13 @@ public class AdminController {
 		model.addAttribute("experiencePaymentList", experienceOrderService.getAdminExperiencePayment());
 		model.addAttribute("roomPaymentList", roomOrderService.getAdminRoomPayment());
 		return"/admin/adminPaymentList";
+	}
+	
+	// 관리자 숙소 예약&결제 상세보기
+	@GetMapping("/admin/roomPaymentOne")
+	public String getAdminRoomPaymentOne(Model model, int roomOrderId) {
+		RoomPayment roomPaymentOne = roomOrderService.getAdminRoomPaymentOne(roomOrderId);
+		model.addAttribute("roomPaymentOne", roomPaymentOne);
+		return "/admin/adminRoomPaymentOne";
 	}
 }

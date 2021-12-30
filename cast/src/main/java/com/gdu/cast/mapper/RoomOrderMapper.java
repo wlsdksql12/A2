@@ -33,4 +33,6 @@ public interface RoomOrderMapper {
 	List<RoomOrder> selectAdminRoomOrder();
 	// 관리자 페이지 결제 리스트
 	List<RoomPayment> selectAdminRoomPayment();
+	// 관리자 페이지 예약&결제 상세보기
+	RoomPayment selectAdminRoomPaymentOne(int roomOrderId);
 }
