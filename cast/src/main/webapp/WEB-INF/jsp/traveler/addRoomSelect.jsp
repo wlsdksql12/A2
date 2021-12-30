@@ -72,7 +72,7 @@
     <!-- Close Banner -->		
     <!-- Start Section -->
     <section class="container py-5">
-    <form method="post" action="/modifyRoomSelect">
+    <form method="post" action="/addRoomSelect">
 	   	<div style="text-align:center">
 	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="travelerId" value="${roomSelect.travelerId}" readonly="readonly">
 	   		<table class="table mb-0" >
