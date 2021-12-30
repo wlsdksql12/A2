@@ -13,7 +13,7 @@ import com.gdu.cast.vo.ExperiencePaymentReview;
 @Service
 public class MainExperienceOrHotelReviewService {
 	@Autowired MainExperienceOrHotelReviewMapper mainExperienceOrHotelReviewMapper;
-	
+	// 메인 체험 리스트 후기 리스트 출력.
 	public Map<String, Object> getexperiencePaymentReview(int currentPage, int row_per_page,int experienceId){
 		   Map<String, Object> paramMap = new HashMap<>();
 			

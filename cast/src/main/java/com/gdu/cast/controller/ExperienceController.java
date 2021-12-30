@@ -166,6 +166,7 @@ public class ExperienceController {
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
+		
       model.addAttribute("experience", experience);
       model.addAttribute("address", address);
       

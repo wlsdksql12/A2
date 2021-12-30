@@ -9,5 +9,5 @@ public class ExperiencePaymentReview {
 	private String experiencePaymentReviewContent;
 	private int experienceId;
 	private String createDate;
-	private String dupateDate;
+	private String upateDate;
 }

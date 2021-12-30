@@ -29,6 +29,7 @@ public class ExperienceSelectService {
 	
 	// 여행작가 체험 추천 추가
 	public void addExperienceSelect(AddExperienceSelect addExperienceSelect) {
+		
 		int experienceSelectId = addExperienceSelect.getExperienceSelectId();
 		String travelerId = addExperienceSelect.getTravelerId();
 		int experienceId = addExperienceSelect.getExperienceId();
@@ -51,7 +52,7 @@ public class ExperienceSelectService {
 		System.out.println(experienceSelect +"★★★★Hyun★★★★");
 		
 		if(file != null) {
-			
+		
 		// 2) 체험 추천 이미지 추가
 		ExperienceSelectImage experienceSelectImage = new ExperienceSelectImage();
 		experienceSelectImage.setExperienceSelectId(experienceSelect.getExperienceSelectId());
