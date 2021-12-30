@@ -118,7 +118,6 @@
 			                	<ul class="hide">
 			                		<li>메뉴2-1-1</li>
 			                		<li>메뉴2-1-2</li>
-			                		<li><a href="${pageContext.request.contextPath}/addExperienceOrder">체험 주문</a></li>
 			                		<li><a href="${pageContext.request.contextPath}/addHotelOrder">숙소 주문</a></li>
 			                	</ul>
 			                </li>
@@ -162,7 +161,7 @@
                         </ul>
                     </div>
                     <div class="col-md-6 pb-4">
-                    	<form action="/shop" id ="shopCategoryForm">
+                    	<form action="${pageContext.request.contextPath}/shop" id ="shopCategoryForm">
                         <div class="d-flex">
                             <select class="form-control" name="shopCategory" id="shopCategory"  onchange="shopCategory()">
                                 <option value="전체보기">전체보기</option>
@@ -315,7 +314,7 @@
 	                                </div>
 	                            </div>
 	                            <div class="card-body">
-	                                <a href="/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
+	                                <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
 	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
 	                                    <li class="pt-2">
 	                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
