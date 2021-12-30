@@ -111,24 +111,24 @@
 		</table>
 		<div>
 			<c:if test="${startPage > 1}">
-				<a href="/mainNotice?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="${pageContext.request.contextPath}/mainNotice?currentPage=${startPage-1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="/mainNotice?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainNotice?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="/mainNotice?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainNotice?currentPage=${i}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 			<c:if test="${lastPage != totalPage}">
-				<a href="/mainNotice?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="${pageContext.request.contextPath}/mainNotice?currentPage=${lastPage+1}&searchTitle=${searchTitle}" class="btn btn-outline-light text-dark">▷</a>
 			</c:if>
 		</div>
 		<br>
-		<form method="get" id="/mainNotice">
+		<form method="get" id="${pageContext.request.contextPath}/mainNotice">
 			<input name="searchTitle" value="${searchTitle}">
 				<button>검색</button>
 		</form>		

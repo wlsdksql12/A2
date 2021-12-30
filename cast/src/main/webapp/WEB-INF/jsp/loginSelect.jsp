@@ -25,7 +25,7 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Login</h1>
                   </div>
-					<form method="post" action="/index" id="loginForm">
+					<form method="post" action="${pageContext.request.contextPath}/index" id="loginForm">
 						<div>
 						<select id="loginSelect" name="login">
 				 			<option value="">로그인 방식을 선택해주세요..</option>
