@@ -72,33 +72,33 @@
     <!-- Close Banner -->		
     <!-- Start Section -->
     <section class="container py-5">
-    <form method="post" action="${pageContext.request.contextPath}/addRoomSelect">
+    <form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/addRoomSelect">
 	   	<div style="text-align:center">
-	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="travelerId" value="${roomSelect.travelerId}" readonly="readonly">
+	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="travelerId" value="${loginTravelerId}" readonly="readonly">
+	   	<input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="hidden" name="hotelId" value="${hotelId}" readonly="readonly">
 	   		<table class="table mb-0" >
 				<thead class="thead-light">
 					<tr>
-						<th width="10%">번호</th>
 						<th width="60%">제목</th>
-						<th width="10%">작성자</th>
-						<th width="20%">작성날짜</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr style="text-align:center">
-						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name= "roomSelectId" value="${roomSelect.roomSelectId}" readonly="readonly"></td>
-						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="roomSelectTitle" value="${roomSelect.roomSelectTitle}"></td>
-						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name= "travelerName" value="${roomSelect.traveler.travelerName}" readonly="readonly"></td>
-						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="createDate" value="${roomSelect.createDate.substring(0,10)}" readonly="readonly"></td>
+						<td><input style="border:none; border-right:0px; border-top:0px; boder-left:0px; boder-bottom:0px; outline: none; text-align:center;" type="text" name="roomSelectTitle"></td>
 					</tr>
 					<tr>
-					<td colspan="5"><textarea name="roomSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%; outline: none;" rows="10">${roomSelect.roomSelectContent}</textarea></td>		
+					<td colspan="5"><textarea name="roomSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%; outline: none;" rows="10"></textarea></td>		
 					</tr>
-			</table>
+					<tr>
+						<td>
+							<input multiple="multiple" type="file" name="roomSelectImage" required="required">
+						</td>
+					</tr>
+			</table> 
 			 <p></p>
 			<div style="text-align:center;">
 				<input type="button" class="btn btn-primary" value="이전" onclick="history.back(-1)">
-				<button type="submit" class="btn btn-warning">수정</button>
+				<button type="submit" class="btn btn-warning">추가</button>
 				<button type="reset" class="btn btn-danger">초기화</button>
 			</div>
 		</div>

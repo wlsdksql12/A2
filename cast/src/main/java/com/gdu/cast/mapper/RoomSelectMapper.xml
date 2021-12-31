@@ -16,30 +16,11 @@
 		</collection>
 	</resultMap>
 	
-	<!-- 여행작가 숙소 추천 사진 추가 -->
-	<insert id="insertRoomSelectImage" parameterType="com.gdu.cast.vo.RoomSelectImage">
-		INSERT INTO room_select_image(
-			room_select_image_id,
-			room_select_id,
-			image_size,
-			image_name,
-			craete_date,
-			update_date
-		) VALEUS (
-			#{roomSelectImageId},
-			#{roomSelectId},
-			#{imageSize},
-			#{imageName},
-			NOW(),
-			NOW()
-		)
-		<selectKey resultType="int" order="BEFORE" keyProperty="roomSelectImageId">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-
 	<!-- 여행작가 숙소 추천 추가 -->
 	<insert id="insertRoomSelect" parameterType="com.gdu.cast.vo.RoomSelect">
+	<selectKey resultType="int" keyProperty="roomSelectId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 		INSERT INTO room_select(
 			traveler_id,
 			hotel_id,
@@ -51,11 +32,30 @@
 			#{travelerId},
 			#{hotelId},
 			#{roomSelectTitle},
-			#{roomSelectContent},			
+			#{roomSelectContent},		
 			NOW(),
 			NOW()
 		)
-		<selectKey resultType="int" order="BEFORE" keyProperty="roomSelectId">
+	</insert>
+	
+	<!-- 여행작가 숙소 추천 사진 추가 -->
+	<insert id="insertRoomSelectImage" parameterType="com.gdu.cast.vo.RoomSelectImage">
+		INSERT INTO room_select_image(
+			room_select_id,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES (
+			#{roomSelectId},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			NOW(),
+			NOW()
+		)
+		<selectKey resultType="int" keyProperty="roomSelectImageId" order="BEFORE">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>

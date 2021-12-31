@@ -2,10 +2,12 @@ package com.gdu.cast.vo;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
-public class RoomSelect {
+public class AddRoomSelect {
 	private int roomSelectId;
 	private String travelerId;
 	private int hotelId;
@@ -13,6 +15,5 @@ public class RoomSelect {
 	private String roomSelectContent;
 	private String createDate;
 	private String updateDate;
-	private Traveler traveler;
-	private List<RoomSelectImage> roomSelectImage;
+	private List<MultipartFile> roomSelectImage;
 }

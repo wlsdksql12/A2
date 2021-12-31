@@ -101,6 +101,12 @@
 			</tr>
 		</table>
 		<p></p>
+			<div style="text-align:center; float:center;">
+				<c:forEach items="${roomSelectImageList}"  var="roomSelectImage">
+					<img src="${pageContext.request.contextPath}/upload/${roomSelectImage.imageName}.${roomSelectImage.imageExt}" style="width:400px; height:400px;"/>
+				</c:forEach>
+			</div>
+		<p></p>
 		<div>
 			<input class="btn btn-outline-success" type="button" value="이전" onclick="history.back(-1)">
 			<c:if test="${loginTravelerId == roomSelect.travelerId}">
@@ -138,7 +144,6 @@
 				     <td>-</td>
 				     </c:otherwise>
 				     </c:choose>
-				     
 				 </tr>		
 				 </c:forEach>
 			 </tbody>

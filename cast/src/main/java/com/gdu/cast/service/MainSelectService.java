@@ -13,6 +13,7 @@ import com.gdu.cast.mapper.MainSelectMapper;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectImage;
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.RoomSelectImage;
 import com.gdu.cast.vo.ThemeMiddle;
 import com.gdu.cast.vo.ThemeSmall;
 import com.gdu.cast.vo.ThemeSmallExperience;
@@ -31,6 +32,12 @@ public class MainSelectService {
 	@Autowired
 	MainSelectCommentMapper mainSelectCommentMapper;
 	
+	// 메인 페이지 숙소 추천 이미지
+	public List<RoomSelectImage> getselectRoomSelectImageList(int roomSelectId) {
+		System.out.println("★★★★Hyun★★★★"+roomSelectId);
+		return mainSelectMapper.selectRoomImageList(roomSelectId);
+	}
+
 	// 메인 페이지 체험 추천 이미지
 	public List<ExperienceSelectImage> getselectExperienceSelectImageList(int experienceSelectId) {
 		System.out.println("★★★★Hyun★★★★"+experienceSelectId);

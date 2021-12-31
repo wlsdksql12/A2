@@ -19,6 +19,7 @@ import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.ExperienceSelectImage;
 import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.RoomSelectComment;
+import com.gdu.cast.vo.RoomSelectImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -106,7 +107,9 @@ public class MainSelectController {
 		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
 		
 		Map<String, Object> list = mainSelectCommentService.getroomSelectComment(currentPage, row_per_page, roomSelectId);
+		List<RoomSelectImage> roomSelectImageList = mainSelectService.getselectRoomSelectImageList(roomSelectId);
 		
+		model.addAttribute("roomSelectImageList", roomSelectImageList);
 		model.addAttribute("selectCommentList", list.get("selectCommentList"));
 		model.addAttribute("startPage", list.get("startPage"));
 		model.addAttribute("lastPage", list.get("lastPage"));
