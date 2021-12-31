@@ -40,25 +40,28 @@
 
 				<div class="">
 					<div class="main-menu-header">
-						<img class="img-radius"
-							src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-2.jpg"
-							alt="User-Profile-Image">
+						<img class="img-radius" src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
 						<div class="user-details">
-							<div id="more-details">${loginCustomerId}<i
-									class="fa fa-caret-down"></i>
+							<div id="more-details">${loginCustomerId}<i class="fa fa-caret-down"></i>
 							</div>
 						</div>
 					</div>
 					<div class="collapse" id="nav-user-link">
 						<ul class="list-unstyled">
-							<li class="list-group-item"><a
-								href="${pageContext.request.contextPath}/myinfo?customerId=${loginCustomerId}"><i
-									class="feather icon-user m-r-5"></i>내 정보</a></li>
-							<li class="list-group-item"><a
-								href="${pageContext.request.contextPath}/setting?customerId=${loginCustomerId}"><i
-									class="feather icon-settings m-r-5"></i>Settings</a></li>
-							<li class="list-group-item"><a href="${pageContext.request.contextPath}/logOut"><i
-									class="feather icon-log-out m-r-5"></i>Logout</a></li>
+							<li class="list-group-item"><a href="${pageContext.request.contextPath}/myinfo?customerId=${loginCustomerId}">
+									<i class="feather icon-user m-r-5"></i>내 정보
+								</a>
+							</li>
+							<li class="list-group-item">
+								<a href="${pageContext.request.contextPath}/setting?customerId=${loginCustomerId}">
+									<i class="feather icon-settings m-r-5"></i>Settings
+								</a>
+							</li>
+							<li class="list-group-item">
+								<a href="${pageContext.request.contextPath}/logOut">
+									<i class="feather icon-log-out m-r-5"></i>Logout
+								</a>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -66,49 +69,87 @@
 				<ul class="nav pcoded-inner-navbar ">
 					<li class="nav-item pcoded-menu-caption"><label>Navigation</label>
 					</li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath}/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1"
-						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-home"></i></span><span class="pcoded-mtext">고객페이지</span></a>
+					<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/customer/customerIndex?customerId=${loginCustomerId}&currentPage=1" class="nav-link">
+						<span class="pcoded-micon">
+							<i class="feather icon-home"></i>
+						</span>
+						<span class="pcoded-mtext">고객페이지</span>
+					</a>
 					</li>
-					<li class="nav-item pcoded-menu-caption"><label>관심상품 목록</label>
+						<li class="nav-item pcoded-menu-caption"><label>관심상품 목록</label>
 					</li>
-					<li class="nav-item pcoded-hasmenu"><a href="#!"
-						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-layout"></i></span><span class="pcoded-mtext">관심상품</span></a>
+					<li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link ">
+							<span class="pcoded-micon">
+								<i class="feather icon-layout"></i>
+							</span>
+							<span class="pcoded-mtext">관심상품</span>
+						</a>
 						<ul class="pcoded-submenu">
-							<li><a href="${pageContext.request.contextPath}/customerExperienceWishList">체험
-									관심상품</a></li>
-							<li><a href="${pageContext.request.contextPath}/customerRoomWishList">숙소
-									관심상품</a></li>
-						</ul></li>
+							<li><a href="${pageContext.request.contextPath}/customerExperienceWishList">체험	관심상품</a></li>
+							<li><a href="${pageContext.request.contextPath}/customerRoomWishList">숙소 관심상품</a></li>
+						</ul>
+					</li>
 					<li class="nav-item pcoded-menu-caption"><label>결제목록</label></li>
-					<li class="nav-item pcoded-hasmenu"><a href="#!"
-						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-monitor"></i></span><span class="pcoded-mtext">결제</span></a>
+					<li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link ">
+							<span class="pcoded-micon">
+								<i class="feather icon-monitor"></i>
+							</span>
+							<span class="pcoded-mtext">결제</span>
+						</a>
 						<ul class="pcoded-submenu">
-							<li><a href="${pageContext.request.contextPath}/CustomerOrderList">상품예약
-									</a></li>
-							<li><a href="${pageContext.request.contextPath}/CustomerPaymentList">결제내역
-									</a></li>
-							<li><a href="layout-horizontal.html">상품후기
-									</a></li>
+							<li>
+								<a href="${pageContext.request.contextPath}/CustomerOrderList">상품예약</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/CustomerPaymentList">결제내역</a>
+							</li>
+							<li>
+								<a href="layout-horizontal.html">상품후기</a>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-item pcoded-menu-caption"><label>chart</label>
+					</li>
+					<li class="nav-item pcoded-hasmenu">
+						<a href="#!" class="nav-link ">
+						<span class="pcoded-micon">
+							<i class="feather icon-layout"></i>
+						</span>
+						<span class="pcoded-mtext">차트 목록</span>
+					</a>
+						<ul class="pcoded-submenu">
+							<li><a href="${pageContext.request.contextPath}/#">체험 차트</a></li>
+							<li><a href="${pageContext.request.contextPath}/#">숙소 차트</a></li>
 						</ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>Q&A</label></li>
-					<li class="nav-item"><a
-						href="${pageContext.request.contextPath}/qnaList?customerId=${loginCustomerId}&currentPage=1"
-						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-file-text"></i></span><span class="pcoded-mtext">Q&A목록</span></a>
+					<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/qnaList?customerId=${loginCustomerId}&currentPage=1" class="nav-link ">
+							<span class="pcoded-micon">
+								<i class="feather icon-file-text"></i>
+							</span>
+							<span class="pcoded-mtext">Q&A목록</span>
+						</a>
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>추천댓글</label></li>
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/customerExperienceSelectCommentList"
-						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-clock"></i></span><span class="pcoded-mtext">체험추천댓글</span></a>
+					<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/customerExperienceSelectCommentList" class="nav-link ">
+							<span class="pcoded-micon">
+								<i class="feather icon-clock"></i>
+							</span>
+							<span class="pcoded-mtext">체험추천댓글</span>
+						</a>
 					</li>
-					<li class="nav-item"><a href="${pageContext.request.contextPath}/customerRoomSelectCommentList"
-						class="nav-link "><span class="pcoded-micon"><i
-								class="feather icon-clock"></i></span><span class="pcoded-mtext">숙소추천댓글</span></a>
+					<li class="nav-item">
+						<a href="${pageContext.request.contextPath}/customerRoomSelectCommentList" class="nav-link ">
+							<span class="pcoded-micon">
+								<i class="feather icon-clock"></i>
+							</span>
+							<span class="pcoded-mtext">숙소추천댓글</span>
+						</a>
 					</li>
 				</ul>
 			</div>
