@@ -60,7 +60,7 @@
 					<c:forEach items="${roomList}" var="list">
 					
 					<tr>
-						<td><a href="${pageContext.request.contextPath}/ceo/roomOne?roomId=${list.roomId}">${list.roomName}</a></td>
+						<td><a href="${pageContext.request.contextPath}/mainRoomOne?roomId=${list.roomId}">${list.roomName}</a></td>
 						<td>${list.roomCount}</td>
 						<td>${list.roomStartdate}</td>
 						<td>${list.roomEnddate}</td>

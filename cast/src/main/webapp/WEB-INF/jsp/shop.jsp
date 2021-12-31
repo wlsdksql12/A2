@@ -273,7 +273,7 @@
 	                                </div>
 	                            </div>
 	                            <div class="card-body">
-	                                <a href="" class="h3 text-decoration-none">${ShopHotelList.hotel.hotelName}</a>
+	                                <a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${ShopHotelList.hotel.hotelId}" class="h3 text-decoration-none">${ShopHotelList.hotel.hotelName}</a>
 	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
 	                                    <li class="pt-2">
 	                                        <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>

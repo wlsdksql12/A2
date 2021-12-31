@@ -250,7 +250,36 @@ public class HotController {
 		return "redirect:/ceo/roomOne?roomId="+room.getRoomId();
 	}
 	
+	// 메인 shop 호텔 상세보기 페이지
+	@GetMapping("/mainHotelOne")
+	public String mainHotelOne(Model model, Address address, int hotelId) {
+		Hotel hotel = hotService.selectHotelOne(hotelId);
+		
+		model.addAttribute("hotel", hotel);
+		model.addAttribute("address", address);
+		
+		List<Room> roomList = hotService.getSelectRoomList(hotelId);
+		model.addAttribute("roomList", roomList);
+		
+		System.out.println(" << HotelController" + model);
+		
+		return "mainHotelOne";
+	}
 	
+	// 메인 shop 상세보기
+	@GetMapping("/mainRoomOne")
+	public String mainRoomOne(Model model, Room room, RoomFilter roomFilter, RoomConvenience roomConvenience, RoomBedroom roomBedroom) {
+		room = hotService.selectRoomOne(room.getRoomId());
+		
+		model.addAttribute("room", room);
+		model.addAttribute("roomFilter", roomFilter);
+		model.addAttribute("roomConvenience", roomConvenience);
+		model.addAttribute("roomBedroom", roomBedroom);
+		
+		System.out.println("@@@@HotController" + model);
+		
+		return "/mainRoomOne";
+	}
 }
 
 
