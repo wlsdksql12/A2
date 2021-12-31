@@ -28,11 +28,16 @@ public interface RoomOrderMapper {
 	List<RoomOrder> CustomerIndexRoomOrder(Map<String, Object> map);
 	// 고객 페이지 숙소 예약 페이징
 	int selectRoomOrderTotalCount(String CustomerId);
-	
+	// 고객 페이지 숙소 결제 페이징
+	int selectRoomOrderTotalCount2(String customerId);
 	// 관리자 페이지 예약 리스트
 	List<RoomOrder> selectAdminRoomOrder();
 	// 관리자 페이지 결제 리스트
 	List<RoomPayment> selectAdminRoomPayment();
+	// 고객 페이지 숙소 리스트
+
+	List<RoomPayment> selectCustomerRoomPayment(Map<String, Object> map);
+	
 	// 관리자 페이지 예약&결제 상세보기
 	RoomPayment selectAdminRoomPaymentOne(int roomOrderId);
 }

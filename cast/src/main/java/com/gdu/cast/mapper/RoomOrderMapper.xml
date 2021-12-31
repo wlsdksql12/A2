@@ -88,6 +88,25 @@
 	
 	</select>
 	
+		<!-- 고객 숙소 결제 리스트 -->
+	<select id="selectCustomerRoomPayment" parameterType="map"   resultMap="resultRoomPayment">
+		SELECT
+			ro.room_order_id,
+			ro.customer_id,
+			ro.room_name,
+			ro.hotel_name,
+			ro.room_order_people,
+			ro.room_order_startdate,
+			ro.room_order_enddate,
+			rp.room_payment_method,
+			rp.room_payment_method_number,
+			rp.room_payment_money,
+			rp.create_Date
+		FROM room_payment rp INNER JOIN room_order ro
+		ON rp.room_order_id = ro.room_order_id
+		where customer_id = #{customerId}
+	</select>
+	
 		<!-- 숙소 예약 List 페이징 -->
 	<select id="selectRoomOrderTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
@@ -96,6 +115,13 @@
 	
 	</select>
 	
+	<!-- 숙소 결제 List 페이징 -->
+	<select id="selectRoomOrderTotalCount2" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM room_order
+	WHERE customer_Id = #{customerId}
+	
+	</select>
 	
 	<!--  숙소 예약 트랜잭션 용 아이디 -->
 	<select id="roomOrderId" parameterType="String" resultType="int">

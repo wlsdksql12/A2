@@ -94,6 +94,12 @@ public class CustomerOrderController {
 	public String PaymentList(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") int currentPage2) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		Map<String,Object> map = experienceOrderService.getCustomerIndexExperiencePayment(customerId, currentPage, ROW_PER_PAGE);
+		Map<String,Object> map2 = roomOrderService.getselectCustomerRoomPayment(customerId, currentPage2, ROW_PER_PAGE);
+		
+		model.addAttribute("roomPaymentList", map2.get("roomPaymentList"));
+		model.addAttribute("lastPage2",map2.get("lastPage2"));
+		model.addAttribute("currentPage2", currentPage2);
+		
 		model.addAttribute("currentPage",currentPage);
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("experiencePaymentList", map.get("experiencePaymentList"));

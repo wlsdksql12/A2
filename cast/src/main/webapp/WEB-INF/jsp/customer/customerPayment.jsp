@@ -290,29 +290,32 @@
 									<p class="mb-3 mt-3"></p>
 								</div>
 									<div class="container-fluid">
-										<h2>숙소예약정보</h2>
+										<h2>숙소결제정보</h2>
 											<table class="table table-bordered">
 											<tr>
 												<td>예약 번호</td>
-												<td>숙소 이름</td>
-												<td>방 이름</td>
-												<td>예약인</td>
-												<td>예약인원 수</td>
-												<td>예약시작일</td>
-												<td>예약종료일</td>
-												<td>예약생성일</td>
-												<td>예약수정일</td>
-												<td>사업체 정보</td>
+												<td>체험 이름</td>
+												<td>체험 인원</td>
+												<td>시작일</td>
+												<td>종료일</td>
+												<td>카드 종류</td>
+												<td>카드 번호</td>
+												<td>가격</td>
+												<td>결제자</td>
+												<td>createDate</td>
+												<td>updateDate</td>
 											</tr>
-											<c:forEach items="${roomOrderList}"  var="list">
+											<c:forEach items="${roomPaymentList}"  var="list">
 											<tr>
-												<td>${list.roomOrderId}</td>
-												<td>${list.hotelName}</td>
-												<td>${list.roomName}</td>
-												<td>${list.customerId}</td>
-												<td>${list.roomOrderPeople}</td>
-												<td>${list.roomOrderStartDate}</td>
-												<td>${list.roomOrderEndDate}</td>
+												<td>${list.roomOrder.roomOrderId}</td>
+												<td>${list.roomOrder.hotelName}</td>
+												<td>${list.roomOrder.roomOrderPeople}</td>
+												<td>${list.roomOrder.roomOrderStartDate}</td>
+												<td>${list.roomOrder.roomOrderEndDate}</td>
+												<td>${list.roomPaymentMethod}</td>
+												<td>${list.roomPaymentMethodNumber}</td>
+												<td>${list.roomPaymentMoney}</td>
+												<td>${list.roomOrder.customerId}</td>
 												<td>${list.createDate}</td>
 												<td>${list.updateDate}</td>
 												<td><a href="/">정보 보기</a></td>
@@ -321,10 +324,10 @@
 										</table>
 									<div class="text-center table container mt-3">
 										<c:if test="${currentPage2 > 1}">
-											<a href="${pageContext.request.contextPath}/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2-1}&currentPage=${currentPage}">이전</a>
+											<a href="${pageContext.request.contextPath}/CustomerPaymentList?customerId=${loginCustomerId}&currentPage2=${currentPage2-1}&currentPage=${currentPage}">이전</a>
 										</c:if>
 										<c:if test="${currentPage2 < lastPage2}">
-											<a href="${pageContext.request.contextPath}/CustomerOrderList?customerId=${loginCustomerId}&currentPage2=${currentPage2+1}&currentPage=${currentPage}">다음</a>
+											<a href="${pageContext.request.contextPath}/CustomerPaymentList?customerId=${loginCustomerId}&currentPage2=${currentPage2+1}&currentPage=${currentPage}">다음</a>
 										</c:if>
 									</div>
 								</div>

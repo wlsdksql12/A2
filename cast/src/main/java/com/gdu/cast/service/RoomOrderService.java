@@ -40,6 +40,7 @@ public class RoomOrderService {
 		roomOrderMapper.roomInsertPayment(roomOrderId, roomPaymentMethod, roomPaymentMethodNumber, roomPaymentMoney);
 	}
 	
+	// 숙소 예약 list
 	public Map<String, Object> getCustomerIndexRoomOrder(String customerId, int currentPage2, int ROW_PER_PAGE){
 		 Map<String, Object> paramMap = new HashMap<>();
 		 
@@ -72,6 +73,30 @@ public class RoomOrderService {
 	// 관리자 페이지에 숙소 결제 리스트 출력
 	public List<RoomPayment> getAdminRoomPayment(){
 		return roomOrderMapper.selectAdminRoomPayment();
+	}
+	
+	// 고객 페이지에 숙소 결제 리스트 출력
+	public Map<String, Object> getselectCustomerRoomPayment(String customerId, int currentPage2, int ROW_PER_PAGE){
+		Map<String, Object> paramMap = new HashMap<>();
+		
+		   int beginRow = (currentPage2-1)*ROW_PER_PAGE;
+		   paramMap.put("customerId", customerId);
+		   paramMap.put("beginRow", beginRow); 
+		   paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		   System.out.println(ROW_PER_PAGE +"ROW_PER_PAGE");
+		   System.out.println(currentPage2 +"currentPage");
+		   List<RoomPayment> roomPaymentList = roomOrderMapper.selectCustomerRoomPayment(paramMap);
+		   Map<String, Object> returnMap = new HashMap<>();
+			int lastPage = 0;
+			int totalCount = roomOrderMapper.selectRoomOrderTotalCount2(customerId);
+			lastPage = totalCount / ROW_PER_PAGE;
+			if(totalCount%ROW_PER_PAGE != 0) {
+				lastPage += 1;
+			}
+			returnMap.put("roomPaymentList", roomPaymentList);
+			returnMap.put("lastPage2", lastPage);
+		 
+		return returnMap;
 	}
 	
 	// 관리자 페이지에 숙소 예약&결제 상세보기
