@@ -63,7 +63,7 @@
                     </thead>
                     <tbody>
                       <c:forEach items="${experiencePaymentList}" var="expPaymentList">
-                      	<tr>
+                      	<tr style="text-align:center" style = "cursor:pointer;" onClick = " location.href='${pageContext.request.contextPath}/admin/experiencePaymentOne?experienceOrderId=${expPaymentList.experienceOrder.experienceOrderId}'">
                       		<td>${expPaymentList.experienceOrder.experienceOrderId}</td>
                       		<td>${expPaymentList.experienceOrder.customerId}</td>
                       		<td>${expPaymentList.experienceOrder.experienceName}</td>

@@ -99,4 +99,9 @@ public class ExperienceOrderService {
 	public List<ExperiencePayment> getAdminExperiencePayment(){
 		return experienceOrderMapper.selectAdminExperiencePayment();
 	}
+	
+	// 관리자 페이지에 체험 예약&결제 상세보기 출력
+	public ExperiencePayment getAdminExperiencePaymentOne(int experienceOrderId) {
+		return experienceOrderMapper.selectAdminExperiencePaymentOne(experienceOrderId);
+	}
 }

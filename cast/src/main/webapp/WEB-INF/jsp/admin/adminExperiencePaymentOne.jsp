@@ -53,26 +53,23 @@
 
 	<div class="card">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">숙소 예약</h6>
+        <h6 class="m-0 font-weight-bold text-primary">체험 예약</h6>
       </div>
       <div class="table-responsive">
 		<table class="table align-items-center table-flush">
 			<tr>
-				<td>예약 번호 : ${roomPaymentOne.roomOrder.roomOrderId}</td>
-				<td>호텔 이름 : ${roomPaymentOne.roomOrder.hotelName}</td>
-				<td style="width: 30%;">예약 날짜 : ${fn:substring(roomPaymentOne.roomOrder.createDate,0,10)}</td>
+				<td>예약 번호 : ${experiencePaymentOne.experienceOrder.experienceOrderId}</td>
+				<td>호텔 이름 : ${experiencePaymentOne.experienceOrder.experienceName}</td>
+				<td style="width: 30%;">예약 날짜 : ${fn:substring(experiencePaymentOne.experienceOrder.createDate,0,10)}</td>
 				
 			</tr>
 			<tbody>
 				<tr>
-					<td>고객ID : ${roomPaymentOne.roomOrder.customerId}</td>
-					<td>방 이름 : ${roomPaymentOne.roomOrder.roomName}</td>
-					<td>숙박 기간 :  ${fn:substring(roomPaymentOne.roomOrder.roomOrderStartDate,0,10)} ~ ${fn:substring(roomPaymentOne.roomOrder.roomOrderEndDate,0,10)}</td>
+					<td>고객ID : ${experiencePaymentOne.experienceOrder.customerId}</td>
+					<td>예약 인원 : ${experiencePaymentOne.experienceOrder.experienceOrderPeople}</td>
+					<td>체험 기간 :  ${fn:substring(experiencePaymentOne.experienceOrder.experienceOrderStartDate,0,10)} ~ ${fn:substring(experiencePaymentOne.experienceOrder.experienceOrderEndDate,0,10)}</td>
 				</tr>
 			</tbody>
-			<tr>
-				<td colspan="3"><textarea class="content" rows="15" cols="100" readonly="readonly">${roomPaymentOne.roomOrder.note}</textarea></td>
-			</tr>
 		</table>	
 		<br>
 	</div>
@@ -80,15 +77,15 @@
 	<br>
 	<div class="card">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h6 class="m-0 font-weight-bold text-primary">숙소 결제</h6>
+        <h6 class="m-0 font-weight-bold text-primary">체험 결제</h6>
       </div>
       <div class="table-responsive">
 		<table class="table align-items-center table-flush">
 			<tr>
-				<td>결제 번호 : ${roomPaymentOne.roomPaymentId}</td>
-				<td>결제 방식 : ${roomPaymentOne.roomPaymentMethod}</td>
-				<td>결제 금액 : <fmt:formatNumber value="${roomPaymentOne.roomPaymentMoney}" pattern="#,###"/>원</td>
-				<td style="width: 30%;">결제 날짜 : ${fn:substring(roomPaymentOne.createDate,0,10)}</td>
+				<td>결제 번호 : ${experiencePaymentOne.experiencePaymentId}</td>
+				<td>결제 방식 : ${experiencePaymentOne.experiencePaymentMethod}</td>
+				<td>결제 금액 : <fmt:formatNumber value="${experiencePaymentOne.experiencePaymentMoney}" pattern="#,###"/>원</td>
+				<td style="width: 30%;">결제 날짜 : ${fn:substring(experiencePaymentOne.createDate,0,10)}</td>
 			</tr>
 		</table>	
 		<br>

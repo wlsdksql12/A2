@@ -173,7 +173,7 @@
 	</select >
 	<!--  0으로 비활성화 -->
 	<update id="updateActiveZeroDate" parameterType="com.gdu.cast.vo.Customer">
-		UPDATE Customer SET active = "0"
+		UPDATE customer SET active = "0"
 		WHERE customer_id = #{customerId}
 	</update>
 	

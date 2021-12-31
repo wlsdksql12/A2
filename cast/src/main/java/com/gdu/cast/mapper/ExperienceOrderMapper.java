@@ -35,4 +35,7 @@ public interface ExperienceOrderMapper {
 	
 	// 관리자 페이지 체험 결제 리스트
 	List<ExperiencePayment> selectAdminExperiencePayment();
+	
+	// 관리자 페이지 체험 예약&결제 상세보기
+	ExperiencePayment selectAdminExperiencePaymentOne(int experienceOrderId);
 }

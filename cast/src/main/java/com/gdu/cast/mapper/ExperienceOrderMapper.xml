@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceOrderMapper">
 	<resultMap type="com.gdu.cast.vo.ExperiencePayment" id="resultExperiencePayment">
+		<result column="experience_payment_id" property="experiencePaymentId"></result>
 		<result column="experience_payment_method" property="experiencePaymentMethod"></result>
 		<result column="experience_payment_method_number" property="experiencePaymentMethodNumber"></result>
 		<result column="experience_payment_money" property="experiencePaymentMoney"></result>
@@ -164,5 +165,24 @@
 			ep.create_Date
 		FROM experience_payment ep INNER JOIN experience_order eo
 		ON ep.experience_order_id = eo.experience_order_id
+	</select>
+	
+	<!-- 관리자 체험 예약&결제 상세보기 -->
+	<select id="selectAdminExperiencePaymentOne" parameterType="int" resultMap="resultExperiencePayment">
+		SELECT
+			eo.experience_order_id,
+			eo.customer_id,
+			eo.experience_name,
+			eo.experience_order_people,
+			eo.experience_order_startdate,
+			eo.experience_order_enddate,
+			eo.create_date,
+			ep.experience_payment_id,
+			ep.experience_payment_method,
+			ep.experience_payment_money,
+			ep.create_Date
+		FROM experience_payment ep INNER JOIN experience_order eo
+		ON ep.experience_order_id = eo.experience_order_id
+		WHERE ep.experience_order_id = #{experienceOrderId}
 	</select>
 </mapper>

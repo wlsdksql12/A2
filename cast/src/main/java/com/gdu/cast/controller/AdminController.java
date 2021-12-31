@@ -19,6 +19,7 @@ import com.gdu.cast.service.ExperienceOrderService;
 import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.service.RoomOrderService;
 import com.gdu.cast.vo.Admin;
+import com.gdu.cast.vo.ExperiencePayment;
 import com.gdu.cast.vo.JoinCeo;
 import com.gdu.cast.vo.JoinTraveler;
 import com.gdu.cast.vo.RoomPayment;
@@ -122,5 +123,13 @@ public class AdminController {
 		RoomPayment roomPaymentOne = roomOrderService.getAdminRoomPaymentOne(roomOrderId);
 		model.addAttribute("roomPaymentOne", roomPaymentOne);
 		return "/admin/adminRoomPaymentOne";
+	}
+	
+	// 관리자 체험 예약&결제 상세보기
+	@GetMapping("/admin/experiencePaymentOne")
+	public String getAdminExperiencePaymentOne(Model model, int experienceOrderId) {
+		ExperiencePayment experiencePaymentOne = experienceOrderService.getAdminExperiencePaymentOne(experienceOrderId);
+		model.addAttribute("experiencePaymentOne", experiencePaymentOne);
+		return "/admin/adminExperiencePaymentOne";
 	}
 }

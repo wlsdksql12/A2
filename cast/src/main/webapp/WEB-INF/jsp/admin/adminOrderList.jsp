@@ -59,7 +59,7 @@
                     </thead>
                     <tbody>
                       <c:forEach items="${experienceOrderList}" var="expOrderList">
-                      	<tr>
+                      	<tr style="text-align:center" style = "cursor:pointer;" onClick = " location.href='${pageContext.request.contextPath}/admin/experiencePaymentOne?experienceOrderId=${expOrderList.experienceOrderId}'">
                       		<td>${expOrderList.experienceOrderId}</td>
                       		<td>${expOrderList.customerId}</td>
                       		<td>${expOrderList.experienceName}</td>
@@ -90,7 +90,7 @@
                     </thead>
                     <tbody>
                       <c:forEach items="${roomOrderList}" var="roomOrderList">
-                      	<tr>
+                      	<tr style="text-align:center" style = "cursor:pointer;" onClick = " location.href='${pageContext.request.contextPath}/admin/roomPaymentOne?roomOrderId=${roomOrderList.roomOrderId}'">
                       		<td>${roomOrderList.roomOrderId}</td>
                       		<td>${roomOrderList.customerId}</td>
                       		<td>${roomOrderList.hotelName}</td>
