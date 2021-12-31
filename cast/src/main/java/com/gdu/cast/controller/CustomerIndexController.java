@@ -179,6 +179,15 @@ public class CustomerIndexController {
 		return "customer/customerRoomComment";
 		
 	}
-	
+	// 체험 결제 차트 카테고리로 이동
+	@GetMapping("/getExperienceChart")
+	public String getCustomerExperienceChart() {
+		return "customer/customerExperienceChart";
+	}
+	// 체험 숙소 차트 카테고리로 이동
+	@GetMapping("/getRoomChart")
+	public String getCustomerRoomChart() {
+		return "customer/customerRoomChart";
+	}
 	
 }

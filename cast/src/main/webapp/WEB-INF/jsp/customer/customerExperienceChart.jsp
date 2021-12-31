@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <head>
     <title>Q&A목록</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
@@ -256,7 +257,7 @@
 					<div class="row align-items-center">
 						<div class="col-md-12">
 							<div class="page-header-title">
-								<h3 style="color: white;" class="m-b-10">추천댓글</h3>
+								<h3 style="color: white;" class="m-b-10">체험 차트</h3>
 							</div>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="/index"><i
@@ -270,71 +271,172 @@
 			</div>
 			<!-- 윗화면내용 end -->
 			<!-- 메인컨텐츠 start -->
-			<div class="row">
-				<div class="col-lg-12 col-md-24">
-					<!-- support-section start -->
-					<div class="row">
-						<div class="col-sm-12">
-							<div class="card support-bar overflow-hidden">
-								<div class="card-body pb-0">
-									<h2 class="m-0">체험 관심 상품</h2>
-									<span class="text-c-blue"></span>
-									<p class="mb-3 mt-3"></p>
-								</div>
-								<div class="card-body p-0">
-									<div class="table-responsive">
-										<table style="text-align: center;" class="table table-bordered">
-											<thead>
-												<tr>
-													<th>
-														<div class="chk-option">
-													</div> 체험 이름
-													</th>
-													<th>체험 내용</th>
-													<th>체험 가격</th>
-													<th>체험 시작일</th>
-													<th>체험 종료일</th>
-													<th>체험 최대 인원 수 </th>
-													<th>createDate</th>
-													<th>updateDate</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${wishList}" var="wishList">
-													<tr>
-														<td>
-														${wishList.experience.experienceName}
-														</td>
-														<td>${wishList.experience.experienceContent}</td>
-														<td>${wishList.experience.experiencePrice}</td>
-														<td>${wishList.experience.experienceStartdate}</td>
-														<td>${wishList.experience.experienceEnddate}</td>
-														<td>${wishList.experience.experiencePerson}</td>
-														<td>${wishList.createDate}</td>
-														<td>${wishList.updateDate}</td>
-														
-														</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<div style="text-align: center;" class="table container mt-3">
-											<c:if test="${currentPage > 1}">
-												<a
-													href="/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
-											</c:if>
-											<c:if test="${currentPage < lastPage}">
-												<a
-													href="/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
-											</c:if>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+   <div>
+      <select id="year">
+         <option value="2021">2021</option>
+         <option value="2022">2022</option>
+         <option value="2023">2023</option>
+      </select>
+      <button id="btnIn">NH</button>
+      <button id="btnOut">KB</button>
+   </div>
+   
+   <div>
+      <canvas id="myChart"></canvas>
+   </div>
+   
+   <script>
+   let ctx = document.getElementById('myChart').getContext('2d');
+   let myChart = new Chart(ctx, {
+       type: 'bar',
+       data: {
+           labels: [],
+           datasets: [{
+               label: '',
+               data: [],
+               backgroundColor: [],
+               borderColor: [],
+               borderWidth: 1
+           }]
+       },
+       options: {
+           scales: {
+               y: {
+                   beginAtZero: true
+               }
+           }
+       }
+   });
+   $(document).ready(function(){
+      $('#btnOut').trigger('click');
+   });
+   $('#btnOut').click(function(){
+         let year = $('#year').val();
+         
+         $.ajax({
+            type:'get',
+            url:'${pageContext.request.contextPath}/getExperienceMonthByYear?experiencePaymentMethod=KB&year='+year,
+            success:function(json){
+               console.log(json)
+               // json변수값 -> labels와 data로 가공
+               let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+               let myData = [];
+               myData.push(json.january);
+               myData.push(json.february);
+               myData.push(json.march);
+               myData.push(json.april);
+               myData.push(json.may);
+               myData.push(json.june);
+               myData.push(json.july);
+               myData.push(json.august);
+               myData.push(json.september);
+               myData.push(json.october);
+               myData.push(json.november);
+               myData.push(json.december);
+               
+               myChart.data.labels = myLabels;
+               myChart.data.datasets[0].label = 'KB('+year+')';
+               myChart.data.datasets[0].data = myData;
+               myChart.data.datasets[0].backgroundColor = [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(255, 206, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(255, 159, 64, 0.2)'
+                  ];
+               myChart.data.datasets[0].boarderColor = [
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)',
+                      'rgba(255, 99, 132, 1)',
+                      'rgba(54, 162, 235, 1)',
+                      'rgba(255, 206, 86, 1)',
+                      'rgba(75, 192, 192, 1)',
+                      'rgba(153, 102, 255, 1)',
+                      'rgba(255, 159, 64, 1)'
+                  ];
+               
+               myChart.update();
+            }
+         });
+      });
+   
+   $('#btnIn').click(function(){
+      let year = $('#year').val();
+      
+      $.ajax({
+         type:'get',
+         url:'${pageContext.request.contextPath}/getExperienceMonthByYear?experiencePaymentMethod=NH&year='+year,
+         success:function(json){
+            console.log(json)
+            // json변수값 -> labels와 data로 가공
+            let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+            let myData = [];
+            myData.push(json.january);
+            myData.push(json.february);
+            myData.push(json.march);
+            myData.push(json.april);
+            myData.push(json.may);
+            myData.push(json.june);
+            myData.push(json.july);
+            myData.push(json.august);
+            myData.push(json.september);
+            myData.push(json.october);
+            myData.push(json.november);
+            myData.push(json.december);
+            
+            myChart.data.labels = myLabels;
+            myChart.data.datasets[0].label = 'NH('+year+')';
+            myChart.data.datasets[0].data = myData;
+            myChart.data.datasets[0].backgroundColor = [
+                   'rgba(255, 99, 132, 0.2)',
+                   'rgba(54, 162, 235, 0.2)',
+                   'rgba(255, 206, 86, 0.2)',
+                   'rgba(75, 192, 192, 0.2)',
+                   'rgba(153, 102, 255, 0.2)',
+                   'rgba(255, 159, 64, 0.2)',
+                   'rgba(255, 99, 132, 0.2)',
+                   'rgba(54, 162, 235, 0.2)',
+                   'rgba(255, 206, 86, 0.2)',
+                   'rgba(75, 192, 192, 0.2)',
+                   'rgba(153, 102, 255, 0.2)',
+                   'rgba(255, 159, 64, 0.2)'
+               ];
+            myChart.data.datasets[0].boarderColor = [
+                   'rgba(255, 99, 132, 1)',
+                   'rgba(54, 162, 235, 1)',
+                   'rgba(255, 206, 86, 1)',
+                   'rgba(75, 192, 192, 1)',
+                   'rgba(153, 102, 255, 1)',
+                   'rgba(255, 159, 64, 1)',
+                   'rgba(255, 99, 132, 1)',
+                   'rgba(54, 162, 235, 1)',
+                   'rgba(255, 206, 86, 1)',
+                   'rgba(75, 192, 192, 1)',
+                   'rgba(153, 102, 255, 1)',
+                   'rgba(255, 159, 64, 1)'
+               ];
+            
+            myChart.update();
+         }
+      });
+   });
+      
+
+   </script>
+			
+			
+			
 
 		<!-- 메인컨텐츠 end -->
 		<footer class="my-3 text-center text-small">

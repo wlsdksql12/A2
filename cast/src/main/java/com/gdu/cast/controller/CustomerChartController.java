@@ -15,11 +15,10 @@ import com.gdu.cast.mapper.CustomerChartMapper;
 public class CustomerChartController {
 	@Autowired CustomerChartMapper customerChartMapper;
 	
-	// 고객 페이지 체험 차트
+	// 고객 메인 페이지 체험 차트
 	@GetMapping("/getTotalInOfMonthByYear")
 	public Map<String, Object> getTotalInOfMonthByYear(int year, String experiencePaymentMethod, HttpSession session){
 		String customerId = (String) session.getAttribute("loginCustomerId");
-		
 		
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("year", year);
@@ -33,7 +32,7 @@ public class CustomerChartController {
 		return returnmap;
 	}
 	
-	// 고객 페이지 숙소 차트
+	// 고객 메인 페이지 숙소 차트
 	@GetMapping("/getHotelTotalInOfMonthByYear")
 	public Map<String, Object> getselectHotelTotalInOfMonthByYear(int year, HttpSession session){
 		
@@ -50,4 +49,41 @@ public class CustomerChartController {
 		Map<String, Object> returnmap = customerChartMapper.selectHotelTotalInOfMonthByYear(paramMap);
 		return returnmap;
 	}
+	
+	
+	@GetMapping("/getExperienceMonthByYear")
+	public Map<String, Object> getExperienceMonthByYear(int year, String experiencePaymentMethod, HttpSession session){
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("year", year);
+		paramMap.put("customerId", customerId);
+		paramMap.put("experiencePaymentMethod", experiencePaymentMethod);
+		
+		System.out.println(year + "year");
+		System.out.println(customerId+"customerId");
+		
+		Map<String, Object> returnmap = customerChartMapper.selectExperienceMonthByYear(paramMap);
+		return returnmap;
+	}
+	
+	@GetMapping("/getRoomMonthByYear")
+	public Map<String, Object> getRoomMonthByYear(int year, String roomPaymentMethod, HttpSession session){
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("year", year);
+		paramMap.put("customerId", customerId);
+		paramMap.put("roomPaymentMethod", roomPaymentMethod);
+		
+		System.out.println(year + "year");
+		System.out.println(customerId+"customerId");
+		
+		Map<String, Object> returnmap = customerChartMapper.selectRoomMonthByYear(paramMap);
+		return returnmap;
+	}
+	
+	
 }

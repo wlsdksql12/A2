@@ -125,8 +125,8 @@
 						<span class="pcoded-mtext">차트 목록</span>
 					</a>
 						<ul class="pcoded-submenu">
-							<li><a href="${pageContext.request.contextPath}/#">체험 차트</a></li>
-							<li><a href="${pageContext.request.contextPath}/#">숙소 차트</a></li>
+							<li><a href="${pageContext.request.contextPath}/getExperienceChart">체험 차트</a></li>
+							<li><a href="${pageContext.request.contextPath}/getRoomChart">숙소 차트</a></li>
 						</ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>Q&A</label></li>
