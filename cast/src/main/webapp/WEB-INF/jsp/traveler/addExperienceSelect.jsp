@@ -90,10 +90,9 @@
 					<td colspan="5"><textarea name="experienceSelectContent" class="content" style="border: none; text-align:center; resize: none; width:100%; outline: none;" rows="10"></textarea></td>		
 					</tr>
 					<tr>
-						<td><input type="file" name="experienceSelectImage"></td>
-						<td><input type="file" name="experienceSelectImage"></td>
-						<td><input type="file" name="experienceSelectImage"></td>
-						<td><input type="file" name="experienceSelectImage"></td>
+						<td>
+							<input multiple="multiple" type="file" name="experienceSelectImage" required="required">
+						</td>
 					</tr>
 			</table> 
 			 <p></p>

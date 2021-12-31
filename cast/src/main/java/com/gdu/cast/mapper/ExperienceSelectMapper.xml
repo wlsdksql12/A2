@@ -16,6 +16,28 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 여행작가 체험 추천 추가 -->
+	<insert id="insertExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
+	<selectKey resultType="int" keyProperty="experienceSelectId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO experience_select(
+			traveler_id,
+			experience_id,
+			experience_select_title,
+			experience_select_content,
+			create_date,
+			update_date
+		) VALUES (
+			#{travelerId},
+			#{experienceId},
+			#{experienceSelectTitle},
+			#{experienceSelectContent},		
+			NOW(),
+			NOW()
+		)
+	</insert>
+	
 	<!-- 여행작가 체험 추천 사진 추가 -->
 	<insert id="insertExperienceSelectImage" parameterType="com.gdu.cast.vo.ExperienceSelectImage">
 		INSERT INTO experience_select_image(
@@ -33,28 +55,7 @@
 			NOW(),
 			NOW()
 		)
-	</insert>
-
-	<!-- 여행작가 체험 추천 추가 -->
-	<insert id="insertExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
-		INSERT INTO experience_select(
-			experience_select_id,
-			traveler_id,
-			experience_id,
-			experience_select_title,
-			experience_select_content,
-			create_date,
-			update_date
-		) VALUES (
-			#{experienceSelectId},
-			#{travelerId},
-			#{experienceId},
-			#{experienceSelectTitle},
-			#{experienceSelectContent},		
-			NOW(),
-			NOW()
-		)
-		<selectKey resultType="int" order="BEFORE" keyProperty="experienceSelectId">
+		<selectKey resultType="int" keyProperty="experienceSelectImageId" order="BEFORE">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>

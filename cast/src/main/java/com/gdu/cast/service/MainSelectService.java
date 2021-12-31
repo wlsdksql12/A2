@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gdu.cast.mapper.MainSelectCommentMapper;
 import com.gdu.cast.mapper.MainSelectMapper;
 import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.ExperienceSelectImage;
 import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.ThemeMiddle;
 import com.gdu.cast.vo.ThemeSmall;
@@ -29,6 +30,12 @@ public class MainSelectService {
 	
 	@Autowired
 	MainSelectCommentMapper mainSelectCommentMapper;
+	
+	// 메인 페이지 체험 추천 이미지
+	public List<ExperienceSelectImage> getselectExperienceSelectImageList(int experienceSelectId) {
+		System.out.println("★★★★Hyun★★★★"+experienceSelectId);
+		return mainSelectMapper.selectExperienceImageList(experienceSelectId);
+	}
 	
 	// 메인 페이지 체험 추천 삭제
 	public int removeExperienceSelect(ExperienceSelect experienceSelect) {

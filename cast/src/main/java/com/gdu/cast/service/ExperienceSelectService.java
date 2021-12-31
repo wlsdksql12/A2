@@ -1,7 +1,7 @@
 package com.gdu.cast.service;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class ExperienceSelectService {
 	// 여행작가 체험 추천 추가
 	public void addExperienceSelect(AddExperienceSelect addExperienceSelect) {
 		
-		int experienceSelectId = addExperienceSelect.getExperienceSelectId();
+		// 데이터 추가
 		String travelerId = addExperienceSelect.getTravelerId();
 		int experienceId = addExperienceSelect.getExperienceId();
 		String experienceSelectTitle = addExperienceSelect.getExperienceSelectTitle();
@@ -40,7 +40,6 @@ public class ExperienceSelectService {
 		
 		// 1) 체험 추천 입력
 		ExperienceSelect experienceSelect = new ExperienceSelect();
-		experienceSelect.setExperienceId(experienceSelectId);
 		experienceSelect.setTravelerId(travelerId);
 		experienceSelect.setExperienceId(experienceId);
 		experienceSelect.setExperienceSelectTitle(experienceSelectTitle);
@@ -50,19 +49,37 @@ public class ExperienceSelectService {
 		experienceSelectMapper.insertExperienceSelect(experienceSelect);
 		System.out.println(experienceSelect +"★★★★Hyun★★★★");
 		
+		// 2) 체험 추천 이미지 추가
 		List<ExperienceSelectImage> experienceSelectImage = null;
-		
 		if(addExperienceSelect.getExperienceSelectImage() != null) {
 			experienceSelectImage = new ArrayList<ExperienceSelectImage>();
 			for(MultipartFile mf : addExperienceSelect.getExperienceSelectImage()) {
 				ExperienceSelectImage esi = new ExperienceSelectImage();
 				esi.setExperienceSelectId(experienceSelect.getExperienceSelectId());
-				int p = mf.getOriginalFilename().lastIndexOf(".");
-				String imageExt = mf.getOriginalFilename().substring(p).toLowerCase();
-				String imageName = UUID.randomUUID().toString().replace("-", "");
-				
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				esi.setImageName(imageName);
+				esi.setImageExt(imageExt);
+				esi.setImageSize(mf.getSize());
+				esi.setCreateDate(createDate);
+				esi.setUpdateDate(updateDate);
+				experienceSelectImage.add(esi);
+				System.out.println(experienceSelectImage +"★★★★Hyun★★★★");
+				try {
+					mf.transferTo(new File("D:\\workspace\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
 			}
-		System.out.println(experienceSelectImage +"★★★★Hyun★★★★");
+		}
+		if(experienceSelectImage != null) {
+			for(ExperienceSelectImage esi : experienceSelectImage) {
+				experienceSelectMapper.insertExperienceSelectImage(esi);
+			}
+		}
 	}
 	
 	// 자신이 등록한 체험 추천 리스트

@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import com.gdu.cast.service.MainSelectCommentService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
+import com.gdu.cast.vo.ExperienceSelectImage;
 import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.RoomSelectComment;
 
@@ -85,7 +87,9 @@ public class MainSelectController {
 		System.out.println(experienceSelectId + " <- experienceSelectId");
 		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
 		Map<String, Object> map = mainSelectCommentService.getexperienceSelectComment(currentPage, row_per_page,experienceSelectId);
+		List<ExperienceSelectImage> experienceSelectImageList = mainSelectService.getselectExperienceSelectImageList(experienceSelectId);
 		
+		model.addAttribute("experienceSelectImageList", experienceSelectImageList);
 		model.addAttribute("selectCommentList", map.get("selectCommentList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));

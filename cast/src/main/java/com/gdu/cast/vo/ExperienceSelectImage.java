@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class ExperienceSelectImage {
+	private int experienceSelectImageId;
 	private int experienceSelectId;
 	private String imageName;
 	private String imageExt;

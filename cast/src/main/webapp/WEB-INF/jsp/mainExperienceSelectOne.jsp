@@ -98,12 +98,18 @@
 					<td>${fn:substring(experienceSelect.createDate,0,10)}</td>
 				</tr>
 				<tr>
-					<td colspan="5"><img src="${pageContext.request.contextPath}/upload/${experienceSelect.experienceSelectImage.imageName}.${experienceSelect.experienceSelectImage.imageExt}" style="display: block; margin: 0 auto; width:400px; height:400px;"/></td>
 				</tr>
 				<tr>
 					<td colspan="5"><textarea class="content" style="border: none; text-align:center; resize: none;" rows="10" cols="100" readonly="readonly">${experienceSelect.experienceSelectContent}</textarea></td>		
 				</tr>
+			</tbody>
 		</table>
+		<p></p>
+			<div style="text-align:center; float:center;">
+				<c:forEach items="${experienceSelectImageList}"  var="experienceSelectImage">
+					<img src="${pageContext.request.contextPath}/upload/${experienceSelectImage.imageName}.${experienceSelectImage.imageExt}" style="width:400px; height:400px;"/>
+				</c:forEach>
+			</div>
 		<p></p>
 		<div>
 			<input class="btn btn-outline-success" type="button" value="이전" onclick="history.back(-1)">

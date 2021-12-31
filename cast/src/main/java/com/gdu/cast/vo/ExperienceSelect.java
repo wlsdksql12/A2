@@ -1,5 +1,7 @@
 package com.gdu.cast.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -12,5 +14,5 @@ public class ExperienceSelect {
 	private String createDate;
 	private String updateDate;
 	private Traveler traveler;
-	private ExperienceSelectImage experienceSelectImage;
+	private List<ExperienceSelectImage> experienceSelectImage;
 }

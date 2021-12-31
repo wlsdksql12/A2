@@ -14,11 +14,6 @@
 		<collection property="traveler" ofType="com.gdu.cast.vo.Traveler">
 			<result column="traveler_name" property="travelerName"></result>
 		</collection>
-		<collection property="experienceSelectImage" ofType="com.gdu.cast.vo.ExperienceSelectImage">
-			<result column="image_name" property="imageName"></result>
-			<result column="image_ext" property="imageExt"></result>
-			<result column="image_size" property="imageSize"></result>		
-		</collection>
 	</resultMap>
 	
 	<!-- 메인 페이지 숙소 추천 리스트에 여행작가 이름 Join -->
@@ -101,6 +96,16 @@
 		</association>
 	</resultMap>
 	
+	<!-- 메인 페이지의 체험 추천 이미지 -->
+	<select id="selectExperienceImageList" parameterType="com.gdu.cast.vo.ExperienceSelectImage" resultType="com.gdu.cast.vo.ExperienceSelectImage">
+		SELECT 
+			image_name imageName,
+			image_ext imageExt,
+			image_size imageSize
+		FROM experience_select_image
+		WHERE experience_select_id = #{experienceSelectId}
+	</select>
+	
 	<!-- 메인 페이지의 체험 추천 삭제 -->
 	<delete id="deleteExperienceSelect" parameterType="com.gdu.cast.vo.ExperienceSelect">
 		DELETE FROM experience_select
@@ -149,12 +154,8 @@
 			e.experience_select_content,
 			t.traveler_name,
 			e.create_date,
-			e.update_date,
-			esi.image_name,
-			esi.image_ext,
-			esi.image_size
+			e.update_date
 		FROM traveler t INNER JOIN experience_select e 
-		INNER JOIN experience_select_image esi
 		ON t.traveler_id = e.traveler_id
 		WHERE e.experience_select_id = #{experienceSelectId}
 	</select>
