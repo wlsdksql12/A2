@@ -54,6 +54,10 @@ public class CustomerIndexController {
 	// 고객페이지 메인 qna 5개
 	@GetMapping("/customer/customerIndex")
 	public String shopsingle(Model model, String customerId,@RequestParam(defaultValue = "1") int currentPage) {
+		
+		
+		
+		
 		log.debug(customerId);
 		// 내가 작성한 추천 댓글의 총 수
 		int selectCount = customerService.getselectCustomerCommentCount(customerId);

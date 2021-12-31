@@ -4,6 +4,8 @@
 <html lang="en">
 
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <title>고객페이지</title>
 <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -103,6 +105,24 @@
 						href="${pageContext.request.contextPath}/qnaList?customerId=${loginCustomerId}&currentPage=1"
 						class="nav-link "><span class="pcoded-micon"><i
 								class="feather icon-file-text"></i></span><span class="pcoded-mtext">Q&A목록</span></a>
+					</li>
+					<li class="nav-item pcoded-menu-caption"><label>추천댓글</label></li>
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/customerExperienceSelectCommentList"
+						class="nav-link "><span class="pcoded-micon"><i
+								class="feather icon-clock"></i></span><span class="pcoded-mtext">체험추천댓글</span></a>
+					</li>
+					<li class="nav-item"><a href="${pageContext.request.contextPath}/customerRoomSelectCommentList"
+						class="nav-link "><span class="pcoded-micon"><i
+								class="feather icon-clock"></i></span><span class="pcoded-mtext">숙소추천댓글</span></a>
+					</li>
+					
+					
+						</li>
+					<li class="nav-item pcoded-menu-caption"><label>Q&A</label></li>
+					<li class="nav-item"><a
+						href="${pageContext.request.contextPath}/test?customerId=${loginCustomerId}&currentPage=1"
+						class="nav-link "><span class="pcoded-micon"><i
+								class="feather icon-file-text"></i></span><span class="pcoded-mtext">test</span></a>
 					</li>
 					<li class="nav-item pcoded-menu-caption"><label>추천댓글</label></li>
 					<li class="nav-item"><a href="${pageContext.request.contextPath}/customerExperienceSelectCommentList"
@@ -236,65 +256,29 @@
 				<div class="col-lg-7 col-md-12">
 					<!-- support-section start -->
 					<div class="row">
+	
+	
+	
+						<div style="display:none">
+					      <button id="btnOut">월별 체험결제</button>
+					   </div>
+					   <div style="display:none">
+					      <button id="btnOut2">월별 호텔결제</button>
+					   </div>
+   	
+						<!--  월별 체험 결제 차트 -->	
 						<div class="col-sm-6">
-							<div class="card support-bar overflow-hidden">
-								<div class="card-body pb-0">
-									<h2 class="m-0">350</h2>
-									<span class="text-c-blue">월별 결제</span>
-									<p class="mb-3 mt-3">#</p>
-								</div>
-								<div id="support-chart"></div>
-								<div class="card-footer bg-primary text-white">
-									<div class="row text-center">
-										<div class="col">
-										
-										
-										
-											<h4 class="m-0 text-white">1</h4>
-											<span>Open</span>
-										</div>
-										<div class="col">
-											<h4 class="m-0 text-white">2</h4>
-											<span>Running</span>
-										</div>
-										<div class="col">
-											<h4 class="m-0 text-white">3</h4>
-											<span>Solved</span>
-										</div>
-										<div class="col">
-											<h4 class="m-0 text-white">4</h4>
-											<span>Solved</span>
-										</div>
-									</div>
-								</div>
-							</div>
+							 <div>
+     							<canvas id="myChart"></canvas>
+   							</div>
+						
+
+							 <div>
+     							<canvas id="myChart2"></canvas>
+   							</div>
 						</div>
-						<div class="col-sm-6">
-							<div class="card support-bar overflow-hidden">
-								<div class="card-body pb-0">
-									<h2 class="m-0">350</h2>
-									<span class="text-c-green">연별 예약</span>
-									<p class="mb-3 mt-3">#</p>
-								</div>
-								<div id="support-chart1"></div>
-								<div class="card-footer bg-success text-white">
-									<div class="row text-center">
-										<div class="col">
-											<h4 class="m-0 text-white">10</h4>
-											<span>Open</span>
-										</div>
-										<div class="col">
-											<h4 class="m-0 text-white">5</h4>
-											<span>Running</span>
-										</div>
-										<div class="col">
-											<h4 class="m-0 text-white">3</h4>
-											<span>Solved</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+
+						
 					</div>
 					<!-- support-section end -->
 				</div>
@@ -679,6 +663,190 @@
 							</div>
 						</div>
 					</div>
+					
+					
+					
+	 <script>
+   let today = new Date();
+   let year = today.getFullYear(); 
+   console.log(year);
+   
+   
+   let ctx = document.getElementById('myChart').getContext('2d');
+   let myChart = new Chart(ctx, {
+       type: 'bar',
+       data: {
+           labels: [],
+           datasets: [{
+               label: '',
+               data: [],
+               backgroundColor: [],
+               borderColor: [],
+               borderWidth: 1
+           }]
+       },
+       options: {
+           scales: {
+               y: {
+                   beginAtZero: true
+               }
+           }
+       }
+   });
+   $(document).ready(function(){
+	   $('#btnOut').trigger('click');
+	   $('#btnOut2').trigger('click');
+	  
+   });
+   $('#btnOut').click(function(){
+	      
+	      
+	      $.ajax({
+	         type:'get',
+	         url:'${pageContext.request.contextPath}/getTotalInOfMonthByYear?year='+year+'&customerId=${customerId}',
+	         success:function(json){
+	            console.log(json)
+	            // json변수값 -> labels와 data로 가공
+	            let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+	            let myData = [];
+	            myData.push(json.january);
+	            myData.push(json.february);
+	            myData.push(json.march);
+	            myData.push(json.april);
+	            myData.push(json.may);
+	            myData.push(json.june);
+	            myData.push(json.july);
+	            myData.push(json.august);
+	            myData.push(json.september);
+	            myData.push(json.october);
+	            myData.push(json.november);
+	            myData.push(json.december);
+	            
+	            myChart.data.labels = myLabels;
+	            myChart.data.datasets[0].label = '체험 결제금액('+year+')';
+	            myChart.data.datasets[0].data = myData;
+	            myChart.data.datasets[0].backgroundColor = [
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)',
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)'
+	               ];
+	            myChart.data.datasets[0].boarderColor = [
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)',
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)'
+	               ];
+	            
+	            myChart.update();
+	         }
+	      });
+	   });
+   
+   
+   
+   
+   let ctx2 = document.getElementById('myChart2').getContext('2d');
+   let myChart2 = new Chart(ctx2, {
+       type: 'bar',
+       data: {
+           labels: [],
+           datasets: [{
+               label: '',
+               data: [],
+               backgroundColor: [],
+               borderColor: [],
+               borderWidth: 1
+           }]
+       },
+       options: {
+           scales: {
+               y: {
+                   beginAtZero: true
+               }
+           }
+       }
+   });
+
+   $('#btnOut2').click(function(){
+	      
+	      
+	      $.ajax({
+	         type:'get',
+	         url:'${pageContext.request.contextPath}/getHotelTotalInOfMonthByYear?year='+year+'&customerId=${customerId}',
+	         success:function(json){
+	            console.log(json)
+	            // json변수값 -> labels와 data로 가공
+	            let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+	            let myData2 = [];
+	            myData2.push(json.january);
+	            myData2.push(json.february);
+	            myData2.push(json.march);
+	            myData2.push(json.april);
+	            myData2.push(json.may);
+	            myData2.push(json.june);
+	            myData2.push(json.july);
+	            myData2.push(json.august);
+	            myData2.push(json.september);
+	            myData2.push(json.october);
+	            myData2.push(json.november);
+	            myData2.push(json.december);
+	            
+	            myChart2.data.labels = myLabels;
+	            myChart2.data.datasets[0].label = '호텔 결제금액('+year+')';
+	            myChart2.data.datasets[0].data = myData2;
+	            myChart2.data.datasets[0].backgroundColor = [
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)',
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)'
+	               ];
+	            myChart2.data.datasets[0].boarderColor = [
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)',
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)'
+	               ];
+	            
+	            myChart2.update();
+	         }
+	      });
+	   });
+
+
+   </script>
 					<!-- [ Main Content ] end -->
 				</div>
 				<!-- [ Main Content ] end -->
@@ -747,6 +915,7 @@
 				<!-- custom-chart js -->
 				<script
 					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/pages/dashboard-main.js"></script>
+					
 </body>
 
 </html>
