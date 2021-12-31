@@ -21,10 +21,10 @@ public interface AdminMapper {
 	// 관리자 페이지 신규 ceo수
 	Map<String, Object> selectNewCeo();
 	
-	//관리자 페이지에 qna미답변 개수 출력
+	// 관리자 페이지에 qna미답변 개수 출력
 	int selectNewNotQnaComment();
-	
-	//테스트
-	int selectAdminCount(String admin);
+
+	// 관리자 페이지 누적 예약 수
+	int selectOrderCount();
 }
 

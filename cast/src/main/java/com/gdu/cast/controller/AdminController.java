@@ -37,10 +37,6 @@ public class AdminController {
 	// 관리자 메인페이지
 	@GetMapping("/admin/adminIndex")
 	public String adminIndex(Model model, @RequestParam(defaultValue = "1") int currentPage) {
-		// test
-		int count = adminService.selectAdminCount("admin");
-		System.out.println(count + "test중입니다.....");
-		
 		
 		Map<String, Object> newCustomer = adminService.selectNewCustomer();
 		Map<String, Object> newTraveler = adminService.selectNewTraveler();
@@ -52,7 +48,7 @@ public class AdminController {
 		// 여행작가 회원가입 요청 리스트 4개
 		List<JoinTraveler> joinTravelerList = joinRequestService.getTravelerJoinRequestList4();
 		System.out.println(joinTravelerList.toString());
-		
+		int orderCount =  adminService.selectOrderCount();
 		// 여행작가 회원가입 요청 리스트 4개
 		List<JoinCeo> joinCeoList = joinRequestService.getCeoJoinRequestList4();
 		System.out.println(joinCeoList.toString());
@@ -60,7 +56,9 @@ public class AdminController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer.get("TotalCount") + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		
 		model.addAttribute("data", data);
+		model.addAttribute("orderCount", orderCount);
 		model.addAttribute("joinTravelerList",joinTravelerList);
 		model.addAttribute("joinCeoList",joinCeoList);
 		model.addAttribute("newCustomer", newCustomer.get("count"));

@@ -62,8 +62,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-uppercase mb-1">예약수</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">650</div>
+                      <div class="text-xs font-weight-bold text-uppercase mb-1">총 예약수</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">${orderCount}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-shopping-cart fa-2x text-success"></i>
@@ -200,7 +200,7 @@
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
-                      <tr>
+                      <tr style="text-align: center;">
                         <th>제목</th>
                         <th>작성자</th>
                         <th>작성 날짜</th>
