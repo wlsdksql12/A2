@@ -261,7 +261,8 @@
 					<div class="row align-items-center">
 						<div class="col-md-12">
 							<div class="page-header-title">
-								<h5 class="m-b-10">Dashboard Analytics</h5>
+								<h4 class="m-b-10 text-white">${loginCustomerId } 님의 페이지</h4>
+								
 							</div>
 							<ul class="breadcrumb">
 								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/index"><i
@@ -276,7 +277,7 @@
 			<!-- [ breadcrumb ] end -->
 			<!-- [ Main Content ] start -->
 			<div class="row">
-				<div class="col-lg-7 col-md-12">
+				<div class="col-lg-12 col-md-12">
 					<!-- support-section start -->
 					<div class="row">
 	
@@ -291,12 +292,13 @@
    	
 						<!--  월별 체험 결제 차트 -->	
 						<div class="col-sm-6">
-							 <div>
+							 <div class="card">
      							<canvas id="myChart"></canvas>
    							</div>
+   						</div>
 						
-
-							 <div>
+						<div class="col-sm-6">
+							 <div class="card">
      							<canvas id="myChart2"></canvas>
    							</div>
 						</div>
@@ -305,10 +307,12 @@
 					</div>
 					<!-- support-section end -->
 				</div>
-				<div class="col-lg-5 col-md-12">
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
 					<!-- page statustic card start -->
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-3">
 							<div class="card">
 								<div class="card-body">
 									<div class="row align-items-center">
@@ -334,7 +338,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6">
+
+						<div class="col-sm-3">
 							<div class="card">
 								<div class="card-body">
 									<div class="row align-items-center">
@@ -359,7 +364,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6">
+
+						<div class="col-sm-3">
 							<div class="card">
 								<div class="card-body">
 									<div class="row align-items-center">
@@ -384,7 +390,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6">
+
+						<div class="col-sm-3">
 							<div class="card">
 								<div class="card-body">
 									<div class="row align-items-center">
@@ -445,7 +452,7 @@
 									</div>
 								</div>
 
-								<div class="card-body">
+								<div class="table-responsive">
 									<div style="width: 45%; display: inline-block;" class="float-left">
 									
 										<table class="table table-bordered">
