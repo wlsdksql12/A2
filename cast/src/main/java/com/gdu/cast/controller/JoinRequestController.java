@@ -131,4 +131,12 @@ public class JoinRequestController {
 		joinRequestService.updateCeoJoinRequest(joinCeoId, adminId, state);
 		return"redirect:/admin/ceoJoinRequestList";
 	}
+	
+	// 사업자 가입 재요청
+	@GetMapping("/ceo/ceoReJoinRequest")
+	public String ceoReJoinRequest(HttpSession session, String ceoId){
+		// 가입 재요청
+		joinRequestService.addCeoJoinRequest(ceoId);
+		return "redirect:/ceo/ceoIndex?ceoId="+ceoId;
+	}
 }

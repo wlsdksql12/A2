@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="UTF-8">
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -63,7 +63,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="expHotelDropdown">
             	<p class="mb-0 font-weight-normal float-left dropdown-header">Select</p>
-            	<a href="${pageContext.request.contextPath}/ceo/insertExpAddress?ceoId=${loginCeoId}" class="dropdown-item">
+            	<a id="stateBtn" href="${pageContext.request.contextPath}/ceo/insertExpAddress?ceoId=${loginCeoId}" class="dropdown-item">
             		<div class="item-content flex-grow">
 	                  <h6 class="ellipsis font-weight-normal">Experience</h6>
 	                  <p class="font-weight-light small-text text-muted mb-0">
@@ -71,7 +71,7 @@
 	                  </p>
                 	</div>
             	</a>
-            	<a href="${pageContext.request.contextPath}/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="dropdown-item">
+            	<a id="stateBtn" href="${pageContext.request.contextPath}/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="dropdown-item">
             		<div class="item-content flex-grow">
 	                  <h6 class="ellipsis font-weight-normal">Hotel</h6>
 	                  <p class="font-weight-light small-text text-muted mb-0">
@@ -176,9 +176,9 @@
             <div class="collapse" id="selectExpHotel">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/ceo/insertExpAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
+                <a id="stateBtn" href="${pageContext.request.contextPath}/ceo/insertExpAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
                 <li class="nav-item">
-                <a href="${pageContext.request.contextPath}/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
+                <a id="stateBtn" href="${pageContext.request.contextPath}/ceo/insertHotelAddress?ceoId=${loginCeoId}" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
               </ul>
             </div>
           </li>
@@ -191,9 +191,9 @@
             <div class="collapse" id="ui-basic1">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item">
-                <a href="experienceList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
+                <a id="stateBtn" href="experienceList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/buttons.html" style="font-weight:bold;">체험</a></li>
                 <li class="nav-item">
-                <a href="hotelList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
+                <a id="stateBtn" href="hotelList" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/ui-features/typography.html" style="font-weight:bold;">호텔</a></li>
               </ul>
             </div>
           </li>
@@ -261,5 +261,27 @@
       <!-- partial -->
       <div class="main-panel">
 </body>
+<script>
+	/* 테스트용 클릭
+	$("#stateBtn").click(function(){
+		if('${state}' == '요청'){
+			swal("요청 중입니다.", "", "warning");
+			return false;
+		} else if('${state}' == '거절'){
+			swal("요청이 거절되었습니다.", "", "error");
+			return false;
+		}
+	});
+	*/
+	$("[id='stateBtn']").click(function(){
+		if('${state}' == '요청'){
+			swal("요청 중입니다.", "", "warning");
+			return false;
+		} else if('${state}' == '거절'){
+			swal("요청이 거절되었습니다.", "가입을 재요청하십시오.", "error");
+			return false;
+		}
+	});
+</script>
 </html>
 
