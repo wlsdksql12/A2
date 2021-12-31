@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gdu.cast.mapper.CeoMapper;
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperienceWishList;
 import com.gdu.cast.vo.Hotel;
 
 @Service
@@ -46,8 +47,8 @@ public class CeoService {
 		return ceoMapper.selectHotelIndex(ceoId);
 	}
 	
-	// 사업자 메인페이지 체험 좋아요 수 표시
-	public int getselectExpWishlist(String ceoId) {
-		return ceoMapper.selectExpWishlist(ceoId);
+	public ExperienceWishList selectExpWish(String ceoId) {
+		ExperienceWishList experienceWishList = ceoMapper.selectExpWish(ceoId);
+		return experienceWishList;
 	}
 }

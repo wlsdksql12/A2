@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperienceWishList;
 import com.gdu.cast.vo.Hotel;
 
 @Controller
@@ -32,11 +33,10 @@ public class LoginCeoController {
 		List<Hotel> hotelList = ceoService.getselectHotelIndex(ceoId);
 		model.addAttribute("hotelList", hotelList);
 		
-		System.out.println("@@@@@@LoginCeoController" + model);
+		ExperienceWishList experienceWishList = ceoService.selectExpWish(ceoId);
+		model.addAttribute("experienceWishList", experienceWishList);
 		
-		// 메인페이지에 체험 좋아요 수 표시
-		
-		
+		System.out.println(experienceWishList);
 		return "ceo/ceoIndex";
 	}
 	

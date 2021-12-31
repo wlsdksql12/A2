@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperienceWishList;
 import com.gdu.cast.vo.Hotel;
 
 @Mapper
@@ -24,8 +25,7 @@ public interface CeoMapper {
 	List<Experience> selectExperienceIndex(String ceoId);
 	// 사업자 메인페이지 호텔리스트
 	List<Hotel> selectHotelIndex(String ceoId);
-	// 사업자 메인페이지 체험 좋아요 개수
-	int selectExpWishlist(String ceoId);
 	
+	ExperienceWishList selectExpWish(String ceoId);
 }
 
