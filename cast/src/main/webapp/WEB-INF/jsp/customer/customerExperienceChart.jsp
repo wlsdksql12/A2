@@ -260,9 +260,9 @@
 								<h3 style="color: white;" class="m-b-10">체험 차트</h3>
 							</div>
 							<ul class="breadcrumb">
-								<li class="breadcrumb-item"><a href="/index"><i
+								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/index"><i
 										class="feather icon-home"></i></a></li>
-								<li class="breadcrumb-item"><a href="/index">go to
+								<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/index">go to
 										MainMenu</a></li>
 							</ul>
 						</div>
