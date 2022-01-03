@@ -51,6 +51,7 @@
           </div>
 		<div class="container" style="text-align:center">
 	<div class="card">
+		<c:forEach items="${exhibition}" var="exhibition">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">전시소개 수정</h6>
       </div>
@@ -77,6 +78,7 @@
 		</form>
 		<br>
 	</div>
+	</c:forEach>
 </div>
 
           <!-- Modal Logout include 로그아웃 클릭 시 나타나는 메시지 창-->

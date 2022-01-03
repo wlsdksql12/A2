@@ -29,8 +29,8 @@ public class ExhibitionService {
 	// 전시소개 작성
 	public void addExhibition(String path, Exhibition exhibition) {
 		exhibitionMapper.insertExhibition(exhibition);
-		int exhibitionNo = exhibitionMapper.selectExhibitionNo();
-		System.out.println(exhibitionNo + "exhibitionNo");
+		int exhibitionNo = exhibition.getExhibitionNo();
+		System.out.println(exhibitionNo + " <<< exhibitionNo값");
 		// 2) 숙소 추천 이미지 추가
 		List<ExhibitionImage> exhibitionImage = null;
 		if(exhibition.getExhibitionImageUproad() != null) {

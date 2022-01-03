@@ -47,6 +47,9 @@
 			now(),
 			now()
 		)
+		<selectKey resultType="int" keyProperty="noticeNo" order="AFTER">
+            SELECT notice_no FROM notice ORDER BY create_date DESC LIMIT 0,1
+        </selectKey> 
 	</insert>
 	
 	<!-- 공지사항 글갯수 -->
@@ -109,15 +112,7 @@
 			NOW()
 		)
 	</insert>
-	
-	<!-- noticeNo 가져오기 -->
-	<select id="selectNoticeNo" resultType="int">
-		SELECT notice_no noticeNo
-		FROM notice
-		ORDER BY create_date DESC
-		LIMIT 0, 1
-	</select>
-	
+
 	<!-- notice 이미지 출력 -->
 	<select id="selectNoticeImage" parameterType="int" resultMap="noticeAndImage">
 		SELECT ni.image_name, ni.image_ext

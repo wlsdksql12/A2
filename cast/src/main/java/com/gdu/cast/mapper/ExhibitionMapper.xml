@@ -25,7 +25,10 @@
 		) VALUES(
 			#{adminId}, #{exhibitionTitle}, #{exhibitionIntro}, #{exhibitionContent}, now(), now()
 		)
-	</insert>
+        <selectKey resultType="int" keyProperty="exhibitionNo" order="AFTER">
+            SELECT exhibition_no FROM exhibition ORDER BY create_date DESC LIMIT 0,1
+        </selectKey> 
+   </insert>
 	
 	<!-- 전시소개 목록 글갯수 -->
 	<select id="selectExhibitionTotalCount" parameterType="String" resultType="int" >
@@ -78,14 +81,6 @@
 		FROM exhibition e LEFT JOIN exhibition_image ei ON e.exhibition_no = ei.exhibition_no
 		ORDER BY e.create_date DESC
 		LIMIT 0, 6
-	</select>
-	
-	<!-- exhibitionNo 가져오기 -->
-	<select id="selectExhibitionNo" resultType="int">
-		SELECT exhibition_no exhibitionNo
-		FROM exhibition
-		ORDER BY create_date DESC
-		LIMIT 0, 1
 	</select>
 	
 	<!-- 전시소개 사진 추가 -->

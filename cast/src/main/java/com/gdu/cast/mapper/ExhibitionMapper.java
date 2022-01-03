@@ -31,9 +31,6 @@ public interface ExhibitionMapper {
 	// 전시소개 리스트 출력
 	List<Exhibition> selectExhibitionList1();
 	
-	// exhibitionNo 가져오기
-	int selectExhibitionNo();
-	
 	// 전시소개 이미지 추가
 	void insertExhibitionImage(ExhibitionImage exhibitionImage);
 }

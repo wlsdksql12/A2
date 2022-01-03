@@ -28,11 +28,13 @@ public class NoticeService {
 	
 	public void addNotice(String path, Notice notice) {
 		noticeMapper.insertNotice(notice);
-		int noticeNo = noticeMapper.selectNoticeNo();
+		int noticeNo = notice.getNoticeNo();
 		System.out.println(noticeNo + "noticeNo");
+		System.out.println(notice.getNoticeImageUproad() + "파일 데이터");
 		// 2) 숙소 추천 이미지 추가
 		List<NoticeImage> noticeImage = null;
 		if(notice.getNoticeImageUproad() != null) {
+			System.out.println(notice.getNoticeImageUproad() + " 실행됨");
 			noticeImage = new ArrayList<NoticeImage>();
 			for(MultipartFile mf : notice.getNoticeImageUproad()) {
 				NoticeImage rsi = new NoticeImage();

@@ -32,9 +32,6 @@ public interface NoticeMapper {
 	// 공지사항 이미지 추가
 	void insertNoticeImage(NoticeImage noticeImage);
 	
-	// 공지사항 번호
-	int selectNoticeNo();
-	
 	// 공지사항 이미지 출력
 	List<Notice> selectNoticeImage(int noticeNo);
 }
