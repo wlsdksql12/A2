@@ -1,5 +1,7 @@
 package com.gdu.cast.vo;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -16,6 +18,7 @@ public class Experience {
 	private int experiencePerson;
 	private String createDate;
 	private String updateDate;
+	private List<ExperienceImage> experienceImage;
 	
 	private Address address;
 	private ExperienceWishList experienceWishlist;

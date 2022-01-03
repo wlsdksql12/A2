@@ -29,8 +29,7 @@ public class ExperienceService {
 	
 	// 체험 등록
 	public int insertExp(AddExperience addExperience) {
-		
-		int experienceId = addExperience.getExperienceId();
+
 		String ceoId = addExperience.getCeoId();
 		int addressId = addExperience.getAddressId();
 		String experienceName = addExperience.getExperienceName();
@@ -43,7 +42,6 @@ public class ExperienceService {
 		String updateDate = addExperience.getUpdateDate();
 		
 		Experience experience = new Experience();
-		experience.setExperienceId(experienceId);
 		experience.setCeoId(ceoId);
 		experience.setAddressId(addressId);
 		experience.setExperienceName(experienceName);
@@ -54,6 +52,7 @@ public class ExperienceService {
 		experience.setExperiencePerson(experiencePerson);
 		experience.setCreateDate(createDate);
 		experience.setUpdateDate(updateDate);
+		experienceMapper.insertExp(experience);
 		
 		// 체험 이미지 추가
 		List<ExperienceImage> experienceImage = null;
@@ -61,7 +60,7 @@ public class ExperienceService {
 			experienceImage = new ArrayList<ExperienceImage>();
 			for(MultipartFile mf :addExperience.getExperienceImage()) {
 				ExperienceImage esi = new ExperienceImage();
-				esi.setExperienceId(addExperience.getExperienceId());
+				esi.setExperienceId(experience.getExperienceId());
 				String originName = mf.getOriginalFilename();
 				int p = originName.lastIndexOf(".");
 				String imageName = UUID.randomUUID().toString();
@@ -69,10 +68,13 @@ public class ExperienceService {
 				esi.setImageName(imageName);
 				esi.setImageExt(imageExt);
 				esi.setImageSize(mf.getSize());
+				esi.setCreateDate(createDate);
+				esi.setUpdateDate(updateDate);
 				experienceImage.add(esi);
 				System.out.println("@@@@@@@@@@experienceImage" + experienceImage);
+				File f = new File("D:\\workspace\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt);
 				try {
-					mf.transferTo(new File("C:\\Users\\공\\git\\A2\\cast\\src\\main\\webapp\\upload"+imageName+"."+imageExt));
+					mf.transferTo(f);
 				} catch(Exception e) {
 					e.printStackTrace();
 					throw new RuntimeException();
@@ -84,7 +86,7 @@ public class ExperienceService {
 				experienceMapper.insertExperienceImage(esi);
 			}
 		}
-		return experienceMapper.selectExperienceId(experience);
+		return experience.getExperienceId();
 	}
 	
 	public void insertExpAddress(Address address) {

@@ -14,7 +14,7 @@ public interface ExperienceMapper {
 	// 체험 등록
 	int insertExp(Experience experience);
 	// 체험 이미지 추가
-	void insertExperienceImage(ExperienceImage experienceImage);
+	int insertExperienceImage(ExperienceImage experienceImage);
 	// 주소 추가
 	int insertExpAddress(Address address);
 	// 체험 리스트 출력

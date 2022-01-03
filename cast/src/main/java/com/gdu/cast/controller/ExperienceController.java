@@ -1,7 +1,6 @@
 package com.gdu.cast.controller;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +21,6 @@ import com.gdu.cast.vo.AddExperience;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperiencePaymentReview;
-import com.gdu.cast.vo.ExperiencePaymentReviewImage;
-import com.gdu.cast.vo.ExperienceSelectImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -55,7 +52,6 @@ public class ExperienceController {
       String ceoId = (String) session.getAttribute("loginCeoId");
       addExperience.setCeoId(ceoId);
       System.out.println(ceoId + " << ceoId");
-      
       int experienceId = experienceService.insertExp(addExperience);
       System.out.println(experienceId  + "체험 id");
       log.debug("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ceoId);
