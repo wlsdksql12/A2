@@ -40,7 +40,7 @@ public class LoginCeoController {
 		model.addAttribute("experienceWishList", experienceWishList);
 		String state = joinRequestService.getCeoJoinRequestResult((String)session.getAttribute("loginCeoId"));
 		session.setAttribute("state", state);
-		System.out.println(state + " <<< CeoLginFilter");
+		System.out.println(state + " <<< LoginCeoController");
 		System.out.println(experienceWishList);
 		return "ceo/ceoIndex";
 	}

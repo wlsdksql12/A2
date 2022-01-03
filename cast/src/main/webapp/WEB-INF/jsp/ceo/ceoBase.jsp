@@ -262,17 +262,7 @@
       <div class="main-panel">
 </body>
 <script>
-	/* 테스트용 클릭
-	$("#stateBtn").click(function(){
-		if('${state}' == '요청'){
-			swal("요청 중입니다.", "", "warning");
-			return false;
-		} else if('${state}' == '거절'){
-			swal("요청이 거절되었습니다.", "", "error");
-			return false;
-		}
-	});
-	*/
+	// 체험등록, 호텔등록 클릭 시 함수를 발생시켜 가입 요청값에 맞는 이벤트
 	$("[id='stateBtn']").click(function(){
 		if('${state}' == '요청'){
 			swal("요청 중입니다.", "", "warning");

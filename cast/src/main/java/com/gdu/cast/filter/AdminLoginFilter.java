@@ -24,6 +24,7 @@ public class AdminLoginFilter implements Filter {
 		// 관리자 로그인시 loginAdminId가 세션에 생기므로 loginAdminId가 없으면 관리자만 허용하는 사이트에 접속이 안되도록하는 필터
 		if(session.getAttribute("loginAdminId") == null) {
 			System.out.println("강제이동");
+			session.invalidate();
 			((HttpServletResponse)response).sendRedirect(((HttpServletRequest)request).getContextPath()+"/adminLogin");
 			return;
 		}

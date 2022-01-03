@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +28,7 @@
     ></script>
     <script src="${pageContext.request.contextPath}/resources/traveler_template/js/charts-lines.js" defer></script>
     <script src="${pageContext.request.contextPath}/resources/traveler_template/js/charts-pie.js" defer></script>
+  	<script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery/jquery.min.js"></script>
   </head>
   <body>
     <div
@@ -159,7 +161,7 @@
           </ul>
           <ul>
           <li class="relative px-6 py-3">
-              <a
+              <a id="stateBtn"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="${pageContext.request.contextPath}/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
@@ -179,7 +181,7 @@
               </a>
             </li>
             <li class="relative px-6 py-3">
-              <a
+              <a id="stateBtn"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
@@ -1021,7 +1023,7 @@
               </div>
             	<br>
 	              <div class="px-1 my-4">
-		            <a
+		            <a id="stateBtn"
 		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
 		               href="${pageContext.request.contextPath}/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
 		            >
@@ -1074,7 +1076,7 @@
               </div>
               	<br>
 	              <div class="px-1 my-4">
-		            <a
+		            <a id="stateBtn"
 		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
 		               href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"`
 		            >
@@ -1152,5 +1154,17 @@
         </main>
       </div>
     </div>
+    <script>
+		// 체험추천, 숙소추천 클릭 시 함수를 발생시켜 가입 요청값에 맞는 이벤트
+		$("[id='stateBtn']").click(function(){
+			if('${state}' == '요청'){
+				swal("요청 중입니다.", "", "warning");
+				return false;
+			} else if('${state}' == '거절'){
+				swal("요청이 거절되었습니다.", "가입을 재요청하십시오.", "error");
+				return false;
+			}
+		});
+	</script>
   </body>
 </html>

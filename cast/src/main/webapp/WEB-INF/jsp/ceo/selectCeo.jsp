@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,10 +61,12 @@
 						</table>
 						<br>
 						<div style="text-align:right">
-							<a class="btn btn-outline-success btn-icon-text" href="${pageContext.request.contextPath}/ceo/ceoReJoinRequest?ceoId=${ceoId}">
-							 <i class="ti-twitter btn-icon-prepend"></i>
-								가입 요청
-							</a>
+							<c:if test="${state eq '거절'}">
+								<a class="btn btn-outline-success btn-icon-text" href="${pageContext.request.contextPath}/ceo/ceoReJoinRequest?ceoId=${ceoId}">
+								 <i class="ti-twitter btn-icon-prepend"></i>
+									가입 요청
+								</a>
+							</c:if>
 							<a class="btn btn-outline-primary btn-icon-text" href="${pageContext.request.contextPath}/ceo/updateCeo?ceoId=${ceoId}&ceoEmail=${ceoEmail}&ceoLicense=${ceoLicense}&ceoPhonenum=${ceoPhonenum}">
 							 <i class="ti-file btn-icon-prepend"></i>
 							내 정보수정

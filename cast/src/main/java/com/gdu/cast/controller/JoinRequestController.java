@@ -82,7 +82,15 @@ public class JoinRequestController {
 		}
 		return"joinRequestCancel";
 	}
-
+	
+	// 사업자 가입 재요청
+	@GetMapping("/traveler/travelerReJoinRequest")
+	public String travelerReJoinRequest(HttpSession session, String travelerId){
+		// 가입 재요청
+		joinRequestService.addTravelerJoinRequest(travelerId);
+		return "redirect:/travelerIndex?travelerId="+travelerId;
+	}
+		
 	//---------------------사업자------------------------
 	
 	// 사업자 가입 요청 리스트

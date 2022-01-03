@@ -74,9 +74,13 @@ public class TravelerController {
 	
 	// 여행작가 메인 페이지 자신이 쓴 숙소/체험 추천 리스트 출력(5개)
 	@GetMapping("/travelerIndex")
-	public String SelectListMain(Model model, String travelerId) {
+	public String SelectListMain(HttpSession session, Model model, String travelerId) {
 		List<RoomSelect> roomSelectList = travelerService.getselectRoomSelectListByMain(travelerId);
 		List<ExperienceSelect> experienceSelectList = travelerService.getselectExperienceSelectListByMain(travelerId);
+		// 가입 요청 세션 가져오기
+		String state = joinRequestService.getTravelerJoinRequestResult((String)session.getAttribute("loginTravelerId"));
+		session.setAttribute("state", state);
+		System.out.println(state + " <<< LoginCeoController");
 		
 		model.addAttribute("roomSelectList", roomSelectList);
 		model.addAttribute("experienceSelectList", experienceSelectList);

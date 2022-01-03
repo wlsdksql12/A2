@@ -903,6 +903,14 @@
 	              >
 	                정보 수정
 	              </a>
+	              &nbsp;
+	              <c:if test="${state eq '거절'}">
+					<a class="px-3 py-3 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+					 href="${pageContext.request.contextPath}/traveler/travelerReJoinRequest?travelerId=${loginTravelerId}">
+					 <i class="ti-twitter btn-icon-prepend"></i>
+						가입 요청
+					</a>
+				   </c:if>
 	          </div>
         </main>
       </div>
