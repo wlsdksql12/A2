@@ -16,5 +16,12 @@ public interface MainExperienceOrHotelReviewMapper {
 	int selectExperienceReviewTotalCount();
 	// 결제한 사람만 리뷰를 추가할 수 있게...
 	String selectCustomerPayment(int experienceId);
-	
+	//체험 결제 아이디 매개변수
+	int selectCustomerPaymentId(String experienceName, String customerId);
+	// 체험 후기 추가
+	void insertExperiencePaymentReview(ExperiencePaymentReview experiencePaymentReview);
+	// 체험 후기 아이디 검색
+	int selectPaymentReviewId(String customerId);
+	// 체험 후기 사진 추가
+	void insertExperiencePaymenrReviewImage(ExperiencePaymentReviewImage experiencePaymentReviewImage, int experiencePaymentReviewId);
 }

@@ -15,7 +15,7 @@ public class ExperiencePaymentReview {
 	private String createDate;
 	private String updateDate;
 	private ExperiencePaymentReviewImage experiencePaymentReviewImage;
-	private List<MultipartFile> multiExperiencepaymentReviewImage;
+	private List<MultipartFile> experiencepaymentReviewImageUpload;
 	private ExperienceOrder experienceOrder;
 	private ExperiencePayment experiencePayment;
 }

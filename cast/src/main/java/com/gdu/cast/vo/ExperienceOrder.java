@@ -13,6 +13,8 @@ public class ExperienceOrder {
 	private String experienceOrderEndDate;
 	private String createDate;
 	private String updateDate;
+	private ExperiencePayment experiencePayment;
+	private ExperiencePaymentReview experiencePaymentReview;
 	
 }
 

@@ -7,15 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form method="post" action="/addExperienceReview">
+	<form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/addExperienceReview">
 		<div>작성자</div>
 		<input type="text" name="customerId" value="${customerId}" readonly="readonly">
 		<div>내용</div>
 		<input type="text" name="experiencePaymentReviewContent">
+		<input type="text" name="experiencePaymentId" value="${experiencePaymentId}" readonly="readonly">
+		<input type="text" name="experienceId" value="${experienceId}"readonly="readonly">
 		
-		<div>
-		<input multiple="multiple" type="file" name="experienceSelectImage" required="required">
-		</div>
+		
+		
+		
+		
+		
 	
 	<button type="submit">추가</button>
 	<a href="mainExperienceOne?experienceId=${experienceId}&currentPage=1">이전</a>

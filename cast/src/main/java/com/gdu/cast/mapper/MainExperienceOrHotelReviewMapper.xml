@@ -48,13 +48,55 @@
 	FROM experience_payment_review
 	</select>
 	
-	<!-- 결제한 사람만 후기를 남길수 있는 조건문 생성 -->
-	<select id="selectCustomerPayment" parameterType="int" resultType="String">
-	SELECT eo.customer_id customerId
-	FROM experience_order eo
-	inner join experience_payment ep on eo.experience_order_id = ep.experience_order_id
-	inner join experience_payment_review er on ep.experience_payment_id = er.experience_payment_id
-	WHERE er.experience_id = #{experienceId}
+	<!-- 체험 결제 아이디 매개변수 -->
+	<select  id="selectCustomerPaymentId" parameterType="String" resultType="int">
+	SELECT ep.experience_payment_id experiencePaymentId
+	FROM experience_order eo inner join experience_payment ep on eo.experience_order_id = ep.experience_order_id
+	WHERE eo.customer_id = #{customerId} AND eo.experience_name = #{experienceName}
 	</select>
+	
+	<!--  리뷰 추가 -->
+	<select id="insertExperiencePaymentReview" parameterType="com.gdu.cast.vo.ExperiencePaymentReview" resultType="com.gdu.cast.vo.ExperiencePaymentReview">
+		INSERT INTO experience_payment_review(
+			experience_payment_id,
+			experience_id,
+			experience_payment_review_content,
+			create_date,
+			update_date
+		) values(
+			#{experiencePaymentId},
+			#{experienceId},
+			#{experiencePaymentReviewContent},
+			now(),
+			now()
+		)
 
+	</select>
+	<!-- 체험 후기 아이디 select -->
+	<select id="selectPaymentReviewId" parameterType="String" resultType="int">
+		SELECT
+			er.experience_payment_review_id experiencePaymentReviewId
+		FROM experience_payment_review er inner join experience_payment ep on er.experience_payment_id = ep.experience_payment_id
+		inner join experience_order eo on ep.experience_order_id = eo.experience_order_id
+		WHERE eo.customerId = #{customerId}
+	</select>
+	
+	<!--  체험 후기 사진 추가 -->
+		<insert id="insertExperiencePaymenrReviewImage" parameterType="com.gdu.cast.vo.ExperiencePaymentReviewImage">
+		INSERT INTO experience_payment_review_image(
+			experience_payment_review_id,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES (
+			#{experiencePaymentReviewId},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			NOW(),
+			NOW()
+		)
+	</insert>
 </mapper>
