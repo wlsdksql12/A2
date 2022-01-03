@@ -8,7 +8,7 @@ public class ExperienceImage {
 	private int experienceImageId;
 	private int experienceId;
 	private String imageExt;
-	private String imageSize;
+	private long imageSize;
 	private String imageName;
 	private String createDate;
 	private String updateDate;

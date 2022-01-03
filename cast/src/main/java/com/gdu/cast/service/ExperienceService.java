@@ -1,16 +1,22 @@
 package com.gdu.cast.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.mapper.ExperienceMapper;
+import com.gdu.cast.vo.AddExperience;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperienceImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +27,63 @@ public class ExperienceService {
 	@Autowired
 	ExperienceMapper experienceMapper;
 	
-	public int insertExp(Experience experience) {
-		experienceMapper.insertExp(experience);
+	// 체험 등록
+	public int insertExp(AddExperience addExperience) {
+		
+		int experienceId = addExperience.getExperienceId();
+		String ceoId = addExperience.getCeoId();
+		int addressId = addExperience.getAddressId();
+		String experienceName = addExperience.getExperienceName();
+		String experienceContent = addExperience.getExperienceContent();
+		int experiencePrice = addExperience.getExperiencePrice();
+		String experienceStartdate = addExperience.getExperienceStartdate();
+		String experienceEnddate = addExperience.getExperienceEnddate();
+		int experiencePerson = addExperience.getExperiencePerson();
+		String createDate = addExperience.getCreateDate();
+		String updateDate = addExperience.getUpdateDate();
+		
+		Experience experience = new Experience();
+		experience.setExperienceId(experienceId);
+		experience.setCeoId(ceoId);
+		experience.setAddressId(addressId);
+		experience.setExperienceName(experienceName);
+		experience.setExperienceContent(experienceContent);
+		experience.setExperiencePrice(experiencePrice);
+		experience.setExperienceStartdate(experienceStartdate);
+		experience.setExperienceEnddate(experienceEnddate);
+		experience.setExperiencePerson(experiencePerson);
+		experience.setCreateDate(createDate);
+		experience.setUpdateDate(updateDate);
+		
+		// 체험 이미지 추가
+		List<ExperienceImage> experienceImage = null;
+		if(addExperience.getExperienceImage() != null) {
+			experienceImage = new ArrayList<ExperienceImage>();
+			for(MultipartFile mf :addExperience.getExperienceImage()) {
+				ExperienceImage esi = new ExperienceImage();
+				esi.setExperienceId(addExperience.getExperienceId());
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				esi.setImageName(imageName);
+				esi.setImageExt(imageExt);
+				esi.setImageSize(mf.getSize());
+				experienceImage.add(esi);
+				System.out.println("@@@@@@@@@@experienceImage" + experienceImage);
+				try {
+					mf.transferTo(new File("C:\\Users\\공\\git\\A2\\cast\\src\\main\\webapp\\upload"+imageName+"."+imageExt));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		if(experienceImage != null) {
+			for(ExperienceImage esi : experienceImage) {
+				experienceMapper.insertExperienceImage(esi);
+			}
+		}
 		return experienceMapper.selectExperienceId(experience);
 	}
 	

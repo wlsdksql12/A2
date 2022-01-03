@@ -31,7 +31,8 @@
 <body>
 	<%@ include file="ceoBase.jsp" %>
 	<br>
-	<form method="post" action="${pageContext.request.contextPath}/ceo/insertExp" class="forms-sample" id="addForm">
+	
+	<form method="post" action="${pageContext.request.contextPath}/ceo/insertExp" enctype="multipart/form-data" class="forms-sample" id="addForm">
 		<div class="col-12 grid-margin stretch-card">
 			<div class="card">
 				<div class="card-body">
@@ -76,14 +77,15 @@
 						<input type="date" class="form-control" style="width: 250px" name="experienceEnddate" id="experienceEnddate">
 					</div>
 					<div class="form-group">
-						<label>이미지 등록[미구현]</label> <input type="file" name="img[]"
+						<label>이미지 등록</label> <input type="file" name="img[]"
 							class="file-upload-default">
 						<div class="input-group col-xs-12">
-							<input type="text" class="form-control file-upload-info" disabled
+							<!--  <input type="text" class="form-control file-upload-info" disabled
 								placeholder="Upload Image"> <span
 								class="input-group-append">
 								<button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-							</span>
+							</span> -->
+							<input multiple="multiple" type="file" name="experienceImage" required="required">
 						</div>
 					</div>
 					<div class="form-group">

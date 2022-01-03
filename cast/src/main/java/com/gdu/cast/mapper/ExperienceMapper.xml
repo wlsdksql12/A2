@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.ExperienceMapper">
 	
+	<!-- 체험등록에서 체험 & 주소 JOIN -->
 	<resultMap type="com.gdu.cast.vo.Experience" id="resultExperience">
 		<result column="experience_id" property="experienceId" />
 		<result column="ceo_id" property="ceoId" />
@@ -28,7 +29,9 @@
 	
    <!-- 체험 추가 -->
    <insert id="insertExp" parameterType="com.gdu.cast.vo.Experience">
-   
+     <selectKey resultType="int" keyProperty="experienceId" order="AFTER">
+      	SELECT LAST_INSERT_ID()
+      </selectKey>
       INSERT INTO
          experience (
          ceo_id,
@@ -54,6 +57,28 @@
          now()
       )
    </insert>
+   
+   <!-- 체험 이미지 추가-->
+	<insert id="insertExperienceImage" parameterType="com.gdu.cast.vo.ExperienceImage">
+		INSERT INTO experience_image(
+			experience_id,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES (
+			#{experienceId},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			NOW(),
+			NOW()
+		)
+		<selectKey resultType="int" keyProperty="experienceImageId" order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
    
    <!-- 주소 추가 -->
    <insert id="insertExpAddress" parameterType="com.gdu.cast.vo.Address">

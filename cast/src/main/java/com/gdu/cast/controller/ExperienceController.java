@@ -18,6 +18,7 @@ import com.gdu.cast.service.ExperienceService;
 import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.service.MainExperienceOrHotelReviewService;
 import com.gdu.cast.service.MainSelectService;
+import com.gdu.cast.vo.AddExperience;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperiencePaymentReviewImage;
@@ -49,15 +50,15 @@ public class ExperienceController {
    }
    
    @PostMapping("/ceo/insertExp")
-   public String insertExp(HttpServletRequest request,HttpSession session, Experience experience, @RequestParam(defaultValue = "") String keyword, String theme) {
+   public String insertExp(HttpServletRequest request,HttpSession session, AddExperience addExperience, @RequestParam(defaultValue = "") String keyword, String theme) {
       String ceoId = (String) session.getAttribute("loginCeoId");
-      experience.setCeoId(ceoId);
+      addExperience.setCeoId(ceoId);
       System.out.println(ceoId + " << ceoId");
       
-      int experienceId = experienceService.insertExp(experience);
+      int experienceId = experienceService.insertExp(addExperience);
       System.out.println(experienceId  + "체험 id");
       log.debug("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"+ceoId);
-      log.debug("=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-"+experience.toString());
+      log.debug("=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-"+addExperience.toString());
       
       // 해시태그 키워드 입력을 안할시 실행이 안되도록
       if(!keyword.equals("")) {
