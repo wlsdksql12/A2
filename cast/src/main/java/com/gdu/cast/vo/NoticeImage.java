@@ -7,9 +7,9 @@ import lombok.Data;
 public class NoticeImage {
 	private int noticeImageId;
 	private int noticeNo;
-	private String imageSize;
-	private String imageExt;
 	private String imageName;
+	private String imageExt;
+	private long imageSize;
 	private String createDate;
 	private String updateDate;
 }

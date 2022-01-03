@@ -12,6 +12,10 @@
 		<collection property="admin" ofType="com.gdu.cast.vo.Admin">
 			<result column="admin_name" property="adminName"></result>
 		</collection>
+		<collection property="exhibitionImage" ofType="com.gdu.cast.vo.ExhibitionImage">
+			<result column="image_name" property="imageName"></result>
+			<result column="image_ext" property="imageExt"></result>
+		</collection>
 	</resultMap>
 	
 	<!-- 전시소개 작성 -->
@@ -49,8 +53,9 @@
 	
 	<!-- 전시소개 상세보기 -->
 	<select id="selectExhibitionOne" parameterType="int" resultMap="exhibitionAndAdmin">
-		SELECT  e.exhibition_no, e.admin_id, e.exhibition_title, e.exhibition_intro, e.exhibition_content, e.create_date, a.admin_name
-		FROM exhibition e JOIN admin a ON e.admin_id = a.admin_id
+		SELECT  e.exhibition_no, e.admin_id, e.exhibition_title, e.exhibition_intro, e.exhibition_content, e.create_date, a.admin_name, ei.image_name, ei.image_ext
+		FROM exhibition e LEFT JOIN admin a ON e.admin_id = a.admin_id
+			 LEFT JOIN exhibition_image ei ON e.exhibition_no = ei.exhibition_no
 		WHERE e.exhibition_no = #{exhibitionNo}
 	</select>
 	
@@ -68,10 +73,37 @@
 	</delete>
 	
 	<!-- 메인페이지 전시소개 목록 2개 조회 -->
-	<select id="selectExhibitionList1" resultType="com.gdu.cast.vo.Exhibition">
-		SELECT exhibition_no exhibitionNo, exhibition_title exhibitionTitle, exhibition_intro exhibitionIntro
+	<select id="selectExhibitionList1" resultMap="exhibitionAndAdmin">
+		SELECT e.exhibition_no, e.exhibition_title, e.exhibition_intro, ei.image_name, ei.image_ext
+		FROM exhibition e LEFT JOIN exhibition_image ei ON e.exhibition_no = ei.exhibition_no
+		ORDER BY e.create_date DESC
+		LIMIT 0, 5
+	</select>
+	
+	<!-- exhibitionNo 가져오기 -->
+	<select id="selectExhibitionNo" resultType="int">
+		SELECT exhibition_no exhibitionNo
 		FROM exhibition
 		ORDER BY create_date DESC
-		LIMIT 0, 2
+		LIMIT 0, 1
 	</select>
+	
+	<!-- 전시소개 사진 추가 -->
+	<insert id="insertExhibitionImage">
+		INSERT INTO exhibition_image(
+			exhibition_no,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES(
+			#{exhibitionNo},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			NOW(),
+			NOW()
+		)
+	</insert>
 </mapper>

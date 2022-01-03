@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,7 +109,9 @@ public class MainCustomerSenterController {
 	@GetMapping("/mainNoticeOne")
 	public String mainNoticeOne(Model model, int noticeNo) {
 		System.out.println(noticeNo);
-		Notice notice = noticeService.NoticeOne(noticeNo);
+		
+		List<Notice> notice = noticeService.NoticeOne(noticeNo);
+		/*
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + notice + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		model.addAttribute("noticeNo", notice.getNoticeNo());
 		model.addAttribute("adminId", notice.getAdminId());
@@ -116,6 +119,8 @@ public class MainCustomerSenterController {
 		model.addAttribute("noticeContent", notice.getNoticeContent());
 		model.addAttribute("createDate", notice.getCreateDate());
 		model.addAttribute("updateDate", notice.getUpdateDate());
+		*/
+		model.addAttribute("notice", notice);
 		return"mainNoticeOne";
 	}
 	
@@ -182,7 +187,7 @@ public class MainCustomerSenterController {
 	public String noticeOne(Model model, int exhibitionNo) {
 		// 전시소개 글 번호 디버깅
 		System.out.println(exhibitionNo + "<-------exhibitionNo");
-		Exhibition exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
+		List<Exhibition> exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
 		System.out.println(exhibition + "<---MainCustomerSenterController");
 		model.addAttribute("exhibition", exhibition);
 		return"mainExhibitionOne";

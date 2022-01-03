@@ -1,5 +1,9 @@
 package com.gdu.cast.vo;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -13,4 +17,6 @@ public class Exhibition {
 	private String createDate;
 	private String updateDate;
 	private Admin admin;
+	private List<MultipartFile> exhibitionImageUproad;
+	private List<ExhibitionImage> exhibitionImage;
 }

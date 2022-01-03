@@ -1,8 +1,11 @@
 package com.gdu.cast.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,9 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.client.reactive.AbstractClientHttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.mapper.NoticeMapper;
 import com.gdu.cast.vo.Notice;
+import com.gdu.cast.vo.NoticeImage;
+import com.gdu.cast.vo.RoomSelectImage;
 
 @Service
 @Transactional
@@ -20,8 +26,41 @@ public class NoticeService {
 	@Autowired
 	NoticeMapper noticeMapper;
 	
-	public void addNotice(Notice notice) {
+	public void addNotice(String path, Notice notice) {
 		noticeMapper.insertNotice(notice);
+		int noticeNo = noticeMapper.selectNoticeNo();
+		System.out.println(noticeNo + "noticeNo");
+		// 2) 숙소 추천 이미지 추가
+		List<NoticeImage> noticeImage = null;
+		if(notice.getNoticeImageUproad() != null) {
+			noticeImage = new ArrayList<NoticeImage>();
+			for(MultipartFile mf : notice.getNoticeImageUproad()) {
+				NoticeImage rsi = new NoticeImage();
+				rsi.setNoticeNo(noticeNo);
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				rsi.setImageName(imageName);
+				rsi.setImageExt(imageExt);
+				rsi.setImageSize(mf.getSize());
+				rsi.setCreateDate(notice.getCreateDate());
+				rsi.setUpdateDate(notice.getUpdateDate());
+				noticeImage.add(rsi);
+				System.out.println(noticeImage +"<<< NoticeService.noticeImage");
+				try {
+					mf.transferTo(new File(path+"upload\\"+imageName+"."+imageExt));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		if(noticeImage != null) {
+			for(NoticeImage rsi : noticeImage) {
+				noticeMapper.insertNoticeImage(rsi);
+			}
+		}
 	}
 	
 	// return : boardList, lastPage
@@ -66,8 +105,8 @@ public class NoticeService {
 		return returnMap;
 	}
 	
-	public Notice NoticeOne(int noticeNo) {
-		Notice notice =  noticeMapper.selectNoticeOne(noticeNo);
+	public List<Notice> NoticeOne(int noticeNo) {
+		List<Notice> notice =  noticeMapper.selectNoticeOne(noticeNo);
 		return notice;
 	}
 	

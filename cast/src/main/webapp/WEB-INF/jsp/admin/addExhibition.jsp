@@ -54,7 +54,7 @@
         <h6 class="m-0 font-weight-bold text-primary">전시소개 작성</h6>
       </div>
       <div class="table-responsive">
-		<form method="post" action="${pageContext.request.contextPath}/admin/addExhibition" id="addExhibitionForm">
+		<form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/addExhibition" id="addExhibitionForm">
 			<table class="table align-items-center table-flush">
 				<tr>
 					<td width="10%" style="text-align: right">제목</td>
@@ -71,6 +71,8 @@
 					</tr>
 				</tbody>
 			</table>
+			<input style="text-align: left;" multiple="multiple" type="file" name="exhibitionImageUproad" required="required">
+			<br>
 			<button id="addExhibitionBtn" type="button" class="btn btn-outline-success">저장</button>
 		</form>
 		<br>

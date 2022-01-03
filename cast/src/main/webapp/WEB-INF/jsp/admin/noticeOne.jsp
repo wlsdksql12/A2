@@ -50,6 +50,7 @@
 		<div class="container" style="text-align:center">
 
 	<div class="card">
+		<c:forEach items="${notice}" var="notice">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">공지사항</h6>
       </div>
@@ -62,23 +63,28 @@
 			</tr>
 			<tbody>
 				<tr>
-				<td>${noticeNo}</td>
-				<td>${noticeTitle}</td>
-				<td>${createDate}</td>
-			</tr>
+					<td>${notice.noticeNo}</td>
+					<td>${notice.noticeTitle}</td>
+					<td>${notice.createDate}</td>
+				</tr>
 			</tbody>
 			<tr>
-				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${noticeContent}</textarea></td>
+				<td colspan="3"><textarea class="content" cols="100" onkeydown="resize(this)" onkeyup="resize(this)" readonly="readonly">${notice.noticeContent}</textarea></td>
 			</tr>
 		</table>
+		<br>
+		<c:forEach items="${notice.noticeImage}" var="noticeImage">
+			<img src="${pageContext.request.contextPath}/upload/${noticeImage.imageName}.${noticeImage.imageExt}" style="width:200px; height:200px;"/>
+		</c:forEach>
 		<c:if test="${loginAdminId != null}">
 			<div>
-				<a href="${pageContext.request.contextPath}/admin/updateNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">수정</a>
-				<a href="${pageContext.request.contextPath}/admin/deleteNotice?noticeNo=${noticeNo}" class="btn btn-outline-success">삭제</a>
+				<a href="${pageContext.request.contextPath}/admin/updateNotice?noticeNo=${notice.noticeNo}" class="btn btn-outline-success">수정</a>
+				<a href="${pageContext.request.contextPath}/admin/deleteNotice?noticeNo=${notice.noticeNo}" class="btn btn-outline-success">삭제</a>
 			</div>
-		</c:if>		
+		</c:if>
 		<br>
 	</div>
+	</c:forEach>
 </div>
 
 
@@ -122,5 +128,10 @@
   <script src="${pageContext.request.contextPath}/resources/admin_template/vendor/chart.js/Chart.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/admin_template/js/demo/chart-area-demo.js"></script>  
 </body>
-
+<script>
+	function resize(obj) {
+	  obj.style.height = "1px";
+	  obj.style.height = (100+obj.scrollHeight)+"px";
+	}
+</script>
 </html>

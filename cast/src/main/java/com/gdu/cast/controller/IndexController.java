@@ -1,8 +1,10 @@
 package com.gdu.cast.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +36,7 @@ public class IndexController {
 	
 	// localhost로 주소검색해도 "index" Controller가 실행이 되도록 함
 	@GetMapping(value={"/","/index"})
-	public String index(HttpSession session, Model model) {
+	public String index(HttpSession session, Model model, HttpServletRequest request) {
 		
 		System.out.println("loginCustomerId"+session.getAttribute("loginCustomerId"));
 		System.out.println("loginAdminId"+session.getAttribute("loginAdminId"));
@@ -42,9 +44,10 @@ public class IndexController {
 		System.out.println("loginCeoId"+session.getAttribute("loginCeoId"));
 		
 		// 메인페이지 전시소개 리스트
-		List<Exhibition> exhibitionList = exhibitionService.getExhibitionList1();
-		
-		model.addAttribute("exhibitionList", exhibitionList);
+		List<Exhibition> exhibition = exhibitionService.getExhibitionList1();
+		String path = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(path + " path 경로");
+		model.addAttribute("exhibition", exhibition);
 		model.addAttribute("loginCustomerId", session.getAttribute("loginCustomerId"));
 		model.addAttribute("loginTravelerId",session.getAttribute("loginTravelerId"));
 		model.addAttribute("loginAdminId",session.getAttribute("loginAdminId"));

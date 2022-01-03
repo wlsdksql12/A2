@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +29,13 @@ public class NoticeController {
 	}
 	
 	@PostMapping("/admin/addNotice")
-	public String addNotice(HttpSession session, Notice notice) {
+	public String addNotice(HttpServletRequest request, HttpSession session, Notice notice) {
+		System.out.println(notice.getNoticeImage());
 		String adminId = (String) session.getAttribute("loginAdminId");
 		notice.setAdminId(adminId);
 		System.out.println(notice);
-		noticeService.addNotice(notice);
+		String path = request.getSession().getServletContext().getRealPath("/");
+		noticeService.addNotice(path, notice);
 		return"redirect:/admin/noticeList";
 	}
 	
@@ -60,14 +63,17 @@ public class NoticeController {
 	@GetMapping("/admin/noticeOne")
 	public String noticeOne(Model model, int noticeNo) {
 		System.out.println(noticeNo);
-		Notice notice = noticeService.NoticeOne(noticeNo);
+		List<Notice> notice = noticeService.NoticeOne(noticeNo);
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + notice + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
+		/*
 		model.addAttribute("noticeNo", notice.getNoticeNo());
 		model.addAttribute("adminId", notice.getAdminId());
 		model.addAttribute("noticeTitle", notice.getNoticeTitle());
 		model.addAttribute("noticeContent", notice.getNoticeContent());
 		model.addAttribute("createDate", notice.getCreateDate());
 		model.addAttribute("updateDate", notice.getUpdateDate());
+		*/
+		model.addAttribute("notice", notice);
 		return"/admin/noticeOne";
 	}
 	

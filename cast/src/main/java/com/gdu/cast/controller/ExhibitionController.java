@@ -1,7 +1,9 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +29,15 @@ public class ExhibitionController {
 	
 	// 전시소개 작성 후
 	@PostMapping("/admin/addExhibition")
-	public String addExhibition(HttpSession session,Exhibition exhibition) {
+	public String addExhibition(HttpServletRequest request, HttpSession session,Exhibition exhibition) {
 		// session에 adminId 추출
 		String adminId = (String) session.getAttribute("loginAdminId");
 		// 추출한 adminId를 exhibition vo에 추가
 		exhibition.setAdminId(adminId);
 		// 디버깅
 		System.out.println(exhibition);
-		exhibitionService.addExhibition(exhibition);
+		String path = request.getSession().getServletContext().getRealPath("/");
+		exhibitionService.addExhibition(path, exhibition);
 		
 		return "redirect:/admin/exhibitionList";
 	}
@@ -66,7 +69,7 @@ public class ExhibitionController {
 	public String noticeOne(Model model, int exhibitionNo) {
 		// 전시소개 글 번호 디버깅
 		System.out.println(exhibitionNo + "<-------exhibitionNo");
-		Exhibition exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
+		List<Exhibition> exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
 		System.out.println(exhibition + " ExhibitionController");
 		model.addAttribute("exhibition", exhibition);
 		return"/admin/exhibitionOne";
@@ -77,7 +80,7 @@ public class ExhibitionController {
 	public String updateNotice(Model model, int exhibitionNo) {
 		System.out.println(exhibitionNo + "<-------exhibitionNo");
 		// 수정할때 보여줄 전시소개 상세 내용 불러오기
-		Exhibition exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
+		List<Exhibition> exhibition = exhibitionService.getExhibitionOne(exhibitionNo);
 		model.addAttribute("exhibition", exhibition);
 		return "/admin/updateExhibition";
 	}

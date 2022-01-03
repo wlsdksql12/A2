@@ -98,6 +98,7 @@
       </li>
     </ul>
    	<div style="text-align:center">
+   		<c:forEach items="${notice}" var="notice">
    		<table class="table mb-0" >
 			<thead class="thead-light">
 				<tr>
@@ -108,16 +109,23 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>${noticeNo}</td>
-					<td>${noticeTitle}</td>
-					<td>${fn:substring(createDate,0,19)}</td>
+					<td>${notice.noticeNo}</td>
+					<td>${notice.noticeTitle}</td>
+					<td>${fn:substring(notice.createDate,0,19)}</td>
 				</tr>
 			</tbody>
 			<tr>
-				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${noticeContent}</textarea></td>
+				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${notice.noticeContent}</textarea></td>
 			</tr>
 		</table>
-		<input type="button" value="이전" onclick="history.back(-1)">	
+		<br>
+		<c:forEach items="${notice.noticeImage}" var="noticeImage">
+			<img src="${pageContext.request.contextPath}/upload/${noticeImage.imageName}.${noticeImage.imageExt}" style="width:200px; height:200px;"/>
+		</c:forEach>
+		<div>
+			<input type="button" value="이전" onclick="history.back(-1)">	
+		</div>
+		</c:forEach>
 	</div>
    	
     </section>
@@ -203,7 +211,7 @@
                 </div>
             </div>
         </div>
-
+		
         <div class="w-100 bg-black py-3">
             <div class="container">
                 <div class="row pt-2">

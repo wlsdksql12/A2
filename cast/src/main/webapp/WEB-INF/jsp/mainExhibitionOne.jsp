@@ -91,6 +91,7 @@
       </li>
      </ul>
    	<div style="text-align:center">
+   	<c:forEach items="${exhibition}" var="exhibition">
    		<table class="table mb-0" >
 			<thead class="thead-light">
 				<tr>
@@ -110,7 +111,14 @@
 				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${exhibition.exhibitionContent}</textarea></td>
 			</tr>
 		</table>
-		<input type="button" value="이전" onclick="history.back(-1)">	
+		<br>
+		<c:forEach items="${exhibition.exhibitionImage}" var="exhibitionImage">
+			<img src="${pageContext.request.contextPath}/upload/${exhibitionImage.imageName}.${exhibitionImage.imageExt}" style="width:400px; height:400px;"/>
+		</c:forEach>
+		<div>
+			<input type="button" value="이전" onclick="history.back(-1)">	
+		</div>
+		</c:forEach>
 	</div>
    	
     </section>

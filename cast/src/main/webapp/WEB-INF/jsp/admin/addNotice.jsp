@@ -56,7 +56,7 @@
 	        <h6 class="m-0 font-weight-bold text-primary">공지사항 작성</h6>
 	      </div>
 	      <div class="table-responsive">
-			 <form method="post" action="${pageContext.request.contextPath}/admin/addNotice" id="addNoticeForm">
+			 <form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/admin/addNotice" id="addNoticeForm">
 				<table class="table align-items-center table-flush">
 					<tr>
 						<td width="10%" style="text-align: right">제목</td>
@@ -69,6 +69,8 @@
 						</tr>
 					</tbody>
 				</table>
+				<input style="text-align: left;" multiple="multiple" type="file" name="noticeImageUproad" required="required">
+				<br>	
 				<button id="addNoticeBtn" type="button" class="btn btn-outline-success">추가하기</button>
 			</form>
 			<br>

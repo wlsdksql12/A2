@@ -50,6 +50,7 @@
 		<div class="container" style="text-align:center">
 			
 	<div class="card">
+		<c:forEach items="${exhibition}" var="exhibition">
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">전시소개</h6>
       </div>
@@ -74,9 +75,13 @@
 				<td colspan="3">${exhibition.exhibitionIntro}</td>
 			</tr>
 			<tr>
-				<td colspan="3"><textarea class="content" rows="10" cols="100" readonly="readonly">${exhibition.exhibitionContent}</textarea></td>
+				<td colspan="3"><textarea class="content" cols="100" rows="3" readonly="readonly">${exhibition.exhibitionContent}</textarea></td>
 			</tr>
 		</table>
+		<br>
+		<c:forEach items="${exhibition.exhibitionImage}" var="exhibitionImage">
+			<img src="${pageContext.request.contextPath}/upload/${exhibitionImage.imageName}.${exhibitionImage.imageExt}" style="width:400px; height:400px;"/>
+		</c:forEach>
 		<c:if test="${loginAdminId != null}">
 			<div>
 				<a href="${pageContext.request.contextPath}/admin/updateExhibition?exhibitionNo=${exhibition.exhibitionNo}" class="btn btn-outline-success">수정</a>
@@ -85,6 +90,7 @@
 		</c:if>
 		<br>
 	</div>
+	</c:forEach>
 </div>
 
 

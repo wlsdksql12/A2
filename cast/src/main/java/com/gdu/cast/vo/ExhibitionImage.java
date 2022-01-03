@@ -7,9 +7,9 @@ import lombok.Data;
 public class ExhibitionImage {
 	private int exhibitionImageNo;
 	private int exhibitionNo;
-	private String imageSize;
-	private String imageExt;
 	private String imageName;
+	private String imageExt;
+	private long imageSize;
 	private String createDate;
 	private String updateDate;
 }

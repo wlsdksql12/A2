@@ -1,15 +1,24 @@
 package com.gdu.cast.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.mapper.ExhibitionMapper;
 import com.gdu.cast.vo.Exhibition;
+import com.gdu.cast.vo.ExhibitionImage;
+import com.gdu.cast.vo.NoticeImage;
 
 @Service
 @Transactional
@@ -18,8 +27,42 @@ public class ExhibitionService {
 	ExhibitionMapper exhibitionMapper;
 	
 	// 전시소개 작성
-	public void addExhibition(Exhibition exhibition) {
+	public void addExhibition(String path, Exhibition exhibition) {
 		exhibitionMapper.insertExhibition(exhibition);
+		int exhibitionNo = exhibitionMapper.selectExhibitionNo();
+		System.out.println(exhibitionNo + "exhibitionNo");
+		// 2) 숙소 추천 이미지 추가
+		List<ExhibitionImage> exhibitionImage = null;
+		if(exhibition.getExhibitionImageUproad() != null) {
+			exhibitionImage = new ArrayList<ExhibitionImage>();
+			for(MultipartFile mf : exhibition.getExhibitionImageUproad()) {
+				ExhibitionImage rsi = new ExhibitionImage();
+				rsi.setExhibitionNo(exhibitionNo);
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				rsi.setImageName(imageName);
+				rsi.setImageExt(imageExt);
+				rsi.setImageSize(mf.getSize());
+				rsi.setCreateDate(exhibition.getCreateDate());
+				rsi.setUpdateDate(exhibition.getUpdateDate());
+				exhibitionImage.add(rsi);
+				System.out.println(exhibitionImage +"<<< ExhibitionService.exhibitionImage");
+				try {
+					mf.transferTo(new File(path+"upload\\"+imageName+"."+imageExt));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		if(exhibitionImage != null) {
+			for(ExhibitionImage rsi : exhibitionImage) {
+				exhibitionMapper.insertExhibitionImage(rsi);
+			}
+		}
+	
 	}
 	
 	// 전시소개 리스트 페이지
@@ -65,8 +108,8 @@ public class ExhibitionService {
 	}
 	
 	// 전시소개 상세보기
-	public Exhibition getExhibitionOne(int exhibitionNo) {
-		Exhibition exhibition =  exhibitionMapper.selectExhibitionOne(exhibitionNo);
+	public List<Exhibition> getExhibitionOne(int exhibitionNo) {
+		List<Exhibition> exhibition =  exhibitionMapper.selectExhibitionOne(exhibitionNo);
 		return exhibition;
 	}
 	
@@ -80,7 +123,7 @@ public class ExhibitionService {
 		exhibitionMapper.deleteExhibition(exhibition);
 	}
 	
-	// 메인페이지 전시소개 리스트 1개
+	// 메인페이지 전시소개 리스트 4개
 	public List<Exhibition> getExhibitionList1(){
 		List<Exhibition> exhibitionList = exhibitionMapper.selectExhibitionList1();
 		System.out.println(exhibitionList + "<----ExhibitionService");

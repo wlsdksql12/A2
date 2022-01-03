@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.NoticeMapper">
-	<!-- JoinTraveler와 Traveler vo를 합침 -->
+	<!-- Notice와 Admin vo를 합침 -->
 	<resultMap type="com.gdu.cast.vo.Notice" id="noticeAndAdmin">
 		<id column="notice_no" property="noticeNo"></id>
 		<result column="admin_id" property="adminId"></result>
@@ -11,6 +11,24 @@
 		<result column="update_date" property="updateDate"></result>
 		<collection property="admin" ofType="com.gdu.cast.vo.Admin">
 			<result column="admin_name" property="adminName"></result>
+		</collection>
+		<collection property="noticeImage" ofType="com.gdu.cast.vo.NoticeImage">
+			<result column="image_name" property="imageName"></result>
+			<result column="image_ext" property="imageExt"></result>
+		</collection>
+	</resultMap>
+	
+	<!-- Notice와 NoticeImage vo를 합침 -->
+	<resultMap type="com.gdu.cast.vo.Notice" id="noticeAndImage">
+		<id column="notice_no" property="noticeNo"></id>
+		<result column="admin_id" property="adminId"></result>
+		<result column="notice_title" property="noticeTitle"></result>
+		<result column="notice_content" property="noticeContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="noticeImage" ofType="com.gdu.cast.vo.NoticeImage">
+			<result column="image_name" property="imageName"></result>
+			<result column="image_ext" property="imageExt"></result>
 		</collection>
 	</resultMap>
 
@@ -56,8 +74,9 @@
 	</select>
 	
 	<select id="selectNoticeOne" parameterType="int" resultMap="noticeAndAdmin">
-		SELECT n.notice_no, n.admin_id, n.notice_title, n.notice_content, n.create_date, a.admin_name
-		FROM notice n JOIN admin a ON n.admin_id = a.admin_id
+		SELECT n.notice_no, n.admin_id, n.notice_title, n.notice_content, n.create_date, a.admin_name, ni.image_name, ni.image_ext
+		FROM notice n LEFT JOIN admin a ON n.admin_id = a.admin_id
+			 LEFT JOIN notice_image ni ON n.notice_no = ni.notice_no
 		WHERE n.notice_no = #{noticeNo}
 	</select>
 	
@@ -71,4 +90,39 @@
 		DELETE FROM notice
 		WHERE notice_no = #{noticeNo} AND admin_id = #{adminId}
 	</delete>
+	
+	<!-- 공지사항 사진 추가 -->
+	<insert id="insertNoticeImage">
+		INSERT INTO notice_image(
+			notice_no,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES(
+			#{noticeNo},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			NOW(),
+			NOW()
+		)
+	</insert>
+	
+	<!-- noticeNo 가져오기 -->
+	<select id="selectNoticeNo" resultType="int">
+		SELECT notice_no noticeNo
+		FROM notice
+		ORDER BY create_date DESC
+		LIMIT 0, 1
+	</select>
+	
+	<!-- notice 이미지 출력 -->
+	<select id="selectNoticeImage" parameterType="int" resultMap="noticeAndImage">
+		SELECT ni.image_name, ni.image_ext
+		FROM notice n JOIN notice_image ni
+			ON n.notice_no = ni.notice_no
+		WHERE n.notice_no = #{noticeNo}
+	</select>
 </mapper>

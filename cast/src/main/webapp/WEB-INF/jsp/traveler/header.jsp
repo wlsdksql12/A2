@@ -159,7 +159,7 @@
           </ul>
           <ul>
           <li class="relative px-6 py-3">
-              <a
+              <a id="stateBtn"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
@@ -179,7 +179,7 @@
               </a>
             </li>
             <li class="relative px-6 py-3">
-              <a
+              <a id="stateBtn"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="/experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
@@ -842,5 +842,17 @@
         </header>
        </div>
       </div>
+      <script>
+		// 체험추천, 숙소추천 클릭 시 함수를 발생시켜 가입 요청값에 맞는 이벤트
+		$("[id='stateBtn']").click(function(){
+			if('${state}' == '요청'){
+				swal("요청 중입니다.", "", "warning");
+				return false;
+			} else if('${state}' == '거절'){
+				swal("요청이 거절되었습니다.", "가입을 재요청하십시오.", "error");
+				return false;
+			}
+		});
+	</script>
     </body>
   </html>
