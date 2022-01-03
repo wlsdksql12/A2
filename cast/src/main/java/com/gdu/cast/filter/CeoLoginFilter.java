@@ -18,8 +18,6 @@ import com.gdu.cast.service.JoinRequestService;
 
 @WebFilter("/ceo/*")
 public class CeoLoginFilter implements Filter {
-	@Autowired
-	JoinRequestService joinRequestService;
 	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -34,9 +32,6 @@ public class CeoLoginFilter implements Filter {
 			((HttpServletResponse) response).sendRedirect(((HttpServletRequest) request).getContextPath() + "/loginSelect");
 			return;
 		}
-		String state = joinRequestService.getCeoJoinRequestResult((String)session.getAttribute("loginCeoId"));
-		session.setAttribute("state", state);
-		System.out.println(state + " <<< CeoLginFilter");
 		chain.doFilter(request, response);
 	}
 

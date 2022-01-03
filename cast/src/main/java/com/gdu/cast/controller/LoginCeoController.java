@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gdu.cast.service.CeoService;
+import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceWishList;
@@ -20,10 +21,12 @@ import com.gdu.cast.vo.Hotel;
 public class LoginCeoController {
 	@Autowired
 	CeoService ceoService;
+	@Autowired
+	JoinRequestService joinRequestService;
 	
 	// 사업자 메인 페이지
 	@GetMapping("/ceo/ceoIndex")
-	public String ceoIndex(Model model, String ceoId) {
+	public String ceoIndex(Model model, HttpSession session, String ceoId) {
 		
 		// 메인페이지에 체험리스트
 		List<Experience> experienceList = ceoService.getselectExperienceIndex(ceoId);
@@ -35,7 +38,9 @@ public class LoginCeoController {
 		
 		ExperienceWishList experienceWishList = ceoService.selectExpWish(ceoId);
 		model.addAttribute("experienceWishList", experienceWishList);
-		
+		String state = joinRequestService.getCeoJoinRequestResult((String)session.getAttribute("loginCeoId"));
+		session.setAttribute("state", state);
+		System.out.println(state + " <<< CeoLginFilter");
 		System.out.println(experienceWishList);
 		return "ceo/ceoIndex";
 	}
