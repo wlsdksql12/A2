@@ -20,10 +20,6 @@
 		</collection>
 	</resultMap>
 	
-	
-	
-	
-	
 	<!-- experience comment list-->
 	<select id="experiencePaymentReview" parameterType="Map" resultMap="resultExperiencePaymentReview">
 		SELECT 
@@ -31,16 +27,16 @@
 		er.experience_id,
 		er.experience_payment_id,
 		er.experience_payment_review_content,
-		ei.image_name imageName,
-		ei.image_ext imageExt,
-		ei.image_size imageSize,
+		ei.image_name,
+		ei.image_ext,
+		ei.image_size,
 		eo.customer_id,
 		er.create_date,
 		er.update_date
-		FROM  experience_payment_review_image ei inner join experience_payment_review er
-		on er.experience_payment_review_id = ei.experience_payment_review_id
-		inner join experience_payment ep on er.experience_payment_id = ep.experience_payment_id
-		inner join experience_order eo on eo.experience_order_id = ep.experience_order_id
+		FROM  experience_payment_review_image ei
+		join experience_payment_review er on er.experience_payment_review_id = ei.experience_payment_review_id
+		join experience_payment ep on er.experience_payment_id = ep.experience_payment_id
+		join experience_order eo on eo.experience_order_id = ep.experience_order_id
 		WHERE er.experience_id = #{experienceId}
 		ORDER BY er.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
@@ -50,6 +46,15 @@
 	<select id="selectExperienceReviewTotalCount" parameterType="String" resultType="int">
 	SELECT COUNT(*) 
 	FROM experience_payment_review
+	</select>
+	
+	<!-- 결제한 사람만 후기를 남길수 있는 조건문 생성 -->
+	<select id="selectCustomerPayment" parameterType="int" resultType="String">
+	SELECT eo.customer_id customerId
+	FROM experience_order eo
+	inner join experience_payment ep on eo.experience_order_id = ep.experience_order_id
+	inner join experience_payment_review er on ep.experience_payment_id = er.experience_payment_id
+	WHERE er.experience_id = #{experienceId}
 	</select>
 
 </mapper>

@@ -35,6 +35,7 @@ public class MainExperienceOrHotelReviewService {
 		   paramMap.put("experienceId", experienceId);
 		   List<ExperiencePaymentReview> ExperienceReviewList = mainExperienceOrHotelReviewMapper.experiencePaymentReview(paramMap);
 		   
+		   
 		   startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
 		   
 		   
@@ -58,6 +59,11 @@ public class MainExperienceOrHotelReviewService {
 			returnMap.put("totalPage", totalPage);
 			
 			return returnMap;
+	}
+	
+	//결제한 사람만 리뷰 추가 가능
+	public String getselectCustomerPayment(int experienceId) {
+		return mainExperienceOrHotelReviewMapper.selectCustomerPayment(experienceId);
 	}
 
 }

@@ -158,8 +158,9 @@
 						</c:if>
 					</div>
 				</div>
-				
-				
+				<c:if test="${loginCustomerId != null || customerExperienceId == customerId}">
+				<a href="${pageContext.request.contextPath}/addExperienceReview?experienceId=${experience.experienceId}">추가</a>
+				</c:if>
 			<table style="text-align:center" class="table table-hover mb-0">
 			<thead>
 				<tr>

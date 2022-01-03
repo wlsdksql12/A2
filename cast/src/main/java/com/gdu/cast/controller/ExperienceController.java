@@ -21,6 +21,7 @@ import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.AddExperience;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperiencePaymentReview;
 import com.gdu.cast.vo.ExperiencePaymentReviewImage;
 import com.gdu.cast.vo.ExperienceSelectImage;
 
@@ -161,14 +162,18 @@ public class ExperienceController {
    
    // 메인 체험 상세보기
    @GetMapping("/mainExperienceOne")
-   public String mainExperienceOne(Model model, Address address, int experienceId, @RequestParam(defaultValue = "1") int currentPage) {
-      Experience experience = experienceService.selectExperienceOne(experienceId);
+   public String mainExperienceOne(Model model, Address address, int experienceId, @RequestParam(defaultValue = "1") int currentPage, HttpSession session) {
+	   String customerId = (String)session.getAttribute("loginCustomerId");
+	   Experience experience = experienceService.selectExperienceOne(experienceId);
       Map<String, Object> map = mainExperienceOrHotelReviewService.getexperiencePaymentReview(currentPage, row_per_page, experienceId);
-		
+      String customerExperienceId = mainExperienceOrHotelReviewService.getselectCustomerPayment(experienceId);
       System.out.println(map.get("ExperienceReviewList").toString() + "디버깅");
       
       model.addAttribute("ExperienceReviewList", map.get("ExperienceReviewList"));
-      	model.addAttribute("startPage", map.get("startPage"));
+     // 결제한 사람만 리뷰 가능하게.
+      model.addAttribute("customerExperienceId", customerExperienceId);
+      model.addAttribute("customerId", customerId);
+      model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
@@ -182,6 +187,20 @@ public class ExperienceController {
       return "/mainExperienceOne";
    }
    
+   @GetMapping("/addExperienceReview")
+   public String addMainExperience(Model model, HttpSession session, int experienceId) {
+	   String customerId = (String)session.getAttribute("loginCustomerId");
+	   model.addAttribute("customerId", customerId);
+	   model.addAttribute("experienceId", experienceId);
+	   return "addExperienceReview";
+   }
    
+   @PostMapping("/addExperienceReview")
+   public String addMainExperience(ExperiencePaymentReview experiencePaymentReview) {
+	   
+	return "redirect:/mainExperienceOne";
+	   
+   }
+
    
 }	
