@@ -1,6 +1,7 @@
 package com.gdu.cast.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ import com.gdu.cast.service.MainExperienceOrHotelReviewService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
+import com.gdu.cast.vo.ExperiencePaymentReviewImage;
+import com.gdu.cast.vo.ExperienceSelectImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -160,9 +163,11 @@ public class ExperienceController {
    public String mainExperienceOne(Model model, Address address, int experienceId, @RequestParam(defaultValue = "1") int currentPage) {
       Experience experience = experienceService.selectExperienceOne(experienceId);
       Map<String, Object> map = mainExperienceOrHotelReviewService.getexperiencePaymentReview(currentPage, row_per_page, experienceId);
+		
+      System.out.println(map.get("ExperienceReviewList").toString() + "디버깅");
       
-		model.addAttribute("ExperienceReviewList", map.get("ExperienceReviewList"));
-		model.addAttribute("startPage", map.get("startPage"));
+      model.addAttribute("ExperienceReviewList", map.get("ExperienceReviewList"));
+      	model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);

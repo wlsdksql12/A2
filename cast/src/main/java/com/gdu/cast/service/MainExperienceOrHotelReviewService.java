@@ -9,13 +9,21 @@ import org.springframework.stereotype.Service;
 
 import com.gdu.cast.mapper.MainExperienceOrHotelReviewMapper;
 import com.gdu.cast.vo.ExperiencePaymentReview;
+import com.gdu.cast.vo.ExperiencePaymentReviewImage;
+import com.gdu.cast.vo.ExperienceSelectImage;
 
 @Service
 public class MainExperienceOrHotelReviewService {
 	@Autowired MainExperienceOrHotelReviewMapper mainExperienceOrHotelReviewMapper;
 	// 메인 체험 리스트 후기 리스트 출력.
 	public Map<String, Object> getexperiencePaymentReview(int currentPage, int row_per_page,int experienceId){
-		   Map<String, Object> paramMap = new HashMap<>();
+		System.out.println( currentPage  +"currentPage"); 
+		System.out.println( row_per_page  +"row_per_page");   
+		System.out.println( experienceId  +"experienceId");   
+		
+		
+		
+		Map<String, Object> paramMap = new HashMap<>();
 			
 		   int beginRow = 0;
 			int displayPage = 10;
@@ -51,4 +59,5 @@ public class MainExperienceOrHotelReviewService {
 			
 			return returnMap;
 	}
+
 }

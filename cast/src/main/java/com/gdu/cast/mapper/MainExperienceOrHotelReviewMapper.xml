@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.MainExperienceOrHotelReviewMapper">
+	
+		<!-- 메인 페이지 체험 추천 리스트에 여행작가 이름 및 이미지 Join -->
+	<resultMap type="com.gdu.cast.vo.ExperiencePaymentReview" id="resultExperiencePaymentReview">
+		<id column="experience_payment_review_id" property="experiencePaymentReviewId"></id>
+		<result column="experience_id" property="experienceId"></result>
+		<result column="experience_payment_id" property="experiencePaymentId"></result>
+		<result column="experience_payment_review_content" property="experiencePaymentReviewContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="experiencePaymentReviewImage" ofType="com.gdu.cast.vo.ExperiencePaymentReviewImage">
+			<result column="image_name" property="imageName"></result>
+			<result column="image_ext" property="imageExt"></result>
+			<result column="image_size" property="imageSize"></result>
+		</collection>
+		<collection property="experienceOrder" ofType="com.gdu.cast.vo.ExperienceOrder">
+			<result column="customer_id" property="customerId"></result>
+		</collection>
+	</resultMap>
+	
+	
+	
+	
+	
 	<!-- experience comment list-->
-	<select id="experiencePaymentReview" parameterType="Map" resultType="com.gdu.cast.vo.ExperiencePaymentReview">
+	<select id="experiencePaymentReview" parameterType="Map" resultMap="resultExperiencePaymentReview">
 		SELECT 
-		experience_payment_review_id experiencePaymentReviewId,
-		experience_id experienceId,
-		experience_payment_id experiencePaymentId,
-		experience_payment_review_content experiencePaymentReviewContent,
-		create_date createDate,
-		update_date updateDate 
-		FROM experience_payment_review
-		WHERE experience_id = #{experienceId}
-		ORDER BY create_date DESC
+		er.experience_payment_review_id,
+		er.experience_id,
+		er.experience_payment_id,
+		er.experience_payment_review_content,
+		ei.image_name imageName,
+		ei.image_ext imageExt,
+		ei.image_size imageSize,
+		eo.customer_id,
+		er.create_date,
+		er.update_date
+		FROM  experience_payment_review_image ei inner join experience_payment_review er
+		on er.experience_payment_review_id = ei.experience_payment_review_id
+		inner join experience_payment ep on er.experience_payment_id = ep.experience_payment_id
+		inner join experience_order eo on eo.experience_order_id = ep.experience_order_id
+		WHERE er.experience_id = #{experienceId}
+		ORDER BY er.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 
@@ -21,4 +51,5 @@
 	SELECT COUNT(*) 
 	FROM experience_payment_review
 	</select>
+
 </mapper>

@@ -165,18 +165,23 @@
 				<tr>
 					<th>내용</th>
 					<th>작성 날짜</th>
+					<th>작성자</th>
+					<th>사진</th>
 					<th>수정</th>
 					<th>삭제</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${ExperienceReviewList}"  var="comment">
+				<c:forEach items="${ExperienceReviewList}"  var="review">
 					<tr>
-						<td>${comment.experiencePaymentReviewContent}</td>
-						<td>${comment.createDate.substring(0,10)}</td>
+						<td>${review.experiencePaymentReviewContent}</td>
+						<td>${review.createDate.substring(0,10)}</td>
+						<td>${review.experienceOrder.customerId}</td>
+						<td><img src="${pageContext.request.contextPath}/upload/${review.experiencePaymentReviewImage.imageName}.${review.experiencePaymentReviewImage.imageExt}" style="width:400px; height:400px;"/></td>
+						
 						<!-- 고쳐야 됨. -->
 						<c:choose>
-						<c:when test="${loginCustomerId == comment.customerId}">
+						<c:when test="${loginCustomerId == review.experienceOrder.customerId}">
 						<td>
 							<a href="${pageContext.request.contextPath}/">수정</a>
 						</td>
@@ -195,21 +200,21 @@
 			</table>
 				<div style="text-align: center;">
 			<c:if test="${startPage > 1}">
-				<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experienceSelect.experienceSelectId}&currentPage=${startPage-1}" class="btn btn-outline-light text-dark">◁</a>
+				<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experience.experienceId}&currentPage=${startPage-1}" class="btn btn-outline-light text-dark">◁</a>
 			</c:if>
 			
 			<c:forEach begin="${startPage}" end="${lastPage}" var="i">
 				<c:choose>
 					<c:when test="${i == currentPage}">
-						<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experienceSelect.experienceSelectId}&currentPage=${i}" class="btn btn-secondary">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experience.experienceId}&currentPage=${i}" class="btn btn-secondary">${i}</a>
 					</c:when>
 					<c:otherwise>
-						<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experienceSelect.experienceSelectId}&currentPage=${i}" class="btn btn-outline-light text-dark">${i}</a>
+						<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experience.experienceId}&currentPage=${i}" class="btn btn-outline-light text-dark">${i}</a>
 					</c:otherwise>
 				</c:choose>
 			</c:forEach>
 				<c:if test="${lastPage != totalPage}">
-				<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experienceSelect.experienceSelectId}&currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">▷</a>
+				<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${experience.experienceId}&currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">▷</a>
 				</c:if>
 				</div>
 				
