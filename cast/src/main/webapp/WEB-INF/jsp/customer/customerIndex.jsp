@@ -467,7 +467,7 @@
 											<c:forEach items="${experienceList}"  var="list">
 												<tr>
 													<td>${list.experienceId}</td>
-													<td><a href= "${pageContext.request.contextPath}/customerIndex?customerId=${loginCustomerId}&currentPage=1">${list.experienceName}</a></td>
+													<td><a href= "${pageContext.request.contextPath}/mainExperienceOne?experienceId=${list.experienceId}">${list.experienceName}</a></td>
 													<td>${list.createDate}</td>
 												</tr>
 											</c:forEach>
@@ -490,7 +490,7 @@
 											<tbody>
 												<tr>
 													<td>${list.hotelId}</td>
-													<td> <a href= "${pageContext.request.contextPath}/customerIndex?customerId=${loginCustomerId}&currentPage=1">${list.hotelName}</a></td>
+													<td> <a href= "${pageContext.request.contextPath}/mainHotelOne?hotelId=${list.hotelId}">${list.hotelName}</a></td>
 													<td>${list.createDate}</td>
 												</tr>
 											</c:forEach>

@@ -271,20 +271,27 @@
 			</div>
 			<!-- 윗화면내용 end -->
 			<!-- 메인컨텐츠 start -->
-   <div>
-      <select id="year">
-         <option value="2021">2021</option>
-         <option value="2022">2022</option>
-         <option value="2023">2023</option>
-      </select>
-      <button id="btnIn">NH</button>
-      <button id="btnOut">KB</button>
-   </div>
+			<div class="col-xl-12 col-md-12">
+				<div class="card table-card review-card">
+						<div class="card-body">
+							<div class="card latest-update-card">
+								<div class="card-header">
+									<select id="year">
+										<option value="2021">2021</option>
+										<option value="2022">2022</option>
+										<option value="2023">2023</option>
+									</select>
+									<button id="btnIn">NH</button>
+									<button id="btnOut">KB</button>
+								</div>
    
-   <div>
-      <canvas id="myChart"></canvas>
-   </div>
-   
+								<div>
+									<canvas id="myChart"></canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
    <script>
    let ctx = document.getElementById('myChart').getContext('2d');
    let myChart = new Chart(ctx, {
