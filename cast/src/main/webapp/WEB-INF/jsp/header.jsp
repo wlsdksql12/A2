@@ -32,13 +32,10 @@
                             <a class="nav-link" href="${pageContext.request.contextPath}/mainRoomSelect">여행작가 추천!</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/shop">Shop</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/shop">체험&숙소</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${pageContext.request.contextPath}/mainExhibition">전시소개</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/contact">Contact</a>
                         </li>
                     </ul>
                </div>
