@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
 					<tr>
 						<td style="font-size:14px">도로명 &nbsp;</td>
 						<td>(${experience.address.postcode})</td>
-						<td>${experience.address.roadAddress} ${experience.address.extraAddress} ${hotel.address.detailAddress}</td>
+						<td>${experience.address.roadAddress} ${experience.address.extraAddress} ${experience.address.detailAddress}</td>
 					</tr>
 					<tr>
 						<td colspan="2" style="font-size:14px">지번 &nbsp;</td>
@@ -44,15 +45,15 @@
 					<p class="card-description">가격</p>
 					<h4>${experience.experiencePrice}&nbsp;&#8361;</h4>
 					<br><hr><br>
-					<p class="card-description">이미지(미구현)</p>
-					<h4></h4>
+					<p class="card-description">이미지</p>
+						<c:forEach items="${experienceImageList}" var="experienceImage">
+							<img src="${pageContext.request.contextPath}/upload/${experienceImage.imageName}.${experienceImage.imageExt} style="width:400px; height:400px;">
+						</c:forEach>
 					<br><hr><br>
 					 
 					<p class="card-description">프로그램</p>
 					<h4>${experience.experienceContent}</h4>
 					<br><hr><br>
-
-					<!-- 방 리스트 -->
 					
 					
 					<!-- 지도자리 -->

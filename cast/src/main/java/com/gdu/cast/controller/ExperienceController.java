@@ -21,9 +21,7 @@ import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.AddExperience;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Experience;
-import com.gdu.cast.vo.ExperiencePaymentReview;
-import com.gdu.cast.vo.ExperiencePaymentReviewImage;
-import com.gdu.cast.vo.ExperienceSelectImage;
+import com.gdu.cast.vo.ExperienceImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -118,16 +116,19 @@ public class ExperienceController {
       return "/ceo/experienceList";
    }
    
-   // 체험 상세보기
+   // 체험 상세보기(이미지 추가)
    @GetMapping("/ceo/experienceOne")
    public String experienceOne(Model model, Address address, int experienceId) {
       Experience experience = experienceService.selectExperienceOne(experienceId);
+      List<ExperienceImage> experienceImageList = experienceService.getExperienceImage(experienceId);
       
       model.addAttribute("experience", experience);
       model.addAttribute("address", address);
+      model.addAttribute("experienceImageList", experienceImageList);
       
       System.out.println(experience + " << Experience");
       System.out.println(address + " << Address");
+      System.out.println(experienceImageList + "<<experienceImageList");
       
       return "/ceo/experienceOne";
    }

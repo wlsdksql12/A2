@@ -89,6 +89,11 @@ public class ExperienceService {
 		return experience.getExperienceId();
 	}
 	
+	// 체험 이미지
+	public List<ExperienceImage> getExperienceImage(int experienceId) {
+		return experienceMapper.ExperienceImageList(experienceId);
+	}
+	
 	public void insertExpAddress(Address address) {
 		experienceMapper.insertExpAddress(address);
 	}

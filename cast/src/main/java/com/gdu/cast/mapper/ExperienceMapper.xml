@@ -141,6 +141,17 @@
 		WHERE experience_id = #{experienceId}
    </select>
    
+   <!-- 체험 상세보기 이미지 -->
+   <select id="ExperienceImageList" parameterType="com.gdu.cast.vo.ExperienceImage" resultType="com.gdu.cast.vo.ExperienceImage">
+   		SELECT 
+   			experience_id experienceId,
+   			image_name imageName,
+   			image_ext imageExt,
+   			image_size imageSize
+   		FROM experience_image
+   		WHERE experience_id = #{experienceId}
+   </select>
+   
    <!-- 체험 수정하기 -->
    <update id="updateExperience" parameterType="com.gdu.cast.vo.Experience">
    		UPDATE address a INNER JOIN experience e

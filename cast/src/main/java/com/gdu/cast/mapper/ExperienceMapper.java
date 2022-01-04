@@ -15,6 +15,8 @@ public interface ExperienceMapper {
 	int insertExp(Experience experience);
 	// 체험 이미지 추가
 	int insertExperienceImage(ExperienceImage experienceImage);
+	// 체험 이미지
+	List<ExperienceImage> ExperienceImageList(int experienceId);
 	// 주소 추가
 	int insertExpAddress(Address address);
 	// 체험 리스트 출력
@@ -31,4 +33,5 @@ public interface ExperienceMapper {
 	int selectExperienceId(Experience experience);
 	// 테마 체험 등록
 	void insertThemeExperience(Map<String, Object> map);
+	
 }
