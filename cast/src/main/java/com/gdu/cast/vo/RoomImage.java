@@ -7,7 +7,7 @@ import lombok.Data;
 public class RoomImage {
 	private int roomImageId;
 	private int roomId;
-	private String imageSize;
+	private long imageSize;
 	private String imageExt;
 	private String imageName;
 	private String createDate;

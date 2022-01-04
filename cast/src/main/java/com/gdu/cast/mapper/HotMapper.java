@@ -12,6 +12,7 @@ import com.gdu.cast.vo.Room;
 import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
 import com.gdu.cast.vo.RoomFilter;
+import com.gdu.cast.vo.RoomImage;
 
 @Mapper
 public interface HotMapper {
@@ -29,6 +30,12 @@ public interface HotMapper {
 	
 	// 방 등록
 	int insertRoom(Room room);
+	
+	// 방 이미지 추가
+	int insertRoomImage(RoomImage roomImage);
+	
+	// 방 이미지
+	List<RoomImage> RoomImageList(int roomId);
 	
 	// 호텔 리스트 출력
 	List<Hotel> selectHotelList(Map<String, Object> map);

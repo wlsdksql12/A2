@@ -35,7 +35,7 @@
 					</table>
 					<br><hr><br>
 	
-					<p class="card-description">이미지(미구현)</p>
+					<p class="card-description">이미지</p>
 						<c:forEach items="${hotelImageList}" var="hotelImage">
 							<img src="${pageContext.request.contextPath}/upload/${hotelImage.imageName}.${hotelImage.imageExt}" style="height: 500px; width: 400px;">	
 						</c:forEach>

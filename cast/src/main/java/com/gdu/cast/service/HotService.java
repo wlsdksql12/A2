@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.mapper.HotMapper;
 import com.gdu.cast.vo.AddHotel;
+import com.gdu.cast.vo.AddRoom;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.ExperienceImage;
 import com.gdu.cast.vo.Hotel;
@@ -22,6 +23,7 @@ import com.gdu.cast.vo.Room;
 import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
 import com.gdu.cast.vo.RoomFilter;
+import com.gdu.cast.vo.RoomImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -99,16 +101,81 @@ public class HotService {
 	}
 	
 	// 방 추가
-	public void insertRoom(Room room) {
+	public int insertRoom(AddRoom addRoom) {
+	
+		// 데이터 추가
+		int hotelId = addRoom.getHotelId();
+		String roomName = addRoom.getRoomName();
+		int roomCount = addRoom.getRoomCount();
+		String roomContent = addRoom.getRoomContent();
+		String roomStartdate = addRoom.getRoomStartdate();
+		String roomEnddate = addRoom.getRoomEnddate();
+		int roomPrice = addRoom.getRoomPrice();
+		String createDate = addRoom.getCreateDate();
+		String updateDate = addRoom.getUpdateDate();
+		
+		// 객실 입력
+		Room room = new Room();
+		room.setHotelId(hotelId);
+		room.setRoomName(roomName);
+		room.setRoomCount(roomCount);
+		room.setRoomContent(roomContent);
+		room.setRoomStartdate(roomStartdate);
+		room.setRoomEnddate(roomEnddate);
+		room.setRoomPrice(roomPrice);
+		room.setCreateDate(createDate);
+		room.setUpdateDate(updateDate);
 		hotMapper.insertRoom(room);
 		
+		System.out.println("!!!!!!!!1" + room.getRoomId());
+		
+		// 이미지 추가
+		List<RoomImage> roomImage = null;
+		if(addRoom.getRoomImage() != null) {
+			roomImage = new ArrayList<RoomImage>();
+			for(MultipartFile mf : addRoom.getRoomImage()) {
+				RoomImage esi = new RoomImage();
+				esi.setRoomId(room.getRoomId());
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				esi.setImageName(imageName);
+				esi.setImageExt(imageExt);
+				esi.setImageSize(mf.getSize());
+				esi.setCreateDate(createDate);
+				esi.setUpdateDate(updateDate);
+				System.out.println("@@@@@@@@@@" + esi.toString());
+				roomImage.add(esi);
+				// 절대경로
+				File temp = new File("");
+				String path = temp.getAbsolutePath();
+				try {
+					mf.transferTo(new File(path+"\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		if(roomImage != null) {
+			for(RoomImage esi : roomImage) {
+				hotMapper.insertRoomImage(esi);
+		}
 	}
+		return room.getRoomId();
+}
 	
 	// 방 리스트
 	public List<Room> getSelectRoomList(int hotelId) {
-		
 		return hotMapper.selectRoomList(hotelId);
 	}
+	
+	// 객실 이미지
+	public List<RoomImage> getRoomImage(int roomId) {
+		return hotMapper.RoomImageList(roomId);
+	}
+	
 	// 호텔 리스트
 	public Map<String, Object> getHotelList(int currentPage, int ROW_PER_PAGE, String searchTitle, String ceoId){
 		// 1. 매개변수 가공

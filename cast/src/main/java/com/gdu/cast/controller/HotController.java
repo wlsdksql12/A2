@@ -18,6 +18,7 @@ import com.gdu.cast.service.HotService;
 import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.AddHotel;
+import com.gdu.cast.vo.AddRoom;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.HotelImage;
@@ -25,6 +26,7 @@ import com.gdu.cast.vo.Room;
 import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
 import com.gdu.cast.vo.RoomFilter;
+import com.gdu.cast.vo.RoomImage;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,6 +39,7 @@ public class HotController {
 	KeywordService keywordService;
 	@Autowired
 	MainSelectService mainSelectService;
+	
 	// 호텔 등록
 	@GetMapping("/ceo/insertHotel")
 	public String insertHotel(Model model, int addressId) {
@@ -101,14 +104,16 @@ public class HotController {
 	}
 	
 	@PostMapping("/ceo/insertRoom")
-	public String insertRoom(Model model, Room room, Hotel hotel) {
+	public String insertRoom(Model model, AddRoom addRoom, Hotel hotel) {
 		
-		hotService.insertRoom(room);
+		int roomId = hotService.insertRoom(addRoom);
+		System.out.println(roomId  + "객실 id");
 		
 		model.addAttribute(hotel);
-		model.addAttribute(room);
+		model.addAttribute(addRoom);
+		System.out.println("@@@@@@@@@2HotController >> " + model);
 		
-		return "redirect:/ceo/insertRoomBedroom?roomId="+room.getRoomId();
+		return "redirect:/ceo/insertRoomBedroom?roomId="+roomId;
 	}
 	
 	// 호텔리스트
@@ -168,8 +173,8 @@ public class HotController {
 	
 	// room_bedroom 추가
 	@GetMapping("/ceo/insertRoomBedroom")
-	public String insertRoomBedroom(Model model, RoomBedroom roomBedroom, Room room) {
-		model.addAttribute("roomId", room.getRoomId());
+	public String insertRoomBedroom(Model model, RoomBedroom roomBedroom, AddRoom addRoom) {
+		model.addAttribute("roomId", addRoom.getRoomId());
 		model.addAttribute("roomBedroom", roomBedroom);		
 	
 		System.out.println(roomBedroom + "HotController roomBedroom");
@@ -177,18 +182,18 @@ public class HotController {
 	}
 	
 	@PostMapping("/ceo/insertRoomBedroom")
-	public String insertRoomBedroom(Model model, Room room, RoomBedroom roomBedroom) {
+	public String insertRoomBedroom(Model model,  AddRoom addRoom, RoomBedroom roomBedroom) {
 		
 		hotService.insertRoomBedroom(roomBedroom);
 		
-		return "redirect:/ceo/insertRoomConvenience?roomId=" + room.getRoomId();
+		return "redirect:/ceo/insertRoomConvenience?roomId=" + addRoom.getRoomId();
 	}
 	
 	// room_convenience 추가
 	@GetMapping("/ceo/insertRoomConvenience")
-	public String insertRoomConvenience(Model model, RoomConvenience roomConenience,  Room room) {
+	public String insertRoomConvenience(Model model, RoomConvenience roomConenience, AddRoom addRoom) {
 		
-		model.addAttribute("roomId", room.getRoomId());
+		model.addAttribute("roomId", addRoom.getRoomId());
 		model.addAttribute("roomConenience",roomConenience);
 		
 		System.out.println(roomConenience + "HotController roomConenience");
@@ -196,17 +201,17 @@ public class HotController {
 		return "/ceo/insertRoomConvenience";
 	}
 	@PostMapping("/ceo/insertRoomConvenience")
-	public String insertRoomConvenience(Model model, Room room, RoomConvenience roomConvenience) {
+	public String insertRoomConvenience(Model model,  AddRoom addRoom, RoomConvenience roomConvenience) {
 		
 		hotService.insertRoomConvenience(roomConvenience);
 		
-		return "redirect:/ceo/insertRoomFilter?roomId=" + room.getRoomId();
+		return "redirect:/ceo/insertRoomFilter?roomId=" + addRoom.getRoomId();
 	}
 	
 	// room_filter 추가
 	@GetMapping("/ceo/insertRoomFilter")
-	public String insertRoomFilter(Model model, RoomFilter roomFilter, Room room) {
-		model.addAttribute("roomId", room.getRoomId());
+	public String insertRoomFilter(Model model, RoomFilter roomFilter,  AddRoom addRoom) {
+		model.addAttribute("roomId", addRoom.getRoomId());
 		model.addAttribute("roomFilter",roomFilter);
 		
 		System.out.println(roomFilter + "HotController roomFilter");
@@ -214,7 +219,7 @@ public class HotController {
 		return "/ceo/insertRoomFilter";
 	}
 	@PostMapping("/ceo/insertRoomFilter")
-	public String insertRoomFilter(Model model, Room room, RoomFilter roomFilter) {
+	public String insertRoomFilter(Model model,  AddRoom addRoom, RoomFilter roomFilter) {
 		hotService.insertRoomFilter(roomFilter);
 		
 		return "redirect:/ceo/hotelList";
@@ -222,13 +227,15 @@ public class HotController {
 	
 	// 방 상세보기
 	@GetMapping("/ceo/roomOne")
-	public String roomOne(Model model, Room room, RoomFilter roomFilter, RoomConvenience roomConvenience, RoomBedroom roomBedroom) {
+	public String roomOne(Model model,  Room room, RoomFilter roomFilter, RoomConvenience roomConvenience, RoomBedroom roomBedroom, int roomId) {
 		room = hotService.selectRoomOne(room.getRoomId());
+		List<RoomImage> roomImageList = hotService.getRoomImage(roomId);
 		
 		model.addAttribute("room", room);
 		model.addAttribute("roomFilter", roomFilter);
 		model.addAttribute("roomConvenience", roomConvenience);
 		model.addAttribute("roomBedroom", roomBedroom);
+		model.addAttribute("roomImageList", roomImageList);
 		
 		System.out.println("@@@@HotController" + model);
 		

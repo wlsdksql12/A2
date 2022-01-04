@@ -172,7 +172,29 @@
 				NOW(),
 				NOW()
 			)
-		<selectKey resultType="integer" keyProperty="roomId" order="AFTER">
+		<selectKey resultType="int" keyProperty="roomId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+	<!-- 호텔 방 이미지 추가 -->
+	<insert id="insertRoomImage" parameterType="com.gdu.cast.vo.RoomImage">
+		INSERT INTO room_image(
+			room_id,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES (
+			#{roomId},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			now(),
+			now()
+		)
+		<selectKey resultType="int" keyProperty="roomImageId" order="BEFORE">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
@@ -327,6 +349,17 @@
 		INNER JOIN room_filter rf ON . r.room_id = rf.room_id
 		WHERE r.room_id = #{roomId}
 	</select>
+	
+	<!-- 방 상세보기 이미지 -->
+	<select id="RoomImageList" parameterType="com.gdu.cast.vo.RoomImage" resultType="com.gdu.cast.vo.RoomImage">
+		SELECT	
+			room_id roomId,
+			image_name imageName,
+			image_ext imageExt,
+			image_size imageSize
+		FROM room_image
+		WHERE room_id = #{roomId}
+	</select>	
 	
 	<!-- 방 수정 -->
 	<update id="updateRoom" parameterType="com.gdu.cast.vo.Room">
