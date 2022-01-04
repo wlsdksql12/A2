@@ -7,12 +7,13 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.ExperiencePaymentReview;
 import com.gdu.cast.vo.ExperiencePaymentReviewImage;
+import com.gdu.cast.vo.RoomPaymentReview;
 
 @Mapper
 public interface MainExperienceOrHotelReviewMapper {
-	//리뷰 리스트 출력
+	//체험 리뷰 리스트 출력
 	List<ExperiencePaymentReview> experiencePaymentReview(Map<String, Object> map);
-	// 리뷰 리스트 페이징
+	//체험 리뷰 리스트 페이징
 	int selectExperienceReviewTotalCount();
 	// 결제한 사람만 리뷰를 추가할 수 있게...
 	String selectCustomerPayment(int experienceId);
@@ -24,5 +25,9 @@ public interface MainExperienceOrHotelReviewMapper {
 	void insertExperiencePaymentReviewImage(ExperiencePaymentReviewImage experiencePaymentReviewImage);
 	// 체험 후기 삭제
 	void deleteExperienceReview(int experiencePaymentReviewId);
+	// 호텔 리뷰 리스트 출력
+	List<RoomPaymentReview> roomPaymentReview(Map<String, Object> map);
+	// 호텔 리뷰 리스트 페이징
+	int selectRoomReviewTotalCount();
 	
 }

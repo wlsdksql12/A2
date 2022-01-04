@@ -202,6 +202,7 @@ public class ExperienceController {
       model.addAttribute("experiencePaymentId", experiencePaymentId);
       return "addExperienceReview";
    }
+   
    // 리뷰 추가(사진 포함)
    @PostMapping("/addExperienceReview")
    public String addMainExperience(String experienceName,List<MultipartFile> experiencepaymentReviewImageUpload ,HttpServletRequest request, String customerId, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
@@ -214,7 +215,7 @@ public class ExperienceController {
       return "redirect:/mainExperienceOne?experienceId="+experienceId+"&experienceName="+experienceName;
       
    }
-  
+  // 리뷰 삭제
    @GetMapping("/deleteExperienceReview")
    public String deleteExperiencePaymentReview(int experiencePaymentReviewId, int experienceId, String experienceName) {
 	   System.out.println(experiencePaymentReviewId + "experienvePaymentReviewId!"); 

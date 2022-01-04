@@ -202,6 +202,7 @@
 							<p class="card-description">여행작가 추천</p>
 							<hr>
 								<a href="${pageContext.request.contextPath}/mainRoomSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
+								<a href="${pageContext.request.contextPath}/addHotelOrder" style="text-align:right;" class="btn btn-outline-success">호텔 예약</a>
 							<p></p><p></p>
 							<div>
 								<c:if test="${loginTravelerId != null && state eq '승인'}">
@@ -209,6 +210,77 @@
 								</c:if>
 							</div>
 						</div>
+						
+						
+						
+					<h4>review</h4>
+					
+					<div style="text-align: right;">
+					<c:if test="${loginCustomerId != null}">
+						<a href="${pageContext.request.contextPath}/addExperienceReview?experienceId=${experience.experienceId}&experienceName=${experience.experienceName}"class="btn btn-outline-success">추가</a>
+					</c:if>
+					</div>
+				<table style="width: 750px; margin-right: auto; margin-left: auto;">
+					<c:forEach items="${RoomPaymentReview}"  var="RoomPaymentReview">
+						<tr>
+							<td>
+								${RoomPaymentReview.roomOrder.customerId} · ${RoomPaymentReview.createDate.substring(0,10)}
+								<hr>
+							</td>
+							
+							<td rowspan="2" style="text-align: center;">
+							<div>
+							<c:choose>
+							<c:when test="${loginCustomerId == RoomPaymentReview.roomOrder.customerId}">
+								<a href="${pageContext.request.contextPath}/">수정</a>
+								<!-- <a href="${pageContext.request.contextPath}/deleteExperienceReview?experiencePaymentReviewId=${ExperiencePaymentReview.experiencePaymentReviewId}&experienceId=${experience.experienceId}&experienceName=${experience.experienceName}">삭제</a> -->
+							
+							</c:when>
+								<c:otherwise>
+									<div>-</div>
+									<div>-</div>
+								</c:otherwise>
+							</c:choose>
+						<c:forEach items="${RoomPaymentReview.roomPaymentReviewImage}" var="roomPaymentReviewImage">
+                        <img src="${pageContext.request.contextPath}/upload/${roomPaymentReviewImage.imageName}.${roomPaymentReviewImage.imageExt}" style="width: 100px; height: 100px"/>
+                     	</c:forEach>
+	
+							</td>
+						</tr>
+						<tr>
+							
+							<td>${RoomPaymentReview.roomPaymentReviewContent}</td>
+							<!-- 고쳐야 됨. -->
+					</c:forEach>		
+						</tr>
+					
+				</table>
+					<div style="text-align: center;">
+				<c:if test="${startPage > 1}">
+					<a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotel.hotelId}&currentPage=${startPage-1}" class="btn btn-outline-light text-dark">◁</a>
+				</c:if>
+				
+				<c:forEach begin="${startPage}" end="${lastPage}" var="i">
+					<c:choose>
+						<c:when test="${i == currentPage}">
+							<a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotel.hotelId}&currentPage=${i}" class="btn btn-secondary">${i}</a>
+						</c:when>
+						<c:otherwise>
+							<a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotel.hotelId}&currentPage=${i}" class="btn btn-outline-light text-dark">${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+					<c:if test="${lastPage != totalPage}">
+					<a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotel.hotelId}&currentPage=${lastPage+1}" class="btn btn-outline-light text-dark">▷</a>
+					</c:if>
+					</div>
+						
+						
+						
+						
+						
+						
+						
 						<div align="right">
 						<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
 						</div>

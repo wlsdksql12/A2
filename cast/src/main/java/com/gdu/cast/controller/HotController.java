@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.HotService;
 import com.gdu.cast.service.KeywordService;
+import com.gdu.cast.service.MainExperienceOrHotelReviewService;
 import com.gdu.cast.service.MainSelectService;
 import com.gdu.cast.vo.AddHotel;
 import com.gdu.cast.vo.AddRoom;
@@ -39,7 +40,10 @@ public class HotController {
 	KeywordService keywordService;
 	@Autowired
 	MainSelectService mainSelectService;
+	@Autowired
+	MainExperienceOrHotelReviewService mainExperienceOrHotelReviewService;
 	
+	 private final int row_per_page = 5;
 	// 호텔 등록
 	@GetMapping("/ceo/insertHotel")
 	public String insertHotel(Model model, int addressId) {
@@ -264,15 +268,24 @@ public class HotController {
 	
 	// 메인 shop 호텔 상세보기 페이지
 	@GetMapping("/mainHotelOne")
-	public String mainHotelOne(Model model, Address address, int hotelId) {
-		Hotel hotel = hotService.selectHotelOne(hotelId);
+	public String mainHotelOne(Model model, Address address, int hotelId, @RequestParam(defaultValue = "1") int currentPage) {
 		
+		Hotel hotel = hotService.selectHotelOne(hotelId);
+		//호텔 후기 리스트 출력.
+		 Map<String, Object> map = mainExperienceOrHotelReviewService.getroomPaymentReview(currentPage, row_per_page, hotelId);
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("address", address);
 		
 		List<Room> roomList = hotService.getSelectRoomList(hotelId);
-		model.addAttribute("roomList", roomList);
 		
+		System.out.println(map.get("RoomPaymentReview") +"@#@#map.get(\"RoomPaymentReview\")");
+		
+	     model.addAttribute("RoomPaymentReview", map.get("RoomPaymentReview"));
+		model.addAttribute("roomList", roomList);
+	      model.addAttribute("startPage", map.get("startPage"));
+	      model.addAttribute("lastPage", map.get("lastPage"));
+	      model.addAttribute("totalPage", map.get("totalPage"));
+	      model.addAttribute("currentPage", currentPage);
 		System.out.println(" << HotelController" + model);
 		
 		return "mainHotelOne";
