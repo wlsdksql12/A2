@@ -36,7 +36,9 @@
 					<br><hr><br>
 	
 					<p class="card-description">이미지(미구현)</p>
-					<h4></h4>
+						<c:forEach items="${hotelImageList}" var="hotelImage">
+							<img src="${pageContext.request.contextPath}/upload/${hotelImage.imageName}.${hotelImage.imageExt}" style="height: 500px; width: 400px;">	
+						</c:forEach>
 					<br><hr><br>
 					 
 					<p class="card-description">호텔 소개</p>

@@ -101,6 +101,28 @@
 		</selectKey>
 	</insert>
 	
+	<!-- 호텔 이미지 추가 -->
+	<insert id="insertHotelImage" parameterType="com.gdu.cast.vo.HotelImage">
+		INSERT INTO hotel_image(
+			hotel_id,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES (
+			#{hotelId},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			now(),
+			now()
+		)
+		<selectKey resultType="int" keyProperty="hotelImageId" order="BEFORE">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
 	<!-- 주소 추가 -->
 	<insert id="insertHotelAddress" parameterType="com.gdu.cast.vo.Address">
 		INSERT INTO
@@ -193,6 +215,17 @@
 		ON a.address_id = h.address_id
 		WHERE hotel_id = #{hotelId}
 	</select>
+
+	<!-- 호텔 상세보기 이미지 -->
+	<select id="HotelImageList" parameterType="com.gdu.cast.vo.HotelImage" resultType="com.gdu.cast.vo.HotelImage">
+		SELECT	
+			hotel_id hotelId,
+			image_name imageName,
+			image_ext imageExt,
+			image_size imageSize
+		FROM hotel_image
+		WHERE hotel_id = #{hotelId}
+	</select>	
 	
 	<!-- 호텔 수정 -->
 	<update id="updateHotel" parameterType="com.gdu.cast.vo.Hotel">

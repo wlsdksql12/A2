@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.gdu.cast.service.HotService;
 import com.gdu.cast.service.KeywordService;
 import com.gdu.cast.service.MainSelectService;
+import com.gdu.cast.vo.AddHotel;
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Hotel;
+import com.gdu.cast.vo.HotelImage;
 import com.gdu.cast.vo.Room;
 import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
@@ -47,13 +49,14 @@ public class HotController {
 	}
 	
 	@PostMapping("/ceo/insertHotel")
-	public String insertHotel(Model model, HttpSession session, Hotel hotel, @RequestParam(defaultValue = "") String keyword, String theme) {
+	public String insertHotel(Model model, HttpSession session, AddHotel addHotel, @RequestParam(defaultValue = "") String keyword, String theme) {
 		String ceoId = (String) session.getAttribute("loginCeoId");
-		hotel.setCeoId(ceoId);
-		int hotelId = hotService.insertHotel(hotel);
+		addHotel.setCeoId(ceoId);
+		
+		int hotelId = hotService.insertHotel(addHotel);
 		System.out.println(hotelId + "호텔id");
 		log.debug("====================================" + ceoId + " << ceoId");
-		log.debug("====================================" + hotel.toString() + " << hotel Debug");
+		log.debug("====================================" + addHotel.toString() + " << hotel Debug");
 		
 		// 해시태그 키워드 입력을 안할시 실행이 안되도록
 		if(!keyword.equals("")) {
@@ -131,13 +134,15 @@ public class HotController {
 	      return "/ceo/hotelList";
 	   }
 	
-	// 호텔 상세보기 페이지
+	// 호텔 상세보기 페이지(이미지 추가)
 	@GetMapping("/ceo/hotelOne")
 	public String hotelOne(Model model, Address address, int hotelId) {
 		Hotel hotel = hotService.selectHotelOne(hotelId);
+		List<HotelImage> hotelImageList = hotService.getHotelImage(hotelId);
 		
 		model.addAttribute("hotel", hotel);
 		model.addAttribute("address", address);
+		model.addAttribute("hotelImageList", hotelImageList);
 		
 		List<Room> roomList = hotService.getSelectRoomList(hotelId);
 		model.addAttribute("roomList", roomList);

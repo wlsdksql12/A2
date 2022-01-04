@@ -72,8 +72,8 @@
 			#{imageName},
 			#{imageExt},
 			#{imageSize},
-			NOW(),
-			NOW()
+			now(),
+			now()
 		)
 		<selectKey resultType="int" keyProperty="experienceImageId" order="BEFORE">
 			SELECT LAST_INSERT_ID()
