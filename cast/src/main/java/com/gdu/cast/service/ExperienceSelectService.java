@@ -47,7 +47,7 @@ public class ExperienceSelectService {
 		experienceSelect.setCreateDate(createDate);
 		experienceSelect.setUpdateDate(updateDate);
 		experienceSelectMapper.insertExperienceSelect(experienceSelect);
-		System.out.println(experienceSelect +"★★★★Hyun★★★★");
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		
 		// 2) 체험 추천 이미지 추가
 		List<ExperienceSelectImage> experienceSelectImage = null;
@@ -66,9 +66,12 @@ public class ExperienceSelectService {
 				esi.setCreateDate(createDate);
 				esi.setUpdateDate(updateDate);
 				experienceSelectImage.add(esi);
-				System.out.println(experienceSelectImage +"★★★★Hyun★★★★");
+				log.debug("★★★★Hyun★★★★"+experienceSelectImage.toString());
+				File temp = new File("");
+				String path = temp.getAbsolutePath();
+				log.debug("★★★★Hyun★★★★"+path);
 				try {
-					mf.transferTo(new File("D:\\workspace\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
+					mf.transferTo(new File(path+"\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
 				} catch(Exception e) {
 					e.printStackTrace();
 					throw new RuntimeException();
@@ -96,7 +99,7 @@ public class ExperienceSelectService {
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("travelerId", travelerId);
-		log.debug(travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		
 		// 여행작가 체험 추천 리스트
 		List<ExperienceSelect> experienceSelectList = experienceSelectMapper.selectExperienceList(paramMap);
@@ -117,6 +120,7 @@ public class ExperienceSelectService {
 		returnMap.put("startPage", startPage);
 		returnMap.put("lastPage", lastPage);
 		returnMap.put("totalPage", totalPage);
+		log.debug("★★★★Hyun★★★★"+returnMap.toString());
 		
 		return returnMap;
 	}

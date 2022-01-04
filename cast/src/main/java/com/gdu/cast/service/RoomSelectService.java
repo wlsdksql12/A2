@@ -47,7 +47,7 @@ public class RoomSelectService {
 		roomSelect.setCreateDate(createDate);
 		roomSelect.setUpdateDate(updateDate);
 		roomSelectMapper.insertRoomSelect(roomSelect);
-		System.out.println(roomSelect +"★★★★Hyun★★★★");
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		
 		// 2) 숙소 추천 이미지 추가
 		List<RoomSelectImage> roomSelectImage = null;
@@ -66,9 +66,12 @@ public class RoomSelectService {
 				rsi.setCreateDate(createDate);
 				rsi.setUpdateDate(updateDate);
 				roomSelectImage.add(rsi);
-				System.out.println(roomSelectImage +"★★★★Hyun★★★★");
+				log.debug("★★★★Hyun★★★★"+roomSelectImage.toString());
+				File temp = new File("");
+				String path = temp.getAbsolutePath();
+				log.debug("★★★★Hyun★★★★"+path);
 				try {
-					mf.transferTo(new File("D:\\workspace\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
+					mf.transferTo(new File(path+"\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
 				} catch(Exception e) {
 					e.printStackTrace();
 					throw new RuntimeException();
@@ -96,11 +99,11 @@ public class RoomSelectService {
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("travelerId", travelerId);
-		log.debug(travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		
 		// 여행작가 숙소 추천 리스트
 		List<RoomSelect> roomSelectList = roomSelectMapper.selectRoomSelectList(paramMap);
-		System.out.println(roomSelectList + "<-- roomSelectList");
+		log.debug("★★★★Hyun★★★★"+roomSelectList.toString());
 		
 		// 2) 리턴값 가공
 		Map<String, Object> returnMap = new HashMap<>();
@@ -118,6 +121,7 @@ public class RoomSelectService {
 		returnMap.put("startPage", startPage);
 		returnMap.put("lastPage", lastPage);
 		returnMap.put("totalPage", totalPage);
+		log.debug("★★★★Hyun★★★★"+returnMap.toString());
 		
 		return returnMap;
 	}
