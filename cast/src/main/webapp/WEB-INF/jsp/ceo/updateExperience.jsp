@@ -55,7 +55,7 @@
 					</div></div>
 					<br><hr><br>
 					<p class="card-description">이미지(미구현)</p>
-					<h4></h4>
+
 					<br><hr><br>
 					 
 					<p class="card-description">프로그램</p>

@@ -72,7 +72,7 @@ public class ExperienceService {
 				esi.setUpdateDate(updateDate);
 				experienceImage.add(esi);
 				System.out.println("@@@@@@@@@@experienceImage" + experienceImage);
-				File f = new File("D:\\workspace\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt);
+				File f = new File("C:\\Users\\공\\git\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt);
 				try {
 					mf.transferTo(f);
 				} catch(Exception e) {
