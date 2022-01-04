@@ -212,7 +212,7 @@
 						<p></p><p></p>
 						
 						<div>
-							<c:if test="${loginTravelerId != null && state eq '승인'}">
+							<c:if test="${loginTravelerId != null}">
 									<a href="${pageContext.request.contextPath}/addExperienceSelect?experienceId=${experience.experienceId}&travelerId=${loginTravelerId}" style="text-align:right;" class="btn btn-outline-success">추가</a>
 							</c:if>
 						</div>
@@ -238,7 +238,7 @@
 							<c:when test="${loginCustomerId == ExperiencePaymentReview.experienceOrder.customerId}">
 								<a href="${pageContext.request.contextPath}/">수정</a>
 								<a href="${pageContext.request.contextPath}/">삭제</a>
-
+							
 							</c:when>
 								<c:otherwise>
 									<div>-</div>
