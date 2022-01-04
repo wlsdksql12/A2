@@ -29,7 +29,8 @@ public class ExperienceService {
 	
 	// 체험 등록
 	public int insertExp(AddExperience addExperience) {
-
+		
+		// 데이터 추가
 		String ceoId = addExperience.getCeoId();
 		int addressId = addExperience.getAddressId();
 		String experienceName = addExperience.getExperienceName();
@@ -41,6 +42,7 @@ public class ExperienceService {
 		String createDate = addExperience.getCreateDate();
 		String updateDate = addExperience.getUpdateDate();
 		
+		// 체험 입력
 		Experience experience = new Experience();
 		experience.setCeoId(ceoId);
 		experience.setAddressId(addressId);
@@ -72,9 +74,11 @@ public class ExperienceService {
 				esi.setUpdateDate(updateDate);
 				experienceImage.add(esi);
 				System.out.println("@@@@@@@@@@experienceImage" + experienceImage);
-				File f = new File("C:\\Users\\공\\git\\A2\\cast\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt);
+				// 절대경로
+				File temp = new File("");
+				String path = temp.getAbsolutePath();
 				try {
-					mf.transferTo(f);
+					mf.transferTo(new File(path+"\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
 				} catch(Exception e) {
 					e.printStackTrace();
 					throw new RuntimeException();

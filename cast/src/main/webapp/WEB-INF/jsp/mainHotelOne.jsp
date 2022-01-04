@@ -145,7 +145,7 @@
 						<a href="${pageContext.request.contextPath}/mainRoomSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
 					<p></p><p></p>
 					<div>
-						<c:if test="${loginTravelerId != null}">
+						<c:if test="${loginTravelerId != null && state eq '승인'}">
 								<a href="${pageContext.request.contextPath}/addRoomSelect?hotelId=${hotel.hotelId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">추가</a>
 						</c:if>
 					</div>

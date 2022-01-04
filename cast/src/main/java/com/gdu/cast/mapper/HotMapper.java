@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.Address;
 import com.gdu.cast.vo.Hotel;
+import com.gdu.cast.vo.HotelImage;
 import com.gdu.cast.vo.Room;
 import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
@@ -16,6 +17,12 @@ import com.gdu.cast.vo.RoomFilter;
 public interface HotMapper {
 	// 호텔 등록
 	int insertHotel(Hotel hotel);
+	
+	// 호텔 이미지 추가
+	int insertHotelImage(HotelImage hotelImage);
+	
+	// 호텔 이미지
+	List<HotelImage> HotelImageList(int hotelId);
 	
 	// 호텔 주소 등록
 	int insertHotelAddress(Address address);

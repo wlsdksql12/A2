@@ -1,16 +1,23 @@
 package com.gdu.cast.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.mapper.HotMapper;
+import com.gdu.cast.vo.AddHotel;
 import com.gdu.cast.vo.Address;
+import com.gdu.cast.vo.ExperienceImage;
 import com.gdu.cast.vo.Hotel;
+import com.gdu.cast.vo.HotelImage;
 import com.gdu.cast.vo.Room;
 import com.gdu.cast.vo.RoomBedroom;
 import com.gdu.cast.vo.RoomConvenience;
@@ -26,9 +33,64 @@ public class HotService {
 	HotMapper hotMapper;
 	
 	// 호텔 추가
-	public int insertHotel(Hotel hotel) {
+	public int insertHotel(AddHotel addHotel) {
+		
+		// 데이터 추가
+		String ceoId = addHotel.getCeoId();
+		int addressId = addHotel.getAddressId();
+		String hotelName = addHotel.getHotelName();
+		String hotelContent = addHotel.getHotelContent();
+		String createDate = addHotel.getCreateDate();
+		String updateDate = addHotel.getUpdateDate();
+		
+		// 호텔 입력
+		Hotel hotel = new Hotel();
+		hotel.setCeoId(ceoId);
+		hotel.setAddressId(addressId);
+		hotel.setHotelName(hotelName);
+		hotel.setHotelContent(hotelContent);
+		hotel.setCreateDate(createDate);
+		hotel.setUpdateDate(updateDate);
 		hotMapper.insertHotel(hotel);
-		return hotMapper.selectHotelId(hotel);
+		
+		// 호텔 이미지 추가
+		List<HotelImage> hotelImage = null;
+		System.out.println("@@@@@@@addHotel" + addHotel.getHotelImage());
+		if(addHotel.getHotelImage() != null) {
+			hotelImage = new ArrayList<HotelImage>();
+			for(MultipartFile mf : addHotel.getHotelImage()) {
+				HotelImage esi = new HotelImage();
+				esi.setHotelId(hotel.getHotelId());
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				esi.setImageName(imageName);
+				esi.setImageExt(imageExt);
+				esi.setImageSize(mf.getSize());
+				esi.setCreateDate(createDate);
+				esi.setUpdateDate(updateDate);
+				hotelImage.add(esi);
+				File temp = new File("");
+				String path = temp.getAbsolutePath();
+				System.out.println("@@@@@@@@@@hotelImage" + hotelImage);
+				// 절대경로
+				File f = new File(path+"\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt);
+				try {
+					mf.transferTo(f);
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		if(hotelImage != null) {
+			for(HotelImage esi : hotelImage) {
+				hotMapper.insertHotelImage(esi);
+				System.out.println("@@@@@@@@@@hotelImage" + hotelImage);
+			}
+		}
+		return hotel.getHotelId();
 	}
 	
 	// 호텔 주소 추가
@@ -92,8 +154,12 @@ public class HotService {
 	// 호텔 상세보기
 	public Hotel selectHotelOne(int hotelId) {
 		Hotel hotel = hotMapper.selectHotelOne(hotelId);
-		
 		return hotel;
+	}
+	
+	// 호텔 이미지
+	public List<HotelImage> getHotelImage(int hotelId) {
+		return hotMapper.HotelImageList(hotelId);
 	}
 	
 	// 호텔 수정하기
