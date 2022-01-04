@@ -21,5 +21,5 @@ public interface MainExperienceOrHotelReviewMapper {
 	// 체험 후기 추가
 	void insertExperiencePaymentReview(ExperiencePaymentReview experiencePaymentReview);
 	// 체험 후기 사진 추가
-	void insertExperiencePaymenrReviewImage(ExperiencePaymentReviewImage experiencePaymentReviewImage);
+	void insertExperiencePaymentReviewImage(ExperiencePaymentReviewImage experiencePaymentReviewImage);
 }

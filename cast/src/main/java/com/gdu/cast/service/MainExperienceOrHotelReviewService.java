@@ -125,7 +125,7 @@ public class MainExperienceOrHotelReviewService {
 		
 		if(experiencePaymentReviewImage != null) {
 			for(ExperiencePaymentReviewImage rsi : experiencePaymentReviewImage) {
-				mainExperienceOrHotelReviewMapper.insertExperiencePaymenrReviewImage(rsi);
+				mainExperienceOrHotelReviewMapper.insertExperiencePaymentReviewImage(rsi);
 	
 			}
 

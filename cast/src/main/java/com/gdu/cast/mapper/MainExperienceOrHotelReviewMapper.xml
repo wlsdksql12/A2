@@ -77,7 +77,7 @@
 	</insert>
 	
 	<!--  체험 후기 사진 추가 -->
-		<insert id="insertExperiencePaymenrReviewImage" parameterType="com.gdu.cast.vo.ExperiencePaymentReviewImage">
+		<insert id="insertExperiencePaymentReviewImage" parameterType="com.gdu.cast.vo.ExperiencePaymentReviewImage">
 		INSERT INTO experience_payment_review_image(
 			experience_payment_review_id,
 			image_name,
@@ -94,5 +94,11 @@
 			NOW()
 		)
 	</insert>
+	
+	<!-- 	체험 후기 삭제 -->
+	
+	<delete id="deleteExperiencePayment" parameterType="int">
+		
+	</delete>
 	
 </mapper>
