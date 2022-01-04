@@ -15,4 +15,6 @@ public interface KeywordMapper {
 	void insertHotelKeyword(Map<String, Object> map);
 	// shop 페이지 키워드 리스트 출력
 	List<Keyword> selectKeywordList();
+	// 키워드 카운드 개수
+	int selectKeywordSelectTotalCount(String searchKeyword);
 }

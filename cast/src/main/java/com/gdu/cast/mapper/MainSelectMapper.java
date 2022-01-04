@@ -64,7 +64,11 @@ public interface MainSelectMapper {
 	
 	List<ThemeSmall> selectThemeSmallList();
 	
-	List<ThemeSmallExperience> selectThemeShopExperienceList(String ThemeSmallName, String searchKeyword);
+	List<ThemeSmallExperience> selectThemeShopExperienceList(Map<String, Object> map);
 	
-	List<ThemeSmallHotel> selectThemeShopHotelList(String ThemeSmallName, String searchKeyword);
+	List<ThemeSmallHotel> selectThemeShopHotelList(Map<String, Object> map);
+	
+	int selectExperienceSelectTotalCount(Map<String, Object> map);
+	
+	int selectHotelSelectTotalCount(Map<String, Object> map);
 }

@@ -123,6 +123,8 @@
 				</div>
 			</div>
 		</div>
+		<div id ="test">
+		</div>
 	</form>
 	<script type="text/javascript">
 		$(document).ready(function () {
@@ -159,6 +161,9 @@
 					$('input[name=addHashtag]').val("");
 				}
 			});
+			
+			$('#tset').append('<div id ="insertDiv"></div>');
+			
 			
 			// 해시태그 버튼 클릭 시 삭제...
 			$(document).on("click", "label[name='label']", function () {

@@ -38,7 +38,36 @@ public class KeywordService {
 	}
 	
 	// shop페이지 키워드 리스트 출력
-	public List<Keyword> getKeywordList(){
-		return keywordMapper.selectKeywordList();
+	public Map<String, Object> getKeywordList(String searchKeyword, int currentPage, int ROW_PER_PAGE){
+		System.out.println("000000000000000000000000000"+searchKeyword+"000000000000000000000000");
+		Map<String, Object> map = new HashMap<>();
+		int beginRow = 0;
+		int displayPage = 10;
+		int startPage = 0;
+		int lastPage = 0;
+		
+		beginRow = (currentPage - 1) * ROW_PER_PAGE;
+		
+		List<Keyword> selectShopKeywordList = keywordMapper.selectKeywordList();
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
+		int totalCount = keywordMapper.selectKeywordSelectTotalCount(searchKeyword);
+		lastPage = startPage + displayPage - 1;
+		int totalPage = totalCount / ROW_PER_PAGE;
+		if(totalCount % ROW_PER_PAGE != 0) {
+			totalPage += 1;
+		}
+		if(lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		
+		returnMap.put("selectShopKeywordList", selectShopKeywordList);
+		returnMap.put("startPage", startPage);
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("totalPage", totalPage);
+		
+		return returnMap;
 	}
+
 }

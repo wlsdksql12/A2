@@ -37,6 +37,7 @@ public class IndexController {
 	@Autowired IndexService indexService;
 	
 	private final String value = "false";
+	final int ROW_PER_PAGE = 6;
 	
 	// localhost로 주소검색해도 "index" Controller가 실행이 되도록 함
 	@GetMapping(value={"/","/index"})
@@ -69,8 +70,14 @@ public class IndexController {
 		return "index";
 	}
 	@GetMapping("/shop")
-	public String shop(HttpSession session,Model model, @RequestParam(defaultValue = "") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory,String searchKeyword) {
+	public String shop(HttpSession session,Model model, @RequestParam(defaultValue = "") String themeSmallName, @RequestParam(defaultValue = "전체보기") String shopCategory,String searchKeyword, @RequestParam(defaultValue = "1") int currentPage) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
+		int Experience_Hotel_Keyword_TotalCount = 0;
+		int Experience_Hotel_Keyword_startPage = 0;
+		int Experience_Hotel_Keyword_lastPage = 0;
+
+		
+		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+searchKeyword+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁsearchKeyword");
 		
 		List<ExperienceWishList> experienceId = experienceWishListService.getselectExperienceWishList(customerId);
 		List<RoomWishList> roomId = roomWishListService.getselectRoomWishList(customerId);
@@ -84,12 +91,39 @@ public class IndexController {
 		Map<String, Object> ThemeSmallmap = mainSelectService.selectThemeSmall();
 		
 		// 테마 소에 해당하는 체험 리스트 출력
-		Map<String, Object> themeSmallExperienceListmap = mainSelectService.selectThemeShopExperienceList(themeSmallName, searchKeyword);
+		Map<String, Object> themeSmallExperienceListmap = mainSelectService.selectThemeShopExperienceList(themeSmallName, searchKeyword, shopCategory, currentPage, ROW_PER_PAGE);
 		// 테마 소에 해당하는 숙소 리스트 출력
-		Map<String, Object> themeSmallHotelListmap = mainSelectService.selectThemeShopHotelList(themeSmallName, searchKeyword);
+		Map<String, Object> themeSmallHotelListmap = mainSelectService.selectThemeShopHotelList(themeSmallName, searchKeyword, shopCategory, currentPage, ROW_PER_PAGE);
 		
 		// shop 페이지 키워드 리스트 출력
-		List<Keyword> keywordList = keywordService.getKeywordList();
+		Map<String, Object> keywordListmap = keywordService.getKeywordList(searchKeyword, currentPage, ROW_PER_PAGE);
+		
+		if(searchKeyword != null) {
+			Experience_Hotel_Keyword_TotalCount = (int) keywordListmap.get("totalPage");
+			Experience_Hotel_Keyword_startPage = (int) keywordListmap.get("startPage");
+			Experience_Hotel_Keyword_lastPage = (int) keywordListmap.get("lastPage");
+		}	
+		else {
+			if(shopCategory.equals("전체보기")) {
+					if ((int) themeSmallExperienceListmap.get("totalPage") < (int) themeSmallHotelListmap.get("totalPage")) {
+						Experience_Hotel_Keyword_TotalCount = (int) themeSmallHotelListmap.get("totalPage");
+						Experience_Hotel_Keyword_startPage = (int) themeSmallHotelListmap.get("startPage");
+						Experience_Hotel_Keyword_lastPage = (int) themeSmallHotelListmap.get("lastPage");
+					} else {
+						Experience_Hotel_Keyword_TotalCount = (int) themeSmallExperienceListmap.get("totalPage");
+						Experience_Hotel_Keyword_startPage = (int) themeSmallExperienceListmap.get("startPage");
+						Experience_Hotel_Keyword_lastPage = (int) themeSmallExperienceListmap.get("lastPage");
+					}
+			} else if(shopCategory.equals("체험")) {
+					Experience_Hotel_Keyword_TotalCount = (int) themeSmallExperienceListmap.get("totalPage");
+					Experience_Hotel_Keyword_startPage = (int) themeSmallExperienceListmap.get("startPage");
+					Experience_Hotel_Keyword_lastPage = (int) themeSmallExperienceListmap.get("lastPage");
+				} else {
+					Experience_Hotel_Keyword_TotalCount = (int) themeSmallHotelListmap.get("totalPage");
+					Experience_Hotel_Keyword_startPage = (int) themeSmallHotelListmap.get("startPage");
+					Experience_Hotel_Keyword_lastPage = (int) themeSmallHotelListmap.get("lastPage");
+				}
+		}
 		
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+map.get("selectThemeList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁmap.get(selectThemeList)");
 		System.out.println("★☆★☆★☆★☆★☆★☆★☆★☆★☆"+ThemeSmallmap.get("selectThemeSmallList")+"★☆★☆★☆★☆★☆★☆★☆★☆ThemeSmallmap.get(selectThemeSmallList)");
@@ -98,15 +132,22 @@ public class IndexController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+themeSmallHotelListmap.get("selectThemeShopHotelList")+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁselectThemeShopHotelList");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+shopCategory+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁshopCategory");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ"+searchKeyword+"ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁsearchKeyword");
+		
 		model.addAttribute("value",value);
 		model.addAttribute("roomWishList" , roomId);
 		model.addAttribute("wishList", experienceId);
 		model.addAttribute("selectThemeList", map.get("selectThemeList"));
 		model.addAttribute("selectThemeSmallList", ThemeSmallmap.get("selectThemeSmallList"));
 		model.addAttribute("selectThemeShopExperienceList", themeSmallExperienceListmap.get("selectThemeShopExperienceList"));
+		model.addAttribute("startPage", Experience_Hotel_Keyword_startPage);
+		model.addAttribute("lastPage", Experience_Hotel_Keyword_lastPage);
+		model.addAttribute("totalPage", Experience_Hotel_Keyword_TotalCount);
+		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("selectThemeShopHotelList", themeSmallHotelListmap.get("selectThemeShopHotelList"));
-		model.addAttribute("keywordList",keywordList);
+		model.addAttribute("keywordList",keywordListmap.get("selectShopKeywordList"));
 		model.addAttribute("shopCategory",shopCategory);
+		model.addAttribute("themeSmallName", themeSmallName);
+		model.addAttribute("searchKeyword", searchKeyword);
 		return "shop";
 	}
 	@GetMapping("/contact")

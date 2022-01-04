@@ -19,6 +19,16 @@
 		)
 	</insert>
 	
+	<select id="selectKeywordSelectTotalCount" parameterType="String" resultType="int">
+		<if test='searchKeyword != null ||  searchKeyword !="" '>
+			SELECT COUNT(*)
+			FROM keyword
+				<where>
+						keyword_name LIKE '%${searchKeyword}%'
+				</where>
+		</if>
+	</select>
+	
 	<!-- shop페이지에 키워드 출력 -->
 	<select id="selectKeywordList" resultType="com.gdu.cast.vo.Keyword">
 		SELECT DISTINCT keyword_name keywordName

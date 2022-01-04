@@ -270,7 +270,21 @@
 		ORDER BY theme_middle_id ASC
 	</select>
 	
-	<select id="selectThemeShopExperienceList" parameterType="String" resultMap="resultThemeSmallExperience">
+	<select id="selectExperienceSelectTotalCount" parameterType="Map" resultType="int">
+		SELECT COUNT(*)
+		FROM theme_small_experience themeSmallExperience INNER JOIN theme_small themeSmall
+		ON themeSmallExperience.theme_small_id = themeSmall.theme_small_id
+		WHERE themeSmall.theme_small_name LIKE '%${ThemeSmallName}%'
+	</select>
+	
+	<select id="selectHotelSelectTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM theme_small_hotel themeSmallHotel INNER JOIN theme_small themeSmall
+		ON themeSmallHotel.theme_small_id = themeSmall.theme_small_id
+		WHERE themeSmall.theme_small_name LIKE '%${ThemeSmallName}%'
+	</select>
+	
+	<select id="selectThemeShopExperienceList" parameterType="Map" resultMap="resultThemeSmallExperience">
 		SELECT themeSmall.theme_small_name, experience.experience_name, experience.experience_content,
 				 experience.experience_id, experience.experience_price
 		FROM theme_small_experience themeSmallExperience INNER JOIN experience
@@ -289,9 +303,11 @@
 				</otherwise>
 			</choose>
 		</where>
+		GROUP BY experience.experience_id DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
-	<select id="selectThemeShopHotelList" parameterType="String" resultMap="resultThemeSmallHotel">
+	<select id="selectThemeShopHotelList" parameterType="Map" resultMap="resultThemeSmallHotel">
 		SELECT themeSmall.theme_small_name, hotel.hotel_name, hotel.hotel_content, hotel.hotel_id
 		FROM theme_small_hotel themeSmallHotel INNER JOIN hotel
 		ON themeSmallHotel.hotel_id = hotel.hotel_id
@@ -309,5 +325,7 @@
 				</otherwise>
 			</choose>
 		</where>
+		GROUP BY hotel.hotel_id DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 </mapper>

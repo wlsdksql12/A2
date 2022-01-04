@@ -179,22 +179,81 @@ public class MainSelectService {
 		return ThemeSmallmap;
 	}
 	
-	public Map<String, Object> selectThemeShopExperienceList(String ThemeSmallName, String searchKeyword) {
+	public Map<String, Object> selectThemeShopExperienceList(String ThemeSmallName, String searchKeyword, String shopCategory, int currentPage, int ROW_PER_PAGE) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
-		List<ThemeSmallExperience> selectThemeShopExperienceList = mainSelectMapper.selectThemeShopExperienceList(ThemeSmallName, searchKeyword);
-		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopExperienceList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
-		map.put("selectThemeShopExperienceList", selectThemeShopExperienceList);
-		return map;
+		int beginRow = 0;
+		int displayPage = 10;
+		int startPage = 0;
+		int lastPage = 0;
+		
+		beginRow = (currentPage - 1) * ROW_PER_PAGE;
+		
+		map.put("beginRow", beginRow); 
+		map.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		map.put("searchKeyword", searchKeyword);
+		map.put("ThemeSmallName", ThemeSmallName);
+		
+		//System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
+		List<ThemeSmallExperience> selectThemeShopExperienceList = mainSelectMapper.selectThemeShopExperienceList(map);
+		//System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopExperienceList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
+		int totalCount = mainSelectMapper.selectExperienceSelectTotalCount(map);
+		lastPage = startPage + displayPage - 1;
+		int totalPage = totalCount / ROW_PER_PAGE;
+		if(totalCount % ROW_PER_PAGE != 0) {
+			totalPage += 1;
+		}
+		if(lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		
+		returnMap.put("selectThemeShopExperienceList", selectThemeShopExperienceList);
+		returnMap.put("startPage", startPage);
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("totalPage", totalPage);
+		
+		return returnMap;
 	}
 	
-	public Map<String, Object> selectThemeShopHotelList(String ThemeSmallName, String searchKeyword) {
+	public Map<String, Object> selectThemeShopHotelList(String ThemeSmallName, String searchKeyword, String shopCategory, int currentPage, int ROW_PER_PAGE) {
 		Map<String, Object> map = new HashMap<>();
-		System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
-		List<ThemeSmallHotel> selectThemeShopHotelList = mainSelectMapper.selectThemeShopHotelList(ThemeSmallName, searchKeyword);
-		System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopHotelList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
-		map.put("selectThemeShopHotelList", selectThemeShopHotelList);
-		return map;
+		int beginRow = 0;
+		int displayPage = 10;
+		int startPage = 0;
+		int lastPage = 0;
+		
+		beginRow = (currentPage - 1) * ROW_PER_PAGE;
+		
+		map.put("beginRow", beginRow); 
+		map.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		map.put("searchKeyword", searchKeyword);
+		map.put("ThemeSmallName", ThemeSmallName);
+		map.put("shopCategory", shopCategory);
+		
+		//System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+ThemeSmallName+"aaaaaaaaaaaaaaaaa");
+		List<ThemeSmallHotel> selectThemeShopHotelList = mainSelectMapper.selectThemeShopHotelList(map);
+		//System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxx"+selectThemeShopHotelList.toString()+"xxxxxxxxxxxxxxxxxxxxxxxx");
+		
+		Map<String, Object> returnMap = new HashMap<>();
+		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
+		int totalCount = mainSelectMapper.selectHotelSelectTotalCount(map);
+		lastPage = startPage + displayPage - 1;
+		int totalPage = totalCount / ROW_PER_PAGE;
+		if(totalCount % ROW_PER_PAGE != 0) {
+			totalPage += 1;
+		}
+		if(lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		
+		returnMap.put("selectThemeShopHotelList", selectThemeShopHotelList);
+		returnMap.put("startPage", startPage);
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("totalPage", totalPage);
+		
+		return returnMap;
 	}
 	
 }
