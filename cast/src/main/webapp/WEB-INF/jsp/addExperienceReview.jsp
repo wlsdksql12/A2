@@ -12,12 +12,16 @@
 		<input type="text" name="customerId" value="${customerId}" readonly="readonly">
 		<div>내용</div>
 		<input type="text" name="experiencePaymentReviewContent">
+		<div>
 		<input type="text" name="experiencePaymentId" value="${experiencePaymentId}" readonly="readonly">
+		</div>
+		<div>
 		<input type="text" name="experienceId" value="${experienceId}"readonly="readonly">
-		
-		
-		
-		
+		</div>
+		<div>
+		<input type="file" multiple="multiple" name="experiencepaymentReviewImageUpload">
+		</div>
+		<input type="hidden" name="experienceName" value="${experienceName}">
 		
 		
 	

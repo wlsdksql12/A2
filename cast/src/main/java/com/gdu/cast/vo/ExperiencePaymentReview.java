@@ -14,7 +14,7 @@ public class ExperiencePaymentReview {
 	private int experienceId;
 	private String createDate;
 	private String updateDate;
-	private ExperiencePaymentReviewImage experiencePaymentReviewImage;
+	private List<ExperiencePaymentReviewImage> experiencePaymentReviewImage;
 	private List<MultipartFile> experiencepaymentReviewImageUpload;
 	private ExperienceOrder experienceOrder;
 	private ExperiencePayment experiencePayment;

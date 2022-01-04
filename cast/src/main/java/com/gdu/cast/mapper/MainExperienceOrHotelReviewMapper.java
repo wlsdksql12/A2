@@ -20,8 +20,6 @@ public interface MainExperienceOrHotelReviewMapper {
 	int selectCustomerPaymentId(String experienceName, String customerId);
 	// 체험 후기 추가
 	void insertExperiencePaymentReview(ExperiencePaymentReview experiencePaymentReview);
-	// 체험 후기 아이디 검색
-	int selectPaymentReviewId(String customerId);
 	// 체험 후기 사진 추가
-	void insertExperiencePaymenrReviewImage(ExperiencePaymentReviewImage experiencePaymentReviewImage, int experiencePaymentReviewId);
+	void insertExperiencePaymenrReviewImage(ExperiencePaymentReviewImage experiencePaymentReviewImage);
 }

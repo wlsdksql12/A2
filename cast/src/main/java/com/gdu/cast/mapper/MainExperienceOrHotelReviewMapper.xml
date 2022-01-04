@@ -33,10 +33,10 @@
 		eo.customer_id,
 		er.create_date,
 		er.update_date
-		FROM  experience_payment_review_image ei
-		join experience_payment_review er on er.experience_payment_review_id = ei.experience_payment_review_id
-		join experience_payment ep on er.experience_payment_id = ep.experience_payment_id
-		join experience_order eo on eo.experience_order_id = ep.experience_order_id
+		FROM  experience_payment_review er
+		left join experience_payment_review_image ei on er.experience_payment_review_id = ei.experience_payment_review_id
+		left join experience_payment ep on er.experience_payment_id = ep.experience_payment_id
+		left join experience_order eo on eo.experience_order_id = ep.experience_order_id
 		WHERE er.experience_id = #{experienceId}
 		ORDER BY er.create_date DESC
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
@@ -56,7 +56,7 @@
 	</select>
 	
 	<!--  리뷰 추가 -->
-	<select id="insertExperiencePaymentReview" parameterType="com.gdu.cast.vo.ExperiencePaymentReview" resultType="com.gdu.cast.vo.ExperiencePaymentReview">
+	<insert id="insertExperiencePaymentReview" parameterType="com.gdu.cast.vo.ExperiencePaymentReview">
 		INSERT INTO experience_payment_review(
 			experience_payment_id,
 			experience_id,
@@ -70,16 +70,11 @@
 			now(),
 			now()
 		)
-
-	</select>
-	<!-- 체험 후기 아이디 select -->
-	<select id="selectPaymentReviewId" parameterType="String" resultType="int">
-		SELECT
-			er.experience_payment_review_id experiencePaymentReviewId
-		FROM experience_payment_review er inner join experience_payment ep on er.experience_payment_id = ep.experience_payment_id
-		inner join experience_order eo on ep.experience_order_id = eo.experience_order_id
-		WHERE eo.customerId = #{customerId}
-	</select>
+		<!-- 체험 후기 사진 추가에 사용할 키값 -->
+		<selectKey resultType="int" keyProperty="experiencePaymentReviewId" order="AFTER">
+            SELECT experience_payment_review_id FROM experience_payment_review ORDER BY create_date DESC LIMIT 0,1
+        </selectKey>
+	</insert>
 	
 	<!--  체험 후기 사진 추가 -->
 		<insert id="insertExperiencePaymenrReviewImage" parameterType="com.gdu.cast.vo.ExperiencePaymentReviewImage">
@@ -99,4 +94,5 @@
 			NOW()
 		)
 	</insert>
+	
 </mapper>

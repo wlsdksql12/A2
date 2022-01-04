@@ -16,6 +16,7 @@ import com.gdu.cast.mapper.MainExperienceOrHotelReviewMapper;
 import com.gdu.cast.vo.ExperiencePaymentReview;
 import com.gdu.cast.vo.ExperiencePaymentReviewImage;
 import com.gdu.cast.vo.ExperienceSelectImage;
+import com.gdu.cast.vo.NoticeImage;
 
 @Transactional
 @Service
@@ -39,8 +40,8 @@ public class MainExperienceOrHotelReviewService {
 		   paramMap.put("beginRow", beginRow); 
 		   paramMap.put("ROW_PER_PAGE", row_per_page);
 		   paramMap.put("experienceId", experienceId);
-		   List<ExperiencePaymentReview> ExperienceReviewList = mainExperienceOrHotelReviewMapper.experiencePaymentReview(paramMap);
-		   
+		   List<ExperiencePaymentReview> ExperiencePaymentReview = mainExperienceOrHotelReviewMapper.experiencePaymentReview(paramMap);
+		   System.out.println(ExperiencePaymentReview.toString() + "ExperienceReviewList");
 		   
 		   startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
 		   
@@ -59,7 +60,7 @@ public class MainExperienceOrHotelReviewService {
 			
 			// 리턴값
 			Map<String, Object> returnMap = new HashMap<>();
-			returnMap.put("ExperienceReviewList", ExperienceReviewList);
+			returnMap.put("ExperiencePaymentReview", ExperiencePaymentReview);
 			returnMap.put("startPage", startPage);
 			returnMap.put("lastPage", lastPage);
 			returnMap.put("totalPage", totalPage);
@@ -74,11 +75,63 @@ public class MainExperienceOrHotelReviewService {
 	}
 
 	// 리뷰 내용 추가
-	public void getinsertExperiencePaymentReview(String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
+	public void getinsertExperiencePaymentReview(List<MultipartFile> experiencepaymentReviewImageUpload,String path, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
 		ExperiencePaymentReview experiencePaymentReview = new ExperiencePaymentReview();
 		experiencePaymentReview.setExperiencePaymentReviewContent(experiencePaymentReviewContent);
 		experiencePaymentReview.setExperiencePaymentId(experiencePaymentId);
 		experiencePaymentReview.setExperienceId(experienceId);
+		experiencePaymentReview.setExperiencepaymentReviewImageUpload(experiencepaymentReviewImageUpload);
+		// 1) 리뷰 추가
 		mainExperienceOrHotelReviewMapper.insertExperiencePaymentReview(experiencePaymentReview);
+		
+		// 이미지 테이블에 값 전송 . experiencePaymentReviewId
+		int experiencePaymentReviewId = experiencePaymentReview.getExperiencePaymentReviewId();
+		System.out.println(experiencePaymentReviewId + "experiencePaymentReviewId");
+		
+		// 2) 리뷰 사진 추가
+		List<ExperiencePaymentReviewImage> experiencePaymentReviewImage = null;
+		if(experiencePaymentReview.getExperiencepaymentReviewImageUpload() != null) {
+			System.out.println(experiencePaymentReview.getExperiencepaymentReviewImageUpload() + " 실행됨");
+			// 이미지 저장할 리스트 선언. (사진이 여러개 들어갈 수 있도록 리스트를 사용함.)
+			experiencePaymentReviewImage = new ArrayList<ExperiencePaymentReviewImage>();
+			for(MultipartFile mf : experiencePaymentReview.getExperiencepaymentReviewImageUpload()) {
+				
+				ExperiencePaymentReviewImage rsi = new ExperiencePaymentReviewImage();
+				// 테이블에 insert 하기위한 paymentId 키값(리뷰)
+				rsi.setExperiencePaymentReviewId(experiencePaymentReviewId);
+				// 사진 규격 . 별로 나눔.(속성별로)
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				// 속성별로 나눈 규격에 값 저장.
+				rsi.setImageName(imageName);
+				rsi.setImageExt(imageExt);
+				rsi.setImageSize(mf.getSize());
+				rsi.setCreateDate(experiencePaymentReview.getCreateDate());
+				rsi.setUpdateDate(experiencePaymentReview.getUpdateDate());
+				// 리스트에 저장한 값 저장. (여러개의 사진을 담기위해 리스트를 사용해야 함.)
+				experiencePaymentReviewImage.add(rsi);
+				
+				System.out.println(experiencePaymentReviewImage.toString() +"<<< experiencePaymentReviewImage.toString()");
+				try {
+					mf.transferTo(new File(path+"upload\\"+imageName+"."+imageExt));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		
+		if(experiencePaymentReviewImage != null) {
+			for(ExperiencePaymentReviewImage rsi : experiencePaymentReviewImage) {
+				mainExperienceOrHotelReviewMapper.insertExperiencePaymenrReviewImage(rsi);
+	
+			}
+
 	}
+		
+		
+	}	
+		
 }

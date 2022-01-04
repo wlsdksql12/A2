@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.service.ExperienceService;
 import com.gdu.cast.service.KeywordService;
@@ -167,8 +168,11 @@ public class ExperienceController {
       String customerId = (String)session.getAttribute("loginCustomerId");
       Experience experience = experienceService.selectExperienceOne(experienceId);
       Map<String, Object> map = mainExperienceOrHotelReviewService.getexperiencePaymentReview(currentPage, row_per_page, experienceId);
-    
-      model.addAttribute("ExperienceReviewList", map.get("ExperienceReviewList"));
+      
+      model.addAttribute("ExperiencePaymentReview", map.get("ExperiencePaymentReview"));
+      
+      System.out.println("map.get(\"ExperiencePaymentReview\")" + map.get("ExperiencePaymentReview"));
+      
       model.addAttribute("experienceName", experienceName);
       model.addAttribute("customerId", customerId);
       model.addAttribute("startPage", map.get("startPage"));
@@ -197,12 +201,18 @@ public class ExperienceController {
       model.addAttribute("experiencePaymentId", experiencePaymentId);
       return "addExperienceReview";
    }
-
+   // 리뷰 추가(사진 포함)
    @PostMapping("/addExperienceReview")
-   public String addMainExperience(String customerId, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
-      mainExperienceOrHotelReviewService.getinsertExperiencePaymentReview(experiencePaymentReviewContent, experiencePaymentId, experienceId);
+   public String addMainExperience(String experienceName,List<MultipartFile> experiencepaymentReviewImageUpload ,HttpServletRequest request, String customerId, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
+	  
+	   
+	   
+	   String path = request.getSession().getServletContext().getRealPath("/");
+	   
+	  // 리뷰 추가
+	  mainExperienceOrHotelReviewService.getinsertExperiencePaymentReview(experiencepaymentReviewImageUpload,path,experiencePaymentReviewContent, experiencePaymentId, experienceId);
       
-      return "mainExperienceOne";
+      return "redirect:/mainExperienceOne?experienceId="+experienceId+"&experienceName="+experienceName;
       
    }
    

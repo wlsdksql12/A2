@@ -225,36 +225,39 @@
 					</c:if>
 					</div>
 				<table style="width: 750px; margin-right: auto; margin-left: auto;">
-					<c:forEach items="${ExperienceReviewList}"  var="review">
+					<c:forEach items="${ExperiencePaymentReview}"  var="ExperiencePaymentReview">
 						<tr>
 							<td>
-								${review.experienceOrder.customerId} · ${review.createDate.substring(0,10)}
+								${ExperiencePaymentReview.experienceOrder.customerId} · ${ExperiencePaymentReview.createDate.substring(0,10)}
 								<hr>
 							</td>
 							
 							<td rowspan="2" style="text-align: center;">
 							<div>
 							<c:choose>
-							<c:when test="${loginCustomerId == review.experienceOrder.customerId}">
+							<c:when test="${loginCustomerId == ExperiencePaymentReview.experienceOrder.customerId}">
 								<a href="${pageContext.request.contextPath}/">수정</a>
 								<a href="${pageContext.request.contextPath}/">삭제</a>
+
 							</c:when>
 								<c:otherwise>
 									<div>-</div>
 									<div>-</div>
 								</c:otherwise>
 							</c:choose>
+							<div>test</div>
+								${ExperiencePaymentReview.experiencePaymentReviewImage}
 							</div>
-								<img src="${pageContext.request.contextPath}/upload/${review.experiencePaymentReviewImage.imageName}.${review.experiencePaymentReviewImage.imageExt}" style="width:60px; height:60px;"/>
+	
 							</td>
 						</tr>
 						<tr>
 							
-							<td>${review.experiencePaymentReviewContent}</td>
+							<td>${ExperiencePaymentReview.experiencePaymentReviewContent}</td>
 							<!-- 고쳐야 됨. -->
-							
+					</c:forEach>		
 						</tr>
-					</c:forEach>
+					
 				</table>
 					<div style="text-align: center;">
 				<c:if test="${startPage > 1}">
