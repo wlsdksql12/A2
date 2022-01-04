@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gdu.cast.mapper.IndexMapper">
+
+	<!-- 최근 올라온 체험3개 -->
+	<select id="selectExpByMainPage" parameterType="Map" resultType="Map">
+		SELECT
+			e.experience_id experienceId,
+			e.experience_name experienceName,
+			ei.image_size imageSize,
+			ei.image_ext imageExt,
+			ei.image_name imageName
+		FROM experience AS e
+		INNER JOIN experience_image AS ei
+		ON e.experience_id = ei.experience_id
+		GROUP BY e.experience_id
+		ORDER BY e.create_date DESC
+		LIMIT 0,3;
+	</select>
+	<!-- 최근 올라온 호텔3개 -->
+	<select id="selectHotelByMainPage" parameterType="Map" resultType="Map">
+		SELECT
+			h.hotel_id hotelId,
+			h.hotel_name hotelName,
+			hi.image_size imageSize,
+			hi.image_ext imageExt,
+			hi.image_name imageName
+		FROM hotel AS h
+		INNER JOIN hotel_image AS hi
+		ON h.hotel_id = hi.hotel_id
+		GROUP BY h.hotel_id
+		ORDER BY h.create_date DESC
+		LIMIT 0,3;
+	</select>
+</mapper>

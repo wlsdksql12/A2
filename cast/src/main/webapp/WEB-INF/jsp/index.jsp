@@ -136,29 +136,54 @@
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Categories of The Month</h1>
+            	<h1><img src="${pageContext.request.contextPath}/upload/new.jpg"></h1>
                 <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
+                    최근에 등록된 체험과 숙소를 볼 수 있습니다.
                 </p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="${pageContext.request.contextPath}/#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_01.jpg" class="rounded-circle img-fluid border"></a>
-                <h5 class="text-center mt-3 mb-3">Watches</h5>
-                <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
-            </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="${pageContext.request.contextPath}/#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_02.jpg" class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">Shoes</h2>
-                <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
-            </div>
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="${pageContext.request.contextPath}/#"><img src="${pageContext.request.contextPath}/resources/assets/img/category_img_03.jpg" class="rounded-circle img-fluid border"></a>
-                <h2 class="h5 text-center mt-3 mb-3">Accessories</h2>
-                <p class="text-center"><a class="btn btn-success">Go Shop</a></p>
-            </div>
+        
+        <div class="table-responsive">
+			<div style="width: 45%; display: inline-block; float: left;" class="float-left">
+				<h2>체험</h2>
+		        <table class="text-center">
+		        <tr>
+		        <c:forEach items="${experienceList}" var="expList">
+                	
+		        		<td class="col-6 col-md-2 p-3 mt-1">
+		        			<div>
+				                <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expList.experienceId}&experienceName=${expList.experienceName}">
+				                	<img src="${pageContext.request.contextPath}/upload/${expList.imageName}.${expList.imageExt}" style="width: 120px; height: 120px;">
+				                </a>
+				                <h5 class="text-center mt-3 mb-3">${expList.experienceName}</h5>
+				                <p class="text-center"><a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expList.experienceId}&experienceName=${expList.experienceName}" class="btn btn-success">Go Shop</a></p>
+				            </div>
+		        		</td>
+					
+				</c:forEach>
+				</tr>
+		        </table>
+        	</div>
+	        <div style="width: 45%; display: inline-block; float: right;" class="float-right">
+				<h2>숙소</h2>
+		        <table class="text-center">
+		        <tr>
+		        <c:forEach items="${hotelList}" var="hotelList">
+                	
+		        		<td class="col-6 col-md-2 p-3 mt-1">
+		        			<div>
+				                <a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelList.hotelId}">
+				                	<img src="${pageContext.request.contextPath}/upload/${hotelList.imageName}.${hotelList.imageExt}" style="width: 120px; height: 120px;">
+				                </a>
+				                <h5 class="text-center mt-3 mb-3">${hotelList.hotelName}</h5>
+				                <p class="text-center"><a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelList.hotelId}" class="btn btn-success">Go Shop</a></p>
+				            </div>
+		        		</td>
+					
+				</c:forEach>
+				</tr>
+		        </table>
+        	</div>
         </div>
     </section>
     <!-- End Categories of The Month -->
@@ -169,83 +194,25 @@
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Featured Product</h1>
+                    <h1 class="h1">이달의 상품</h1>
                     <p>
-                        Reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident.
+                    	여러 여행작가에게 추천을 많이 받은 상품입니다.
                     </p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="${pageContext.request.contextPath}/shopsingle">
-                            <img src="${pageContext.request.contextPath}/resources/assets/img/feature_prod_01.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">$240.00</li>
-                            </ul>
-                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">Gym Weight</a>
-                            <p class="card-text">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia deserunt.
-                            </p>
-                            <p class="text-muted">Reviews (24)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="${pageContext.request.contextPath}/shopsingle">
-                            <img src="${pageContext.request.contextPath}/resources/assets/img/feature_prod_02.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                    <i class="text-muted fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">$480.00</li>
-                            </ul>
-                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">Cloud Nike Shoes</a>
-                            <p class="card-text">
-                                Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo ullamcorper.
-                            </p>
-                            <p class="text-muted">Reviews (48)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-4 mb-4">
+
+                <div style="margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
                     <div class="card h-100">
                         <a href="${pageContext.request.contextPath}/shopsingle">
                             <img src="${pageContext.request.contextPath}/resources/assets/img/feature_prod_03.jpg" class="card-img-top" alt="...">
                         </a>
                         <div class="card-body">
                             <ul class="list-unstyled d-flex justify-content-between">
-                                <li>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                    <i class="text-warning fa fa-star"></i>
-                                </li>
-                                <li class="text-muted text-right">$360.00</li>
+                                <li class="text-muted text-right">가격</li>
                             </ul>
-                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">Summer Addides Shoes</a>
-                            <p class="card-text">
-                                Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque ipsum lobortis nec.
-                            </p>
-                            <p class="text-muted">Reviews (74)</p>
+                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">상품이름</a>
+                            <p class="text-muted">추천횟수</p>
                         </div>
                     </div>
                 </div>

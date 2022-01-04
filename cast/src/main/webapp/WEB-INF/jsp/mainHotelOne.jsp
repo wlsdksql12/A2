@@ -53,109 +53,189 @@
             </form>
         </div>
     </div>
-	<br>
-	<div>
-		<div class="col-lg-12 grid-margin stretch-card">
-			<div class="card">
-				<div class="card-body">
-					<h4 class="card-title">${hotel.hotelId}번째글 상세보기</h4>
-					
-					<input type="hidden" class="form-control" name="hotelId" value="${hotel.hotelId}" >
-								
-					<h3>${hotel.hotelName}</h3>
-					<br><hr><br>
-					
-					<p class="card-description">주소</p>
-					<table>
-					<tr>
-						<td style="font-size:14px">도로명 &nbsp;</td>
-						<td>(${hotel.address.postcode})</td>
-						<td>${hotel.address.roadAddress} ${hotel.address.extraAddress} ${hotel.address.detailAddress}</td>
-					</tr>
-					<tr>
-						<td colspan="2" style="font-size:14px">지번 &nbsp;</td>
-						<td>${hotel.address.jibunAddress}</td>
-					</tr>
-					</table>
-					<br><hr><br>
-	
-					<p class="card-description">이미지(미구현)</p>
-					<h4></h4>
-					<br><hr><br>
-					 
-					<p class="card-description">호텔 소개</p>
-					<h4>${hotel.hotelContent}</h4>
-					<br><hr><br>
-					
-					<p class="card-description">숙박 장소 
-					</p>
-					
-					<!-- 방 리스트 -->	
-					<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>객실 이름</th>
-							<th>객실 개수</th>
-							<th>시작날짜</th>
-							<th>종료날짜</th>
-					</tr>
-					</thead>
-					<tbody>
-					<c:forEach items="${roomList}" var="list">
-					
-					<tr>
-						<td><a href="${pageContext.request.contextPath}/mainRoomOne?roomId=${list.roomId}">${list.roomName}</a></td>
-						<td>${list.roomCount}</td>
-						<td>${list.roomStartdate}</td>
-						<td>${list.roomEnddate}</td>
-					</tr>
-					</c:forEach>
-					</tbody>
-					</table>
-					<hr><br>
-					
-					<!-- 지도자리 -->
-					<br> 
-					<p class="card-description">방문장소</p>
-					<h4></h4>
-					<div id="map" style="width:100%;height:500px;"></div>
-					
-					<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-					<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=736d8d95b9c9321d5c6e6055f1874da1&libraries=services"></script>
-					<script>
-					var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				    mapOption = {
-				        center: new kakao.maps.LatLng(${hotel.address.lat}, ${hotel.address.lng}), // 지도의 중심좌표
-				        level: 2, // 지도의 확대 레벨
-				        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
-				    }; 
+	<!-- Start Content -->
+    <div class="container py-5">
+        <div class="row">
+			<div class="col-lg-3">
+			<h1 class="h2 pb-4">Categories</h1>
+			    <ul class="hide">
+				<c:forEach items="${selectThemeList}" var="ThemeList">
+			        <li class="menu">
+			            <a>${ThemeList.themeBig.themeBigName}<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			            <ul>
+			                <li class="menu">
+			                	<a>${ThemeList.themeMiddleName}<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			                	<ul class="hide">
+			                	<c:forEach items="${selectThemeSmallList}" var="SmallList">
+			                	<c:if test="${ThemeList.themeMiddleId == SmallList.themeMiddleId}">
+			                		<li><a href="${pageContext.request.contextPath}/shop?themeSmallName=${SmallList.themeSmallName}">${SmallList.themeSmallName}</a></li>
+			                		</c:if>
+			                		</c:forEach>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			        </c:forEach>
+			                <li class="menu">
+								<a>메뉴1-2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+								<ul class="hide">
+			                		<li>메뉴1-2-1</li>
+			                		<li>메뉴1-2-2</li>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			        <li class="menu">
+			            <a>메뉴2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			            <ul class="hide">
+			                <li class="menu">
+			                	<a>메뉴2-1<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			                	<ul class="hide">
+			                		<li>메뉴2-1-1</li>
+			                		<li>메뉴2-1-2</li>
+			                		<li><a href="${pageContext.request.contextPath}/addHotelOrder">숙소 주문</a></li>
+			                	</ul>
+			                </li>
+			                <li class="menu">
+								<a>메뉴2-2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+								<ul class="hide">
+			                		<li>메뉴2-2-1</li>
+			                		<li>메뉴2-2-2</li>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			    </ul>
+			    <br>
+			</div>
 
-					// 지도를 생성한다 
-					var map = new kakao.maps.Map(mapContainer, mapOption);
-					
-					// 지도에 마커를 생성하고 표시한다
-					var marker = new kakao.maps.Marker({
-					    position: new kakao.maps.LatLng(${hotel.address.lat}, ${hotel.address.lng}), // 마커의 좌표
-					    map: map // 마커를 표시할 지도 객체
-					});
-				    </script>
-				    <br>
-					<p class="card-description">여행작가 추천</p>
-					<hr>
-						<a href="${pageContext.request.contextPath}/mainRoomSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
-					<p></p><p></p>
-					<div>
-						<c:if test="${loginTravelerId != null && state eq '승인'}">
-								<a href="${pageContext.request.contextPath}/addRoomSelect?hotelId=${hotel.hotelId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">추가</a>
-						</c:if>
+<div class="col-lg-9">
+    <div class="row">
+                    
+		<div>
+			<div>
+				<div class="col-lg-12 grid-margin stretch-card">
+					<div class="card">
+						<div class="card-body">
+							<h4 class="card-title">${hotel.hotelId}번째글 상세보기</h4>
+							
+							<input type="hidden" class="form-control" name="hotelId" value="${hotel.hotelId}" >
+										
+							<h3>${hotel.hotelName}</h3>
+							<br><hr><br>
+							
+							<p class="card-description">주소</p>
+							<table>
+							<tr>
+								<td style="font-size:14px">도로명 &nbsp;</td>
+								<td>(${hotel.address.postcode})</td>
+								<td>${hotel.address.roadAddress} ${hotel.address.extraAddress} ${hotel.address.detailAddress}</td>
+							</tr>
+							<tr>
+								<td colspan="2" style="font-size:14px">지번 &nbsp;</td>
+								<td>${hotel.address.jibunAddress}</td>
+							</tr>
+							</table>
+							<br><hr><br>
+			
+							<p class="card-description">이미지(미구현)</p>
+							<h4></h4>
+							<br><hr><br>
+							 
+							<p class="card-description">호텔 소개</p>
+							<h4>${hotel.hotelContent}</h4>
+							<br><hr><br>
+							
+							<p class="card-description">숙박 장소 
+							</p>
+							
+							<!-- 방 리스트 -->	
+							<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>객실 이름</th>
+									<th>객실 개수</th>
+									<th>시작날짜</th>
+									<th>종료날짜</th>
+							</tr>
+							</thead>
+							<tbody>
+							<c:forEach items="${roomList}" var="list">
+							
+							<tr>
+								<td><a href="${pageContext.request.contextPath}/mainRoomOne?roomId=${list.roomId}">${list.roomName}</a></td>
+								<td>${list.roomCount}</td>
+								<td>${list.roomStartdate}</td>
+								<td>${list.roomEnddate}</td>
+							</tr>
+							</c:forEach>
+							</tbody>
+							</table>
+							<hr><br>
+							
+							<!-- 지도자리 -->
+							<br> 
+							<p class="card-description">방문장소</p>
+							<h4></h4>
+							<div id="map" style="width:100%;height:500px;"></div>
+							
+							<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+							<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=736d8d95b9c9321d5c6e6055f1874da1&libraries=services"></script>
+							<script>
+							var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+						    mapOption = {
+						        center: new kakao.maps.LatLng(${hotel.address.lat}, ${hotel.address.lng}), // 지도의 중심좌표
+						        level: 2, // 지도의 확대 레벨
+						        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
+						    }; 
+		
+							// 지도를 생성한다 
+							var map = new kakao.maps.Map(mapContainer, mapOption);
+							
+							// 지도에 마커를 생성하고 표시한다
+							var marker = new kakao.maps.Marker({
+							    position: new kakao.maps.LatLng(${hotel.address.lat}, ${hotel.address.lng}), // 마커의 좌표
+							    map: map // 마커를 표시할 지도 객체
+							});
+						    </script>
+						    <br>
+							<p class="card-description">여행작가 추천</p>
+							<hr>
+								<a href="${pageContext.request.contextPath}/mainRoomSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
+							<p></p><p></p>
+							<div>
+								<c:if test="${loginTravelerId != null && state eq '승인'}">
+										<a href="${pageContext.request.contextPath}/addRoomSelect?hotelId=${hotel.hotelId}&travelerId=${loginTravelerId}" id="insertBtn" style="text-align:right;" class="btn btn-outline-success">추가</a>
+								</c:if>
+							</div>
+						</div>
+						<div align="right">
+						<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
+						</div>
+						<br>
 					</div>
 				</div>
-				<div align="right">
-				<input type="button" value="뒤로가기" onclick="history.back(-1)" class="btn btn-inverse-secondary">
-				</div>
-				<br>
 			</div>
 		</div>
+		</div>
 	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+// html dom 이 다 로딩된 후 실행된다.
+$(document).ready(function(){
+    // menu 클래스 바로 하위에 있는 a 태그를 클릭했을때
+    $(".menu>a").click(function(){
+        var submenu = $(this).next("ul");
+
+        // submenu 가 화면상에 보일때는 위로 보드랍게 접고 아니면 아래로 보드랍게 펼치기
+        if( submenu.is(":visible") ){
+            submenu.slideUp();
+        }else{
+            submenu.slideDown();
+        }
+    });
+});
+</script>
 </body>
 </html>
