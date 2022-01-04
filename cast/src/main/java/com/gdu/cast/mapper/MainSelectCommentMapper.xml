@@ -24,7 +24,7 @@
 	
 	<!-- experience select comment add -->
 	<insert id="ExperienceSelectInsertcomment" parameterType="com.gdu.cast.vo.ExperienceSelectComment">
-		INSERT INTO Experience_Select_Comment(
+		INSERT INTO experience_select_comment(
 		experience_select_comment_id,
 		customer_id,
 		experience_select_id,
@@ -90,7 +90,7 @@
 	
 	<!-- room select comment add -->
 	<insert id="roomSelectInsertcomment" parameterType="com.gdu.cast.vo.RoomSelectComment">
-		INSERT INTO Room_Select_Comment(
+		INSERT INTO room_select_comment(
 		customer_id,
 		room_select_id,
 		room_select_content,

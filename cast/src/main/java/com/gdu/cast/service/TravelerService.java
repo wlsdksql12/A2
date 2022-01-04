@@ -8,7 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.TravelerMapper;
 import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.RoomSelectComment;
 import com.gdu.cast.vo.Traveler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,16 @@ public class TravelerService {
 	
 	@Autowired
 	TravelerMapper travelerMapper;
+	
+	// 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 댓글 출력(5개)
+	public List<ExperienceSelectComment> getselectExperienceSelectCommentList(String travelerId) {
+		return travelerMapper.selectExperienceSelectCommentList(travelerId);
+	}
+	
+	// 여행작가 메인 페이지 자신이 쓴 숙소 추천 리스트 댓글 출력(5개)
+	public List<RoomSelectComment> getselectRoomSelectCommentList(String travelerId) {
+		return travelerMapper.selectRoomSelectCommentList(travelerId);
+	}
 	
 	// 여행작가 비밀번호 변경
 	public int modifyTravelerPw(String travelerId, String travelerPw, String newTravelerPw) {

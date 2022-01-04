@@ -11,4 +11,5 @@ public class RoomSelectComment {
 	private String createDate;
 	private String updateDate;
 	private RoomSelect roomSelect;
+	private Customer customer;
 }

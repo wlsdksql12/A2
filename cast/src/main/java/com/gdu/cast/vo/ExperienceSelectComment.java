@@ -11,4 +11,5 @@ public class ExperienceSelectComment {
 	private String createDate;
 	private String updateDate;
 	private ExperienceSelect experienceSelect;
+	private Customer customer;
 }

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.service.TravelerService;
 import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.RoomSelectComment;
 import com.gdu.cast.vo.Traveler;
 
 import lombok.extern.slf4j.Slf4j;
@@ -72,19 +74,34 @@ public class TravelerController {
 		}
 	}
 	
-	// 여행작가 메인 페이지 자신이 쓴 숙소/체험 추천 리스트 출력(5개)
+	// 여행작가 메인 페이지 자신이 등록한 숙소/체험 추천 리스트 출력(5개)
 	@GetMapping("/travelerIndex")
 	public String SelectListMain(HttpSession session, Model model, String travelerId) {
+		
+		// 자신이 등록한 숙소 리스트 및 댓글 출력
 		List<RoomSelect> roomSelectList = travelerService.getselectRoomSelectListByMain(travelerId);
+		List<RoomSelectComment> roomSelectCommentList = travelerService.getselectRoomSelectCommentList(travelerId);
+		
+		// 자신이 등록한 체험 리스트 및 댓글 출력
 		List<ExperienceSelect> experienceSelectList = travelerService.getselectExperienceSelectListByMain(travelerId);
+		List<ExperienceSelectComment> experienceSelectCommentList = travelerService.getselectExperienceSelectCommentList(travelerId);
+		
 		// 가입 요청 세션 가져오기
 		String state = joinRequestService.getTravelerJoinRequestResult((String)session.getAttribute("loginTravelerId"));
 		session.setAttribute("state", state);
 		System.out.println(state + " <<< LoginCeoController");
 		
+		model.addAttribute("experienceSelectCommentList", experienceSelectCommentList);
+		model.addAttribute("roomSelectCommentList", roomSelectCommentList);
 		model.addAttribute("roomSelectList", roomSelectList);
 		model.addAttribute("experienceSelectList", experienceSelectList);
 		model.addAttribute("travelerId", travelerId);
+		
+		log.debug("★★★★Hyun★★★★"+experienceSelectCommentList.toString());
+		log.debug("★★★★Hyun★★★★"+roomSelectCommentList.toString());
+		log.debug("★★★★Hyun★★★★"+roomSelectList.toString());
+		log.debug("★★★★Hyun★★★★"+experienceSelectList.toString());
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		
 		return "traveler/travelerIndex";
 	}

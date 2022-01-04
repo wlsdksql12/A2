@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
+
+	<!-- 여행작가 메인 페이지 숙소 추천 리스트에 고객 이름 및 댓글 Join -->
+	<resultMap type="com.gdu.cast.vo.ExperienceSelectComment" id="resultExperienceSelectComment">
+		<id column="experience_select_comment_id" property="experienceSelectCommentId"></id>
+		<result column="customer_id" property="customerId"></result>
+		<result column="experience_select_id" property="experienceSelectId"></result>
+		<result column="experience_select_content" property="experienceSelectContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="experienceSelect" ofType="com.gdu.cast.vo.ExperienceSelect">
+			<result column="traveler_id" property="travelerId"></result>
+		</collection>
+		<collection property="customer" ofType="com.gdu.cast.vo.Customer">
+			<result column="customer_name" property="customerName"></result>
+		</collection>
+	</resultMap>
+
+	<!-- 여행작가 메인 페이지 숙소 추천 리스트에 고객 이름 및 댓글 Join -->
+	<resultMap type="com.gdu.cast.vo.RoomSelectComment" id="resultRoomSelectComment">
+		<id column="room_select_comment_id" property="roomSelectCommentId"></id>
+		<result column="customer_id" property="customerId"></result>
+		<result column="room_select_id" property="roomSelectId"></result>
+		<result column="room_select_content" property="roomSelectContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="roomSelect" ofType="com.gdu.cast.vo.RoomSelect">
+			<result column="traveler_id" property="travelerId"></result>
+		</collection>
+		<collection property="customer" ofType="com.gdu.cast.vo.Customer">
+			<result column="customer_name" property="customerName"></result>
+		</collection>
+	</resultMap>
 	
 	<!-- 여행작가 메인 페이지 체험 추천 리스트에 여행작가 이름 Join -->
 	<resultMap type="com.gdu.cast.vo.ExperienceSelect" id="resultExperienceSelect">
@@ -29,6 +61,43 @@
 			<result column="traveler_name" property="travelerName"></result>
 		</collection>
 	</resultMap>
+	
+	<!-- 자신이 쓴 숙소 체험 리스트의 댓글 출력(5개) -->
+	<select id="selectExperienceSelectCommentList" parameterType="com.gdu.cast.vo.ExperienceSelect" resultMap="resultExperienceSelectComment">
+		SELECT 
+			esc.experience_select_comment_id,
+			esc.experience_select_id,
+			c.customer_name,
+			esc.experience_select_content,
+			esc.create_date
+		FROM experience_select_comment esc
+		INNER JOIN experience_select e
+		INNER JOIN customer c
+		ON e.experience_select_id = esc.experience_select_id
+		AND c.customer_id = esc.customer_id
+		WHERE e.traveler_id = #{travelerId}
+		ORDER BY esc.create_date DESC
+		LIMIT 0, 5
+	</select>
+	
+	<!-- 자신이 쓴 숙소 추천 리스트의 댓글 출력(5개) -->
+	<select id="selectRoomSelectCommentList" parameterType="com.gdu.cast.vo.RoomSelectComment" resultMap="resultRoomSelectComment">
+		SELECT 
+			r.traveler_id,
+			rsc.room_select_comment_id,
+			rsc.room_select_id,
+			c.customer_name,
+			rsc.room_select_content,
+			rsc.create_date
+		FROM room_select_comment rsc
+		INNER JOIN room_select r
+		INNER JOIN customer c
+		ON r.room_select_id = rsc.room_select_id
+		AND c.customer_id = rsc.customer_id
+		WHERE r.traveler_id = #{travelerId}
+		ORDER BY rsc.create_date DESC
+		LIMIT 0, 5
+	</select>
 	
 	<!-- 여행작가 비밀번호 변경 -->
 	<update id="updateTravelerPw" parameterType="com.gdu.cast.vo.Traveler">   

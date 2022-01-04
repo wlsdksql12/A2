@@ -5,11 +5,19 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.ExperienceSelectComment;
 import com.gdu.cast.vo.RoomSelect;
+import com.gdu.cast.vo.RoomSelectComment;
 import com.gdu.cast.vo.Traveler;
 
 @Mapper
 public interface TravelerMapper {
+	
+	// 자신이 쓴 체험 추천 리스트의 댓글 출력(5개)
+	List<ExperienceSelectComment> selectExperienceSelectCommentList(String travelerId);
+	
+	// 자신이 쓴 숙소 추천 리스트의 댓글 출력(5개)
+	List<RoomSelectComment> selectRoomSelectCommentList(String travelerId);
 	
 	// 여행작가 비밀번호 변경
 	int updateTravelerPw(String travelerId, String travelerPw, String newTravelerPw);

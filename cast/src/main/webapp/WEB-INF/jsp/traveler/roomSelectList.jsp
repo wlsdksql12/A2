@@ -40,7 +40,7 @@
         <div class="py-4 text-gray-500 dark:text-gray-400">
           <a
             class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-            href="${pageContext.request.contextPath}/travelerIndex?travelerId=${loginTravelerId}&currentPage=1"
+            href="${pageContext.request.contextPath}/travelerIndex?travelerId=${loginTravelerId}"
           >
            마이 페이지
           </a>
@@ -317,6 +317,15 @@
               href="${pageContext.request.contextPath}/index"
             >
               메인으로
+              <span class="ml-2" aria-hidden="true">+</span>
+            </a>
+          </div>
+          <div class="px-6 my-6">
+            <a
+              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              href="${pageContext.request.contextPath}/shop"
+            >
+              글쓰기
               <span class="ml-2" aria-hidden="true">+</span>
             </a>
           </div>
@@ -875,9 +884,9 @@
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
                       <th class="px-4 py-5" width="20%">번호</th>
-                      <th class="px-10 py-10" width="40%">제목</th>
-                      <th class="px-5 py-5" width="20%">작성자</th>
-                      <th class="px-4 py-3" width="20%">작성 날짜</th>
+                      <th class="py-4 py-4 text-sm" width="40%">제목</th>
+                      <th class="px-4 py-4" width="20%">작성자</th>
+                      <th class="px-4 py-4" width="20%">작성 날짜</th>
                     </tr>
                   </thead>
                   <tbody
@@ -885,16 +894,16 @@
                   >
 					<c:forEach items="${roomSelectList}" var="roomSelect">
                     <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-5 py-4">
+                      <td class="px-5 py-5 text-sm">
                           ${roomSelect.roomSelectId}
                       </td>
-                      <td class="px-5 py-5 text-sm">
+                      <td class="py-4 py-4 text-sm" width="40%">
                         <a href="${pageContext.request.contextPath}/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
                       </td>
-                       <td class="px-4 py-3">
+                       <td class="px-4 py-4 text-sm" width="20%">
                           ${roomSelect.traveler.travelerName}
                       </td>
-                      <td class="px-4 py-3 text-sm">
+                      <td class="px-7 py-6 text-sm" width="20%">
                         ${roomSelect.createDate.substring(0,10)}
                       </td>
                     </tr>
