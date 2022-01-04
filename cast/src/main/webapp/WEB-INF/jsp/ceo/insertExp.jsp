@@ -155,7 +155,7 @@
 				} else{
 					// 버튼 타입 시 form으로 값이 안넘어옴 > 문제 수정
 					let inputHashtag = '<label name ="label" class="btn btn-light" style="visibility: visible; background-color: rgba(255, 255, 255);border-radius: 50px;margin-bottom: 3px;margin-top: 3px;">#'+value+''; 
-					inputHashtag += '<input type="hidden" style="opacity:0; padding: 10px;" name="keyword" value="#'+value+'">';
+					inputHashtag += '<input type="hidden" style="opacity:0; padding: 10px;" name="keyword" value="'+value+'">';
 					inputHashtag += '</label>';
 					$('#hashtag').append(inputHashtag);
 					$('input[name=addHashtag]').val("");
