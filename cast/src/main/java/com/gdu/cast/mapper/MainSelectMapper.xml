@@ -95,7 +95,20 @@
 			<result column="update_date" property="updateDate" />
 		</association>
 	</resultMap>
-	<!-- 메인 페이지의 체험 추천 이미지 -->
+	
+	<!-- 메인 페이지의 체험 추천 삭제 -->
+	<delete id="deleteExperienceSelectImage" parameterType="com.gdu.cast.vo.ExperienceSelectImage">
+		DELETE FROM experience_select_image
+		WHERE experience_select_id = #{experienceSelectId}
+	</delete>
+	
+	<!-- 메인 페이지의 숙소 추천 삭제 -->
+	<delete id="deleteRoomSelectImage" parameterType="com.gdu.cast.vo.RoomSelectImage">
+		DELETE FROM room_select_image
+		WHERE room_select_id = #{roomSelectId}
+	</delete>
+	
+	<!-- 메인 페이지의 숙소 추천 이미지 -->
 	<select id="selectRoomImageList" parameterType="com.gdu.cast.vo.RoomSelectImage" resultType="com.gdu.cast.vo.RoomSelectImage">
 		SELECT 
 			image_name imageName,

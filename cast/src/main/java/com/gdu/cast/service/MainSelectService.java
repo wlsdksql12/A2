@@ -48,6 +48,7 @@ public class MainSelectService {
 	public int removeExperienceSelect(ExperienceSelect experienceSelect) {
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		mainSelectCommentMapper.ExperienceSelectDeletecomment(experienceSelect);
+		mainSelectMapper.deleteExperienceSelectImage(experienceSelect);
 		return mainSelectMapper.deleteExperienceSelect(experienceSelect);
 	}
 	
@@ -55,6 +56,7 @@ public class MainSelectService {
 	public int removeRoomSelect(RoomSelect roomSelect) {
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		mainSelectCommentMapper.roomSelectDeletecomment(roomSelect);
+		mainSelectMapper.deleteRoomSelectImage(roomSelect);
 		return mainSelectMapper.deleteRoomSelect(roomSelect);
 	}
 	
