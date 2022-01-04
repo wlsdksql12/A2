@@ -205,9 +205,7 @@ public class ExperienceController {
    // 리뷰 추가(사진 포함)
    @PostMapping("/addExperienceReview")
    public String addMainExperience(String experienceName,List<MultipartFile> experiencepaymentReviewImageUpload ,HttpServletRequest request, String customerId, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
-	  
-	   
-	   
+
 	   String path = request.getSession().getServletContext().getRealPath("/");
 	   
 	  // 리뷰 추가
@@ -215,6 +213,14 @@ public class ExperienceController {
       
       return "redirect:/mainExperienceOne?experienceId="+experienceId+"&experienceName="+experienceName;
       
+   }
+  
+   @GetMapping("/deleteExperienceReview")
+   public String deleteExperiencePaymentReview(int experiencePaymentReviewId, int experienceId, String experienceName) {
+	   System.out.println(experiencePaymentReviewId + "experienvePaymentReviewId!"); 
+	   mainExperienceOrHotelReviewService.getdeleteExperiencePaymentReviewId(experiencePaymentReviewId);
+	  System.out.println("삭제 완료!"); 
+	   return "redirect:/mainExperienceOne?experienceId="+experienceId+"&experienceName="+experienceName;
    }
    
 }   

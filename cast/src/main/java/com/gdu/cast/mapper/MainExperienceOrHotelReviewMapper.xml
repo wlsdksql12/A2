@@ -97,8 +97,9 @@
 	
 	<!-- 	체험 후기 삭제 -->
 	
-	<delete id="deleteExperiencePayment" parameterType="int">
-		
+	<delete id="deleteExperienceReview" parameterType="int">
+		DELETE FROM experience_payment_review
+   		WHERE experience_payment_review_id = #{experiencePaymentReviewId}
 	</delete>
 	
 </mapper>

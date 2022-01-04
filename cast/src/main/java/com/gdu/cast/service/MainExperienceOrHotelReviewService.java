@@ -129,9 +129,17 @@ public class MainExperienceOrHotelReviewService {
 	
 			}
 
-	}
-		
-		
+		}
+			
 	}	
+	
+	
+	// 체험 후기 삭제
+	public void getdeleteExperiencePaymentReviewId(int experiencePaymentReviewId) {
+		mainExperienceOrHotelReviewMapper.deleteExperienceReview(experiencePaymentReviewId);
+	}
+	
+	
+	
 		
 }

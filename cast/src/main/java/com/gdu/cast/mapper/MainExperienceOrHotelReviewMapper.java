@@ -22,4 +22,7 @@ public interface MainExperienceOrHotelReviewMapper {
 	void insertExperiencePaymentReview(ExperiencePaymentReview experiencePaymentReview);
 	// 체험 후기 사진 추가
 	void insertExperiencePaymentReviewImage(ExperiencePaymentReviewImage experiencePaymentReviewImage);
+	// 체험 후기 삭제
+	void deleteExperienceReview(int experiencePaymentReviewId);
+	
 }
