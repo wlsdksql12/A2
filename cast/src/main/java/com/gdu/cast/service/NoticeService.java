@@ -43,14 +43,20 @@ public class NoticeService {
 				int p = originName.lastIndexOf(".");
 				String imageName = UUID.randomUUID().toString();
 				String imageExt = originName.substring(p+1);
+				// if문을 이용해 파일추가 안할시 DB에 NULL값 저장되는걸 방지
+				if(imageExt.equals("")) {
+					// System.out.println("확장자 여백디버깅");
+					break;
+				}
 				rsi.setImageName(imageName);
 				rsi.setImageExt(imageExt);
 				rsi.setImageSize(mf.getSize());
 				rsi.setCreateDate(notice.getCreateDate());
 				rsi.setUpdateDate(notice.getUpdateDate());
 				noticeImage.add(rsi);
-				System.out.println(noticeImage +"<<< NoticeService.noticeImage");
+				// System.out.println(noticeImage +"<<< NoticeService.noticeImage");
 				try {
+					// System.out.println("파일 업로드 디버깅");
 					mf.transferTo(new File(path+"upload\\"+imageName+"."+imageExt));
 				} catch(Exception e) {
 					e.printStackTrace();

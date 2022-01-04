@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,10 @@ public class NoticeController {
 		notice.setAdminId(adminId);
 		System.out.println(notice);
 		String path = request.getSession().getServletContext().getRealPath("/");
+		System.out.println(path + "path 경로 확인");
+		File temp = new File("");
+		String path1 = temp.getAbsolutePath();
+		System.out.println(path1 + "path1 경로 확인");
 		noticeService.addNotice(path, notice);
 		return"redirect:/admin/noticeList";
 	}

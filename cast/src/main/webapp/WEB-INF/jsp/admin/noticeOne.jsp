@@ -73,9 +73,12 @@
 			</tr>
 		</table>
 		<br>
-		<c:forEach items="${notice.noticeImage}" var="noticeImage">
-			<img src="${pageContext.request.contextPath}/upload/${noticeImage.imageName}.${noticeImage.imageExt}" style="width:200px; height:200px;"/>
-		</c:forEach>
+		<div>
+			<c:forEach items="${notice.noticeImage}" var="noticeImage">
+				<img src="${pageContext.request.contextPath}/upload/${noticeImage.imageName}.${noticeImage.imageExt}"/>
+			</c:forEach>
+		</div>
+		<br>
 		<c:if test="${loginAdminId != null}">
 			<div>
 				<a href="${pageContext.request.contextPath}/admin/updateNotice?noticeNo=${notice.noticeNo}" class="btn btn-outline-success">수정</a>

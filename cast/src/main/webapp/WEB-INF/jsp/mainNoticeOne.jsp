@@ -119,9 +119,12 @@
 			</tr>
 		</table>
 		<br>
-		<c:forEach items="${notice.noticeImage}" var="noticeImage">
-			<img src="${pageContext.request.contextPath}/upload/${noticeImage.imageName}.${noticeImage.imageExt}" style="width:200px; height:200px;"/>
-		</c:forEach>
+		<div>
+			<c:forEach items="${notice.noticeImage}" var="noticeImage">
+				<img src="${pageContext.request.contextPath}/upload/${noticeImage.imageName}.${noticeImage.imageExt}"/>
+			</c:forEach>
+		</div>
+		<br>
 		<div>
 			<input type="button" value="이전" onclick="history.back(-1)">	
 		</div>

@@ -79,9 +79,12 @@
 			</tr>
 		</table>
 		<br>
-		<c:forEach items="${exhibition.exhibitionImage}" var="exhibitionImage">
-			<img src="${pageContext.request.contextPath}/upload/${exhibitionImage.imageName}.${exhibitionImage.imageExt}" style="width:400px; height:400px;"/>
-		</c:forEach>
+		<div>
+			<c:forEach items="${exhibition.exhibitionImage}" var="exhibitionImage">
+				<img src="${pageContext.request.contextPath}/upload/${exhibitionImage.imageName}.${exhibitionImage.imageExt}" style="width:600px; height:400px;"/>
+			</c:forEach>
+		</div>
+		<br>
 		<c:if test="${loginAdminId != null}">
 			<div>
 				<a href="${pageContext.request.contextPath}/admin/updateExhibition?exhibitionNo=${exhibition.exhibitionNo}" class="btn btn-outline-success">수정</a>
