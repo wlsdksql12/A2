@@ -21,7 +21,7 @@
 		<div>
 		<input type="file" multiple="multiple" name="experiencepaymentReviewImageUpload">
 		</div>
-		<input type="hidden" name="experienceName" value="${experienceName}">
+		<input type="text" name="experienceName" value="${experienceName}" readonly="readonly">
 		
 		
 	

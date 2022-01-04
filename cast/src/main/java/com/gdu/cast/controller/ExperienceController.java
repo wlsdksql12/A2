@@ -195,7 +195,8 @@ public class ExperienceController {
       System.out.println(experienceName+"experienceName");
       String customerId = (String)session.getAttribute("loginCustomerId");
       int experiencePaymentId = mainExperienceOrHotelReviewService.getselectCustomerPaymentId(experienceName, customerId);
-      
+      model.addAttribute("experienceName", experienceName);
+
       model.addAttribute("customerId", customerId);
       model.addAttribute("experienceId", experienceId);
       model.addAttribute("experiencePaymentId", experiencePaymentId);

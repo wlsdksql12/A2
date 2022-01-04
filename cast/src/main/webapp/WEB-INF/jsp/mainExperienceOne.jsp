@@ -245,9 +245,9 @@
 									<div>-</div>
 								</c:otherwise>
 							</c:choose>
-							<div>test</div>
-								${ExperiencePaymentReview.experiencePaymentReviewImage}
-							</div>
+						<c:forEach items="${ExperiencePaymentReview.experiencePaymentReviewImage}" var="experiencePaymentReviewImage">
+                        <img src="${pageContext.request.contextPath}/upload/${experiencePaymentReviewImage.imageName}.${experiencePaymentReviewImage.imageExt}" style="width: 100px; height: 100px"/>
+                     	</c:forEach>
 	
 							</td>
 						</tr>
