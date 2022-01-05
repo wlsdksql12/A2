@@ -170,7 +170,7 @@
                             <select class="form-control" name="shopCategory" id="shopCategory"  onchange="shopCategory()">
                                 <option value="전체보기">전체보기</option>
                                 <option value="체험">체험</option>
-                                <option value="숙소">숙소</option>
+                                <option value="호텔">호텔</option>
                             </select>
                        </form>
                         </div>
@@ -347,7 +347,7 @@
 	                   </c:forEach>
 	                </div>
                 </c:when>
-                <c:when test="${shopCategory eq '숙소'}">
+                <c:when test="${shopCategory eq '호텔'}">
                <div class="row">
                <h5>호텔</h5>
                  <c:forEach items="${selectThemeShopHotelList}" var="ShopHotelList">
