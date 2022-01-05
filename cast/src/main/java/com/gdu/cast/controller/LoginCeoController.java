@@ -1,6 +1,8 @@
 package com.gdu.cast.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.gdu.cast.mapper.CeoMapper;
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.vo.Ceo;
@@ -23,6 +26,8 @@ public class LoginCeoController {
 	CeoService ceoService;
 	@Autowired
 	JoinRequestService joinRequestService;
+	@Autowired
+	CeoMapper ceoMapper;
 	
 	// 사업자 메인 페이지
 	@GetMapping("/ceo/ceoIndex")
@@ -70,5 +75,21 @@ public class LoginCeoController {
 	public String logOut(HttpSession session) {
 		session.invalidate();
 		return "redirect:/loginSelect";
+	}
+	
+	//
+	@GetMapping("/ceo/getExperienceMonth")
+	public Map<String, Object> getExperienceMonth(int year, HttpSession session) {
+		String ceoId = (String) session.getAttribute("loginCeoId");
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("year", year);
+		paramMap.put("ceoId", ceoId);
+		
+		System.out.println(year + "year");
+		System.out.println(ceoId + "ceoId");
+		
+		Map<String, Object> returnmap = ceoMapper.selectExperienceMonth(paramMap);
+		return returnmap;
 	}
 }

@@ -198,6 +198,12 @@
             </div>
           </li>
           <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/ceo/getExperienceMonth" class="nav-link" href="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chartjs.html">
+              <i class="ti-user menu-icon"></i>
+              <span class="menu-title" style="font-weight:bold;">체험 차트</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="ti-palette menu-icon"></i>
               <span class="menu-title">UI Elements</span>

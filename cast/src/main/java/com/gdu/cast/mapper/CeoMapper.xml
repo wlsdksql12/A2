@@ -108,6 +108,28 @@
 		 ON e.experience_id = ew.experience_id
 		 WHERE ceo_id = '${ceoId}'
 	</select>
+	
+	<!-- 차트 -->
+	<select id="selectExperienceMonth" parameterType="map" resultType="java.util.Map">
+		SELECT
+			SUM(CASE WHEN MONTH(ep.create_date)=1 THEN ep.experience_payment_money END) january,
+			SUM(CASE WHEN MONTH(ep.create_date)=2 THEN ep.experience_payment_money END) february,
+			SUM(CASE WHEN MONTH(ep.create_date)=3 THEN ep.experience_payment_money END) march,
+			SUM(CASE WHEN MONTH(ep.create_date)=4 THEN ep.experience_payment_money END) april,
+			SUM(CASE WHEN MONTH(ep.create_date)=5 THEN ep.experience_payment_money END) may,
+			SUM(CASE WHEN MONTH(ep.create_date)=6 THEN ep.experience_payment_money END) jun,
+			SUM(CASE WHEN MONTH(ep.create_date)=7 THEN ep.experience_payment_money END) july,
+			SUM(CASE WHEN MONTH(ep.create_date)=8 THEN ep.experience_payment_money END) august,
+			SUM(CASE WHEN MONTH(ep.create_date)=9 THEN ep.experience_payment_money END) september,
+			SUM(CASE WHEN MONTH(ep.create_date)=10 THEN ep.experience_payment_money END) october,
+			SUM(CASE WHEN MONTH(ep.create_date)=11 THEN ep.experience_payment_money END) november,
+			SUM(CASE WHEN MONTH(ep.create_date)=12 THEN ep.experience_payment_money END) december,
+		FROM experience_order eo INNER JOIN experience_payment ep
+		ON eo.experience_order_id = ep.experience_payment_id 
+		INNER JOIN experience e
+		ON e.experience_name = eo.expeirence_name
+		WHERE YEAR(ep.create_date) = #{year} AND e.ceo_id = #{ceoId}
+	</select>
 </mapper>
 
 
