@@ -20,6 +20,7 @@
 			ceo_license,
 			ceo_phonenum,
 			ceo_jumin,
+			subscription_no,
 			create_date,
 			update_date
 		) VALUES (
@@ -30,6 +31,7 @@
 			#{ceoLicense},
 			#{ceoPhonenum},
 			#{ceoJumin},
+			#{subscriptionNo},
 			now(),
 			now()
 		)
