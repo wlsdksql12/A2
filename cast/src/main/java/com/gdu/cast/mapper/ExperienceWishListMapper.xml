@@ -11,7 +11,7 @@
 			<result column="experience_price" property="experiencePrice" />
 			<result column="experience_startdate" property="experienceStartdate" />
 			<result column="experience_enddate" property="experienceEnddate" />
-			<result column="epxerience_person" property="experiencePerson" />
+			<result column="experience_person" property="experiencePerson" />
 		</association>
 	</resultMap>
 	
