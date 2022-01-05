@@ -179,6 +179,7 @@
                 <c:choose>
 				<c:when test="${shopCategory eq '전체보기'}">
 	                <div class="row">
+	                <h5>체험</h5>
 	                 <c:forEach items="${selectThemeShopExperienceList}" var="ShopExperienceList">
 	                 <c:set var="test" value="${value}" />
 	                    <div class="col-md-4">
@@ -247,6 +248,7 @@
 	                   </c:forEach>
 	                </div>
 	                <div class="row">
+	                <h5>호텔</h5>
 	                 <c:forEach items="${selectThemeShopHotelList}" var="ShopHotelList">
 	                 <c:set var="test" value="${value}" />
 	                    <div class="col-md-4">
@@ -304,6 +306,7 @@
                 </c:when>
                 <c:when test="${shopCategory eq '체험'}">
 	                 <div class="row">
+	                 <h5>체험</h5>
 	                 <c:forEach items="${selectThemeShopExperienceList}" var="ShopExperienceList">
 	                    <div class="col-md-4">
 	                        <div class="card mb-4 product-wap rounded-0">
@@ -345,7 +348,8 @@
 	                </div>
                 </c:when>
                 <c:when test="${shopCategory eq '숙소'}">
-                	                <div class="row">
+               <div class="row">
+               <h5>호텔</h5>
                  <c:forEach items="${selectThemeShopHotelList}" var="ShopHotelList">
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
@@ -360,7 +364,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="" class="h3 text-decoration-none">${ShopHotelList.hotel.hotelName}</a>
+                                <a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${ShopHotelList.hotel.hotelId}" class="h3 text-decoration-none">${ShopHotelList.hotel.hotelName}</a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li class="pt-2">
                                         <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
