@@ -34,6 +34,7 @@ public class MainSelectController {
 	private final int ROW_PER_PAGE = 10;
 	private final int row_per_page = 5;
 	
+	
 	// 여행작가 체험 추천 삭제
 	@GetMapping("/removeExperienceSelect")
 	public String removeExperienceSelect(ExperienceSelect experienceSelect) {
@@ -87,8 +88,8 @@ public class MainSelectController {
 	public String experienceSelectOne(Model model, int experienceSelectId, @RequestParam(defaultValue = "1") int currentPage) {
 		System.out.println(experienceSelectId + " <- experienceSelectId");
 		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
-		Map<String, Object> map = mainSelectCommentService.getexperienceSelectComment(currentPage, row_per_page,experienceSelectId);
 		List<ExperienceSelectImage> experienceSelectImageList = mainSelectService.getselectExperienceSelectImageList(experienceSelectId);
+		Map<String, Object> map = mainSelectCommentService.getexperienceSelectComment(currentPage, row_per_page,experienceSelectId);
 		
 		model.addAttribute("experienceSelectImageList", experienceSelectImageList);
 		model.addAttribute("selectCommentList", map.get("selectCommentList"));

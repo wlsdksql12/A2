@@ -96,6 +96,18 @@
 		</association>
 	</resultMap>
 	
+	<!-- 메인 페이지의 숙소 추천 이미지 수정 -->
+	<update id="updateRoomSelectImage" parameterType="com.gdu.cast.vo.RoomSelectImage">
+		UPDATE room_select_image
+		SET 
+			image_name = #{imageName},
+			image_ext = #{imageExt},
+			image_size = #{imageSize},
+			update_date = NOW()
+		WHERE 
+			room_select_id = #{roomSelectId}
+	</update>
+	
 	<!-- 메인 페이지의 체험 추천 삭제 -->
 	<delete id="deleteExperienceSelectImage" parameterType="int">
 		DELETE FROM experience_select_image

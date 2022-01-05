@@ -17,6 +17,9 @@ import com.gdu.cast.vo.ThemeSmallHotel;
 @Mapper
 public interface MainSelectMapper {
 	
+	// 메인 페이지 이미지 수정
+	int updateRoomSelectImage(RoomSelectImage roomSelectImage);
+	
 	// 메인 페이지 체험 추천 이미지 삭제
 	int deleteExperienceSelectImage(ExperienceSelect experienceSelect);
 	

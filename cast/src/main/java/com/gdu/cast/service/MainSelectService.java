@@ -32,6 +32,65 @@ public class MainSelectService {
 	@Autowired
 	MainSelectCommentMapper mainSelectCommentMapper;
 	
+	/*
+	// 메인 페이지 숙소 추천 수정
+	public void updateRoomSelect(AddRoomSelect addRoomSelect) {
+		
+		// 데이터 추가
+		String travelerId = addRoomSelect.getTravelerId();
+		int hotelId = addRoomSelect.getHotelId();
+		String roomSelectTitle = addRoomSelect.getRoomSelectTitle();
+		String roomSelectContent = addRoomSelect.getRoomSelectContent();
+		String createDate = addRoomSelect.getCreateDate();
+		String updateDate = addRoomSelect.getUpdateDate();
+		
+		// 1) 숙소 추천 입력
+		RoomSelect roomSelect = new RoomSelect();		
+		roomSelect.setTravelerId(travelerId);
+		roomSelect.setHotelId(hotelId);
+		roomSelect.setRoomSelectTitle(roomSelectTitle);
+		roomSelect.setRoomSelectContent(roomSelectContent);
+		roomSelect.setCreateDate(createDate);
+		roomSelect.setUpdateDate(updateDate);
+		mainSelectMapper.updateRoomSelect(roomSelect);
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		
+		List<RoomSelectImage> roomSelectImage = null;
+		if(addRoomSelect.getRoomSelectImage() != null) {
+			roomSelectImage = new ArrayList<RoomSelectImage>();
+			for(MultipartFile mf : addRoomSelect.getRoomSelectImage()) {
+				RoomSelectImage rsi = new RoomSelectImage();
+				rsi.setRoomSelectId(roomSelect.getRoomSelectId());
+				String originName = mf.getOriginalFilename();
+				int p = originName.lastIndexOf(".");
+				String imageName = UUID.randomUUID().toString();
+				String imageExt = originName.substring(p+1);
+				rsi.setImageName(imageName);
+				rsi.setImageExt(imageExt);
+				rsi.setImageSize(mf.getSize());
+				rsi.setCreateDate(createDate);
+				rsi.setUpdateDate(updateDate);
+				roomSelectImage.add(rsi);
+				log.debug("★★★★Hyun★★★★"+roomSelectImage.toString());
+				File temp = new File("");
+				String path = temp.getAbsolutePath();
+				log.debug("★★★★Hyun★★★★"+path);
+				try {
+					mf.transferTo(new File(path+"\\src\\main\\webapp\\upload\\"+imageName+"."+imageExt));
+				} catch(Exception e) {
+					e.printStackTrace();
+					throw new RuntimeException();
+				}
+			}
+		}
+		if(roomSelectImage != null) {
+			for(RoomSelectImage rsi : roomSelectImage) {
+				mainSelectMapper.updateRoomSelectImage(rsi);
+			}
+		}
+	}
+	*/
+	
 	// 메인 페이지 숙소 추천 이미지
 	public List<RoomSelectImage> getselectRoomSelectImageList(int roomSelectId) {
 		System.out.println("★★★★Hyun★★★★"+roomSelectId);
@@ -71,7 +130,7 @@ public class MainSelectService {
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		mainSelectMapper.updateRoomSelect(roomSelect);
 	}
-	
+
 	// 메인 페이지 체험 추천 상세보기
 	public ExperienceSelect getexperienceSelectOne(int experienceSelectId) {
 		System.out.println(experienceSelectId + "<-- experienceSelectId");
