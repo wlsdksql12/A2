@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.TravelerMapper;
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
+import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.RoomSelectComment;
 import com.gdu.cast.vo.Traveler;
@@ -24,6 +26,16 @@ public class TravelerService {
 	
 	@Autowired
 	TravelerMapper travelerMapper;
+	
+	// 최근 체험 등록 리스트(5개)
+	public List<Experience> getSelectExperienceListByMain() {
+		return travelerMapper.selectExperienceListByMain();
+	}
+	
+	// 최근 호텔 등록 리스트(5개)
+	public List<Hotel> getSelectHotelListByMain() {
+		return travelerMapper.selectHotelListByMain();
+	}
 	
 	// 자신이 등록한 체험 추천 글의 댓글 리스트
 	public Map<String, Object> getSelectExperienceSelectCommentList(String travelerId, int currentPage, int ROW_PER_PAGE) {
@@ -156,7 +168,7 @@ public class TravelerService {
 	
 	// 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 출력(5개)
 	public List<ExperienceSelect> getselectExperienceSelectListByMain(String travelerId) {
-		return travelerMapper.selectExperienceListByMain(travelerId);
+		return travelerMapper.selectExperienceSelectListByMain(travelerId);
 	}
 	
 	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 출력(5개)

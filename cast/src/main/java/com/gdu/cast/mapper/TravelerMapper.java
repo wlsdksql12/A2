@@ -5,14 +5,22 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
+import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.RoomSelectComment;
 import com.gdu.cast.vo.Traveler;
 
 @Mapper
 public interface TravelerMapper {
+
+	// 최근 체험 등록 리스트(5개)
+	List<Experience> selectExperienceListByMain();
+	
+	// 최근 호텔 등록 리스트(5개)
+	List<Hotel> selectHotelListByMain();
 	
 	// 자신이 등록한 체험 추천 글의 댓글 수
 	int selectExperienceSelectCommentTotalCount(String travelerId);
@@ -51,7 +59,7 @@ public interface TravelerMapper {
 	void deleteTraveler(String travelerId, String travelerPw);
 	
 	// 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 출력(5개)
-	List<ExperienceSelect> selectExperienceListByMain(String travelerId);
+	List<ExperienceSelect> selectExperienceSelectListByMain(String travelerId);
 	
 	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 출력(5개)
 	List<RoomSelect> selectRoomSelectListByMain(String travelerId);

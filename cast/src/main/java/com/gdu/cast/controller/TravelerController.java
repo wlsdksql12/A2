@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.service.TravelerService;
+import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectComment;
+import com.gdu.cast.vo.Hotel;
 import com.gdu.cast.vo.RoomSelect;
 import com.gdu.cast.vo.RoomSelectComment;
 import com.gdu.cast.vo.Traveler;
@@ -116,7 +118,7 @@ public class TravelerController {
 		}
 	}
 	
-	// 여행작가 메인 페이지 자신이 등록한 숙소/체험 추천 리스트 출력(5개)
+	// 여행작가 메인 페이지 자신이 등록한 숙소/체험 추천 리스트 출력(5개) 및 최근 등록한 호텔/체험 리스트 출력
 	@GetMapping("/travelerIndex")
 	public String SelectListMain(HttpSession session, Model model, String travelerId) {
 		
@@ -128,21 +130,30 @@ public class TravelerController {
 		List<ExperienceSelect> experienceSelectList = travelerService.getselectExperienceSelectListByMain(travelerId);
 		List<ExperienceSelectComment> experienceSelectCommentListByMain = travelerService.getselectExperienceSelectCommentListByMain(travelerId);
 		
+		List<Hotel> hotelList = travelerService.getSelectHotelListByMain();
+		List<Experience> experienceList = travelerService.getSelectExperienceListByMain();
+		
 		// 가입 요청 세션 가져오기
 		String state = joinRequestService.getTravelerJoinRequestResult((String)session.getAttribute("loginTravelerId"));
 		session.setAttribute("state", state);
 		System.out.println(state + " <<< LoginCeoController");
 		
-		model.addAttribute("experienceSelectCommentListByMain", experienceSelectCommentListByMain);
-		model.addAttribute("roomSelectCommentListByMain", roomSelectCommentListByMain);
 		model.addAttribute("roomSelectList", roomSelectList);
 		model.addAttribute("experienceSelectList", experienceSelectList);
+		model.addAttribute("roomSelectCommentListByMain", roomSelectCommentListByMain);
+		model.addAttribute("experienceSelectCommentListByMain", experienceSelectCommentListByMain);
+		model.addAttribute("hotelList", hotelList);
+		model.addAttribute("experienceList", experienceList);
+		
+		
 		model.addAttribute("travelerId", travelerId);
 		
-		log.debug("★★★★Hyun★★★★"+experienceSelectCommentListByMain.toString());
-		log.debug("★★★★Hyun★★★★"+roomSelectCommentListByMain.toString());
 		log.debug("★★★★Hyun★★★★"+roomSelectList.toString());
+		log.debug("★★★★Hyun★★★★"+roomSelectCommentListByMain.toString());
 		log.debug("★★★★Hyun★★★★"+experienceSelectList.toString());
+		log.debug("★★★★Hyun★★★★"+experienceSelectCommentListByMain.toString());
+		log.debug("★★★★Hyun★★★★"+hotelList.toString());
+		log.debug("★★★★Hyun★★★★"+experienceList.toString());
 		log.debug("★★★★Hyun★★★★"+travelerId);
 		
 		return "traveler/travelerIndex";

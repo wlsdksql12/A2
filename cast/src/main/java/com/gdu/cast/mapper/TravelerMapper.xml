@@ -62,6 +62,30 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 최근 체험 등록 리스트(5개)  -->
+	<select id="selectExperienceListByMain" parameterType="com.gdu.cast.vo.Experience" resultType="com.gdu.cast.vo.Experience">
+		SELECT 
+			experience_id experienceId,
+			experience_name experienceName,
+			experience_content experienceContent,
+			SUBSTR(create_date, 1, 19) createDate
+		FROM experience
+		ORDER BY create_date DESC
+		LIMIT 0, 5
+	</select>
+	
+	<!-- 최근 호텔 등록 리스트(5개)  -->
+	<select id="selectHotelListByMain" parameterType="com.gdu.cast.vo.Hotel" resultType="com.gdu.cast.vo.Hotel">
+		SELECT 
+			hotel_id hotelId,
+			hotel_name hotelName,
+			hotel_content hotelContent,
+			SUBSTR(create_date, 1, 19) createDate
+		FROM hotel
+		ORDER BY create_date DESC
+		LIMIT 0, 5
+	</select>
+	
 	<!-- 자신이 등록한 체험 추천 글의 댓글 수 -->
 	<select id="selectExperienceSelectCommentTotalCount" parameterType="String" resultType="int">
 		SELECT COUNT(*)
@@ -204,7 +228,7 @@
 	</delete>
 	
 	<!-- 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 출력(5개) -->
-	<select id="selectExperienceListByMain" parameterType="com.gdu.cast.vo.ExperienceSelect" resultMap="resultExperienceSelect">
+	<select id="selectExperienceSelectListByMain" parameterType="com.gdu.cast.vo.ExperienceSelect" resultMap="resultExperienceSelect">
 		SELECT 
 			e.experience_select_id,
 			e.traveler_id,
