@@ -49,5 +49,20 @@
 		ORDER BY cnt DESC
 		LIMIT 0,1;
 	</select>
-
+	<!-- 가장 추천이 많은 숙소 여행작가의 best choice -->
+	<select id="selectHotelBestChoice" parameterType="Map" resultType="Map">
+		SELECT
+			hi.image_size imageSize,
+			hi.image_ext imageExt,
+			hi.image_name imageName,
+			rs.hotel_id hotelId,
+			h.hotel_name hotelName,
+			COUNT(*) AS cnt
+		FROM room_select rs
+		INNER JOIN hotel h ON rs.hotel_id = h.hotel_id
+		INNER JOIN hotel_image hi ON h.hotel_id = hi.hotel_id
+		GROUP BY rs.hotel_id
+		ORDER BY cnt DESC
+		LIMIT 0,1;
+	</select>
 </mapper>

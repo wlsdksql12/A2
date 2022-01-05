@@ -25,4 +25,8 @@ public class IndexService {
 	public List<Experience> getExperienceBestChoice(){
 		return indexMapper.selectExpBestChoice();
 	}
+	// 가장 추천이 많은 숙소
+	public List<Hotel> getHotelBestChoice(){
+		return indexMapper.selectHotelBestChoice();
+	}
 }

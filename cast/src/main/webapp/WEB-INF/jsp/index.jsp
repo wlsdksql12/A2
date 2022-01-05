@@ -209,12 +209,12 @@
 		        		<td style="width: 500px;">
 			        		<div style="width: 500px; height: 600px; margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
 						        <div class="card h-100">
-			                        <a href="">
-			                            <img src="${pageContext.request.contextPath}/upload/${expBestChoice.imageName}.${expBestChoice.imageExt}" class="card-img-top" alt="...">
+			                        <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expBestChoice.experienceId}&experienceName=${expBestChoice.experienceName}">
+			                            <img src="${pageContext.request.contextPath}/upload/${expBestChoice.imageName}.${expBestChoice.imageExt}" class="card-img-top" width="500px" height="400px">
 			                        </a>
 			                        <div class="card-body">
 			                            <p style="text-align: left;">
-			                            	<a href="" class="h2 text-decoration-none text-dark">${expBestChoice.experienceName}</a>
+			                            	<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expBestChoice.experienceId}&experienceName=${expBestChoice.experienceName}" class="h2 text-decoration-none text-dark">${expBestChoice.experienceName}</a>
 			                            </p>
 			                            <p class="text-muted text-right">${expBestChoice.experiencePrice}원</p>
 			                            <p style="text-align: left;" class="text-muted">추천횟수 : ${expBestChoice.cnt}</p>
@@ -224,29 +224,24 @@
 		        		</td>
 		        		</c:forEach>
 		        		<!-- 임시로 넣어둠 -->
-		        		<c:forEach items="${experienceBestChoice}" var="expBestChoice">
+		        		<c:forEach items="${hotelBestChoice}" var="hotelBestChoice">
 		        		<td style="width: 500px;">
 			        		<div style="width: 500px; height: 600px; margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
 						        <div class="card h-100">
-			                        <a href="">
-			                            <img src="${pageContext.request.contextPath}/upload/${expBestChoice.imageName}.${expBestChoice.imageExt}" class="card-img-top" alt="...">
+			                        <a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelBestChoice.hotelId}">
+			                            <img src="${pageContext.request.contextPath}/upload/${hotelBestChoice.imageName}.${hotelBestChoice.imageExt}" class="card-img-top" width="500px" height="400px">
 			                        </a>
 			                        <div class="card-body">
 			                            <p style="text-align: left;">
-			                            	<a href="" class="h2 text-decoration-none text-dark">숙소 미구현</a>
+			                            	<a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelBestChoice.hotelId}" class="h2 text-decoration-none text-dark">${hotelBestChoice.hotelName}</a>
 			                            </p>
-			                            <p class="text-muted text-right">${expBestChoice.experiencePrice}원</p>
-			                            <p style="text-align: left;" class="text-muted">추천횟수 : ${expBestChoice.cnt}</p>
+			                            <p style="text-align: left;" class="text-muted">추천횟수 : ${hotelBestChoice.cnt}</p>
 			                        </div>
 			                    </div>
 				            </div>
 		        		</td>
 		        		</c:forEach>
 					</tr>
-		        </table>
-
-				<table class="text-center">
-			        
 		        </table>
             </div>
             

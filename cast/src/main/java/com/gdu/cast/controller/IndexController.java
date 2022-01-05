@@ -53,9 +53,12 @@ public class IndexController {
 		List<Hotel> hotelList = indexService.getHotelList();
 		// 가장 많은 추천을 받은 체험
 		List<Experience> experienceBestChoice = indexService.getExperienceBestChoice();
+		// 가장 많은 추천을 받은 숙소
+		List<Hotel> hotelBestChoice = indexService.getHotelBestChoice();
 		System.out.println("@@@@@@@@@@@@@experienceList" + experienceList);
 		System.out.println("@@@@@@@@@@@@@hotelList" + hotelList);
 		System.out.println("@@@@@@@@@@@@@experienceBestChoice" + experienceBestChoice);
+		System.out.println("@@@@@@@@@@@@@hotelBestChoice" + hotelBestChoice);
 		// 메인페이지 전시소개 리스트
 		List<Exhibition> exhibition = exhibitionService.getExhibitionList1();
 		String path = request.getSession().getServletContext().getRealPath("/");
@@ -71,6 +74,8 @@ public class IndexController {
 		model.addAttribute("hotelList", hotelList);
 		// 가장 많은 추천을 받은 체험
 		model.addAttribute("experienceBestChoice", experienceBestChoice);
+		// 가장 많은 추천을 받은 숙소
+		model.addAttribute("hotelBestChoice", hotelBestChoice);
 		
 		return "index";
 	}
