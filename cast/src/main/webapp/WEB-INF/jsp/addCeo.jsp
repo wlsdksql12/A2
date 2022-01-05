@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>고객 회원가입</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <style> 
@@ -154,8 +155,8 @@
 									    <li class="grey">&#8361; 5,000 / year</li>
 									    <li>체험 5개 등록 가능</li>
 									    <li>호텔 5개 등록 가능</li>
-									    <li>방 50개 등록 가능</li>
-									    <li class="grey"><input type="checkbox" href="#" class="button">선택</li>
+									    <li>전시 소개 등록 비제공</li>
+									    <li class="grey"><input type="checkbox" name="subscriptionNo" value="456" onclick="checkOnlyOne(this)">선택</li>
 									  </ul>
 									</div>
 									
@@ -165,10 +166,9 @@
 									    <li class="grey">&#8361; 10,000 / year</li>
 									    <li>체험 무제한 등록 가능</li>
 									    <li>호텔 무제한 등록 가능</li>
-									    <li>방 무제한 등록 가능</li>
-									    <li class="grey"><input type="checkbox" href="#" class="button">선택</li>
-									  </ul>
-									  
+									    <li>전시 소개 등록 제공</li>
+									    <li class="grey"><input  type="checkbox" name="subscriptionNo" value="123" onclick="checkOnlyOne(this)">선택</li>
+									  </ul>	
 									</div>
 								</div>
 							</div>
@@ -186,13 +186,44 @@
 			const forms = document.getElementsByClassName('validation-form');
 			Array.prototype.filter.call(forms, (form) => {
 				form.addEventListener('submit', function (event) {
-					if (form.checkValidity() === false) { event.preventDefault();
-					event.stopPropagation();
+					if (form.checkValidity() === false) {
+						swal("가입 신청이 안됩니다.", "모든 항목을 입력해주십쇼.", "error");
+						event.preventDefault();
+						event.stopPropagation();
 					}
-					form.classList.add('was-validated'); 
-					}, false);
+					const query = 'input[name="subscriptionNo"]:checked';
+				  	const selectedEls = document.querySelectorAll(query);
+				  
+					  // 선택된 목록에서 value 찾기
+					  let result = '';
+					  selectedEls.forEach((el) => {
+					    result += el.value + ' ';
+					  });
+					  
+					  // subscriptionNo 값 출력
+					  if(result == null || result ==""){
+						  swal("가입 신청이 안됩니다.", "모든 항목을 입력해주십쇼.", "error");
+						  // submit안되도록 함
+						  event.preventDefault();
+						  event.stopPropagation();  
+					  }
+					form.classList.add('was-validated');
+				}, false);
 				});
 			}, false);
+		
+		// 구독 1개만 체크박스 되도록
+		function checkOnlyOne(element) {
+			  
+			  const checkboxes 
+			      = document.getElementsByName("subscriptionNo");
+			  
+			  checkboxes.forEach((cb) => {
+			    cb.checked = false;
+			  })
+			  
+			  element.checked = true;
+			}
 	</script>
 </body>
 </html>

@@ -11,6 +11,7 @@ public class Ceo {
 	private String ceoJumin;		// 사업자 주민등록번호
 	private String ceoLicense;		// 사업자 등록증 여부
 	private String ceoPw;			// 사업자 비밀번호
+	private int subscriptionNo;		// 구독권 PK
 	private String createDate;		// 사업자 정보 생성일
 	private String updateDate;		// 사업자 정보 수정일
 	
