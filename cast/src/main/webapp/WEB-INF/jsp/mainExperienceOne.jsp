@@ -220,7 +220,7 @@
 					<h4>review</h4>
 					
 					<div style="text-align: right;">
-					<c:if test="${loginCustomerId != null}">
+					<c:if test="${(loginCustomerId != null) && (experienceNameIf eq experience.experienceName)}">
 						<a href="${pageContext.request.contextPath}/addExperienceReview?experienceId=${experience.experienceId}&experienceName=${experience.experienceName}"class="btn btn-outline-success">추가</a>
 					</c:if>
 					</div>

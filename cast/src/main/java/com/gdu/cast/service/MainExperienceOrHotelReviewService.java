@@ -201,6 +201,10 @@ public class MainExperienceOrHotelReviewService {
 		mainExperienceOrHotelReviewMapper.deletehotelReview(roomPaymentReviewId);
 	}
 	
+	// 결제한 사람만 리뷰 작성 가능하도록 하는 조건문 키값.
+	public String getselectExperienceId(String customerId, String experienceName) {
+		return mainExperienceOrHotelReviewMapper.selectExperienceId(customerId, experienceName);
+	}
 	
 	// 호텔 리뷰 내용 추가
 	public void getinsertRoomPaymentReview(List<MultipartFile> roomPaymentReviewImageUpload,String path, String roomPaymentReviewContent, int roomPaymentId, int hotelId) {

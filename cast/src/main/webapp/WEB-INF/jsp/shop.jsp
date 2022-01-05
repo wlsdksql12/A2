@@ -220,7 +220,7 @@
 	                                </div>
 	                            </div>
 	                            <div class="card-body">
-	                                <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
+	                                <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${ShopExperienceList.experience.experienceId}&experienceName=${ShopExperienceList.experience.experienceName}" class="h3 text-decoration-none">${ShopExperienceList.experience.experienceName}</a>
 	                                <div>
 	                                </div>
 	                                <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
