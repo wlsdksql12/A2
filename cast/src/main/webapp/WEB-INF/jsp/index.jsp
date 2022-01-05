@@ -194,30 +194,64 @@
         <div class="container py-5">
             <div class="row text-center py-3">
                 <div class="col-lg-6 m-auto">
-                    <h1 class="h1">이달의 상품</h1>
+                    <h1 class="h1">
+                    	<img src="${pageContext.request.contextPath}/upload/best.png" width="300px">
+                    </h1>
                     <p>
                     	여러 여행작가에게 추천을 많이 받은 상품입니다.
                     </p>
                 </div>
             </div>
             <div class="row">
+				<table>
+			        <tr>
+			        	<c:forEach items="${experienceBestChoice}" var="expBestChoice">
+		        		<td style="width: 500px;">
+			        		<div style="width: 500px; height: 600px; margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
+						        <div class="card h-100">
+			                        <a href="">
+			                            <img src="${pageContext.request.contextPath}/upload/${expBestChoice.imageName}.${expBestChoice.imageExt}" class="card-img-top" alt="...">
+			                        </a>
+			                        <div class="card-body">
+			                            <p style="text-align: left;">
+			                            	<a href="" class="h2 text-decoration-none text-dark">${expBestChoice.experienceName}</a>
+			                            </p>
+			                            <p class="text-muted text-right">${expBestChoice.experiencePrice}원</p>
+			                            <p style="text-align: left;" class="text-muted">추천횟수 : ${expBestChoice.cnt}</p>
+			                        </div>
+			                    </div>
+				            </div>
+		        		</td>
+		        		</c:forEach>
+		        		<!-- 임시로 넣어둠 -->
+		        		<c:forEach items="${experienceBestChoice}" var="expBestChoice">
+		        		<td style="width: 500px;">
+			        		<div style="width: 500px; height: 600px; margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
+						        <div class="card h-100">
+			                        <a href="">
+			                            <img src="${pageContext.request.contextPath}/upload/${expBestChoice.imageName}.${expBestChoice.imageExt}" class="card-img-top" alt="...">
+			                        </a>
+			                        <div class="card-body">
+			                            <p style="text-align: left;">
+			                            	<a href="" class="h2 text-decoration-none text-dark">숙소 미구현</a>
+			                            </p>
+			                            <p class="text-muted text-right">${expBestChoice.experiencePrice}원</p>
+			                            <p style="text-align: left;" class="text-muted">추천횟수 : ${expBestChoice.cnt}</p>
+			                        </div>
+			                    </div>
+				            </div>
+		        		</td>
+		        		</c:forEach>
+					</tr>
+		        </table>
 
-                <div style="margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
-                    <div class="card h-100">
-                        <a href="${pageContext.request.contextPath}/shopsingle">
-                            <img src="${pageContext.request.contextPath}/resources/assets/img/feature_prod_03.jpg" class="card-img-top" alt="...">
-                        </a>
-                        <div class="card-body">
-                            <ul class="list-unstyled d-flex justify-content-between">
-                                <li class="text-muted text-right">가격</li>
-                            </ul>
-                            <a href="${pageContext.request.contextPath}/shopsingle" class="h2 text-decoration-none text-dark">상품이름</a>
-                            <p class="text-muted">추천횟수</p>
-                        </div>
-                    </div>
-                </div>
+				<table class="text-center">
+			        
+		        </table>
             </div>
+            
         </div>
+        
     </section>
     <!-- End Featured Product -->
 

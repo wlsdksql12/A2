@@ -13,5 +13,7 @@ public interface IndexMapper {
 	List<Experience> selectExpByMainPage();
 	// 최근 올라온 호텔 3개
 	List<Hotel> selectHotelByMainPage();
-	
+	// 가장 추천이 많은 체험
+	List<Experience> selectExpBestChoice();
+
 }

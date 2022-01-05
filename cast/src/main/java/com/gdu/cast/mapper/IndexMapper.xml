@@ -32,4 +32,22 @@
 		ORDER BY h.create_date DESC
 		LIMIT 0,3;
 	</select>
+	<!-- 가장 추천이 많은 체험 여행작가의 best choice -->
+	<select id="selectExpBestChoice" parameterType="Map" resultType="Map">
+		SELECT
+			ei.image_size imageSize,
+			ei.image_ext imageExt,
+			ei.image_name imageName,
+			es.experience_id experienceId,
+			e.experience_name experienceName,
+			e.experience_price experiencePrice,
+			COUNT(*) AS cnt
+		FROM experience_select es
+		INNER JOIN experience e ON es.experience_id = e.experience_id
+		INNER JOIN experience_image ei ON e.experience_id = ei.experience_id
+		GROUP BY es.experience_id
+		ORDER BY cnt DESC
+		LIMIT 0,1;
+	</select>
+
 </mapper>
