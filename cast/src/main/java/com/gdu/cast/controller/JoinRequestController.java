@@ -64,7 +64,7 @@ public class JoinRequestController {
 	
 	// 여행작가 상세보기에서 가입 승인 시
 	@GetMapping("/admin/updateTravelerJoinRequest")
-	public String updateTravelerJoinRequest(int joinTravelerId,String adminId, String state) {
+	public String updateTravelerJoinRequest(int joinTravelerId, String adminId, String state) {
 		// 디버깅
 		System.out.println(joinTravelerId + " <-----JoinRequestController");
 		System.out.println(adminId + " <-----JoinRequestController");
@@ -131,12 +131,14 @@ public class JoinRequestController {
 	
 	// 사업자 상세보기에서 가입 승인 시
 	@GetMapping("/admin/updateCeoJoinRequest")
-	public String updateCeoJoinRequest(int joinCeoId,String adminId, String state) {
+	public String updateCeoJoinRequest(int joinCeoId,String adminId, String state, String ceoId, int subscriptionNo) {
 		// 디버깅
 		System.out.println(joinCeoId + " <-----JoinRequestController");
 		System.out.println(adminId + " <-----JoinRequestController");
 		System.out.println(state + " <-----JoinRequestController");
-		joinRequestService.updateCeoJoinRequest(joinCeoId, adminId, state);
+		System.out.println(ceoId + " <-----JoinRequestController");
+		System.out.println(subscriptionNo + " <-----JoinRequestController");
+		joinRequestService.updateCeoJoinRequest(joinCeoId, adminId, state, ceoId, subscriptionNo);
 		return"redirect:/admin/ceoJoinRequestList";
 	}
 	

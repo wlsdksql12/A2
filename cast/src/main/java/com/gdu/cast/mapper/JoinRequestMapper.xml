@@ -1,42 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.JoinRequestMapper">
-	<!-- JoinTraveler와 Traveler vo를 합침 -->
-	<!-- 
-	<resultMap type="com.gdu.cast.vo.JoinTraveler" id="resultJoinTraveler">
-		<id column="join_traveler_id" property="joinTravelerId"></id>
-		<result column="traveler_id" property="travelerId"></result>
-		<result column="admin_id" property="adminId"></result>
-		<result column="active" property="active"></result>
-		<result column="create_date" property="createDate"></result>
-		<result column="update_date" property="updateDate"></result>
-		<collection property="traveler" ofType="com.gdu.cast.vo.Traveler">
-			<id column="traveler_id" property="travelerId"></id>
-			<result column="traveler_name" property="travelerName"></result>
-			<result column="traveler_phonenum" property="travelerPhoneNum"></result>
-			<result column="traveler_email" property="travelerEmail"></result>
-			<result column="traveler_license" property="travelerLicense"></result>
-			<result column="traveler_career" property="travelerCareer"></result>
-		</collection>
-	</resultMap>
-	
-	 JoinCeo와 Ceo vo를 합침
+	<!-- JoinCeo와 Subscription vo를 합침 -->
 	<resultMap type="com.gdu.cast.vo.JoinCeo" id="resultJoinCeo">
 		<id column="join_ceo_id" property="joinCeoId"></id>
 		<result column="ceo_id" property="ceoId"></result>
+		<result column="ceo_name" property="ceoName"></result>
+		<result column="ceo_phonenum" property="ceoPhonenum"></result>
+		<result column="ceo_email" property="ceoEmail"></result>
+		<result column="ceo_license" property="ceoLicense"></result>
 		<result column="admin_id" property="adminId"></result>
 		<result column="active" property="active"></result>
+		<result column="subscription_no" property="subscriptionNo"></result>
 		<result column="create_date" property="createDate"></result>
 		<result column="update_date" property="updateDate"></result>
-		<collection property="ceo" ofType="com.gdu.cast.vo.Ceo">
-			<id column="ceo_id" property="ceoId"></id>
-			<result column="ceo_name" property="ceoName"></result>
-			<result column="ceo_phonenum" property="ceoPhonenum"></result>
-			<result column="ceo_email" property="ceoEmail"></result>
-			<result column="ceo_license" property="ceoLicense"></result>
+		<collection property="subscription" ofType="com.gdu.cast.vo.Subscription">
+			<result column="subscription_name" property="subscriptionName"></result>
 		</collection>
 	</resultMap>
-	 -->
 	<!-- 여행작가 회원가입 요청 추가 -->
 	<insert id="insertTravelerJoinRequest" parameterType="String">
 		INSERT INTO join_traveler(traveler_id, traveler_name, traveler_email, traveler_phonenum, traveler_license, traveler_career, create_date, update_date)
@@ -132,8 +113,8 @@
 	
 	<!-- 사업자 회원가입 요청 추가 -->
 	<insert id="insertCeoJoinRequest" parameterType="com.gdu.cast.vo.JoinCeo">
-		INSERT INTO join_ceo(ceo_id, ceo_name, ceo_email, ceo_phonenum, ceo_license, create_date, update_date)
-			SELECT ceo_id, ceo_name, ceo_phonenum, ceo_email, ceo_license, NOW(), NOW()
+		INSERT INTO join_ceo(subscription_no, ceo_id, ceo_name, ceo_email, ceo_phonenum, ceo_license, create_date, update_date)
+			SELECT subscription_no, ceo_id, ceo_name, ceo_phonenum, ceo_email, ceo_license, NOW(), NOW()
 			FROM ceo
 			WHERE ceo_id = #{ceoId}
 	</insert>
@@ -190,13 +171,14 @@
 	</select>
 	
 	<!-- 사업자 상세보기 -->
-	<select id="selectCeoOne" parameterType="int" resultType="com.gdu.cast.vo.JoinCeo">
+	<select id="selectCeoOne" parameterType="int" resultMap="resultJoinCeo">
 		SELECT
-			join_ceo_id joinCeoId, active active, ceo_id ceoId, 
-			ceo_name ceoName, ceo_phonenum ceoPhonenum, 
-			ceo_email ceoEmail, ceo_license ceoLicense
-		FROM join_ceo
-		WHERE join_ceo_id = #{joinCeoId}
+			jc.join_ceo_id, jc.active, jc.ceo_id, 
+			jc.ceo_name, jc.ceo_phonenum, 
+			jc.ceo_email, jc.ceo_license, jc.subscription_no, s.subscription_name
+		FROM join_ceo jc JOIN subscription s
+			 ON jc.subscription_no = s.subscription_no
+		WHERE jc.join_ceo_id = #{joinCeoId}
 	</select>
 	
 	<!-- 사업자 가입 요청 처리 시 -->

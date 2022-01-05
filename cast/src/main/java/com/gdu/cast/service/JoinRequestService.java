@@ -1,5 +1,7 @@
 package com.gdu.cast.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gdu.cast.mapper.JoinRequestMapper;
+import com.gdu.cast.mapper.SubscriptionMapper;
 import com.gdu.cast.vo.JoinCeo;
 import com.gdu.cast.vo.JoinTraveler;
 import com.gdu.cast.vo.Traveler;
@@ -18,6 +21,8 @@ import com.gdu.cast.vo.Traveler;
 public class JoinRequestService {
 	@Autowired
 	JoinRequestMapper joinRequestMapper;
+	@Autowired
+	SubscriptionMapper subscriptionMapper;
 	
 	// 여행작가 회원가입 시 여행작가 회원가입 요청 리스트 추가
 	public void addTravelerJoinRequest(String travelerId) {
@@ -171,7 +176,7 @@ public class JoinRequestService {
 	}
 	
 	// 사업자 가입 승인&거절
-	public void updateCeoJoinRequest(int joinCeoId, String adminId, String state) {
+	public void updateCeoJoinRequest(int joinCeoId, String adminId, String state, String ceoId, int subscriptionNo) {
 		// 디버깅
 		System.out.println(joinCeoId + "<---JoinRequestService");
 		System.out.println(adminId + "<---JoinRequestService");
@@ -181,8 +186,49 @@ public class JoinRequestService {
 		map.put("joinCeoId", joinCeoId);
 		map.put("adminId", adminId);
 		map.put("state", state);
-		
+		// joinCeo 업데이트
 		joinRequestMapper.updateCeoJoinRequest(map);
+		
+		// 승인 시
+		if(state.equals("승인")) {
+			Map<String, Object> paramMap = new HashMap<>();
+			paramMap.put("ceoId", ceoId);
+			paramMap.put("subscriptionNo", subscriptionNo);
+			// 구독의 결제 값 조회
+			int subscriptionPay = subscriptionMapper.selectSubscriptionPay(subscriptionNo);
+			System.out.println(subscriptionPay + "구독 가격");
+			// 현재 날짜 구하기
+			// LocalDate nowDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
+			LocalDate nowDate = LocalDate.parse("2022-04-03");
+			System.out.println(nowDate + "현재 날짜");
+			// 분기별 날짜
+			LocalDate date1 = nowDate.withMonth(1).withDayOfMonth(1);
+			LocalDate date2 = nowDate.withMonth(4).withDayOfMonth(1);
+			LocalDate date3 = nowDate.withMonth(7).withDayOfMonth(1);
+			LocalDate date4 = nowDate.withMonth(10).withDayOfMonth(1);
+			// System.out.println(date1 + " 1분기 날짜");
+			// System.out.println(date2 + " 2분기 날짜");
+			// System.out.println(date3 + " 3분기 날짜");
+			// System.out.println(date4 + " 4분기 날짜");
+			int amount = 0;
+			// 분기별 가격 구하기
+			if(nowDate.isAfter(date1) && nowDate.isBefore(date2)) { // 1분기 조건
+				amount = subscriptionPay;
+				// System.out.println(amount + " 1분기 조건 가격");
+			} else if(nowDate.isAfter(date2) && nowDate.isBefore(date3)) { // 2분기 조건
+				amount = ((subscriptionPay * 75) / 100);
+				// System.out.println(amount + " 2분기 조건 가격");
+			} else if(nowDate.isAfter(date3) && nowDate.isBefore(date4)) { // 3분기 조건
+				amount = ((subscriptionPay * 50) / 100);
+				// System.out.println(amount + " 3분기 조건 가격");
+			} else { // 4분기
+				amount = ((subscriptionPay * 50) / 100);
+				// System.out.println(amount + " 4분기 조건 가격");
+			}
+			paramMap.put("amount", amount);
+			subscriptionMapper.insertSubscriptionAmount(paramMap);
+		}
+		
 	}
 	
 	// 사업자 로그인 시 가입 요청 결과

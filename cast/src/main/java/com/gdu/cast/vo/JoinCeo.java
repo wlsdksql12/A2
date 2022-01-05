@@ -12,7 +12,9 @@ public class JoinCeo {
 	private String ceoEmail;
 	private String ceoPhonenum;
 	private String ceoLicense;
+	private String subscriptionNo;
 	private String active;
 	private String createDate;
 	private String updateDate;
+	private Subscription subscription;
 }

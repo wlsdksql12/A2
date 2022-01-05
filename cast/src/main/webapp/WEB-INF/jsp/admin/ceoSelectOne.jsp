@@ -75,10 +75,14 @@
 					</div>
 					<div class="mb-3">
 						<label for="license">라이센스</label>
-						<input type="text" class="form-control" name=travelerLicense value="${joinCeo.ceoLicense}" readonly="readonly" required>
+						<input type="text" class="form-control" name="travelerLicense" value="${joinCeo.ceoLicense}" readonly="readonly" required>
+					</div>
+					<div class="mb-3">
+						<label for="subscriptionNo">구독</label>
+						<input type="text" class="form-control" name="subscriptionNo" value="${joinCeo.subscription.subscriptionName}" readonly="readonly" required>
 					</div>
 					<c:if test="${joinCeo.active eq '요청' }">
-						<a class="btn btn-outline-success" href="${pageContext.request.contextPath}/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=승인">승인</a>
+						<a class="btn btn-outline-success" href="${pageContext.request.contextPath}/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=승인&ceoId=${joinCeo.ceoId}&subscriptionNo=${joinCeo.subscriptionNo}">승인</a>
 						<a class="btn btn-outline-danger" href="${pageContext.request.contextPath}/admin/updateCeoJoinRequest?joinCeoId=${joinCeo.joinCeoId}&adminId=${loginAdminId}&state=거절">거절</a>
 					</c:if>
 					<c:if test="${joinCeo.active eq '승인' }">

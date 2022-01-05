@@ -7,4 +7,27 @@
 				subscription_exhibition_enum subscriptionExhibitionEnum, create_date createDate, update_date updateDate
 		FROM subscription
 	</select>
+	<!-- subscriptionNo 해당하는 결제값 조회 -->
+	<select id="selectSubscriptionPay" parameterType="int" resultType="int">
+		Select subscription_pay subscriptionPay
+		FROM subscription
+		WHERE subscription_no = #{subscriptionNo}
+	</select>
+	
+	<insert id="insertSubscriptionAmount" parameterType="map">
+		INSERT INTO subscription_amount(
+			subscription_no,
+			ceo_id,
+			subscription_pay,
+			create_date,
+			update_date	
+		)
+		VALUES(
+			#{subscriptionNo},
+			#{ceoId},
+			#{amount},
+			NOW(),
+			NOW()
+		)
+	</insert>
 </mapper>
