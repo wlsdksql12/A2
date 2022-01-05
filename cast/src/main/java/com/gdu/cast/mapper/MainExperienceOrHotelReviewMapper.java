@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.gdu.cast.vo.ExperiencePaymentReview;
 import com.gdu.cast.vo.ExperiencePaymentReviewImage;
 import com.gdu.cast.vo.RoomPaymentReview;
+import com.gdu.cast.vo.RoomPaymentReviewImage;
 
 @Mapper
 public interface MainExperienceOrHotelReviewMapper {
@@ -29,5 +30,10 @@ public interface MainExperienceOrHotelReviewMapper {
 	List<RoomPaymentReview> roomPaymentReview(Map<String, Object> map);
 	// 호텔 리뷰 리스트 페이징
 	int selectRoomReviewTotalCount();
-	
+	// 호텔 결제 아이디 매개변수
+	int selectCustomerHotelPaymentId(String hotelName, String customerId);
+	// 호텔 후기 추가
+	void insertRoomPaymentReview(RoomPaymentReview roomPaymentReview);
+	// 호텔 후기 사진 추가
+	void insertRoomPaymentReviewImage(RoomPaymentReviewImage roomPaymentReviewImage);
 }

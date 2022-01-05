@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.service.HotService;
 import com.gdu.cast.service.KeywordService;
@@ -305,6 +307,32 @@ public class HotController {
 		
 		return "/mainRoomOne";
 	}
+	// 호텔 리뷰 추가 화면으로 이동.
+	@GetMapping("/addHotelReview")
+	public String addMainHotel(Model model, String hotelName, HttpSession session, int hotelId) {
+		 String customerId = (String)session.getAttribute("loginCustomerId");
+		 int roomPaymentId = mainExperienceOrHotelReviewService.getselectCustomerHotelPaymentId(hotelName, customerId); 
+		 
+		 model.addAttribute("customerId", customerId);
+		 model.addAttribute("hotelId", hotelId);
+		 model.addAttribute("roomPaymentId", roomPaymentId);
+		 model.addAttribute("hotelName", hotelName);
+		 
+		 return "addHotelReview";
+	}
+	// 호텔 리뷰 추가 (사진 초함)
+	@PostMapping("/addHotelReview")
+	public String addMainHotel(HttpServletRequest request,List<MultipartFile> roompaymentReviewImageUpload ,String roomPaymentReviewContent, int roomPaymentId, int hotelId, String hotelName) {
+		 System.out.println(roomPaymentId + "roomPaymentReviewId! 디버깅!"); 
+		 String path = request.getSession().getServletContext().getRealPath("/");
+		mainExperienceOrHotelReviewService.getinsertRoomPaymentReview(roompaymentReviewImageUpload, path, roomPaymentReviewContent, roomPaymentId, hotelId);
+		
+		
+		return "redirect:/mainHotelOne?hotelId="+hotelId+"&hotelName="+hotelName;
+	}
+	
+	
+	
 }
 
 

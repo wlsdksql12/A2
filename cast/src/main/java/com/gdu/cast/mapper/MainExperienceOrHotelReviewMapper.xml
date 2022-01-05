@@ -73,7 +73,7 @@
 	WHERE eo.customer_id = #{customerId} AND eo.experience_name = #{experienceName}
 	</select>
 	
-	<!--  리뷰 추가 -->
+	<!-- 체험 리뷰 추가 -->
 	<insert id="insertExperiencePaymentReview" parameterType="com.gdu.cast.vo.ExperiencePaymentReview">
 		INSERT INTO experience_payment_review(
 			experience_payment_id,
@@ -148,5 +148,50 @@
 	FROM room_payment_review
 	</select>
 	
+		<!-- 호텔 결제 아이디 매개변수 -->
+	<select  id="selectCustomerHotelPaymentId" parameterType="String" resultType="int">
+	SELECT rp.room_payment_id roomPaymentId
+	FROM room_order ro inner join room_payment rp on ro.room_order_id = rp.room_order_id
+	WHERE ro.customer_id = #{customerId} AND ro.hotel_name = #{hotelName}
+	</select>
 	
+		<!-- 호텔 리뷰 추가 -->
+	<insert id="insertRoomPaymentReview" parameterType="com.gdu.cast.vo.RoomPaymentReview">
+		INSERT INTO room_payment_review(
+			room_payment_id,
+			hotel_id,
+			room_payment_review_content,
+			create_date,
+			update_date
+		) values(
+			#{roomPaymentId},
+			#{hotelId},
+			#{roomPaymentReviewContent},
+			now(),
+			now()
+		)
+		<!-- 호텔 후기 사진 추가에 사용할 키값 -->
+		<selectKey resultType="int" keyProperty="roomPaymentReviewId" order="AFTER">
+            SELECT room_payment_review_id FROM room_payment_review ORDER BY create_date DESC LIMIT 0,1
+        </selectKey>
+	</insert>
+	
+		<!--  호텔 후기 사진 추가 -->
+		<insert id="insertRoomPaymentReviewImage" parameterType="com.gdu.cast.vo.RoomPaymentReviewImage">
+		INSERT INTO room_payment_review_image(
+			room_payment_review_id,
+			image_name,
+			image_ext,
+			image_size,
+			create_date,
+			update_date
+		) VALUES (
+			#{roomPaymentReviewId},
+			#{imageName},
+			#{imageExt},
+			#{imageSize},
+			NOW(),
+			NOW()
+		)
+	</insert>
 </mapper>

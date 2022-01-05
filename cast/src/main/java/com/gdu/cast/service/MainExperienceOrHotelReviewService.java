@@ -18,6 +18,7 @@ import com.gdu.cast.vo.ExperiencePaymentReviewImage;
 import com.gdu.cast.vo.ExperienceSelectImage;
 import com.gdu.cast.vo.NoticeImage;
 import com.gdu.cast.vo.RoomPaymentReview;
+import com.gdu.cast.vo.RoomPaymentReviewImage;
 
 @Transactional
 @Service
@@ -124,6 +125,11 @@ public class MainExperienceOrHotelReviewService {
 		return mainExperienceOrHotelReviewMapper.selectCustomerPaymentId(experienceName,customerId);
 		
 	}
+	
+	// 호텔 결제 아이디 매개변수
+	public int getselectCustomerHotelPaymentId(String hotelName, String customerId) {
+		return mainExperienceOrHotelReviewMapper.selectCustomerHotelPaymentId(hotelName, customerId);
+	}
 
 	//체험 리뷰 내용 추가
 	public void getinsertExperiencePaymentReview(List<MultipartFile> experiencepaymentReviewImageUpload,String path, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
@@ -190,7 +196,7 @@ public class MainExperienceOrHotelReviewService {
 		mainExperienceOrHotelReviewMapper.deleteExperienceReview(experiencePaymentReviewId);
 	}
 	
-	/*
+	
 	// 호텔 리뷰 내용 추가
 	public void getinsertRoomPaymentReview(List<MultipartFile> roomPaymentReviewImageUpload,String path, String roomPaymentReviewContent, int roomPaymentId, int hotelId) {
 		RoomPaymentReview roomPaymentReview = new RoomPaymentReview();
@@ -199,23 +205,23 @@ public class MainExperienceOrHotelReviewService {
 		roomPaymentReview.setHotelId(hotelId);
 		roomPaymentReview.setRoomPaymentReviewImageUpload(roomPaymentReviewImageUpload);
 		// 1) 리뷰 추가
-		mainExperienceOrHotelReviewMapper.
+		mainExperienceOrHotelReviewMapper.insertRoomPaymentReview(roomPaymentReview);
 		
 		// 이미지 테이블에 값 전송 . experiencePaymentReviewId
-		int experiencePaymentReviewId = experiencePaymentReview.getExperiencePaymentReviewId();
-		System.out.println(experiencePaymentReviewId + "experiencePaymentReviewId");
+		int roomPaymentReviewId = roomPaymentReview.getRoomPaymentReviewId();
+		System.out.println(roomPaymentReviewId + "roomPaymentReviewId");
 		
 		// 2) 리뷰 사진 추가
-		List<ExperiencePaymentReviewImage> experiencePaymentReviewImage = null;
-		if(experiencePaymentReview.getExperiencepaymentReviewImageUpload() != null) {
-			System.out.println(experiencePaymentReview.getExperiencepaymentReviewImageUpload() + " 실행됨");
+		List<RoomPaymentReviewImage> roomPaymentReviewImage = null;
+		if(roomPaymentReview.getRoomPaymentReviewImageUpload() != null) {
+			System.out.println(roomPaymentReview.getRoomPaymentReviewImageUpload() + " 실행됨");
 			// 이미지 저장할 리스트 선언. (사진이 여러개 들어갈 수 있도록 리스트를 사용함.)
-			experiencePaymentReviewImage = new ArrayList<ExperiencePaymentReviewImage>();
-			for(MultipartFile mf : experiencePaymentReview.getExperiencepaymentReviewImageUpload()) {
+			roomPaymentReviewImage = new ArrayList<RoomPaymentReviewImage>();
+			for(MultipartFile mf : roomPaymentReview.getRoomPaymentReviewImageUpload()) {
 				
-				ExperiencePaymentReviewImage rsi = new ExperiencePaymentReviewImage();
+				RoomPaymentReviewImage rsi = new RoomPaymentReviewImage();
 				// 테이블에 insert 하기위한 paymentId 키값(리뷰)
-				rsi.setExperiencePaymentReviewId(experiencePaymentReviewId);
+				rsi.setRoomPaymentReviewId(roomPaymentReviewId);
 				// 사진 규격 . 별로 나눔.(속성별로)
 				String originName = mf.getOriginalFilename();
 				int p = originName.lastIndexOf(".");
@@ -225,12 +231,12 @@ public class MainExperienceOrHotelReviewService {
 				rsi.setImageName(imageName);
 				rsi.setImageExt(imageExt);
 				rsi.setImageSize(mf.getSize());
-				rsi.setCreateDate(experiencePaymentReview.getCreateDate());
-				rsi.setUpdateDate(experiencePaymentReview.getUpdateDate());
+				rsi.setCreateDate(roomPaymentReview.getCreateDate());
+				rsi.setUpdateDate(roomPaymentReview.getUpdateDate());
 				// 리스트에 저장한 값 저장. (여러개의 사진을 담기위해 리스트를 사용해야 함.)
-				experiencePaymentReviewImage.add(rsi);
+				roomPaymentReviewImage.add(rsi);
 				
-				System.out.println(experiencePaymentReviewImage.toString() +"<<< experiencePaymentReviewImage.toString()");
+				System.out.println(roomPaymentReviewImage.toString() +"<<< experiencePaymentReviewImage.toString()");
 				try {
 					mf.transferTo(new File(path+"upload\\"+imageName+"."+imageExt));
 				} catch(Exception e) {
@@ -240,14 +246,14 @@ public class MainExperienceOrHotelReviewService {
 			}
 		}
 		
-		if(experiencePaymentReviewImage != null) {
-			for(ExperiencePaymentReviewImage rsi : experiencePaymentReviewImage) {
-				mainExperienceOrHotelReviewMapper.insertExperiencePaymentReviewImage(rsi);
+		if(roomPaymentReviewImage != null) {
+			for(RoomPaymentReviewImage rsi : roomPaymentReviewImage) {
+				mainExperienceOrHotelReviewMapper.insertRoomPaymentReviewImage(rsi);
 	
 			}
 
 		}
 			
 	}	
-		*/
+		
 }
