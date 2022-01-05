@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.TravelerMapper">
 
-	<!-- 여행작가 메인 페이지 숙소 추천 리스트에 고객 이름 및 댓글 Join -->
+	<!-- 여행작가 메인 페이지 체험 추천 리스트에 고객 이름 및 댓글 Join -->
 	<resultMap type="com.gdu.cast.vo.ExperienceSelectComment" id="resultExperienceSelectComment">
 		<id column="experience_select_comment_id" property="experienceSelectCommentId"></id>
 		<result column="customer_id" property="customerId"></result>
@@ -62,8 +62,67 @@
 		</collection>
 	</resultMap>
 	
-	<!-- 자신이 쓴 숙소 체험 리스트의 댓글 출력(5개) -->
-	<select id="selectExperienceSelectCommentList" parameterType="com.gdu.cast.vo.ExperienceSelect" resultMap="resultExperienceSelectComment">
+	<!-- 자신이 등록한 체험 추천 글의 댓글 수 -->
+	<select id="selectExperienceSelectCommentTotalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM experience_select_comment esc
+		INNER JOIN experience_select e
+		INNER JOIN customer c
+		ON e.experience_select_id = esc.experience_select_id
+		AND c.customer_id = esc.customer_id
+		WHERE e.traveler_id = #{travelerId}
+	</select>
+	
+	<!-- 자신이 등록한 체험 추천 글의 댓글 리스트 -->
+	<select id="selectExperienceSelectCommentList" parameterType="Map" resultMap="resultExperienceSelectComment">
+		SELECT 
+			esc.experience_select_comment_id,
+			esc.experience_select_id,
+			c.customer_name,
+			esc.experience_select_content,
+			esc.create_date
+		FROM experience_select_comment esc
+		INNER JOIN experience_select e
+		INNER JOIN customer c
+		ON e.experience_select_id = esc.experience_select_id
+		AND c.customer_id = esc.customer_id
+		WHERE e.traveler_id = #{travelerId}
+		ORDER BY esc.create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<!-- 자신이 등록한 숙소 추천 글의 댓글 수 -->
+	<select id="selectRoomSelectCommentTotalCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM room_select_comment rsc
+		INNER JOIN room_select r
+		INNER JOIN customer c
+		ON r.room_select_id = rsc.room_select_id
+		AND c.customer_id = rsc.customer_id
+		WHERE r.traveler_id = #{travelerId}
+	</select>
+	
+	<!-- 자신이 등록한 숙소 추천 글의 댓글 리스트 -->
+	<select id="selectRoomSelectCommentList" parameterType="Map" resultMap="resultRoomSelectComment">
+		SELECT 
+			r.traveler_id,
+			rsc.room_select_comment_id,
+			rsc.room_select_id,
+			c.customer_name,
+			rsc.room_select_content,
+			rsc.create_date
+		FROM room_select_comment rsc
+		INNER JOIN room_select r
+		INNER JOIN customer c
+		ON r.room_select_id = rsc.room_select_id
+		AND c.customer_id = rsc.customer_id
+		WHERE r.traveler_id = #{travelerId}
+		ORDER BY rsc.create_date DESC
+		LIMIT #{beginRow}, #{ROW_PER_PAGE}
+	</select>
+	
+	<!-- 여행작가 메인 페이지 자신이 등록한 체험 추천 글의 댓글 출력(5개) -->
+	<select id="selectExperienceSelectCommentListByMain" parameterType="com.gdu.cast.vo.ExperienceSelect" resultMap="resultExperienceSelectComment">
 		SELECT 
 			esc.experience_select_comment_id,
 			esc.experience_select_id,
@@ -80,8 +139,8 @@
 		LIMIT 0, 5
 	</select>
 	
-	<!-- 자신이 쓴 숙소 추천 리스트의 댓글 출력(5개) -->
-	<select id="selectRoomSelectCommentList" parameterType="com.gdu.cast.vo.RoomSelectComment" resultMap="resultRoomSelectComment">
+	<!-- 여행작가 메인 페이지 자신이 등록한 숙소 추천 글의 댓글 출력(5개) -->
+	<select id="selectRoomSelectCommentListByMain" parameterType="com.gdu.cast.vo.RoomSelectComment" resultMap="resultRoomSelectComment">
 		SELECT 
 			r.traveler_id,
 			rsc.room_select_comment_id,
@@ -144,7 +203,7 @@
 		AND traveler_pw=password(#{travelerPw})
 	</delete>
 	
-	<!-- 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 출력(5개) -->
+	<!-- 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 출력(5개) -->
 	<select id="selectExperienceListByMain" parameterType="com.gdu.cast.vo.ExperienceSelect" resultMap="resultExperienceSelect">
 		SELECT 
 			e.experience_select_id,
@@ -159,7 +218,7 @@
 		LIMIT 0, 5
 	</select>
 
-	<!-- 여행작가 메인 페이지 자신이 쓴 숙소 추천 리스트 출력(5개) -->
+	<!-- 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 출력(5개) -->
 	<select id="selectRoomSelectListByMain" parameterType="com.gdu.cast.vo.RoomSelect" resultMap="resultRoomSelect">
 		SELECT 
 			r.room_select_id,

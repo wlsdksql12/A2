@@ -41,6 +41,7 @@ public class RoomSelectController {
 	@PostMapping("/addRoomSelect")
 	public String addExperienceSelect(AddRoomSelect addRoomSelect) {
 		roomSelectService.addRoomSelect(addRoomSelect);
+		log.debug("★★★★Hyun★★★★"+addRoomSelect.toString());
 		return "redirect:/mainRoomSelect";
 	}
 	
@@ -48,7 +49,7 @@ public class RoomSelectController {
 	@GetMapping("/roomSelectList")
 	public String roomSelectList(Model model, 
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
-		log.debug(travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		Map<String, Object> map = roomSelectService.getSelectRoomSelectList(travelerId, currentPage, ROW_PER_PAGE);
 		model.addAttribute("roomSelectList", map.get("roomSelectList"));
 		model.addAttribute("startPage", map.get("startPage"));
@@ -56,7 +57,7 @@ public class RoomSelectController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("travelerId", travelerId);
-		System.out.println(model + "model");
+		log.debug("★★★★Hyun★★★★"+model.toString());
 		return "traveler/roomSelectList";
 	}
 }

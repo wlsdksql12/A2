@@ -40,6 +40,7 @@ public class ExperienceSelectCotroller {
 	@PostMapping("/addExperienceSelect")
 	public String addExperienceSelect(AddExperienceSelect addexperienceSelect) {
 		experienceSelectService.addExperienceSelect(addexperienceSelect);
+		log.debug("★★★★Hyun★★★★"+addexperienceSelect.toString());
 		return "redirect:/mainExperienceSelect";
 	}
 	
@@ -47,6 +48,7 @@ public class ExperienceSelectCotroller {
 	@GetMapping("/experienceSelectList")
 	public String experienceSelectList(Model model,
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		Map<String, Object> map = experienceSelectService.getSelectExperienceSelectList(travelerId, currentPage, ROW_PER_PAGE);
 		model.addAttribute("experienceSelectList", map.get("experienceSelectList"));
 		model.addAttribute("startPage", map.get("startPage"));
@@ -54,7 +56,7 @@ public class ExperienceSelectCotroller {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("travelerId", travelerId);
-		System.out.println(model + "model");
+		log.debug("★★★★Hyun★★★★"+model.toString());
 		return "traveler/experienceSelectList";
 	}
 }

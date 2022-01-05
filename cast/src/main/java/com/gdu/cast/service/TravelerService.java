@@ -1,6 +1,8 @@
 package com.gdu.cast.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,14 +25,98 @@ public class TravelerService {
 	@Autowired
 	TravelerMapper travelerMapper;
 	
-	// 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 댓글 출력(5개)
-	public List<ExperienceSelectComment> getselectExperienceSelectCommentList(String travelerId) {
-		return travelerMapper.selectExperienceSelectCommentList(travelerId);
+	// 자신이 등록한 체험 추천 글의 댓글 리스트
+	public Map<String, Object> getSelectExperienceSelectCommentList(String travelerId, int currentPage, int ROW_PER_PAGE) {
+		
+		// 1) 매개변수 가공
+		Map<String, Object> paramMap = new HashMap<>();
+		int beginRow = 0;
+		int displayPage = 10;
+		int startPage = 0;
+		int lastPage = 0;
+		
+		beginRow = (currentPage - 1) * ROW_PER_PAGE;
+		paramMap.put("beginRow", beginRow); 
+		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		paramMap.put("travelerId", travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		
+		// 체험 추천 글의 댓글 리스트
+		List<ExperienceSelectComment> experienceSelectCommentList = travelerMapper.selectExperienceSelectCommentList(paramMap);
+		log.debug("★★★★Hyun★★★★"+experienceSelectCommentList.toString());
+		
+		// 2) 리턴값 가공
+		Map<String, Object> returnMap = new HashMap<>();
+		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
+		int totalCount = travelerMapper.selectExperienceSelectCommentTotalCount(travelerId);
+		lastPage = startPage + displayPage - 1;
+		int totalPage = totalCount / ROW_PER_PAGE;
+		if(totalCount % ROW_PER_PAGE != 0) {
+			totalPage += 1;
+		}
+		if(lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		returnMap.put("travelerId", travelerId);
+		returnMap.put("experienceSelectCommentList", experienceSelectCommentList);
+		returnMap.put("startPage", startPage);
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("totalPage", totalPage);
+		log.debug("★★★★Hyun★★★★"+returnMap.toString());
+		
+		return returnMap;
 	}
 	
-	// 여행작가 메인 페이지 자신이 쓴 숙소 추천 리스트 댓글 출력(5개)
-	public List<RoomSelectComment> getselectRoomSelectCommentList(String travelerId) {
-		return travelerMapper.selectRoomSelectCommentList(travelerId);
+	// 자신이 등록한 숙소 추천 글의 댓글 리스트
+	public Map<String, Object> getSelectRoomSelectCommentList(String travelerId, int currentPage, int ROW_PER_PAGE) {
+		
+		// 1) 매개변수 가공
+		Map<String, Object> paramMap = new HashMap<>();
+		int beginRow = 0;
+		int displayPage = 10;
+		int startPage = 0;
+		int lastPage = 0;
+		
+		beginRow = (currentPage - 1) * ROW_PER_PAGE;
+		paramMap.put("beginRow", beginRow); 
+		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
+		paramMap.put("travelerId", travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		
+		// 숙소 추천 글의 댓글 리스트
+		List<RoomSelectComment> roomSelectCommentList = travelerMapper.selectRoomSelectCommentList(paramMap);
+		log.debug("★★★★Hyun★★★★"+roomSelectCommentList.toString());
+		
+		// 2) 리턴값 가공
+		Map<String, Object> returnMap = new HashMap<>();
+		startPage = ((currentPage - 1) / displayPage) * displayPage + 1;
+		int totalCount = travelerMapper.selectRoomSelectCommentTotalCount(travelerId);
+		lastPage = startPage + displayPage - 1;
+		int totalPage = totalCount / ROW_PER_PAGE;
+		if(totalCount % ROW_PER_PAGE != 0) {
+			totalPage += 1;
+		}
+		if(lastPage > totalPage) {
+			lastPage = totalPage;
+		}
+		returnMap.put("travelerId", travelerId);
+		returnMap.put("roomSelectCommentList", roomSelectCommentList);
+		returnMap.put("startPage", startPage);
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("totalPage", totalPage);
+		log.debug("★★★★Hyun★★★★"+returnMap.toString());
+		
+		return returnMap;
+	}
+	
+	// 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 댓글 출력(5개)
+	public List<ExperienceSelectComment> getselectExperienceSelectCommentListByMain(String travelerId) {
+		return travelerMapper.selectExperienceSelectCommentListByMain(travelerId);
+	}
+	
+	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 댓글 출력(5개)
+	public List<RoomSelectComment> getselectRoomSelectCommentListByMain(String travelerId) {
+		return travelerMapper.selectRoomSelectCommentListByMain(travelerId);
 	}
 	
 	// 여행작가 비밀번호 변경
@@ -68,12 +154,12 @@ public class TravelerService {
 		travelerMapper.deleteTraveler(travelerId, travelerPw);
 	}
 	
-	// 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 출력(5개)
+	// 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 출력(5개)
 	public List<ExperienceSelect> getselectExperienceSelectListByMain(String travelerId) {
 		return travelerMapper.selectExperienceListByMain(travelerId);
 	}
 	
-	// 여행작가 메인 페이지 자신이 쓴 숙소 추천 리스트 출력(5개)
+	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 출력(5개)
 	public List<RoomSelect> getselectRoomSelectListByMain(String travelerId) {
 		return travelerMapper.selectRoomSelectListByMain(travelerId);
 	}

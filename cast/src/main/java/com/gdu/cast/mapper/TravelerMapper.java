@@ -1,6 +1,7 @@
 package com.gdu.cast.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,11 +14,23 @@ import com.gdu.cast.vo.Traveler;
 @Mapper
 public interface TravelerMapper {
 	
-	// 자신이 쓴 체험 추천 리스트의 댓글 출력(5개)
-	List<ExperienceSelectComment> selectExperienceSelectCommentList(String travelerId);
+	// 자신이 등록한 체험 추천 글의 댓글 수
+	int selectExperienceSelectCommentTotalCount(String travelerId);
 	
-	// 자신이 쓴 숙소 추천 리스트의 댓글 출력(5개)
-	List<RoomSelectComment> selectRoomSelectCommentList(String travelerId);
+	// 자신이 등록한 숙소 추천 글의 댓글 수
+	int selectRoomSelectCommentTotalCount(String travelerId);
+	
+	// 자신이 등록한 체험 추천 글의 댓글 리스트
+	List<ExperienceSelectComment> selectExperienceSelectCommentList(Map<String, Object> map);
+	
+	// 자신이 등록한 숙소 추천 글의 댓글 리스트
+	List<RoomSelectComment> selectRoomSelectCommentList(Map<String, Object> map);
+	
+	// 여행작가 메인 페이지 자신이 등록한 체험 추천 글의 댓글 출력(5개)
+	List<ExperienceSelectComment> selectExperienceSelectCommentListByMain(String travelerId);
+	
+	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 글의 댓글 출력(5개)
+	List<RoomSelectComment> selectRoomSelectCommentListByMain(String travelerId);
 	
 	// 여행작가 비밀번호 변경
 	int updateTravelerPw(String travelerId, String travelerPw, String newTravelerPw);
@@ -37,10 +50,10 @@ public interface TravelerMapper {
 	// 회원 탈퇴(traveler 테이블 데이터 삭제)
 	void deleteTraveler(String travelerId, String travelerPw);
 	
-	// 여행작가 메인 페이지 자신이 쓴 체험 추천 리스트 출력(5개)
+	// 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 출력(5개)
 	List<ExperienceSelect> selectExperienceListByMain(String travelerId);
 	
-	// 여행작가 메인 페이지 자신이 쓴 숙소 추천 리스트 출력(5개)
+	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 출력(5개)
 	List<RoomSelect> selectRoomSelectListByMain(String travelerId);
 	
 	// 여행작가 내정보 수정

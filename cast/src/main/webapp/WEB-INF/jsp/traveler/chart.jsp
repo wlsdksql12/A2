@@ -7,7 +7,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>[여행작가]마이 페이지</title>
+    <title>[여행작가]차트</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -828,17 +828,17 @@
             </ul>
           </div>
         </header>
-        <main class="h-full overflow-y-auto">
-          <div class="container px-4 mx-auto grid">
+        <main class="h-full pb-16 overflow-y-auto">
+          <div class="container px-6 mx-auto grid">
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              여행작가
+              Charts
             </h2>
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="${pageContext.request.contextPath}/index"
+              href="https://github.com/estevanmaito/windmill-dashboard"
             >
               <div class="flex items-center">
                 <svg
@@ -850,232 +850,31 @@
                     d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
                   ></path>
                 </svg>
-                <span>메인으로</span>
+                <span>Star this project on GitHub</span>
               </div>
-              <span>이동 &RightArrow;</span>
-            </a>     
-            
-            <!-- New Table -->
-             <h4
-              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              내 숙소 추천 리스트!
-            </h4>
-            <div class="w-full overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
-                  <thead>
-                    <tr
-                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                      <th class="px-4 py-5" width="20%">번호</th>
-                      <th class="py-4 py-4 text-sm" width="40%">제목</th>
-                      <th class="px-4 py-4" width="20%">작성자</th>
-                      <th class="px-4 py-4" width="20%">작성 날짜</th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >
-					<c:forEach items="${roomSelectList}" var="roomSelect">
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-5 py-5 text-sm">
-                          ${roomSelect.roomSelectId}
-                      </td>
-                      <td class="py-4 py-4 text-sm" width="40%">
-                        <a href="${pageContext.request.contextPath}/mainRoomSelectOne?roomSelectId=${roomSelect.roomSelectId}">${roomSelect.roomSelectTitle}</a>
-                      </td>
-                       <td class="px-4 py-4 text-sm" width="20%">
-                          ${roomSelect.traveler.travelerName}
-                      </td>
-                      <td class="px-7 py-6 text-sm" width="20%">
-                        ${roomSelect.createDate.substring(0,10)}
-                      </td>
-                    </tr>
-                    </c:forEach>
-                  </tbody>
-                </table>
-              </div>
-            	<br>
-	              <div class="px-1 my-4">
-		            <a id="stateBtn"
-		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-		               href="${pageContext.request.contextPath}/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
-		            >
-		              더보기
-		              <span class="ml-2" aria-hidden="true">+</span>
-		              
-		            </a>
-	          	</div>
-            </div>
-            <h4
-              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              내 체험 추천 리스트!
-            </h4>
-                        <div class="w-full overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
-                  <thead>
-                    <tr
-                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                      <th class="px-4 py-5" width="20%">번호</th>
-                      <th class="py-4 py-4 text-sm" width="40%">제목</th>
-                      <th class="px-4 py-4" width="20%">작성자</th>
-                      <th class="px-4 py-4" width="20%">작성 날짜</th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >
-					<c:forEach items="${experienceSelectList}" var="experienceSelect">
-                    <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-5 py-5 text-sm">
-                          ${experienceSelect.experienceSelectId}
-                      </td>
-                      <td class="py-4 py-4 text-sm" width="40%">
-                        <a href="${pageContext.request.contextPath}/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}">${experienceSelect.experienceSelectTitle}</a>
-                      </td>
-                       <td class="px-4 py-4 text-sm" width="20%">
-                          ${experienceSelect.traveler.travelerName}
-                      </td>
-                      <td class="px-7 py-6 text-sm" width="20%">
-                         ${experienceSelect.createDate.substring(0,10)}
-                      </td>
-                    </tr>
-                    </c:forEach>
-                  </tbody>
-                </table>
-              </div>
-              	<br>
-	              <div class="px-1 my-4">
-		            <a id="stateBtn"
-		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-		               href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"`
-		            >
-		              더보기
-		              <span class="ml-2" aria-hidden="true">+</span>
-		              
-		            </a>
-	          	</div>
-            </div>
-            <h4
-              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              내 숙소 추천 댓글!
-            </h4>
-            <div class="w-full overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
-                  <thead>
-                    <tr
-                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                      <th class="px-4 py-5" width="20%">번호</th>
-                      <th class="py-4 py-4 text-sm" width="40%">내용</th>
-                      <th class="px-4 py-4" width="20%">작성자</th>
-                      <th class="px-4 py-4" width="20%">작성 날짜</th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >
-					<c:forEach items="${roomSelectCommentListByMain}" var="roomSelectComment">
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-5 py-5 text-sm">
-                          ${roomSelectComment.roomSelectCommentId}
-                      </td>
-                      <td class="py-4 py-4 text-sm" width="40%"> 
-                        <a href="${pageContext.request.contextPath}/mainRoomSelectOne?roomSelectId=${roomSelectComment.roomSelectId}">${roomSelectComment.roomSelectContent}</a>
-                      </td>
-                       <td class="px-4 py-4 text-sm" width="20%">
-                          ${roomSelectComment.customer.customerName}
-                      </td>
-                      <td class="px-7 py-6 text-sm" width="20%">
-                        ${roomSelectComment.createDate.substring(0,10)}
-                      </td>
-                    </tr>
-                    </c:forEach>
-                  </tbody>
-                </table>
-              </div>
-            	<br>
-	              <div class="px-1 my-4">
-		            <a id="stateBtn"
-		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-		               href="${pageContext.request.contextPath}/roomSelectCommentList?travelerId=${loginTravelerId}&currentPage=1"
-		            >
-		              더보기
-		              <span class="ml-2" aria-hidden="true">+</span>
-		              
-		            </a>
-	          	</div>
-            </div>
-            <h4
-              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              내 체험 추천 댓글!
-            </h4>
-            <div class="w-full overflow-hidden rounded-lg shadow-xs">
-              <div class="w-full overflow-x-auto">
-                <table class="w-full whitespace-no-wrap">
-                  <thead>
-                    <tr
-                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
-                    >
-                      <th class="px-4 py-5" width="20%">번호</th>
-                      <th class="py-4 py-4 text-sm" width="40%">내용</th>
-                      <th class="px-4 py-4" width="20%">작성자</th>
-                      <th class="px-4 py-4" width="20%">작성 날짜</th>
-                    </tr>
-                  </thead>
-                  <tbody
-                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
-                  >
-					<c:forEach items="${experienceSelectCommentListByMain}" var="experienceSelectComment">
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-5 py-5 text-sm">
-                          ${experienceSelectComment.experienceSelectCommentId}
-                      </td>
-                      <td class="py-4 py-4 text-sm" width="40%"> 
-                        <a href="${pageContext.request.contextPath}/mainExperienceSelectOne?experienceSelectId=${experienceSelectComment.experienceSelectId}">${experienceSelectComment.experienceSelectContent}</a>
-                      </td>
-                       <td class="px-4 py-4 text-sm" width="20%">
-                          ${experienceSelectComment.customer.customerName}
-                      </td>
-                      <td class="px-7 py-6 text-sm" width="20%">
-                        ${experienceSelectComment.createDate.substring(0,10)}
-                      </td>
-                    </tr>
-                    </c:forEach>
-                  </tbody>
-                </table>
-              </div>
-            	<br>
-	              <div class="px-1 my-4">
-		            <a id="stateBtn"
-		              class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-		               href="${pageContext.request.contextPath}/experienceSelectCommentList?travelerId=${loginTravelerId}&currentPage=1"
-		            >
-		              더보기
-		              <span class="ml-2" aria-hidden="true">+</span>
-		              
-		            </a>
-	          	</div>
-            </div>
-            <!-- Charts -->
-            <h2
-              class="my-6 text-xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              차트
-            </h2>
+              <span>View more &RightArrow;</span>
+            </a>
+
+            <p class="mb-8 text-gray-600 dark:text-gray-400">
+              Charts are provided by
+              <a
+                class="text-purple-600 dark:text-purple-400 hover:underline"
+                href="https://www.chartjs.org/"
+              >
+                Chart.js
+              </a>
+              . Note that the default legends are disabled and you should
+              provide a description for your charts in HTML. See source code for
+              examples.
+            </p>
+
             <div class="grid gap-6 mb-8 md:grid-cols-2">
+              <!-- Doughnut/Pie chart -->
               <div
                 class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Revenue
+                  Doughnut/Pie
                 </h4>
                 <canvas id="pie"></canvas>
                 <div
@@ -1084,13 +883,13 @@
                   <!-- Chart legend -->
                   <div class="flex items-center">
                     <span
-                      class="inline-block w-3 h-3 mr-1 bg-blue-500 rounded-full"
+                      class="inline-block w-3 h-3 mr-1 bg-blue-600 rounded-full"
                     ></span>
                     <span>Shirts</span>
                   </div>
                   <div class="flex items-center">
                     <span
-                      class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"
+                      class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
                     ></span>
                     <span>Shoes</span>
                   </div>
@@ -1102,11 +901,12 @@
                   </div>
                 </div>
               </div>
+              <!-- Lines chart -->
               <div
                 class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
-                  Traffic
+                  Lines
                 </h4>
                 <canvas id="line"></canvas>
                 <div
@@ -1115,7 +915,7 @@
                   <!-- Chart legend -->
                   <div class="flex items-center">
                     <span
-                      class="inline-block w-3 h-3 mr-1 bg-teal-600 rounded-full"
+                      class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
                     ></span>
                     <span>Organic</span>
                   </div>
@@ -1127,22 +927,36 @@
                   </div>
                 </div>
               </div>
+              <!-- Bars chart -->
+              <div
+                class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+              >
+                <h4 class="mb-4 font-semibold text-gray-800 dark:text-gray-300">
+                  Bars
+                </h4>
+                <canvas id="bars"></canvas>
+                <div
+                  class="flex justify-center mt-4 space-x-3 text-sm text-gray-600 dark:text-gray-400"
+                >
+                  <!-- Chart legend -->
+                  <div class="flex items-center">
+                    <span
+                      class="inline-block w-3 h-3 mr-1 bg-teal-500 rounded-full"
+                    ></span>
+                    <span>Shoes</span>
+                  </div>
+                  <div class="flex items-center">
+                    <span
+                      class="inline-block w-3 h-3 mr-1 bg-purple-600 rounded-full"
+                    ></span>
+                    <span>Bags</span>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </main>
       </div>
     </div>
-    <script>
-		// 체험추천, 숙소추천 클릭 시 함수를 발생시켜 가입 요청값에 맞는 이벤트
-		$("[id='stateBtn']").click(function(){
-			if('${state}' == '요청'){
-				swal("요청 중입니다.", "", "warning");
-				return false;
-			} else if('${state}' == '거절'){
-				swal("요청이 거절되었습니다.", "가입을 재요청하십시오.", "error");
-				return false;
-			}
-		});
-	</script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 package com.gdu.cast.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.service.TravelerService;
@@ -31,6 +33,42 @@ public class TravelerController {
 	@Autowired
 	JoinRequestService joinRequestService;
 	
+	private final int ROW_PER_PAGE = 10;
+	
+	// 자신이 등록한 체험 추천 글의 댓글 리스트
+	@GetMapping("/experienceSelectCommentList")
+	public String experienceSelectCommentList(Model model,
+			@RequestParam(defaultValue = "1") int currentPage, String travelerId, HttpSession session) {
+		travelerId = (String)session.getAttribute("loginTravelerId");
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		Map<String, Object> map = travelerService.getSelectExperienceSelectCommentList(travelerId, currentPage, ROW_PER_PAGE);
+		model.addAttribute("experienceSelectCommentList", map.get("experienceSelectCommentList"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("travelerId", travelerId);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		return "traveler/experienceSelectCommentList";
+	}
+	
+	// 자신이 등록한 숙소 추천 글의 댓글 리스트
+	@GetMapping("/roomSelectCommentList")
+	public String roomSelectCommentList(Model model, 
+			@RequestParam(defaultValue = "1") int currentPage, String travelerId, HttpSession session) {
+		travelerId = (String)session.getAttribute("loginTravelerId");
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		Map<String, Object> map = travelerService.getSelectRoomSelectCommentList(travelerId, currentPage, ROW_PER_PAGE);
+		model.addAttribute("roomSelectCommentList", map.get("roomSelectCommentList"));
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("travelerId", travelerId);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		return "traveler/roomSelectCommentList";
+	}
+	
 	// 여행작가 비밀번호 변경
 	@GetMapping("/modifyTravelerPw")
 	public String modifyTravelerPw(Model model, Traveler traveler) {
@@ -52,6 +90,7 @@ public class TravelerController {
 	@GetMapping("/removeTraveler")
 	public String getRemoveTraveler(Traveler traveler) {
 		travelerService.getRemoveTraveler(traveler.getTravelerId(), traveler.getTravelerPw());
+		log.debug("★★★★Hyun★★★★"+traveler.toString());
 		return "traveler/removeTraveler";
 	}
 	
@@ -59,6 +98,7 @@ public class TravelerController {
 	@PostMapping("/removeTraveler")
 	public String getRemoveTraveler(Traveler traveler, HttpSession session) {
 		String travelerId = (String)session.getAttribute("loginTravelerId");
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		if(travelerService.getSelectTravelerPw(travelerId, traveler.getTravelerPw()) != 1) {
 			return "redirect:/travelerIndex?travelerId="+travelerId;
 		} else {
@@ -70,6 +110,8 @@ public class TravelerController {
 			
 			// 세션 종료
 			session.invalidate();
+			
+			log.debug("★★★★Hyun★★★★"+traveler.toString());
 			return "redirect:/loginSelect";
 		}
 	}
@@ -80,25 +122,25 @@ public class TravelerController {
 		
 		// 자신이 등록한 숙소 리스트 및 댓글 출력
 		List<RoomSelect> roomSelectList = travelerService.getselectRoomSelectListByMain(travelerId);
-		List<RoomSelectComment> roomSelectCommentList = travelerService.getselectRoomSelectCommentList(travelerId);
+		List<RoomSelectComment> roomSelectCommentListByMain = travelerService.getselectRoomSelectCommentListByMain(travelerId);
 		
 		// 자신이 등록한 체험 리스트 및 댓글 출력
 		List<ExperienceSelect> experienceSelectList = travelerService.getselectExperienceSelectListByMain(travelerId);
-		List<ExperienceSelectComment> experienceSelectCommentList = travelerService.getselectExperienceSelectCommentList(travelerId);
+		List<ExperienceSelectComment> experienceSelectCommentListByMain = travelerService.getselectExperienceSelectCommentListByMain(travelerId);
 		
 		// 가입 요청 세션 가져오기
 		String state = joinRequestService.getTravelerJoinRequestResult((String)session.getAttribute("loginTravelerId"));
 		session.setAttribute("state", state);
 		System.out.println(state + " <<< LoginCeoController");
 		
-		model.addAttribute("experienceSelectCommentList", experienceSelectCommentList);
-		model.addAttribute("roomSelectCommentList", roomSelectCommentList);
+		model.addAttribute("experienceSelectCommentListByMain", experienceSelectCommentListByMain);
+		model.addAttribute("roomSelectCommentListByMain", roomSelectCommentListByMain);
 		model.addAttribute("roomSelectList", roomSelectList);
 		model.addAttribute("experienceSelectList", experienceSelectList);
 		model.addAttribute("travelerId", travelerId);
 		
-		log.debug("★★★★Hyun★★★★"+experienceSelectCommentList.toString());
-		log.debug("★★★★Hyun★★★★"+roomSelectCommentList.toString());
+		log.debug("★★★★Hyun★★★★"+experienceSelectCommentListByMain.toString());
+		log.debug("★★★★Hyun★★★★"+roomSelectCommentListByMain.toString());
 		log.debug("★★★★Hyun★★★★"+roomSelectList.toString());
 		log.debug("★★★★Hyun★★★★"+experienceSelectList.toString());
 		log.debug("★★★★Hyun★★★★"+travelerId);
@@ -138,6 +180,13 @@ public class TravelerController {
 		return "traveler/travelerIndex";
 	} 
 	*/
+	
+	// 여행작가 메인 차트
+	@GetMapping("/chart")
+	public String chart() {
+		return "traveler/chart";
+	}
+	
 	// 여행작가 메인 버튼
 	@GetMapping("/button")
 	public String button() {

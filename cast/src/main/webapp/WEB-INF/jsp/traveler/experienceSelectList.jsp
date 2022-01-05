@@ -3,10 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html class="{ 'theme-dark': dark }" x-data="data()" lang="en">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>[여행작가]내 체험 추천 리스트!</title>
+    <title>[여행작가]체험 추천 리스트!</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -27,6 +28,7 @@
     ></script>
     <script src="${pageContext.request.contextPath}/resources/traveler_template/js/charts-lines.js" defer></script>
     <script src="${pageContext.request.contextPath}/resources/traveler_template/js/charts-pie.js" defer></script>
+  	<script src="${pageContext.request.contextPath}/resources/admin_template/vendor/jquery/jquery.min.js"></script>
   </head>
   <body>
     <div
@@ -159,7 +161,7 @@
           </ul>
           <ul>
           <li class="relative px-6 py-3">
-              <a
+              <a id="stateBtn"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="${pageContext.request.contextPath}/roomSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
@@ -179,7 +181,7 @@
               </a>
             </li>
             <li class="relative px-6 py-3">
-              <a
+              <a id="stateBtn"
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                 href="${pageContext.request.contextPath}/experienceSelectList?travelerId=${loginTravelerId}&currentPage=1"
               >
@@ -201,7 +203,7 @@
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="forms.html"
+                href="${pageContext.request.contextPath}/roomSelectCommentList?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -217,13 +219,13 @@
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Forms</span>
+                <span class="ml-4">내 숙소 추천 댓글</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="cards.html"
+                href="${pageContext.request.contextPath}/experienceSelectCommentList?travelerId=${loginTravelerId}&currentPage=1"
               >
                 <svg
                   class="w-5 h-5"
@@ -236,16 +238,16 @@
                   stroke="currentColor"
                 >
                   <path
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                   ></path>
                 </svg>
-                <span class="ml-4">Cards</span>
+                <span class="ml-4">내 체험 추천 댓글</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="charts.html"
+                href="${pageContext.request.contextPath}/chart"
               >
                 <svg
                   class="w-5 h-5"
@@ -262,7 +264,7 @@
                   ></path>
                   <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                 </svg>
-                <span class="ml-4">Charts</span>
+                <span class="ml-4">차트</span>
               </a>
             </li>
             <li class="relative px-6 py-3">
@@ -284,32 +286,9 @@
                     d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"
                   ></path>
                 </svg>
-                <span class="ml-4">Buttons</span>
+                <span class="ml-4">버튼</span>
               </a>
             </li>
-            <li class="relative px-6 py-3">
-              <a
-                class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                href="modals.html"
-              >
-                <svg
-                  class="w-5 h-5"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
-                  ></path>
-                </svg>
-                <span class="ml-4">Modals</span>
-              </a>
-            </li>
-           
           </ul>
           <div class="px-6 my-6">
             <a
@@ -854,7 +833,7 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              숙소 추천
+              체험 추천
             </h2>
             <!-- CTA -->
             <a
