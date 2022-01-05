@@ -196,6 +196,11 @@ public class MainExperienceOrHotelReviewService {
 		mainExperienceOrHotelReviewMapper.deleteExperienceReview(experiencePaymentReviewId);
 	}
 	
+	// 호텔 후기 삭제
+	public void getdeletehotelReview(int roomPaymentReviewId) {
+		mainExperienceOrHotelReviewMapper.deletehotelReview(roomPaymentReviewId);
+	}
+	
 	
 	// 호텔 리뷰 내용 추가
 	public void getinsertRoomPaymentReview(List<MultipartFile> roomPaymentReviewImageUpload,String path, String roomPaymentReviewContent, int roomPaymentId, int hotelId) {

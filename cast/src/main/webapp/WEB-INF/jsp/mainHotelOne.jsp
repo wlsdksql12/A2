@@ -233,7 +233,7 @@
 							<c:choose>
 							<c:when test="${loginCustomerId == RoomPaymentReview.roomOrder.customerId}">
 								<a href="${pageContext.request.contextPath}/">수정</a>
-								<!-- <a href="${pageContext.request.contextPath}/deleteExperienceReview?experiencePaymentReviewId=${ExperiencePaymentReview.experiencePaymentReviewId}&experienceId=${experience.experienceId}&experienceName=${experience.experienceName}">삭제</a> -->
+								<a href="${pageContext.request.contextPath}/deleteHotelReview?roomPaymentReviewId=${RoomPaymentReview.roomPaymentReviewId}&hotelId=${hotel.hotelId}&hotelName=${hotel.hotelName}">삭제</a>
 							
 							</c:when>
 								<c:otherwise>

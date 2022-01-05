@@ -331,8 +331,15 @@ public class HotController {
 		return "redirect:/mainHotelOne?hotelId="+hotelId+"&hotelName="+hotelName;
 	}
 	
-	
-	
+	// 호텔 리뷰 삭제
+   @GetMapping("/deleteHotelReview")
+   public String deleteHotelPaymentReview(int roomPaymentReviewId, int hotelId, String hotelName) {
+	   System.out.println(roomPaymentReviewId + "roomPaymentReviewId!"); 
+	   mainExperienceOrHotelReviewService.getdeletehotelReview(roomPaymentReviewId);
+	   System.out.println("삭제 완료!"); 
+	   return "redirect:/mainHotelOne?hotelId="+hotelId+"&hotelName="+hotelName;
+   }
+
 }
 
 

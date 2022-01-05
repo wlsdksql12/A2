@@ -36,4 +36,6 @@ public interface MainExperienceOrHotelReviewMapper {
 	void insertRoomPaymentReview(RoomPaymentReview roomPaymentReview);
 	// 호텔 후기 사진 추가
 	void insertRoomPaymentReviewImage(RoomPaymentReviewImage roomPaymentReviewImage);
+	// 호텔 후기 삭제
+	void deletehotelReview(int roomPaymentReviewId);
 }

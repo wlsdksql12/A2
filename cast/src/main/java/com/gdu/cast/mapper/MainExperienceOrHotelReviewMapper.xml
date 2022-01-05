@@ -194,4 +194,12 @@
 			NOW()
 		)
 	</insert>
+	
+		<!-- 호텔 후기 삭제 -->
+	<delete id="deletehotelReview" parameterType="int">
+		DELETE FROM room_payment_review
+   		WHERE room_payment_review_id = #{roomPaymentReviewId}
+	</delete>
+	
+	
 </mapper>
