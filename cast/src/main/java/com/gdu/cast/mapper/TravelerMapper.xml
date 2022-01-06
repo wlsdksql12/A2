@@ -62,6 +62,32 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 자신이 등록한 체험 추천 댓글 알람 -->
+	<select id="selectExperienceSelectAlram" parameterType="String" resultType="com.gdu.cast.vo.ExperienceSelect">
+		SELECT
+		e.experience_select_id experienceSelectId,
+		esc.experience_select_content experienceSelectContent
+		FROM experience_select e
+		INNER JOIN experience_select_comment esc
+		ON e.experience_select_id = esc.experience_select_id
+		WHERE e.traveler_id = #{travelerId}
+		ORDER BY esc.create_date DESC
+		LIMIT 0, 5
+	</select>
+	
+	<!-- 자신이 등록한 숙소 추천 댓글 알람 -->
+	<select id="selectRoomSelectAlarm" parameterType="String" resultType="com.gdu.cast.vo.RoomSelect">
+		SELECT 
+		r.room_select_id roomselectId, 
+		rsc.room_select_content roomSelectContent
+		FROM room_select r 
+		INNER JOIN room_select_comment rsc
+		ON r.room_select_id = rsc.room_select_id
+		WHERE r.traveler_id = #{travelerId}
+		ORDER BY rsc.create_date DESC
+		LIMIT 0, 5
+	</select>
+	
 	<!-- 최근 체험 등록 리스트(5개)  -->
 	<select id="selectExperienceListByMain" parameterType="com.gdu.cast.vo.Experience" resultType="com.gdu.cast.vo.Experience">
 		SELECT 

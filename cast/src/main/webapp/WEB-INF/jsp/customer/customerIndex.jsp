@@ -210,7 +210,7 @@
 							<div class="row-fluid" style="width: 350px; height: 50px; margin-left: 3px;">
 								<i class="feather icon-bell"></i>&nbsp;
 								<a href="${pageContext.request.contextPath}/customer/qnaListOne?customerId=${loginCustomerId}&qnaId=${qna.qnaId}">
-									${qna.qnaTitle} 제목에 해당되는 Q&A에 답글이 달렸습니다. </a>
+									${qna.qnaTitle}의 댓글</a>
 									
 								<hr>
 							</div>

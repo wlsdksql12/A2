@@ -27,6 +27,18 @@ public class TravelerService {
 	@Autowired
 	TravelerMapper travelerMapper;
 	
+	// 자신이 등록한 체험 추천 댓글 알람
+	public List<ExperienceSelect> getExperienceSelectAlarm(String travlerId) {
+		log.debug("★★★★Hyun★★★★"+travlerId);
+		return travelerMapper.selectExperienceSelectAlram(travlerId);
+	}
+	
+	// 자신이 등록한 숙소 추천 댓글 알람
+	public List<RoomSelect> getRoomSelectAlarm(String travlerId) {
+		log.debug("★★★★Hyun★★★★"+travlerId);
+		return travelerMapper.selectRoomSelectAlarm(travlerId);
+	}
+	
 	// 최근 체험 등록 리스트(5개)
 	public List<Experience> getSelectExperienceListByMain() {
 		return travelerMapper.selectExperienceListByMain();

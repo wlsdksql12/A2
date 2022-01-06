@@ -130,8 +130,12 @@ public class TravelerController {
 		List<ExperienceSelect> experienceSelectList = travelerService.getselectExperienceSelectListByMain(travelerId);
 		List<ExperienceSelectComment> experienceSelectCommentListByMain = travelerService.getselectExperienceSelectCommentListByMain(travelerId);
 		
+		// 최근 호텔 및 체험 등록 리스트(5개) 
 		List<Hotel> hotelList = travelerService.getSelectHotelListByMain();
 		List<Experience> experienceList = travelerService.getSelectExperienceListByMain();
+		
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(travelerId);
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(travelerId);
 		
 		// 가입 요청 세션 가져오기
 		String state = joinRequestService.getTravelerJoinRequestResult((String)session.getAttribute("loginTravelerId"));
@@ -144,8 +148,8 @@ public class TravelerController {
 		model.addAttribute("experienceSelectCommentListByMain", experienceSelectCommentListByMain);
 		model.addAttribute("hotelList", hotelList);
 		model.addAttribute("experienceList", experienceList);
-		
-		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
 		model.addAttribute("travelerId", travelerId);
 		
 		log.debug("★★★★Hyun★★★★"+roomSelectList.toString());
@@ -154,6 +158,8 @@ public class TravelerController {
 		log.debug("★★★★Hyun★★★★"+experienceSelectCommentListByMain.toString());
 		log.debug("★★★★Hyun★★★★"+hotelList.toString());
 		log.debug("★★★★Hyun★★★★"+experienceList.toString());
+		log.debug("★★★★Hyun★★★★"+roomSelectAlarmList.toString());
+		log.debug("★★★★Hyun★★★★"+experienceSelectAlarmList.toString());
 		log.debug("★★★★Hyun★★★★"+travelerId);
 		
 		return "traveler/travelerIndex";

@@ -15,6 +15,12 @@ import com.gdu.cast.vo.Traveler;
 
 @Mapper
 public interface TravelerMapper {
+	
+	// 자신이 등록한 체험 추천 댓글 알람
+	List<ExperienceSelect> selectExperienceSelectAlram(String travelerId);
+	
+	// 자신이 등록한 숙소 추천 댓글 알람
+	List<RoomSelect> selectRoomSelectAlarm(String travelerId);
 
 	// 최근 체험 등록 리스트(5개)
 	List<Experience> selectExperienceListByMain();
