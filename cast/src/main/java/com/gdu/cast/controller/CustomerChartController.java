@@ -62,7 +62,7 @@ public class CustomerChartController {
 		paramMap.put("experiencePaymentMethod", experiencePaymentMethod);
 		
 		System.out.println(year + "year");
-		System.out.println(customerId+"customerId");
+		System.out.println(customerId+"@@@@@customerId");
 		
 		Map<String, Object> returnmap = customerChartMapper.selectExperienceMonthByYear(paramMap);
 		return returnmap;

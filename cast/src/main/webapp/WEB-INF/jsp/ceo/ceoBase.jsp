@@ -198,7 +198,7 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/ceo/ExperienceChart" class="nav-link">
+            <a href="${pageContext.request.contextPath}/getCeoExperienceChart" class="nav-link">
               <i class="ti-user menu-icon"></i>
               <span class="menu-title" style="font-weight:bold;">체험 차트</span>
             </a>

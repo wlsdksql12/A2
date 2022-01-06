@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -161,7 +164,7 @@
 <!-- Plugin js for this page-->
 <script src="${pageContext.request.contextPath}/resources/ceo_template/pages/charts/chart.js/Chart.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
-    <script>
+	 <script>
    let today = new Date();
    let year = today.getFullYear(); 
    console.log(year);
@@ -189,70 +192,70 @@
        }
    });
    $(document).ready(function(){
-      $('#btnOut').trigger('click');
-      $('#btnOut2').trigger('click');
-     
+	   $('#btnOut').trigger('click');
+	   $('#btnOut2').trigger('click');
+	  
    });
    $('#btnOut').click(function(){
-         
-         
-         $.ajax({
-            type:'get',
-            url:'${pageContext.request.contextPath}/ceo/ExperienceMonth?year='+year,
-            success:function(json){
-               console.log(json)
-               // json변수값 -> labels와 data로 가공
-               let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-               let myData = [];
-               myData.push(json.january);
-               myData.push(json.february);
-               myData.push(json.march);
-               myData.push(json.april);
-               myData.push(json.may);
-               myData.push(json.june);
-               myData.push(json.july);
-               myData.push(json.august);
-               myData.push(json.september);
-               myData.push(json.october);
-               myData.push(json.november);
-               myData.push(json.december);
-               
-               myChart.data.labels = myLabels;
-               myChart.data.datasets[0].label = '체험 결제금액('+year+')';
-               myChart.data.datasets[0].data = myData;
-               myChart.data.datasets[0].backgroundColor = [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)',
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ];
-               myChart.data.datasets[0].boarderColor = [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)',
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ];
-               
-               myChart.update();
-            }
-         });
-      });
+	      
+	      
+	      $.ajax({
+	         type:'get',
+	         url:'${pageContext.request.contextPath}/get2TotalInOfMonthByYear?year='+year,
+	         success:function(json){
+	            console.log(json)
+	            // json변수값 -> labels와 data로 가공
+	            let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+	            let myData = [];
+	            myData.push(json.january);
+	            myData.push(json.february);
+	            myData.push(json.march);
+	            myData.push(json.april);
+	            myData.push(json.may);
+	            myData.push(json.june);
+	            myData.push(json.july);
+	            myData.push(json.august);
+	            myData.push(json.september);
+	            myData.push(json.october);
+	            myData.push(json.november);
+	            myData.push(json.december);
+	            
+	            myChart.data.labels = myLabels;
+	            myChart.data.datasets[0].label = '체험 결제금액('+year+')';
+	            myChart.data.datasets[0].data = myData;
+	            myChart.data.datasets[0].backgroundColor = [
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)',
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)'
+	               ];
+	            myChart.data.datasets[0].boarderColor = [
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)',
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)'
+	               ];
+	            
+	            myChart.update();
+	         }
+	      });
+	   });
    
    
    
@@ -279,64 +282,84 @@
        }
    });
    $('#btnOut2').click(function(){
-         
-         
-         $.ajax({
-            type:'get',
-            url:'${pageContext.request.contextPath}/getHotelTotalInOfMonthByYear?year='+year+'&customerId=${customerId}',
-            success:function(json){
-               console.log(json)
-               // json변수값 -> labels와 data로 가공
-               let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
-               let myData2 = [];
-               myData2.push(json.january);
-               myData2.push(json.february);
-               myData2.push(json.march);
-               myData2.push(json.april);
-               myData2.push(json.may);
-               myData2.push(json.june);
-               myData2.push(json.july);
-               myData2.push(json.august);
-               myData2.push(json.september);
-               myData2.push(json.october);
-               myData2.push(json.november);
-               myData2.push(json.december);
-               
-               myChart2.data.labels = myLabels;
-               myChart2.data.datasets[0].label = '호텔 결제금액('+year+')';
-               myChart2.data.datasets[0].data = myData2;
-               myChart2.data.datasets[0].backgroundColor = [
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)',
-                      'rgba(255, 99, 132, 0.2)',
-                      'rgba(54, 162, 235, 0.2)',
-                      'rgba(255, 206, 86, 0.2)',
-                      'rgba(75, 192, 192, 0.2)',
-                      'rgba(153, 102, 255, 0.2)',
-                      'rgba(255, 159, 64, 0.2)'
-                  ];
-               myChart2.data.datasets[0].boarderColor = [
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)',
-                      'rgba(255, 99, 132, 1)',
-                      'rgba(54, 162, 235, 1)',
-                      'rgba(255, 206, 86, 1)',
-                      'rgba(75, 192, 192, 1)',
-                      'rgba(153, 102, 255, 1)',
-                      'rgba(255, 159, 64, 1)'
-                  ];
-               
-               myChart2.update();
-            }
-         });
-      });
+	      
+	      
+	      $.ajax({
+	         type:'get',
+	         url:'${pageContext.request.contextPath}/getExperienceMonth?ceoId=${ceoId}&year='+year,
+	         success:function(json){
+	            console.log(json)
+	            // json변수값 -> labels와 data로 가공
+	            let myLabels = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+	            let myData2 = [];
+	            myData2.push(json.january);
+	            myData2.push(json.february);
+	            myData2.push(json.march);
+	            myData2.push(json.april);
+	            myData2.push(json.may);
+	            myData2.push(json.june);
+	            myData2.push(json.july);
+	            myData2.push(json.august);
+	            myData2.push(json.september);
+	            myData2.push(json.october);
+	            myData2.push(json.november);
+	            myData2.push(json.december);
+	            
+	            myChart2.data.labels = myLabels;
+	            myChart2.data.datasets[0].label = '호텔 결제금액('+year+')';
+	            myChart2.data.datasets[0].data = myData2;
+	            myChart2.data.datasets[0].backgroundColor = [
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)',
+	                   'rgba(255, 99, 132, 0.2)',
+	                   'rgba(54, 162, 235, 0.2)',
+	                   'rgba(255, 206, 86, 0.2)',
+	                   'rgba(75, 192, 192, 0.2)',
+	                   'rgba(153, 102, 255, 0.2)',
+	                   'rgba(255, 159, 64, 0.2)'
+	               ];
+	            myChart2.data.datasets[0].boarderColor = [
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)',
+	                   'rgba(255, 99, 132, 1)',
+	                   'rgba(54, 162, 235, 1)',
+	                   'rgba(255, 206, 86, 1)',
+	                   'rgba(75, 192, 192, 1)',
+	                   'rgba(153, 102, 255, 1)',
+	                   'rgba(255, 159, 64, 1)'
+	               ];
+	            
+	            myChart2.update();
+	         }
+	      });
+	   });
+   
    </script>
+   				<!-- Required Js -->
+				<script
+					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/vendor-all.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/plugins/bootstrap.min.js"></script>
+				<script
+					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/ripple.js"></script>
+				<script
+					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/pcoded.min.js"></script>
+
+				<!-- Apex Chart -->
+				<script
+					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/plugins/apexcharts.min.js"></script>
+
+
+				<!-- custom-chart js -->
+				<script
+					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/pages/dashboard-main.js"></script>
+					
 </html>
