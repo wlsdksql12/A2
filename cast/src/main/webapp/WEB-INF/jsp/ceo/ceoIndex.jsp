@@ -148,9 +148,9 @@
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">수익</h4>
+                  <h4 class="card-title">객실 수익</h4>
                   <div style="display:none">
-                     <button id="btnOut2">월별 호텔결제</button>
+                     <button id="btnOut2">월별 객실결제</button>
                   </div>
                      <div class="col-sm-12">
                       <div class="card">

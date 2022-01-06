@@ -39,7 +39,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="${pageContext.request.contextPath}/ceo/ceoIndex?ceoId=${loginCeoId}"><img src="${pageContext.request.contextPath}/resources/ceo_template/images/logo.svg" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="${pageContext.request.contextPath}/ceo/ceoIndex?ceoId=${loginCeoId}">MYPAGE</a>
         <a class="navbar-brand brand-logo-mini" href="${pageContext.request.contextPath}/ceo/ceoIndex"><img src="${pageContext.request.contextPath}/resources/ceo_template/images/logo-mini.svg" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -158,7 +158,7 @@
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/ceo/ceoIndex?ceoId=${loginCeoId}">
               <i class="ti-shield menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title" style="font-weight:bold;">사업자 페이지</span>
             </a>
           </li>
           <li class="nav-item">
@@ -169,7 +169,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#selectExpHotel" aria-expanded="false" aria-controls="ui-basic">
-              <i class=" menu-icon ti-clipboard"></i>
+              <i class=" menu-icon ti-plus"></i>
               <span class="menu-title" style="font-weight:bold;">사업체 등록</span>
               <i class="menu-arrow"></i>
             </a>
@@ -198,9 +198,15 @@
             </div>
           </li>
           <li class="nav-item">
-            <a href="${pageContext.request.contextPath}/getCeoExperienceChart" class="nav-link">
-              <i class="ti-user menu-icon"></i>
-              <span class="menu-title" style="font-weight:bold;">체험 차트</span>
+            <a href="${pageContext.request.contextPath}/CeoExperienceChart" class="nav-link">
+              <i class="ti-bar-chart-alt menu-icon"></i>
+              <span class="menu-title" style="font-weight:bold;">체험 수익</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="${pageContext.request.contextPath}/CeoRoomChart" class="nav-link">
+              <i class="ti-bar-chart-alt menu-icon"></i>
+              <span class="menu-title" style="font-weight:bold;">숙소 수익</span>
             </a>
           </li>
           <li class="nav-item">

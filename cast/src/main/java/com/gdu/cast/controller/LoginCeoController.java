@@ -77,8 +77,13 @@ public class LoginCeoController {
 		return "redirect:/loginSelect";
 	}
 
-	@GetMapping("/getCeoExperienceChart")
+	@GetMapping("/CeoExperienceChart")
 	public String getCeoExperienceChart() {
-		return "/ExperienceChart";
+		return "/ceo/experienceChart";
+	}
+	
+	@GetMapping("/CeoRoomChart")
+	public String getCeoRoomChart() {
+		return "/ceo/roomChart";
 	}
 }
