@@ -203,7 +203,7 @@
 	      
 	      $.ajax({
 	         type:'get',
-	         url:'${pageContext.request.contextPath}/get2TotalInOfMonthByYear?year='+year,
+	         url:'${pageContext.request.contextPath}/getExpTotalInOfMonthByYear?year='+year,
 	         success:function(json){
 	            console.log(json)
 	            // json변수값 -> labels와 data로 가공
@@ -288,7 +288,7 @@
 	      
 	      $.ajax({
 	         type:'get',
-	         url:'${pageContext.request.contextPath}/getExperienceMonth?ceoId=${ceoId}&year='+year,
+	         url:'${pageContext.request.contextPath}/getRoomTotalInOfMonthByYear?year='+year,
 	         success:function(json){
 	            console.log(json)
 	            // json변수값 -> labels와 data로 가공
@@ -345,23 +345,6 @@
 	   });
    
    </script>
-   				<!-- Required Js -->
-				<script
-					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/vendor-all.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/plugins/bootstrap.min.js"></script>
-				<script
-					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/ripple.js"></script>
-				<script
-					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/pcoded.min.js"></script>
-
-				<!-- Apex Chart -->
-				<script
-					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/plugins/apexcharts.min.js"></script>
-
-
-				<!-- custom-chart js -->
-				<script
-					src="${pageContext.request.contextPath}/resources/assets/customer/dist/assets/js/pages/dashboard-main.js"></script>
+   		
 					
 </html>

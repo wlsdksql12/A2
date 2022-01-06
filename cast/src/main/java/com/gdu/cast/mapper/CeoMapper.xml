@@ -129,6 +129,25 @@
 		INNER JOIN experience e
 		WHERE YEAR(ep.create_date) = #{year} AND e.ceo_id = #{ceoId}
 	</select>
+		<select id="selectRoomMonth" parameterType="map" resultType="java.util.Map">
+		SELECT
+			SUM(CASE WHEN MONTH(rp.create_date)=1 THEN rp.room_payment_money END) january,
+			SUM(CASE WHEN MONTH(rp.create_date)=2 THEN rp.room_payment_money END) february,
+			SUM(CASE WHEN MONTH(rp.create_date)=3 THEN rp.room_payment_money END) march,
+			SUM(CASE WHEN MONTH(rp.create_date)=4 THEN rp.room_payment_money END) april,
+			SUM(CASE WHEN MONTH(rp.create_date)=5 THEN rp.room_payment_money END) may,
+			SUM(CASE WHEN MONTH(rp.create_date)=6 THEN rp.room_payment_money END) june,
+			SUM(CASE WHEN MONTH(rp.create_date)=7 THEN rp.room_payment_money END) july,
+			SUM(CASE WHEN MONTH(rp.create_date)=8 THEN rp.room_payment_money END) august,
+			SUM(CASE WHEN MONTH(rp.create_date)=9 THEN rp.room_payment_money END) september,
+			SUM(CASE WHEN MONTH(rp.create_date)=10 THEN rp.room_payment_money END) october,
+			SUM(CASE WHEN MONTH(rp.create_date)=11 THEN rp.room_payment_money END) november,
+			SUM(CASE WHEN MONTH(rp.create_date)=12 THEN rp.room_payment_money END) december
+		FROM room_order ro INNER JOIN room_payment rp
+		ON ro.room_order_id = rp.room_payment_id 
+		INNER JOIN hotel h
+		WHERE YEAR(rp.create_date) = #{year} AND h.ceo_id = #{ceoId}
+	</select>
 	
 	
 </mapper>

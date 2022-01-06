@@ -31,5 +31,7 @@ public interface CeoMapper {
 	
 	// 
 	Map<String, Object> selectExperienceMonth(Map<String, Object> map);
+	//
+	Map<String, Object> selectRoomMonth(Map<String, Object> map);
 }
 

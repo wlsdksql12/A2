@@ -15,9 +15,9 @@ import com.gdu.cast.mapper.CeoMapper;
 public class CeoChartController {
 	@Autowired CeoMapper ceoMapper;
 	
-	// 고객 메인 페이지 체험 차트
-	@GetMapping("/get2TotalInOfMonthByYear")
-	public Map<String, Object> getCeoTotalInOfMonthByYear(int year, HttpSession session){
+	// 메인 페이지 체험 차트
+	@GetMapping("/getExpTotalInOfMonthByYear")
+	public Map<String, Object> getCeoExpTotalInOfMonthByYear(int year, HttpSession session){
 		String ceoId = (String) session.getAttribute("loginCeoId");
 		
 		Map<String, Object> paramMap = new HashMap<>();
@@ -28,6 +28,22 @@ public class CeoChartController {
 		System.out.println(ceoId+"ceoId");
 		
 		Map<String, Object> returnmap = ceoMapper.selectExperienceMonth(paramMap);
+		System.out.println("@@@@@@@@@@@@"+returnmap.toString());
+		return returnmap;
+	}
+	// 메인 페이지 숙소 차트
+	@GetMapping("/getRoomTotalInOfMonthByYear")
+	public Map<String, Object> getRoomTotalInOfMonthByYear(int year, HttpSession session){
+		String ceoId = (String) session.getAttribute("loginCeoId");
+		
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("year", year);
+		paramMap.put("ceoId", ceoId);
+		
+		System.out.println(year + "year");
+		System.out.println(ceoId+"ceoId");
+		
+		Map<String, Object> returnmap = ceoMapper.selectRoomMonth(paramMap);
 		System.out.println("@@@@@@@@@@@@"+returnmap.toString());
 		return returnmap;
 	}
