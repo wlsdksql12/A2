@@ -1,8 +1,6 @@
 package com.gdu.cast.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -77,19 +75,9 @@ public class LoginCeoController {
 		return "redirect:/loginSelect";
 	}
 	
-	//
-	@GetMapping("/ceo/getExperienceMonth")
-	public Map<String, Object> getExperienceMonth(int year, HttpSession session) {
-		String ceoId = (String) session.getAttribute("loginCeoId");
-		
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("year", year);
-		paramMap.put("ceoId", ceoId);
-		
-		System.out.println(year + "year");
-		System.out.println(ceoId + "ceoId");
-		
-		Map<String, Object> returnmap = ceoMapper.selectExperienceMonth(paramMap);
-		return returnmap;
+	// 체험 차트
+	@GetMapping("/getExperienceMonth")
+	public String getExperienceMonth() {
+		return "redirect:/ceo/ExperienceChart";
 	}
 }

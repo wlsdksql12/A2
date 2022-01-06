@@ -123,13 +123,15 @@
 			SUM(CASE WHEN MONTH(ep.create_date)=9 THEN ep.experience_payment_money END) september,
 			SUM(CASE WHEN MONTH(ep.create_date)=10 THEN ep.experience_payment_money END) october,
 			SUM(CASE WHEN MONTH(ep.create_date)=11 THEN ep.experience_payment_money END) november,
-			SUM(CASE WHEN MONTH(ep.create_date)=12 THEN ep.experience_payment_money END) december,
+			SUM(CASE WHEN MONTH(ep.create_date)=12 THEN ep.experience_payment_money END) december
 		FROM experience_order eo INNER JOIN experience_payment ep
 		ON eo.experience_order_id = ep.experience_payment_id 
 		INNER JOIN experience e
-		ON e.experience_name = eo.expeirence_name
+		ON e.experience_name = eo.experience_name
 		WHERE YEAR(ep.create_date) = #{year} AND e.ceo_id = #{ceoId}
 	</select>
+	
+	
 </mapper>
 
 
