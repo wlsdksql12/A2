@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.gdu.cast.mapper.CeoMapper;
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.service.JoinRequestService;
+import com.gdu.cast.service.SubscriptionService;
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.ExperienceWishList;
@@ -28,7 +29,8 @@ public class LoginCeoController {
 	JoinRequestService joinRequestService;
 	@Autowired
 	CeoMapper ceoMapper;
-	
+	@Autowired
+	SubscriptionService subscriptionService;
 	// 사업자 메인 페이지
 	@GetMapping("/ceo/ceoIndex")
 	public String ceoIndex(Model model, HttpSession session, String ceoId) {
@@ -46,6 +48,8 @@ public class LoginCeoController {
 		String state = joinRequestService.getCeoJoinRequestResult((String)session.getAttribute("loginCeoId"));
 		session.setAttribute("state", state);
 		System.out.println(state + " <<< LoginCeoController");
+		int subscription = subscriptionService.getSubscriptionNo(ceoId);
+		session.setAttribute("subscription", subscription);
 		System.out.println(experienceWishList);
 		return "ceo/ceoIndex";
 	}

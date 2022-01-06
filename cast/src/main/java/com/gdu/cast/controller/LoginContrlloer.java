@@ -20,6 +20,7 @@ import com.gdu.cast.service.AdminService;
 import com.gdu.cast.service.CeoService;
 import com.gdu.cast.service.CustomerService;
 import com.gdu.cast.service.JoinRequestService;
+import com.gdu.cast.service.SubscriptionService;
 import com.gdu.cast.service.TravelerService;
 import com.gdu.cast.vo.Admin;
 import com.gdu.cast.vo.Ceo;
@@ -37,7 +38,7 @@ public class LoginContrlloer {
 	@Autowired AdminService adminService;
 	@Autowired TravelerService travelerService;
 	@Autowired JoinRequestService joinRequestService;
-	
+	@Autowired SubscriptionService subscriptionService; 
 	
 	@GetMapping("/loginSelect")
 	public String loginSelect() {
@@ -168,12 +169,13 @@ public class LoginContrlloer {
 			System.out.println(state + "사업자 요청 상태");
 			// 12.20 요청or거절을 세션에 넣어서 로그인되도록
 			// 가입 요청 세션을 추가(ex.'요청','거절',승인')
+			int subscription = subscriptionService.getSubscriptionNo(Id);
+			session.setAttribute("subscription", subscription);
 			session.setAttribute("state", state);
 			session.setAttribute("loginCeoId", loginCeo.getCeoId());
-			// 로그인 정보가 다르면 다시 로그인 창으로 소환!
-
 			return "redirect:/index?ceoId="+ loginCeo.getCeoId();
 		}
+		// 로그인 정보가 다르면 다시 로그인 창으로 소환!
 		return "/loginSelect";
 		
 	}

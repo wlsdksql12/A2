@@ -85,8 +85,10 @@ public class CeoController {
 	
 	// 사업가 구독 변경
 	@GetMapping("/ceo/updateSubscribe")
-	public String updateSubscribe(String ceoId, int subscriptionNo) {
+	public String updateSubscribe(HttpSession session, String ceoId, int subscriptionNo) {
 		subscriptionService.modifyCeoSubscription(ceoId, subscriptionNo);
+		int subscription = subscriptionService.getSubscriptionNo(ceoId);
+		session.setAttribute("subscription", subscription);
 		return"redirect:/ceo/subscribeCeo?ceoId="+ceoId;
 	}
 	
