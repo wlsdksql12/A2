@@ -297,6 +297,7 @@
 													<th>체험 최대 인원 수 </th>
 													<th>createDate</th>
 													<th>updateDate</th>
+													<th>결제하러가기</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -312,6 +313,7 @@
 														<td>${wishList.experience.experiencePerson}</td>
 														<td>${wishList.createDate}</td>
 														<td>${wishList.updateDate}</td>
+														<td><a href="/">이동</a></td>
 														
 														</tr>
 												</c:forEach>

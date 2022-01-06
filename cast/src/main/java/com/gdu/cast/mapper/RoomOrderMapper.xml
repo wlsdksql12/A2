@@ -101,7 +101,8 @@
 			rp.room_payment_method,
 			rp.room_payment_method_number,
 			rp.room_payment_money,
-			rp.create_Date
+			rp.create_date,
+			rp.update_date
 		FROM room_payment rp INNER JOIN room_order ro
 		ON rp.room_order_id = ro.room_order_id
 		where customer_id = #{customerId}

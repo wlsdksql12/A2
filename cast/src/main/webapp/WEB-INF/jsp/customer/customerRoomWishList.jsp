@@ -293,6 +293,7 @@
 													<th>호텔 내용</th>
 													<th>createDate</th>
 													<th>updateDate</th>
+													<th>결제하러가기</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -304,7 +305,7 @@
 														<td>${wishList.hotel.hotelContent}</td>
 														<td>${wishList.createDate}</td>
 														<td>${wishList.updateDate}</td>
-														
+														<td><a href="/">이동</a></td>
 														</tr>
 												</c:forEach>
 											</tbody>
