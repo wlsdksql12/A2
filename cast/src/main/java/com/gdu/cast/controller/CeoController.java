@@ -1,5 +1,7 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,14 +11,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.gdu.cast.service.CeoService;
+import com.gdu.cast.service.SubscriptionService;
 import com.gdu.cast.vo.Ceo;
+import com.gdu.cast.vo.Subscription;
 
 
 @Controller
 public class CeoController {
 	@Autowired
-		CeoService ceoService;
-	
+	CeoService ceoService;
+	@Autowired
+	SubscriptionService subscriptionService;
 	// 사업체 추가시 호텔과 체험 선택
 	@GetMapping("/ceo/selectExpHotel")
 	public String selectExpHotel() {
@@ -69,8 +74,20 @@ public class CeoController {
 	
 	// 사업가 구독 페이지
 	@GetMapping("/ceo/subscribeCeo")
-	public String subscribeCeo(HttpSession session) {
+	public String subscribeCeo(HttpSession session, String ceoId, Model model) {
+		List<Subscription> subscriptionList= subscriptionService.SubscriptionList();
+		int subscriptionNo = subscriptionService.getSubscriptionNo(ceoId);
+		model.addAttribute("ceoId", ceoId);
+		model.addAttribute("subscriptionList", subscriptionList);
+		model.addAttribute("subscriptionNo", subscriptionNo);
 		return "ceo/subscribeCeo";
+	}
+	
+	// 사업가 구독 변경
+	@GetMapping("/ceo/updateSubscribe")
+	public String updateSubscribe(String ceoId, int subscriptionNo) {
+		subscriptionService.modifyCeoSubscription(ceoId, subscriptionNo);
+		return"redirect:/ceo/subscribeCeo?ceoId="+ceoId;
 	}
 	
 }

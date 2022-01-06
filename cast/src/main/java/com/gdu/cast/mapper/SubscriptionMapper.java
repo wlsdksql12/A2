@@ -17,4 +17,10 @@ public interface SubscriptionMapper {
 	
 	// 결제 테이블에 입력
 	void insertSubscriptionAmount(Map<String, Object> map);
+	
+	// 사업자의 구독 정보 조회
+	int selectSubscriptionNo(String ceoId);
+	
+	// 사업자의 구독 정보 변경
+	void updateCeoSubscription(Map<String, Object> map);
 }

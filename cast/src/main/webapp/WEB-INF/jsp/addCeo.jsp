@@ -153,26 +153,29 @@
 									<h2 class="card-title">구독을 선택해주세요</h2>
 									<p class="card-description">구독 가능한 상품의 리스트입니다.</p>
 									<c:forEach items="${subscriptionList}" var="subscription">
-									<div class="columns">
-									  <ul class="price">
-									  	<c:if test="${subscription.subscriptionName eq 'Pro'}">
-									  		<li class="header" style="background-color:#04AA6D">${subscription.subscriptionName}</li>
-									  	</c:if>
-									    <c:if test="${subscription.subscriptionName eq 'Premium'}">
-									  		<li class="header">${subscription.subscriptionName}</li>
-									  	</c:if>
-									    <li class="grey">&#8361; <fmt:formatNumber value="${subscription.subscriptionPay}" pattern="#,###"/> / year</li>
-									    <li>체험 ${subscription.subscriptionExperience} 등록 가능</li>
-									    <li>호텔 ${subscription.subscriptionHotel} 등록 가능</li>
-									    <c:if test="${subscription.subscriptionExhibitionEnum eq '무'}">
-									    	<li>전시 소개 등록 비제공</li>
-									    </c:if>
-									     <c:if test="${subscription.subscriptionExhibitionEnum eq '유'}">
-									    	<li>전시 소개 등록 제공</li>
-									    </c:if>
-									    <li class="grey"><input type="checkbox" name="subscriptionNo" onclick="checkOnlyOne(this)" value="${subscription.subscriptionNo}" >선택</li>
-									  </ul>
-									</div>
+									<c:if test="${subscription.subscriptionName ne 'Basic'}">
+										<div class="columns">
+										  <ul class="price">
+										  	
+										  	<c:if test="${subscription.subscriptionName eq 'Pro'}">
+										  		<li class="header" style="background-color:#04AA6D">${subscription.subscriptionName}</li>
+										  	</c:if>
+										    <c:if test="${subscription.subscriptionName eq 'Premium'}">
+										  		<li class="header">${subscription.subscriptionName}</li>
+										  	</c:if>
+										    <li class="grey">&#8361; <fmt:formatNumber value="${subscription.subscriptionPay}" pattern="#,###"/> / year</li>
+										    <li>체험 ${subscription.subscriptionExperience} 등록 가능</li>
+										    <li>호텔 ${subscription.subscriptionHotel} 등록 가능</li>
+										    <c:if test="${subscription.subscriptionExhibitionEnum eq '무'}">
+										    	<li>전시 소개 등록 비제공</li>
+										    </c:if>
+										     <c:if test="${subscription.subscriptionExhibitionEnum eq '유'}">
+										    	<li>전시 소개 등록 제공</li>
+										    </c:if>
+										    <li class="grey"><input type="checkbox" name="subscriptionNo" onclick="checkOnlyOne(this)" value="${subscription.subscriptionNo}" >선택</li>
+										  </ul>
+										</div>
+									</c:if>
 									</c:forEach>
 								</div>
 							</div>
