@@ -10,6 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>RoyalUI Admin</title>
+
 <!-- plugins:css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/vendors/ti-icons/css/themify-icons.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/vendors/base/vendor.bundle.base.css">
@@ -20,6 +21,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/ceo_template/css/style.css">
 <!-- endinject -->
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/ceo_template/images/favicon.png" />
+
 </head>
 <body>
    <%@ include file="ceoBase.jsp"%>
