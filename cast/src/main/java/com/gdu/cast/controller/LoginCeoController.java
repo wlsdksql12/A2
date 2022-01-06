@@ -1,8 +1,6 @@
 package com.gdu.cast.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +16,6 @@ import com.gdu.cast.service.JoinRequestService;
 import com.gdu.cast.service.SubscriptionService;
 import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Experience;
-import com.gdu.cast.vo.ExperienceWishList;
 import com.gdu.cast.vo.Hotel;
 
 @Controller
@@ -43,14 +40,14 @@ public class LoginCeoController {
 		List<Hotel> hotelList = ceoService.getselectHotelIndex(ceoId);
 		model.addAttribute("hotelList", hotelList);
 		
-		ExperienceWishList experienceWishList = ceoService.selectExpWish(ceoId);
-		model.addAttribute("experienceWishList", experienceWishList);
+		/*ExperienceWishList experienceWishList = ceoService.selectExpWish(ceoId);
+		model.addAttribute("experienceWishList", experienceWishList); */
 		String state = joinRequestService.getCeoJoinRequestResult((String)session.getAttribute("loginCeoId"));
 		session.setAttribute("state", state);
 		System.out.println(state + " <<< LoginCeoController");
 		int subscription = subscriptionService.getSubscriptionNo(ceoId);
 		session.setAttribute("subscription", subscription);
-		System.out.println(experienceWishList);
+		//System.out.println(experienceWishList);
 		return "ceo/ceoIndex";
 	}
 	

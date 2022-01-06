@@ -100,14 +100,14 @@
 		LIMIT 0, 4
 	</select>
 	
-	<!-- 메인화면 좋아요 -->
-	<select id="selectExpWish" parameterType="int" resultMap="resultExpWish">
+	<!-- 메인화면 좋아요 
+	<select id="selectExpWish" parameterType="integer" resultMap="resultExpWish">
 		SELECT
 		 	COUNT(ew.experience_id) AS expWish
 		 FROM experience e INNER JOIN experience_wishlist ew
 		 ON e.experience_id = ew.experience_id
 		 WHERE ceo_id = '${ceoId}'
-	</select>
+	</select>-->
 	
 	<!-- 차트 -->
 	<select id="selectExperienceMonth" parameterType="map" resultType="java.util.Map">

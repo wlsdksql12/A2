@@ -157,7 +157,7 @@
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/ceo/ceoIndex?ceoId=${loginCeoId}">
-              <i class="ti-shield menu-icon"></i>
+              <i class="ti-home menu-icon"></i>
               <span class="menu-title" style="font-weight:bold;">사업자 페이지</span>
             </a>
           </li>
@@ -209,7 +209,7 @@
               <span class="menu-title" style="font-weight:bold;">숙소 수익</span>
             </a>
           </li>
-          <li class="nav-item">
+         <!--  <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="ti-palette menu-icon"></i>
               <span class="menu-title">UI Elements</span>
@@ -267,7 +267,7 @@
           		<i class="ti-power-off menu-icon"></i>
           		<span class="menu-title">Logout</span>
           	</a>
-          </li>
+          </li> -->
         </ul>
       </nav>
       <!-- partial -->

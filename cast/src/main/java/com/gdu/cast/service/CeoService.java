@@ -47,8 +47,7 @@ public class CeoService {
 		return ceoMapper.selectHotelIndex(ceoId);
 	}
 	
-	public ExperienceWishList selectExpWish(String ceoId) {
-		ExperienceWishList experienceWishList = ceoMapper.selectExpWish(ceoId);
-		return experienceWishList;
-	}
+	/*public int selectExpWish(String ceoId) {
+		return ceoMapper.selectExpWish(ceoId);
+	} */
 }
