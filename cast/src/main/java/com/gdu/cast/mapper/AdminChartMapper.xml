@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.AdminChartMapper">
-
+	<select id="selectAmountOfMonthByYear" parameterType="int" resultType="java.util.Map">
+      SELECT
+         IFNULL(SUM(CASE WHEN MONTH(create_date)=1 OR MONTH(create_date)=2 OR MONTH(create_date)=3 THEN subscription_pay END), 0) firstQuarter,
+         IFNULL(SUM(CASE WHEN MONTH(create_date)=4 OR MONTH(create_date)=5 OR MONTH(create_date)=6 THEN subscription_pay END), 0) secondQuarter,
+         IFNULL(SUM(CASE WHEN MONTH(create_date)=7 OR MONTH(create_date)=8 OR MONTH(create_date)=9 THEN subscription_pay END), 0) thirdQuarter,
+         IFNULL(SUM(CASE WHEN MONTH(create_date)=10 OR MONTH(create_date)=11 OR MONTH(create_date)=12 THEN subscription_pay END), 0) fourthQuarter
+      FROM subscription_amount
+      WHERE YEAR(create_date) = #{year}
+   </select>
 </mapper>

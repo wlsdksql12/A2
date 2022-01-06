@@ -13,7 +13,7 @@
 		FROM subscription
 		WHERE subscription_no = #{subscriptionNo}
 	</select>
-	
+	<!-- 사업자 가입 요청 승인시 구독결제테이블에 입력 -->
 	<insert id="insertSubscriptionAmount" parameterType="map">
 		INSERT INTO subscription_amount(
 			subscription_no,

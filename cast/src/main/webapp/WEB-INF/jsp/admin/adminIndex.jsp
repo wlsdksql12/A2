@@ -159,7 +159,8 @@
             <div class="col-xl-9 col-lg-7">
               <div class="card mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">월간표</h6>
+                  <dvi id="add">
+                  </dvi>
                   <!-- 차트 메뉴 시작 -->
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
@@ -169,10 +170,15 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                       aria-labelledby="dropdownMenuLink">
                       <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <ul>
+                      	<c:forEach items="${yearList}" var="year">
+                      		<li class="nowYear" style="cursor: pointer; list-style:none;" value="${year}">${year}</li>
+                      	</c:forEach>
+                      </ul>
+                      <!-- 
+                      <a class="dropdown-item" id="nowYear">2022</a>
+                      <a class="dropdown-item" id="preYear">2021</a>
+                    	 -->
                     </div>
                   </div>
                   <!-- 차트 메뉴 끝 -->
@@ -319,22 +325,21 @@
   <script src="${pageContext.request.contextPath}/resources/admin_template/js/demo/chart-area-demo.js"></script>  
 
 <script type="text/javascript">
-	var myData=[];
-	// 자바스크립트에서 JSTL사용해서 EL데이터를 입력
-	<c:forEach items="${data}" var="item">
-		myData.push("${item}");
-	</c:forEach>
 	
+	let today = new Date();
+	let year = today.getFullYear(); //2022
+	let preyear = year-1;
 	// Area Chart Example
 	var ctx = document.getElementById("myAreaChart");
 	var myLineChart = new Chart(ctx, {
-	  type: 'line',
+	  type: 'bar',
 	  data: {	
-	    labels: ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
+	    labels: ["1분기", "2분기", "3분기", "4분기"],
 	    datasets: [{
 	      label: "",
-	      lineTension: 0.3,
-	      backgroundColor: "rgba(78, 115, 223, 0.5)",
+	      barPercentage: 0.5,
+	      barTension: 0.3,
+	      backgroundColor: ["rgba(255, 192, 203, 0.5)","rgba(185, 206, 172, 0.5)","rgba(150, 75, 0, 0.5)","rgba(78, 155, 223, 0.5)"],
 	      borderColor: "rgba(78, 115, 223, 1)",
 	      pointRadius: 3,
 	      pointBackgroundColor: "rgba(78, 115, 223, 1)",
@@ -344,7 +349,7 @@
 	      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
 	      pointHitRadius: 10,
 	      pointBorderWidth: 2,
-	      data: myData,
+	      // data: myData,
 	    }],
 	  },
 	  options: {
@@ -367,7 +372,7 @@
 	          drawBorder: false
 	        },
 	        ticks: {
-	          maxTicksLimit: 7
+	          maxTicksLimit: 12
 	        }
 	      }],
 	      yAxes: [{
@@ -400,7 +405,7 @@
 	      titleFontSize: 14,
 	      borderColor: '#dddfeb',
 	      borderWidth: 1,
-	      xPadding: 15,
+	      xPadding: 10,	
 	      yPadding: 15,
 	      displayColors: false,
 	      intersect: false,
@@ -415,6 +420,42 @@
 	    }
 	  }
 	});
+	
+	function chart() {
+		let add = '<h6 id="delete" class="m-0 font-weight-bold text-primary">'+year+'년도 분기별 매출표</h6>';
+		$('#delete').remove();
+		$('#add').prepend(add);
+		$.ajax({
+	         type:'get',
+	         url:'${pageContext.request.contextPath}/admin/getQuarterChart?year='+year,
+	         success:function(json){
+	            console.log(json)
+	            // json변수값 -> labels와 data로 가공
+	            let myData = [];
+	            myData.push(json.firstQuarter);
+	            myData.push(json.secondQuarter);
+	            myData.push(json.thirdQuarter);
+	            myData.push(json.fourthQuarter);
+
+	            myLineChart.data.datasets[0].data = myData;
+	            myLineChart.update();
+	         }
+	      });
+	} 
+	
+	$(document).ready(function(){
+		  chart();
+	   });
+	
+	$('li[class=nowYear]').click(function(){
+		year = $(this).val();
+		console.log($('#nowYear').val());
+		console.log($(this).val());
+		
+		// year= today.getFullYear(); // 2022
+	    chart();
+	   });
+
 </script>
 </body>
 </html>

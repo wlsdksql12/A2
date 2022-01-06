@@ -198,8 +198,8 @@ public class JoinRequestService {
 			int subscriptionPay = subscriptionMapper.selectSubscriptionPay(subscriptionNo);
 			System.out.println(subscriptionPay + "구독 가격");
 			// 현재 날짜 구하기
-			// LocalDate nowDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
-			LocalDate nowDate = LocalDate.parse("2022-04-03");
+			LocalDate nowDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
+			// LocalDate nowDate = LocalDate.parse("2022-04-03");
 			System.out.println(nowDate + "현재 날짜");
 			// 분기별 날짜
 			LocalDate date1 = nowDate.withMonth(1).withDayOfMonth(1);

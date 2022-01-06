@@ -1,5 +1,7 @@
 package com.gdu.cast.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndViewDefiningException;
 
+import com.gdu.cast.mapper.AdminChartMapper;
 import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.AdminService;
 import com.gdu.cast.service.ExperienceOrderService;
@@ -31,7 +34,7 @@ public class AdminController {
 	@Autowired JoinRequestService joinRequestService;
 	@Autowired ExperienceOrderService experienceOrderService; 
 	@Autowired RoomOrderService roomOrderService;
-	
+	@Autowired AdminChartMapper adminChartMapper;
 	private final int ROW_PER_PAGE = 5;
 	
 	// 관리자 메인페이지
@@ -43,8 +46,10 @@ public class AdminController {
 		Map<String, Object> newCeo = adminService.selectNewCeo();
 		int newNotQnaComment = adminService.selectNewNotQnaComment();
 		Map<String, Object> map = adminQnaService.selectNotQnaComment(currentPage, ROW_PER_PAGE);
-		// 차트에 사용할 임시 데이터
-		int[] data = {0,3000000,5000000,15000000,8000000,20000000,15000000,25000000,20000000,30000000,25000000,45000000};
+		// 현재 날짜 구하기
+		LocalDate nowDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
+		int year = nowDate.getYear(); // 현재날짜의 년도
+		int[] yearList = {year, year-1, year-2};
 		// 여행작가 회원가입 요청 리스트 4개
 		List<JoinTraveler> joinTravelerList = joinRequestService.getTravelerJoinRequestList4();
 		System.out.println(joinTravelerList.toString());
@@ -57,7 +62,6 @@ public class AdminController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		
-		model.addAttribute("data", data);
 		model.addAttribute("orderCount", orderCount);
 		model.addAttribute("joinTravelerList",joinTravelerList);
 		model.addAttribute("joinCeoList",joinCeoList);
@@ -71,6 +75,7 @@ public class AdminController {
 		model.addAttribute("notQnaCommentList", map.get("notQnaCommentList"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("yearList", yearList);
 		
 		return "admin/adminIndex";
 	}
