@@ -47,7 +47,7 @@
 					<br><hr><br>
 					<p class="card-description">이미지</p>
 						<c:forEach items="${experienceImageList}" var="experienceImage">
-							<img src="${pageContext.request.contextPath}/upload/${experienceImage.imageName}.${experienceImage.imageExt}" style="height: 500px; width: 500px;">	
+							<img src="${pageContext.request.contextPath}/upload/${experienceImage.imageName}.${experienceImage.imageExt}" style="height: 500px; width: 400px;">	
 						</c:forEach>
 					<br>
 					<br><hr><br>

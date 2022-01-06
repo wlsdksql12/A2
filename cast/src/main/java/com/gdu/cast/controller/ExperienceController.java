@@ -169,11 +169,12 @@ public class ExperienceController {
       Experience experience = experienceService.selectExperienceOne(experienceId);
       Map<String, Object> map = mainExperienceOrHotelReviewService.getexperiencePaymentReview(currentPage, row_per_page, experienceId);
       String experienceNameIf = mainExperienceOrHotelReviewService.getselectExperienceId(customerId,experienceName);
+      List<ExperienceImage> experienceImageList = experienceService.getExperienceImage(experienceId);
       
       System.out.println(experienceNameIf+"@#@#experienceNameIf@#@#");
       
+      model.addAttribute("experienceImageList", experienceImageList);
       model.addAttribute("ExperiencePaymentReview", map.get("ExperiencePaymentReview"));
-      
       System.out.println("map.get(\"ExperiencePaymentReview\")" + map.get("ExperiencePaymentReview"));
       // 결제된사람만 추가가 가능 하도록 설정하기위한 키값.(조건문에 사용)
       model.addAttribute("experienceNameIf", experienceNameIf);

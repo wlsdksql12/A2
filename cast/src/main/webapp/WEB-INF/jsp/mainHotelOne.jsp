@@ -117,7 +117,6 @@
 				<div class="col-lg-12 grid-margin stretch-card">
 					<div class="card">
 						<div class="card-body">
-							<h4 class="card-title">${hotel.hotelId}번째글 상세보기</h4>
 							
 							<input type="hidden" class="form-control" name="hotelId" value="${hotel.hotelId}" >
 										
@@ -137,9 +136,10 @@
 							</tr>
 							</table>
 							<br><hr><br>
-			
-							<p class="card-description">이미지(미구현)</p>
-							<h4></h4>
+							<p class="card-description">이미지</p>
+							<c:forEach items="${hotelImageList}" var="hotelImage">
+								<img src="${pageContext.request.contextPath}/upload/${hotelImage.imageName}.${hotelImage.imageExt}" style="height: 500px; width: 400px;">	
+							</c:forEach>
 							<br><hr><br>
 							 
 							<p class="card-description">호텔 소개</p>

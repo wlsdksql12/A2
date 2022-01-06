@@ -279,15 +279,17 @@ public class HotController {
 		model.addAttribute("address", address);
 		
 		List<Room> roomList = hotService.getSelectRoomList(hotelId);
+		List<HotelImage> hotelImageList = hotService.getHotelImage(hotelId);
 		
 		System.out.println(map.get("RoomPaymentReview") +"@#@#map.get(\"RoomPaymentReview\")");
 		
-	     model.addAttribute("RoomPaymentReview", map.get("RoomPaymentReview"));
+		model.addAttribute("hotelImageList", hotelImageList);
+		model.addAttribute("RoomPaymentReview", map.get("RoomPaymentReview"));
 		model.addAttribute("roomList", roomList);
-	      model.addAttribute("startPage", map.get("startPage"));
-	      model.addAttribute("lastPage", map.get("lastPage"));
-	      model.addAttribute("totalPage", map.get("totalPage"));
-	      model.addAttribute("currentPage", currentPage);
+		model.addAttribute("startPage", map.get("startPage"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("currentPage", currentPage);
 		System.out.println(" << HotelController" + model);
 		
 		return "mainHotelOne";
@@ -297,11 +299,13 @@ public class HotController {
 	@GetMapping("/mainRoomOne")
 	public String mainRoomOne(Model model, Room room, RoomFilter roomFilter, RoomConvenience roomConvenience, RoomBedroom roomBedroom) {
 		room = hotService.selectRoomOne(room.getRoomId());
+		List<RoomImage> roomImageList = hotService.getRoomImage(room.getRoomId());
 		
 		model.addAttribute("room", room);
 		model.addAttribute("roomFilter", roomFilter);
 		model.addAttribute("roomConvenience", roomConvenience);
 		model.addAttribute("roomBedroom", roomBedroom);
+		model.addAttribute("roomImageList", roomImageList);
 		
 		System.out.println("@@@@HotController" + model);
 		

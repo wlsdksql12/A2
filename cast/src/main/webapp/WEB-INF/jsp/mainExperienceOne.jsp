@@ -137,7 +137,6 @@
 			<div class="col-lg-12 grid-margin stretch-card">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">${experience.experienceId}번째글 상세보기</h4>
 						
 						<input type="hidden" class="form-control" name="experienceId"
 									value="${experience.experienceId}" >
@@ -168,8 +167,10 @@
 						<p class="card-description">가격</p>
 						<h4>${experience.experiencePrice}&nbsp;&#8361;</h4>
 						<br><hr><br>
-						<p class="card-description">이미지(미구현)</p>
-						<h4></h4>
+						<p class="card-description">이미지</p>
+						<c:forEach items="${experienceImageList}" var="experienceImage">
+							<img src="${pageContext.request.contextPath}/upload/${experienceImage.imageName}.${experienceImage.imageExt}" style="height: 500px; width: 400px;">	
+						</c:forEach>
 						<br><hr><br>
 						 
 						<p class="card-description">프로그램</p>

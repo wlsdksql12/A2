@@ -79,8 +79,10 @@
 					<br><hr><br>
 					
 					
-					<p class="card-description">이미지(미구현)</p>
-					<h4></h4>
+					<p class="card-description">이미지</p>
+					<c:forEach items="${roomImageList}" var="roomImage">
+						<img src="${pageContext.request.contextPath}/upload/${roomImage.imageName}.${roomImage.imageExt}" style="height: 500px; width: 400px;">	
+					</c:forEach>
 					<br><hr><br>
 					 
 					<p class="card-description">객실 소개</p>
