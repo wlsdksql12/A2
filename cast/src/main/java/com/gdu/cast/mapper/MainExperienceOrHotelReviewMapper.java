@@ -44,4 +44,9 @@ public interface MainExperienceOrHotelReviewMapper {
 	List<ExperiencePaymentReview> CustomerExperienceReviewList(Map<String , Object> Map);
 	// 체험 리뷰 리스트 고객페이징
 	int CustomerExperienceReviewTotalCount(String customerId);
+	// 호텔 리뷰 리스트 고객페이지에 출력
+	List<RoomPaymentReview> CustomerHotelReviewList(Map<String, Object> Map);
+	// 호텔 리뷰 리스트 고객페이징
+	int CustomerRoomReviewTotalCount(String customerId);
+	
 }

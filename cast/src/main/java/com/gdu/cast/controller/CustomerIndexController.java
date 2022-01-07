@@ -197,14 +197,23 @@ public class CustomerIndexController {
 	
 	// 고객 체험 리뷰 페이지
 	@GetMapping("/customerExperienceReviewList")
-	public String getcustomerExperienceReviewList(Model model,HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
+	public String getcustomerExperienceReviewList(Model model,HttpSession session, @RequestParam(defaultValue = "1") int currentPage, @RequestParam(defaultValue = "1") int currentPage2) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		Map<String, Object> map = mainExperienceOrHotelReviewService.getCustomerExperienceReviewList(customerId, currentPage, row_per_page);
+		Map<String, Object> map2 = mainExperienceOrHotelReviewService.getCustomerRoomReviewList(customerId, currentPage2, row_per_page);
+		
+		model.addAttribute("lastPage2",map2.get("lastPage2"));
+		model.addAttribute("HotelReviewList",map2.get("HotelReviewList"));
 		model.addAttribute("ExperienceReviewList1",map.get("ExperienceReviewList"));
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("currentPage", currentPage);
-		
+		model.addAttribute("currentPage2", currentPage2);
 		return "customer/customerExperienceReview";
 		
 	}
+	
+	
+	
+	
+	
 }

@@ -301,10 +301,39 @@
 										</table>
 										<div class="text-center table container mt-3">
 										<c:if test="${currentPage > 1}">
-											<a href="${pageContext.request.contextPath}/customerExperienceReviewList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
+											<a href="${pageContext.request.contextPath}/customerExperienceReviewList?customerId=${loginCustomerId}&currentPage2=${currentPage2-1}&currentPage=${currentPage-1}">이전</a>
 										</c:if>
 										<c:if test="${currentPage < lastPage}">
-											<a href="${pageContext.request.contextPath}/customerExperienceReviewList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
+											<a href="${pageContext.request.contextPath}/customerExperienceReviewList?customerId=${loginCustomerId}&currentPage2=${currentPage2+1}&currentPage=${currentPage+1}">다음</a>
+										</c:if>
+									</div>
+								</div>
+								
+								
+								<div class="container-fluid">
+										<h2>호텔후기정보</h2>
+										<table class="table table-bordered">
+											<tr>
+												<td>호텔 이름</td>
+												<td>후기 내용</td>
+												<td>createDate</td>
+												<td>updateDate</td>
+											</tr>
+											<c:forEach items="${HotelReviewList}"  var="list">
+											<tr>
+												<td>${list.roomOrder.hotelName}</td>								
+												<td>${list.roomPaymentReviewContent}</td>
+												<td>${list.createDate}</td>
+												<td>${list.updateDate}</td>
+											</tr>
+											</c:forEach>
+										</table>
+										<div class="text-center table container mt-3">
+										<c:if test="${currentPage2 > 1}">
+											<a href="${pageContext.request.contextPath}/customerExperienceReviewList?customerId=${loginCustomerId}&currentPage2=${currentPage2-1}&currentPage=${currentPage-1}">이전</a>
+										</c:if>
+										<c:if test="${currentPage2 < lastPage2}">
+											<a href="${pageContext.request.contextPath}/customerExperienceReviewList?customerId=${loginCustomerId}&currentPage2=${currentPage2+1}&currentPage=${currentPage+1}">다음</a>
 										</c:if>
 									</div>
 								</div>

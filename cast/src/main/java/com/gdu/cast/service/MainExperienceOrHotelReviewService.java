@@ -270,8 +270,7 @@ public class MainExperienceOrHotelReviewService {
 		}
 			
 	}
-	
-	
+	// 고객 페이지 체험 후기 리스트
 	public Map<String, Object> getCustomerExperienceReviewList(String customerId, int currentPage,int row_per_page ){
 		 Map<String, Object> paramMap = new HashMap<>();
 		   
@@ -285,16 +284,48 @@ public class MainExperienceOrHotelReviewService {
 			Map<String, Object> returnMap = new HashMap<>();
 			int lastPage = 0;
 			int totalCount = mainExperienceOrHotelReviewMapper.CustomerExperienceReviewTotalCount(customerId);
+			System.out.println(totalCount + "totalCount");
 			lastPage = totalCount / row_per_page;
 			if(totalCount%row_per_page != 0) {
 				lastPage += 1;
 			}
 			returnMap.put("ExperienceReviewList", ExperienceReviewList);
 			returnMap.put("lastPage", lastPage);
+			System.out.println(lastPage + "lastPage");
+			System.out.println(ExperienceReviewList.toString() + "ExperienceReviewList");
 			return returnMap;
 		   
 	   }
 		   
-		
+	// 고객 페이지 호텔 후기 리스트
+	public Map<String, Object> getCustomerRoomReviewList(String customerId, int currentPage2,int row_per_page ){
+		 Map<String, Object> paramMap = new HashMap<>();
+		   
+		   int beginRow = (currentPage2-1)*row_per_page;
+		   paramMap.put("customerId", customerId);
+		   paramMap.put("beginRow", beginRow); 
+		   paramMap.put("row_per_page", row_per_page);
+		   
+		   List<RoomPaymentReview> HotelReviewList = mainExperienceOrHotelReviewMapper.CustomerHotelReviewList(paramMap);
+		   
+			Map<String, Object> returnMap = new HashMap<>();
+			int lastPage = 0;
+			int totalCount = mainExperienceOrHotelReviewMapper.CustomerRoomReviewTotalCount(customerId);
+			System.out.println(totalCount + "totalCount");
+			lastPage = totalCount / row_per_page;
+			if(totalCount%row_per_page != 0) {
+				lastPage += 1;
+			}
+			returnMap.put("HotelReviewList", HotelReviewList);
+			returnMap.put("lastPage2", lastPage);
+			System.out.println(lastPage + "lastPage");
+			System.out.println(HotelReviewList.toString() + "ExperienceReviewList");
+			return returnMap;
+		   
+	   }
+		   
+	
+	
+	
 	}
 	

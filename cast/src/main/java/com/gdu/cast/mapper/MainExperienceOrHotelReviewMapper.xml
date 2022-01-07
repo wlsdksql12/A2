@@ -38,7 +38,7 @@
 		</collection>
 	</resultMap>
 	
-				<!-- 메인 페이지 숙소 후기 리스트 -->
+				<!-- 메인 페이지 체험 후기 리스트 -->
 	<resultMap type="com.gdu.cast.vo.ExperiencePaymentReview" id="resultMainExperiencePaymentReview">
 		<id column="experience_payment_review_id" property="experiencePaymentReviewId"></id>
 		<result column="experience_payment_id" property="experiencePaymentId"></result>
@@ -48,6 +48,19 @@
 		<result column="update_date" property="updateDate"></result>
 		<collection property="experienceOrder" ofType="com.gdu.cast.vo.ExperienceOrder">
 			<result column="experience_name" property="experienceName"></result>
+		</collection>
+	</resultMap>
+	
+					<!-- 메인 페이지 호텔 후기 리스트 -->
+	<resultMap type="com.gdu.cast.vo.RoomPaymentReview" id="resultMainRoomPaymentReview">
+		<id column="room_payment_review_id" property="roomPaymentReviewId"></id>
+		<result column="room_payment_id" property="roomPaymentId"></result>
+		<result column="hotel_id" property="hotelId"></result>
+		<result column="room_payment_review_content" property="roomPaymentReviewContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="roomOrder" ofType="com.gdu.cast.vo.RoomOrder">
+			<result column="hotel_name" property="hotelName"></result>
 		</collection>
 	</resultMap>
 	
@@ -252,11 +265,39 @@
 	
 			<!--  commentList 페이징 -->
 	<select id="CustomerExperienceReviewTotalCount" parameterType="String" resultType="int">
-	SELECT COUNT(*) 
+	SELECT count(DISTINCT epr.experience_payment_review_id)
 	FROM experience_payment_review epr
 		inner join experience_payment ep on epr.experience_payment_id = epr.experience_payment_id
 		inner join experience_order eo on ep.experience_order_id = eo.experience_order_id
 	where eo.customer_id = #{customerId}
+	
+	</select>
+	
+			<!-- 고객 호텔 리뷰 페이지  -->
+	<select id="CustomerHotelReviewList" parameterType="Map" resultMap="resultMainRoomPaymentReview">
+		SELECT
+			rpr.room_payment_review_id,
+			rpr.room_payment_id,
+			rpr.hotel_id,
+			rpr.room_payment_review_content,
+			rpr.create_date,
+			rpr.update_date,
+			ro.hotel_name
+		FROM room_payment_review rpr 
+		inner join room_payment rp on rpr.room_payment_id = rpr.room_payment_id
+		inner join room_order ro on rp.room_order_id = ro.room_order_id
+		where ro.customer_id = #{customerId}
+		ORDER BY rpr.create_date DESC
+		LIMIT #{beginRow}, #{row_per_page}
+	</select>
+	
+			<!--  commentList 페이징 -->
+	<select id="CustomerRoomReviewTotalCount" parameterType="String" resultType="int">
+	SELECT count(DISTINCT rpr.room_payment_review_id)
+	FROM room_payment_review rpr
+		inner join room_payment rp on rpr.room_payment_id = rpr.room_payment_id
+		inner join room_order ro on rp.room_order_id = ro.room_order_id
+	where ro.customer_id = #{customerId}
 	
 	</select>
 	
