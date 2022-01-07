@@ -1,403 +1,467 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gdu.cast.mapper.HotMapper">
-	<!-- hotel 상세보기 : hotel & address 조인 -->
-	<resultMap type="com.gdu.cast.vo.Hotel" id="resultHotel">
-		<result column="hotel_id" property="hotelId" />
-		<result column="ceo_id" property="ceoId" />
-		<result column="address_id" property="addressId" />
-		<result column="hotel_name" property="hotelName" />
-		<result column="hotel_content" property="hotelContent" />
-		<result column="create_date" property="createDate" />
-		<result column="update_date" property="updateDate" />
-		<association property="address" javaType="com.gdu.cast.vo.Address">
-			<result column="address_id" property="addressId" />
-			<result column="postcode" property="postcode" />
-			<result column="road_address" property="roadAddress" />
-			<result column="jibun_address" property="jibunAddress" />
-			<result column="detail_address" property="detailAddress" />
-			<result column="extra_address" property="extraAddress" />
-			<result column="lat" property="lat" />
-			<result column="lng" property="lng" />
-		</association>
-		<association property="room" javaType="com.gdu.cast.vo.Room">
-			<result column="room_id" property="roomId" />
-			<result column="hotel_id" property="hotelId" />
-			<result column="room_name" property="roomName" />
-			<result column="room_count" property="roomCount" />
-			<result column="room_startdate" property="roomStartdate" />
-			<result column="room_enddate" property="roomEnddate" />
-			<result column="room_price" property="roomPrice" />
-			<result column="room_content" property="roomContent" />
-			<result column="create_date" property="createDate" />
-			<result column="update_date" property="updateDate" />
-		</association>
-	</resultMap>
-	
-	<!-- room 상세보기 : room & roomBedroom & roomConvenience & roomFilter 조인 -->
-	<resultMap type="com.gdu.cast.vo.Room" id="resultRoom">
-		<result column="room_id" property="roomId" />
-		<result column="hotel_id" property="hotelId" />
-		<result column="room_name" property="roomName" />
-		<result column="room_content" property="roomContent" />
-		<result column="room_startdate" property="roomStartdate" />
-		<result column="room_enddate" property="roomEnddate" />
-		<result column="room_price" property="roomPrice" />
-		<result column="create_date" property="createDate" />
-		<result column="update_date" property="updateDate" />
-		<result column="room_count" property="roomCount" />
-		<association property="roomBedroom" javaType="com.gdu.cast.vo.RoomBedroom">
-			<result column="room_id" property="roomId" />
-			<result column="bed_count" property="bedCount" />
-			<result column="bedroom_count" property="bedroomCount" />
-			<result column="bathroom_count" property="bathroomCount" />
-			<result column="create_date" property="createDate" />
-			<result column="update_date" property="updateDate" />
-		</association>
-		<association property="roomConvenience" javaType="com.gdu.cast.vo.RoomConvenience">
-			<result column="room_id" property="roomId" />
-			<result column="stairs_threshold" property="stairsThreshold" />
-			<result column="toilet_handle" property="toiletHandle" />
-			<result column="shower_stall_handle" property="showerStallHandle" />
-			<result column="create_date" property="createDate" />
-			<result column="update_date" property="updateDate" />
-		</association>
-		<association property="roomFilter" javaType="com.gdu.cast.vo.RoomFilter">
-			<result column="room_id" property="roomId" />
-			<result column="internet" property="internet" />
-			<result column="kitchen" property="kitchen" />
-			<result column="boiler" property="boiler" />
-			<result column="aircon" property="aircon" />
-			<result column="washing_machine" property="washingMachine" />
-			<result column="breakfast" property="breakfast" />
-			<result column="tv" property="tv" />
-			<result column="hairdryer" property="hairdryer" />
-			<result column="bidet" property="bidet" />
-			<result column="create_date" property="createDate" />
-			<result column="update_date" property="updateDate" />
-		</association>
-	</resultMap>
-	
-	<!-- 호텔 추가 -->
-	<insert id="insertHotel" parameterType="com.gdu.cast.vo.Hotel">
-		INSERT INTO
-			hotel (
-			ceo_id,
-			address_id,
-			hotel_name,
-			hotel_content,
-			create_date,
-			update_date
-		) VALUES (
-			#{ceoId},
-			#{addressId},
-			#{hotelName},
-			#{hotelContent},
-			now(),
-			now()
-		)
-		<selectKey resultType="integer" keyProperty="hotelId" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-	
-	<!-- 호텔 이미지 추가 -->
-	<insert id="insertHotelImage" parameterType="com.gdu.cast.vo.HotelImage">
-		INSERT INTO hotel_image(
-			hotel_id,
-			image_name,
-			image_ext,
-			image_size,
-			create_date,
-			update_date
-		) VALUES (
-			#{hotelId},
-			#{imageName},
-			#{imageExt},
-			#{imageSize},
-			now(),
-			now()
-		)
-		<selectKey resultType="int" keyProperty="hotelImageId" order="BEFORE">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-	
-	<!-- 주소 추가 -->
-	<insert id="insertHotelAddress" parameterType="com.gdu.cast.vo.Address">
-		INSERT INTO
-			address (
-				postcode,
-				road_address,
-				jibun_address,
-				detail_address,
-				extra_address,
-				lat,
-				lng
-			) VALUES (
-				#{postcode},
-				#{roadAddress},
-				#{jibunAddress},
-				#{detailAddress},
-				#{extraAddress},
-				#{lat},
-				#{lng}
-			)
-			<selectKey resultType="integer" keyProperty="addressId" order="AFTER">
-				SELECT LAST_INSERT_ID()
-			</selectKey>
-	</insert>
-	
-	<!-- 호텔 방 추가 -->
-	<insert id="insertRoom" parameterType="com.gdu.cast.vo.Room">
-		INSERT INTO
-			room (
-				hotel_id,
-				room_name,
-				room_content,
-				room_count,
-				room_startdate,
-				room_enddate,
-				room_price,
-				create_date,
-				update_date
-			) VALUES (
-				#{hotelId},
-				#{roomName},
-				#{roomContent},
-				#{roomCount},
-				#{roomStartdate},
-				#{roomEnddate},
-				#{roomPrice},
-				NOW(),
-				NOW()
-			)
-		<selectKey resultType="int" keyProperty="roomId" order="AFTER">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-	
-	<!-- 호텔 방 이미지 추가 -->
-	<insert id="insertRoomImage" parameterType="com.gdu.cast.vo.RoomImage">
-		INSERT INTO room_image(
-			room_id,
-			image_name,
-			image_ext,
-			image_size,
-			create_date,
-			update_date
-		) VALUES (
-			#{roomId},
-			#{imageName},
-			#{imageExt},
-			#{imageSize},
-			now(),
-			now()
-		)
-		<selectKey resultType="int" keyProperty="roomImageId" order="BEFORE">
-			SELECT LAST_INSERT_ID()
-		</selectKey>
-	</insert>
-	
-	<!-- 호텔리스트 -->
-	<select id="selectHotelList" parameterType="Map" resultType="com.gdu.cast.vo.Hotel">
-		SELECT
-			hotel_id hotelId,
-			hotel_name hotelName,
-			create_date createDate
-		FROM hotel
-		WHERE ceo_id = #{ceoId}
-		ORDER BY create_date DESC
-		LIMIT #{beginRow}, #{ROW_PER_PAGE}
-	</select>
-	
-	<!-- 방 리스트 -->
-	<select id="selectRoomList" parameterType="Map" resultType="com.gdu.cast.vo.Room">
-		SELECT 
-			room_id roomId,
-			room_name roomName,
-			room_count roomCount,
-			room_startdate roomStartdate,
-			room_enddate roomEnddate
-		FROM room
-		WHERE hotel_id = #{hotelId}
-	</select>
-	
-	<!-- 자신이 등록한 호텔 글 수 -->
-	<select id="selectHotelTotalCount" parameterType="String" resultType="int">
-		SELECT COUNT(*) 
-		FROM hotel
-		WHERE ceo_id = #{ceoId}
-	</select>
-	
-	<!-- 호텔 상세보기 페이지 -->
-	<select id="selectHotelOne" parameterType="int" resultMap="resultHotel">
-		SELECT *
-		FROM address a INNER JOIN hotel h
-		ON a.address_id = h.address_id
-		WHERE hotel_id = #{hotelId}
-	</select>
+   <!-- hotel 상세보기 : hotel & address 조인 -->
+   <resultMap type="com.gdu.cast.vo.Hotel" id="resultHotel">
+      <result column="hotel_id" property="hotelId" />
+      <result column="ceo_id" property="ceoId" />
+      <result column="address_id" property="addressId" />
+      <result column="hotel_name" property="hotelName" />
+      <result column="hotel_content" property="hotelContent" />
+      <result column="create_date" property="createDate" />
+      <result column="update_date" property="updateDate" />
+      <association property="address" javaType="com.gdu.cast.vo.Address">
+         <result column="address_id" property="addressId" />
+         <result column="postcode" property="postcode" />
+         <result column="road_address" property="roadAddress" />
+         <result column="jibun_address" property="jibunAddress" />
+         <result column="detail_address" property="detailAddress" />
+         <result column="extra_address" property="extraAddress" />
+         <result column="lat" property="lat" />
+         <result column="lng" property="lng" />
+      </association>
+      <association property="room" javaType="com.gdu.cast.vo.Room">
+         <result column="room_id" property="roomId" />
+         <result column="hotel_id" property="hotelId" />
+         <result column="room_name" property="roomName" />
+         <result column="room_count" property="roomCount" />
+         <result column="room_startdate" property="roomStartdate" />
+         <result column="room_enddate" property="roomEnddate" />
+         <result column="room_price" property="roomPrice" />
+         <result column="room_content" property="roomContent" />
+         <result column="create_date" property="createDate" />
+         <result column="update_date" property="updateDate" />
+      </association>
+   </resultMap>
+   
+   <!-- room 상세보기 : room & roomBedroom & roomConvenience & roomFilter 조인 -->
+   <resultMap type="com.gdu.cast.vo.Room" id="resultRoom">
+      <result column="room_id" property="roomId" />
+      <result column="hotel_id" property="hotelId" />
+      <result column="room_name" property="roomName" />
+      <result column="room_content" property="roomContent" />
+      <result column="room_startdate" property="roomStartdate" />
+      <result column="room_enddate" property="roomEnddate" />
+      <result column="room_price" property="roomPrice" />
+      <result column="create_date" property="createDate" />
+      <result column="update_date" property="updateDate" />
+      <result column="room_count" property="roomCount" />
+      <association property="roomBedroom" javaType="com.gdu.cast.vo.RoomBedroom">
+         <result column="room_id" property="roomId" />
+         <result column="bed_count" property="bedCount" />
+         <result column="bedroom_count" property="bedroomCount" />
+         <result column="bathroom_count" property="bathroomCount" />
+         <result column="create_date" property="createDate" />
+         <result column="update_date" property="updateDate" />
+      </association>
+      <association property="roomConvenience" javaType="com.gdu.cast.vo.RoomConvenience">
+         <result column="room_id" property="roomId" />
+         <result column="stairs_threshold" property="stairsThreshold" />
+         <result column="toilet_handle" property="toiletHandle" />
+         <result column="shower_stall_handle" property="showerStallHandle" />
+         <result column="create_date" property="createDate" />
+         <result column="update_date" property="updateDate" />
+      </association>
+      <association property="roomFilter" javaType="com.gdu.cast.vo.RoomFilter">
+         <result column="room_id" property="roomId" />
+         <result column="internet" property="internet" />
+         <result column="kitchen" property="kitchen" />
+         <result column="boiler" property="boiler" />
+         <result column="aircon" property="aircon" />
+         <result column="washing_machine" property="washingMachine" />
+         <result column="breakfast" property="breakfast" />
+         <result column="tv" property="tv" />
+         <result column="hairdryer" property="hairdryer" />
+         <result column="bidet" property="bidet" />
+         <result column="create_date" property="createDate" />
+         <result column="update_date" property="updateDate" />
+      </association>
+   </resultMap>
+   
+   
+   
+      <!-- 호텔 예약을 하기 위한 매개변수 값 -->
+   <resultMap type="com.gdu.cast.vo.Room" id="resultRoomParameter">
+      <result column="room_id" property="roomId" />
+      <result column="room_name" property="roomName" />
+      <association property="hotel" javaType="com.gdu.cast.vo.Hotel">
+         <result column="hotel_id" property="hotelId" />
+         <result column="hotel_name" property="hotelName" />
+      </association>
+      <association property="roomBedroom" javaType="com.gdu.cast.vo.RoomBedroom">
+         <result column="bed_count" property="bedCount" />
+         <result column="bedroom_count" property="bedroomCount" />
+         <result column="bathroom_count" property="bathroomCount" />
+      </association>
+      <association property="roomConvenience" javaType="com.gdu.cast.vo.RoomConvenience">
+         <result column="stairs_threshold" property="stairsThreshold" />
+         <result column="toilet_handle" property="toiletHandle" />
+         <result column="shower_stall_handle" property="showerStallHandle" />
+      </association>
+      <association property="roomFilter" javaType="com.gdu.cast.vo.RoomFilter">
+         <result column="internet" property="internet" />
+         <result column="kitchen" property="kitchen" />
+         <result column="boiler" property="boiler" />
+         <result column="aircon" property="aircon" />
+         <result column="washing_machine" property="washingMachine" />
+         <result column="breakfast" property="breakfast" />
+         <result column="tv" property="tv" />
+         <result column="hairdryer" property="hairdryer" />
+         <result column="bidet" property="bidet" />
+      </association>
+   </resultMap>
+   
+   
+   <!-- 호텔 추가 -->
+   <insert id="insertHotel" parameterType="com.gdu.cast.vo.Hotel">
+      INSERT INTO
+         hotel (
+         ceo_id,
+         address_id,
+         hotel_name,
+         hotel_content,
+         create_date,
+         update_date
+      ) VALUES (
+         #{ceoId},
+         #{addressId},
+         #{hotelName},
+         #{hotelContent},
+         now(),
+         now()
+      )
+      <selectKey resultType="integer" keyProperty="hotelId" order="AFTER">
+         SELECT LAST_INSERT_ID()
+      </selectKey>
+   </insert>
+   
+   <!-- 호텔 이미지 추가 -->
+   <insert id="insertHotelImage" parameterType="com.gdu.cast.vo.HotelImage">
+      INSERT INTO hotel_image(
+         hotel_id,
+         image_name,
+         image_ext,
+         image_size,
+         create_date,
+         update_date
+      ) VALUES (
+         #{hotelId},
+         #{imageName},
+         #{imageExt},
+         #{imageSize},
+         now(),
+         now()
+      )
+      <selectKey resultType="int" keyProperty="hotelImageId" order="BEFORE">
+         SELECT LAST_INSERT_ID()
+      </selectKey>
+   </insert>
+   
+   <!-- 주소 추가 -->
+   <insert id="insertHotelAddress" parameterType="com.gdu.cast.vo.Address">
+      INSERT INTO
+         address (
+            postcode,
+            road_address,
+            jibun_address,
+            detail_address,
+            extra_address,
+            lat,
+            lng
+         ) VALUES (
+            #{postcode},
+            #{roadAddress},
+            #{jibunAddress},
+            #{detailAddress},
+            #{extraAddress},
+            #{lat},
+            #{lng}
+         )
+         <selectKey resultType="integer" keyProperty="addressId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+         </selectKey>
+   </insert>
+   
+   <!-- 호텔 방 추가 -->
+   <insert id="insertRoom" parameterType="com.gdu.cast.vo.Room">
+      INSERT INTO
+         room (
+            hotel_id,
+            room_name,
+            room_content,
+            room_count,
+            room_startdate,
+            room_enddate,
+            room_price,
+            create_date,
+            update_date
+         ) VALUES (
+            #{hotelId},
+            #{roomName},
+            #{roomContent},
+            #{roomCount},
+            #{roomStartdate},
+            #{roomEnddate},
+            #{roomPrice},
+            NOW(),
+            NOW()
+         )
+      <selectKey resultType="int" keyProperty="roomId" order="AFTER">
+         SELECT LAST_INSERT_ID()
+      </selectKey>
+   </insert>
+   
+   <!-- 호텔 방 이미지 추가 -->
+   <insert id="insertRoomImage" parameterType="com.gdu.cast.vo.RoomImage">
+      INSERT INTO room_image(
+         room_id,
+         image_name,
+         image_ext,
+         image_size,
+         create_date,
+         update_date
+      ) VALUES (
+         #{roomId},
+         #{imageName},
+         #{imageExt},
+         #{imageSize},
+         now(),
+         now()
+      )
+      <selectKey resultType="int" keyProperty="roomImageId" order="BEFORE">
+         SELECT LAST_INSERT_ID()
+      </selectKey>
+   </insert>
+   
+   <!-- 호텔리스트 -->
+   <select id="selectHotelList" parameterType="Map" resultType="com.gdu.cast.vo.Hotel">
+      SELECT
+         hotel_id hotelId,
+         hotel_name hotelName,
+         create_date createDate
+      FROM hotel
+      WHERE ceo_id = #{ceoId}
+      ORDER BY create_date DESC
+      LIMIT #{beginRow}, #{ROW_PER_PAGE}
+   </select>
+   
+   <!-- 방 리스트 -->
+   <select id="selectRoomList" parameterType="Map" resultType="com.gdu.cast.vo.Room">
+      SELECT 
+         room_id roomId,
+         room_name roomName,
+         room_count roomCount,
+         room_startdate roomStartdate,
+         room_enddate roomEnddate
+      FROM room
+      WHERE hotel_id = #{hotelId}
+   </select>
+   
+   <!-- 자신이 등록한 호텔 글 수 -->
+   <select id="selectHotelTotalCount" parameterType="String" resultType="int">
+      SELECT COUNT(*) 
+      FROM hotel
+      WHERE ceo_id = #{ceoId}
+   </select>
+   
+   <!-- 호텔 상세보기 페이지 -->
+   <select id="selectHotelOne" parameterType="int" resultMap="resultHotel">
+      SELECT *
+      FROM address a INNER JOIN hotel h
+      ON a.address_id = h.address_id
+      WHERE hotel_id = #{hotelId}
+   </select>
 
-	<!-- 호텔 상세보기 이미지 -->
-	<select id="HotelImageList" parameterType="com.gdu.cast.vo.HotelImage" resultType="com.gdu.cast.vo.HotelImage">
-		SELECT	
-			hotel_id hotelId,
-			image_name imageName,
-			image_ext imageExt,
-			image_size imageSize
-		FROM hotel_image
-		WHERE hotel_id = #{hotelId}
-	</select>	
-	
-	<!-- 호텔 수정 -->
-	<update id="updateHotel" parameterType="com.gdu.cast.vo.Hotel">
-		UPDATE address a INNER JOIN hotel h
-		ON a.address_id = h.address_id
-		SET 
-			h.hotel_name = #{hotelName},
-			h.hotel_content = #{hotelContent},
-			update_date = NOW()
-		WHERE hotel_id = #{hotelId}
-	</update>
-	
-	<!-- room_bedroom 추가 -->
-	<insert id="insertRoomBedroom" parameterType="com.gdu.cast.vo.RoomBedroom">
-		INSERT INTO
-			room_bedroom (
-				room_id,
-				bed_count,
-				bedroom_count,
-				bathroom_count,
-				create_date,
-				update_date
-			) VALUES (
-				${roomId},
-				${bedCount},
-				${bedroomCount},
-				${bathroomCount},
-				NOW(),
-				NOW()
-			)
-	</insert>
-	
-	<!-- room_convenience 추가 -->
-	<insert id="insertRoomConvenience" parameterType="com.gdu.cast.vo.RoomConvenience">
-		INSERT INTO
-			room_convenience (
-				room_id,
-				stairs_threshold,
-				toilet_handle,
-				shower_stall_handle,
-				create_date,
-				update_date
-			) VALUES (
-				${roomId},
-				'${stairsThreshold}',
-				'${toiletHandle}',
-				'${showerStallHandle}',
-				NOW(),
-				NOW()
-			)
-	</insert>
-	
-	<!-- room_filter 추가 -->
-	<insert id="insertRoomFilter" parameterType="com.gdu.cast.vo.RoomFilter">
-		INSERT INTO
-			room_filter(
-				room_id,
-				internet,
-				kitchen,
-				boiler,
-				aircon,
-				washing_machine,
-				breakfast,
-				tv,
-				hairdryer,
-				bidet,
-				create_date,
-				update_date
-			) VALUES (
-				${roomId},
-				'${internet}',
-				'${kitchen}',
-				'${boiler}',
-				'${aircon}',
-				'${washingMachine}',
-				'${breakfast}',
-				'${tv}',
-				'${hairdryer}',
-				'${bidet}',
-				NOW(),
-				NOW()
-			)	
-	</insert>
-	
-	<!-- 체험 등록 시 제일 최근 experienceId 조회 -->
-	<select id="selectHotelId" parameterType="com.gdu.cast.vo.Hotel" resultType="int">
-			SELECT hotel_id hotelId
-			FROM hotel
-			WHERE ceo_id = #{ceoId}
-			ORDER BY create_date DESC
-			LIMIT 0,1
-	</select>
-	
-	<!-- 방 상세보기 -->
-	<select id="selectRoomOne" parameterType="int" resultMap="resultRoom">
-		SELECT r.*, rb.*, rc.*, rf.*
-		FROM room r INNER JOIN room_bedroom rb ON r.room_id = rb.room_id
-		INNER JOIN room_convenience rc ON r.room_id = rc.room_id
-		INNER JOIN room_filter rf ON . r.room_id = rf.room_id
-		WHERE r.room_id = #{roomId}
-	</select>
-	
-	<!-- 방 상세보기 이미지 -->
-	<select id="RoomImageList" parameterType="com.gdu.cast.vo.RoomImage" resultType="com.gdu.cast.vo.RoomImage">
-		SELECT	
-			room_id roomId,
-			image_name imageName,
-			image_ext imageExt,
-			image_size imageSize
-		FROM room_image
-		WHERE room_id = #{roomId}
-	</select>	
-	
-	<!-- 방 수정 -->
-	<update id="updateRoom" parameterType="com.gdu.cast.vo.Room">
-		UPDATE room r 
-			INNER JOIN room_bedroom rb ON r.room_id = rb.room_id
-			INNER JOIN room_convenience rc ON r.room_id = rc.room_id
-			INNER JOIN room_filter rf ON r.room_id = rf.room_id
-		SET
-			r.room_name = #{roomName},
-			r.room_content = #{roomContent},
-			r.room_count = #{roomCount},
-			r.room_startdate = DATE(#{roomStartdate}),
-			r.room_enddate = DATE(#{roomEnddate}),
-			r.room_price = #{roomPrice},
-			r.update_date = NOW(),
-			rb.bed_count = #{roomBedroom.bedCount},
-			rb.bedroom_count = #{roomBedroom.bedroomCount},
-			rb.bathroom_count = #{roomBedroom.bathroomCount},
-			rb.update_date = NOW(),
-			rc.stairs_threshold = #{roomConvenience.stairsThreshold},
-			rc.toilet_handle = #{roomConvenience.toiletHandle},
-			rc.shower_stall_handle = #{roomConvenience.showerStallHandle},
-			rc.update_date = NOW(),
-			rf.kitchen = #{roomFilter.kitchen},
-			rf.internet = #{roomFilter.internet},
-			rf.boiler = #{roomFilter.boiler},
-			rf.aircon = #{roomFilter.aircon},
-			rf.washing_machine = #{roomFilter.washingMachine},
-			rf.breakfast = #{roomFilter.breakfast},
-			rf.tv = #{roomFilter.tv},
-			rf.hairdryer = #{roomFilter.hairdryer},
-			rf.bidet = #{roomFilter.bidet},
-			rf.update_date = NOW()
-		WHERE r.room_id = #{roomId}
-	</update>
-	<!-- 테마 체험 등록 -->
-	 <insert id="insertThemeHotel" parameterType="Map">
-		INSERT INTO theme_small_hotel(theme_small_id, hotel_id, create_date, update_date)
-		VALUES((SELECT theme_small_id FROM theme_small WHERE theme_small_name = #{theme}), #{hotelId}, NOW(), NOW())
-   	</insert>
+   <!-- 호텔 상세보기 이미지 -->
+   <select id="HotelImageList" parameterType="com.gdu.cast.vo.HotelImage" resultType="com.gdu.cast.vo.HotelImage">
+      SELECT   
+         hotel_id hotelId,
+         image_name imageName,
+         image_ext imageExt,
+         image_size imageSize
+      FROM hotel_image
+      WHERE hotel_id = #{hotelId}
+   </select>   
+   
+   <!-- 호텔 수정 -->
+   <update id="updateHotel" parameterType="com.gdu.cast.vo.Hotel">
+      UPDATE address a INNER JOIN hotel h
+      ON a.address_id = h.address_id
+      SET 
+         h.hotel_name = #{hotelName},
+         h.hotel_content = #{hotelContent},
+         update_date = NOW()
+      WHERE hotel_id = #{hotelId}
+   </update>
+   
+   <!-- room_bedroom 추가 -->
+   <insert id="insertRoomBedroom" parameterType="com.gdu.cast.vo.RoomBedroom">
+      INSERT INTO
+         room_bedroom (
+            room_id,
+            bed_count,
+            bedroom_count,
+            bathroom_count,
+            create_date,
+            update_date
+         ) VALUES (
+            ${roomId},
+            ${bedCount},
+            ${bedroomCount},
+            ${bathroomCount},
+            NOW(),
+            NOW()
+         )
+   </insert>
+   
+   <!-- room_convenience 추가 -->
+   <insert id="insertRoomConvenience" parameterType="com.gdu.cast.vo.RoomConvenience">
+      INSERT INTO
+         room_convenience (
+            room_id,
+            stairs_threshold,
+            toilet_handle,
+            shower_stall_handle,
+            create_date,
+            update_date
+         ) VALUES (
+            ${roomId},
+            '${stairsThreshold}',
+            '${toiletHandle}',
+            '${showerStallHandle}',
+            NOW(),
+            NOW()
+         )
+   </insert>
+   
+   <!-- room_filter 추가 -->
+   <insert id="insertRoomFilter" parameterType="com.gdu.cast.vo.RoomFilter">
+      INSERT INTO
+         room_filter(
+            room_id,
+            internet,
+            kitchen,
+            boiler,
+            aircon,
+            washing_machine,
+            breakfast,
+            tv,
+            hairdryer,
+            bidet,
+            create_date,
+            update_date
+         ) VALUES (
+            ${roomId},
+            '${internet}',
+            '${kitchen}',
+            '${boiler}',
+            '${aircon}',
+            '${washingMachine}',
+            '${breakfast}',
+            '${tv}',
+            '${hairdryer}',
+            '${bidet}',
+            NOW(),
+            NOW()
+         )   
+   </insert>
+   
+   <!-- 체험 등록 시 제일 최근 experienceId 조회 -->
+   <select id="selectHotelId" parameterType="com.gdu.cast.vo.Hotel" resultType="int">
+         SELECT hotel_id hotelId
+         FROM hotel
+         WHERE ceo_id = #{ceoId}
+         ORDER BY create_date DESC
+         LIMIT 0,1
+   </select>
+   
+   <!-- 방 상세보기 -->
+   <select id="selectRoomOne" parameterType="int" resultMap="resultRoom">
+      SELECT r.*, rb.*, rc.*, rf.*
+      FROM room r INNER JOIN room_bedroom rb ON r.room_id = rb.room_id
+      INNER JOIN room_convenience rc ON r.room_id = rc.room_id
+      INNER JOIN room_filter rf ON . r.room_id = rf.room_id
+      WHERE r.room_id = #{roomId}
+   </select>
+   
+   <!-- 방 상세보기 이미지 -->
+   <select id="RoomImageList" parameterType="com.gdu.cast.vo.RoomImage" resultType="com.gdu.cast.vo.RoomImage">
+      SELECT   
+         room_id roomId,
+         image_name imageName,
+         image_ext imageExt,
+         image_size imageSize
+      FROM room_image
+      WHERE room_id = #{roomId}
+   </select>   
+   
+   <!-- 방 수정 -->
+   <update id="updateRoom" parameterType="com.gdu.cast.vo.Room">
+      UPDATE room r 
+         INNER JOIN room_bedroom rb ON r.room_id = rb.room_id
+         INNER JOIN room_convenience rc ON r.room_id = rc.room_id
+         INNER JOIN room_filter rf ON r.room_id = rf.room_id
+      SET
+         r.room_name = #{roomName},
+         r.room_content = #{roomContent},
+         r.room_count = #{roomCount},
+         r.room_startdate = DATE(#{roomStartdate}),
+         r.room_enddate = DATE(#{roomEnddate}),
+         r.room_price = #{roomPrice},
+         r.update_date = NOW(),
+         rb.bed_count = #{roomBedroom.bedCount},
+         rb.bedroom_count = #{roomBedroom.bedroomCount},
+         rb.bathroom_count = #{roomBedroom.bathroomCount},
+         rb.update_date = NOW(),
+         rc.stairs_threshold = #{roomConvenience.stairsThreshold},
+         rc.toilet_handle = #{roomConvenience.toiletHandle},
+         rc.shower_stall_handle = #{roomConvenience.showerStallHandle},
+         rc.update_date = NOW(),
+         rf.kitchen = #{roomFilter.kitchen},
+         rf.internet = #{roomFilter.internet},
+         rf.boiler = #{roomFilter.boiler},
+         rf.aircon = #{roomFilter.aircon},
+         rf.washing_machine = #{roomFilter.washingMachine},
+         rf.breakfast = #{roomFilter.breakfast},
+         rf.tv = #{roomFilter.tv},
+         rf.hairdryer = #{roomFilter.hairdryer},
+         rf.bidet = #{roomFilter.bidet},
+         rf.update_date = NOW()
+      WHERE r.room_id = #{roomId}
+   </update>
+   <!-- 테마 체험 등록 -->
+    <insert id="insertThemeHotel" parameterType="Map">
+      INSERT INTO theme_small_hotel(theme_small_id, hotel_id, create_date, update_date)
+      VALUES((SELECT theme_small_id FROM theme_small WHERE theme_small_name = #{theme}), #{hotelId}, NOW(), NOW())
+      </insert>
+      
+      <select id="selectHotelParameter" parameterType="int" resultMap="resultRoomParameter">
+      	SELECT 
+      	r.room_id,
+      	r.room_name,
+      	h.hotel_id,
+      	h.hotel_name,
+      	rf.internet,
+      	rf.kitchen,
+      	rf.boiler,
+      	rf.aircon,
+      	rf.washing_machine,
+      	rf.breakfast,
+      	rf.tv,
+      	rf.hairdryer,
+      	rf.bidet,
+      	rc.stairs_threshold,
+      	rc.toilet_handle,
+      	rc.shower_stall_handle,
+      	rb.bed_count,
+      	rb.bedroom_count,
+      	rb.bathroom_count
+      	FROM room r 
+	      	inner join hotel h on r.hotel_id = h.hotel_id
+	      	inner join room_bedroom rb on r.room_id = rb.room_id
+	      	inner join room_convenience rc on r.room_id = rc.room_id
+	      	inner join room_filter rf on r.room_id = rf.room_id
+      	WHERE h.hotel_id = #{hotelId}
+      </select>
+      
 </mapper>

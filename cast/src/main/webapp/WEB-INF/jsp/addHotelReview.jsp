@@ -84,14 +84,14 @@
 				<tr>
 					<td>작성자</td>
 					<td>
-						<input type="text" name="customerId" value="${customerId}" readonly="readonly">
+						<input type="hodden" name="customerId" value="${customerId}">
 					
 					</td>
 				</tr>
 				<tr>
 					<td>체험이름</td>
 					<td>
-						<input type="text" name="hotelName" value="${hotelName}" readonly="readonly">
+						<input type="hidden" name="hotelName" value="${hotelName}">
 						<input type="file" multiple="multiple" name="roompaymentReviewImageUpload">
 					</td>
 				</tr>

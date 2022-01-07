@@ -121,12 +121,6 @@
 			<input type="text" name="roomPaymentMoney" value="${roomPrice}">
 		</td>
 	</tr>
-	<tr>
-		<td>호텔 이름</td>
-		<td>
-			<input type="text" name ="hotelName" value="${hotelName}" readonly="readonly">
-		</td>
-	</tr>
 	</table>
 	<div style="text-align: right;">
 		<button class="btn btn-outline-success" type="submit">결제</button>

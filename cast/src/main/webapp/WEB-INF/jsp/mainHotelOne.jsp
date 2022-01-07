@@ -202,7 +202,12 @@
 							<p class="card-description">여행작가 추천</p>
 							<hr>
 								<a href="${pageContext.request.contextPath}/mainRoomSelect" style="text-align:right;" class="btn btn-outline-success">리스트로 이동</a>
-								<a href="${pageContext.request.contextPath}/addHotelOrder" style="text-align:right;" class="btn btn-outline-success">호텔 예약</a>
+								<a href="${pageContext.request.contextPath}/addHotelOrder?roomId=${selectHotelParameter.roomId}&roomName=${selectHotelParameter.roomName}
+										&hotelId=${selectHotelParameter.hotel.hotelId}&hotelName=${selectHotelParameter.hotel.hotelName}&bedCount=${selectHotelParameter.roomBedroom.bedCount}
+										&bedroomCount=${selectHotelParameter.roomBedroom.bedroomCount}&bathroomCount=${selectHotelParameter.roomBedroom.bathroomCount}&stairsThreshold=${selectHotelParameter.roomConvenience.stairsThreshold}
+										&toiletHandle=${selectHotelParameter.roomConvenience.toiletHandle}&showerStallHandle=${selectHotelParameter.roomConvenience.showerStallHandle}&internet=${selectHotelParameter.roomFilter.internet}
+										&kitchen=${selectHotelParameter.roomFilter.kitchen}&boiler=${selectHotelParameter.roomFilter.boiler}&aircon=${selectHotelParameter.roomFilter.aircon}&washingMachine=${selectHotelParameter.roomFilter.washingMachine}
+										&breakfast${selectHotelParameter.roomFilter.breakfast}&tv=${selectHotelParameter.roomFilter.tv}&hairdryer=${selectHotelParameter.roomFilter.hairdryer}&bidet=${selectHotelParameter.roomFilter.bidet}" style="text-align:right;" class="btn btn-outline-success">호텔 예약</a>
 							<p></p><p></p>
 							<div>
 								<c:if test="${loginTravelerId != null && state eq '승인'}">

@@ -280,6 +280,9 @@ public class HotController {
 		 Map<String, Object> map = mainExperienceOrHotelReviewService.getroomPaymentReview(currentPage, row_per_page, hotelId);
 		String hotelNameIf = mainExperienceOrHotelReviewService.getselectHotelId(customerId, hotelName);
 		 
+		Room selectHotelParameter = hotService.selectHotelParameter(hotelId);
+		
+		 model.addAttribute("selectHotelParameter", selectHotelParameter);
 		 model.addAttribute("hotel", hotel);
 		model.addAttribute("address", address);
 		model.addAttribute("hotelNameIf",hotelNameIf);

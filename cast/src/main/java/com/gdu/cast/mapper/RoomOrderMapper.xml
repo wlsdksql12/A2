@@ -21,21 +21,23 @@
 			<result column="note" property="note" />
 		</association>
 	</resultMap>
+	<!-- 이름 셀렉트
 
-<!-- 호텔 이름 출력 -->
 	<select id="selectHotelName" parameterType="int" resultType="String">
 		SELECT
 			 hotel_name hotelName
 		FROM hotel
 		WHERE hotel_id = #{hotelId}
 	</select>
-	<!-- 방 이름 출력 -->
+	
 	<select id="selectRoomName" parameterType="int" resultType="String">
 		SELECT
 			room_name roomName
 		FROM room
 		WHERE room_id = #{roomId}
 	</select>
+	 -->
+	 
 	<!-- 방 가격 출력 -->
 	<select id="selectRoomPrice" parameterType="int" resultType="int">
 		SELECT

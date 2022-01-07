@@ -19,4 +19,5 @@ public class Room {
 	private RoomBedroom roomBedroom;
 	private RoomConvenience roomConvenience;
 	private RoomFilter roomFilter;
+	private Hotel hotel;
 }

@@ -224,6 +224,11 @@ public class HotService {
 		return hotel;
 	}
 	
+	// 호텔 매개변수 반환 값
+	public Room selectHotelParameter(int hotelId) {
+		return hotMapper.selectHotelParameter(hotelId);
+	}
+	
 	// 호텔 이미지
 	public List<HotelImage> getHotelImage(int hotelId) {
 		return hotMapper.HotelImageList(hotelId);

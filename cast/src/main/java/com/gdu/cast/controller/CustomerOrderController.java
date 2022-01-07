@@ -114,15 +114,17 @@ public class CustomerOrderController {
 			@RequestParam(defaultValue = "1") String internet, @RequestParam(defaultValue = "1") String kitchen, @RequestParam(defaultValue = "1") String boiler, @RequestParam(defaultValue = "1") String aircon,
 			@RequestParam(defaultValue = "1") String  washingMachine, @RequestParam(defaultValue = "1") String  breakfast, @RequestParam(defaultValue = "1") String tv, @RequestParam(defaultValue = "1") String hairdryer,
 			@RequestParam(defaultValue = "1") String bidet, @RequestParam(defaultValue = "1") String  stairsThreshold, @RequestParam(defaultValue = "1") String  toiletHandle, @RequestParam(defaultValue = "1") String  showerStallHandle,
-			@RequestParam(defaultValue = "1") int bedCount, @RequestParam(defaultValue = "1") int bedroomCount, @RequestParam(defaultValue = "1") int bathroomCount) {
+			@RequestParam(defaultValue = "1") int bedCount, @RequestParam(defaultValue = "1") int bedroomCount, @RequestParam(defaultValue = "1") int bathroomCount, @RequestParam(defaultValue = "1") String roomName, @RequestParam(defaultValue = "1") String hotelName) {
 		//System.out.println(roomFilter.getInternet() +"text입니다!");
 		String note = 
 				" 인텨넷 유무 : " + internet + "\n kitchen : " + kitchen + "\n boiler : " + boiler + "\n aircon : "+ aircon + "\n washingMachine :" +  washingMachine + "\n breakfast : " + breakfast + "\n tv : " + tv + "\n hairdryer : " + hairdryer +
 				"\n bidet : " + bidet + "\n stairsThreshold : " + stairsThreshold + "\n toiletHandle : " + toiletHandle + "\n showStallHandle : " + showerStallHandle + "\n bedCount : " + bedCount + "\n bedroomCount :" + bedroomCount + "\n bathroomCount : " + bathroomCount;
 		String customerId = (String) session.getAttribute("loginCustomerId");
 		// 호텔 이름 select
-		String hotelName = roomOrderService.getselectHotelName(hotelId);
-		String roomName = roomOrderService.getselectRoomName(roomId);
+		//String hotelName = roomOrderService.getselectHotelName(hotelId);
+		
+		//String roomName = roomOrderService.getselectRoomName(roomId);
+		
 		model.addAttribute("roomId", roomId);
 		model.addAttribute("customerId",customerId);
 		model.addAttribute("roomName", roomName);

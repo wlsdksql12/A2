@@ -75,4 +75,7 @@ public interface HotMapper {
 	
 	// 방 수정
 	int updateRoom(Room room);
+	
+	// 호텔 매개변수 값
+	Room selectHotelParameter(int hotelId);
 }

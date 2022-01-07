@@ -14,6 +14,8 @@ import com.gdu.cast.vo.RoomPayment;
 @Service
 public class RoomOrderService {
 	@Autowired RoomOrderMapper roomOrderMapper;
+	
+	/*
 	// 호텔 이름
 	public String getselectHotelName(int hotelId) {
 		return roomOrderMapper.selectHotelName(hotelId);
@@ -22,6 +24,7 @@ public class RoomOrderService {
 	public String getselectRoomName(int roomId) {
 		return roomOrderMapper.selectRoomName(roomId);
 	}
+	*/
 	// 방 가격
 	public int getselectRoomPrice(int roomId) {
 		return roomOrderMapper.selectRoomPrice(roomId);

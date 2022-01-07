@@ -11,10 +11,12 @@ import com.gdu.cast.vo.RoomPayment;
 
 @Mapper
 public interface RoomOrderMapper {
+	/*
 	// 호텔 이름 출력
 	public String selectHotelName(int hotelId);
 	// 객실 이름 출력
 	public String selectRoomName(int roomId);
+	*/
 	// 객실 가격 출력
 	public int selectRoomPrice(int roomId);
 	// 호텔 예약
