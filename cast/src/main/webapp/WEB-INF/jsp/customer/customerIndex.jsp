@@ -396,7 +396,7 @@
 								<div class="card-body">
 									<div class="row align-items-center">
 										<div class="col-8">
-											<h4 class="text-c-blue">500</h4>
+											<h4 class="text-c-blue">${selectReviewCount}</h4>
 											<h6 class="text-muted m-b-0">상품 후기 수</h6>
 										</div>
 										<div class="col-4 text-right">

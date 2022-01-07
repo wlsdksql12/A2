@@ -276,6 +276,30 @@
 	
 	</select>
 	
+	<!-- 	총 후기 수 -->
+	
+		<select id="selectCustomerReviewCount" parameterType="String" resultType="int">
+		SELECT
+		sum(c.count) as sum
+		FROM
+		(SELECT
+		count(rpr.room_payment_review_id) as count
+		FROM room_payment_review rpr 
+		inner join room_payment rp on rpr.room_payment_id = rp.room_payment_id
+		inner join room_order ro on rp.room_order_id = ro.room_order_id
+		WHERE ro.customer_id = #{customerId}
+		UNION ALL
+		SELECT
+		COUNT(epr.experience_payment_review_id) as count
+		FROM experience_payment_review epr 
+		inner join experience_payment ep on epr.experience_payment_id = ep.experience_payment_id
+		inner join experience_order eo on ep.experience_order_id = eo.experience_order_id
+		WHERE eo.customer_id = #{customerId}
+		) as c
+			
+	
+	</select>
+	
 	<!-- 고객 체험추천 댓글 페이지  -->
 	<select id="CustomerExperienceSelectCommentList" parameterType="Map" resultMap="resultExperienceComment">
 		SELECT

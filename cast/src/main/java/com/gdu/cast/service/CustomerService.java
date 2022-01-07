@@ -194,6 +194,12 @@ public class CustomerService {
 		   return orderCount;
 	   }
 	   
+	   // 고객이 작성한 총 후기의 수
+	   public int getselectCustomerReviewCount(String customerId) {
+		   int selectReviewCount = customerMapper.selectCustomerReviewCount(customerId);
+		   return selectReviewCount;
+	   }
+	   
 	   // 고객페이지 체험 추천 댓글 페이지
 	   public Map<String, Object> getCustomerExperienceSelectCommentList(String customerId,int currentPage,int row_per_page){
 	   Map<String, Object> paramMap = new HashMap<>();
