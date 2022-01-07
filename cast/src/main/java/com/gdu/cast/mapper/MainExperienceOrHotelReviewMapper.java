@@ -40,4 +40,8 @@ public interface MainExperienceOrHotelReviewMapper {
 	String selectExperienceId(String customerId, String experienceName);
 	// 결제한 사람만 호텔 리뷰 작성 가능하도록 하는 조건문 키값.
 	String selectHotelId(String customerId, String hotelName);
+	// 체험 리뷰 리스트 고객페이지에 출력
+	List<ExperiencePaymentReview> CustomerExperienceReviewList(Map<String , Object> Map);
+	// 체험 리뷰 리스트 고객페이징
+	int CustomerExperienceReviewTotalCount(String customerId);
 }

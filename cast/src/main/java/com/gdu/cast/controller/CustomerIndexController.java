@@ -16,6 +16,7 @@ import com.gdu.cast.mapper.CustomerMapper;
 import com.gdu.cast.service.AdminQnaService;
 import com.gdu.cast.service.CustomerService;
 import com.gdu.cast.service.ExperienceOrderService;
+import com.gdu.cast.service.MainExperienceOrHotelReviewService;
 import com.gdu.cast.vo.Customer;
 import com.gdu.cast.vo.Experience;
 import com.gdu.cast.vo.Hotel;
@@ -30,6 +31,7 @@ public class CustomerIndexController {
 	@Autowired CustomerService customerService;
 	@Autowired AdminQnaService adminQnaService;
 	@Autowired ExperienceOrderService experienceOrderService;
+	@Autowired MainExperienceOrHotelReviewService mainExperienceOrHotelReviewService;
 	
 	private final int ROW_PER_PAGE = 5;
 	private final int row_per_page = 10;
@@ -193,4 +195,16 @@ public class CustomerIndexController {
 		return "customer/customerRoomChart";
 	}
 	
+	// 고객 체험 리뷰 페이지
+	@GetMapping("/customerExperienceReviewList")
+	public String getcustomerExperienceReviewList(Model model,HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
+		String customerId = (String) session.getAttribute("loginCustomerId");
+		Map<String, Object> map = mainExperienceOrHotelReviewService.getCustomerExperienceReviewList(customerId, currentPage, row_per_page);
+		model.addAttribute("ExperienceReviewList1",map.get("ExperienceReviewList"));
+		model.addAttribute("lastPage", map.get("lastPage"));
+		model.addAttribute("currentPage", currentPage);
+		
+		return "customer/customerExperienceReview";
+		
+	}
 }

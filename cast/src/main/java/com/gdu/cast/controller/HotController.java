@@ -1,6 +1,8 @@
 package com.gdu.cast.controller;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -330,13 +332,16 @@ public class HotController {
 	}
 	// 호텔 리뷰 추가 (사진 초함)
 	@PostMapping("/addHotelReview")
-	public String addMainHotel(HttpServletRequest request,List<MultipartFile> roompaymentReviewImageUpload ,String roomPaymentReviewContent, int roomPaymentId, int hotelId, String hotelName) {
-		 System.out.println(roomPaymentId + "roomPaymentReviewId! 디버깅!"); 
+	public String addMainHotel(HttpServletRequest request,List<MultipartFile> roompaymentReviewImageUpload ,String roomPaymentReviewContent, int roomPaymentId, int hotelId, String hotelName) throws UnsupportedEncodingException {
+		String hotelName2 = URLEncoder.encode(hotelName, "UTF-8");
+		
+		
+		System.out.println(roomPaymentId + "roomPaymentReviewId! 디버깅!"); 
 		 String path = request.getSession().getServletContext().getRealPath("/");
 		mainExperienceOrHotelReviewService.getinsertRoomPaymentReview(roompaymentReviewImageUpload, path, roomPaymentReviewContent, roomPaymentId, hotelId);
 		
 		
-		return "redirect:/mainHotelOne?hotelId="+hotelId+"&hotelName="+hotelName;
+		return "redirect:/mainHotelOne?hotelId="+hotelId+"&hotelName="+hotelName2;
 	}
 	
 	// 호텔 리뷰 삭제

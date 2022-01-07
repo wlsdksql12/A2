@@ -269,6 +269,32 @@ public class MainExperienceOrHotelReviewService {
 
 		}
 			
-	}	
+	}
+	
+	
+	public Map<String, Object> getCustomerExperienceReviewList(String customerId, int currentPage,int row_per_page ){
+		 Map<String, Object> paramMap = new HashMap<>();
+		   
+		   int beginRow = (currentPage-1)*row_per_page;
+		   paramMap.put("customerId", customerId);
+		   paramMap.put("beginRow", beginRow); 
+		   paramMap.put("row_per_page", row_per_page);
+		   
+		   List<ExperiencePaymentReview> ExperienceReviewList = mainExperienceOrHotelReviewMapper.CustomerExperienceReviewList(paramMap);
+		   
+			Map<String, Object> returnMap = new HashMap<>();
+			int lastPage = 0;
+			int totalCount = mainExperienceOrHotelReviewMapper.CustomerExperienceReviewTotalCount(customerId);
+			lastPage = totalCount / row_per_page;
+			if(totalCount%row_per_page != 0) {
+				lastPage += 1;
+			}
+			returnMap.put("ExperienceReviewList", ExperienceReviewList);
+			returnMap.put("lastPage", lastPage);
+			return returnMap;
+		   
+	   }
+		   
 		
-}
+	}
+	

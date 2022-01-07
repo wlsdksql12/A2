@@ -1,5 +1,7 @@
 package com.gdu.cast.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -211,14 +213,14 @@ public class ExperienceController {
    
    // 리뷰 추가(사진 포함)
    @PostMapping("/addExperienceReview")
-   public String addMainExperience(String experienceName,List<MultipartFile> experiencepaymentReviewImageUpload ,HttpServletRequest request, String customerId, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) {
-
+   public String addMainExperience(String experienceName,List<MultipartFile> experiencepaymentReviewImageUpload ,HttpServletRequest request, String customerId, String experiencePaymentReviewContent, int experiencePaymentId, int experienceId) throws UnsupportedEncodingException {
+	   String experienceName2 = URLEncoder.encode(experienceName, "UTF-8");
 	   String path = request.getSession().getServletContext().getRealPath("/");
 	   
 	  // 리뷰 추가
 	  mainExperienceOrHotelReviewService.getinsertExperiencePaymentReview(experiencepaymentReviewImageUpload,path,experiencePaymentReviewContent, experiencePaymentId, experienceId);
       
-      return "redirect:/mainExperienceOne?experienceId="+experienceId+"&experienceName="+experienceName;
+      return "redirect:/mainExperienceOne?experienceId="+experienceId+"&experienceName="+experienceName2;
       
    }
   // 리뷰 삭제

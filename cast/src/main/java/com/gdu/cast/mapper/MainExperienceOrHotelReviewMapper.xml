@@ -38,6 +38,20 @@
 		</collection>
 	</resultMap>
 	
+				<!-- 메인 페이지 숙소 후기 리스트 -->
+	<resultMap type="com.gdu.cast.vo.ExperiencePaymentReview" id="resultMainExperiencePaymentReview">
+		<id column="experience_payment_review_id" property="experiencePaymentReviewId"></id>
+		<result column="experience_payment_id" property="experiencePaymentId"></result>
+		<result column="experience_id" property="experienceId"></result>
+		<result column="experience_payment_review_content" property="experiencePaymentReviewContent"></result>
+		<result column="create_date" property="createDate"></result>
+		<result column="update_date" property="updateDate"></result>
+		<collection property="experienceOrder" ofType="com.gdu.cast.vo.ExperienceOrder">
+			<result column="experience_name" property="experienceName"></result>
+		</collection>
+	</resultMap>
+	
+	
 	<!-- experience review list-->
 	<select id="experiencePaymentReview" parameterType="Map" resultMap="resultExperiencePaymentReview">
 		SELECT 
@@ -71,6 +85,7 @@
 	SELECT ep.experience_payment_id experiencePaymentId
 	FROM experience_order eo inner join experience_payment ep on eo.experience_order_id = ep.experience_order_id
 	WHERE eo.customer_id = #{customerId} AND eo.experience_name = #{experienceName}
+	LIMIT 0, 1
 	</select>
 	
 	<!-- 체험 리뷰 추가 -->
@@ -153,6 +168,7 @@
 	SELECT rp.room_payment_id roomPaymentId
 	FROM room_order ro inner join room_payment rp on ro.room_order_id = rp.room_order_id
 	WHERE ro.customer_id = #{customerId} AND ro.hotel_name = #{hotelName}
+	LIMIT 0, 1
 	</select>
 	
 		<!-- 호텔 리뷰 추가 -->
@@ -206,14 +222,42 @@
 		SELECT experience_name experienceName
 		FROM experience_order
 		WHERE customer_id = #{customerId} AND experience_name = #{experienceName}
+		LiMit 0 , 1
 	</select>
-<!-- 	결제 안한사람은 호텔 후기추가 못하게... -->
+	<!-- 결제 안한사람은 호텔 후기추가 못하게... -->
 	<select id="selectHotelId" parameterType="String" resultType="String">
 		SELECT hotel_name hotelName
 		FROM room_order
 		WHERE customer_id = #{customerId} AND hotel_name = #{hotelName}
-	
+		Limit 0 , 1
 	</select>
 	
+		<!-- 고객 체험 리뷰 페이지  -->
+	<select id="CustomerExperienceReviewList" parameterType="Map" resultMap="resultMainExperiencePaymentReview">
+		SELECT
+			epr.experience_payment_review_id,
+			epr.experience_payment_id,
+			epr.experience_id,
+			epr.experience_payment_review_content,
+			epr.create_date,
+			epr.update_date,
+			eo.experience_name
+		FROM experience_payment_review epr 
+		inner join experience_payment ep on epr.experience_payment_id = epr.experience_payment_id
+		inner join experience_order eo on ep.experience_order_id = eo.experience_order_id
+		where eo.customer_id = #{customerId}
+		ORDER BY epr.create_date DESC
+		LIMIT #{beginRow}, #{row_per_page}
+	</select>
+	
+			<!--  commentList 페이징 -->
+	<select id="CustomerExperienceReviewTotalCount" parameterType="String" resultType="int">
+	SELECT COUNT(*) 
+	FROM experience_payment_review epr
+		inner join experience_payment ep on epr.experience_payment_id = epr.experience_payment_id
+		inner join experience_order eo on ep.experience_order_id = eo.experience_order_id
+	where eo.customer_id = #{customerId}
+	
+	</select>
 	
 </mapper>

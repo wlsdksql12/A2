@@ -112,7 +112,7 @@
 								<a href="${pageContext.request.contextPath}/CustomerPaymentList">결제내역</a>
 							</li>
 							<li>
-								<a href="layout-horizontal.html">상품후기</a>
+								<a href="${pageContext.request.contextPath}/customerExperienceReviewList">상품후기</a>
 							</li>
 						</ul>
 					</li>

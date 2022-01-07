@@ -325,7 +325,7 @@
 	
 	</select>
 	
-		<!-- 고객 체험추천 댓글 페이지  -->
+		<!-- 고객 호텔추천 댓글 페이지  -->
 	<select id="CustomerRoomSelectCommentList" parameterType="Map" resultMap="resultRoomComment">
 		SELECT
 			rsc.room_select_comment_id,
