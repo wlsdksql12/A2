@@ -46,4 +46,8 @@ public class AdminService {
 	public int selectOrderCount() {
 		return adminMapper.selectOrderCount();
 	}
+	
+	public int selectTotalPay() {
+		return adminMapper.selectTotalPay();
+	}
 }

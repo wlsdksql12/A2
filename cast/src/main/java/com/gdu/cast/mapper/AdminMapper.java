@@ -26,5 +26,8 @@ public interface AdminMapper {
 
 	// 관리자 페이지 누적 예약 수
 	int selectOrderCount();
+	
+	// 관리자 누적 연간 수익
+	int selectTotalPay();
 }
 

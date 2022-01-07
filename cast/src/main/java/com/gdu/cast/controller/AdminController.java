@@ -61,7 +61,7 @@ public class AdminController {
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCustomer.get("TotalCount") + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newTraveler + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
 		System.out.println("ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ" + newCeo + "ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ");
-		
+		int yearTotalPay = adminService.selectTotalPay();
 		model.addAttribute("orderCount", orderCount);
 		model.addAttribute("joinTravelerList",joinTravelerList);
 		model.addAttribute("joinCeoList",joinCeoList);
@@ -76,6 +76,7 @@ public class AdminController {
 		model.addAttribute("lastPage", map.get("lastPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("yearList", yearList);
+		model.addAttribute("yearTotalPay", yearTotalPay);
 		
 		return "admin/adminIndex";
 	}

@@ -44,4 +44,11 @@
 			  FROM room_order
 			 ) as c
 	</select>
+	
+	<!-- 관리자 페이지 연간 금액 -->
+	<select id="selectTotalPay" resultType="int">
+		SELECT SUM(subscription_pay) sum
+		FROM subscription_amount
+		WHERE SUBSTR(create_date, 1, 4) = SUBSTR(now(), 1, 4)
+	</select>
 </mapper>
