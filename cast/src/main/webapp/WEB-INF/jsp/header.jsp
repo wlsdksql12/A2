@@ -5,6 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	
+	<style> 
+		body { font-family: 'twayair' } 
+		p { font-family: 'twayair' } 
+		
+		@font-face {
+    	font-family: 'twayair';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+		}
+	</style>
 </head>
 <body>
    <!-- 최상단 목록 선택 웬만하면 통일 -->
@@ -23,19 +37,19 @@
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/index">Home</a>
+                            <a class="nav-link" style="font-family: 'twayair'" href="${pageContext.request.contextPath}/index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/mainNotice">고객센터</a>
+                            <a class="nav-link" style="font-family: 'twayair'" href="${pageContext.request.contextPath}/mainNotice">고객센터</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/mainRoomSelect">여행작가 추천!</a>
+                            <a class="nav-link" style="font-family: 'twayair'" href="${pageContext.request.contextPath}/mainRoomSelect">여행작가 추천!</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/shop">체험&숙소</a>
+                            <a class="nav-link" style="font-family: 'twayair'" href="${pageContext.request.contextPath}/shop">체험&숙소</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/mainExhibition">전시소개</a>
+                            <a class="nav-link" style="font-family: 'twayair'" href="${pageContext.request.contextPath}/mainExhibition">전시소개</a>
                         </li>
                     </ul>
                </div>

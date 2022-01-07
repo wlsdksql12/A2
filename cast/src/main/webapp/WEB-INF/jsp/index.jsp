@@ -18,6 +18,21 @@
     <!-- 레이아웃 렌더링한 후 폰트 스타일 로드 -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/fontawesome.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	
+	<style> 
+		body { font-family: 'twayair' } 
+		p { font-family: 'twayair' } 
+		
+		@font-face {
+    	font-family: 'twayair';
+    	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_tway@1.0/twayair.woff') format('woff');
+    	font-weight: normal;
+    	font-style: normal;
+		}
+	</style>
 </head>
 
 <body>
@@ -27,9 +42,9 @@
             <div class="w-100 d-flex justify-content-between">
                 <div>
                     <i class="fa fa-envelope mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="mailto:info@company.com">goodee@naver.com</a>
                     <i class="fa fa-phone mx-2"></i>
-                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">010-020-0340</a>
+                    <a class="navbar-sm-brand text-light text-decoration-none" href="tel:010-020-0340">02-999-8888</a>
                 </div>
                 <div>
                     <a class="text-light" href="https://fb.com/templatemo" target="_blank" rel="sponsored"><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i></a>
@@ -76,22 +91,19 @@
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="3"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="4"></li>
+            <li  data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="4"></li>
         </ol>
-        <div class="carousel-inner">
+        <div class="carousel-inner" style="background-image:url('${pageContext.request.contextPath}/resources/assets/img/home.jpg'); background-size:auto;">
             <div class="carousel-item active">
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/mainpage_1image.png" alt="">
+                            <img class="img-fluid" src="${pageContext.request.contextPath}/resources/assets/img/white.png" style="width:550px; height:550px; border-radius:5%; alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>CAST</b></h1>
-                                <h3 class="h2">Comfortable And Safe Travel</h3>
-                                <p>
-                                    편안하고 안전한 여행
-                                </p>
+                                <h1 style="color:#FFFFFF; font-family: 'twayair'">Comfortable And Safe Travel</h1>
+                                <h4 style="color:#FFFFFF; font-family: 'twayair'">편안하고 안전한 여행</h4>
                             </div>
                         </div>
                     </div>
@@ -104,15 +116,14 @@
 	                    <div class="row p-5" OnClick="location.href ='${pageContext.request.contextPath}/mainExhibitionOne?exhibitionNo=${exhibition.exhibitionNo}'" style="cursor:pointer;">
 	                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
 	                       		<c:forEach items="${exhibition.exhibitionImage}" var="exhibitionImage" begin="0" end="0">
-	                       			<img class="img-fluid" src="${pageContext.request.contextPath}/upload/${exhibitionImage.imageName}.${exhibitionImage.imageExt}" alt="">
+	                       			<img class="img-fluid" src="${pageContext.request.contextPath}/upload/${exhibitionImage.imageName}.${exhibitionImage.imageExt}" style="width:550px; height:550px; border-radius:5%;" alt="">
 	                       		</c:forEach>
 	                            	
 	                        </div>
 	                        <div class="col-lg-6 mb-0 d-flex align-items-center">
 	                            <div class="text-align-left">
-	                            	<h3 class="h2"></h3>
-	                                <h1 class="h1">${exhibition.exhibitionTitle}</h1>
-	                                <p>
+	                                <h3 class="h3" style="color:#FFFFFF; font-family:'twayair'">${exhibition.exhibitionTitle}</h3>
+	                                <p class="h4">
 	                                	${exhibition.exhibitionIntro}   
 	                                </p>
 	                            </div>
@@ -136,36 +147,15 @@
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-            	<h1><img src="${pageContext.request.contextPath}/upload/new.jpg"></h1>
+            	<h1><img style="width: 400px; height: 200px;" src="${pageContext.request.contextPath}/upload/new2.JPG"></h1>
                 <p>
-                    최근에 등록된 체험과 숙소를 볼 수 있습니다.
+                    최근에 등록된 호텔와 체험를 볼 수 있습니다.
                 </p>
             </div>
         </div>
-        
         <div class="table-responsive">
-			<div style="width: 45%; display: inline-block; float: left;" class="float-left">
-				<h2>체험</h2>
-		        <table class="text-center">
-		        <tr>
-		        <c:forEach items="${experienceList}" var="expList">
-                	
-		        		<td class="col-6 col-md-2 p-3 mt-1">
-		        			<div>
-				                <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expList.experienceId}&experienceName=${expList.experienceName}">
-				                	<img src="${pageContext.request.contextPath}/upload/${expList.imageName}.${expList.imageExt}" style="width: 120px; height: 120px;">
-				                </a>
-				                <h5 class="text-center mt-3 mb-3">${expList.experienceName}</h5>
-				                <p class="text-center"><a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expList.experienceId}&experienceName=${expList.experienceName}" class="btn btn-success">Go Shop</a></p>
-				            </div>
-		        		</td>
-					
-				</c:forEach>
-				</tr>
-		        </table>
-        	</div>
-	        <div style="width: 45%; display: inline-block; float: right;" class="float-right">
-				<h2>숙소</h2>
+	        <div style="width: 45%; display: inline-block; float: left;" class="float-right">
+				<h2 style="font-family: 'twayair'; font-size:30pt;">호텔</h2>
 		        <table class="text-center">
 		        <tr>
 		        <c:forEach items="${hotelList}" var="hotelList">
@@ -173,13 +163,34 @@
 		        		<td class="col-6 col-md-2 p-3 mt-1">
 		        			<div>
 				                <a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelList.hotelId}">
-				                	<img src="${pageContext.request.contextPath}/upload/${hotelList.imageName}.${hotelList.imageExt}" style="width: 120px; height: 120px;">
+				                	<img src="${pageContext.request.contextPath}/upload/${hotelList.imageName}.${hotelList.imageExt}" style="width: 400px; height: 400px; border-radius:5%;">
 				                </a>
-				                <h5 class="text-center mt-3 mb-3">${hotelList.hotelName}</h5>
-				                <p class="text-center"><a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelList.hotelId}" class="btn btn-success">Go Shop</a></p>
+				                <h5 class="text-center mt-3 mb-3" style="font-family: 'twayair'; font-size:20pt;">${hotelList.hotelName}</h5>
+				                <!-- <p class="text-center"><a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelList.hotelId}" class="btn btn-success">Go Shop</a></p> -->
 				            </div>
 		        		</td>
 					
+				</c:forEach>
+				</tr>
+		        </table>
+        	</div>
+        </div>
+        <div class="table-responsive">
+			<div style="width: 45%; display: inline-block; float: left;" class="float-left">
+				<h2 style="font-family: 'twayair'; font-size:30pt">체험</h2>
+		        <table class="text-center">
+		        <tr>
+		        <c:forEach items="${experienceList}" var="expList">
+                	
+		        		<td class="col-6 col-md-2 p-3 mt-1">
+		        			<div>
+				                <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expList.experienceId}&experienceName=${expList.experienceName}">
+				                	<img src="${pageContext.request.contextPath}/upload/${expList.imageName}.${expList.imageExt}" style="width: 400px; height: 400px; border-radius:5%;">
+				                </a>
+				                <h5 class="text-center mt-3 mb-3" style="font-family: 'twayair'; font-size:20pt;">${expList.experienceName}</h5>
+				                <!-- <p class="text-center"><a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expList.experienceId}&experienceName=${expList.experienceName}" class="btn btn-success">Go Shop</a></p> -->
+				            </div>
+		        		</td>
 				</c:forEach>
 				</tr>
 		        </table>
@@ -208,16 +219,16 @@
 			        	<c:forEach items="${experienceBestChoice}" var="expBestChoice">
 		        		<td style="width: 500px;">
 			        		<div style="width: 500px; height: 600px; margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
-						        <div class="card h-100">
+						        <div class="card-body">
+						        	<p style="text-align:center;" class="text-muted">추천 수 : ${expBestChoice.cnt} 회!</p>
 			                        <a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expBestChoice.experienceId}&experienceName=${expBestChoice.experienceName}">
-			                            <img src="${pageContext.request.contextPath}/upload/${expBestChoice.imageName}.${expBestChoice.imageExt}" class="card-img-top" width="500px" height="400px">
+			                            <img src="${pageContext.request.contextPath}/upload/${expBestChoice.imageName}.${expBestChoice.imageExt}" class="card-img-top" style="width:500px; height:400px; border-radius:5%;">
 			                        </a>
 			                        <div class="card-body">
-			                            <p style="text-align: left;">
-			                            	<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expBestChoice.experienceId}&experienceName=${expBestChoice.experienceName}" class="h2 text-decoration-none text-dark">${expBestChoice.experienceName}</a>
+			                            <p style="text-align:center;">
+			                            	<a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${expBestChoice.experienceId}&experienceName=${expBestChoice.experienceName}" class="h2 text-decoration-none text-dark" style="font-family: 'twayair'; font-size:15pt;">${expBestChoice.experienceName}</a>
 			                            </p>
-			                            <p class="text-muted text-right">${expBestChoice.experiencePrice}원</p>
-			                            <p style="text-align: left;" class="text-muted">추천횟수 : ${expBestChoice.cnt}</p>
+			                            <!-- <p class="text-muted text-center">${expBestChoice.experiencePrice}원</p> -->
 			                        </div>
 			                    </div>
 				            </div>
@@ -227,15 +238,15 @@
 		        		<c:forEach items="${hotelBestChoice}" var="hotelBestChoice">
 		        		<td style="width: 500px;">
 			        		<div style="width: 500px; height: 600px; margin-left: auto; margin-right: auto;" class="col-12 col-md-4 mb-4">
-						        <div class="card h-100">
+						        <div class="card-body">
+						        	<p style="text-align:center;" class="text-muted">추천 수 : ${hotelBestChoice.cnt} 회!</p>
 			                        <a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelBestChoice.hotelId}">
-			                            <img src="${pageContext.request.contextPath}/upload/${hotelBestChoice.imageName}.${hotelBestChoice.imageExt}" class="card-img-top" width="500px" height="400px">
+			                            <img src="${pageContext.request.contextPath}/upload/${hotelBestChoice.imageName}.${hotelBestChoice.imageExt}" class="card-img-top" style="width:500px; height:400px; border-radius:5%;">
 			                        </a>
 			                        <div class="card-body">
-			                            <p style="text-align: left;">
-			                            	<a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelBestChoice.hotelId}" class="h2 text-decoration-none text-dark">${hotelBestChoice.hotelName}</a>
-			                            </p>
-			                            <p style="text-align: left;" class="text-muted">추천횟수 : ${hotelBestChoice.cnt}</p>
+			                            <p style="text-align:center;">
+			                            	<a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${hotelBestChoice.hotelId}" class="h2 text-decoration-none text-dark" style="font-family: 'twayair'; font-size:15pt;">${hotelBestChoice.hotelName}</a>
+			                            </p>  
 			                        </div>
 			                    </div>
 				            </div>
