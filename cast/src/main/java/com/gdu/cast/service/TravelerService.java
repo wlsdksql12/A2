@@ -30,12 +30,14 @@ public class TravelerService {
 	// 자신이 등록한 체험 추천 댓글 알람
 	public List<ExperienceSelect> getExperienceSelectAlarm(String travlerId) {
 		log.debug("★★★★Hyun★★★★"+travlerId);
+		
 		return travelerMapper.selectExperienceSelectAlram(travlerId);
 	}
 	
 	// 자신이 등록한 숙소 추천 댓글 알람
 	public List<RoomSelect> getRoomSelectAlarm(String travlerId) {
 		log.debug("★★★★Hyun★★★★"+travlerId);
+		
 		return travelerMapper.selectRoomSelectAlarm(travlerId);
 	}
 	
@@ -63,7 +65,7 @@ public class TravelerService {
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("travelerId", travelerId);
-		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+paramMap);
 		
 		// 체험 추천 글의 댓글 리스트
 		List<ExperienceSelectComment> experienceSelectCommentList = travelerMapper.selectExperienceSelectCommentList(paramMap);
@@ -135,11 +137,13 @@ public class TravelerService {
 	
 	// 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 댓글 출력(5개)
 	public List<ExperienceSelectComment> getselectExperienceSelectCommentListByMain(String travelerId) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		return travelerMapper.selectExperienceSelectCommentListByMain(travelerId);
 	}
 	
 	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 댓글 출력(5개)
 	public List<RoomSelectComment> getselectRoomSelectCommentListByMain(String travelerId) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		return travelerMapper.selectRoomSelectCommentListByMain(travelerId);
 	}
 	
@@ -160,31 +164,39 @@ public class TravelerService {
 	
 	// 회원 가입 시 아이디 중복 검사
 	public String getSelectTravelerId(String travelerId) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		return travelerMapper.selectTravelerId(travelerId);
 	}
 	
 	// 회원 탈퇴 시 비밀번호 조회
 	public int getSelectTravelerPw(String travelerId, String travelerPw) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerPw);
 		return travelerMapper.selectTravelerPw(travelerId, travelerPw);
 	}
 	
 	// 회원 탈퇴(delete_id 테이블에 id 값 입력)
-	public void getAddDeleteTravelerId(String travlerId) {
-		travelerMapper.insertDeleteTravelerId(travlerId);
+	public void getAddDeleteTravelerId(String travelerId) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		travelerMapper.insertDeleteTravelerId(travelerId);
 	}
 	
 	// 회원 탈퇴(traveler 테이블 데이터 삭제)
 	public void getRemoveTraveler(String travelerId, String travelerPw) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+travelerPw);
 		travelerMapper.deleteTraveler(travelerId, travelerPw);
 	}
 	
 	// 여행작가 메인 페이지 자신이 등록한 체험 추천 리스트 출력(5개)
 	public List<ExperienceSelect> getselectExperienceSelectListByMain(String travelerId) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		return travelerMapper.selectExperienceSelectListByMain(travelerId);
 	}
 	
 	// 여행작가 메인 페이지 자신이 등록한 숙소 추천 리스트 출력(5개)
 	public List<RoomSelect> getselectRoomSelectListByMain(String travelerId) {
+		log.debug("★★★★Hyun★★★★"+travelerId);
 		return travelerMapper.selectRoomSelectListByMain(travelerId);
 	}
 	

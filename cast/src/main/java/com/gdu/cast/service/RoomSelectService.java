@@ -99,7 +99,7 @@ public class RoomSelectService {
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("travelerId", travelerId);
-		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+paramMap);
 		
 		// 여행작가 숙소 추천 리스트
 		List<RoomSelect> roomSelectList = roomSelectMapper.selectRoomSelectList(paramMap);

@@ -104,8 +104,7 @@
 			image_ext = #{imageExt},
 			image_size = #{imageSize},
 			update_date = NOW()
-		WHERE 
-			room_select_id = #{roomSelectId}
+		WHERE room_select_id = #{roomSelectId}
 	</update>
 	
 	<!-- 메인 페이지의 체험 추천 삭제 -->

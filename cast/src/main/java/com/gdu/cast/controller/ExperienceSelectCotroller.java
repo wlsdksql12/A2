@@ -1,5 +1,6 @@
 package com.gdu.cast.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.gdu.cast.service.ExperienceSelectService;
+import com.gdu.cast.service.TravelerService;
 import com.gdu.cast.vo.AddExperienceSelect;
+import com.gdu.cast.vo.ExperienceSelect;
+import com.gdu.cast.vo.RoomSelect;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,6 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 public class ExperienceSelectCotroller {
 	@Autowired
 	ExperienceSelectService experienceSelectService;
+	
+	@Autowired
+	TravelerService travelerService;
+	
 	
 	// 페이지
 	private final int ROW_PER_PAGE = 5;
@@ -31,8 +39,8 @@ public class ExperienceSelectCotroller {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		model.addAttribute("travelerId", travelerId);
 		model.addAttribute("experienceId", experienceId);
-		log.debug("★★★★Hyun★★★★"+travelerId);
-		System.out.println("★★★★Hyun★★★★"+experienceId);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/addExperienceSelect";
 	}
 	
@@ -41,6 +49,7 @@ public class ExperienceSelectCotroller {
 	public String addExperienceSelect(AddExperienceSelect addexperienceSelect) {
 		experienceSelectService.addExperienceSelect(addexperienceSelect);
 		log.debug("★★★★Hyun★★★★"+addexperienceSelect.toString());
+		
 		return "redirect:/mainExperienceSelect";
 	}
 	
@@ -50,6 +59,13 @@ public class ExperienceSelectCotroller {
 			@RequestParam(defaultValue = "1") int currentPage, String travelerId) {
 		log.debug("★★★★Hyun★★★★"+travelerId);
 		Map<String, Object> map = experienceSelectService.getSelectExperienceSelectList(travelerId, currentPage, ROW_PER_PAGE);
+		
+		// 자신이 등록한 숙소/체험 댓글 알람
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(travelerId);
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(travelerId);
+		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
 		model.addAttribute("experienceSelectList", map.get("experienceSelectList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
@@ -57,6 +73,7 @@ public class ExperienceSelectCotroller {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("travelerId", travelerId);
 		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/experienceSelectList";
 	}
 }

@@ -1,15 +1,20 @@
 package com.gdu.cast.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.gdu.cast.mapper.MainSelectCommentMapper;
 import com.gdu.cast.mapper.MainSelectMapper;
+import com.gdu.cast.vo.AddRoomSelect;
 import com.gdu.cast.vo.ExperienceSelect;
 import com.gdu.cast.vo.ExperienceSelectImage;
 import com.gdu.cast.vo.RoomSelect;
@@ -34,27 +39,20 @@ public class MainSelectService {
 	
 	/*
 	// 메인 페이지 숙소 추천 수정
-	public void updateRoomSelect(AddRoomSelect addRoomSelect) {
+	public void modifyRoomSelect(AddRoomSelect addRoomSelect) {
 		
 		// 데이터 추가
-		String travelerId = addRoomSelect.getTravelerId();
-		int hotelId = addRoomSelect.getHotelId();
 		String roomSelectTitle = addRoomSelect.getRoomSelectTitle();
 		String roomSelectContent = addRoomSelect.getRoomSelectContent();
-		String createDate = addRoomSelect.getCreateDate();
-		String updateDate = addRoomSelect.getUpdateDate();
 		
 		// 1) 숙소 추천 입력
 		RoomSelect roomSelect = new RoomSelect();		
-		roomSelect.setTravelerId(travelerId);
-		roomSelect.setHotelId(hotelId);
 		roomSelect.setRoomSelectTitle(roomSelectTitle);
 		roomSelect.setRoomSelectContent(roomSelectContent);
-		roomSelect.setCreateDate(createDate);
-		roomSelect.setUpdateDate(updateDate);
 		mainSelectMapper.updateRoomSelect(roomSelect);
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		
+		// 2) 숙소 추천 이미지 추가
 		List<RoomSelectImage> roomSelectImage = null;
 		if(addRoomSelect.getRoomSelectImage() != null) {
 			roomSelectImage = new ArrayList<RoomSelectImage>();
@@ -68,8 +66,6 @@ public class MainSelectService {
 				rsi.setImageName(imageName);
 				rsi.setImageExt(imageExt);
 				rsi.setImageSize(mf.getSize());
-				rsi.setCreateDate(createDate);
-				rsi.setUpdateDate(updateDate);
 				roomSelectImage.add(rsi);
 				log.debug("★★★★Hyun★★★★"+roomSelectImage.toString());
 				File temp = new File("");
@@ -94,54 +90,61 @@ public class MainSelectService {
 	// 메인 페이지 숙소 추천 이미지
 	public List<RoomSelectImage> getselectRoomSelectImageList(int roomSelectId) {
 		System.out.println("★★★★Hyun★★★★"+roomSelectId);
+		
 		return mainSelectMapper.selectRoomImageList(roomSelectId);
 	}
 
 	// 메인 페이지 체험 추천 이미지
 	public List<ExperienceSelectImage> getselectExperienceSelectImageList(int experienceSelectId) {
 		System.out.println("★★★★Hyun★★★★"+experienceSelectId);
+		
 		return mainSelectMapper.selectExperienceImageList(experienceSelectId);
 	}
 	
 	// 메인 페이지 체험 추천 삭제
 	public int removeExperienceSelect(ExperienceSelect experienceSelect) {
-		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		mainSelectCommentMapper.ExperienceSelectDeletecomment(experienceSelect);
 		mainSelectMapper.deleteExperienceSelectImage(experienceSelect);
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		
 		return mainSelectMapper.deleteExperienceSelect(experienceSelect);
 	}
 	
 	// 메인 페이지 숙소 추천 삭제
 	public int removeRoomSelect(RoomSelect roomSelect) {
-		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		mainSelectCommentMapper.roomSelectDeletecomment(roomSelect);
 		mainSelectMapper.deleteRoomSelectImage(roomSelect);
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		
 		return mainSelectMapper.deleteRoomSelect(roomSelect);
 	}
 	
 	// 메인 페이지 체험 추천 수정
 	public void modifyExperienceSelect(ExperienceSelect experienceSelect) {
-		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 		mainSelectMapper.updateExperienceSelect(experienceSelect);
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
 	}
 	
 	// 메인 페이지 숙소 추천 수정
 	public void modifyRoomSelect(RoomSelect roomSelect) {
-		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		mainSelectMapper.updateRoomSelect(roomSelect);
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 	}
 
 	// 메인 페이지 체험 추천 상세보기
 	public ExperienceSelect getexperienceSelectOne(int experienceSelectId) {
-		System.out.println(experienceSelectId + "<-- experienceSelectId");
+		System.out.println("★★★★Hyun★★★★"+experienceSelectId);
 		ExperienceSelect experienceSelect = mainSelectMapper.selectExperienceSelectOne(experienceSelectId);
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		
 		return experienceSelect;
 	}
 	
 	// 메인 페이지 숙소 추천 상세보기
 	public RoomSelect getroomSelectOne(int roomSelectId) {
-		System.out.println(roomSelectId + "<-- roomSelectId");
+		System.out.println("★★★★Hyun★★★★"+roomSelectId);
 		RoomSelect roomSelect = mainSelectMapper.selectRoomSelectOne(roomSelectId);
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
 		return roomSelect;
 	}
 	
@@ -159,7 +162,7 @@ public class MainSelectService {
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("searchTitle", searchTitle);
-		log.debug(searchTitle);
+		log.debug("★★★★Hyun★★★★"+paramMap);
 		
 		// 메인 페이지 체험 추천 리스트
 		List<ExperienceSelect> experienceSelectList = mainSelectMapper.selectExperienceList(paramMap);
@@ -180,6 +183,7 @@ public class MainSelectService {
 		returnMap.put("startPage", startPage);
 		returnMap.put("lastPage", lastPage);
 		returnMap.put("totalPage", totalPage);
+		log.debug("★★★★Hyun★★★★"+returnMap);
 		
 		return returnMap;
 	}
@@ -198,7 +202,7 @@ public class MainSelectService {
 		paramMap.put("beginRow", beginRow); 
 		paramMap.put("ROW_PER_PAGE", ROW_PER_PAGE);
 		paramMap.put("searchTitle", searchTitle);
-		log.debug(searchTitle);
+		log.debug("★★★★Hyun★★★★"+paramMap);
 		
 		// 여행작가 숙소 추천 리스트
 		List<RoomSelect> roomSelectList = mainSelectMapper.selectRoomSelectList(paramMap);
@@ -219,6 +223,7 @@ public class MainSelectService {
 		returnMap.put("startPage", startPage);
 		returnMap.put("lastPage", lastPage);
 		returnMap.put("totalPage", totalPage);
+		log.debug("★★★★Hyun★★★★"+returnMap);
 		
 		return returnMap;
 	}

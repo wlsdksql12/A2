@@ -244,6 +244,7 @@
                 <span class="ml-4">내 체험 추천 댓글</span>
               </a>
             </li>
+            <%-- 차트 및 버튼 주석 처리
             <li class="relative px-6 py-3">
               <a
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
@@ -288,7 +289,8 @@
                 </svg>
                 <span class="ml-4">버튼</span>
               </a>
-            </li>
+            </li> 
+            --%>
           </ul>
           <div class="px-6 my-6">
             <a
@@ -617,7 +619,7 @@
                 <input
                   class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
                   type="text"
-                  placeholder="Search for projects"
+                  placeholder="검색"
                   aria-label="Search"
                 />
               </div>
@@ -677,7 +679,7 @@
                        	<div class="row-fluid" style="width:100%; height:50px; text-align:center;">      
                       	<a
                         	class="text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                        	href="${pageContext.request.contextPath}/mainRoomSelectOne?roomSelectId=${experienceSelect.experienceSelectId}">
+                        	href="${pageContext.request.contextPath}/mainExperienceSelectOne?experienceSelectId=${experienceSelect.experienceSelectId}">
                         	${experienceSelect.experienceSelectContent}
                       	</a>
                       	</div>

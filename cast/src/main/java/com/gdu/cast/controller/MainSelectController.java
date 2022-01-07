@@ -34,11 +34,35 @@ public class MainSelectController {
 	private final int ROW_PER_PAGE = 10;
 	private final int row_per_page = 5;
 	
+	/*
+	// 여행작가 숙소 추천 이미지 수정
+	@GetMapping("/modifyRoomSelectImage")
+	public String modifyRoomSelectImage(Model model, int roomSelectId, String travelerId, HttpSession session) {
+		travelerId = (String)session.getAttribute("loginTravelerId");
+		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
+		model.addAttribute("roomSelect", roomSelect);
+		
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
+		return "traveler/modifyRoomSelectImage";
+	}
+	
+	// 여행작가 숙소 추천 이미지 수정
+	@PostMapping("/modifyRoomSelectImage")
+	public String modifyRoomSelectImage(AddRoomSelect addRoomSelect) {
+		mainSelectService.modifyRoomSelectImage(addRoomSelect);
+		
+		return "redirect:/mainRoomSelectOne?roomSelectId="+addRoomSelect.getRoomSelectId();
+	}
+	*/
 	
 	// 여행작가 체험 추천 삭제
 	@GetMapping("/removeExperienceSelect")
 	public String removeExperienceSelect(ExperienceSelect experienceSelect) {
 		mainSelectService.removeExperienceSelect(experienceSelect);
+		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		
 		return "redirect:/mainExperienceSelect";
 	}
 	
@@ -46,6 +70,8 @@ public class MainSelectController {
 	@GetMapping("/removeRoomSelect")
 	public String removeRoomSelect(RoomSelect roomSelect) {
 		mainSelectService.removeRoomSelect(roomSelect);
+		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		
 		return "redirect:/mainRoomSelect";
 	}
 	
@@ -55,6 +81,10 @@ public class MainSelectController {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		ExperienceSelect experienceSelect = mainSelectService.getexperienceSelectOne(experienceSelectId);
 		model.addAttribute("experienceSelect", experienceSelect);
+		
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/modifyExperienceSelect";
 	}
 	
@@ -63,6 +93,7 @@ public class MainSelectController {
 	public String modifyExperienceSelect(ExperienceSelect experienceSelect) {
 		mainSelectService.modifyExperienceSelect(experienceSelect);
 		log.debug("★★★★Hyun★★★★"+experienceSelect.toString());
+		
 		return "redirect:/mainExperienceSelectOne?experienceSelectId="+experienceSelect.getExperienceSelectId();
 	}
 	
@@ -72,6 +103,10 @@ public class MainSelectController {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		RoomSelect roomSelect = mainSelectService.getroomSelectOne(roomSelectId);
 		model.addAttribute("roomSelect", roomSelect);
+		
+		log.debug("★★★★Hyun★★★★"+travelerId);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/modifyRoomSelect";
 	}
 	
@@ -80,6 +115,7 @@ public class MainSelectController {
 	public String modifyRoomSelect(RoomSelect roomSelect) {
 		mainSelectService.modifyRoomSelect(roomSelect);
 		log.debug("★★★★Hyun★★★★"+roomSelect.toString());
+		
 		return "redirect:/mainRoomSelectOne?roomSelectId="+roomSelect.getRoomSelectId();
 	}
 	
@@ -98,6 +134,8 @@ public class MainSelectController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("experienceSelect", experienceSelect);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "mainExperienceSelectOne";
 	}
 	
@@ -117,6 +155,8 @@ public class MainSelectController {
 		model.addAttribute("totalPage", list.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("roomSelect", roomSelect);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "mainRoomSelectOne";
 	}
 	
@@ -133,7 +173,8 @@ public class MainSelectController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchTitle", searchTitle);
-		System.out.println(model + "model");
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "mainExperienceSelect";
 	}
 	
@@ -150,6 +191,8 @@ public class MainSelectController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("searchTitle", searchTitle);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "mainRoomSelect";
 	}
 	

@@ -44,6 +44,13 @@ public class TravelerController {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		log.debug("★★★★Hyun★★★★"+travelerId);
 		Map<String, Object> map = travelerService.getSelectExperienceSelectCommentList(travelerId, currentPage, ROW_PER_PAGE);
+		
+		// 자신이 등록한 숙소/체험 댓글 알람
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(travelerId);
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(travelerId);
+		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
 		model.addAttribute("experienceSelectCommentList", map.get("experienceSelectCommentList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
@@ -51,6 +58,7 @@ public class TravelerController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("travelerId", travelerId);
 		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/experienceSelectCommentList";
 	}
 	
@@ -61,6 +69,13 @@ public class TravelerController {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		log.debug("★★★★Hyun★★★★"+travelerId);
 		Map<String, Object> map = travelerService.getSelectRoomSelectCommentList(travelerId, currentPage, ROW_PER_PAGE);
+		
+		// 자신이 등록한 숙소/체험 댓글 알람
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(travelerId);
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(travelerId);
+		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
 		model.addAttribute("roomSelectCommentList", map.get("roomSelectCommentList"));
 		model.addAttribute("startPage", map.get("startPage"));
 		model.addAttribute("lastPage", map.get("lastPage"));
@@ -68,6 +83,7 @@ public class TravelerController {
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("travelerId", travelerId);
 		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/roomSelectCommentList";
 	}
 	
@@ -75,6 +91,15 @@ public class TravelerController {
 	@GetMapping("/modifyTravelerPw")
 	public String modifyTravelerPw(Model model, Traveler traveler) {
 		log.debug("★★★★Hyun★★★★"+traveler.toString());
+		
+		// 자신이 등록한 숙소/체험 댓글 알람
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(traveler.getTravelerId());
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(traveler.getTravelerId());
+		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/modifyTravelerPw";
 	}
 	
@@ -82,17 +107,29 @@ public class TravelerController {
 	@PostMapping("/modifyTravelerPw")
 	public String modifyTravelerPw(String travelerId, String travelerPw, String newTravelerPw) {
 		travelerService.modifyTravelerPw(travelerId, travelerPw, newTravelerPw);
+		
 		log.debug("★★★★Hyun★★★★"+travelerId);
 		log.debug("★★★★Hyun★★★★"+travelerPw);
 		log.debug("★★★★Hyun★★★★"+newTravelerPw);
+		
 		return "redirect:/travelerIndex?travelerId="+travelerId;
 	}
 	
 	// 여행작가 회원 탈퇴
 	@GetMapping("/removeTraveler")
-	public String getRemoveTraveler(Traveler traveler) {
+	public String getRemoveTraveler(Traveler traveler, Model model) {
 		travelerService.getRemoveTraveler(traveler.getTravelerId(), traveler.getTravelerPw());
+		
+		// 자신이 등록한 숙소/체험 댓글 알람
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(traveler.getTravelerId());
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(traveler.getTravelerId());
+		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
+		
 		log.debug("★★★★Hyun★★★★"+traveler.toString());
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/removeTraveler";
 	}
 	
@@ -101,6 +138,7 @@ public class TravelerController {
 	public String getRemoveTraveler(Traveler traveler, HttpSession session) {
 		String travelerId = (String)session.getAttribute("loginTravelerId");
 		log.debug("★★★★Hyun★★★★"+travelerId);
+		
 		if(travelerService.getSelectTravelerPw(travelerId, traveler.getTravelerPw()) != 1) {
 			return "redirect:/travelerIndex?travelerId="+travelerId;
 		} else {
@@ -134,6 +172,7 @@ public class TravelerController {
 		List<Hotel> hotelList = travelerService.getSelectHotelListByMain();
 		List<Experience> experienceList = travelerService.getSelectExperienceListByMain();
 		
+		// 자신이 등록한 숙소/체험 댓글 알람
 		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(travelerId);
 		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(travelerId);
 		
@@ -152,14 +191,7 @@ public class TravelerController {
 		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
 		model.addAttribute("travelerId", travelerId);
 		
-		log.debug("★★★★Hyun★★★★"+roomSelectList.toString());
-		log.debug("★★★★Hyun★★★★"+roomSelectCommentListByMain.toString());
-		log.debug("★★★★Hyun★★★★"+experienceSelectList.toString());
-		log.debug("★★★★Hyun★★★★"+experienceSelectCommentListByMain.toString());
-		log.debug("★★★★Hyun★★★★"+hotelList.toString());
-		log.debug("★★★★Hyun★★★★"+experienceList.toString());
-		log.debug("★★★★Hyun★★★★"+roomSelectAlarmList.toString());
-		log.debug("★★★★Hyun★★★★"+experienceSelectAlarmList.toString());
+		log.debug("★★★★Hyun★★★★"+model.toString());
 		log.debug("★★★★Hyun★★★★"+travelerId);
 		
 		return "traveler/travelerIndex";
@@ -170,7 +202,16 @@ public class TravelerController {
 	public String modifyTravelerMyInfo(Model model, HttpSession session, String travelerId) {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		Traveler traveler = travelerService.getTravelerMyInfo(travelerId);
+		
+		// 자신이 등록한 숙소/체험 댓글 알람
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(travelerId);
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(travelerId);
+		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);
 		model.addAttribute("traveler", traveler);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/modifyTravelerMyInfo";
 	}
 	
@@ -179,6 +220,7 @@ public class TravelerController {
 	public String modifyTravelerMyInfo(Traveler traveler) {
 		travelerService.modifyTravelerMyInfo(traveler);
 		log.debug("★★★★Hyun★★★★"+traveler.toString()); 
+		
 		return "redirect:/modifyTravelerMyInfo?travelerId="+traveler.getTravelerId();
 	}
 	
@@ -187,7 +229,16 @@ public class TravelerController {
 	public String getTravelerMyInfo(Model model, HttpSession session, String travelerId) {
 		travelerId = (String)session.getAttribute("loginTravelerId");
 		Traveler traveler = travelerService.getTravelerMyInfo(travelerId);
+		
+		// 자신이 등록한 숙소/체험 댓글 알람
+		List<RoomSelect> roomSelectAlarmList = travelerService.getRoomSelectAlarm(travelerId);
+		List<ExperienceSelect> experienceSelectAlarmList = travelerService.getExperienceSelectAlarm(travelerId);
+		
+		model.addAttribute("roomSelectAlarmList", roomSelectAlarmList);
+		model.addAttribute("experienceSelectAlarmList", experienceSelectAlarmList);	
 		model.addAttribute("traveler", traveler);
+		log.debug("★★★★Hyun★★★★"+model.toString());
+		
 		return "traveler/travelerMyInfo";
 	}
 	
@@ -196,7 +247,7 @@ public class TravelerController {
 	public String travelerIndex() {
 		return "traveler/travelerIndex";
 	} 
-	*/
+	
 	
 	// 여행작가 메인 차트
 	@GetMapping("/chart")
@@ -209,11 +260,14 @@ public class TravelerController {
 	public String button() {
 		return "traveler/button";
 	}
+	*/
 	
 	// 여행작가 로그아웃
 	@GetMapping("/travelerLogout")
 	public String travelerLogout(HttpSession session) {
 		session.invalidate();
+		log.debug("★★★★Hyun★★★★"+session.toString());
+		
 		return "redirect:/index";
 	}
 	
