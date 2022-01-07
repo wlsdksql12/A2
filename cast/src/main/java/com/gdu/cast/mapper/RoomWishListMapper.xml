@@ -8,6 +8,7 @@
 		<association property="hotel" javaType="com.gdu.cast.vo.Hotel">
 			<result column="hotel_name" property="hotelName" />
 			<result column="hotel_content" property="hotelContent" />
+			<result column="hotel_id" property="hotelId" />
 		</association>
 	</resultMap>
 	
@@ -38,11 +39,12 @@
 		SELECT
 		 h.hotel_name,
 		 h.hotel_content,
+		 h.hotel_id,
 		 rw.create_date,
 		 rw.update_date
 		FROM room_wishlist rw inner join hotel h
 		ON rw.hotel_id = h.hotel_id
-		where customer_id = #{customerId}
+		where rw.customer_id = #{customerId}
 		limit #{beginRow}, #{ROW_PER_PAGE}
 	
 	</select>

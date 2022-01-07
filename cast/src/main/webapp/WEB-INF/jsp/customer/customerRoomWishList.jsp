@@ -305,7 +305,7 @@
 														<td>${wishList.hotel.hotelContent}</td>
 														<td>${wishList.createDate}</td>
 														<td>${wishList.updateDate}</td>
-														<td><a href="/">이동</a></td>
+														<td><a href="${pageContext.request.contextPath}/mainHotelOne?hotelId=${wishList.hotel.hotelId}&hotelName=${wishList.hotel.hotelName}">이동</a></td>
 														</tr>
 												</c:forEach>
 											</tbody>

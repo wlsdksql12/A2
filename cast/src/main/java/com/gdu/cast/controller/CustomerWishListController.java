@@ -32,14 +32,12 @@ public class CustomerWishListController {
 			return "redirect:/loginSelect";
 		}
 
-		
-		
 		experienceWishListService.getinsertExperienceWishList(customerId, experienceId);
 		
 		return "redirect:/shop";
 	}
 	
-	// 고객페이지에서 본인이 등록한 관심상품 조회
+	// 고객페이지에서 본인이 등록한 체험관심상품 조회
 	@GetMapping("/customerExperienceWishList")
 	public String selectExperienceWishList(Model model, HttpSession session,@RequestParam(defaultValue = "1") int currentPage ) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
@@ -63,7 +61,7 @@ public class CustomerWishListController {
 		roomWishListService.getinsertRoomWishList(customerId, hotelId);
 		return "redirect:/shop";
 	}
-	
+	// 고객페이지에서 본인이 등록한 호텔관심상품 조회
 	@GetMapping("/customerRoomWishList")
 	public String selectRoomWishList(Model model, HttpSession session, @RequestParam(defaultValue = "1") int currentPage) {
 		String customerId = (String) session.getAttribute("loginCustomerId");
