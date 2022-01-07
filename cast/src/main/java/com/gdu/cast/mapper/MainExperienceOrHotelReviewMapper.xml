@@ -201,14 +201,19 @@
    		WHERE room_payment_review_id = #{roomPaymentReviewId}
 	</delete>
 	
-	<!-- 결제 안한사람은 후기 추가 못하게.. -->
+	<!-- 결제 안한사람은 체험 후기 추가 못하게.. -->
 	<select id="selectExperienceId" parameterType="String" resultType="String">
 		SELECT experience_name experienceName
 		FROM experience_order
 		WHERE customer_id = #{customerId} AND experience_name = #{experienceName}
 	</select>
+<!-- 	결제 안한사람은 호텔 후기추가 못하게... -->
+	<select id="selectHotelId" parameterType="String" resultType="String">
+		SELECT hotel_name hotelName
+		FROM room_order
+		WHERE customer_id = #{customerId} AND hotel_name = #{hotelName}
 	
-	<select id="selectHotelId"></select>
+	</select>
 	
 	
 </mapper>

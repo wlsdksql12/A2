@@ -36,6 +36,8 @@ public interface MainExperienceOrHotelReviewMapper {
 	void insertRoomPaymentReviewImage(RoomPaymentReviewImage roomPaymentReviewImage);
 	// 호텔 후기 삭제
 	void deletehotelReview(int roomPaymentReviewId);
-	// 결제한 사람만 리뷰 작성 가능하도록 하는 조건문 키값.
+	// 결제한 사람만 채험 리뷰 작성 가능하도록 하는 조건문 키값.
 	String selectExperienceId(String customerId, String experienceName);
+	// 결제한 사람만 호텔 리뷰 작성 가능하도록 하는 조건문 키값.
+	String selectHotelId(String customerId, String hotelName);
 }

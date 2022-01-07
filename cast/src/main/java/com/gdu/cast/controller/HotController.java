@@ -270,13 +270,17 @@ public class HotController {
 	
 	// 메인 shop 호텔 상세보기 페이지
 	@GetMapping("/mainHotelOne")
-	public String mainHotelOne(Model model, Address address, int hotelId, @RequestParam(defaultValue = "1") int currentPage) {
-		
+	public String mainHotelOne(Model model, Address address, int hotelId, @RequestParam(defaultValue = "1") int currentPage, HttpSession session, String hotelName) {
+		String customerId = (String)session.getAttribute("loginCustomerId");
+		System.out.println(hotelName + "hotelName");
 		Hotel hotel = hotService.selectHotelOne(hotelId);
 		//호텔 후기 리스트 출력.
 		 Map<String, Object> map = mainExperienceOrHotelReviewService.getroomPaymentReview(currentPage, row_per_page, hotelId);
-		model.addAttribute("hotel", hotel);
+		String hotelNameIf = mainExperienceOrHotelReviewService.getselectHotelId(customerId, hotelName);
+		 
+		 model.addAttribute("hotel", hotel);
 		model.addAttribute("address", address);
+		model.addAttribute("hotelNameIf",hotelNameIf);
 		
 		List<Room> roomList = hotService.getSelectRoomList(hotelId);
 		List<HotelImage> hotelImageList = hotService.getHotelImage(hotelId);
