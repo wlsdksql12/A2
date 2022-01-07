@@ -56,8 +56,66 @@
             </form>
         </div>
     </div>
-    
-	<br>
+	<!-- Start Content -->
+    <div class="container py-5">
+        <div class="row">
+			<div class="col-lg-3">
+			<h1 class="h2 pb-4">Categories</h1>
+			    <ul class="hide">
+				<c:forEach items="${selectThemeList}" var="ThemeList">
+			        <li class="menu">
+			            <a>${ThemeList.themeBig.themeBigName}<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			            <ul>
+			                <li class="menu">
+			                	<a>${ThemeList.themeMiddleName}<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			                	<ul class="hide">
+			                	<c:forEach items="${selectThemeSmallList}" var="SmallList">
+			                	<c:if test="${ThemeList.themeMiddleId == SmallList.themeMiddleId}">
+			                		<li><a href="${pageContext.request.contextPath}/shop?themeSmallName=${SmallList.themeSmallName}">${SmallList.themeSmallName}</a></li>
+			                		</c:if>
+			                		</c:forEach>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			        </c:forEach>
+			                <li class="menu">
+								<a>메뉴1-2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+								<ul class="hide">
+			                		<li>메뉴1-2-1</li>
+			                		<li>메뉴1-2-2</li>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			        <li class="menu">
+			            <a>메뉴2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			            <ul class="hide">
+			                <li class="menu">
+			                	<a>메뉴2-1<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+			                	<ul class="hide">
+			                		<li>메뉴2-1-1</li>
+			                		<li>메뉴2-1-2</li>
+			                		<li><a href="${pageContext.request.contextPath}/addHotelOrder">숙소 주문</a></li>
+			                	</ul>
+			                </li>
+			                <li class="menu">
+								<a>메뉴2-2<i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i></a>
+								<ul class="hide">
+			                		<li>메뉴2-2-1</li>
+			                		<li>메뉴2-2-2</li>
+			                	</ul>
+			                </li>
+			            </ul>
+			        </li>
+			    </ul>
+			    <br>
+			</div>
+
+<div class="col-lg-9">
+    <div class="row">
+                    
+		<div>
 	<div>
 		<div class="col-lg-12 grid-margin stretch-card">
 			<div class="card">
