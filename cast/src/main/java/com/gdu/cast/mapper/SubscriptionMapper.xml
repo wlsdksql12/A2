@@ -49,9 +49,14 @@
 	<update id="updateCeoSubscription" parameterType="map">
 		UPDATE ceo SET
 			subscription_no = #{subscriptionNo}, update_date = now()
-		WHERE ceo_id = #{ceoId}
+		WHERE ceo_id = #{ceoId} 
 	</update>
-	
+	<!-- 사업자 구독 업그레이드시 -->
+	<update id="updateSubscriptionPay" parameterType="map">
+		UPDATE subscription_amount SET
+			subscription_no = #{subscriptionNo}, subscription_pay = #{amount}, update_date = now()
+		WHERE ceo_id = #{ceoId} AND SUBSTR(create_date, 1, 4) = SUBSTR(now(), 1, 4)
+	</update>
 	<!-- 사업자 구독 변경 시 결제 기록 조회 -->
 	<select id="selectSubscriptionAmount" parameterType="String" resultType="int">
 		SELECT COUNT(*)

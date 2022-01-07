@@ -277,10 +277,10 @@
 	// 체험등록, 호텔등록 클릭 시 함수를 발생시켜 가입 요청값에 맞는 이벤트
 	$("[id='stateBtn']").click(function(){
 		if('${state}' == '요청'){
-			swal("요청 중입니다.", "", "warning");
+			swal("가입 요청 중입니다.", "잠시만 기다려주십시오.", "warning");
 			return false;
 		} else if('${state}' == '거절'){
-			swal("요청이 거절되었습니다.", "가입을 재요청하십시오.", "error");
+			swal("가입 요청이 거절되었습니다.", "가입을 재요청하십시오.", "error");
 			return false;
 		} else if('${subscription}' == '1' || '${subscription}' == ""){
 			swal("구독 정보로 인해 서비스가 제한됩니다.", "현재 구독 : Basic", "warning");

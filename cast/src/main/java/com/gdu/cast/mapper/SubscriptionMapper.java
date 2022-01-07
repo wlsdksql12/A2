@@ -36,4 +36,7 @@ public interface SubscriptionMapper {
 	
 	// 매년 1월 1일 구독 결제 DB에 입력
 	void insertAutoPayment(Map<String, Object> map);
+	
+	// 사업자 구독 정보 업그레이드 시 변경
+	void updateSubscriptionPay(Map<String, Object> map);
 }

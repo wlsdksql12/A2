@@ -62,7 +62,7 @@
                   <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                     <thead class="thead-light">
 					<tr style="text-align:center" class="table-primary">
-						<th width="10%">요청 번호</th>
+						<th width="8%">요청 번호</th>
 						<th width="10%">아이디</th>
 						<th width="10%">이름</th>
 						<th width="15%">E-mail</th>

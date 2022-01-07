@@ -116,7 +116,7 @@
 									<a class="btn btn-secondary" style="text-align: center;">구독 중</a>
 								</c:if>
 								<c:if test="${subscription.subscriptionNo ne subscriptionNo }">
-									<a href="${pageContext.request.contextPath}/ceo/updateSubscribe?ceoId=${ceoId}&subscriptionNo=${subscription.subscriptionNo}"class="btn btn-warning">구독 변경</a>
+									<a href="${pageContext.request.contextPath}/ceo/updateSubscribe?ceoId=${ceoId}&subscriptionNo=${subscription.subscriptionNo}&nowScriptionNo=${subscription}"class="btn btn-warning">구독 변경</a>
 								</c:if>
 								</li>
 							  </ul>

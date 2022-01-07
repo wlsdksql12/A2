@@ -46,6 +46,7 @@ public class SubscriptionService {
 		Map<String, Object> map = new  HashMap<>();
 		map.put("ceoId", ceoId);
 		map.put("subscriptionNo", subscriptionNo);
+		// ceo테이블 업데이트
 		subscriptionMapper.updateCeoSubscription(map);
 		
 		// 올해 구독 결제 DB에 없을 시 추가
@@ -78,6 +79,39 @@ public class SubscriptionService {
 			}
 			paramMap.put("amount", amount);
 			subscriptionMapper.insertSubscriptionAmount(paramMap);
+		} else if(subscriptionAmountResult == 1 && subscriptionNo == 3) {
+			Map<String, Object> paramMap = new HashMap<>();
+			paramMap.put("ceoId", ceoId);
+			paramMap.put("subscriptionNo", subscriptionNo);
+			
+			int nowSubscriptionPay = subscriptionMapper.selectSubscriptionPay(subscriptionNo);
+			int updateSubscriptionPay = subscriptionMapper.selectSubscriptionPay(subscriptionNo);
+			int subscriptionPay = updateSubscriptionPay - nowSubscriptionPay;
+			
+			// 현재 날짜 구하기
+			LocalDate nowDate = LocalDate.now(ZoneId.of("Asia/Seoul"));
+			// System.out.println(nowDate + "현재 날짜");
+			// 분기별 날짜
+			LocalDate date1 = nowDate.withMonth(1).withDayOfMonth(1);
+			LocalDate date2 = nowDate.withMonth(4).withDayOfMonth(1);
+			LocalDate date3 = nowDate.withMonth(7).withDayOfMonth(1);
+			LocalDate date4 = nowDate.withMonth(10).withDayOfMonth(1);
+			int amount = 0;
+			// 분기별 가격 구하기
+			if(nowDate.isAfter(date1) && nowDate.isBefore(date2)) { // 1분기 조건
+				amount = subscriptionPay;
+			} else if(nowDate.isAfter(date2) && nowDate.isBefore(date3)) { // 2분기 조건
+				amount = ((subscriptionPay * 75) / 100);
+			} else if(nowDate.isAfter(date3) && nowDate.isBefore(date4)) { // 3분기 조건
+				amount = ((subscriptionPay * 50) / 100);
+			} else { // 4분기
+				amount = ((subscriptionPay * 50) / 100);
+			}
+			amount += nowSubscriptionPay;
+			System.out.println(amount + "업그레이드 시 가격");
+			
+			paramMap.put("amount", amount);
+			subscriptionMapper.updateSubscriptionPay(paramMap);
 		}
 	}
 

@@ -67,10 +67,12 @@
 									가입 요청
 								</a>
 							</c:if>
-							<a class="btn btn-outline-info btn-icon-text" href="${pageContext.request.contextPath}/ceo/subscribeCeo?ceoId=${ceoId}">
-							 <i class="ti-ticket btn-icon-prepend"></i>
-							구독 변경
-							</a>
+							<c:if test="${state eq '승인'}">
+								<a class="btn btn-outline-info btn-icon-text" href="${pageContext.request.contextPath}/ceo/subscribeCeo?ceoId=${ceoId}">
+								 <i class="ti-ticket btn-icon-prepend"></i>
+								구독 변경
+								</a>
+							</c:if>
 							<a class="btn btn-outline-primary btn-icon-text" href="${pageContext.request.contextPath}/ceo/updateCeo?ceoId=${ceoId}&ceoEmail=${ceoEmail}&ceoLicense=${ceoLicense}&ceoPhonenum=${ceoPhonenum}">
 							 <i class="ti-file btn-icon-prepend"></i>
 							내 정보수정
