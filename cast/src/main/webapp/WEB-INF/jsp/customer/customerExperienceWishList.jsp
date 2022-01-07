@@ -313,7 +313,7 @@
 														<td>${wishList.experience.experiencePerson}</td>
 														<td>${wishList.createDate}</td>
 														<td>${wishList.updateDate}</td>
-														<td><a href="/">이동</a></td>
+														<td><a href="${pageContext.request.contextPath}/mainExperienceOne?experienceId=${wishList.experience.experienceId}&experienceName=${wishList.experience.experienceName}">이동</a></td>
 														
 														</tr>
 												</c:forEach>
@@ -322,11 +322,11 @@
 										<div style="text-align: center;" class="table container mt-3">
 											<c:if test="${currentPage > 1}">
 												<a
-													href="/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
+													href="${pageContext.request.contextPath}/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage-1}">이전</a>
 											</c:if>
 											<c:if test="${currentPage < lastPage}">
 												<a
-													href="/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
+													href="${pageContext.request.contextPath}/customerExperienceWishList?customerId=${loginCustomerId}&currentPage=${currentPage+1}">다음</a>
 											</c:if>
 										</div>
 									</div>

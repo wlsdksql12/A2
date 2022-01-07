@@ -38,10 +38,10 @@ public class SubscriptionService {
 		subscriptionMapper.updateCeoSubscription(map);
 	}
 
-	/* 매년 1월 1일 구독결제 자동 DB입력
-	@Scheduled(cron = "0 0 0 1 1 ? *", zone = "Asia/Seoul")
+	// 매년 1월 1일 구독결제 자동 DB입력
+	@Scheduled(cron = "0 0 0 1 1 ?", zone = "Asia/Seoul")
 	public void autoPayment() {
-		// 0 0 0 1 1 ? * == 초 분 시 일 월 요일 년
+		// 0 0 0 1 1 ? * == 초 분 시 일 월 요일 년(생략가능)
 		List<Ceo> ceoList = subscriptionMapper.selectAutoPaymentCeoList();
 		for(Ceo c : ceoList) {
 			log.debug(c.getCeoId()+c.getSubscriptionNo()+"스케쥴러 테스트");
@@ -51,5 +51,4 @@ public class SubscriptionService {
 			subscriptionMapper.insertAutoPayment(paramMap);
 		}
 	}
-	*/
 }

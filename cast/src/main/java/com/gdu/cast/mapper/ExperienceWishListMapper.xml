@@ -12,6 +12,7 @@
 			<result column="experience_startdate" property="experienceStartdate" />
 			<result column="experience_enddate" property="experienceEnddate" />
 			<result column="experience_person" property="experiencePerson" />
+			<result column="experience_id" property="experienceId" />
 		</association>
 	</resultMap>
 	
@@ -46,11 +47,12 @@
 		 e.experience_startdate,
 		 e.experience_enddate,
 		 e.experience_person,
+		 e.experience_id,
 		 ew.create_date,
 		 ew.update_date
 		FROM experience_wishlist ew inner join experience e
 		ON ew.experience_id = e.experience_id 
-		where customer_id NOT IN (SELECT customer_id FROM experience_wishlist)  = #{customerId}
+		where ew.customer_id = #{customerId}
 		LIMIT #{beginRow}, #{ROW_PER_PAGE}
 	</select>
 	
