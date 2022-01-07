@@ -169,7 +169,7 @@ public class LoginContrlloer {
 			System.out.println(state + "사업자 요청 상태");
 			// 12.20 요청or거절을 세션에 넣어서 로그인되도록
 			// 가입 요청 세션을 추가(ex.'요청','거절',승인')
-			int subscription = subscriptionService.getSubscriptionNo(Id);
+			Integer subscription = subscriptionService.getSessionSubscriptionNo(Id);
 			session.setAttribute("subscription", subscription);
 			session.setAttribute("state", state);
 			session.setAttribute("loginCeoId", loginCeo.getCeoId());

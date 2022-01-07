@@ -45,7 +45,7 @@ public class LoginCeoController {
 		String state = joinRequestService.getCeoJoinRequestResult((String)session.getAttribute("loginCeoId"));
 		session.setAttribute("state", state);
 		System.out.println(state + " <<< LoginCeoController");
-		int subscription = subscriptionService.getSubscriptionNo(ceoId);
+		Integer subscription = subscriptionService.getSessionSubscriptionNo(ceoId);
 		session.setAttribute("subscription", subscription);
 		//System.out.println(experienceWishList);
 		return "ceo/ceoIndex";

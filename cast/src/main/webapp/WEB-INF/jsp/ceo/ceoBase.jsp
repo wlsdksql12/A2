@@ -282,7 +282,7 @@
 		} else if('${state}' == '거절'){
 			swal("요청이 거절되었습니다.", "가입을 재요청하십시오.", "error");
 			return false;
-		} else if('${subscription} == 1'){
+		} else if('${subscription}' == '1' || '${subscription}' == ""){
 			swal("구독 정보로 인해 서비스가 제한됩니다.", "현재 구독 : Basic", "warning");
 			return false;
 		}

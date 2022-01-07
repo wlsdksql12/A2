@@ -137,7 +137,7 @@
 				<c:forEach items="${keywordList}" var="keyword">
 					<button type="button" class="hashtagBtn" data-wow-delay="0.3s"
 					style="visibility: visible; animation-delay: 0.3s; animation-name: fadeInDown;" name="searchKeyword" value="${keyword.keywordName}">
-               		${keyword.keywordName}
+               		#${keyword.keywordName}
            			</button>
            		</c:forEach>
 			    <form method="get" action="${pageContext.request.contextPath}/shop" style="height: 25px" id="searchKeywordForm">

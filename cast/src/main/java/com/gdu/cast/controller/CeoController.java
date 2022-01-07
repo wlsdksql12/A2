@@ -87,7 +87,7 @@ public class CeoController {
 	@GetMapping("/ceo/updateSubscribe")
 	public String updateSubscribe(HttpSession session, String ceoId, int subscriptionNo) {
 		subscriptionService.modifyCeoSubscription(ceoId, subscriptionNo);
-		int subscription = subscriptionService.getSubscriptionNo(ceoId);
+		Integer subscription = subscriptionService.getSessionSubscriptionNo(ceoId);
 		session.setAttribute("subscription", subscription);
 		return"redirect:/ceo/subscribeCeo?ceoId="+ceoId;
 	}
