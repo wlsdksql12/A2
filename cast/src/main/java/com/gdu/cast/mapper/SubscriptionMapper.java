@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.gdu.cast.vo.Ceo;
 import com.gdu.cast.vo.Subscription;
 
 @Mapper
@@ -23,4 +24,10 @@ public interface SubscriptionMapper {
 	
 	// 사업자의 구독 정보 변경
 	void updateCeoSubscription(Map<String, Object> map);
+	
+	// 매년 1월 1일 구독 결제 DB에 입력될 사업자 정보 조회
+	List<Ceo> selectAutoPaymentCeoList();
+	
+	// 매년 1월 1일 구독 결제 DB에 입력
+	void insertAutoPayment(Map<String, Object> map);
 }

@@ -83,6 +83,7 @@
 					<div class="card-body">
 						<h2 class="card-title">구독 후 이용 가능합니다</h2>
 						<p class="card-description">구독 가능한 상품의 리스트입니다.</p>
+						<p class="card-description">결제는 매년 1월 1일에 자동 결제됩니다.</p>
 						<c:forEach items="${subscriptionList}" var="subscription">
 							<div class="columns">
 							  <ul class="price">

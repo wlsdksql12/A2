@@ -43,4 +43,20 @@
 			subscription_no = #{subscriptionNo}, update_date = now()
 		WHERE ceo_id = #{ceoId}
 	</update>
+	
+	<!-- 매년 1월 1일 구독 결제 DB에 입력될 정보 조회 -->
+	<select id="selectAutoPaymentCeoList" resultType="com.gdu.cast.vo.Ceo">
+		SELECT c.ceo_id ceoId, c.subscription_no subscriptionNo
+		FROM ceo c 
+			LEFT JOIN join_ceo jc ON c.ceo_id = jc.ceo_id
+		WHERE jc.active = '승인' AND (c.subscription_no = 2 OR c.subscription_no = 3)
+	</select>
+	
+	<!-- 매년 1월 1일 구독 결제 DB에 입력 -->
+	<insert id="insertAutoPayment" parameterType="map">
+		INSERT INTO subscription_amount(subscription_pay, ceo_id, subscription_no, create_date, update_date)
+				SELECT s.subscription_pay, #{ceoId}, #{subscriptionNo}, NOW(), NOW()
+				FROM  subscription s
+				WHERE s.subscription_no = #{subscriptionNo}
+	</insert>
 </mapper>
