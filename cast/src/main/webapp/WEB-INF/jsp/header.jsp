@@ -101,7 +101,7 @@
                <c:otherwise>
                 <a class="nav-icon position-relative text-decoration-none" href="${pageContext.request.contextPath}/loginSelect">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                     </a>
                </c:otherwise>
                </c:choose>
